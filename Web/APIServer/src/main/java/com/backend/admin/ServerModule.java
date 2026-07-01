@@ -396,7 +396,7 @@ public class ServerModule {
         return sql.getResult();
     }
 
-    @At("/serverlist")
+@At("/serverlist")
 @GET
 @Ok("json")
 @Filters
@@ -428,8 +428,8 @@ public Object serverlist(@Param("groupName") String groupName) {
                     .setv("serverId", rs.getInt("serverId"))
                     .setv("serverName", rs.getString("serverName"))
                     .setv("groupName", rs.getString("groupName"))
-                    .setv("serverIP", rs.getString("serverIP"))
-                    .setv("serverPort", rs.getInt("serverPort"))
+                    .setv("serverIP", rs.getString("WorldIP"))  // ← ИСПРАВЛЕНО
+                    .setv("serverPort", rs.getInt("worldPort"))
                     .setv("serverOpenTime", rs.getString("serverOpenTime"))
                     .setv("openState", rs.getInt("openState"))
                     .setv("registerNum", rs.getInt("registerNum")));
