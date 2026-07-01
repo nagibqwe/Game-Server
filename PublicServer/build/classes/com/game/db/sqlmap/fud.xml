@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="fud">
+
+    <resultMap id="RoleBean" type="com.game.guildcrossfud.struct.FudRole">
+        <result column="roleId" property="roleId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="platform" property="platform" jdbcType="VARCHAR"/>
+        <result column="serverId" property="serverId" jdbcType="INTEGER"/>
+        <result column="tValue" property="tValue" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="kill" property="kill" jdbcType="INTEGER"/>
+        <result column="lock" property="lock" jdbcType="BIGINT"/>
+        <result column="scoreReward" property="scoreReward" jdbcType="BIGINT"/>
+        <result column="time" property="time" jdbcType="BIGINT"/>
+        <result column="data" property="data" jdbcType="LONGVARCHAR"/>
+
+    </resultMap>
+
+    <resultMap id="FudBean" type="com.game.guildcrossfud.struct.FudGroup">
+        <result column="groupId" property="groupId" jdbcType="INTEGER"/>
+        <result column="data" property="data" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+    <select id="selectFud"  resultMap="FudBean">
+        select * from fud
+    </select>
+
+    <delete id="clearFud">
+        delete from fud;
+    </delete>
+
+    <insert id="insertOrUpdateFud" parameterType="com.game.guildcrossfud.struct.FudGroup">
+        insert into fud (groupId, `data`)
+        value (  #{groupId}, #{data} )
+        on duplicate key update `data` = #{data}
+    </insert>
+
+    <select id="selectFudRole"  resultMap="RoleBean">
+        select *
+        from fudrole
+
+    </select>
+
+    <delete id="clearFudRole">
+        delete from fudrole;
+    </delete>
+
+    <insert id="insertOrUpdateFudRole" parameterType="com.game.guildcrossfud.struct.FudRole">
+        insert into fudrole (
+        roleId,
+        `name`,
+        `platform`,
+        serverId,
+        tValue,
+        score,
+        `kill`,
+        `lock`,
+        scoreReward,
+        `time`,
+        `data`
+        )
+        value (
+        #{roleId},
+        #{name},
+        #{platform},
+        #{serverId},
+        #{tValue},
+        #{score},
+        #{kill},
+        #{lock},
+        #{scoreReward},
+        #{time},
+        #{data}
+        )
+        on duplicate key update
+        `name` = #{name},
+        `tValue` = #{tValue},
+        `score` = #{score},
+        `kill` = #{kill},
+        `lock` = #{lock},
+        `scoreReward` = #{scoreReward},
+        `time` = #{time},
+        `data` = #{data}
+
+    </insert>
+
+
+</mapper>

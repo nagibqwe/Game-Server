@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.photocheck.photodata.mapper.TPhotodataMapper">
+    
+    <resultMap type="TPhotodata" id="TPhotodataResult">
+        <result property="id"    column="id"    />
+        <result property="desc1"    column="desc1"    />
+        <result property="desc2"    column="desc2"    />
+        <result property="desc3"    column="desc3"    />
+        <result property="desc4"    column="desc4"    />
+        <result property="desc5"    column="desc5"    />
+        <result property="desc6"    column="desc6"    />
+        <result property="photoMD5"    column="photoMD5"    />
+        <result property="photoID"    column="photoID"    />
+        <result property="photoSize"    column="photoSize"    />
+        <result property="smallPhotoSize"    column="smallPhotoSize"    />
+        <result property="smallMD5"    column="smallMD5"    />
+        <result property="bigPhotoPath"    column="bigPhotoPath"    />
+        <result property="smallPhotoPath"    column="smallPhotoPath"    />
+        <result property="photoExtName"    column="photoExtName"    />
+        <result property="uploadTime"    column="uploadTime"    />
+        <result property="requestNum"    column="requestNum"    />
+        <result property="lastRquestTime"    column="lastRquestTime"    />
+        <result property="lastDownloadTime"    column="lastDownloadTime"    />
+        <result property="isDelete"    column="isDelete"    />
+        <result property="deleteTime"    column="deleteTime"    />
+        <result property="checkStatus"    column="checkStatus"    />
+    </resultMap>
+
+    <sql id="selectTPhotodataVo">
+        select id, desc1, desc2, desc3, desc4, desc5, desc6, photoMD5, photoID, photoSize, smallPhotoSize, smallMD5, bigPhotoPath, smallPhotoPath, photoExtName, uploadTime, requestNum, lastRquestTime, lastDownloadTime, isDelete, deleteTime, checkStatus from t_photodata
+    </sql>
+
+    <select id="selectTPhotodataList" parameterType="TPhotodata" resultMap="TPhotodataResult">
+        <include refid="selectTPhotodataVo"/>
+        <where>
+            <if test="desc1 != null  and desc1 != ''"> and desc1 = #{desc1}</if>
+            <if test="desc2 != null  and desc2 != ''"> and desc2 = #{desc2}</if>
+            <if test="desc3 != null  and desc3 != ''"> and desc3 like concat('%', #{desc3}, '%')</if>
+            <if test="params.uploadStartTime != null and params.uploadStartTime != ''"><!-- 开始时间检索 -->
+                AND date_format(uploadTime,'%Y-%m-%d') &gt;= #{params.uploadStartTime}
+            </if>
+            <if test="params.uploadEndTime != null and params.uploadEndTime != ''"><!-- 结束时间检索 -->
+                AND date_format(uploadTime,'%Y-%m-%d') &lt;= #{params.uploadEndTime}
+            </if>
+
+            <if test="params.lastDownloadStartTime != null and params.lastDownloadStartTime != ''"><!-- 开始时间检索 -->
+                AND date_format(lastDownloadTime,'%Y-%m-%d') &gt;= #{params.lastDownloadStartTime}
+            </if>
+            <if test="params.lastDownloadEndTime != null and params.lastDownloadEndTime != ''"><!-- 结束时间检索 -->
+                AND date_format(lastDownloadTime,'%Y-%m-%d') &lt;= #{params.lastDownloadEndTime}
+            </if>
+            <if test="isDelete != null"> and isDelete = #{isDelete}</if>
+            <if test="checkStatus != null"> and checkStatus = #{checkStatus}</if>
+        </where>
+        order by uploadTime desc
+    </select>
+    
+    <select id="selectTPhotodataById" parameterType="Long" resultMap="TPhotodataResult">
+        <include refid="selectTPhotodataVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTPhotodata" parameterType="TPhotodata" useGeneratedKeys="true" keyProperty="id">
+        insert into t_photodata
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="desc1 != null">desc1,</if>
+            <if test="desc2 != null">desc2,</if>
+            <if test="desc3 != null">desc3,</if>
+            <if test="desc4 != null">desc4,</if>
+            <if test="desc5 != null">desc5,</if>
+            <if test="desc6 != null">desc6,</if>
+            <if test="photoMD5 != null">photoMD5,</if>
+            <if test="photoID != null">photoID,</if>
+            <if test="photoSize != null">photoSize,</if>
+            <if test="smallPhotoSize != null">smallPhotoSize,</if>
+            <if test="smallMD5 != null">smallMD5,</if>
+            <if test="bigPhotoPath != null">bigPhotoPath,</if>
+            <if test="smallPhotoPath != null">smallPhotoPath,</if>
+            <if test="photoExtName != null">photoExtName,</if>
+            <if test="uploadTime != null">uploadTime,</if>
+            <if test="requestNum != null">requestNum,</if>
+            <if test="lastRquestTime != null">lastRquestTime,</if>
+            <if test="lastDownloadTime != null">lastDownloadTime,</if>
+            <if test="isDelete != null">isDelete,</if>
+            <if test="deleteTime != null">deleteTime,</if>
+            <if test="checkStatus != null">checkStatus,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="desc1 != null">#{desc1},</if>
+            <if test="desc2 != null">#{desc2},</if>
+            <if test="desc3 != null">#{desc3},</if>
+            <if test="desc4 != null">#{desc4},</if>
+            <if test="desc5 != null">#{desc5},</if>
+            <if test="desc6 != null">#{desc6},</if>
+            <if test="photoMD5 != null">#{photoMD5},</if>
+            <if test="photoID != null">#{photoID},</if>
+            <if test="photoSize != null">#{photoSize},</if>
+            <if test="smallPhotoSize != null">#{smallPhotoSize},</if>
+            <if test="smallMD5 != null">#{smallMD5},</if>
+            <if test="bigPhotoPath != null">#{bigPhotoPath},</if>
+            <if test="smallPhotoPath != null">#{smallPhotoPath},</if>
+            <if test="photoExtName != null">#{photoExtName},</if>
+            <if test="uploadTime != null">#{uploadTime},</if>
+            <if test="requestNum != null">#{requestNum},</if>
+            <if test="lastRquestTime != null">#{lastRquestTime},</if>
+            <if test="lastDownloadTime != null">#{lastDownloadTime},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="deleteTime != null">#{deleteTime},</if>
+            <if test="checkStatus != null">#{checkStatus},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTPhotodata" parameterType="TPhotodata">
+        update t_photodata
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="desc1 != null">desc1 = #{desc1},</if>
+            <if test="desc2 != null">desc2 = #{desc2},</if>
+            <if test="desc3 != null">desc3 = #{desc3},</if>
+            <if test="desc4 != null">desc4 = #{desc4},</if>
+            <if test="desc5 != null">desc5 = #{desc5},</if>
+            <if test="desc6 != null">desc6 = #{desc6},</if>
+            <if test="photoMD5 != null">photoMD5 = #{photoMD5},</if>
+            <if test="photoID != null">photoID = #{photoID},</if>
+            <if test="photoSize != null">photoSize = #{photoSize},</if>
+            <if test="smallPhotoSize != null">smallPhotoSize = #{smallPhotoSize},</if>
+            <if test="smallMD5 != null">smallMD5 = #{smallMD5},</if>
+            <if test="bigPhotoPath != null">bigPhotoPath = #{bigPhotoPath},</if>
+            <if test="smallPhotoPath != null">smallPhotoPath = #{smallPhotoPath},</if>
+            <if test="photoExtName != null">photoExtName = #{photoExtName},</if>
+            <if test="uploadTime != null">uploadTime = #{uploadTime},</if>
+            <if test="requestNum != null">requestNum = #{requestNum},</if>
+            <if test="lastRquestTime != null">lastRquestTime = #{lastRquestTime},</if>
+            <if test="lastDownloadTime != null">lastDownloadTime = #{lastDownloadTime},</if>
+            <if test="isDelete != null">isDelete = #{isDelete},</if>
+            <if test="deleteTime != null">deleteTime = #{deleteTime},</if>
+            <if test="checkStatus != null">checkStatus = #{checkStatus},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTPhotodataById" parameterType="Long">
+        delete from t_photodata where id = #{id}
+    </delete>
+
+    <delete id="deleteTPhotodataByIds" parameterType="String">
+        delete from t_photodata where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteTPhotodataByPhotoID" parameterType="String">
+        delete from t_photodata where photoID = #{photoID}
+    </delete>
+    <select id="selectTPhotodataByPhotoID" parameterType="String" resultMap="TPhotodataResult">
+        <include refid="selectTPhotodataVo"/>
+        where photoID = #{photoID}
+    </select>
+    <update id="putBackTPhotodataByIds" parameterType="String">
+        update t_photodata set isDelete = 1,deleteTime = now() where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+    <select id="selectTPhotodataByIds" parameterType="String" resultMap="TPhotodataResult">
+        <include refid="selectTPhotodataVo"/>
+        where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+    <delete id="deleteTPhotodataByIsDelete">
+        delete from t_photodata where isDelete = 1
+    </delete>
+    <update id="recoverTPhotodataByIds" parameterType="String">
+        update t_photodata set isDelete = 0,deleteTime ='' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+    <update id="recoverTPhotodata">
+        update t_photodata set isDelete = 0,deleteTime ='' where isDelete = 1
+    </update>
+    <update id="updateTPhotodataCheckStatus" parameterType="java.util.Map">
+        update t_photodata
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="isDelete != null">isDelete = #{isDelete},</if>
+            <if test="deleteTime != null">deleteTime = #{deleteTime},</if>
+            <if test="checkStatus != null">checkStatus = #{checkStatus},</if>
+        </trim>
+        where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+</mapper>

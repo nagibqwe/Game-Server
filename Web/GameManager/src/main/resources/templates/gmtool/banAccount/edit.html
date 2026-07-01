@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改账号封禁')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-banAccount-edit" th:object="${banAccount}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">封号的条件：</label>
+                <div class="col-sm-8">
+                    <input name="con" th:field="*{con}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">封禁结束时间：</label>
+                <div class="col-sm-8">
+                    <input name="endTime" th:field="*{endTime}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">操作理由：</label>
+                <div class="col-sm-8">
+                    <textarea name="reason" class="form-control">[[*{reason}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">返回结果：</label>
+                <div class="col-sm-8">
+                    <textarea name="result" class="form-control">[[*{result}]]</textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/banAccount";
+        $("#form-banAccount-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-banAccount-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

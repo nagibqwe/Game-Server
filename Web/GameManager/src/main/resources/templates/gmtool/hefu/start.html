@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('数据库备份列表')" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+        <input name="id" type="hidden" th:value="${id}" />
+        <textarea id="textarea" class="form-control" style="height: -webkit-fill-available" disabled></textarea>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gmtool:dbbak:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gmtool:dbbak:remove')}]];
+        var prefix = ctx + "gmtool/hefu";
+        var id = $(" input[ name='id' ] ").val();
+
+        var int = self.setInterval("clock()",1000);
+
+
+        var logUrl = prefix + "/log";
+        var index = 0;
+
+        function clock() {
+            $.post(logUrl,{'id':id,'index':index},function (data,status){
+                if(status =='success'){
+                    if(data.code == 0){
+                        var result = data.data;
+                        if(result == null){
+                            return;
+                        }
+                        index = result.index;
+                        var logs = result.logs;
+                        for(var i=0;i<logs.length;i++){
+                            var log = logs[i];
+                            $("textarea").append(log + "\n");
+                            $("textarea").scrollTop($("textarea")[0].scrollHeight);
+                        }
+                    }else{
+                        $.modal.alertError(data.msg);
+                    }
+                }else{
+                    $.modal.alertError('操作失败');
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

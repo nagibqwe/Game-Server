@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.deductItem.mapper.DeductItemMapper">
+    
+    <resultMap type="DeductItem" id="DeductItemResult">
+        <result property="id"    column="id"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="itemId"    column="itemId"    />
+        <result property="roleId"    column="roleId"    />
+        <result property="dedCount"    column="dedCount"    />
+        <result property="realCount"    column="realCount"    />
+        <result property="isMail"    column="isMail"    />
+        <result property="isBind"    column="isBind"    />
+        <result property="dedTime"    column="dedTime"    />
+        <result property="reason"    column="reason"    />
+        <result property="mailTitle"    column="mailTitle"    />
+        <result property="mailContent"    column="mailContent"    />
+        <result property="isDelete"    column="isDelete"    />
+        <result property="sendUser"    column="sendUser"    />
+    </resultMap>
+
+    <sql id="selectDeductItemVo">
+        select id, serverId, itemId, roleId, dedCount, realCount, isMail, isBind, dedTime, reason, mailTitle, mailContent, isDelete, sendUser from t_deduct_item
+    </sql>
+
+    <select id="selectDeductItemList" parameterType="DeductItem" resultMap="DeductItemResult">
+        <include refid="selectDeductItemVo"/>
+        <where>
+            isDelete = 0
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            <if test="itemId != null "> and itemId = #{itemId}</if>
+            <if test="roleId != null  and roleId != ''"> and roleId = #{roleId}</if>
+            <if test="dedCount != null "> and dedCount = #{dedCount}</if>
+            <if test="realCount != null "> and realCount = #{realCount}</if>
+            <if test="isMail != null "> and isMail = #{isMail}</if>
+            <if test="isBind != null "> and isBind = #{isBind}</if>
+            <if test="dedTime != null "> and dedTime = #{dedTime}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+            <if test="mailTitle != null  and mailTitle != ''"> and mailTitle = #{mailTitle}</if>
+            <if test="mailContent != null  and mailContent != ''"> and mailContent = #{mailContent}</if>
+            <if test="sendUser != null  and sendUser != ''"> and sendUser = #{sendUser}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectDeductItemById" parameterType="Integer" resultMap="DeductItemResult">
+        <include refid="selectDeductItemVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDeductItem" parameterType="DeductItem" useGeneratedKeys="true" keyProperty="id">
+        insert into t_deduct_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">serverId,</if>
+            <if test="itemId != null">itemId,</if>
+            <if test="roleId != null">roleId,</if>
+            <if test="dedCount != null">dedCount,</if>
+            <if test="realCount != null">realCount,</if>
+            <if test="isMail != null">isMail,</if>
+            <if test="isBind != null">isBind,</if>
+            <if test="dedTime != null">dedTime,</if>
+            <if test="reason != null">reason,</if>
+            <if test="mailTitle != null">mailTitle,</if>
+            <if test="mailContent != null">mailContent,</if>
+            <if test="isDelete != null">isDelete,</if>
+            <if test="sendUser != null">sendUser,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">#{serverId},</if>
+            <if test="itemId != null">#{itemId},</if>
+            <if test="roleId != null">#{roleId},</if>
+            <if test="dedCount != null">#{dedCount},</if>
+            <if test="realCount != null">#{realCount},</if>
+            <if test="isMail != null">#{isMail},</if>
+            <if test="isBind != null">#{isBind},</if>
+            <if test="dedTime != null">#{dedTime},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="mailTitle != null">#{mailTitle},</if>
+            <if test="mailContent != null">#{mailContent},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="sendUser != null">#{sendUser},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDeductItem" parameterType="DeductItem">
+        update t_deduct_item
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="itemId != null">itemId = #{itemId},</if>
+            <if test="roleId != null">roleId = #{roleId},</if>
+            <if test="dedCount != null">dedCount = #{dedCount},</if>
+            <if test="realCount != null">realCount = #{realCount},</if>
+            <if test="isMail != null">isMail = #{isMail},</if>
+            <if test="isBind != null">isBind = #{isBind},</if>
+            <if test="dedTime != null">dedTime = #{dedTime},</if>
+            <if test="reason != null">reason = #{reason},</if>
+            <if test="mailTitle != null">mailTitle = #{mailTitle},</if>
+            <if test="mailContent != null">mailContent = #{mailContent},</if>
+            <if test="isDelete != null">isDelete = #{isDelete},</if>
+            <if test="sendUser != null">sendUser = #{sendUser},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDeductItemById" parameterType="Integer">
+        delete from t_deduct_item where id = #{id}
+    </delete>
+
+    <delete id="deleteDeductItemByIds" parameterType="String">
+        delete from t_deduct_item where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

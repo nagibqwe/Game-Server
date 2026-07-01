@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('首领死亡复活日志列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/log_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <label>类型：</label>
+                                <input type="text" name="type"/>
+                            </li>
+                            <li>
+                                <label>bossId：</label>
+                                <input type="text" name="bossId"/>
+                            </li>
+                            <li>
+                                <label>地图ID：</label>
+                                <input type="text" name="mapId"/>
+                            </li>
+                            <li>
+                                <label>击杀者：</label>
+                                <input type="text" name="param"/>
+                            </li>
+                            <div th:replace="common/log_limit.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gamelog:bossdierelivelog:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gamelog:bossdierelivelog:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gamelog:bossdierelivelog:remove')}]];
+        var prefix = ctx + "gamelog/bossdierelivelog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                exportUrl: prefix + "/export",
+                modalName: "首领死亡复活日志",
+                pagination: false,
+                firstLoad:false,
+                height:$(document).height() - 160,
+                columns: [
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'time',
+                    title: '时间',
+                    formatter: formatterDate
+                },
+                {
+                    field: 'type',
+                    title: '类型'
+                },
+                {
+                    field: 'bossId',
+                    title: 'bossId'
+                },
+                {
+                    field: 'mapId',
+                    title: '地图ID'
+                },
+                {
+                    field: 'param',
+                    title: '击杀者'
+                },
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

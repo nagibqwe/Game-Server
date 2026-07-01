@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('充值配置列表')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-table-fixed-columns-js" />
+    <style type="text/css">
+        .table {table-layout:fixed;}
+    </style>
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+         <div class="row">
+             <div class="col-sm-12">
+                 <div class="tabs-container">
+                     <!--<input type="button" value="普通充值及第三方充值数据清除" class="btn btn-primary" onclick="clearData()">-->
+                     <ul class="nav nav-tabs" id="nav-tabs">
+                         <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">普通充值配置表</a>
+                         </li>
+                         <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">第三方充值配置表</a>
+                         </li>
+                     </ul>
+                     <div class="tab-content">
+                         <div id="tab-1" class="tab-pane active">
+                             <div class="panel-body">
+                                 <div class="col-sm-12 select-table table-striped" style="word-break:break-all; word-wrap:break-all;">
+                                     <table id="rechargeItemData"></table>
+                                 </div>
+                                 <div style="margin-left: 85%;display: inline;margin-top: 10px">
+                                     <a href="#rechargeItemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">导入EXCEL</a>
+                                     <form name="rechargeItem" id="rechargeItem" method="post" action="rechargeItem/exportRechargeExcel" style="display: inline-block">
+                                         <input name="type" type="hidden" value="0">
+                                         <input type="button" value="导出EXCEL" class="btn btn-primary" onclick="exportExcel(this)">
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+                         <div id="tab-2" class="tab-pane">
+                             <div class="panel-body">
+                                 <div class="col-sm-12 select-table table-striped" style="word-break:break-all; word-wrap:break-all;">
+                                     <table id="rechargeItemData3"></table>
+                                 </div>
+                                 <div style="margin-left: 85%;display: inline">
+                                     <a href="#otherRechargeItemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">导入EXCEL</a>
+                                     <form name="rechargeItem3" id="rechargeItem3" method="post" action="rechargeItem/exportRechargeExcel" style="display: inline-block">
+                                         <input name="type" type="hidden" value="3">
+                                         <input type="button" value="导出EXCEL" class="btn btn-primary" onclick="exportExcel(this)">
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="container-fluid"><span style="color: #00ee00">MD5:</span><span id="MD5"></span></div>
+                         <div class="container-fluid"><span style="color: #00ee00"></span><span id="msg"></span></div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-12 select-table table-striped">
+                 <table id="rechargeItemLog"></table>
+             </div>
+         </div>
+    </div>
+
+     <div id="rechargeItemLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                     <h3>普通充值配置表</h3>
+                 </div>
+                 <div class="modal-body">
+                     <input id="rechargeItems" type="file" name="rechargeItemFile"/>
+                     <label>加载rechargeItem.xlsx表</label>
+                 </div>
+                 <div class="modal-footer">
+                     <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                     <input type="button" value="上传" onclick="loadRechargeItem()" class="btn btn-primary"/>
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal-dialog -->
+     </div>
+
+     <div id="otherRechargeItemLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                     <h3>第三方充值配置表</h3>
+                 </div>
+                 <div class="modal-body">
+                     <input id="otherRechargeItems" type="file" name="otherRechargeItemFile"/>
+                     <label>加载rechargeItem.xlsx表</label>
+                 </div>
+                 <div class="modal-footer">
+                     <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                     <input type="button" value="上传" onclick="loadOtherRechargeItem()" class="btn btn-primary"/>
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal-dialog -->
+     </div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/rechargeItem";
+        var tableName="rechargeItem";//选项卡第一个
+        $(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // **已激活的标签页的名称
+                var title = $(e.target).text();
+                if ("第三方充值配置表" == title) {
+                    tableName="otherRechargeItem";
+                }else {
+                    tableName = "rechargeItem";
+                }
+                console.log(tableName);
+            });
+        });
+        $(function() {
+            var id = ["rechargeItemData","rechargeItemData3"];
+            var url = [prefix + "/queryRechargeItem",prefix + "/queryRechargeItem3"];
+            var updateUrl = [prefix + "/edit?goodsId={id}&tableName=rechargeItem",prefix + "/edit?goodsId={id}&tableName=otherRechargeItem"];
+            for (var i=0;i<id.length;i++){
+                initTable(id[i],url[i],updateUrl[i]);
+            }
+            function initTable(id,url,updateUrl) {
+                var options = {
+                    id:id,
+                    url: url,
+                    updateUrl: updateUrl,
+                    showSearch: false,
+                    // clickToSelect:true,
+                    singleSelect:true,
+                    // fixedColumns: true,
+                    // fixedNumber: 4,
+                    modalName: "充值配置",
+                    onLoadSuccess: onLoadSuccess,
+                    columns: [{
+                        checkbox: true
+                    },
+                        {
+                            title: '序号',
+                            field: '',
+                            align: 'center',
+                            formatter: function (value, row, index) {
+                                return showNumber(id,index);
+                            }
+                        },
+                        {
+                            field: 'goodsId',
+                            title: '充值ID'
+                        },
+                        {
+                            field: 'goodsSystemCfgId',
+                            title: '游戏内部配置ID'
+                        },
+                        {
+                            field: 'goodsName',
+                            title: '商品名字描述（主要用于BI后台数据）'
+                        },
+                        {
+                            field: 'goodsPayChannel',
+                            title: '支付渠道'
+                        },
+                        {
+                            field: 'goodsPayType',
+                            title: '支付类型(第三方)'
+                        },
+                        {
+                            field: 'goodsType',
+                            title: '充值类型'
+                        },
+                        {
+                            field: 'goodsSubtype',
+                            title: '充值子类型'
+                        },
+                        {
+                            field: 'goodsLimit',
+                            title: '充值次数（当前轮每个挡位对应充值的次数)'
+                        },
+                        {
+                            field: 'goodsIcon',
+                            title: '显示的图标的ID'
+                        },
+                        {
+                            field: 'goodsurl',
+                            title: '商品图片地址'
+                        },
+                        {
+                            field: 'goodsPrice',
+                            title: '充值档位对应消耗的真实货币',
+                            formatter:formatterValue
+                        },
+                        {
+                            field: 'goodsPricePoint',
+                            title: '充值计费点'
+                        },
+                        {
+                            field: 'goodsShowPrice',
+                            title: '充值默认显示货币'
+                        },
+                        {
+                            field: 'goodsReward',
+                            title: '充值奖励'
+                        },
+                        {
+                            field: 'goodsMultiple',
+                            title: '充值奖励倍数'
+                        },
+                        {
+                            field: 'goodsExtraReward',
+                            title: '额外奖励'
+                        },
+                        {
+                            field: 'goodsExtraRewardLimit',
+                            title: '额外奖励次数'
+                        },
+                        {
+                            field: 'isTotalRecharge',
+                            title: '是否计入到游戏累充活动'
+                        },
+                        {
+                            field: 'totalVipPower',
+                            title: '是否增加VIP经验'
+                        },
+                        {
+                            title: '操作',
+                            align: 'center',
+                            formatter: function(value, row, index) {
+                                var actions = [];
+                                actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.goodsId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                                return actions.join('');
+                            }
+                        }]
+                };
+                $.table.init(options);
+                function onLoadSuccess(data){
+                    // console.log("data:"+JSON.stringify(data));
+                    $("#MD5").text(data.paramMap.md5);
+                }
+            }
+
+        });
+
+        $(function() {
+            var options = {
+                id:"rechargeItemLog",
+                url: prefix + "/queryRechargeItemLog",
+                pageSize: 20,
+                pageNumber: 1,
+                pageList: [20, 30, 50],
+                showSearch: false,
+                clickToSelect:true,
+                singleSelect:true,
+                // fixedColumns: true,
+                // fixedNumber: 4,
+                modalName: "充值配置历史记录",
+                columns: [{
+                    checkbox: true
+                },
+                    {
+                        title: '序号',
+                        field: '',
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            return showNumber("rechargeItemLog",index);
+                        }
+                    },
+                    {
+                        field: 'id',
+                        title: 'id',
+                        visible: false
+                    },
+                    {
+                        field: 'userName',
+                        title: '修改人'
+                    },
+                    {
+                        field: 'time',
+                        title: '修改时间'
+                    },
+                    {
+                        field: 'tableName',
+                        title: '操作表名'
+                    },
+                    {
+                        title: '记录详情',
+                        align: 'center',
+                        formatter: function(value, row, index) {
+                            return '<a href="#" class="btn btn-success btn-xs" onclick="showRechargeItemLog('+index+',this)">点击查看</a>';
+                        }
+                    },
+                    {
+                        title: '导出EXCEL',
+                        align: 'center',
+                        formatter: function(value, row, index) {
+                            return '<form name="exportRechargeItemLogForm" id="exportRechargeItemLogForm" method="post" action="rechargeItem/exportRechargeItemLog">' +
+                                '<input id="hId" name="hId" type="hidden" value="'+row.id+'">'+
+                                '<input id="tableName" name="tableName" type="hidden" value="'+row.tableName+'">'+
+                                '<a href="#" class="btn btn-primary btn-xs" onclick="exportRechargeItemLog('+index+',this)">导出EXCEL</a>' +
+                                '</form>';
+                        }
+                    }]
+            };
+            $.table.init(options);
+        });
+
+        /**
+         *  导入普通充值配置
+         */
+        function loadRechargeItem() {
+            var data = new FormData();
+            data.append('rechargeItemFile', $("#rechargeItems").prop('files')[0]);
+            // $("#loadingmodal").modal({backdrop:'static',keyboard:false});
+            $.ajax({
+                url: prefix + "/loadRechargeItem",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function (data) {
+                    if (data.ok){
+                        // $("#loadingmodal").modal('hide');
+                        reload();
+                        $.modal.alertSuccess(data.msg);
+                    } else {
+                        reload();
+                        $.modal.alertError(data.msg);
+                    }
+                    $.modal.closeLoading();
+                    $.modal.enable();
+                }
+            });
+        }
+        function reload() {
+            $("#rechargeItemLoadModel").modal('hide');
+            $("#rechargeItemData").bootstrapTable('refresh');
+            $("#rechargeItemData3").bootstrapTable('refresh');
+            $("#rechargeItemLog").bootstrapTable('refresh');
+        }
+
+        /**
+         *  导入第三方充值配置
+         */
+        function loadOtherRechargeItem() {
+            var data = new FormData();
+            data.append('otherRechargeItemFile', $("#otherRechargeItems").prop('files')[0]);
+            // $("#loadingmodal").modal({backdrop:'static',keyboard:false});
+            $.ajax({
+                url: prefix + "/loadOtherRechargeItem",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        // $("#loadingmodal").modal('hide');
+                        reload3();
+                        $.modal.alertSuccess(data.msg);
+                    } else {
+                        reload3();
+                        $.modal.alertError(data.msg);
+                    }
+                    $.modal.closeLoading();
+                    $.modal.enable();
+                }
+            });
+        }
+        function reload3() {
+            $("#otherRechargeItemLoadModel").modal('hide');
+            $("#rechargeItemData").bootstrapTable('refresh');
+            $("#rechargeItemData3").bootstrapTable('refresh');
+            $("#rechargeItemLog").bootstrapTable('refresh');
+        }
+
+        /**
+         * 导出普通充值/第三方充值配置
+         */
+        function exportExcel(obj) {
+            var type=$(obj).parent().find("input").eq(0).val();
+            console.log("type:"+type);
+            var data = new FormData();
+            data.append('type', type);
+            if (type == 0){
+                $("form[name='rechargeItem']").submit();//向服务器请求需要下载的数据并导出EXCEL
+            }else {
+                $("form[name='rechargeItem3']").submit();
+            }
+        }
+
+        //点击查看显示历史记录
+        function showRechargeItemLog(index,obj) {
+            selectRow(index,obj);//先选中这一行
+            layer.open({
+                type: 2,
+                shade: [0.05, '#393D49'],
+                area: ['80%' ,'100%'],
+                offset:[0+'px', 150+'px'] ,
+                // offset:"rb",
+                fix: false,
+                btnAlign: 'l',
+                //不固定
+                maxmin: true,
+                title: "历史记录",
+                content: prefix+'/queryRechargeItemLogPage?index='+index,
+                btn: ['确定'],
+                // 弹层外区域关闭
+                shadeClose: true,
+                success: function(layero,index){
+                },
+                yes: function(index, layero) { //确定按钮点击函数
+                    layer.close(index)
+                },
+                cancel: function(index) {
+                    return true;
+                }
+            });
+        }
+
+        //历史记录导出EXCEL
+        function exportRechargeItemLog(index,obj) {
+            selectRow(index,$(obj).parent());//先选中这一行
+            $("form[name='exportRechargeItemLogForm']").eq(index).submit();//确定是哪个table表格
+        }
+
+        //普通充值及第三方充值数据清除
+        function clearData() {
+            $.modal.confirm("确认清除？",function () {
+                $.ajax({
+                    url: prefix + "/clearRechargeItem",
+                    type: 'POST',
+                    dataType : "json",
+                    success: function (data) {
+                        console.log(data);
+                        if (data.ok){
+                            $('#rechargeItemData').bootstrapTable('refresh');
+                            $('#rechargeItemData3').bootstrapTable('refresh');
+                            $("#rechargeItemLog").bootstrapTable('refresh');
+                            $.modal.alertSuccess("删除普通充值及第三方充值数据成功");
+                        }else {
+                            $.modal.alertError("删除普通充值及第三方充值数据失败");
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

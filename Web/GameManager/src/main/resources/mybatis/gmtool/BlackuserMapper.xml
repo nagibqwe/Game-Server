@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.blackuser.mapper.BlackuserMapper">
+    
+    <resultMap type="Blackuser" id="BlackuserResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="userId"    />
+        <result property="platform"    column="platform"    />
+    </resultMap>
+
+    <sql id="selectBlackuserVo">
+        select id, userId, platform from t_blackuser
+    </sql>
+
+    <select id="selectBlackuserList" parameterType="Blackuser" resultMap="BlackuserResult">
+        <include refid="selectBlackuserVo"/>
+        <where>  
+            <if test="userId != null "> and userId = #{userId}</if>
+            <if test="platform != null  and platform != ''"> and platform = #{platform}</if>
+        </where>
+    </select>
+    
+    <select id="selectBlackuserById" parameterType="Integer" resultMap="BlackuserResult">
+        <include refid="selectBlackuserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBlackuser" parameterType="Blackuser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_blackuser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">userId,</if>
+            <if test="platform != null">platform,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="platform != null">#{platform},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBlackuser" parameterType="Blackuser">
+        update t_blackuser
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">userId = #{userId},</if>
+            <if test="platform != null">platform = #{platform},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBlackuserById" parameterType="Integer">
+        delete from t_blackuser where id = #{id}
+    </delete>
+
+    <delete id="deleteBlackuserByIds" parameterType="String">
+        delete from t_blackuser where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

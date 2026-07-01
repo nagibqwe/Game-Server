@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block css-content %}
+    {% load static %}
+    {#    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">#}
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/build.css' %}">
+{% endblock %}
+{% block page-content %}
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> 热更新 {{ message }}
+                        <small>HotUpdate</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in " id="tab_content1"
+                                 aria-labelledby="home-tab">
+                                <div class="row" id="websockethide">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="x_panel">
+                                            <div class="x_title">
+                                            </div>
+                                            <div class="x_content">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="text-muted font-13 m-b-30">
+                                                            热更新服务器查询:
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-2 col-sm-6 col-xs-6 col-md-offset-2 form-group"
+                                                         id="div_group">
+                                                        <select class="form-control" id="project_select">
+                                                            <option selected="selected" value="null">请选择一个项目</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-2 col-sm-12 col-xs-12 form-group" id="div_type">
+                                                        <select class="form-control" id="region_select">
+                                                            <option selected="selected" value="null">请选择一个渠道</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-12 col-xs-12 form-group" id="div_type">
+                                                        <select class="form-control" id="type_select">
+                                                            <option selected="selected" value="null">请选择一个类型</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                                        <input type="button" id="submit" class="btn btn-success btn-sm"
+                                                               onclick="select_assets(this)"
+                                                               value="提交查询">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="display: none" id="servercheck">
+                                                    <hr>
+                                                    <div class="col-sm-6">
+                                                        <p class="text-muted font-13 m-b-30">
+                                                            热更新服务器选取:
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row" style="display: none" id="servercheckbox">
+                                                    <label class="col-md-1"><input name="select_all_server"
+                                                                                   type="checkbox"
+                                                                                   id="select_all_server" value="全选"
+                                                                                   onclick=set_select(this) /> 全选</label>
+                                                    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 "
+                                                         id="servercheckboxbody">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="display: none" id="package">
+                                                    <hr>
+                                                    <div class="col-sm-6">
+                                                        <p class="text-muted font-13 m-b-30">
+                                                            热更新配置:
+                                                        </p>
+                                                        <label class="col-md-2 col-md-offset-1">更新包名:</label>
+                                                        <input style="outline-style: none;border: 1px solid #ccc;border-radius: 3px;width: 40%;height: 35px"
+                                                               type="input" name="packagename" placeholder="输入更新包名">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="display: none" id="descripe">
+                                                    <hr>
+                                                    <div class="col-sm-6">
+                                                        <p class="text-muted font-13 m-b-30">
+                                                            热更新描述:
+                                                        </p>
+                                                        <label class="col-md-2 col-md-offset-1">更新描述:</label>
+                                                        <textarea rows="3" cols="40"
+                                                                  style="margin: 0px; width: 453px; height: 80px;"
+                                                                  id="descripetext"></textarea>
+                                                        {#                                                            <input style="outline-style: none;border: 1px solid #ccc;border-radius: 3px;width: 40%;height: 35px" type="text" name="packagename" placeholder="更新描述">#}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="display: none" id="startupdate">
+                                                    <hr>
+                                                    <div class="col-sm-3 col-md-offset-9">
+                                                        <button class="btn btn-danger btn-sm">重置</button>
+                                                        <button class="btn btn-success btn-sm" onclick="start_update()">
+                                                            开始更新
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="product_price" id="divSelectedType"
+                                                     style="display:none;"></div>
+                                                <legend></legend>
+
+
+                                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-hidden="true">&times;
+                                                                </button>
+                                                                <h4 class="modal-title">开始热更新服务器</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+{#                                                                <p id="update_body"><button onclick="WebSocketTest()">test</button></p>#}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">退出
+                                                                </button>
+{#                                                                <button type="button" class="btn btn-primary">保存#}
+{#                                                                </button>#}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- 分页按钮 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js-content %}
+    <script src="{% static 'js/deploy/hot_update.js' %}"></script>
+{% endblock %}
+

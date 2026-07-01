@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('每日登陆')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var count_01 = 0;
+        $(function () {
+            getActivityType(actType);
+
+            load(actType);
+        });
+
+    </script>
+
+    <script>
+        function addSaltIpGrp(obj) {
+            console.log(count_01);
+            var rewardInput = 'i_RewardGroup' + count_01;
+            var rewardAddBtn = 'showRewardModel' + count_01;
+            var buyRewardInput = 'i_BuyRewardGroup' + count_01;
+            var buyRewardAddBtn = 'showBuyRewardModel' + count_01;
+            count_01 += 1;
+            html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">天数:</label>' +
+                '<input type="text" class="form-control" id="i_day" name="i_day" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">' +
+                '<label class="input-group-addon">基础奖励组:</label>' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="基础奖励组" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="i_RewardGroup"/></div>' +
+                '</span>' +
+                // '<input type="text" class="form-control" id="i_RewardGroup" name="i_RewardGroup"  style="max-width:auto;">' +
+                '<label class="input-group-addon">进阶奖励组:</label>' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="进阶奖励组" id="' + buyRewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + buyRewardInput + ',' + buyRewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + buyRewardInput + '" name="i_BuyRewardGroup"/></div>' +
+                '</span>' +
+                // '<input type="text" class="form-control" id="i_BuyRewardGroup" name="i_BuyRewardGroup"  style="max-width:auto;">' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delExChangeConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>限时登陆<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="进阶货币：解锁高级登录所需要消耗的货币类型，后面填写所需货币数量<br/>
+                                天数：不重复即可，但必须小于等于活动持续天数<br/>
+                                基础奖励组：登录当天获得的免费奖励组<br/>
+                                进阶奖励组：解锁高级登录后获得的奖励，可为空，为空代表当天没有累积奖励"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div id="costGroup" class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>进阶配置</legend>
+                            <fieldset>
+                                <div class="input-group">
+                                    <label class="input-group-addon">进阶货币:</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <select id="coinType" name="coinType" onchange="" class="form-control">
+                                            <option value="1">金元宝</option>
+                                            <option value="3">铜钱</option>
+                                            <option value="12">银元宝</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                        <input type="text" class="form-control" id="coinCount" name="coinCount"
+                                               placeholder="800" onkeyup="value=value.replace(/\D/g,'')"
+                                               required/>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>限时登陆配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup">
+                                    <label class="input-group-addon">配置列表:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn"
+                                            onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount1" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

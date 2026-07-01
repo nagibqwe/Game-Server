@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.function.mapper.FunctionMapper">
+    
+    <resultMap type="Function" id="FunctionResult">
+        <result property="funcId"    column="funcId"    />
+        <result property="funcName"    column="funcName"    />
+        <result property="parentId"    column="parentId"    />
+        <result property="openState"    column="openState"    />
+    </resultMap>
+
+    <sql id="selectFunctionVo">
+        select funcId, funcName, parentId, openState from t_function
+    </sql>
+
+    <select id="selectFunctionList" parameterType="Function" resultMap="FunctionResult">
+        <include refid="selectFunctionVo"/>
+        <where>  
+            <if test="funcId != null "> and funcId = #{funcId}</if>
+            <if test="funcName != null  and funcName != ''"> and funcName like concat('%', #{funcName}, '%')</if>
+            <if test="parentId != null "> and parentId = #{parentId}</if>
+            <if test="openState != null "> and openState = #{openState}</if>
+        </where>
+    </select>
+    
+    <select id="selectFunctionById" parameterType="Integer" resultMap="FunctionResult">
+        <include refid="selectFunctionVo"/>
+        where funcId = #{funcId}
+    </select>
+        
+    <insert id="insertFunction" parameterType="Function">
+        insert into t_function
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="funcId != null">funcId,</if>
+            <if test="funcName != null">funcName,</if>
+            <if test="parentId != null">parentId,</if>
+            <if test="openState != null">openState,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="funcId != null">#{funcId},</if>
+            <if test="funcName != null">#{funcName},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="openState != null">#{openState},</if>
+         </trim>
+    </insert>
+
+    <update id="updateFunction" parameterType="Function">
+        update t_function
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="funcName != null">funcName = #{funcName},</if>
+            <if test="parentId != null">parentId = #{parentId},</if>
+            <if test="openState != null">openState = #{openState},</if>
+        </trim>
+        where funcId = #{funcId}
+    </update>
+
+    <delete id="deleteFunctionById" parameterType="Integer">
+        delete from t_function where funcId = #{funcId}
+    </delete>
+
+    <delete id="deleteFunctionByIds" parameterType="String">
+        delete from t_function where funcId in 
+        <foreach item="funcId" collection="array" open="(" separator="," close=")">
+            #{funcId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAllFunctions">
+        delete from t_function
+    </delete>
+</mapper>

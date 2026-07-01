@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增商城')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+        $(function () {
+
+            $("#select_group").attr("disabled","disabled");
+            $("#select_server").attr("disabled","disabled");
+
+            var id = [[${id}]];
+            var date = '[[${date}]]';
+            var shopInfo = '[[${shopInfo}]]';//原始数据
+            var groupName = '[[${groupName}]]';
+            var serverId = [[${serverId}]];
+            var infoStr = $.base64.decode(shopInfo);//解码后的数据
+            var info = JSON.parse(infoStr);
+            setTimeout(function () {
+                queryServerByGroup(groupName);
+                $("#select_group").val(groupName);
+            }, 500);
+            setTimeout(function () {
+                $("#select_server").val(serverId);
+            },800);
+            console.log(info);
+            loadAllItem();
+            formatDate();
+
+            loadShopInfo(info);
+
+        });
+        function loadShopInfo(info) {
+            $("#id").val(info.id);
+            $("#shopid").val(info.shopid);
+            $("#shoptype").val(info.shoptype);
+            $("#labelid").val(info.labelid);
+            $("#promotion").val(info.promotion);
+            $("#sort").val(info.sort);
+            $("#itemid").val(info.itemid);
+            $("#bind").val(info.bind);
+            $("#limittype").val(info.limittype);
+            $("#buynum").val(info.buynum);
+            $("#currencyid").val(info.currencyid);
+            $("#price").val(info.price);
+            $("#discount").val(info.discount);
+            $("#discountprice").val(info.discountprice);
+            $("#uptime").val(info.uptime);
+            $("#downtime").val(info.downtime);
+            $("#occupation").val(info.occupation);
+            $("#level").val(info.level);
+            $("#viplevel").val(info.viplevel);
+            $("#guildlevel").val(info.guildlevel);
+            $("#guildshoplvlstart").val(info.guildshoplvlstart);
+            $("#guildshoplvlend").val(info.guildshoplvlend);
+            $("#worldlvlstart").val(info.worldlvlstart);
+            $("#worldlvlend").val(info.worldlvlend);
+            $("#refreshcurrency").val(info.refreshcurrency);
+            $("#refreshnum").val(info.refreshnum);
+            $("#isdiscount").val(info.isdiscount);
+        }
+
+        var prefix = ctx + "gmtool/shop";
+        $("#shop_form_edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($("#shop_form_edit").validate().form()) {
+                $("#select_server").removeAttrs("disabled");
+                $.ajax({
+                    url: prefix + "/updateShop",
+                    type: 'POST',
+                    dataType : "json",
+                    data:$('#shop_form_edit').serialize(),
+                    success: function (data) {
+                        var parent = window.parent;
+                        if (data.ok){
+                            $.modal.alertMsg(data.msg,alert_type.SUCCESS);
+                            parent.$.table.refresh();
+                        }else {
+                            $.modal.alertError(data.msg);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="shop_form_edit">
+        <div class="form-group">
+            <div th:replace="common/select_server_single.html"></div>
+            <!--此处作为服务器请求分组地址映射设置地方-->
+            <input type="hidden" id="requestUrl" value="gameServer">
+            <input type="hidden" id="ignoreMerge" value="1">
+        </div>
+        <div class="form-group">
+
+            <label class="col-sm-2 control-label" for="id">商品ID：</label>
+            <div class="col-sm-2">
+                <input name="id" id="id" class="form-control" type="text" placeholder="唯一id,100000~110000" readonly required>
+            </div>
+            <label class="col-sm-1 control-label" for="shopid">商城类型：</label>
+            <div class="col-sm-2">
+                <select id="shopid" name="shopid" class="form-control m-b">
+                    <option value="1">灵玉商城</option>
+                    <option value="2">兑换商城</option>
+                    <option value="3">福地积分商店</option>
+                    <option value="4">仙盟贡献商店</option>
+                </select>
+            </div>
+            <label class="col-sm-1 control-label" for="shoptype">商城标签：</label>
+            <div class="col-sm-2">
+                <input name="shoptype" id="shoptype" class="form-control" type="text" placeholder="标签数组,如:1_2_3" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="labelid">标签ID：</label>
+            <div class="col-sm-2">
+                <input name="labelid" id="labelid" class="form-control" type="text" required>
+            </div>
+            <label class="col-sm-1 control-label" for="promotion">促销标签：</label>
+            <div class="col-sm-2">
+                <select id="promotion" name="promotion" class="form-control m-b">
+                    <option value="0" selected>无</option>
+                    <option value="1">打折</option>
+                    <option value="2">推荐</option>
+                    <option value="3">新品</option>
+                    <option value="4">热卖</option>
+                </select>
+            </div>
+            <label class="col-sm-1 control-label" for="sort">排列优先级：</label>
+            <div class="col-sm-2">
+                <input name="sort" id="sort" class="form-control" type="text" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="itemid">道具ID：</label>
+            <div class="col-sm-2">
+                <input type="text" name="itemid" id="itemid" list="itemList" class="form-control m-b" required/>
+                <datalist id="itemList"></datalist>
+            </div>
+            <label class="col-sm-1 control-label" for="bind">是否绑定：</label>
+            <div class="col-sm-2">
+                <select id="bind" name="bind" class="form-control m-b">
+                    <option value="0" selected>非绑</option>
+                    <option value="1">绑定</option>
+                </select>
+            </div>
+            <label class="col-sm-1 control-label" for="limittype">限购类型：</label>
+            <div class="col-sm-2">
+                <select name="limittype" id="limittype" class="form-control m-b">
+                    <option value="0">不限购</option>
+                    <option value="1">日限购</option>
+                    <option value="2">周限购</option>
+                    <option value="3">月限购</option>
+                    <option value="4">年限购</option>
+                    <option value="5">终身限购</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="buynum">可购买次数：</label>
+            <div class="col-sm-2">
+                <input name="buynum" id="buynum" class="form-control" type="text" value="-1" placeholder="-1表示不限次" required>
+            </div>
+            <label class="col-sm-1 control-label" for="currencyid">货币：</label>
+            <div class="col-sm-2">
+                <select id="currencyid" name="currencyid" class="form-control m-b">
+                    <option value="1">灵玉</option>
+                    <option value="9">声望</option>
+                    <option value="11">仙盟贡献</option>
+                    <option value="13">福地积分</option>
+                </select>
+            </div>
+            <label class="col-sm-1 control-label" for="price">打折前价格：</label>
+            <div class="col-sm-2">
+                <input name="price" id="price" class="form-control" type="text" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="discount">打折数：</label>
+            <div class="col-sm-2">
+                <input name="discount" id="discount" class="form-control" type="text" required>
+            </div>
+            <label class="col-sm-1 control-label" for="discountprice">打折后价格：</label>
+            <div class="col-sm-2">
+                <input name="discountprice" id="discountprice" class="form-control" type="text" required>
+            </div>
+            <label class="col-sm-1 control-label" for="uptime">上架时间：</label>
+            <div class="col-sm-2">
+                <input type="text" class="datetimepicker form-control input" style="width: 140px" name="uptime" id="uptime" readonly/>
+            </div>
+            <div style="margin-top: 5px">
+                <span style="margin-left: -70px;">-</span>
+            </div>
+            <div class="col-sm-2" style="margin-top: -24px;margin-left: 1097px;">
+                <input type="text" class="datetimepicker form-control input" style="width: 140px;margin-top: -7px" name="downtime" id="downtime" readonly>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 30px">
+            <label class="col-sm-2 control-label" for="occupation">职业限制：</label>
+            <div class="col-sm-2">
+                <select name="occupation" id="occupation" class="form-control m-b">
+                    <option value="-1">不限职业</option>
+                    <option value="0">玄剑</option>
+                    <option value="1">天英</option>
+                    <option value="2">地藏</option>
+                    <option value="3">罗刹</option>
+                </select>
+            </div>
+            <label class="col-sm-1 control-label" for="level">需求等级：</label>
+            <div class="col-sm-2">
+                <input name="level" id="level" class="form-control" type="text" value="0" required>
+            </div>
+            <label class="col-sm-1 control-label" for="viplevel">需求境界等级：</label>
+            <div class="col-sm-2">
+                <input name="viplevel" id="viplevel" class="form-control" type="text" value="0" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="guildlevel">购买需求帮会等级：</label>
+            <div class="col-sm-2">
+                <input name="guildlevel" id="guildlevel" class="form-control" type="text" value="0" required>
+            </div>
+            <label class="col-sm-1 control-label" for="guildshoplvlstart">需求仙盟等级：</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" style="width: 80px" name="guildshoplvlstart" id="guildshoplvlstart" value="0" required/>
+            </div>
+            <div style="margin-top: 5px">
+                <span style="margin-left: -130px;">-</span>
+            </div>
+            <div class="col-sm-2" style="margin-top: -24px;margin-left: 685px;">
+                <input type="text" class="form-control" style="width: 80px;margin-top: -19px" name="guildshoplvlend" id="guildshoplvlend" value="999" required>
+            </div>
+        </div>
+        <div class="form-group" style="margin-left: 850px;">
+            <label class="col-sm-2 control-label" for="worldlvlstart" style="margin-top: -62px;margin-left: -20px">需求世界等级：</label>
+            <div class="col-sm-2" style="margin-left: 70px;margin-top: -53px">
+                <input type="text" class="form-control" style="width: 80px" name="worldlvlstart" id="worldlvlstart" value="0" required/>
+            </div>
+            <div style="margin-top: -50px">
+                <span style="margin-left: 175px;">-</span>
+            </div>
+            <div class="col-sm-2" style="margin-top: -57px;margin-left: 175px;">
+                <input type="text" class="form-control" style="width: 80px;margin-top: 3px" name="worldlvlend" id="worldlvlend" value="999" required>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: -12px">
+            <label class="col-sm-2 control-label" for="refreshcurrency">刷新使用货币类型：</label>
+            <div class="col-sm-2">
+                <select name="refreshcurrency" id="refreshcurrency" class="form-control m-b">
+                    <option value="0">没有货币</option>
+                    <option value="-1">不能刷新</option>
+                    <option value="1">灵玉</option>
+                    <option value="9">声望</option>
+                    <option value="11">仙盟贡献</option>
+                    <option value="13">福地积分</option>
+                </select>
+            </div>
+            <label class="col-sm-1 control-label" for="refreshnum">刷新货币消耗数量：</label>
+            <div class="col-sm-2">
+                <input name="refreshnum" id="refreshnum" class="form-control" type="text" value="0" required>
+            </div>
+            <label class="col-sm-1 control-label" for="isdiscount">是否修神锻体打折：</label>
+            <div class="col-sm-2">
+                <select id="isdiscount" name="isdiscount" class="form-control m-b">
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

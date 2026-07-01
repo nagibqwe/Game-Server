@@ -1,0 +1,60 @@
+{
+  "groups": [
+    {
+      "name": "gen",
+      "type": "com.kits.framework.config.GenConfig",
+      "sourceType": "com.kits.framework.config.GenConfig"
+    },
+    {
+      "name": "project",
+      "type": "com.kits.framework.config.ProjectConfig",
+      "sourceType": "com.kits.framework.config.ProjectConfig"
+    },
+    {
+      "name": "spring.datasource.druid.master",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.kits.framework.config.DruidConfig",
+      "sourceMethod": "masterDataSource(com.kits.framework.config.properties.DruidProperties)"
+    },
+    {
+      "name": "spring.datasource.druid.slave",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.kits.framework.config.DruidConfig",
+      "sourceMethod": "slaveDataSource(com.kits.framework.config.properties.DruidProperties)"
+    },
+    {
+      "name": "spring.datasource.druid.stat",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.kits.framework.config.DruidConfig",
+      "sourceMethod": "statDataSource(com.kits.framework.config.properties.DruidProperties)"
+    }
+  ],
+  "properties": [
+    {
+      "name": "project.copyright-year",
+      "type": "java.lang.String",
+      "description": "版权年份",
+      "sourceType": "com.kits.framework.config.ProjectConfig"
+    },
+    {
+      "name": "project.demo-enabled",
+      "type": "java.lang.Boolean",
+      "description": "实例演示开关",
+      "sourceType": "com.kits.framework.config.ProjectConfig",
+      "defaultValue": false
+    },
+    {
+      "name": "project.name",
+      "type": "java.lang.String",
+      "description": "项目名称",
+      "sourceType": "com.kits.framework.config.ProjectConfig"
+    },
+    {
+      "name": "project.version",
+      "type": "java.lang.String",
+      "description": "版本",
+      "sourceType": "com.kits.framework.config.ProjectConfig"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+<mapper namespace="goldChange">
+
+    <resultMap id="goldchange" type="com.game.db.bean.GoldChange" >
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="platformName" property="platformName" jdbcType="VARCHAR" />
+        <result column="beforeNum" property="beforeNum" jdbcType="INTEGER" />
+        <result column="changeNum" property="changeNum" jdbcType="INTEGER" />
+        <result column="afterNum" property="afterNum" jdbcType="INTEGER" />
+        <result column="reason" property="reason" jdbcType="INTEGER" />
+        <result column="time" property="time" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.game.db.bean.GoldChange" >
+        insert into goldChange (
+        userId,
+        roleId,
+        serverId,
+        platformName,
+        beforeNum,
+        changeNum,
+        afterNum,
+        reason,
+        time
+        ) values (
+        #{userId,jdbcType=BIGINT},
+        #{roleId,jdbcType=BIGINT},
+        #{serverId,jdbcType=INTEGER},
+        #{platformName,jdbcType=INTEGER},
+        #{beforeNum,jdbcType=INTEGER},
+        #{changeNum,jdbcType=INTEGER},
+        #{afterNum,jdbcType=INTEGER}, 
+        #{reason,jdbcType=INTEGER},
+        #{time,jdbcType=INTEGER}
+        )
+    </insert>
+        
+    <select id="selectRecharge" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select sum(changeNum) from goldChange 
+        where userId = #{userId,jdbcType=VARCHAR} 
+        and 
+        serverId = #{serverId,jdbcType=VARCHAR}
+        and
+        time <![CDATA[>]]> #{begin,jdbcType=INTEGER} 
+        and 
+        time <![CDATA[<]]> #{end,jdbcType=INTEGER} 
+        and reason = 22;
+    </select>
+    
+    <select id="selectRoleRechargeGold" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select sum(changeNum) from goldChange 
+        where roleId = #{roleId,jdbcType=VARCHAR} 
+        and reason = 22;
+    </select>
+    
+    <select id="selectRechargeByRoleId" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select sum(changeNum) from goldChange 
+        where roleId = #{roleId,jdbcType=VARCHAR} 
+        and 
+        time <![CDATA[>]]> #{begin,jdbcType=INTEGER} 
+        and 
+        time <![CDATA[<]]> #{end,jdbcType=INTEGER} 
+        and reason = 22;
+    </select>
+        
+    <select id="selectRechargeTopTen" parameterType="java.util.Map" resultType="com.game.activity.struct.ActivityRankTopTen">
+        select userId, sum(changeNum) AS num from goldChange 
+        where time <![CDATA[>]]> #{begin,jdbcType=INTEGER} 
+        and 
+        time <![CDATA[<]]> #{end,jdbcType=INTEGER} 
+        and reason = 22 GROUP BY userId ORDER BY num DESC LIMIT 10;
+    </select>
+        
+    <select id="selectConsumption" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select sum(0-changeNum) from goldChange 
+        where userId = #{userId,jdbcType=VARCHAR} 
+        and 
+        serverId = #{serverId,jdbcType=VARCHAR}
+        and 
+        time <![CDATA[>]]> #{begin,jdbcType=INTEGER} 
+        and 
+        time <![CDATA[<]]> #{end,jdbcType=INTEGER} 
+        and changeNum <![CDATA[<]]> 0 and reason != 45 and reason != 157;
+    </select>
+    
+    <select id="selectConsumptionByRoleId" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select sum(0-changeNum) from goldChange 
+        where roleId = #{roleId,jdbcType=VARCHAR} 
+        and 
+        time <![CDATA[>]]> #{begin,jdbcType=INTEGER} 
+        and 
+        time <![CDATA[<]]> #{end,jdbcType=INTEGER} 
+        and changeNum <![CDATA[<]]> 0;
+    </select>
+        
+    <select id="selectConsumptionTopTen" parameterType="java.util.Map" resultType="com.game.activity.struct.ActivityRankTopTen">
+        select roleId,sum(0-changeNum) AS num from goldChange 
+        where time <![CDATA[>]]> #{begin,jdbcType=INTEGER} 
+        and 
+        time <![CDATA[<]]> #{end,jdbcType=INTEGER} 
+        and changeNum <![CDATA[<]]> 0 and reason != 45 and reason != 157 GROUP BY roleId ORDER BY num DESC LIMIT 10;
+    </select>
+
+
+</mapper> 

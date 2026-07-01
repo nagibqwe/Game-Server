@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('排行榜日志列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/log_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <label>排行榜类型：</label>
+                                <input type="text" name="rankKind"/>
+                            </li>
+                            <div th:replace="common/log_limit.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gamelog:ranklistlog:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gamelog:ranklistlog:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gamelog:ranklistlog:remove')}]];
+        var prefix = ctx + "gamelog/ranklistlog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                exportUrl: prefix + "/export",
+                modalName: "排行榜日志",
+                pagination: false,
+                firstLoad:false,
+                height:$(document).height() - 160,
+                columns: [
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'date',
+                    title: 'date'
+                },
+                {
+                    field: 'rankKind',
+                    title: '排行榜类型'
+                },
+                {
+                    field: 'rank',
+                    title: '排名'
+                },
+                {
+                    field: 'roleId',
+                    title: '角色Id'
+                },
+                {
+                    field: 'roleName',
+                    title: '角色名'
+                },
+                {
+                    field: 'rankData',
+                    title: '排行数据'
+                },
+                {
+                    field: 'platformName',
+                    title: '渠道'
+                },
+                {
+                    field: 'time',
+                    title: '时间',
+                    formatter: formatterDate
+                },
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

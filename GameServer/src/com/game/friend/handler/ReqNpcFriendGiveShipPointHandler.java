@@ -1,0 +1,41 @@
+package com.game.friend.handler;
+
+import com.game.manager.Manager;
+import com.game.player.structs.Player;
+import game.core.command.Handler;
+import game.core.message.Message;
+import game.core.message.RMessage;
+import game.core.util.TimeUtils;
+import game.message.friendMessage.ReqNpcFriendGiveShipPoint;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
+/**
+* @Desc //npc好友赠送情义点请求
+* @Desc TODO Auto Create
+* @Auth Tool
+*/
+
+@Message(id = ReqNpcFriendGiveShipPoint.MsgID.eMsgID_VALUE, clazz = ReqNpcFriendGiveShipPoint.class)
+
+public class ReqNpcFriendGiveShipPointHandler extends Handler<ReqNpcFriendGiveShipPoint> {
+
+    static final Logger log = LogManager.getLogger(ReqNpcFriendGiveShipPointHandler.class);
+    static final Logger logger = LogManager.getLogger("HandlerDealTime");
+
+    @Override
+    public void action(RMessage mess, ReqNpcFriendGiveShipPoint messInfo) {
+        try {
+            long start = TimeUtils.Time();
+            Player player = (Player)mess.getExecutor();
+            Manager.friendManager.deal().ReqNpcFriendGiveShipPoint(player,messInfo);
+            long dealtime = TimeUtils.Time() - start;
+            if (dealtime > 300) {
+                logger.error("ReqNpcFriendGiveShipPointHandler deal long time:" + dealtime);
+            }
+        } catch (Exception e) {
+            log.error(e, e);
+        }
+    }
+}

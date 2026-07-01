@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('设置游戏功能开关')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId1">
+                <div class="col-sm-12 search-collapse">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="gameServer">
+                                <input type="hidden" id="ignoreMerge" value="1">
+                                <br/>
+                                <br/>
+                                <button type="button" class="btn btn-w-m btn-primary" onclick="queryServerInfo()">
+                                    查看功能开关
+                                </button>
+                                <button type="button" class="btn btn-w-m btn-info" onclick="saveFunctionSwitch()">
+                                    应用此次修改
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+<!--        <div class="btn-group-sm" id="toolbar" role="group">-->
+<!--            <a class="btn btn-success" onclick="saveFunctionSwitch()">-->
+<!--                <i class="fa fa-plus"></i> 应用此次修改-->
+<!--            </a>-->
+<!--            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:function:edit">-->
+<!--                <i class="fa fa-edit"></i> 修改-->
+<!--            </a>-->
+<!--            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:function:remove">-->
+<!--                <i class="fa fa-remove"></i> 删除-->
+<!--            </a>-->
+<!--            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:function:export">-->
+<!--                <i class="fa fa-download"></i> 导出-->
+<!--            </a>-->
+<!--        </div>-->
+
+        <div class="col-sm-12 select-table table-striped">
+            <form id="formId2">
+                <table id="bootstrap-table"></table>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('gmtool:function:edit')}]];
+    var prefix = ctx + "gmtool/function";
+    var switchs = [];
+
+    //查看服务器功能信息
+    function queryServerInfo() {
+        $.post(ctx + "gmtool/function/queryFunction", $("#formId1").serialize(), function (gameData) {
+            // console.log(JSON.stringify(gameData));
+
+            if (gameData.code == 0) {
+                var op = {
+                    // id: 'functionSwitch',
+                    url: prefix + "/list",
+                    modalName: "游戏功能列表",
+                    pagination: false,
+                    // pageSize: 9999,
+                    columns: [{
+                        checkbox: false
+                    },
+                        {
+                            field: 'funcId',
+                            title: '功能Id'
+                        },
+                        {
+                            field: 'funcName',
+                            title: '功能名'
+                        },
+                        {
+                            field: 'parentId',
+                            title: '父Id'
+                        },
+                        // {
+                        //     field: 'openState',
+                        //     title: '开启状态'
+                        // },
+                        {
+                            field: 'opSwitch',
+                            title: '操作',
+                            align: 'center',
+                            formatter: function(value, row, index) {
+                                var actions = [];
+                                // console.log($.table.selectColumns('funcId'));
+                                var gd = gameData.data.data;
+                                for(var j=0; j<gd.length; j++){
+                                    if(gd[j].id == row.funcId){
+                                        // var switchState = gd[j].id+'@'+gd[j].openState;
+                                        if(gd[j].openState == 1){
+                                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="setFunctionSwitch(\'' + index + '\',\'' + row.funcId + '\',\''+ gd[j].openState + '\')">关闭</a><input type="hidden" name="funcSwitch" value="" />');
+                                        }else{
+                                            actions.push('<a class="btn btn-primary btn-xs" href="javascript:void(0)" onclick="setFunctionSwitch(\'' + index + '\',\'' + row.funcId + '\',\''+ gd[j].openState + '\')">开启</a><input type="hidden" name="funcSwitch" value="" />');
+                                        }
+                                    }
+                                }
+                                // actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.funcId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                                // actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.funcId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                                return actions.join('');
+                            }
+                        }
+                        ],
+                    onLoadSuccess: function(data) {
+                        // console.log(JSON.stringify(data));
+                        // console.log(data);
+                    },
+                    onPostBody: function(data) {
+                        // console.log(JSON.stringify(data));
+                        // console.log(data);
+                    }
+                };
+
+                $.table.init(op);
+            } else {
+                $.modal.alertError(gameData.msg);
+            }
+        });
+    }
+
+    //设置功能开关
+    function setFunctionSwitch(index, funcId, initState) {
+        console.log("funcSwitch:"+$("input[name='funcSwitch']").eq(index).val());
+        var fid = $("input[name='funcSwitch']").eq(index).val();
+        if(fid == funcId+'@1'){//'1@1'
+            // console.log($("input[name='funcSwitch']").eq(index).parent().find("a").text()+">>开启");
+            // if(fid == funcId+'@'+initState){//初始数据如果一致，则清空
+            //     $("input[name='funcSwitch']").eq(index).val('');
+            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class',initState==1?'btn btn-danger btn-xs':'btn btn-primary btn-xs');
+            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'关闭':'开启');
+            //     return;
+            // }
+
+            $("input[name='funcSwitch']").eq(index).val(funcId+'@0');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class','btn btn-primary btn-xs');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").text('开启');
+        }else if(fid == funcId+'@0'){//'1@0'
+            // console.log($("input[name='funcSwitch']").eq(index).parent().find("a").text()+">>关闭");
+            // if(fid == funcId+'@'+initState){//初始数据如果一致，则清空
+            //     $("input[name='funcSwitch']").eq(index).val('');
+            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class',initState==1?'btn btn-primary btn-xs':'btn btn-danger btn-xs');
+            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'关闭':'开启');
+            //     return;
+            // }
+
+            $("input[name='funcSwitch']").eq(index).val(funcId+'@1');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class','btn btn-danger btn-xs');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").text('关闭');
+        }else{//''
+            $("input[name='funcSwitch']").eq(index).val(initState==1?funcId+'@0':funcId+'@1');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class',initState==1?'btn btn-primary btn-xs':'btn btn-danger btn-xs');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'开启':'关闭');
+        }
+
+        // $("input[name='funcSwitch']").eq(index).val(old == funcId+'@1'?funcId+'@0':funcId+'@1');
+        // // console.log($("input[name='funcSwitch']").eq(index).parent().find("a").text());
+        // // $("input[name='funcSwitch']").eq(index).parent().find("a").unbind('click');
+        // // $("input[name='funcSwitch']").eq(index).parent().find("a").one('click', function(){
+        // //     setFunctionSwitch( index, funcId, state);
+        // // });
+        //
+        // $("input[name='funcSwitch']").eq(index).parent().find("a").attr('class',old == funcId+'@1'?'btn btn-primary btn-xs':'btn btn-danger btn-xs');
+        // var oldText = $("input[name='funcSwitch']").eq(index).parent().find("a").text();
+        // $("input[name='funcSwitch']").eq(index).parent().find("a").text(oldText=='开启'?'关闭':'开启');
+    }
+
+    function saveFunctionSwitch() {
+        var switchIs = '';
+        $("input[name='funcSwitch']").each(function (i) {
+            var str = $(this).val();
+            if(!isEmpty(str)){
+                switchIs += str + ",";
+            }
+        });
+        if(isEmpty(switchIs)){
+            return;
+        }
+        switchIs = switchIs.slice(0,switchIs.length-1);
+        $.modal.confirm("确认是否保存？",function () {
+            $.ajax({
+                type: "POST",
+                url: prefix + "/sendFunctionSwitch",
+                data: {"serverId" : $("#select_server").val(),"funcSwitch" : switchIs},
+                // data:$("#formId2").serialize(),
+                dataType: "json",
+                success: function(data){
+                    if (!data.ok) {
+                        $.modal.alertError(data.msg);
+                    }else {
+                        $.modal.alertSuccess("操作成功");
+                        queryServerInfo();
+                    }
+                    // $.table.refresh();
+                }
+            });
+        });
+    }
+
+</script>
+</body>
+</html>

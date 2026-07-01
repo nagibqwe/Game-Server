@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('聊天禁言')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+
+            <!--角色信息查询-->
+            <div class="col-sm-12 search-collapse">
+                <div th:replace="common/query_game_role.html"></div>
+            </div>
+
+            <div class="col-sm-12 search-collapse">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>聊天禁言</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-group">
+<!--                            <label class="col-sm-3 control-label">立即更新禁言名单的服务器：</label>-->
+                            <div th:replace="common/select_server_byGroup.html"></div>
+                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <input type="hidden" id="selectRequestUrl" value="gameAndFightServer">
+                            <input type="hidden" id="selectIgnoreMerge" value="1">
+                        </div>
+
+                        <div class="form-group">
+                            <div th:replace="common/ban_chat.html"></div>
+                            <input type="hidden" id="isCheck" name="isCheck" value="false"/>
+                        </div>
+
+                        <div class="form-group" style="margin-left: 4px">
+                            <label class="col-sm-3 control-label"></label>
+                            <button type="button" class="btn btn-danger" id="checkButton" onclick="checkUserIds()">
+                                校验用户ID
+                            </button>
+                            <label class="col-sm-3 control-label"></label>
+                            <button type="button" class="btn btn-success" onclick="banChat1()">
+                                提交
+                            </button>
+                        </div>
+
+                        <div id="msg" class="container-fluid"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        function checkUserIds() {
+            var userId = $("#userIds").val();
+            $.ajax({
+                url: ctx + "gmtool/gamerole/checkUserId",
+                method: "post",
+                data: {
+                    // serverIdStr: selectServerStr,
+                    userId: userId
+                },
+                success: function(data) {
+                    if (data.ok) {
+                        $("#isCheck").val("true");
+                        // $("#checkButton").attr("class", "btn btn-success").attr("readonly", true);
+                        $("#msg").text("用户ID:"+userId+"验证成功");
+                        // $("#msg").html("<span>" + data.msg + "</span>");
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        function banChat1() {
+            if($("#isCheck").val() == "false"){
+                $.modal.alertError("请先确认禁言的用户是否正确");
+                return;
+            }
+
+
+            banChat(function (data) {
+                $("#banChatForm")[0].reset();
+                $.modal.alertSuccess(data.msg);
+                $.table.refresh("tableDiv");
+            })
+        }
+
+
+    </script>
+</body>
+</html>

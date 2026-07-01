@@ -1,0 +1,217 @@
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('gamelog:chatlog:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('gamelog:chatlog:remove')}]];
+    var prefix = ctx + "gamelog/chatlog";
+
+    /**
+     * 批量禁言
+     */
+    function batchBanChat() {
+        var selections = $("#bootstrap-table").bootstrapTable('getSelections');
+        var roleList = [];
+        for (var j = 0; j < selections.length; j++) {
+            roleList.push(selections[j].userId);
+        }
+        chatLogBanChat(roleList);
+    }
+
+    /**
+     * 禁言
+     */
+    function singleBanChat(userId) {
+        var roleList = [];
+        roleList.push(userId);
+        chatLogBanChat(roleList);
+    }
+
+    function chatLogBanChat(roleList) {
+        $.modal.open("批量禁言", prefix + "/chatLogBanChat", '', '420', function (index, layero) {
+            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+            iframeWin.contentWindow.banChat(function (data) {
+                $.modal.alertSuccess(data.msg);
+                layer.close(index);
+            });
+        }, function (layero, index) {
+            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+            iframeWin.contentWindow.init($("#select_server").val(), roleList.join(","));
+        })
+    }
+
+    /**
+     * 批量封号
+     */
+    function batchBanAccount() {
+        var selections = $("#bootstrap-table").bootstrapTable('getSelections');
+        var userList = [];
+        for (var j = 0; j < selections.length; j++) {
+            userList.push(selections[j].roleId);
+        }
+        chatLogBanAccount(userList);
+    }
+
+    /**
+     * 单个封号
+     */
+    function singleBanAccount(userId) {
+        var userList = [];
+        userList.push(userId);
+        chatLogBanAccount(userList);
+    }
+    function chatLogBanAccount(userList) {
+        $.modal.open("封号", prefix + "/chatLogBanAccount", '', '420', function (index, layero) {
+            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+            iframeWin.contentWindow.banAccount(function (data) {
+                $.modal.alertSuccess(data.msg);
+                layer.close(index);
+            });
+        }, function (layero, index) {
+            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+            iframeWin.contentWindow.init($("#select_server").val(), userList.join(","));
+        })
+    }
+
+    /**
+     * 近期记录
+     * @param roleId
+     */
+    function chatOption(roleId){
+        $("#roleId").val(roleId);
+        $("#chatOptionModal").modal('toggle');
+        var serverId = $("#select_server").val();
+        var platform = $("#select_group").val();
+        var startDate = $("input[name='startDate']").val();
+        // var start = startDate.trim().split(" "); //字符分割
+        var endDate = $("input[name='endDate']").val();
+        // var end = endDate.trim().split(" "); //字符分割
+
+        var dateStr = endDate;
+        dateStr = dateStr.substring(0,19);
+        dateStr = dateStr.replace(/-/g,'/'); //必须把日期'-'转为'/'
+        console.log(dateStr);
+        var timestamp = new Date(dateStr).getTime();
+        timestamp = timestamp - 2*24*60*60*1000;
+        console.log(timestamp);
+        var d = new Date(timestamp);    //根据时间戳生成的时间对象
+        var date = (d.getFullYear()) + "-" +
+            ((d.getMonth() + 1)>=10?(d.getMonth() + 1):("0"+(d.getMonth() + 1))) + "-" +
+            ((d.getDate())>=10?(d.getDate()):("0"+(d.getDate()))) + " 00:00:00";
+
+        $.modal.open("历史记录", prefix + "/chatLogHistory?serverId="+serverId+"&startDate="+date+"&endDate="+endDate+"&roleId="+roleId, '500', '300', function (index, layero) {
+            layer.close(index);
+        }, function (layero, index) {
+
+        })
+    }
+
+    $(function () {
+
+        $("#select_server").change(function (value) {
+            $.ajax({
+                type: "POST",
+                url: prefix + "/tableNameList",
+                data: {
+                    "serverId": $("#select_server").val()
+                },
+                dataType: "json",
+                async:false,
+                success: function (data) {
+                    var select = $("#tableNameList");
+                    select.empty();
+                    var dataList = data.rows;
+                    // console.log(JSON.stringify(dataList));
+                    for (var i = 0; i < dataList.length; i++) {
+                        var tableName = dataList[i];
+                        var option = $("<option>").val(tableName).text(tableName);
+                        select.append(option);
+                    }
+                }
+            });
+        });
+        var ispagination = true;
+        if($("#chatlogUrl").val()=="/list"){
+            ispagination = false;
+        }
+
+        var options = {
+            url: prefix + $("#chatlogUrl").val(),
+            exportUrl: prefix + "/export",
+            modalName: "聊天日志",
+            pagination: ispagination,
+            firstLoad: false,
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'platformName',
+                    title: '平台名称'
+                },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },
+                {
+                    field: 'roleId',
+
+                    title: '角色ID'
+                },
+                {
+                    field: 'userId',
+                    title: '用户id'
+                },
+                {
+                    field: 'time',
+                    title: '时间',
+                    formatter: formatterDate
+                },
+                {
+                    field: 'roleName',
+                    title: '角色名'
+                },
+                {
+                    field: 'ip',
+                    title: 'ip'
+                },
+                {
+                    field: 'content',
+                    width: 400,
+                    title: '聊天内容'
+                },
+                {
+                    field: 'level',
+                    title: '等级',
+                    formatter: formatterRoleLevel
+                },
+                {
+                    field: 'receRoleId',
+                    title: '接收角色ID'
+                },
+                {
+                    field: 'channel',
+                    title: '聊天类型',
+                    formatter: formatterChatChannel
+                },
+                {
+                    field: 'sid',
+                    title: '服务器id'
+                },
+                {
+                    title: '操作',
+                    align: 'left',
+                    formatter: function (value, row, index) {
+                        if (row.parentId != 0) {
+                            var actions = [];
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="singleBanAccount(\'' + row.roleId + '\')"><i class="fa fa-edit"></i>封号</a> ');
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="singleBanChat(\'' + row.userId + '\')"><i class="fa fa-edit"></i>禁言</a> ');
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="chatOption(\'' + row.roleId + '\')"><i class="fa fa-edit"></i>近期记录</a> ');
+                            return actions.join('');
+                        } else {
+                            return "";
+                        }
+                    }
+                }
+            ]
+        };
+        $.table.init(options);
+    });
+</script>

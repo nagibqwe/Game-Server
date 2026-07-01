@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="chatBlackList">
+    <resultMap id="bean" type="com.game.db.bean.ChatBlackListBean" >
+        <id column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+<!--        <result column="createTime" property="createTime" jdbcType="VARCHAR" />-->
+<!--        <result column="endTime" property="endTime" jdbcType="BIGINT" />-->
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from chatblacklist where endTime = -1 or (UNIX_TIMESTAMP(NOW()) * 1000) <![CDATA[<]]>  endTime
+    </select>
+
+    <select id="selectAllByServerId" resultMap="bean" parameterType="integer">
+        select * from chatblacklist where serverId=#{serverId, jdbcType = INTEGER}
+    </select>
+
+    <select id="selectAllByServerIds" resultMap="bean">
+        select * from chatblacklist where serverId in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+		
+</mapper>
+

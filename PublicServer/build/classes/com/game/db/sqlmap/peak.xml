@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="peak">
+
+    <resultMap id="bean" type="com.game.db.bean.PeakBean">
+        <result column="roleId" property="roleId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="platform" property="platform" jdbcType="VARCHAR"/>
+        <result column="serverId" property="serverId" jdbcType="INTEGER"/>
+        <result column="rankId" property="rankId" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="power" property="power" jdbcType="BIGINT"/>
+        <result column="time" property="time" jdbcType="BIGINT"/>
+        <result column="times" property="times" jdbcType="INTEGER"/>
+        <result column="dayTimes" property="dayTimes" jdbcType="INTEGER"/>
+        <result column="timesReward" property="timesReward" jdbcType="BIGINT"/>
+        <result column="stageReward" property="stageReward" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="selectAll" parameterType="INTEGER" resultMap="bean">
+        select *
+        from peakpk k
+        order by k.score desc, k.power desc
+        <if test="size != null">
+            limit #{size}
+        </if>
+    </select>
+
+    <insert id="insertOrUpdate" parameterType="com.game.db.bean.PeakBean">
+        insert into peakpk (
+        roleId,
+        `name`,
+        platform,
+        serverId,
+        rankId,
+         score,
+         power,
+         `time`,
+         times,
+         dayTimes,
+         timesReward,
+         stageReward
+         )
+        value (
+        #{roleId},
+        #{name},
+        #{platform},
+        #{serverId},
+        #{rankId},
+        #{score},
+        #{power},
+        #{time},
+        #{times},
+        #{dayTimes},
+        #{timesReward},
+        #{stageReward}
+        )
+        on duplicate key update
+        serverId = #{serverId},
+        `name` = #{name},
+        rankId = #{rankId},
+        score = #{score},
+        power = #{power},
+        `time` = #{time},
+        times = #{times},
+        dayTimes = #{dayTimes},
+        timesReward = #{timesReward},
+        stageReward = #{stageReward}
+    </insert>
+
+    <delete id="clearAll">
+        delete from peakpk;
+    </delete>
+
+</mapper>

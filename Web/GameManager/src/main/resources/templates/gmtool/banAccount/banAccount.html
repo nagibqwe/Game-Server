@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('账号封禁列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <!--角色信息查询-->
+            <div class="col-sm-12 search-collapse">
+                <div th:replace="common/query_game_role.html"></div>
+            </div>
+
+            <div class="col-sm-12 search-collapse">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>账号封禁</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="banAccountForm" class="form-horizontal m-t" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="banType">条件类型:</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" id="banType" >
+                                        <option value="1">平台账号ID</option>
+                                        <option value="2">IP</option>
+                                        <option value="3">唯一机器码</option>
+                                        <option value="4">IMEI</option>
+                                        <option value="5">MAC</option>
+<!--                                        <option value="6">角色ID</option>-->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="con">封号条件:</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="con" type="text" name="con" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="endTime">结束时间:</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="endTime" type="text" name="endTime" placeholder="2021-11-25 15:30:00" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="reason">操作原因:</label>
+                                <div class="col-sm-3">
+                                    <textarea id="reason" name="reason" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 4px">
+                                <label class="col-sm-2 control-label"></label>
+                                <button type="button" class="btn btn-success" onclick="banAccount()">
+                                    提交
+                                </button>
+                            </div>
+
+                            <div id="msg" class="container-fluid"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 select-table table-striped" id="tableDiv">
+                    <table id="bootstrap-table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+
+        var prefix = ctx + "gmtool/banAccount";
+
+        $(function () {
+            $("#tableDiv").hide();
+        });
+
+        //账号封禁
+        function banAccount() {
+            if (!$('#banAccountForm').validate().form()) {
+                $.modal.msgError("验证失败");
+                return;
+            }
+
+            $.ajax({
+                url: prefix + "/ban",
+                method: "post",
+                data: {
+                    // groupName: $("#select_group").val(),
+                    serverId: $("#select_server").val(),
+                    banType: $("#banType").val(),
+                    con: $("#con").val(),
+                    endTime: $("#endTime").val(),
+                    reason: $("#reason").val()
+                },
+                success: function(data) {
+                    if (data.ok) {
+                        $("#banAccountForm")[0].reset();
+                        $.modal.alertSuccess(data.msg);
+                        $.table.refresh("tableDiv");
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

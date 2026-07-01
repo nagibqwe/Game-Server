@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Object type="Object"
+name="[ServerSceneEditor]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="[WayPoint]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="WayPoint">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="30,0.9142798,64.60561,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint"
+valueType="System.String"/>
+<m_id type="Atom"
+value="0"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="41.63,2.441895,64.04,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint1"
+valueType="System.String"/>
+<m_id type="Atom"
+value="1"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint2">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="53.15,4.547173,61.21,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint2"
+valueType="System.String"/>
+<m_id type="Atom"
+value="2"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint3">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="66.4,4.691432,55.74,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="2"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint2"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+<item type="WayPoint"
+name="WayPoint10"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint3"
+valueType="System.String"/>
+<m_id type="Atom"
+value="3"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint4">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.05,4.547179,61,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint3"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint4"
+valueType="System.String"/>
+<m_id type="Atom"
+value="4"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint5">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.28,4.547175,66.3329,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="2"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint4"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+<item type="WayPoint"
+name="WayPoint13"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint5"
+valueType="System.String"/>
+<m_id type="Atom"
+value="5"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint6">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="89.47,6.074094,65.57049,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint5"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint6"
+valueType="System.String"/>
+<m_id type="Atom"
+value="6"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint7">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.55,6.074094,65.73586,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint6"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint7"
+valueType="System.String"/>
+<m_id type="Atom"
+value="7"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint8">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="82.82,4.547175,72.82,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="2"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint5"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+<item type="WayPoint"
+name="WayPoint7"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint8"
+valueType="System.String"/>
+<m_id type="Atom"
+value="8"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint9">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="65.9109,0.46185,29.78,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint9"
+valueType="System.String"/>
+<m_id type="Atom"
+value="9"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint10">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="65.05,4.547176,41.67811,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint9"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint10"
+valueType="System.String"/>
+<m_id type="Atom"
+value="10"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint11">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="64.92,0.4511026,98.35001,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint11"
+valueType="System.String"/>
+<m_id type="Atom"
+value="11"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint12">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="66.61,4.547173,84.8905,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint11"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint12"
+valueType="System.String"/>
+<m_id type="Atom"
+value="12"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint13">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="71.94308,4.547173,74.21239,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint12"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint13"
+valueType="System.String"/>
+<m_id type="Atom"
+value="13"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint14">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="108.92,6.118783,66.04,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint7"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint14"
+valueType="System.String"/>
+<m_id type="Atom"
+value="14"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint15">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="120.96,6.259215,64.65,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint14"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint15"
+valueType="System.String"/>
+<m_id type="Atom"
+value="15"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint16">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="135.54,6.074094,64.71999,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint15"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint16"
+valueType="System.String"/>
+<m_id type="Atom"
+value="16"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint17">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="153.94,7.601575,63.71,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint16"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint17"
+valueType="System.String"/>
+<m_id type="Atom"
+value="17"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint18">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="119.91,6.011913,76.58554,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint15"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint18"
+valueType="System.String"/>
+<m_id type="Atom"
+value="18"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint19">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="119.7,7.871346,91.2,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint18"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint19"
+valueType="System.String"/>
+<m_id type="Atom"
+value="19"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint20">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="113.29,7.85062,101.86,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint19"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint20"
+valueType="System.String"/>
+<m_id type="Atom"
+value="20"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint21">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="123.04,8.031017,101.98,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint19"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint21"
+valueType="System.String"/>
+<m_id type="Atom"
+value="21"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint22">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="168.9564,7.520123,63.41,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint17"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint22"
+valueType="System.String"/>
+<m_id type="Atom"
+value="22"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint23">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.2032,7.737477,64.5,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint22"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint23"
+valueType="System.String"/>
+<m_id type="Atom"
+value="23"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint24">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="194.6,8.029158,64.85001,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint23"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint24"
+valueType="System.String"/>
+<m_id type="Atom"
+value="24"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint25">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="204.81,8.964818,64.25999,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint24"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint25"
+valueType="System.String"/>
+<m_id type="Atom"
+value="25"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint26">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="183.15,7.52012,74.48,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint23"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint26"
+valueType="System.String"/>
+<m_id type="Atom"
+value="26"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint27">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="182.77,9.346603,92.98,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint26"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint27"
+valueType="System.String"/>
+<m_id type="Atom"
+value="27"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint28">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="178.33,9.410834,102.13,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint27"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint28"
+valueType="System.String"/>
+<m_id type="Atom"
+value="28"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint29">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="185.52,9.508261,101.89,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint27"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint29"
+valueType="System.String"/>
+<m_id type="Atom"
+value="29"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint30">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="221.01,8.964823,64.81001,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint25"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint30"
+valueType="System.String"/>
+<m_id type="Atom"
+value="30"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint31">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="228.68,9.530001,31.98,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint31"
+valueType="System.String"/>
+<m_id type="Atom"
+value="31"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint32">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="229.69,8.964827,46.48,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint31"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint32"
+valueType="System.String"/>
+<m_id type="Atom"
+value="32"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint33">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="222.63,8.964827,54.91,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="2"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint32"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+<item type="WayPoint"
+name="WayPoint30"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint33"
+valueType="System.String"/>
+<m_id type="Atom"
+value="33"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint34">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="223.5637,8.964815,74.91,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint30"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint34"
+valueType="System.String"/>
+<m_id type="Atom"
+value="34"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint35">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="230,9.047889,85.58,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint34"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint35"
+valueType="System.String"/>
+<m_id type="Atom"
+value="35"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint36">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="229.06,9.530001,101.36,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint35"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint36"
+valueType="System.String"/>
+<m_id type="Atom"
+value="36"
+valueType="System.Int32"/>
+</component>
+</Object>
+</Object>
+</Object>
+

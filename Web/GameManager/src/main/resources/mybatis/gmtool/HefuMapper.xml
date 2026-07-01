@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.hefu.mapper.HefuMapper">
+    
+    <resultMap type="Hefu" id="HefuResult">
+        <result property="id"    column="id"    />
+        <result property="fromServer"    column="fromServer"    />
+        <result property="toServer"    column="toServer"    />
+        <result property="status"    column="status"    />
+        <result property="language"    column="language"    />
+        <result property="step"    column="step"    />
+        <result property="createTime"    column="createTime"    />
+        <result property="record"    column="record"    />
+    </resultMap>
+
+    <sql id="selectHefuVo">
+        select id, fromServer, toServer, status, language, step, createTime from t_hefu
+    </sql>
+
+    <select id="selectHefuList" parameterType="Hefu" resultMap="HefuResult">
+        <include refid="selectHefuVo"/>
+        <where>  
+            <if test="fromServer != null  and fromServer != ''"> and fromServer = #{fromServer}</if>
+            <if test="toServer != null"> and toServer = #{toServer}</if>
+            <if test="status != null"> and status = #{status}</if>
+            <if test="language != null  and language != ''"> and language = #{language}</if>
+            <if test="step != null "> and step = #{step}</if>
+            <if test="createTime != null "> and createTime = #{createTime}</if>
+        </where>
+        order by createTime DESC
+    </select>
+    
+    <select id="selectHefuById" parameterType="Long" resultMap="HefuResult">
+        <include refid="selectHefuVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectHefuRecord" parameterType="Long" resultMap="HefuResult">
+        select id, fromServer, toServer, status, language, step, createTime, record from t_hefu
+        where id = #{id}
+    </select>
+
+    <insert id="insertHefu" parameterType="Hefu">
+        insert into t_hefu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="fromServer != null and fromServer != ''">fromServer,</if>
+            <if test="toServer != null">toServer,</if>
+            <if test="status != null">status,</if>
+            <if test="language != null and language != ''">language,</if>
+            <if test="step != null">step,</if>
+            <if test="createTime != null ">createTime,</if>
+            <if test="record != null ">record,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="fromServer != null and fromServer != ''">#{fromServer},</if>
+            <if test="toServer != null">#{toServer},</if>
+            <if test="status != null">#{status},</if>
+            <if test="language != null and language != ''">#{language},</if>
+            <if test="step != null">#{step},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="record != null ">#{record},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHefu" parameterType="Hefu">
+        update t_hefu
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fromServer != null and fromServer != ''">fromServer = #{fromServer},</if>
+            <if test="toServer != null">toServer = #{toServer},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="language != null and language != ''">language = #{language},</if>
+            <if test="step != null">step = #{step},</if>
+            <if test="createTime != null ">createTime = #{createTime},</if>
+            <if test="record != null ">record = #{record},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHefuById" parameterType="Long">
+        delete from t_hefu where id = #{id}
+    </delete>
+
+    <delete id="deleteHefuByIds" parameterType="String">
+        delete from t_hefu where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

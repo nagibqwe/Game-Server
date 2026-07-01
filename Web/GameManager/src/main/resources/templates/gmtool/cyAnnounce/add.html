@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增循环公告')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-cyAnnounce-add">
+            <div class="form-group">
+                <div th:replace="common/select_server_byGroup.html"></div>
+                <!--此处作为服务器请求分组地址映射设置地方-->
+                <input type="hidden" id="selectRequestUrl" value="gameServer">
+                <input type="hidden" id="selectIgnoreMerge" value="1">
+            </div>
+            <div class="form-group">
+                <label for="type" class="col-sm-2 control-label">显示位置:</label>
+                <div class="col-sm-2">
+                    <select id="type" name="type" class="selectClass">
+                        <option value="1" selected>跑马灯</option>
+                        <option value="2">聊天框</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="col-sm-2 control-label is-required">内容:</label>
+                <div class="col-sm-8">
+                                <textarea id="content" type="text" name="content" class="form-control" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fromDate" class="col-sm-2 control-label">开始日期:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="datetimepicker form-control input" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm')}" name="fromDate" id="fromDate" readonly/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="toDate" class="col-sm-2 control-label">结束日期:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="datetimepicker form-control input" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm')}" name="toDate" id="toDate" readonly/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="totalTimes" class="col-sm-2 control-label is-required">播放次数:</label>
+                <div class="col-sm-2">
+                    <input id="totalTimes" type="text" name="totalTimes" class="form-control" style="width: 100px"
+                           placeholder="必填" required onkeyup="value=value.replace(/\D/g,'')"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cycleInterval" class="col-sm-2 control-label is-required">时间频率(分):</label>
+                <div class="col-sm-2">
+                    <select id="cycleInterval" name="cycleInterval" class="selectClass" style="width: 100px">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="60">60</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/cyAnnounce"
+        $("#form-cyAnnounce-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+
+                $.ajax({
+                    url: prefix + "/addAnnounce",
+                    method: "post",
+                    dataType: "json",
+                    data: $("#form-cyAnnounce-add").serialize(),
+
+                    beforeSend: function () {
+                        $.modal.loading("正在处理中，请稍后...");
+                        $.modal.disable();
+                    },
+                    success: function (data) {
+                        var parent = window.parent;
+                        if (data.ok){
+                            $("#form-cyAnnounce-add")[0].reset();
+                            $.modal.alertMsg(data.msg,alert_type.SUCCESS);
+                            parent.$.table.search("", "enableList");
+                            parent.$.table.search("", "disableList");
+                        }else {
+                            $.modal.alertError(data.msg);
+                        }
+
+                        $.modal.closeLoading();
+                        $.modal.enable();
+                    }
+                });
+            }
+        }
+
+        $(function () {
+            $(".datetimepicker").datetimepicker({
+                // language:  'zh-CN',
+                format : 'yyyy-mm-dd hh:ii',
+                autoclose: 1
+
+            });
+            addClass();//改变服务器选择的样式
+            $("textarea").eq(0).css("marginLeft","140px");
+        });
+    </script>
+</body>
+</html>

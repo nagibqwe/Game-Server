@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+<mapper namespace="friend"> 
+    <resultMap id="friend" type="com.game.db.bean.FriendBean" >
+        <id column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="latelyPlayers" property="latelyPlayers" jdbcType="LONGVARCHAR" />
+        <result column="friends" property="friends" jdbcType="LONGVARCHAR" />
+        <result column="enemies" property="enemies" jdbcType="LONGVARCHAR" />
+        <result column="shields" property="shields" jdbcType="LONGVARCHAR" />
+        <result column="sendLogs" property="sendLogs" jdbcType="LONGVARCHAR" />
+        <result column="receiveLogs" property="receiveLogs" jdbcType="LONGVARCHAR" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.game.db.bean.FriendBean" >
+        insert into friend (roleId, latelyPlayers, friends, enemies, shields, sendLogs, receiveLogs)
+        values (#{roleId,jdbcType=BIGINT}, #{latelyPlayers,jdbcType=LONGVARCHAR}, #{friends,jdbcType=LONGVARCHAR},
+        #{enemies,jdbcType=LONGVARCHAR}, #{shields,jdbcType=LONGVARCHAR}, #{sendLogs,jdbcType=LONGVARCHAR}, #{receiveLogs,jdbcType=LONGVARCHAR})
+    </insert>
+   
+    <select id="selectById" parameterType="long" resultMap="friend">
+        select * from friend where roleId = #{roleId,jdbcType=BIGINT}
+    </select>
+  
+    <update id="update" parameterType="com.game.db.bean.FriendBean" >
+        update friend set latelyPlayers = #{latelyPlayers,jdbcType=LONGVARCHAR},friends = #{friends,jdbcType=LONGVARCHAR},
+        enemies = #{enemies,jdbcType=LONGVARCHAR},shields = #{shields,jdbcType=LONGVARCHAR}, sendLogs=#{sendLogs,jdbcType=LONGVARCHAR},
+        receiveLogs=#{receiveLogs,jdbcType=LONGVARCHAR} where roleId = #{roleId,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="coupleFight">
+
+    <select id="selectAll" parameterType="java.lang.Integer"  resultType="com.game.db.bean.CouplefightBean">
+        select * from couplefight where activityId = #{_parameter}
+    </select>
+
+    <insert id="saveCouplefight" parameterType="com.game.db.bean.CouplefightBean">
+        replace into couplefight (`activityId`, `group`, `data`, `createDate`, `status`)
+        value (#{activityId}, #{group}, #{data}, #{createDate}, #{status} )
+    </insert>
+
+    <select id="selectTeam" parameterType="java.lang.Integer" resultType="com.game.db.bean.CouplefightTeamBean">
+        select * from couplefightteam where activityId=#{_parameter}
+    </select>
+
+    <insert id="saveTeam" parameterType="com.game.db.bean.CouplefightTeamBean">
+        replace into couplefightteam (`id`, `activityId`, `group`, `data`)
+        value (#{id}, #{activityId}, #{group}, #{data} )
+    </insert>
+
+    <select id="selectGuess" parameterType="java.lang.Integer" resultType="com.game.db.bean.CouplefightGuessBean">
+        select * from couplefightguess where activityId=#{_parameter}
+    </select>
+
+    <insert id="saveGuess" parameterType="com.game.db.bean.CouplefightGuessBean">
+        insert into couplefightguess (`activityId`, `group`, `type`, `round`, `fightId`, `teamId`, `rid`, `name`, `level`, `power`)
+        value (#{activityId}, #{group}, #{type}, #{round}, #{fightId}, #{teamId}, #{rid}, #{name}, #{level}, #{power})
+    </insert>
+
+    <delete id="deleteCouplefight">
+        TRUNCATE `couplefight`
+    </delete>
+
+    <delete id="deleteCouplefightguess">
+        TRUNCATE `couplefightguess`
+    </delete>
+
+    <delete id="deleteCouplefightteam">
+        TRUNCATE `couplefightteam`
+    </delete>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="player">
+    <resultMap id="player" type="com.game.player.structs.GlobalPlayerWorldInfo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="plat" property="plat" jdbcType="VARCHAR"/>
+        <result column="serverId" property="serverId" jdbcType="INTEGER"/>
+        <result column="createServerId" property="createServerId" jdbcType="INTEGER"/>
+        <result column="createTime" property="createTime" jdbcType="INTEGER"/>
+        <result column="userId" property="userId" jdbcType="BIGINT"/>
+        <result column="roleName" property="roleName" jdbcType="VARCHAR"/>
+        <result column="fightPower" property="fightPower" jdbcType="BIGINT"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="career" property="career" jdbcType="INTEGER"/>
+        <result column="playerVip" property="playerVip" jdbcType="INTEGER"/>
+        <result column="data" property="data" jdbcType="LONGVARCHAR"/>
+
+    </resultMap>
+
+    <insert id="insert" parameterType="com.game.player.structs.GlobalPlayerWorldInfo">
+        insert into player (id, plat, serverId, createServerId, createTime, userId, roleName, fightPower, `level`, career, playerVip, `data`)
+        value (
+        #{id,jdbcType=BIGINT},
+        #{plat,jdbcType=VARCHAR},
+        #{serverId,jdbcType=INTEGER},
+        #{createServerId,jdbcType=INTEGER},
+        #{createTime,jdbcType=INTEGER},
+        #{userId,jdbcType=BIGINT},
+        #{roleName,jdbcType=VARCHAR},
+        #{fightPower,jdbcType=BIGINT},
+        #{level,jdbcType=INTEGER},
+        #{career,jdbcType=INTEGER},
+        #{playerVip,jdbcType=INTEGER},
+        #{data,jdbcType=LONGVARCHAR}
+        )
+        on duplicate key update
+        `serverId` = #{serverId},
+        `roleName` = #{roleName},
+        `fightPower` = #{fightPower},
+        `level` = #{level},
+        `playerVip` = #{playerVip},
+        `data` = #{data}
+    </insert>
+
+    <select id="selectAll" resultMap="player">
+        select * from player;
+    </select>
+
+</mapper>

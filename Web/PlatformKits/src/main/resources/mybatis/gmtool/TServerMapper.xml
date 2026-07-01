@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.gmtool.server.mapper.TServerMapper">
+    
+    <resultMap type="TServer" id="TServerResult">
+        <result property="id"    column="id"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="serverName"    column="serverName"    />
+        <result property="groupName"    column="groupName"    />
+        <result property="WorldIP"    column="WorldIP"    />
+        <result property="worldPort"    column="worldPort"    />
+        <result property="isHeFu"    column="isHeFu"    />
+        <result property="hefuTime"    column="hefuTime"    />
+        <result property="hefuServerID"    column="hefuServerID"    />
+        <result property="serverType"    column="serverType"    />
+        <result property="isDeleted"    column="isDeleted"    />
+        <result property="isShow"    column="isShow"    />
+        <result property="serverOpenTime"    column="serverOpenTime"    />
+    </resultMap>
+
+    <sql id="selectTServerVo">
+        select id, serverId, serverName, groupName, WorldIP, worldPort, isHeFu, hefuTime, hefuServerID, serverType, isDeleted, isShow, serverOpenTime from t_server
+    </sql>
+
+    <select id="selectTServerList" parameterType="TServer" resultMap="TServerResult">
+        <include refid="selectTServerVo"/>
+        <where>  
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            <if test="serverName != null  and serverName != ''"> and serverName like concat('%', #{serverName}, '%')</if>
+            <if test="groupName != null  and groupName != ''"> and groupName like concat('%', #{groupName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTServerById" parameterType="Long" resultMap="TServerResult">
+        <include refid="selectTServerVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTServer" parameterType="TServer" useGeneratedKeys="true" keyProperty="id">
+        insert into t_server
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">serverId,</if>
+            <if test="serverName != null">serverName,</if>
+            <if test="groupName != null">groupName,</if>
+            <if test="WorldIP != null">WorldIP,</if>
+            <if test="worldPort != null">worldPort,</if>
+            <if test="isHeFu != null">isHeFu,</if>
+            <if test="hefuTime != null">hefuTime,</if>
+            <if test="hefuServerID != null">hefuServerID,</if>
+            <if test="serverType != null">serverType,</if>
+            <if test="isDeleted != null">isDeleted,</if>
+            <if test="isShow != null">isShow,</if>
+            <if test="serverOpenTime != null">serverOpenTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">#{serverId},</if>
+            <if test="serverName != null">#{serverName},</if>
+            <if test="groupName != null">#{groupName},</if>
+            <if test="WorldIP != null">#{WorldIP},</if>
+            <if test="worldPort != null">#{worldPort},</if>
+            <if test="isHeFu != null">#{isHeFu},</if>
+            <if test="hefuTime != null">#{hefuTime},</if>
+            <if test="hefuServerID != null">#{hefuServerID},</if>
+            <if test="serverType != null">#{serverType},</if>
+            <if test="isDeleted != null">#{isDeleted},</if>
+            <if test="isShow != null">#{isShow},</if>
+            <if test="serverOpenTime != null">#{serverOpenTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTServer" parameterType="TServer">
+        update t_server
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="serverName != null">serverName = #{serverName},</if>
+            <if test="groupName != null">groupName = #{groupName},</if>
+            <if test="WorldIP != null">WorldIP = #{WorldIP},</if>
+            <if test="worldPort != null">worldPort = #{worldPort},</if>
+            <if test="isHeFu != null">isHeFu = #{isHeFu},</if>
+            <if test="hefuTime != null">hefuTime = #{hefuTime},</if>
+            <if test="hefuServerID != null">hefuServerID = #{hefuServerID},</if>
+            <if test="serverType != null">serverType = #{serverType},</if>
+            <if test="isDeleted != null">isDeleted = #{isDeleted},</if>
+            <if test="isShow != null">isShow = #{isShow},</if>
+            <if test="serverOpenTime != null">serverOpenTime = #{serverOpenTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTServerById" parameterType="Long">
+        delete from t_server where id = #{id}
+    </delete>
+
+    <delete id="deleteTServerByIds" parameterType="String">
+        delete from t_server where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

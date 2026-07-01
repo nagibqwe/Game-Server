@@ -1,0 +1,40 @@
+<li>
+    <label style="width: auto">时间:</label>&nbsp;
+</li>
+<li>
+    <input type="text" style="width: 150px" class="form-control form-control-sm form_datetime" name="startDate"
+           id="startDate"
+           readonly>
+</li>
+<li>
+    -
+</li>
+<li>
+    <input type="text" style="width: 150px" class="form-control form-control-sm form_datetime" name="endDate"
+           id="endDate"
+           readonly>
+</li>
+<script th:inline="javascript">
+    $(function () {
+    });
+
+    $("input[name='startDate']").datetimepicker({
+        // language:  'zh-CN',
+        format: 'yyyy-mm-dd hh:ii:00',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        startView: 2,
+        minView: 0
+    });
+
+    $("input[name='endDate']").datetimepicker({
+        // language:  'zh-CN',
+        format: 'yyyy-mm-dd hh:ii:00',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        startView: 2,
+        minView: 0
+    });
+</script>

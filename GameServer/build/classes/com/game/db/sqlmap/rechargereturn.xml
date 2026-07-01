@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="rechargereturn">
+    <resultMap id="bean" type="com.game.db.bean.RechargeReturnBean" >
+            <id column="userId" property="userId" jdbcType="BIGINT" />
+            <result column="roleId" property="roleId" jdbcType="BIGINT" />
+           <result column="createSid" property="createSid" jdbcType="INTEGER" />
+           <result column="rechargeTotalMoney" property="rechargeTotalMoney" jdbcType="INTEGER" />
+           <result column="returnGold" property="returnGold" jdbcType="INTEGER" />
+           <result column="returnTime" property="returnTime" jdbcType="BIGINT" />
+           <result column="userName" property="userName" jdbcType="VARCHAR" />
+           <result column="platformAccount" property="platformAccount" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from rechargereturn
+    </select>
+
+    <select id="selectByUserName" parameterType="String" resultMap="bean">
+        select * from rechargereturn where userName = #{userName,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.game.db.bean.RechargeReturnBean" >
+            insert into rechargereturn (userId, roleId, createSid, rechargeTotalMoney, returnGold, returnTime,userName, platformAccount)
+            values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT},#{createSid,jdbcType=INTEGER}, #{rechargeTotalMoney,jdbcType=INTEGER},
+                    #{returnGold,jdbcType=INTEGER}, #{returnTime,jdbcType=BIGINT},#{userName,jdbcType=VARCHAR},#{platformAccount,jdbcType=VARCHAR})
+    </insert>
+	
+    <update id="update" parameterType="com.game.db.bean.RechargeReturnBean" >
+            update rechargereturn set roleId = #{roleId,jdbcType=BIGINT},createSid =#{createSid,jdbcType=INTEGER},
+                 returnGold =#{returnGold,jdbcType=INTEGER}, returnTime = #{returnTime,jdbcType=BIGINT} where userName = #{userName,jdbcType=VARCHAR}
+    </update>
+</mapper>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('充值配置历史记录内容')" />
+    <style type="text/css">
+        .table {table-layout:fixed;}
+    </style>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse" hidden>
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <input type="hidden" id="index" name="index">
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12 select-table table-striped" style="word-break:break-all; word-wrap:break-all;">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    var prefix = ctx + "gmtool/rechargeItem";
+    var index = [[${index}]];
+    $("#index").val(index);
+    $(function() {
+        var options = {
+            url: prefix + "/queryRechargeItemContent",
+            pageSize: 20,
+            pageNumber: 1,
+            pageList: [20, 30, 50],
+            showSearch: false,
+            modalName: "充值配置",
+            columns: [
+                {
+                    title: '序号',
+                    field: '',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return showNumber("bootstrap-table",index);
+                    }
+                },
+                {
+                    field: 'goodsId',
+                    title: '充值ID'
+                },
+                {
+                    field: 'goodsSystemCfgId',
+                    title: '游戏内部配置ID'
+                },
+                {
+                    field: 'goodsName',
+                    title: '商品名字描述'
+                },
+                {
+                    field: 'goodsPayChannel',
+                    title: '渠道名称'
+                },
+                {
+                    field: 'goodsPayType',
+                    title: '支付渠道'
+                },
+                {
+                    field: 'goodsType',
+                    title: '充值类型'
+                },
+                {
+                    field: 'goodsSubtype',
+                    title: '充值子类型'
+                },
+                {
+                    field: 'goodsLimit',
+                    title: '充值次数'
+                },
+                {
+                    field: 'goodsIcon',
+                    title: '显示的图标的ID'
+                },
+                {
+                    field: 'goodsurl',
+                    title: '商品图片地址'
+                },
+                {
+                    field: 'goodsPrice',
+                    title: '充值档位对应消耗的真实货币',
+                    formatter:formatterValue
+                },
+                {
+                    field: 'goodsPricePoint',
+                    title: '充值计费点'
+                },
+                {
+                    field: 'goodsShowPrice',
+                    title: '界面默认显示的货币 例如:THB'
+                },
+                {
+                    field: 'goodsReward',
+                    title: '充值奖励'
+                },
+                {
+                    field: 'goodsMultiple',
+                    title: '充值奖励倍数'
+                },
+                {
+                    field: 'goodsExtraReward',
+                    title: '额外奖励'
+                },
+                {
+                    field: 'goodsExtraRewardLimit',
+                    title: '额外奖励次数'
+                },
+                {
+                    field: 'isTotalRecharge',
+                    title: '是否计入到游戏累充活动'
+                },
+                {
+                    field: 'totalVipPower',
+                    title: '是否增加VIP经验'
+                }
+               ]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('全服角色信息统计')"/>
+    <th:block th:include="include :: footer"/>
+
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+
+
+            <form id="formId">
+
+                <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                    <ul>
+                        <div th:replace="common/stat_single_server_head.html"></div>
+                    </ul>
+                </div>
+                <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                    <ul>
+                        <li>
+                            <label style="width: auto">类型:</label>
+                            <select id="sortType" name="sortType">
+                                <option value="rechargeGold" selected="selected">充值元宝</option>
+                                <option value="gold">剩余元宝</option>
+                            </select>
+                        </li>
+                        <div th:replace="common/stat_search_head.html"></div>
+                    </ul>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()"
+               shiro:hasPermission="stat:stat_level_distribute:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('stat:stat_level_distribute:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('stat:stat_level_distribute:remove')}]];
+    var prefix = ctx + "stat/stat_role";
+
+    $(function () {
+        var options = {
+            url: prefix + "/stat_role",
+            modalName: "全服角色信息统计",
+            firstLoad: false,
+
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'platformName',
+                    title: '渠道'
+                },
+                {
+                    field: 'createsid',
+                    title: '创建区服ID'
+                },
+                {
+                    field: 'funcellUUid',
+                    title: '账号名'
+                },
+                {
+                    field: 'userId',
+                    title: '用户ID'
+                },
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },
+                {
+                    field: 'roleName',
+                    title: '角色名称'
+                },
+                {
+                    field: 'level',
+                    title: '角色等级',
+                    formatter: formatterRoleLevel
+                },
+                {
+                    field: 'onlineTime',
+                    title: '在线时长(单位：秒)'
+                },
+                {
+                    field: 'rechargeGold',
+                    title: '充值元宝'
+                },
+                {
+                    field: 'gold',
+                    title: '剩余元宝'
+                },
+                {
+                    field: 'createTimeStr',
+                    title: '角色创建时间'
+                },
+                {
+                    field: 'isDelete',
+                    title: '是否删除'
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

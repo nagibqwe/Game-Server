@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.server.mapper.SdkServerMapper">
+
+    <resultMap type="SdkServer" id="SdkServerResult">
+        <result property="id"    column="id"    />
+        <result property="serverId"    column="server_id"    />
+        <result property="serverName"    column="server_name"    />
+        <result property="serverIp"    column="server_ip"    />
+        <result property="serverPort"    column="server_port"    />
+        <result property="openState"    column="open_state"    />
+        <result property="isBackup"    column="is_backup"    />
+        <result property="serverExtconfig"    column="server_extconfig"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectSdkServerVo">
+        select id, server_id, server_name, server_ip, server_port, open_state, is_backup, server_extconfig, update_time, create_time from sdk_server
+    </sql>
+
+    <select id="selectSdkServerList" parameterType="SdkServer" resultMap="SdkServerResult">
+        <include refid="selectSdkServerVo"/>
+        <where>
+            <if test="serverId != null "> and server_id = #{serverId}</if>
+            <if test="serverName != null  and serverName != ''"> and server_name like concat('%', #{serverName}, '%')</if>
+            <if test="serverIp != null  and serverIp != ''"> and server_ip = #{serverIp}</if>
+            <if test="serverPort != null "> and server_port = #{serverPort}</if>
+            <if test="openState != null "> and open_state = #{openState}</if>
+            <if test="isBackup != null "> and is_backup = #{isBackup}</if>
+            <if test="serverExtconfig != null  and serverExtconfig != ''"> and server_extconfig = #{serverExtconfig}</if>
+        </where>
+    </select>
+
+    <select id="selectSdkServerById" parameterType="Long" resultMap="SdkServerResult">
+        <include refid="selectSdkServerVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSdkServer" parameterType="SdkServer" useGeneratedKeys="true" keyProperty="id">
+        insert into sdk_server
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="serverId != null">server_id,</if>
+            <if test="serverName != null">server_name,</if>
+            <if test="serverIp != null">server_ip,</if>
+            <if test="serverPort != null">server_port,</if>
+            <if test="openState != null">open_state,</if>
+            <if test="isBackup != null">is_backup,</if>
+            <if test="serverExtconfig != null">server_extconfig,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="serverId != null">#{serverId},</if>
+            <if test="serverName != null">#{serverName},</if>
+            <if test="serverIp != null">#{serverIp},</if>
+            <if test="serverPort != null">#{serverPort},</if>
+            <if test="openState != null">#{openState},</if>
+            <if test="isBackup != null">#{isBackup},</if>
+            <if test="serverExtconfig != null">#{serverExtconfig},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSdkServer" parameterType="SdkServer">
+        update sdk_server
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverId != null">server_id = #{serverId},</if>
+            <if test="serverName != null">server_name = #{serverName},</if>
+            <if test="serverIp != null">server_ip = #{serverIp},</if>
+            <if test="serverPort != null">server_port = #{serverPort},</if>
+            <if test="openState != null">open_state = #{openState},</if>
+            <if test="isBackup != null">is_backup = #{isBackup},</if>
+            <if test="serverExtconfig != null">server_extconfig = #{serverExtconfig},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSdkServerById" parameterType="Long">
+        delete from sdk_server where id = #{id}
+    </delete>
+
+    <delete id="deleteSdkServerByIds" parameterType="String">
+        delete from sdk_server where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectServerByServerIds" parameterType="String" resultMap="SdkServerResult">
+        select * from sdk_server where server_id not in
+        <foreach item="server_id" collection="array" open="(" separator="," close=")">
+            #{server_id}
+        </foreach>
+    </select>
+    <update id="updateSdkServerState" parameterType="java.util.Map">
+        update sdk_server set open_state = #{openState} where server_id = #{serverId}
+    </update>
+    <select id="selectServerIdsByIds" parameterType="String" resultType="Long">
+        select server_id from sdk_server where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+    <select id="selectServerIds" resultType="Long">
+        select server_id from sdk_server
+    </select>
+    <update id="updateSdkServerByServerId" parameterType="java.util.Map">
+        update sdk_server
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverName != null">server_name = #{serverName},</if>
+            <if test="serverIp != null">server_ip = #{serverIp},</if>
+            <if test="serverPort != null">server_port = #{serverPort},</if>
+            <if test="openState != null">open_state = #{openState},</if>
+            <if test="isBackup != null">is_backup = #{isBackup},</if>
+            <if test="serverExtconfig != null">server_extconfig = #{serverExtconfig},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where server_id in
+        <foreach item="serverId" collection="serverIds" open="(" separator="," close=")">
+            #{serverId}
+        </foreach>
+    </update>
+</mapper>

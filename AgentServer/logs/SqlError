@@ -1,0 +1,10 @@
+2023-02-10 16:21:15.612 ERROR [Thread-7][UserloginDao.java:46] - org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.apache.ibatis.transaction.TransactionException: Error configuring AutoCommit.  Your driver may not support getAutoCommit() or setAutoCommit(). Requested setting: false.  Cause: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 2,498,246 milliseconds ago. The last packet sent successfully to the server was 2,498,265 milliseconds ago.
+### The error may exist in com/game/db/sqlmap/userlogin.xml
+### The error may involve userlogin.selectByUserName
+### The error occurred while executing a query
+### Cause: org.apache.ibatis.transaction.TransactionException: Error configuring AutoCommit.  Your driver may not support getAutoCommit() or setAutoCommit(). Requested setting: false.  Cause: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 2,498,246 milliseconds ago. The last packet sent successfully to the server was 2,498,265 milliseconds ago.

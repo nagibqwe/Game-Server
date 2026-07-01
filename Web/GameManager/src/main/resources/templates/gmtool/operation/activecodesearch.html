@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('激活码日志列表')" />
+    <th:block th:include="include :: footer" />
+    <script>
+      var options;
+      $(function () {
+          var baseOptionsACL = actCodeCommonConfig("/queryActiveCode","activeCodeList");
+          var baseOptionsACLP = actCodeCommonConfig("/queryActiveCodeByBatchId","activeCodeListPatch");
+          activeCodeListConfig(baseOptionsACL);
+          activeCodeListPatchConfig(baseOptionsACLP);
+      });
+
+      function activeCodeListConfig(baseOptions) {
+          baseOptions.columns.push({
+              field: 'deleteTime',
+              title: '操作',
+              formatter: function(value, row, index) {
+                  if (value == 0){
+                      var actions = [];
+                      actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="deleteCode(\'' + row.code + '\')"><i class="fa fa-remove"></i>禁用</a>');
+                      return actions.join('');
+                  } else {
+                      return "删除时间:"+value;
+                  }
+              }
+          });
+          $.table.init(baseOptions);
+      }
+      
+      function activeCodeListPatchConfig(baseOptions) {
+          baseOptions.columns.push({
+              field: 'getTime',
+              title: '激活码使用时间'
+          });
+          baseOptions.columns.push({
+              field: 'getPlayerId',
+              title: '使用者角色ID'
+          });
+          baseOptions.columns.push({
+              field: 'getPlateformAid',
+              title: '使用者角色名'
+          });
+          baseOptions.columns.push({
+              field: 'getAccountId',
+              title: '使用者帐号'
+          });
+          baseOptions.columns.push({
+              field: 'getPlateformName',
+              title: '使用者平台名'
+          });
+          baseOptions.columns.push({
+              field: 'getServerId',
+              title: '使用者区服'
+          });
+          $.table.init(baseOptions);
+      }
+
+      //点击查询操作
+      function search() {
+
+              var batchId = $("#searchParam").val();
+              if (batchId == undefined || batchId == "") {
+                  $("#activeCodeListDiv").show();
+                  $("#activeCodeListCodeDiv").hide();
+                  $("#activeCodeListPatchDiv").hide();
+                  $.table.refresh("activeCodeList");
+                  return;
+              }
+              $("#activeCodeListDiv").hide();
+              $("#activeCodeListCodeDiv").hide();
+              $("#activeCodeListPatchDiv").show();
+              $.table.refresh("activeCodeListPatch");
+
+      }
+
+      /**
+       * 导出当前显示的table数据
+       */
+      function exportExcel() {
+          $(".select-table").each(function () {
+             if($(this).css("display") == "block"){
+                 var table = $(this).find("table").eq(1);//生成后的表格有3个table
+                 var tableId = $(table).prop("id");
+                 console.log(tableId);
+                 $("#"+tableId).tableExport({type: 'excel', escape: 'false'});
+             }
+          });
+      }
+
+      /**
+       * 禁用激活码
+       * @param code
+       */
+      function deleteCode(code) {
+          $.modal.confirm("确认是否禁用？",function () {
+              $.ajax({
+                  type: "POST",
+                  url: prefix + "/deleteCode",
+                  data: {"code" : code},
+                  dataType: "json",
+                  success: function(data){
+                      if (!data.ok) {
+                          $.modal.alertError(data.msg);
+                      }else {
+                          $.modal.alertSuccess("禁用成功");
+                      }
+                      $.table.refresh("activeCodeList");
+                  }
+              });
+          });
+      }
+
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <select id="searchType" name="searchType" class="span2 selectClass">
+                    <option value="1" selected="selected">激活码批次号查询</option>
+                    <option value="0">激活码查询</option>
+                </select>
+                <input id="searchParam" type="text" name="searchParam" class="span2 selectClass" >
+                <input type="button" id="query_btn" value="查询" class="btn btn-primary" onclick="search()">
+                <input type="button" id="excel_btn" value="导出Excel" class="btn btn-primary" onclick="exportExcel()">
+            </form>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped" id="activeCodeListDiv">
+            <table id="activeCodeList"></table>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped" style="display: none" id="activeCodeListPatchDiv">
+            <table id="activeCodeListPatch"></table>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped" style="display: none" id="activeCodeListCodeDiv">
+            <table id="activeCodeListCode"></table>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var prefix = ctx + "gmtool/operation";
+
+    function actCodeCommonConfig(url,tableId){
+        options = {
+            url: prefix + url,
+            id:tableId,
+            modalName: "激活码",
+            showSearch: false,
+            columns: [
+                {
+                    title: "序号",
+                    formatter: function (value, row, index) {
+                        return $.table.serialNumber(index);
+                    }
+                },
+                {
+                    field: 'code',
+                    title: '激活码'
+                },
+                {
+                    field: 'activeName',
+                    title: '激活码类型名'
+                },
+                {
+                    field: 'batch',
+                    title: '批次号'
+                },
+                {
+                    field: 'itemList',
+                    title: '物品列表'
+                },
+                {
+                    field: 'param',
+                    title: '万能码',
+                    formatter:function (value,row,index) {
+                        if (value == 1) {
+                            return "是";
+                        }else {
+                            return "否";
+                        }
+                    }
+                },
+                {
+                    field: 'valide_time_begin',
+                    title: '有效开始时间'
+                },
+                {
+                    field: 'valide_time_end',
+                    title: '有效结束时间'
+                },
+                {
+                    field: 'plateform_name_big',
+                    title: '渠道名'
+                },
+                {
+                    field: 'valide_server_id_list',
+                    title: '有效区服'
+                },
+                {
+                    field: 'create_time',
+                    title: '创建时间'
+                }]
+        };
+        return options;
+    }
+</script>
+</body>
+</html>

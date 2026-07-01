@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TzjBackend:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>TzjBackend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="TzjBackend.war">
+      <element id="artifact" artifact-name="TzjBackend:war exploded" />
+    </root>
+  </artifact>
+</component>

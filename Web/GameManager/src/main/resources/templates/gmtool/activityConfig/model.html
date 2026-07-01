@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('运营活动模型库列表')" />
+    <th:block th:include="include :: footer" />
+    <script>
+        function addSaltIpGrp(obj) {
+            // console.log(obj);
+            var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label for="career">职业:</label>'+
+                '<select id="career" name="career" class="career selectClass" style="width: 50px">'+
+                '<option value="0">玄剑</option>'+
+                '<option value="1">天英</option>'+
+                '<option value="2">地藏</option>'+
+                '<option value="3">罗刹</option>'+
+                '<option value="9" selected>通用</option>'+
+                '</select>'+
+                '<label class="input-group-addon">模型ID:</label>' +
+                '<input type="text" class="form-control validate[required]" style="width:100px;"  name="modelId" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
+                '<label class="input-group-addon">模型大小倍数:</label>' +
+                '<input type="number" class="form-control validate[required,custom[number]]" style="width:100px;" name="scale" style="">' +
+                '<label class="input-group-addon">旋转参数x:</label>' +
+                '<input type="number" class="form-control validate[required,custom[number]]" style="width:100px;" name="rotX" style="">' +
+                '<label class="input-group-addon">旋转参数y:</label>' +
+                '<input type="number" class="form-control validate[required,custom[number]]" style="width:100px;" name="rotY" style="">' +
+                '<label class="input-group-addon">旋转参数z:</label>' +
+                '<input type="number" class="form-control validate[required,custom[number]]" style="width:100px;" name="rotZ" style="">' +
+                '<label class="input-group-addon">位置参数x:</label>' +
+                '<input type="number" class="form-control validate[required,custom[number]]" style="width:100px;" name="posX" style="">' +
+                '<label class="input-group-addon">位置参数y:</label>' +
+                '<input type="number" class="form-control validate[required,custom[number]]" style="width:100px;" name="posY" οnkeyup="value=value.replace(/[^\\d\\.]/g,\'\')" style="">' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" id="delGridGroup"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+    </script>
+
+    <script>
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $(document).on('click', '#delGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var saltIp = $(this).parent().parent().find('#saltIp').val();
+            el.parentNode.removeChild(el);
+            return;
+        });
+
+        //清空操作
+        function reload() {
+            $("#idCopy").val(0);
+            $("#tips").val("");
+            $(".career").val("9");
+            $("input[name='modelId']").val("");
+            $("input[name='scale']").val("");
+            $("input[name='rotX']").val("");
+            $("input[name='rotY']").val("");
+            $("input[name='rotZ']").val("");
+            $("input[name='posX']").val("");
+            $("input[name='posY']").val("");
+        }
+        //点击修改
+        var idCopy=0;
+        function edit(id,tips_,career_,modelId_,scale_,rotX_,rotY_,rotZ_,posX_,posY_) {
+            $.modal.confirm("确认修改？", function () {
+                //删除之前动态生成的配置项
+                $("div[name='cfg1']").remove();
+                idCopy = id;
+                $("#idCopy").val(id);
+                $("#tips").val(tips_);
+                var career=stringToArry(career_);
+                var modelId=stringToArry(modelId_);
+                var scale=stringToArry(scale_);
+                var rotX=stringToArry(rotX_);
+                var rotY=stringToArry(rotY_);
+                var rotZ=stringToArry(rotZ_);
+                var posX=stringToArry(posX_);
+                var posY=stringToArry(posY_);
+                $.each(career,function (i) {
+                    var icareer=career[i];
+                    var imodelId=modelId[i];
+                    var iscale=scale[i];
+                    var irotX=rotX[i];
+                    var irotY=rotY[i];
+                    var irotZ=rotZ[i];
+                    var iposX=posX[i];
+                    var iposY=posY[i];
+
+                    addSaltIpGrp($("#addSaltIpGrpBtn").get(0));
+                    $("select[name='career']").eq(i).val(icareer);
+                    $("input[name='modelId']").eq(i).val(imodelId);
+                    $("input[name='scale']").eq(i).val(iscale);
+                    $("input[name='rotX']").eq(i).val(irotX);
+                    $("input[name='rotY']").eq(i).val(irotY);
+                    $("input[name='rotZ']").eq(i).val(irotZ);
+                    $("input[name='posX']").eq(i).val(iposX);
+                    $("input[name='posY']").eq(i).val(iposY);
+                })
+            });
+        }
+
+        function stringToArry(str) {
+            var arr = str.split(",");
+            return arr;
+        }
+
+        //提交
+        function submitConfig() {
+            if (!$('#activity_form').validate().form()) {
+                $.modal.msgError("验证失败");
+                return;
+            }
+            $.ajax({
+                url: prefix + "/addOrEditModel",
+                method: "post",
+                dataType: "json",
+                data: $("#activity_form").serialize(),
+                success: function (data) {
+                    if (data.ok) {
+                        if (idCopy > 0) {
+                            console.log("xiugai:" + idCopy);
+                            $("#idCopy").val(0);
+                            idCopy = 0;
+                            reload();
+                            //删除之前动态生成的配置项
+                            $("div[name='cfg1']").remove();
+                            $.table.refresh();
+                            $.modal.alertSuccess("配置修改成功");
+                        } else {
+                            console.log("tianjia:" + idCopy);
+                            reload();
+                            //删除之前动态生成的配置项
+                            $("div[name='cfg1']").remove();
+                            $.table.refresh();
+                            $.modal.alertSuccess("配置添加成功");
+                        }
+                    } else {
+                        $.modal.alertError("配置修改/添加失败" + data.msg);
+                    }
+                }
+            });
+
+        }
+
+        //删除操作
+        function deleteConfig(id) {
+            $.modal.confirm("确认删除？", function () {
+                $.ajax({
+                    url: prefix + "/deleteModel",
+                    method: "post",
+                    dataType: "json",
+                    data: {"id": id},
+                    success: function (data) {
+                        if (data.ok) {
+                            $.table.refresh();
+                            $.modal.alertSuccess("配置删除成功");
+                        } else {
+                            $.modal.alertError("配置删除失败");
+                        }
+                    }
+                });
+            });
+        }
+
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="activity_form" method="post" class="main form-horizontal" action="#">
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-12">
+                            <legend>模型库配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="tipshuju">
+                                    <input type="hidden" id="idCopy" name="idCopy" value="0">
+                                    <label class="input-group-addon">备注说明:</label>
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <input type="text" class="form-control validate[required]" id="tips" name="tips" value="" />
+                                    </div>
+                                </div>
+                                <div class="input-group" id="saltIpGroup" style="margin-top: 8px">
+                                    <label class="input-group-addon">模型库配置:</label>
+                                    <button style="margin-left: 5px" class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn"
+                                            onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount1" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-md-12 col-sm-12 col-lg-12" style="height: 30px"></div>
+            <div class="col-sm-5 col-sm-5"></div>
+            <div class="row-fluid col-sm-7 col-md-7">
+                <input type="button" value="提交" onclick="submitConfig()"
+                       class="btn btn-sm btn-danger"
+                       style="margin-right: 30px"/>
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var prefix = ctx + "gmtool/activityConfig";
+
+    $(function() {
+        var options = {
+            url: prefix + "/modelList",
+            modalName: "运营活动模型库",
+            columns: [
+                {
+                    field: 'id',
+                    title: 'ID'
+                },
+                {
+                    field: 'career',
+                    title: '职业'
+                },
+                {
+                    field: 'modelId',
+                    title: '模型ID'
+                },
+                {
+                    field: 'scale',
+                    title: '模型大小倍数'
+                },
+                {
+                    field: 'rotX',
+                    title: '旋转参数x'
+                },
+                {
+                    field: 'rotY',
+                    title: '旋转参数y'
+                },
+                {
+                    field: 'rotZ',
+                    title: '旋转参数z'
+                },
+                {
+                    field: 'posX',
+                    title: '位置参数x'
+                },
+                {
+                    field: 'posY',
+                    title: '位置参数y'
+                },
+                {
+                    field: 'tips',
+                    title: '模型库的备注'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="edit(' + row.id + ',\''+row.tips+'\',\''+row.career+'\',\''+row.modelId+'\',\''+row.scale+'\',\''+row.rotX+'\',\''+row.rotY+'\',\''+row.rotZ+'\',\''+row.posX+'\',\''+row.posY+'\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="deleteConfig(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

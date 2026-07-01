@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改登录服信息')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-loginServer-edit" th:object="${sdkLoginServer}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">登录服务器名称：</label>
+                <div class="col-sm-8">
+                    <input name="loginServerName" th:field="*{loginServerName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">登录服务器IP：</label>
+                <div class="col-sm-8">
+                    <input name="loginServerIp" th:field="*{loginServerIp}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">登录服端口：</label>
+                <div class="col-sm-8">
+                    <input name="loginServerPort" th:field="*{loginServerPort}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "serverListConfig/loginServer";
+        $("#form-loginServer-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-loginServer-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

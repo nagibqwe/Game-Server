@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace = "mail">
+    
+    <resultMap id = "bean" type = "com.game.db.bean.Mail" >
+        <result column = "type" property = "type" jdbcType = "INTEGER" />
+        <result column = "mailId" property = "mailId" jdbcType = "BIGINT" />
+        <result column = "receiveTime" property = "receiveTime" jdbcType = "BIGINT" />
+        <result column = "sender" property = "sender" jdbcType = "VARCHAR" />
+        <result column = "receiverId" property = "receiverId" jdbcType = "BIGINT" />
+        <result column = "isRead" property="isRead" jdbcType = "TINYINT" />
+        <result column = "hasAttachment" property = "hasAttachment" jdbcType = "TINYINT" />
+        <result column = "isAttachReceived" property = "isAttachReceived" jdbcType="TINYINT" />
+        <result column = "readTable" property = "readTable" jdbcType="TINYINT" />
+        <result column = "mailData" property = "mailData" jdbcType="LONGVARCHAR" />
+        <result column = "source" property = "source" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <select id = "selectAll" resultMap = "bean">
+        select * from mail
+    </select>
+    
+    <select id = "selectByReceiverId" parameterType = "long" resultMap = "bean">
+        select * from mail where receiverId = #{receiverId, jdbcType = BIGINT}
+    </select>
+    
+    <select id = "selectByReceiveTime" parameterType = "long" resultMap = "bean">
+        select * from mail where receiveTime &lt;= #{receiveTime, jdbcType = BIGINT}
+    </select>
+    
+    <insert id = "insert" parameterType = "com.game.db.bean.Mail">
+        insert into mail (type, mailId, receiveTime, sender, receiverId, isRead, hasAttachment, isAttachReceived, mailData,readTable,source)
+        values (
+        #{type, jdbcType = INTEGER},
+        #{mailId, jdbcType = BIGINT},
+        #{receiveTime, jdbcType = BIGINT},
+        #{sender, jdbcType = VARCHAR},
+        #{receiverId, jdbcType = BIGINT},
+        #{isRead, jdbcType = TINYINT},
+        #{hasAttachment, jdbcType = TINYINT},
+        #{isAttachReceived, jdbcType = TINYINT},
+        #{mailData, jdbcType = LONGVARCHAR},
+        #{readTable, jdbcType = TINYINT},
+        #{source, jdbcType = INTEGER}
+        )
+    </insert>
+    
+    <update id = "update" parameterType = "com.game.db.bean.Mail">
+        update mail set
+        type = #{type, jdbcType = INTEGER},
+        receiveTime = #{receiveTime, jdbcType = BIGINT},
+        sender = #{sender, jdbcType = VARCHAR},
+        receiverId = #{receiverId, jdbcType = BIGINT},
+        isRead = #{isRead, jdbcType = TINYINT},
+        hasAttachment = #{hasAttachment, jdbcType = TINYINT},
+        isAttachReceived = #{isAttachReceived, jdbcType = TINYINT},
+        mailData = #{mailData, jdbcType = LONGVARCHAR}
+        where mailId = #{mailId, jdbcType = BIGINT}
+    </update>
+    
+    <delete id = "deleteByMailId" parameterType = "long">
+        delete from mail where mailId = #{mailId, jdbcType = BIGINT}
+    </delete>
+    
+    <delete id = "deleteByReceiverId" parameterType = "long">
+        delete from mail where receiverId = #{receiverId, jdbcType = BIGINT}
+    </delete>
+
+</mapper>

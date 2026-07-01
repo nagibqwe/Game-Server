@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('踢人下线')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <!--角色信息查询-->
+            <div class="col-sm-12 search-collapse">
+                <div th:replace="common/query_game_role.html"></div>
+            </div>
+
+            <div class="col-sm-12 search-collapse">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>踢人下线</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="kickForm" class="form-horizontal m-t" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="roleId">角色ID:</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="roleId" type="text" name="roleId" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="reason">操作原因:</label>
+                                <div class="col-sm-3">
+                                    <textarea id="reason" name="reason" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 4px">
+                                <label class="col-sm-2 control-label"></label>
+                                <button type="button" class="btn btn-success" onclick="kick()">
+                                    提交
+                                </button>
+                            </div>
+
+                            <div id="msg" class="container-fluid"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 select-table table-striped" id="tableDiv">
+                    <table id="bootstrap-table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+
+        var prefix = ctx + "gmtool/kick";
+
+        $(function () {
+            $("#tableDiv").hide();
+        });
+
+        //账号封禁
+        function kick() {
+            if (!$('#kickForm').validate().form()) {
+                $.modal.msgError("验证失败");
+                return;
+            }
+
+            $.ajax({
+                url: prefix + "/kickRole",
+                method: "post",
+                data: {
+                    // groupName: $("#select_group").val(),
+                    serverId: $("#select_server").val(),
+                    roleId: $("#roleId").val(),
+                    reason: $("#reason").val()
+                },
+                success: function(data) {
+                    if (data.ok) {
+                        $("#kickForm")[0].reset();
+                        $.modal.alertSuccess(data.msg);
+                        $.table.refresh("tableDiv");
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

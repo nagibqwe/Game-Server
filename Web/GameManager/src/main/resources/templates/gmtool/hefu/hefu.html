@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('合服列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>源服务器：</label>
+                                <input type="text" name="fromServer"/>
+                            </li>
+                            <li>
+                                <label>目标服务器：</label>
+                                <input type="text" name="toServer"/>
+                            </li>
+                            <li>
+                                <label>合服状态</label>
+                                <select name="status">
+                                    <option value="">所有</option>
+                                    <option value="0">新建</option>
+                                    <option value="1">合服中</option>
+                                    <option value="2">成功</option>
+                                    <option value="3">失败</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>语言</label>
+                                <select name="language">
+                                    <option value="">所有</option>
+                                    <option value="cn">国内</option>
+                                    <option value="tw">台湾</option>
+                                    <option value="kor">韩国</option>
+                                    <option value="yn">越南</option>
+                                    <option value="thai">泰国</option>
+                                    <option value="ros">新马</option>
+                                    <option value="en">英语</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="gmtool:hefu:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:hefu:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:hefu:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:hefu:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var startFlag = [[${@permission.hasPermi('gmtool:hefu:start')}]];
+        var removeFlag = [[${@permission.hasPermi('gmtool:hefu:remove')}]];
+        var prefix = ctx + "gmtool/hefu";
+        var mytable;
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "合服",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'ID',
+                    visible: false
+                },
+                {
+                    field: 'fromServer',
+                    title: '源服务器'
+                },
+                {
+                    field: 'toServer',
+                    title: '目标服务器'
+                },
+                {
+                    field: 'status',
+                    title: '合服状态0新建1合服中2成功3失败',
+                    formatter: function(value, row, index) {
+                        var v = "";
+                        if(value == 0){
+                            v = "新建";
+                        }else if(value == 1){
+                            v = "合服中";
+                        }else if(value == 2){
+                            v = "成功";
+                        }else if(value == 3){
+                            v = "失败";
+                        }
+                        return v;
+                    }
+                },
+                {
+                    field: 'log',
+                    title: '日志',
+                    formatter: function(value, row, index) {
+                        return '<a href="javascript:void(0)" onclick="showLog(' + row.id + ')">查看日志</a>';
+                    }
+                },
+                {
+                    field: 'language',
+                    title: 'cn:国内，tw:台湾，kor:韩国，yn:越南，thai:泰国，ros:新马,en:英语'
+                },
+                    {
+                        field: 'createTime',
+                        title: '创建时间'
+                    },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="check(\'' + row.id + '\')"><i class="fa"></i>配置检测</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="bakAndRestore(\'' + row.id + '\')"><i class="fa"></i>备份与还原</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="start(\'' + row.id + '\')"><i class="fa fa-hourglass-start"></i>开始</a> ');
+                        // actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="stop(\'' + row.id + '\')"><i class="fa fa-stop"></i>停止</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            mytable = $.table.init(options);
+        });
+
+        function check(id){
+            var reloadCacheUrl = prefix + "/check";
+            $.post(reloadCacheUrl,{id:id},function (data,status){
+                if(status =='success'){
+                    if(data.code == 0){
+                        $.modal.alertSuccess('操作成功');
+                    }else{
+                        $.modal.alertError(data.msg);
+                    }
+                }else{
+                    $.modal.alertError('操作失败');
+                }
+            });
+        }
+
+        function start(id){
+            $.modal.confirm("服务器是否已关闭？点击确认开始合服",function(){
+                var checkIsHefu = prefix + "/checkIsHefu";
+                $.post(checkIsHefu,{id:id},function (data,status){
+                    if(status =='success'){
+                        if(data.code == 0){
+                            sendStart(id);
+                        }else{
+                            $.modal.confirm(data.msg,function(){
+                                sendStart(id);
+                            });
+                        }
+                    }else{
+                        $.modal.alertError('操作失败');
+                    }
+                });
+            })
+        }
+
+        function sendStart(id){
+            var reloadCacheUrl = prefix + "/start";
+            $.post(reloadCacheUrl,{id:id},function (data,status){
+                if(status =='success'){
+                    if(data.code == 0){
+                        var startUrl = prefix + "/start/" + id;
+                        $.modal.open("日志", startUrl);
+                    }else{
+                        $.modal.alertError(data.msg);
+                    }
+                }else{
+                    $.modal.alertError('操作失败');
+                }
+            });
+        }
+
+        function showLog(id){
+            var url = prefix + "/log/" + id;
+            $.modal.open("日志", url);
+        }
+
+        // function stop(id){
+        //     var reloadCacheUrl = prefix + "/stop";
+        //     $.post(reloadCacheUrl,function (data,status){
+        //         if(status =='success'){
+        //             if(data.code == 0){
+        //                 $.modal.alertSuccess('操作成功');
+        //             }else{
+        //                 $.modal.alertError(data.msg);
+        //             }
+        //         }else{
+        //             $.modal.alertError('操作失败');
+        //         }
+        //     });
+        // }
+
+        function bakAndRestore(id){
+            var bakAndRestoreUrl = prefix + "/bakAndRestore/" + id;
+            $.modal.open("备份与还原", bakAndRestoreUrl);
+        }
+    </script>
+</body>
+</html>

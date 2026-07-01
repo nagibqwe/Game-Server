@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="GAMESERVERLOG">RobotServer</property>
+        <property name="SPECUSERFILE">flow</property>
+        <property name="AILOG">yedai</property>
+    </properties>
+    <appenders>
+        <!-- 定义控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread]%l - %msg%n" />
+        </Console>
+        <!-- 正常输出日志 -->
+        <RollingRandomAccessFile name="DevLog" fileName="${LOG_HOME}/${GAMESERVERLOG}" filePattern="${LOG_HOME}/${GAMESERVERLOG}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="SPECUSERLOGTOFILE" fileName="${LOG_HOME}/${SPECUSERFILE}" filePattern="${LOG_HOME}/${SPECUSERFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingRandomAccessFile>
+    </appenders>
+    <loggers>
+        <AsyncLogger name="flow" level="info" additivity="false">
+            <appender-ref ref="SPECUSERLOGTOFILE"/>
+        </AsyncLogger>
+        <AsyncLogger name="AILOG" level="TRACE" additivity="false">
+            <appender-ref ref="AILOG_File"/>
+            <appender-ref ref="AiConsole"/>
+            <appender-ref ref="exception"/>
+        </AsyncLogger>
+        <!-- Root Logger -->
+        <root level="info" includeLocation="true">
+            <appender-ref ref="Console" />
+            <appender-ref ref="DevLog" />
+            <appender-ref ref="ErrorLog" level="error" />
+        </root>
+    </loggers>
+</configuration>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.roleTransfer.mapper.RoleTransferMapper">
+    
+    <resultMap type="RoleTransfer" id="RoleTransferResult">
+        <result property="roleId"    column="roleId"    />
+        <result property="srcUserId"    column="srcUserId"    />
+        <result property="targetUserId"    column="targetUserId"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="reason"    column="reason"    />
+        <result property="isDeleted"    column="isDeleted"    />
+        <result property="time"    column="time"    />
+    </resultMap>
+
+    <sql id="selectRoleTransferVo">
+        select roleId, srcUserId, targetUserId, serverId, reason, isDeleted, time from t_role_transfer
+    </sql>
+
+    <select id="selectRoleTransferList" parameterType="RoleTransfer" resultMap="RoleTransferResult">
+        <include refid="selectRoleTransferVo"/>
+        <where>  
+            <if test="roleId != null  and roleId != ''"> and roleId = #{roleId}</if>
+            <if test="srcUserId != null  and srcUserId != ''"> and srcUserId = #{srcUserId}</if>
+            <if test="targetUserId != null  and targetUserId != ''"> and targetUserId = #{targetUserId}</if>
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+            <if test="isDeleted != null "> and isDeleted = #{isDeleted}</if>
+            <if test="time != null "> and time = #{time}</if>
+        </where>
+        order by time desc
+    </select>
+    
+    <select id="selectRoleTransferById" parameterType="String" resultMap="RoleTransferResult">
+        <include refid="selectRoleTransferVo"/>
+        where roleId = #{roleId}
+    </select>
+        
+    <insert id="insertRoleTransfer" parameterType="RoleTransfer">
+        insert into t_role_transfer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null and roleId != ''">roleId,</if>
+            <if test="srcUserId != null">srcUserId,</if>
+            <if test="targetUserId != null">targetUserId,</if>
+            <if test="serverId != null">serverId,</if>
+            <if test="reason != null">reason,</if>
+            <if test="isDeleted != null">isDeleted,</if>
+            <if test="time != null">time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null and roleId != ''">#{roleId},</if>
+            <if test="srcUserId != null">#{srcUserId},</if>
+            <if test="targetUserId != null">#{targetUserId},</if>
+            <if test="serverId != null">#{serverId},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="isDeleted != null">#{isDeleted},</if>
+            <if test="time != null">#{time},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRoleTransfer" parameterType="RoleTransfer">
+        update t_role_transfer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="srcUserId != null">srcUserId = #{srcUserId},</if>
+            <if test="targetUserId != null">targetUserId = #{targetUserId},</if>
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="reason != null">reason = #{reason},</if>
+            <if test="isDeleted != null">isDeleted = #{isDeleted},</if>
+            <if test="time != null">time = #{time},</if>
+        </trim>
+        where roleId = #{roleId}
+    </update>
+
+    <delete id="deleteRoleTransferById" parameterType="String">
+        delete from t_role_transfer where roleId = #{roleId}
+    </delete>
+
+    <delete id="deleteRoleTransferByIds" parameterType="String">
+        delete from t_role_transfer where roleId in 
+        <foreach item="roleId" collection="array" open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
+    </delete>
+
+</mapper>

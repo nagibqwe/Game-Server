@@ -1,0 +1,214 @@
+/**
+ * Auto generated, do not edit it
+ *
+ * bossnew_drop配置表
+ */
+ 
+package config;
+
+import com.data.script.IScriptConfig;
+import java.util.Map;
+import com.data.bean.Cfg_Bossnew_drop_Bean; 
+
+	
+public final class Cfg_Bossnew_drop_Load implements IScriptConfig<Cfg_Bossnew_drop_Bean> {
+	
+    /**
+     * 数据加载
+     * @param contaioners
+     */
+    @Override
+    public void load(Map<Integer,Cfg_Bossnew_drop_Bean> contaioners){
+        contaioners.clear();
+        contaioners.put(1, new Cfg_Bossnew_drop_Bean(1,0,210041,0,0,0,"100,102,103","1,2,3",0,0,0));
+        contaioners.put(2, new Cfg_Bossnew_drop_Bean(2,0,210051,0,0,0,"","",0,0,0));
+        contaioners.put(3, new Cfg_Bossnew_drop_Bean(3,0,210061,0,0,0,"","",0,0,0));
+        contaioners.put(4, new Cfg_Bossnew_drop_Bean(4,0,210052,0,0,0,"","",0,0,0));
+        contaioners.put(5, new Cfg_Bossnew_drop_Bean(5,0,210062,0,0,0,"","",0,0,0));
+        contaioners.put(6, new Cfg_Bossnew_drop_Bean(6,0,210072,0,0,0,"","",0,0,0));
+        contaioners.put(7, new Cfg_Bossnew_drop_Bean(7,0,0,0,0,0,"","",100004,0,0));
+        contaioners.put(8, new Cfg_Bossnew_drop_Bean(8,0,0,0,0,0,"","",100005,0,0));
+        contaioners.put(9, new Cfg_Bossnew_drop_Bean(9,0,0,0,0,0,"","",100006,0,0));
+        contaioners.put(10, new Cfg_Bossnew_drop_Bean(10,0,0,0,0,0,"","",100007,0,0));
+        contaioners.put(11, new Cfg_Bossnew_drop_Bean(11,0,0,0,0,0,"","",100008,0,0));
+        contaioners.put(12, new Cfg_Bossnew_drop_Bean(12,0,0,0,0,0,"","",100009,0,0));
+        contaioners.put(10105, new Cfg_Bossnew_drop_Bean(10105,0,0,0,0,0,"231051,231051,231051,231051,231051,231051,231051,231051,231051,231051","1,2,3,4,5,6,7,8,9,10",220051,0,0));
+        contaioners.put(10106, new Cfg_Bossnew_drop_Bean(10106,0,0,0,0,0,"231061,231061,231061,231061,231061,231061,231061,231061,231061,231061","1,2,3,4,5,6,7,8,9,10",220061,0,0));
+        contaioners.put(10107, new Cfg_Bossnew_drop_Bean(10107,0,0,0,0,0,"231071,231071,231071,231071,231071,231071,231071,231071,231071,231071","1,2,3,4,5,6,7,8,9,10",220071,0,0));
+        contaioners.put(10108, new Cfg_Bossnew_drop_Bean(10108,0,0,0,0,0,"231081,231081,231081,231081,231081,231081,231081,231081,231081,231081","1,2,3,4,5,6,7,8,9,10",220081,0,0));
+        contaioners.put(10109, new Cfg_Bossnew_drop_Bean(10109,0,0,0,0,0,"231091,231091,231091,231091,231091,231091,231091,231091,231091,231091","1,2,3,4,5,6,7,8,9,10",220091,0,0));
+        contaioners.put(10110, new Cfg_Bossnew_drop_Bean(10110,0,0,0,0,0,"231101,231101,231101,231101,231101,231101,231101,231101,231101,231101","1,2,3,4,5,6,7,8,9,10",220101,0,0));
+        contaioners.put(10111, new Cfg_Bossnew_drop_Bean(10111,0,0,0,0,0,"231111,231111,231111,231111,231111,231111,231111,231111,231111,231111","1,2,3,4,5,6,7,8,9,10",220111,0,0));
+        contaioners.put(10112, new Cfg_Bossnew_drop_Bean(10112,0,0,0,0,0,"231121,231121,231121,231121,231121,231121,231121,231121,231121,231121","1,2,3,4,5,6,7,8,9,10",220121,0,0));
+        contaioners.put(10113, new Cfg_Bossnew_drop_Bean(10113,0,0,0,0,0,"231131,231131,231131,231131,231131,231131,231131,231131,231131,231131","1,2,3,4,5,6,7,8,9,10",220131,0,0));
+        contaioners.put(10114, new Cfg_Bossnew_drop_Bean(10114,0,0,0,0,0,"231141,231141,231141,231141,231141,231141,231141,231141,231141,231141","1,2,3,4,5,6,7,8,9,10",220141,0,0));
+        contaioners.put(10115, new Cfg_Bossnew_drop_Bean(10115,0,0,0,0,0,"231151,231151,231151,231151,231151,231151,231151,231151,231151,231151","1,2,3,4,5,6,7,8,9,10",220151,0,0));
+        contaioners.put(10116, new Cfg_Bossnew_drop_Bean(10116,0,0,0,0,0,"231161,231161,231161,231161,231161,231161,231161,231161,231161,231161","1,2,3,4,5,6,7,8,9,10",220161,0,0));
+        contaioners.put(11001, new Cfg_Bossnew_drop_Bean(11001,0,0,0,0,0,"","",221031,0,0));
+        contaioners.put(11002, new Cfg_Bossnew_drop_Bean(11002,0,0,0,0,0,"","",221041,0,0));
+        contaioners.put(11003, new Cfg_Bossnew_drop_Bean(11003,0,0,0,0,0,"","",221051,0,0));
+        contaioners.put(11004, new Cfg_Bossnew_drop_Bean(11004,0,0,0,0,0,"","",221061,0,0));
+        contaioners.put(12105, new Cfg_Bossnew_drop_Bean(12105,0,0,0,0,0,"250051.0","1.0",0,0,0));
+        contaioners.put(12106, new Cfg_Bossnew_drop_Bean(12106,0,0,0,0,0,"250061.0","1.0",0,0,0));
+        contaioners.put(12107, new Cfg_Bossnew_drop_Bean(12107,0,0,0,0,0,"250071.0","1.0",0,0,0));
+        contaioners.put(12108, new Cfg_Bossnew_drop_Bean(12108,0,0,0,0,0,"250081.0","1.0",0,0,0));
+        contaioners.put(12109, new Cfg_Bossnew_drop_Bean(12109,0,0,0,0,0,"250091.0","1.0",0,0,0));
+        contaioners.put(12110, new Cfg_Bossnew_drop_Bean(12110,0,0,0,0,0,"250101.0","1.0",0,0,0));
+        contaioners.put(12111, new Cfg_Bossnew_drop_Bean(12111,0,0,0,0,0,"250111.0","1.0",0,0,0));
+        contaioners.put(12112, new Cfg_Bossnew_drop_Bean(12112,0,0,0,0,0,"250121.0","1.0",0,0,0));
+        contaioners.put(12113, new Cfg_Bossnew_drop_Bean(12113,0,0,0,0,0,"250131.0","1.0",0,0,0));
+        contaioners.put(12114, new Cfg_Bossnew_drop_Bean(12114,0,0,0,0,0,"250141.0","1.0",0,0,0));
+        contaioners.put(12115, new Cfg_Bossnew_drop_Bean(12115,0,0,0,0,0,"250151.0","1.0",0,0,0));
+        contaioners.put(12116, new Cfg_Bossnew_drop_Bean(12116,0,0,0,0,0,"250161.0","1.0",0,0,0));
+        contaioners.put(13001, new Cfg_Bossnew_drop_Bean(13001,0,0,0,0,0,"260031,260031,260031","1,2,3",0,0,0));
+        contaioners.put(13002, new Cfg_Bossnew_drop_Bean(13002,0,0,0,0,0,"260041,260041,260041","1,2,3",0,0,0));
+        contaioners.put(13003, new Cfg_Bossnew_drop_Bean(13003,0,0,0,0,0,"260051,260051,260051","1,2,3",0,0,0));
+        contaioners.put(13004, new Cfg_Bossnew_drop_Bean(13004,0,0,0,0,0,"260061,260061,260061","1,2,3",0,0,0));
+        contaioners.put(13005, new Cfg_Bossnew_drop_Bean(13005,0,0,0,0,0,"260071,260071,260071","1,2,3",0,0,0));
+        contaioners.put(13006, new Cfg_Bossnew_drop_Bean(13006,0,0,0,0,0,"260081,260081,260081","1,2,3",0,0,0));
+        contaioners.put(13007, new Cfg_Bossnew_drop_Bean(13007,0,0,0,0,0,"260091,260091,260091","1,2,3",0,0,0));
+        contaioners.put(13008, new Cfg_Bossnew_drop_Bean(13008,0,0,0,0,0,"260101,260101,260101","1,2,3",0,0,0));
+        contaioners.put(13009, new Cfg_Bossnew_drop_Bean(13009,0,0,0,0,0,"260111,260111,260111","1,2,3",0,0,0));
+        contaioners.put(13010, new Cfg_Bossnew_drop_Bean(13010,0,0,0,0,0,"260121,260121,260121","1,2,3",0,0,0));
+        contaioners.put(13011, new Cfg_Bossnew_drop_Bean(13011,0,0,0,0,0,"260131,260131,260131","1,2,3",0,0,0));
+        contaioners.put(13012, new Cfg_Bossnew_drop_Bean(13012,0,0,0,0,0,"260141,260141,260141","1,2,3",0,0,0));
+        contaioners.put(13013, new Cfg_Bossnew_drop_Bean(13013,0,0,0,0,0,"260151,260151,260151","1,2,3",0,0,0));
+        contaioners.put(13014, new Cfg_Bossnew_drop_Bean(13014,0,0,0,0,0,"260161,260161,260161","1,2,3",0,0,0));
+        contaioners.put(14003, new Cfg_Bossnew_drop_Bean(14003,0,0,0,0,0,"","",240301,0,0));
+        contaioners.put(14004, new Cfg_Bossnew_drop_Bean(14004,0,0,0,0,0,"","",240302,0,0));
+        contaioners.put(14005, new Cfg_Bossnew_drop_Bean(14005,0,0,0,0,0,"","",240303,0,0));
+        contaioners.put(14006, new Cfg_Bossnew_drop_Bean(14006,0,0,0,0,0,"","",240304,0,0));
+        contaioners.put(14007, new Cfg_Bossnew_drop_Bean(14007,0,0,0,0,0,"","",240305,0,0));
+        contaioners.put(14008, new Cfg_Bossnew_drop_Bean(14008,0,0,0,0,0,"","",240306,0,0));
+        contaioners.put(14009, new Cfg_Bossnew_drop_Bean(14009,0,0,0,0,0,"","",240307,0,0));
+        contaioners.put(14010, new Cfg_Bossnew_drop_Bean(14010,0,0,0,0,0,"","",240308,0,0));
+        contaioners.put(14011, new Cfg_Bossnew_drop_Bean(14011,0,0,0,0,0,"","",240309,0,0));
+        contaioners.put(14012, new Cfg_Bossnew_drop_Bean(14012,0,0,0,0,0,"","",240310,0,0));
+        contaioners.put(14013, new Cfg_Bossnew_drop_Bean(14013,0,0,0,0,0,"","",240311,0,0));
+        contaioners.put(14014, new Cfg_Bossnew_drop_Bean(14014,0,0,0,0,0,"","",240312,0,0));
+        contaioners.put(14015, new Cfg_Bossnew_drop_Bean(14015,0,0,0,0,0,"","",240313,0,0));
+        contaioners.put(14016, new Cfg_Bossnew_drop_Bean(14016,0,0,0,0,0,"","",240314,0,0));
+        contaioners.put(15101, new Cfg_Bossnew_drop_Bean(15101,0,0,0,0,0,"280101.0","1.0",0,0,0));
+        contaioners.put(15102, new Cfg_Bossnew_drop_Bean(15102,0,0,0,0,0,"280102.0","1.0",0,0,0));
+        contaioners.put(15103, new Cfg_Bossnew_drop_Bean(15103,0,0,0,0,0,"280103.0","1.0",0,0,0));
+        contaioners.put(15104, new Cfg_Bossnew_drop_Bean(15104,0,0,0,0,0,"280104.0","1.0",0,0,0));
+        contaioners.put(15105, new Cfg_Bossnew_drop_Bean(15105,0,0,0,0,0,"280105.0","1.0",0,0,0));
+        contaioners.put(15106, new Cfg_Bossnew_drop_Bean(15106,0,0,0,0,0,"280106.0","1.0",0,0,0));
+        contaioners.put(15107, new Cfg_Bossnew_drop_Bean(15107,0,0,0,0,0,"280107.0","1.0",0,0,0));
+        contaioners.put(15108, new Cfg_Bossnew_drop_Bean(15108,0,0,0,0,0,"280108.0","1.0",0,0,0));
+        contaioners.put(15109, new Cfg_Bossnew_drop_Bean(15109,0,0,0,0,0,"280109.0","1.0",0,0,0));
+        contaioners.put(15110, new Cfg_Bossnew_drop_Bean(15110,0,0,0,0,0,"280110.0","1.0",0,0,0));
+        contaioners.put(15111, new Cfg_Bossnew_drop_Bean(15111,0,0,0,0,0,"280111.0","1.0",0,0,0));
+        contaioners.put(15112, new Cfg_Bossnew_drop_Bean(15112,0,0,0,0,0,"280112.0","1.0",0,0,0));
+        contaioners.put(15113, new Cfg_Bossnew_drop_Bean(15113,0,0,0,0,0,"280113.0","1.0",0,0,0));
+        contaioners.put(15114, new Cfg_Bossnew_drop_Bean(15114,0,0,0,0,0,"280114.0","1.0",0,0,0));
+        contaioners.put(15115, new Cfg_Bossnew_drop_Bean(15115,0,0,0,0,0,"280115.0","1.0",0,0,0));
+        contaioners.put(15116, new Cfg_Bossnew_drop_Bean(15116,0,0,0,0,0,"280116.0","1.0",0,0,0));
+        contaioners.put(15201, new Cfg_Bossnew_drop_Bean(15201,0,0,0,0,0,"280201.0","1.0",0,0,0));
+        contaioners.put(15202, new Cfg_Bossnew_drop_Bean(15202,0,0,0,0,0,"280202.0","1.0",0,0,0));
+        contaioners.put(15203, new Cfg_Bossnew_drop_Bean(15203,0,0,0,0,0,"280203.0","1.0",0,0,0));
+        contaioners.put(15204, new Cfg_Bossnew_drop_Bean(15204,0,0,0,0,0,"280204.0","1.0",0,0,0));
+        contaioners.put(15205, new Cfg_Bossnew_drop_Bean(15205,0,0,0,0,0,"280205.0","1.0",0,0,0));
+        contaioners.put(15206, new Cfg_Bossnew_drop_Bean(15206,0,0,0,0,0,"280206.0","1.0",0,0,0));
+        contaioners.put(15207, new Cfg_Bossnew_drop_Bean(15207,0,0,0,0,0,"280207.0","1.0",0,0,0));
+        contaioners.put(15208, new Cfg_Bossnew_drop_Bean(15208,0,0,0,0,0,"280208.0","1.0",0,0,0));
+        contaioners.put(15301, new Cfg_Bossnew_drop_Bean(15301,0,0,0,0,0,"280301.0","1.0",0,0,0));
+        contaioners.put(15302, new Cfg_Bossnew_drop_Bean(15302,0,0,0,0,0,"280302.0","1.0",0,0,0));
+        contaioners.put(15303, new Cfg_Bossnew_drop_Bean(15303,0,0,0,0,0,"280303.0","1.0",0,0,0));
+        contaioners.put(15304, new Cfg_Bossnew_drop_Bean(15304,0,0,0,0,0,"280304.0","1.0",0,0,0));
+        contaioners.put(15305, new Cfg_Bossnew_drop_Bean(15305,0,0,0,0,0,"280305.0","1.0",0,0,0));
+        contaioners.put(15306, new Cfg_Bossnew_drop_Bean(15306,0,0,0,0,0,"280306.0","1.0",0,0,0));
+        contaioners.put(15307, new Cfg_Bossnew_drop_Bean(15307,0,0,0,0,0,"280307.0","1.0",0,0,0));
+        contaioners.put(15308, new Cfg_Bossnew_drop_Bean(15308,0,0,0,0,0,"280308.0","1.0",0,0,0));
+        contaioners.put(15401, new Cfg_Bossnew_drop_Bean(15401,0,0,0,0,0,"280401.0","1.0",0,0,0));
+        contaioners.put(15402, new Cfg_Bossnew_drop_Bean(15402,0,0,0,0,0,"280402.0","1.0",0,0,0));
+        contaioners.put(15403, new Cfg_Bossnew_drop_Bean(15403,0,0,0,0,0,"280403.0","1.0",0,0,0));
+        contaioners.put(15404, new Cfg_Bossnew_drop_Bean(15404,0,0,0,0,0,"280404.0","1.0",0,0,0));
+        contaioners.put(15405, new Cfg_Bossnew_drop_Bean(15405,0,0,0,0,0,"280405.0","1.0",0,0,0));
+        contaioners.put(15406, new Cfg_Bossnew_drop_Bean(15406,0,0,0,0,0,"280406.0","1.0",0,0,0));
+        contaioners.put(15407, new Cfg_Bossnew_drop_Bean(15407,0,0,0,0,0,"280407.0","1.0",0,0,0));
+        contaioners.put(15408, new Cfg_Bossnew_drop_Bean(15408,0,0,0,0,0,"280408.0","1.0",0,0,0));
+        contaioners.put(16005, new Cfg_Bossnew_drop_Bean(16005,0,0,0,0,0,"271051.0","1.0",0,0,0));
+        contaioners.put(16006, new Cfg_Bossnew_drop_Bean(16006,0,0,0,0,0,"271061.0","1.0",0,0,0));
+        contaioners.put(16007, new Cfg_Bossnew_drop_Bean(16007,0,0,0,0,0,"271071.0","1.0",0,0,0));
+        contaioners.put(16008, new Cfg_Bossnew_drop_Bean(16008,0,0,0,0,0,"271081.0","1.0",0,0,0));
+        contaioners.put(16009, new Cfg_Bossnew_drop_Bean(16009,0,0,0,0,0,"271091.0","1.0",0,0,0));
+        contaioners.put(16010, new Cfg_Bossnew_drop_Bean(16010,0,0,0,0,0,"271101.0","1.0",0,0,0));
+        contaioners.put(16011, new Cfg_Bossnew_drop_Bean(16011,0,0,0,0,0,"271111.0","1.0",0,0,0));
+        contaioners.put(16012, new Cfg_Bossnew_drop_Bean(16012,0,0,0,0,0,"271121.0","1.0",0,0,0));
+        contaioners.put(16013, new Cfg_Bossnew_drop_Bean(16013,0,0,0,0,0,"271131.0","1.0",0,0,0));
+        contaioners.put(16014, new Cfg_Bossnew_drop_Bean(16014,0,0,0,0,0,"271141.0","1.0",0,0,0));
+        contaioners.put(16015, new Cfg_Bossnew_drop_Bean(16015,0,0,0,0,0,"271151.0","1.0",0,0,0));
+        contaioners.put(16016, new Cfg_Bossnew_drop_Bean(16016,0,0,0,0,0,"271161.0","1.0",0,0,0));
+        contaioners.put(17008, new Cfg_Bossnew_drop_Bean(17008,0,0,0,0,0,"700072.0","1.0",0,0,0));
+        contaioners.put(17009, new Cfg_Bossnew_drop_Bean(17009,0,0,0,0,0,"700073.0","1.0",0,0,0));
+        contaioners.put(17010, new Cfg_Bossnew_drop_Bean(17010,0,0,0,0,0,"700074.0","1.0",0,0,0));
+        contaioners.put(17011, new Cfg_Bossnew_drop_Bean(17011,0,0,0,0,0,"700075.0","1.0",0,0,0));
+        contaioners.put(17012, new Cfg_Bossnew_drop_Bean(17012,0,0,0,0,0,"700076.0","1.0",0,0,0));
+        contaioners.put(17013, new Cfg_Bossnew_drop_Bean(17013,0,0,0,0,0,"700077.0","1.0",0,0,0));
+        contaioners.put(17014, new Cfg_Bossnew_drop_Bean(17014,0,0,0,0,0,"700078.0","1.0",0,0,0));
+        contaioners.put(17015, new Cfg_Bossnew_drop_Bean(17015,0,0,0,0,0,"700079.0","1.0",0,0,0));
+        contaioners.put(17016, new Cfg_Bossnew_drop_Bean(17016,0,0,0,0,0,"700080.0","1.0",0,0,0));
+        contaioners.put(17108, new Cfg_Bossnew_drop_Bean(17108,0,0,0,0,0,"295081.0","1.0",0,0,0));
+        contaioners.put(17109, new Cfg_Bossnew_drop_Bean(17109,0,0,0,0,0,"295091.0","1.0",0,0,0));
+        contaioners.put(17110, new Cfg_Bossnew_drop_Bean(17110,0,0,0,0,0,"295101.0","1.0",0,0,0));
+        contaioners.put(17111, new Cfg_Bossnew_drop_Bean(17111,0,0,0,0,0,"295111.0","1.0",0,0,0));
+        contaioners.put(17112, new Cfg_Bossnew_drop_Bean(17112,0,0,0,0,0,"295121.0","1.0",0,0,0));
+        contaioners.put(17113, new Cfg_Bossnew_drop_Bean(17113,0,0,0,0,0,"295131.0","1.0",0,0,0));
+        contaioners.put(17114, new Cfg_Bossnew_drop_Bean(17114,0,0,0,0,0,"295141.0","1.0",0,0,0));
+        contaioners.put(17115, new Cfg_Bossnew_drop_Bean(17115,0,0,0,0,0,"295151.0","1.0",0,0,0));
+        contaioners.put(17116, new Cfg_Bossnew_drop_Bean(17116,0,0,0,0,0,"295161.0","1.0",0,0,0));
+        contaioners.put(17208, new Cfg_Bossnew_drop_Bean(17208,0,0,0,0,0,"700099.0","1.0",0,0,0));
+        contaioners.put(17209, new Cfg_Bossnew_drop_Bean(17209,0,0,0,0,0,"700100.0","1.0",0,0,0));
+        contaioners.put(17210, new Cfg_Bossnew_drop_Bean(17210,0,0,0,0,0,"700101.0","1.0",0,0,0));
+        contaioners.put(17211, new Cfg_Bossnew_drop_Bean(17211,0,0,0,0,0,"700102.0","1.0",0,0,0));
+        contaioners.put(17212, new Cfg_Bossnew_drop_Bean(17212,0,0,0,0,0,"700103.0","1.0",0,0,0));
+        contaioners.put(17213, new Cfg_Bossnew_drop_Bean(17213,0,0,0,0,0,"700104.0","1.0",0,0,0));
+        contaioners.put(17214, new Cfg_Bossnew_drop_Bean(17214,0,0,0,0,0,"700105.0","1.0",0,0,0));
+        contaioners.put(17215, new Cfg_Bossnew_drop_Bean(17215,0,0,0,0,0,"700106.0","1.0",0,0,0));
+        contaioners.put(17216, new Cfg_Bossnew_drop_Bean(17216,0,0,0,0,0,"700107.0","1.0",0,0,0));
+        contaioners.put(17308, new Cfg_Bossnew_drop_Bean(17308,0,0,0,0,0,"297081.0","1.0",0,0,0));
+        contaioners.put(17309, new Cfg_Bossnew_drop_Bean(17309,0,0,0,0,0,"297091.0","1.0",0,0,0));
+        contaioners.put(17310, new Cfg_Bossnew_drop_Bean(17310,0,0,0,0,0,"297101.0","1.0",0,0,0));
+        contaioners.put(17311, new Cfg_Bossnew_drop_Bean(17311,0,0,0,0,0,"297111.0","1.0",0,0,0));
+        contaioners.put(17312, new Cfg_Bossnew_drop_Bean(17312,0,0,0,0,0,"297121.0","1.0",0,0,0));
+        contaioners.put(17313, new Cfg_Bossnew_drop_Bean(17313,0,0,0,0,0,"297131.0","1.0",0,0,0));
+        contaioners.put(17314, new Cfg_Bossnew_drop_Bean(17314,0,0,0,0,0,"297141.0","1.0",0,0,0));
+        contaioners.put(17315, new Cfg_Bossnew_drop_Bean(17315,0,0,0,0,0,"297151.0","1.0",0,0,0));
+        contaioners.put(17316, new Cfg_Bossnew_drop_Bean(17316,0,0,0,0,0,"297161.0","1.0",0,0,0));
+        contaioners.put(18001, new Cfg_Bossnew_drop_Bean(18001,8,0,0,0,0,"285003.0","1.0",0,0,0));
+        contaioners.put(18002, new Cfg_Bossnew_drop_Bean(18002,8,0,0,0,0,"285004.0","1.0",0,0,0));
+        contaioners.put(18003, new Cfg_Bossnew_drop_Bean(18003,8,0,0,0,0,"285005.0","1.0",0,0,0));
+        contaioners.put(18004, new Cfg_Bossnew_drop_Bean(18004,8,0,0,0,0,"285006.0","1.0",0,0,0));
+        contaioners.put(18005, new Cfg_Bossnew_drop_Bean(18005,8,0,0,0,0,"285007.0","1.0",0,0,0));
+        contaioners.put(18006, new Cfg_Bossnew_drop_Bean(18006,8,0,0,0,0,"285008.0","1.0",0,0,0));
+        contaioners.put(18007, new Cfg_Bossnew_drop_Bean(18007,8,0,0,0,0,"285009.0","1.0",0,0,0));
+        contaioners.put(18008, new Cfg_Bossnew_drop_Bean(18008,8,0,0,0,0,"285010.0","1.0",0,0,0));
+        contaioners.put(18009, new Cfg_Bossnew_drop_Bean(18009,8,0,0,0,0,"285011.0","1.0",0,0,0));
+        contaioners.put(18010, new Cfg_Bossnew_drop_Bean(18010,8,0,0,0,0,"285012.0","1.0",0,0,0));
+        contaioners.put(18011, new Cfg_Bossnew_drop_Bean(18011,8,0,0,0,0,"285013.0","1.0",0,0,0));
+        contaioners.put(18012, new Cfg_Bossnew_drop_Bean(18012,8,0,0,0,0,"285014.0","1.0",0,0,0));
+        contaioners.put(18013, new Cfg_Bossnew_drop_Bean(18013,8,0,0,0,0,"285015.0","1.0",0,0,0));
+        contaioners.put(18014, new Cfg_Bossnew_drop_Bean(18014,8,0,0,0,0,"285016.0","1.0",0,0,0));
+        contaioners.put(19001, new Cfg_Bossnew_drop_Bean(19001,0,0,0,0,0,"400018.0","1.0",0,0,0));
+        contaioners.put(19002, new Cfg_Bossnew_drop_Bean(19002,0,0,0,0,0,"400019.0","1.0",0,0,0));
+        contaioners.put(19003, new Cfg_Bossnew_drop_Bean(19003,0,0,0,0,0,"400020.0","1.0",0,0,0));
+        contaioners.put(20001, new Cfg_Bossnew_drop_Bean(20001,0,0,0,0,0,"","",200197,0,0));
+        contaioners.put(20002, new Cfg_Bossnew_drop_Bean(20002,0,0,0,0,0,"","",200199,0,0));
+        contaioners.put(20003, new Cfg_Bossnew_drop_Bean(20003,0,0,0,0,0,"","",200201,0,0));
+        contaioners.put(20004, new Cfg_Bossnew_drop_Bean(20004,0,0,0,0,0,"","",200203,0,0));
+        contaioners.put(20005, new Cfg_Bossnew_drop_Bean(20005,0,0,0,0,0,"","",200205,0,0));
+        contaioners.put(20006, new Cfg_Bossnew_drop_Bean(20006,0,0,0,0,0,"","",200207,0,0));
+        contaioners.put(20007, new Cfg_Bossnew_drop_Bean(20007,0,0,0,0,0,"","",200209,0,0));
+        contaioners.put(20008, new Cfg_Bossnew_drop_Bean(20008,0,0,0,0,0,"","",200211,0,0));
+        contaioners.put(20009, new Cfg_Bossnew_drop_Bean(20009,0,0,0,0,0,"","",200198,0,0));
+        contaioners.put(20010, new Cfg_Bossnew_drop_Bean(20010,0,0,0,0,0,"","",200200,0,0));
+        contaioners.put(20011, new Cfg_Bossnew_drop_Bean(20011,0,0,0,0,0,"","",200202,0,0));
+        contaioners.put(20012, new Cfg_Bossnew_drop_Bean(20012,0,0,0,0,0,"","",200204,0,0));
+        contaioners.put(20013, new Cfg_Bossnew_drop_Bean(20013,0,0,0,0,0,"","",200206,0,0));
+        contaioners.put(20014, new Cfg_Bossnew_drop_Bean(20014,0,0,0,0,0,"","",200208,0,0));
+        contaioners.put(20015, new Cfg_Bossnew_drop_Bean(20015,0,0,0,0,0,"","",200210,0,0));
+        contaioners.put(20016, new Cfg_Bossnew_drop_Bean(20016,0,0,0,0,0,"","",200212,0,0));
+    }
+
+}

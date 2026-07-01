@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改游戏参数信息')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-gameInfo-edit" th:object="${gameInfo}">
+            <input name="gameId" th:field="*{gameId}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">第三方充值密钥：</label>
+                <div class="col-sm-8">
+                    <input name="rechargeSecretkey" th:field="*{rechargeSecretkey}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+<!--                <label class="col-sm-3 control-label">自动开服检查起始服务器ID：</label>-->
+                <div class="col-sm-8">
+                    <input name="autoFirstServerId" th:field="*{autoFirstServerId}" class="form-control" type="hidden">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">自动开服注册角色数条件：</label>
+                <div class="col-sm-8">
+                    <input name="autoUserCount" th:field="*{autoUserCount}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">自动开服进度ID：</label>
+                <div class="col-sm-8">
+                    <input name="autoServerId" th:field="*{autoServerId}" class="form-control" type="text">
+                </div>
+            </div>
+<!--            <div class="form-group">    -->
+<!--                <label class="col-sm-3 control-label">修改时间：</label>-->
+<!--                <div class="col-sm-8">-->
+<!--                    <input name="time" th:field="*{time}" class="form-control" type="text">-->
+<!--                </div>-->
+<!--            </div>-->
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/gameInfo";
+        $("#form-gameInfo-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-gameInfo-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

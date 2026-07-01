@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metalib name="log">
+	<!-- version 1.2.1 -->
+	<!-- 更新内容 -->
+	<!-- 1.equip日志增加埋点字段：lock_num:锁定数量 lock_type:锁定类型 change_score:变更总评分值 before_score:变更前总评分值 after_score:变更后总评分值 refine_level:精炼等级 -->
+	<!-- 2.equip日志的act_type字段增加枚举类型：8:宝石精炼 -->
+	<!-- 3.增加world_expedition（诸界远征）日志-->
+	<!-- 4.增加shengxian_order（角色信息变化）日志-->
+	
+	<!-- version 1.2.2 -->
+	<!-- 更新内容 -->
+	<!-- 1.role_info新增升仙令字段：shengxian_order-->
+	<!-- 2.money，item，resource 三个日志带op的字段都新增了日志前缀-->
+	<!-- 3.auction日志optype新增了日志前缀-->
+	<!-- 4.grow,realm,equip三个日志act_type字段新增了日志前缀-->
+
+	<struct name="role_info" version="1.2.2" desc="角色信息变化">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="当前角色等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="string" title="最后所在地图" desc="最近一次地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="created_time" required="true" type="string" title="创角时间" desc="角色创建时间"/>
+		<entry name="last_login_time" required="true" type="string" title="最后登陆时间" desc="角色最近一次登录时间"/>
+		<entry name="total_online" required="true" type="bigint" title="累计在线时长" desc="角色累计在线时长,单位:秒"/>
+		<entry name="exp" required="true" type="bigint" title="当前经验值" desc="当前经验值"/>
+		<entry name="last_updatetime" required="true" type="string" title="最后更新时间" desc="最后一次更新时间"/>
+		<entry name="task_id" required="true" dict="true" type="string" title="当前未完成主线任务" desc="当前未完成主线任务ID ，若含多个主线任务时，按逗号分隔任务id记录，如：任务A,任务B"/>
+		<entry name="money_balance" required="true" type="bigint" title="当前钻石余额" desc="当前钻石余额"/>
+		<entry name="money2_balance" required="false" type="bigint" title="当前钻石2余额" desc="当前钻石2余额"/>
+		<entry name="bmoney_balance" required="true" type="bigint" title="当前绑定钻石余额" desc="当前绑定钻石余额"/>
+		<entry name="gold_balance" required="true" type="bigint" title="当前金币余额" desc="当前金币余额"/>
+		<entry name="bgold_balance" required="true" type="bigint" title="当前绑定金币余额" desc="当前绑定金币余额"/>
+		<entry name="marry_status"  required="false" type="string" desc="仙缘状态 0:未婚 1:已婚"/>
+		<entry name="marry_partner_id" required="false"  type="string" desc="仙缘对象角色ID"/>
+		<entry name="marry_partner_name" required="false" type="string" desc="仙缘对象名称"/>
+		<entry name="marry_partner_time" required="false" type="string" desc="仙缘发生时间"/>
+		<entry name="shengxian_order" required="false" dict="true" type="int" desc="升仙令 1:未激活 2:限时升仙令 3:永久升仙令"/>
+		
+	</struct>
+	<struct name="create_role" version="1.2.2" desc="角色创建">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="false" dict="true" type="int" title="地图" desc="地图ID"/>
+	</struct>
+	<struct name="login" version="1.2.2" desc="角色登录">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="false" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="device_nm" required="true" type="string" title="联网方式" desc="联网方式(networking mode),如:3G、4G、WIFI"/>
+		<entry name="login_type" required="true" type="int" title="登录类型" desc="登录类型 1:普通登录 2:掉线重连 3:跨天登记"/>
+		<entry name="is_retrieve" required="true" type="int" title="是否有找回资源资格" desc="是否有找回资源资格,0:没有,1:有"/>
+	</struct>
+	<struct name="logout" version="1.2.2" desc="角色登出">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="登出时地图" desc="退出时地图ID[字典]"/>
+		<!-- 个性化字段 -->
+		<entry name="login_time" required="true" type="string" title="本次会话登录时间" desc="本次会话登录时间"/>
+		<entry name="login_level" required="true" type="int" title="登录等级" desc="角色登录等级"/>
+		<entry name="login_vip_level" required="false" type="int" title="登录vip等级" desc="角色登录时vip等级，如果没有则设为空"/>
+		<entry name="online_time" required="true" type="bigint" title="在线时长(秒)" desc="本次会话在线时长,单位：秒"/>
+		<entry name="logout_type" required="true" type="int" title="退出类型" desc="退出类型 1:正常退出 2:顶号退出 3:报错退出"/>
+		<entry name="money_balance" required="true" type="bigint" title="退出时剩余钻石数" desc="退出时剩余钻石数"/>
+		<entry name="money2_balance" required="false" type="bigint" title="退出时剩余钻石2数" desc="退出时剩余钻石2数"/>
+		<entry name="bmoney_balance" required="true" type="bigint" title="退出时剩余绑定钻石数" desc="退出时剩余绑定钻石数"/>
+		<entry name="gold_balance" required="true" type="bigint" title="退出时剩余金币数" desc="退出时剩余金币数"/>
+		<entry name="bgold_balance" required="true" type="bigint" title="退出时剩余绑定金币数" desc="退出时剩余绑定金币数"/>
+		<entry name="master_point" required="false" type="string" desc="大师点，活动用，每轮活动都需要清空一次"/>
+		<entry name="is_retrieve" required="true" type="int" title="是否有找回资源资格" desc="是否有找回资源资格,0:没有,1:有"/>
+	</struct>
+	<struct name="pay" version="1.2.2" desc="充值流水">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="false" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="order_id" required="true" type="string" title="游戏内部订单号" desc="游戏内部订单号"/>
+		<entry name="pay_platform" required="true" type="string" title="外部关联充值平台名" desc="外部关联充值平台名，如SDK"/>
+		<entry name="pay_order_id" required="true" type="string" title="外部关联充值平台订单号" desc="外部关联充值平台订单号，如果是接绿岸SDK，则为SDK返回的订单号"/>
+		<entry name="pay_type" required="true" type="int" title="充值类型" desc="充值类型 0:测试充值 1:正常充值 99:GM后台充值"/>
+		<entry name="pay_status" required="true" type="int" title="支付状态" desc="支付状态 1:未支付 2:支付前取消 3:支付成功 4:发货失败 5:确认发货订单完成"/>
+		<entry name="pay_money_ct" required="true" type="string" title="充值货币类型" desc="实际充值货币类型，RMB:人民币 THB:泰铢 VND:越南盾 MYR:马来元 SGD:新加坡元 USD:美元"/>
+		<entry name="pay_money_amount" required="true" type="bigint" title="充值货币数量" desc="充值货币数量"/>
+		<entry name="pay_gold_amount" required="true" type="bigint" title="获得元宝数量" desc="充值获得元宝数量"/>
+		<entry name="product_id" required="true" type="int" title="购买商品ID" desc="充值购买商品ID"/>
+		<entry name="product_name" required="true" type="string" title="购买商品名称" desc="充值购买商品名称"/>
+		<entry name="product_amount" required="true" type="int" title="购买商品数量" desc="充值购买商品数量"/>
+	</struct>
+	<struct name="money" version="1.2.2" desc="货币流水">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="money_type" required="true" type="int" dict="true" title="货币类型" desc="货币类型，1=钻石1，2-钻石2，3=绑定钻石，4=金币，5=绑定金币 提供相关【字典】"/>
+		<entry name="change_type" required="true" type="int" title="变化类型" desc="变化类型 1:增加 0:减少"/>
+		<entry name="amount" required="true" type="bigint" title="变化数量" desc="变化数量"/>
+		<entry name="before_amount" required="true" type="bigint" title="变化前余额" desc="变化前余额"/>
+		<entry name="after_amount" required="true" type="bigint" title="变化后余额" desc="变化后余额"/>
+		<entry name="money_op_type" required="true" dict="true" type="int" title="产消途径" desc="货币产出/消耗途径的分类，枚举类型，由字典表管理翻译内容，增加货币的获得点；例：充值获得元宝，任务获得金币。减少货币的消耗点；例：元宝购买道具等 提供相关【字典】"/>
+		<entry name="money_op_target_type" required="false" dict="true" type="int" title="对象类型" desc="货币获得或者消耗的对象类型，如 1=道具，2=任务;元宝购买道具时，该值为1，任务获得金币时，该值为2 提供相关【字典】"/>
+		<entry name="money_op_target_value" required="true" dict="true" type="string" title="对象值" desc="货币获得或者消耗对象的值，例：元宝购买道具时，该值设为道具的索引ID; 例：任务获得金币时，该值设为对应的任务ID 提供相关【字典】"/>
+		<entry name="money_op_target_count" required="false" type="int" title="对象数量" desc="货币获得或者消耗对象的类型的数量，例：元宝购买道具时，该值设为道具的数量; 如果没有则设为空"/>
+		<entry name="money_op_target_attr" required="false" type="string" title="对象属性" desc="货币获得或者消耗的对象属性，例如等级/品阶等"/>
+	</struct>
+	<struct name="item" version="1.2.2" desc="物品流水">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="item_id" required="true" type="string" title="物品" desc="物品id"/>
+		<entry name="item_instance_id" required="true" type="string" title="物品唯一id" desc="物品唯一id"/>
+		<entry name="item_name" required="true" type="string" title="物品名称" desc="物品名称"/>
+		<entry name="item_type" required="true" type="int" title="物品类型" desc="物品类型"/>
+		<entry name="change_type" required="true" type="int" title="变化类型" desc="0:减少 1:增加"/>
+		<entry name="item_num" required="true" type="bigint" title="变更数量" desc="变更数量"/>
+		<entry name="before_num" required="true" type="bigint" title="变更前的数量" desc="变更前的数量"/>
+		<entry name="after_num" required="true" type="bigint" title="变更后的数量" desc="变更后的数量"/>
+		<entry name="item_op_type" required="true" dict="true" type="int" title="产消途径" desc="物品变化途径枚举类型，由字典表管理翻译内容，物品增加的获得点；例：道具获得->任务获得道具 提供相关【字典】"/>
+		<entry name="item_op_target_type" required="false" dict="true" type="int" title="对象类型" desc="获取物品途径的类型 如 1:任务 2:商城购买;任务获得道具时，该值为1 提供相关【字典】"/>
+		<entry name="item_op_target_value" required="true" dict="true" type="string" title="对象值" desc="获取物品途径对象的ID 例：任务获得道具时，该值设为对应的任务索引ID 提供相关【字典】"/>
+		<entry name="item_op_target_count" required="false" type="int" title="对象数量" desc="获得或者消耗对象的类型的数量,如果没有则设为空"/>
+		<entry name="item_op_target_attr" required="false" type="string" title="对象属性" desc="获得或者消耗的对象属性，例如等级/品阶等"/>
+	</struct>
+	<struct name="mall" version="1.2.2" desc="商城购买">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="mall_type" required="true" dict="true" type="int" title="商城类型" desc="用于区分钻石/金币/成就等商城类型,1=钻石商店，2=金币商店"/>
+		<entry name="item_type" required="false" dict="true" type="int" title="商品类型" desc="商城购买的商品类型"/>
+		<entry name="item_id" required="true" dict="true" type="int" title="商品" desc="商城购买的商品id"/>
+		<entry name="item_num" required="true" type="int" title="商品数量" desc="单次购买的商品数量"/>
+		<entry name="money_type" required="true" dict="true" type="int" title="货币类型" desc="货币类型，1:钻石1 2:钻石2 3:绑定钻石 4:金币，5:绑定金币 提供相关【字典】"/>
+		<entry name="amount" required="true" type="int" title="支付货币数量" desc="支付货币数量"/>
+		<entry name="price" required="true" type="int" title="物品单价" desc="商城出售的单个物品原价"/>
+		<entry name="location" required="false" type="string" desc="物品上架的位置编号"/>
+	</struct>
+	<struct name="resource" version="1.2.2" desc="资源流水">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="resource_type" required="true" dict="true" type="string" title="资源类型" desc="资源类型说明，1-经验,2-荣耀点等资源 提供相关【字典】"/>
+		<entry name="change_type" required="true" type="int" title="变化类型" desc="0减少1增加"/>
+		<entry name="resource_num" required="true" type="string" title="变化数量" desc="变化数量"/>
+		<entry name="before_resource" required="true" type="string" title="变化前的资源数量" desc="变化前的资源数量"/>
+		<entry name="after_resource" required="true" type="string" title="变化后的资源数量" desc="变化后的资源数量"/>
+		<entry name="resource_op_type" required="true" dict="true" type="int" title="产消途径" desc="资源产出/消耗途径分类，枚举类型，由字典表管理翻译内容，资源增加的获得点；例：经验获得->任务获得经验 提供相关【字典】"/>
+		<entry name="resource_op_target_type" required="true" dict="true" type="int" title="对象类型" desc="资源获得或者消耗的对象类型 如 1:道具 2:任务;任务获得经验时，该值为2 提供相关【字典】 "/>
+		<entry name="resource_op_target_value" required="true" dict="true" type="string" title="对象值" desc="资源变化途径对象的ID 例：任务获得资源时，该值设为对应的任务索引ID 提供相关【字典】"/>
+		<entry name="resource_op_target_count" required="false" type="int" title="对象数量" desc="资源获得或者消耗对象的类型的数量,如果没有则设为空"/>
+		<entry name="resource_op_target_attr" required="false" type="string" title="对象属性" desc="资源获得或者消耗对象的属性，例如等级/品阶等"/>
+	</struct>
+	<struct name="task" version="1.2.2" desc="任务日志">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="task_id" required="true" type="string" title="任务" desc="任务ID"/>
+		<entry name="task_name" required="true" type="string" title="任务名字" desc="任务名字"/>
+		<entry name="task_type" required="true" dict="true" type="string" title="任务类型" desc="任务类型 1:主线 2:支线等,提供相关【字典】"/>
+		<entry name="task_status" required="true" type="int" title="操作类型" desc="操作类型 1:接收任务 2:完成任务 3:放弃任务 4:完成并领取奖励"/>
+		<entry name="task_used_time" required="false" type="bigint" title="完成任务消耗时间(秒)" desc="完成任务时记录该任务消耗时间(单位:秒)"/>
+		<entry name="task_subtype" required="false" type="int" title="任务子类型" desc="任务子类型"/>
+		<entry name="task_level" required="false" type="string" title="任务难度" desc="任务难度等级 S A B C D"/>
+		
+	</struct>
+	<struct name="grow" version="1.2.2" desc="成长日志">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="grow_target_id" required="true" dict="true" type="int" title="成长目标" desc="成长目标id"/>
+		<entry name="grow_instance_id" required="false" type="string" title="成长目标唯一ID" desc="成长目标唯一ID"/>
+		<entry name="grow_target_type" required="true" dict="true" type="int" title="成长目标类型" desc="成长目标类型 1:道具 2:法宝 3:坐骑 4:翅膀等 提供相关【字典】"/>
+		<entry name="grow_target_subtype" required="false" dict="true" type="int" title="成长目标子类型" desc="成长目标子类型 详见【字典】"/>
+		<entry name="grow_act_type" required="true" dict="true" type="int" title="成长操作类型" desc="成长操作类型 1激活2升级3培养4升阶5蜕变6进化 提供相关【字典】"/>
+		<entry name="change_type" required="true" type="int" title="变化类型" desc="0:减少 1:增加"/>
+		<entry name="grow_status" required="true" type="int" title="操作状态" desc="操作状态 1:成功 2:失败"/>
+		<entry name="change_value" required="false" type="bigint" title="变更值" desc="变更值"/>
+		<entry name="before_value" required="true" type="bigint" title="变更前值" desc="变更前值  例如：成长操作类型是升级，则记录等级数，如果是操作类型是进化，则记录成长目标id"/>
+		<entry name="after_value" required="true" type="bigint" title="变更后值" desc="变更后值 例如：成长操作类型是升级，则记录等级数，如果是操作类型是进化，则记录成长目标id"/>
+		<entry name="change_combat" required="false" type="bigint" title="变更战力值" desc="变更战力值"/>
+		<entry name="before_combat" required="false" type="bigint" title="变更前战力值" desc="变更前战力值"/>
+		<entry name="after_combat" required="false" type="bigint" title="变更后战力值" desc="变更后战力值"/>
+		
+		
+	</struct>
+	<struct name="trade" version="1.2.2" desc="交易日志">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="t_account_id" required="true" type="string" title="对方账号ID" desc="对方账号ID"/>
+		<entry name="t_role_id" required="true" type="string" title="对方角色ID" desc="对方游戏角色ID"/>
+		<entry name="t_role_name" required="true" type="string" title="对方角色名" desc="对方游戏角色名"/>
+		<entry name="t_ip" required="true" type="int" title="对方交易时ip" desc="对方交易时ip"/>
+		<entry name="item_id" required="true" dict="true" type="int" title="物品" desc="物品id"/>
+		<entry name="item_type" required="true" dict="true" type="int" title="物品类型" desc="物品类型"/>
+		<entry name="item_num" required="true" type="int" title="交易数量" desc="交易数量"/>
+		<entry name="before_num" required="true" type="bigint" title="交易前的物品数量" desc="交易前的物品数量"/>
+		<entry name="after_num" required="true" type="bigint" title="交易后的物品数量" desc="交易后的物品数量"/>
+		<entry name="order_money" required="true" type="int" title="交易金额" desc="交易金额"/>
+		<entry name="order_type" required="true" type="int" title="交易类型" desc="交易类型 1:交易进 2:交易出"/>
+		<entry name="order_sn" required="true" type="int" title="交易流水号" desc="交易流水号"/>
+	</struct>
+	<struct name="instance" version="1.2.2" desc="副本日志">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="instance_id" required="true" type="string" title="副本" desc="副本id"/>
+		<entry name="instance_name" required="true" type="string" title="副本名字" desc="副本名字"/>
+		<entry name="instance_type" required="true" dict="true" type="string" title="副本类型" desc="副本类型 提供相关【字典】"/>
+		<entry name="instance_subtype" required="true" dict="true" type="string" title="副本子类型" desc="副本子类型 提供相关【字典】"/>
+		<entry name="instance_level" required="false" type="string" title="副本等级" desc="副本等级"/>
+		<entry name="instance_diff" required="false" type="string" title="副本难度" desc="副本难度 1:D 2:C 3:B 4:A 5:S"/>
+		<entry name="instance_status" required="true" type="int" title="副本状态" desc="副本状态 0:进入,1:退出等"/>
+		<entry name="instance_result" required="true" type="int" title="副本结果" desc="副本结果 1:成功 2:失败 3:超时 4:放弃"/>
+		<entry name="team_id" required="false" type="string" title="队伍ID" desc="队伍ID 保证全局唯一性"/>
+		<entry name="instance_used_time" required="false" type="bigint" title="完成副本消耗时间" desc="完成副本时记录消耗时间(单位:秒)"/>
+        <entry name="instance_floor" required="false" type="int" title="副本层级" desc="副本层级，副本为剑灵阁时为楼层"/>
+	</struct>
+	<struct name="monster_kill" version="1.2.2" desc="怪物击杀日志">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="instance_id" required="false" type="string" title="副本" desc="副本ID"/>
+		<entry name="instance_name" required="false" type="string" title="副本名称" desc="副本名字"/>
+		<entry name="instance_type" required="false" dict="true" type="string" title="副本类型" desc="副本类型"/>
+		<entry name="instance_level" required="false" type="string" title="副本等级" desc="副本等级"/>
+		<entry name="monster_id" required="true" type="string" title="怪物" desc="怪物id"/>
+		<entry name="monster_name" required="true" type="string" title="怪物名称" desc="怪物名字"/>
+		<entry name="monster_type" required="true" dict="true" type="string" title="怪物类型" desc="怪物类型"/>
+		<entry name="monster_level" required="false" type="string" title="怪物等级" desc="怪物等级"/>
+		<entry name="dps" required="false" type="bigint" title="累计伤害" desc="累计伤害"/>
+		<entry name="dps_rank" required="false" type="int" title="伤害排名" desc="伤害排名"/>
+		<entry name="guild_id" required="false" type="string" title="公会ID" desc="公会ID"/>
+		<entry name="monster_subtype" required="false" dict="true" type="int" title="怪物类子型" desc="怪物子类型【字典表定义】"/>
+        <entry name="dps_guild_rank" required="false" type="int" title="公会伤害排名" desc="所属公会伤害排名"/>
+	</struct>
+	<struct name="death" version="1.2.2" desc="死亡日志">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="instance_id" required="false" type="string" title="副本" desc="副本ID"/>
+		<entry name="instance_name" required="false" type="string" title="副本名字" desc="副本名字"/>
+		<entry name="instance_type" required="false" dict="true" type="string" title="副本类型" desc="副本类型"/>
+		<entry name="instance_level" required="false" type="string" title="副本等级" desc="副本等级"/>
+		<entry name="killer_type" required="true" type="string" title="击杀者类型" desc="击杀者类型 如：1:玩家 2:NPC"/>
+		<entry name="killer_id" required="true" type="string" title="击杀者" desc="击杀者ID 如PVP击杀记录玩家角色id，如PVE击杀记录NPCid"/>
+		<entry name="killer_name" required="true" type="string" title="击杀者角色名" desc="击杀者角色名 如PVP击杀记录玩家角色名，如PVE击杀记录NPC名字"/>
+		<entry name="killer_level" required="true" type="int" title="击杀者等级" desc="击杀者等级"/>
+		<entry name="killer_combat" required="true" type="bigint" title="击杀者当时战力值" desc="击杀者当时战力值"/>
+	</struct>
+	<struct name="chat" version="1.2.2" title="聊天日志" desc="聊天日志">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="chat_source" required="true" dict="true" type="int" title="聊天频道" desc="聊天频道 1:系统频道 2:队伍频道 3:世界频道等"/>
+		<entry name="sys_flag" required="true" type="int" title="是否为系统消息" desc="是否为系统消息，1:系统消息 2:玩家手动输入消息"/>
+		<entry name="chat_txt" required="true" type="string" title="聊天内容" desc="聊天内容"/>
+		<entry name="object_account_id" required="false" type="string" title="聊天对象账号" desc="聊天对象账号id"/>
+		<entry name="object_role_id" required="false" type="string" title="聊天对象角色ID" desc="聊天对象角色id"/>
+		<entry name="object_role_name" required="false" type="string" title="聊天对象角色名" desc="聊天对象角色名"/>
+		<entry name="object_ip" required="false" type="string" title="聊天对象ip" desc="聊天对象ip"/>
+		<entry name="object_device_id" required="false" type="string" title="聊天对象设备号" desc="聊天对象设备号"/>
+	</struct>
+	
+	<struct name="activity" version="1.2.2"   desc="活动日志">
+	    <!-- 通用字段 -->
+        <entry name="log_id"  required = "true" type="string" title = "日志ID"  desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+        <entry name="event_time" required = "true" type="string" title = "日志时间"  desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+        <entry name="zone_id" required = "true" type="string" title = "大区"  desc="游戏大区ID"/>
+        <entry name="server_id" required = "true" type="string" title = "服务器"  desc="游戏区服ID"/>
+		<entry name="game_version" required = "true" type="string" title = "游戏版本号"  desc="游戏版本号,例 0.5.2.0"/>
+        <entry name="account_id" required = "true" type="string" title = "账号ID"  desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+        <entry name="role_id" required = "true" type="string" title = "角色ID"  desc="游戏角色ID" />
+        <entry name="role_name" required = "true" type="string" title = "角色名"  desc="创建的游戏角色名"/>
+        <entry name="role_sex" required = "true" type="int" title = "性别"  desc="角色性别,1:男,2:女"/>
+        <entry name="role_prof" required = "true" dict = "true" type="int" title = "职业"  desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required = "true" type="int" title = "等级"  desc="角色当前等级"/>
+		<entry name="role_vip_level" required = "false" type="int" title = "vip等级"  desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required = "false" type="bigint" title = "战力值"  desc="角色当前战力值"/>
+        <entry name="app_id" required = "true" type="string" title = "应用"  desc="客户端应用ID,来源于绿岸SDK包体"/>
+        <entry name="channel_id" required = "true" type="string" title = "渠道"  desc="用户渠道ID,来源于绿岸SDK包体"/>
+        <entry name="source_id" required = "true" type="string" title = "入口来源"  desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required = "true" type="int" title = "运行平台"  desc="游戏运行平台IOS=1/安卓=2/H5=3/未知=4等"/>
+        <entry name="device_id" required = "true" type="string" title = "设备ID"  desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取" />
+        <entry name="device_name" required = "true" type="string" title = "设备名称"  desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+        <entry name="device_screen" required = "true" type="string" title = "屏幕分辨率"  desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+        <entry name="device_version" required = "true" type="string" title = "设备版本号"  desc="客户端操作系统版本号" />
+        <entry name="user_ip" required = "true" type="string" title = "IP"  desc="玩家IP"/>
+		<entry name="map_id" required = "true" dict = "true" type="int" title = "地图"  desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="activity_group_id" required = "false" dict = "true" type="string" title = "活动组id"  desc="活动组id(一级活动)"/>
+        <entry name="activity_group_name" required = "false" type="string" title = "活动组名称"  desc="活动组名称(一级活动)"/>
+        <entry name="activity_id" required = "true" dict = "true" type="string" title = "活动id"  desc="活动id(二级活动)"/>
+        <entry name="activity_name" required = "false" type="string" title = "活动名称"  desc="活动id(二级活动)"/>
+        <entry name="activity_type" required = "true" dict = "true" type="int" title = "活动类型"  desc="活动类型 1:日常活动 2:商城活动 3:福利活动 4:抽奖活动 5:跨服活动 6:签到"/>
+        <entry name="reward_group_id" required = "false" dict = "true" type="string" title = "奖励组id"  desc="奖励组id(一级奖励)"/>
+        <entry name="reward_group_name" required = "false" type="string" title = "奖励组名称"  desc="奖励组名称(一级奖励)"/>
+		<entry name="reward_id" required = "false" dict = "true" type="string" title = "奖励id"  desc="奖励id(二级奖励)"/>
+		<entry name="reward_name" required = "false" type="string" title = "奖励名称"  desc="奖励名称(二级奖励)"/>
+		<entry name="activity_status" required = "true" dict = "true" type="int" title = "活动状态"  desc="活动状态 1:活动接取 2:完成活动 3:放弃活动 4:完成并领取奖励"/>
+		<entry name="activity_round" required = "false" type="int" title = "次数"  desc="抽奖活动时为轮次数，划拳活动时为次数"/>
+		<entry name="reward_level" required = "false" type="int" title = "等级"  desc="祈灵玩法抽奖时的祈灵等级"/>
+	</struct>
+	
+	<struct name="online" version="1.2.2" desc="在线人数(服务器)">
+	    <!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="发送时间" desc="发送时间"/>
+		<entry name="zone_id" required="true" type="string" title="大区ID" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器ID" desc="游戏区服ID"/>
+		<!-- 个性化字段 -->
+		<entry name="online_num" required="true" type="int" title="服务器在线人数" desc="当前服务器在线人数"/>
+		<entry name="hang_up_num" required="false" type="int" title="服务器挂机人数" desc="当前服务器挂机人数"/>
+		<entry name="account_list" required="true" type="string" title="在线玩家账号ID列表" desc="当前在线玩家账号ID列表，账号ID通过逗号分隔，账号ID为外部平台账号ID"/>
+	</struct>
+	<struct name="online_gate" version="1.2.2" desc="在线人数(网关) 仅限采用网关架构的游戏">
+	    <!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="发送时间" desc="发送时间"/>
+		<entry name="zone_id" required="true" type="string" title="大区ID" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器ID" desc="游戏区服ID"/>
+		<!-- 个性化字段 -->
+		<entry name="gate_server_id" required="true" type="string" title="网关服务器ID" desc="网关服务器ID"/>
+		<entry name="online_num" required="true" type="int" title="当前服务器在线人数" desc="当前服务器在线人数"/>
+	</struct>
+	<struct name="equip" version="1.2.2" desc="装备变化">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="item_id" required="true" type="int" title="装备id" dict="true" desc="装备id"/>
+		<entry name="item_name" required="true" type="string" title="装备名称" desc="装备名称"/>
+		<entry name="equip_type" required="true" type="int" title="装备类型" dict="true" desc="装备类型 1:角色装备 2:仙甲 3:圣装 4:神兽 5:灵体3阶~18:灵体16阶 19:第二套仙甲"/>
+		<entry name="part" required="true" type="int" title="部位" dict="true" desc="部位"/>
+		<entry name="equip_act_type" required="true" type="int" title="操作类型" desc="操作类型 1:穿戴 2:合成 3:强化 4:洗练 5:宝石镶嵌 6:宝石升级 7:套装激活 8:宝石精炼"/>
+		<entry name="star" required="true" type="int" title="操作后星级" desc="操作后星级"/>
+		<entry name="level" required="true" type="int" title="操作后等阶" desc="操作后等阶"/>
+		<entry name="color" required="true" type="int" title="操作后颜色" desc="操作后颜色"/>
+		<entry name="str_level" required="true" type="int" title="操作后强化等级" desc="操作后强化等级"/>
+		<entry name="bind" required="true" type="int" title="是否绑定" desc="是否绑定"/>
+		<entry name="suit" required="true" type="int" title="套装类型" desc="套装类型 1:传世 2:洞虚 3:破天"/>
+		<entry name="gem_id" required="true" type="int" title="宝石ID" desc="宝石ID"/>
+		<entry name="gem_num" required="true" type="int" title="宝石孔位" desc="宝石孔位"/>
+		<entry name="gem_pos" required="true" type="int" title="宝石位置" desc="宝石位置"/>
+		<entry name="gem_set" required="true" type="int" title="装备宝石数量" desc="装备宝石数量"/>
+		<entry name="gem_rating" required="true" type="int" title="宝石等级" desc="宝石等级"/>
+		<!-- 新增个性化字段 -->
+		<entry name="lock_num" required="false" type="int" title="锁定数量" desc="在装备发生变化时锁定属性的数量"/>
+		<entry name="lock_type" required="false" type="int" title="锁定类型" desc="用于锁定属性的消耗字段类型 0:无锁定 1:材料锁定 2:货币锁定"/>
+		<entry name="change_score" required="false" type="bigint" title="变更总评分值" desc="变更总评分值"/>
+		<entry name="before_score" required="false" type="bigint" title="变更前总评分值" desc="变更前总评分值"/>
+		<entry name="after_score" required="false" type="bigint" title="变更后总评分值" desc="变更后总评分值"/>
+		<entry name="refine_level" required="false" type="int" title="精炼等级" desc="精炼等级"/>
+	</struct>
+	<struct name="realm" version="1.2.2" desc="称号/目标">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="up_type" required="true" type="int" desc="类型 1:称号 2:目标"/>
+		<entry name="realm_act_type" required="true" type="int" desc="操作类型 0:未达成 1:达成 2:领取 3:使用"/>
+		<entry name="task_id" required="true" type="int" desc="对应称号/目标id"/>
+		<entry name="progress" required="true" type="string" desc="完成进度	1/3	如类型为境界任务则记录完成进度，如类型为其他则为空"/>
+	</struct>
+	<struct name="auction" version="1.2.2" desc="拍卖">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="target_id" required="true" type="string" title="目标ID" desc="目标ID"/>
+		<entry name="target_type" required="true" type="int" title="目标类型" desc="目标类型 1:个人 2:仙盟 3:活动"/>
+		<entry name="auction_op_type" required="true" type="int" title="操作类型" desc="操作类型 1:上架 2:竞拍 3:竞拍成交 4:一口价成交 5:超时下架 6:转至世界拍卖 7:主动下架"/>
+		<entry name="item_id" required="true" type="int" title="物品自身id" desc="物品自身id"/>
+		<entry name="item_type" required="true" type="int" title="物品类型" desc="物品类型，详见【字典】item表中的type字段" dict="true"/>
+		<entry name="item_colour" required="true" type="int" title="物品颜色" desc="物品颜色 1:白 2:绿 3:蓝 4:紫 5:橙 6:金 7:红 8:粉 9:暗金 10:幻彩"/>
+		<entry name="item_lev" required="true" type="int" title="物品品阶" desc="物品品阶"/>
+		<entry name="item_star" required="true" type="int" title="物品星级" desc="物品星级"/>
+		<entry name="item_no" required="true" type="string" title="物品唯一id" desc="上架物品唯一标识id"/>
+		<entry name="item_name" required="true" type="string" title="物品名称" desc="物品名称"/>
+		<entry name="item_num" required="true" type="int" title="物品数量" desc="物品数量"/>
+		<entry name="bid_price" required="true" type="int" title="竞标价" desc="竞标价"/>
+		<entry name="fixed_price" required="true" type="int" title="一口价" desc="一口价，个别物品没有一口价，则发送0"/>
+		<entry name="guild_id" required="true" type="string" title="拍品所在公会ID" desc="拍品所在公会ID"/>
+	</struct>
+	<struct name="guild_war" version="1.2.2" desc="公会战">
+		<!-- 通用字段 -->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="guild_id" required="true" type="string" title="公会ID" desc="公会ID"/>
+		<entry name="guild_name" required="true" type="string" title="公会名" desc="公会名"/>
+		<entry name="guild_level" required="true" type="int" title="公会等级" desc="公会等级"/>
+		<entry name="rate_level" required="true" type="int" title="评级等级" desc="公会战评级等级 1:天仙仙盟 2:神仙仙盟 3:金仙仙盟 4:鬼仙仙盟"/>
+		<entry name="type" required="true" type="int" title="战场类型" desc="战场类型 1:每轮结束 2:全部结束"/>
+		<entry name="camp" required="true" type="int" title="战场阵营" desc="战场阵营 0:攻方 1:守方"/>
+		<entry name="round" required="true" type="int" title="战场轮数" desc="战场轮数"/>
+		<entry name="series_win" required="false" type="int" desc="公会连胜次数（只有天仙仙盟第一名公会才有连胜参数），其他公会为0，被终结后也为0"/>
+	</struct>
+	<struct name="guild_member" version="1.2.2" desc="公会成员变化">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="guild_id" required="true" type="string" title="行会ID" desc="行会ID"/>
+		<entry name="guild_level" required="true" type="int" title="行会等级" desc="行会等级"/>
+		<entry name="change_type" required="true" type="int" title="操作类型" desc="操作类型 1:创建 2:加入 3:主动解散工会 4:工会解散被踢出 5:被管理员踢出 6:主动退出 7:人数不足自动解散 8:会长丢失解散公会 9:会长不存在解散公会 10:职位变化"/>
+		<entry name="status" required="true" type="int" title="成员身份" desc="行会成员身份 1:成员 2:长老 3:副会长 4:会长"/>
+		<entry name="member" required="true" type="int" title="行会人数" desc="操作后行会人数"/>
+		<entry name="guild_power" required="true" type="bigint" title="行会战斗力" desc="操作后行会战斗力（游戏设定为取战斗力前10名平均战力）"/>
+	</struct>
+	<struct name="guild_upgrade" version="1.2.2" desc="公会升级">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="guild_id" required="true" type="string" title="行会ID" desc="行会ID"/>
+		<entry name="guild_name" required="true" type="string" title="公会名" desc="公会名"/>
+		<entry name="level_type" required="true" type="int" title="升级类型" desc="升级类型 1:仙盟大厅 2:仙盟商店 3:仙盟驻地"/>
+		<entry name="before_guild_level" required="true" type="int" title="升级前等级" desc="行会升级前等级"/>
+		<entry name="later_guild_level" required="true" type="int" title="升级后等级" desc="行会升级后等级"/>
+	</struct>
+	<struct name="newbie_guide" version="1.2.2" desc="新手引导">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="step_id" required="true" type="int" dict="true" title="步骤id" desc="新手引导步骤id"/>
+		<entry name="status" required="true" type="int" title="操作类型" desc="操作类型 1:触发 2:完成"/>
+	</struct>
+	<struct name="sign" version="1.2.2" desc="签到">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="sign_type" required="true" dict="true" type="int" title="签到类型" desc="签到类型 1:福利签到(内置活动) 2:节日祝福(运营活动)"/>
+		<entry name="sign_reward_type" required="false" dict="true" type="int" title="签到奖励类型" desc="签到奖励类型 0:无奖励 1:签到当日奖励 2:累计签到多次奖励 3:全服签到次数奖励"/>
+		<entry name="sign_reward_id" required="false" type="string" title="签到奖励id" desc="签到奖励相关日志的唯一id，无奖励时可为空，有奖励时，可与物品流水日志中的op_target_value关联"/>
+		<entry name="sign_continue_day" required="true" type="int" title="连续签到天数" desc="累计连续签到天数，跨月不清零"/>
+		<entry name="sign_act_id" required="false" type="string" title="全服签到活动id" desc="当该签到参与全服累计活动时的活动id"/>
+		<entry name="sign_act_day" required="false" type="int" title="全服活动统计天数" desc="全服活动统计时的该签到的计算统计天数"/>
+	</struct>
+	<struct name="world_expedition" version="1.2.2" desc="诸界远征">
+		<!--通用字段-->
+		<entry name="log_id" required="true" type="string" title="日志ID" desc="日志流水号，在一个游戏区服下，每条日志必须保证全局唯一性"/>
+		<entry name="event_time" required="true" type="string" title="日志时间" desc="游戏事件的时间 时间格式为Z yyyy-MM-dd HH:mm:ss 时区+时间形式，如：+0700 2020-10-26 20:16:38"/>
+		<entry name="zone_id" required="true" type="string" title="大区" desc="游戏大区ID"/>
+		<entry name="server_id" required="true" type="string" title="服务器" desc="游戏区服ID"/>
+		<entry name="game_version" required="true" type="string" title="游戏版本号" desc="游戏版本号,例 0.5.2.0"/>
+		<entry name="account_id" required="true" type="string" title="账号ID" desc="外部平台账号ID,如果接绿岸SDK,则为SDK分配的账号ID"/>
+		<entry name="role_id" required="true" type="string" title="角色ID" desc="游戏角色ID"/>
+		<entry name="role_name" required="true" type="string" title="角色名" desc="创建的游戏角色名"/>
+		<entry name="role_sex" required="true" type="int" title="性别" desc="角色性别 0:女 1:男"/>
+		<entry name="role_prof" required="true" dict="true" type="int" title="职业" desc="角色职业,【字典表定义】"/>
+		<entry name="role_level" required="true" type="int" title="等级" desc="角色当前等级"/>
+		<entry name="role_vip_level" required="false" type="int" title="vip等级" desc="角色vip等级，如果没有则设为空"/>
+		<entry name="role_combat" required="false" type="bigint" title="战力值" desc="角色当前战力值"/>
+		<entry name="app_id" required="true" type="string" title="应用" desc="客户端应用ID,来源于绿岸SDK包体"/>
+		<entry name="channel_id" required="true" type="string" title="渠道" desc="用户渠道ID,来源于绿岸SDK包体"/>
+		<entry name="source_id" required="true" type="string" title="入口来源" desc="用于入口来源ID,如:广告买量ID,值来源于绿岸SDK包体"/>
+		<entry name="platform" required="true" type="int" title="运行平台" desc="游戏运行平台 1:IOS 2:安卓 3:H5 4:未知"/>
+		<entry name="device_id" required="true" type="string" title="设备ID" desc="用于设备ID,当客户端于android或ios平台时,通过绿岸SDK获取"/>
+		<entry name="device_name" required="true" type="string" title="设备名称" desc="设备名称,移动设备专用。格式:品牌-型号,如 三星GT-S5830"/>
+		<entry name="device_screen" required="true" type="string" title="屏幕分辨率" desc="设备屏幕分辨率,移动设备专用 如:480*800"/>
+		<entry name="device_version" required="true" type="string" title="设备版本号" desc="客户端操作系统版本号"/>
+		<entry name="user_ip" required="true" type="string" title="IP" desc="玩家IP"/>
+		<entry name="map_id" required="true" dict="true" type="int" title="地图" desc="地图ID"/>
+		<!-- 个性化字段 -->
+		<entry name="expedition_id" required="true" type="string" title="远征id" desc="远征轮次唯一id"/>
+		<entry name="city_id" required="true" dict="true" type="int" title="城市id" desc="城市id"/>
+		<entry name="city_type" required="true" dict="true" type="int" title="城市类型" desc="城市类型 1: 2:  "/>
+		<entry name="add_score" required="true" type="int" title="增加占领值" desc="角色个人增加占领值"/>
+		<entry name="server_score" required="true" type="int" title="区服占领值" desc="区服占领值" />
+		<entry name="city_owner_id" required="false" type="string" title="城市所属服务器id" desc="城市所属服务器id" />
+	</struct>
+</metalib>

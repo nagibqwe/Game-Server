@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+<mapper namespace="bossDieRecord">
+    <resultMap id="bossDieRecord" type="com.game.db.bean.BossDieRecordBean" >
+        <id column="playerId" property="playerId" jdbcType="BIGINT" />
+        <result column="mapName" property="mapName" jdbcType="LONGVARCHAR" />
+        <result column="xPos" property="xPos" jdbcType="INTEGER" />
+        <result column="yPos" property="yPos" jdbcType="INTEGER" />
+        <result column="killedTime" property="killedTime" jdbcType="BIGINT" />
+        <result column="bossName" property="bossName" jdbcType="LONGVARCHAR" />
+        <result column="reward" property="reward" jdbcType="LONGVARCHAR" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bossDieRecord">
+        select * from bossdierecord
+    </select>
+
+    <insert id="insert" parameterType="com.game.db.bean.BossDieRecordBean" >
+        insert into bossdierecord (playerId, mapName, xPos, yPos, killedTime, bossName, reward)
+        values (
+        #{playerId,jdbcType=BIGINT},
+        #{mapName,jdbcType=LONGVARCHAR},
+        #{xPos,jdbcType=INTEGER},
+        #{yPos,jdbcType=INTEGER},
+        #{killedTime,jdbcType=BIGINT},
+        #{bossName,jdbcType=LONGVARCHAR},
+        #{reward,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+   
+    <delete id="deleteAll">
+        delete from bossdierecord
+    </delete>
+</mapper>

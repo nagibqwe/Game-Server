@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="forbidword">
+    <resultMap id="bean" type="com.game.db.bean.ForbidWordBean" >
+        <result column="id" property="id" jdbcType="INTEGER" />    
+        <result column="word" property="word" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />            
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from forbidword
+    </select>
+    <insert id="insert" parameterType="com.game.db.bean.ForbidWordBean">
+        insert into forbidword (word,type) 
+        values (#{word, jdbcType=VARCHAR}, #{type, jdbcType=INTEGER} )
+        <selectKey resultType="int" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        
+    </insert>
+
+    <delete id="delete" parameterType="integer">
+        delete from forbidword where id = #{id, jdbcType = INTEGER}
+    </delete>
+</mapper>
+

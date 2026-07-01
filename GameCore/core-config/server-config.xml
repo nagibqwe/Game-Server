@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<server>
+    <db-game url="jdbc:mysql://localhost:3306/3d_game?autoReconnect=true" username="root" password="123456" />
+	<db-login-data url="jdbc:mysql://127.0.0.1:3306/login?autoReconnect=true" username="root" password="root" />
+	<login-data verifyUrl="http://eve.funcell123.com/config/177:18102:1.0:server/szdc" httpPort="8999" isNeedVerify="0"/>
+	<db-log-info logdbpool.drivers="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/tzj_game_log?autoReconnect=true" username="root" password="root" logdbpool.validationquery="select 1" />
+</server>

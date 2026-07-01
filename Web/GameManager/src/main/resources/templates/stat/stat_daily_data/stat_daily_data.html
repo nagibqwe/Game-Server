@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('日常数据')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/stat_group_server_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_date_head.html"></div>
+                            <div th:replace="common/stat_black_list_head.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+<script th:inline="javascript">
+    var prefix = ctx + "stat/stat_daily_data";
+    $(function() {
+        var options = {
+            url: prefix + "/stat_daily_data",
+            modalName: "日常数据",
+            pagination: false,
+            firstLoad:false,
+            showExport:true,
+            columns: [{
+                field: 'day',
+                title: '日期',
+            },{
+                field: 'totalmoney',
+                title: '充值金额',
+            },{
+                field: 'totalgold',
+                title: '充值元宝',
+            },{
+                field: 'totaltimes',
+                title: '充值次数',
+            },{
+                field: 'totaluser',
+                title: '付费人数',
+            },{
+                field: 'activpayrate',
+                title: '活跃付费率',
+                formatter: function (value) {
+                    var val = value*100;
+                    return val.toFixed(2)+"%";
+                }
+            },{
+                field: 'activenum',
+                title: '活跃玩家',
+            },{
+                field: 'addnum',
+                title: '新增玩家',
+            },{
+                field: 'addRechargeNum',
+                title: '新增付费玩家人数',
+            },{
+                field: 'addpayrate',
+                title: '新增付费率',
+                formatter: function (value) {
+                    var val = value*100;
+                    return val.toFixed(2)+"%";
+                }
+            },{
+                field: 'deviceNum',
+                title: '活跃设备',
+            },{
+                field: 'deviceaddnum',
+                title: '新增设备',
+            },{
+                field: 'arpu',
+                title: 'ARPU',
+            },{
+                field: 'arppu',
+                title: 'ARPPU',
+            },{
+                field: 'maxnum',
+                title: '最高在线',
+            },{
+                field: 'avgnum',
+                title: '平均在线',
+            }
+           ]
+        };
+        $.table.init(options);
+    });
+
+</script>
+</body>
+</html>

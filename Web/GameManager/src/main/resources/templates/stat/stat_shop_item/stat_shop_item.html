@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('商城购买统计')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+
+
+                <form id="formId">
+
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_single_server_head.html"></div>
+                            <div th:replace="common/stat_date_head2.html"></div>
+                        </ul>
+                    </div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <label  style="width: auto"  for="FromSrc">&nbsp;商品标签页：</label>
+                                <select id="FromSrc" name="FromSrc" class="span2">
+                                    <option value="1241100">每日特惠(1241100)</option>
+                                    <option value="1241200">灵玉商城(1241200)</option>
+                                    <option value="1241300">元宝商城(1241300)</option>
+                                    <option value="1241400">荣誉商城(1241400)</option>
+                                    <option value="1242000">兑换商城(1242000)</option>
+                                    <option value="1242100">声望商城(1242100)</option>
+                                    <option value="1242200">积分商城(1242200)</option>
+                                    <option value="1242300">绑玉商城(1242300)</option>
+                                    <option value="1242400">贡献商城(1242400)</option>
+                                    <option value="1242500">限时特惠(1242500)</option>
+                                    <option value="1241100">超值折扣(1243000)</option>
+                                    <option value="1244000">超值折扣(1244000)</option>
+                                    <option value="1224000">福地商店(1224000)</option>
+
+                                </select>
+                            </li>
+                            <li style="display: none">
+                                <label class="col-sm-2 control-label" style="width: auto"  for="moneyType">&nbsp;货币类型:</label>
+                                <select id="moneyType" name="moneyType" class="span2">
+                                    <option value="0">所有货币类型</option>
+                                    <option value="1">元宝</option>
+                                    <option value="12">灵石</option>
+                                </select>
+                            </li>
+                            <div th:replace="common/stat_black_list_head.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="stat:stat_level_distribute:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('stat:stat_level_distribute:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('stat:stat_level_distribute:remove')}]];
+        var prefix = ctx + "stat/stat_shop_item";
+
+        $(function() {
+            var options = {
+                url: prefix + "/stat_shop_item",
+                modalName: "商城购买统计",
+                pagination: false,
+                firstLoad:false,
+                showExport:true,
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'itemmodelidShow',
+                    title: '道具ID'
+                },
+                {
+                    field: 'moneyTypeShow',
+                    title: '货币类型'
+                },
+                {
+                    field: 'users',
+                    title: '购买用户数'
+                },
+                {
+                    field: 'roles',
+                    title: '购买角色数'
+                },
+                {
+                    field: 'totalnum',
+                    title: '道具销量'
+                },
+                {
+                    field: 'totalgold',
+                    title: '消耗货币数'
+                },
+                {
+                    field: 'totaltimes',
+                    title: '购买次数'
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

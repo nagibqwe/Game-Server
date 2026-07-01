@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('每日充值')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var count_01 = 0;
+        $(function () {
+            getActivityType(actType);
+
+            load(actType);
+        });
+
+    </script>
+
+    <script>
+        function addSaltIpGrp(obj){
+            console.log(count_01);
+            var fixRewardInput = 'i_fixRewardGroup' + count_01;
+            var fixRewardAddBtn = 'showFixRewardModel' + count_01;
+            var totalRewardInput = 'i_totalRewardGroup' + count_01;
+            var totalRewardAddBtn = 'showTotalRewardModel' + count_01;
+            count_01 += 1;
+            html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">'+
+                '<label class="input-group-addon">充值天数:</label>'+
+                '<input type="text" class="form-control" id="i_day" name="i_day" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">'+
+                '<label class="input-group-addon">充值目标:</label>'+
+                '<input type="text" class="form-control" id="i_reach" name="i_reach" placeholder="例：1 （单位分）" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">'+
+                '<label class="input-group-addon">固定奖励组:</label>'+
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="固定奖励组" id="' + fixRewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + fixRewardInput + ',' + fixRewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + fixRewardInput + '" name="i_fixRewardGroup"/></div>' +
+                '</span>' +
+                // '<input type="text" class="form-control" id="i_fixRewardGroup" name="i_fixRewardGroup"  style="max-width:auto;">'+
+                '<label class="input-group-addon">累计奖励组:</label>'+
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="累计奖励组" id="' + totalRewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + totalRewardInput + ',' + totalRewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + totalRewardInput + '" name="i_totalRewardGroup"/></div>' +
+                '</span>' +
+                // '<input type="text" class="form-control" id="i_totalRewardGroup" name="i_totalRewardGroup"  style="max-width:auto;">'+
+                '<span class="input-group-btn">'+
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>'+
+                '</span>'+
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin',html);
+            addHeightSet();
+        }
+        //删除配置
+        function delExChangeConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>每日充值<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="充值天数：充值天数必须小于等于活动持续天数<br/>
+                              充值目标：单位人民币（分）<br/>
+                              固定奖励组：充值当日获得的奖励组，不可为空<br/>
+                              累积奖励组：累积充值X天获得的奖励，可为空，为空代表累积到X日没有累积充值奖励<br/>"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>每日充值配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup">
+                                    <label class="input-group-addon">配置列表:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount1" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

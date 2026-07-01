@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('留存LTV多维度分析')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: echarts-js" />
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div th:replace="common/stat_group_server_head.html"></div>
+                <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                    <ul>
+                        <div th:replace="common/stat_date_head.html"></div>
+                        <div th:replace="common/stat_black_list_head.html"></div>
+                        <div th:replace="common/stat_search_head.html"></div>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" style="table-layout:fixed;word-break:break-all"></table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 search-collapse" id="lineChart1">
+            <div>
+                <div>
+                    <div class="echarts" id="echarts-line-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 search-collapse" id="lineChart2">
+            <div>
+                <div>
+                    <div class="echarts" id="echarts-line-chart2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 search-collapse" id="lineChart3">
+            <div>
+                <div>
+                    <div class="echarts" id="echarts-line-chart3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 search-collapse" id="lineChart4">
+            <div>
+                <div>
+                    <div class="echarts" id="echarts-line-chart4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:inline="javascript">
+    var prefix = ctx + "stat/stat_remain_ltv";
+
+    $(function () {
+        $("#lineChart1").hide();
+        $("#lineChart2").hide();
+        $("#lineChart3").hide();
+        $("#lineChart4").hide();
+    });
+
+    /**
+     * 留存LTV多维度分析表格
+     * @param name
+     */
+    var list = [];
+    $(function() {
+        var options = {
+            pageSize: 10000000,
+            pageList: [],
+            //singleSelect: false,
+            url: prefix + "/list?",
+            modalName: "留存LTV多维度分析",
+            fixedColumns: true,
+            fixedNumber: 1,
+            striped: true,
+            firstLoad:false,
+            pagination: false,
+            showExport:true,
+            onLoadSuccess: onLoadSuccess,
+            columns: [
+                {
+                    field: 'numType',
+                    title: '数据类型',
+                    width:370
+                }]
+        };
+        for(var j = 1;j<31;j++ ){
+            list.push(j)
+        }
+        list.push(45);
+        list.push(60);
+        list.push(120);
+        for(var i =0;i<list.length;i++){
+            options.columns.push({
+                field: 'keep'+list[i],
+                title: '第'+list[i]+'日',
+                width:85
+            });
+        }
+        $.table.init(options);
+        function onLoadSuccess(data){
+            // console.log("data:"+JSON.stringify(data));
+            if (data.total > 0){
+                setLineChart(data);
+            }
+        }
+    });
+
+    //获取曲线展示需要的数据
+    function getShowData(originalData,showDataArr) {
+        for (var i=0;i<list.length;i++){
+            var dayNum = list[i];//天数
+            if (originalData["keep"+dayNum] == undefined || originalData["keep"+dayNum]==null){
+                showDataArr.push(null);
+            }else {
+                var lineData = originalData["keep"+dayNum].split("%")[0];
+                showDataArr.push(lineData);
+            }
+        }
+    }
+
+    function setLineChart(data) {
+        $("#lineChart1").show();
+        $("#lineChart2").show();
+        $("#lineChart3").show();
+        $("#lineChart4").show();
+        var avgRemainTrend = data.rows[6];
+        var avgRemainTrendArr = [];
+        var avgPayRemainTrend = data.rows[8];
+        var avgPayRemainTrendArr = [];
+        getShowData(avgRemainTrend,avgRemainTrendArr);
+        getShowData(avgPayRemainTrend,avgPayRemainTrendArr);
+        var lineChart = echarts.init(document.getElementById("echarts-line-chart"));
+        var lineoption = {
+            title : {
+                text: '平均留存和平均付费留存衰减趋势图'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['平均留存衰减趋势(今日/昨日)','平均付费留存衰减趋势(今日/昨日)']
+            },
+            grid:{
+                x:65,
+                x2:40,
+                y2:24
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : list
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: '{value} %'
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'平均留存衰减趋势(今日/昨日)',
+                    type:'line',
+                    data:avgRemainTrendArr
+                },
+                {
+                    name:'平均付费留存衰减趋势(今日/昨日)',
+                    type:'line',
+                    data:avgPayRemainTrendArr
+                }
+            ]
+        };
+        lineChart.setOption(lineoption);
+        $(window).resize(lineChart.resize);
+
+
+        var currentIncreaseLtv = data.rows[3];
+        var acurrentIncreaseLtvArr = [];
+        var currentIncreaseLtv2 = data.rows[4];
+        var currentIncreaseLtv2Arr = [];
+        getShowData(currentIncreaseLtv,acurrentIncreaseLtvArr);
+        getShowData(currentIncreaseLtv2,currentIncreaseLtv2Arr);
+        var lineChart2 = echarts.init(document.getElementById("echarts-line-chart2"));
+        var lineoption2 = {
+            title : {
+                text: '当日新增LTV对比首日与当日增长LTV与前日增长LTV对比'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['当日新增LTV对比首日((今日-昨日)/首日)','当日增长LTV对比前日增长LTV趋势((今日-昨日)/(昨日-前日))']
+            },
+            grid:{
+                x:65,
+                x2:40,
+                y2:24
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : list
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: '{value} %'
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'当日新增LTV对比首日((今日-昨日)/首日)',
+                    type:'line',
+                    data:acurrentIncreaseLtvArr
+                },
+                {
+                    name:'当日增长LTV对比前日增长LTV趋势((今日-昨日)/(昨日-前日))',
+                    type:'line',
+                    data:currentIncreaseLtv2Arr
+                }
+            ]
+        };
+        lineChart2.setOption(lineoption2);
+        $(window).resize(lineChart2.resize);
+
+
+        var avgRemain = data.rows[5];
+        var avgRemainArr = [];
+        var avgPayRemain = data.rows[7];
+        var avgPayRemainArr = [];
+        getShowData(avgRemain,avgRemainArr);
+        getShowData(avgPayRemain,avgPayRemainArr);
+        var lineChart3 = echarts.init(document.getElementById("echarts-line-chart3"));
+        var lineoption3 = {
+            title : {
+                text: '平均留存和平均付费留存对比'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['平均留存率','平均付费留存']
+            },
+            grid:{
+                x:65,
+                x2:40,
+                y2:24
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : list
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: '{value} %'
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'平均留存率',
+                    type:'line',
+                    data:avgRemainArr
+                },
+                {
+                    name:'平均付费留存',
+                    type:'line',
+                    data:avgPayRemainArr
+                }
+            ]
+        };
+        lineChart3.setOption(lineoption3);
+        $(window).resize(lineChart3.resize);
+
+
+        var avgLtvIncreaseRate = data.rows[2];
+        var avgLtvIncreaseRateArr = [];
+        getShowData(avgLtvIncreaseRate,avgLtvIncreaseRateArr);
+        var lineChart4 = echarts.init(document.getElementById("echarts-line-chart4"));
+        var lineoption4 = {
+            title : {
+                text: '平均LTV增长倍率'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['平均LTV增长倍率']
+            },
+            grid:{
+                x:65,
+                x2:40,
+                y2:24
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : list
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: '{value} %'
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'平均LTV增长倍率',
+                    type:'line',
+                    data:avgLtvIncreaseRateArr
+                }
+            ]
+        };
+        lineChart4.setOption(lineoption4);
+        $(window).resize(lineChart4.resize);
+    }
+</script>
+</body>
+</html>

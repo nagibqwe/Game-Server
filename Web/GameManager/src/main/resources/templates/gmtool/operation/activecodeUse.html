@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('激活码使用日志列表')" />
+    <th:block th:include="include :: footer" />
+    <script>
+        /**
+         * 导出当前显示的table数据
+         */
+        function exportExcel() {
+            $(".select-table").each(function () {
+                if($(this).css("display") == "block"){
+                    var table = $(this).find("table").eq(1);//生成后的表格有3个table
+                    var tableId = $(table).prop("id");
+                    console.log(tableId);
+                    $("#"+tableId).tableExport({type: 'excel', escape: 'false'});
+                }
+            });
+        }
+
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                    <ul>
+                        <li>
+                            <div th:replace="common/select_server_single.html"></div>
+                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <input type="hidden" id="requestUrl" value="selectServerList">
+                            <input type="hidden" id="ignoreMerge" value="0">
+                            <input type="hidden" id="serverTypeList" value="0,1">
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>激活码：</label>
+                            <input type="text" name="activeCode"/>
+                        </li>
+                        <li>
+                            <label>角色ID：</label>
+                            <input type="text" name="roleId"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="exportExcel()"><i class="fa fa-bookmark"></i>&nbsp;导出Excel</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--<select id="searchType" class="span2 selectClass">-->
+                    <!--&lt;!&ndash;<option value="1" selected="selected">激活码批次号查询</option>&ndash;&gt;-->
+                    <!--<option value="0">激活码使用查询</option>-->
+                <!--</select>-->
+                <!--<input id="searchParam" type="text" name="searchParam" class="span2 selectClass" >-->
+                <!--<input type="button" id="query_btn" value="查询" class="btn btn-primary" onclick="search()">-->
+                <!--<input type="button" id="excel_btn" value="导出Excel" class="btn btn-primary" onclick="exportExcel()">-->
+            </form>
+        </div>
+
+        <!--<div class="col-sm-12 select-table table-striped" id="activeCodeListDiv">-->
+            <!--<table id="activeCodeList"></table>-->
+        <!--</div>-->
+
+        <!--<div class="col-sm-12 select-table table-striped" style="display: none" id="activeCodeListPatchDiv">-->
+            <!--<table id="activeCodeListPatch"></table>-->
+        <!--</div>-->
+
+        <div class="col-sm-12 select-table table-striped" style="display: block" id="activeCodeListCodeDiv">
+            <table id="activeCodeListCode"></table>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var prefix = ctx + "gmtool/operation";
+
+    $(function() {
+        var options = {
+            url: prefix + "/queryActiveCodeByCode",
+            id:"activeCodeListCode",
+            modalName: "激活码日志",
+            showSearch: false,
+            firstLoad:false,
+            columns: [
+                {
+                    title: "序号",
+                    formatter: function (value, row, index) {
+                        return $.table.serialNumber(index);
+                    }
+                },
+                {
+                    field: 'activeCode',
+                    title: '激活码'
+                },
+                {
+                    field: 'platformName',
+                    title: '平台名'
+                },
+                {
+                    field: 'sid',
+                    title: '区服'
+                },
+                {
+                    field: 'roleid',
+                    title: '角色ID'
+                },
+                {
+                    field: 'userId',
+                    title: '账号ID'
+                },
+                {
+                    field: 'itemList',
+                    title: '物品列表'
+                },
+                {
+                    field: 'actionId',
+                    title: '唯一标识'
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

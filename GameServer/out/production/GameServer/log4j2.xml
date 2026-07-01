@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="GAMESERVERLOG">gameserver</property>
+        <property name="GAMESERVERERRORLOG">gameservererror</property>
+        <property name="PLAYERATTRIBUTE">PlayerAttribute</property>
+        <property name="RECHARGEFILE">Recharge</property>
+        <property name="LOGINFILE">Login</property>
+        <property name="PUSHMESSFILE">PushMess</property>
+        <property name="HANDLEFILE">Handler/HandlerLog</property>
+        <property name="CONFIGFILE">config</property>
+        <property name="ACTIVITYFILE">activity</property>
+        <property name="SQLERRORFILE">sqlError</property>
+        <property name="FLOWFILE">flow</property>
+        <property name="TRAFFICFILE">traffic</property>
+    </properties>
+    <appenders>
+        <!-- 定义控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread]%l - %msg%n"/>
+        </Console>
+
+        <!-- BI日志 -->
+        <RollingRandomAccessFile name="BILogFile" fileName="${sys:biLogDir}/new/BiSync_${sys:biSrvID}.log"
+                                 filePattern="${sys:biLogDir}/history/BiSync_${sys:biSrvID}_%d{yyyyMMdd}.log">
+            <PatternLayout pattern="%msg"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="BI4399File" fileName="${sys:bi4399Dir}/BiSync_${sys:biSrvID}.log"
+                                 filePattern="${sys:bi4399Dir}/BiSync_${sys:biSrvID}_%d{yyyyMMdd}.log">
+            <PatternLayout pattern="%msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <!--log4j2 syslog-->
+<!--        <Syslog name="SysLogFile2" host="${sys:sysLogHost}" port="${sys:sysLogPort}" protocol="${sys:sysLogProtocol}" facility="LOCAL3">-->
+<!--            <PatternLayout pattern="%msg"/>-->
+<!--        </Syslog>-->
+
+<!--        <Syslog name="SysLogFile3" format="RFC5424" host="${sys:sysLogHost}" port="${sys:sysLogPort}" protocol="${sys:sysLogProtocol}"-->
+<!--                appName="MyApp" mdcId="mdc" includeMDC="true" facility="LOCAL0" enterpriseNumber="18060" newLine="true" messageId="Audit" id="App"/>-->
+
+<!--        <Syslog name="SysLogFile4" host="${sys:bi4399Host}" port="${sys:bi4399Port}" protocol="${sys:bi4399Protocol}" facility="LOCAL3">-->
+<!--            <PatternLayout pattern="%msg"/>-->
+<!--        </Syslog>-->
+
+        <!-- 正常输出日志 -->
+        <RollingRandomAccessFile name="DevLog" fileName="${LOG_HOME}/${GAMESERVERLOG}"
+                                 filePattern="${LOG_HOME}/${GAMESERVERLOG}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <!-- 正常输出错误日志 -->
+        <RollingRandomAccessFile name="ErrorLog" fileName="${LOG_HOME}/${GAMESERVERERRORLOG}"
+                                 filePattern="${LOG_HOME}/${GAMESERVERERRORLOG}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 玩家属性日志 -->
+        <RollingRandomAccessFile name="PLAYERATTLOG" fileName="${LOG_HOME}/${PLAYERATTRIBUTE}"
+                                 filePattern="${LOG_HOME}/${PLAYERATTRIBUTE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 玩家的充值日志  -->
+        <RollingRandomAccessFile name="RECHARGELOG" fileName="${LOG_HOME}/${RECHARGEFILE}"
+                                 filePattern="${LOG_HOME}/${RECHARGEFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 玩家的登录日志 -->
+        <RollingRandomAccessFile name="LOGINLOG" fileName="${LOG_HOME}/${LOGINFILE}"
+                                 filePattern="${LOG_HOME}/${LOGINFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 发布信息日志  -->
+        <RollingRandomAccessFile name="PUSHMESSLOG" fileName="${LOG_HOME}/${PUSHMESSFILE}"
+                                 filePattern="${LOG_HOME}/${PUSHMESSFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 协议处理超时的日志  -->
+        <RollingRandomAccessFile name="HANDLERLOG" fileName="${LOG_HOME}/${HANDLEFILE}"
+                                 filePattern="${LOG_HOME}/${HANDLEFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 配置表的日志  -->
+        <RollingRandomAccessFile name="CONFIGLOG" fileName="${LOG_HOME}/${CONFIGFILE}"
+                                 filePattern="${LOG_HOME}/${CONFIGFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 数据库错误的日志  -->
+        <RollingRandomAccessFile name="SQLERRORLOG" fileName="${LOG_HOME}/${SQLERRORFILE}"
+                                 filePattern="${LOG_HOME}/${SQLERRORFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 慢日志的日志  -->
+        <RollingRandomAccessFile name="FLOWLOG" fileName="${LOG_HOME}/${FLOWFILE}"
+                                 filePattern="${LOG_HOME}/${FLOWFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <!-- 网络数据的日志  -->
+        <RollingRandomAccessFile name="TRAFFICLOG" fileName="${LOG_HOME}/${TRAFFICFILE}"
+                                 filePattern="${LOG_HOME}/${TRAFFICFILE}.%d{yyyy-MM-dd-HH}.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </appenders>
+    <loggers>
+        <!-- Game Stat  AsyncLogger -->
+        <AsyncLogger name="AttributeLog" additivity="false" level="info">
+            <appender-ref ref="PLAYERATTLOG"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="com.game.recharge.manager.RechargerManager" additivity="false" level="info">
+            <appender-ref ref="RECHARGELOG"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="RechargeManager" level="info" additivity="false">
+            <appender-ref ref="RECHARGELOG"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="BILog" level="info" additivity="false">
+            <appender-ref ref="BILogFile"/>
+        </AsyncLogger>
+
+<!--        <AsyncLogger name="BILog2" level="info" additivity="false">-->
+<!--            <appender-ref ref="SysLogFile2"/>-->
+<!--        </AsyncLogger>-->
+
+<!--        <AsyncLogger name="BILog3" level="info" additivity="false">-->
+<!--            <appender-ref ref="SysLogFile3"/>-->
+<!--        </AsyncLogger>-->
+
+<!--        <AsyncLogger name="BILog4" level="info" additivity="false">-->
+<!--            <appender-ref ref="SysLogFile4"/>-->
+<!--        </AsyncLogger>-->
+
+        <AsyncLogger name="BI4399Log" level="info" additivity="false">
+            <appender-ref ref="BI4399File"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="SERVERFLOW" level="info" additivity="false">
+            <appender-ref ref="FLOWLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.game.thread.FightServerProcessor" additivity="false" level="info">
+            <appender-ref ref="FLOWLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.game.connectfightserver.manager.ConnectFightManager" additivity="false" level="info">
+            <appender-ref ref="FLOWLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="MoveBehaviorScirpt" additivity="false" level="info">
+            <appender-ref ref="FLOWLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="gm.GmBackendComandScript" level="info">
+            <appender-ref ref="FLOWLOG"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="com.game.Register.Handler.ReqLoadFinishHandler" additivity="false" level="info">
+            <appender-ref ref="LOGINLOG"/>
+        </AsyncLogger>
+        <!-- AsyncLogger -->
+        <AsyncLogger name="com.game.Register.Manager.RegisterManager" additivity="false" level="info">
+            <appender-ref ref="LOGINLOG"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="com.game.txpushsdk.struct.PushWorker" additivity="false" level="info">
+            <appender-ref ref="PUSHMESSLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="common.pushmess.PushMessageScript" additivity="false" level="info">
+            <appender-ref ref="PUSHMESSLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="HandlerDealTime" additivity="false" level="info">
+            <appender-ref ref="HANDLERLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="game.core.net.codec.ClientMessageCodeC" additivity="false" level="info">
+            <appender-ref ref="HANDLERLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="MESSAGELOG" additivity="false" level="info">
+            <appender-ref ref="TRAFFICLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="configLog" additivity="false" level="info">
+            <appender-ref ref="CONFIGLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="sqlErrorLog" level="info">
+            <appender-ref ref="SQLERRORLOG"/>
+        </AsyncLogger>
+        <!-- Root Logger -->
+        <root level="info" includeLocation="true">
+            <appender-ref ref="DevLog"/>
+            <appender-ref ref="ErrorLog" level="error"/>
+        </root>
+    </loggers>
+</configuration>  

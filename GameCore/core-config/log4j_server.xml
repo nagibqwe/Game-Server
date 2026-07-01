@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+    <appender name="FileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+	<param name="File" value="logs/GameServer.log" />
+	<param name="Threshold" value="ALL" />
+	<param name="DatePattern" value="'.'yyyyMMddHH" />
+	<layout class="org.apache.log4j.PatternLayout">
+	    <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %p]%m%n" />
+	</layout>
+    </appender>
+    <!-- 文件输出用异步 -->
+    <appender name="AsyncFileAppender" class="org.apache.log4j.AsyncAppender">
+	<param name="BufferSize" value="2048" />
+	<appender-ref ref="FileAppender" />
+    </appender>
+    <!-- HTTP操作appender -->
+    <appender name="GMLogFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+	<param name="File" value="logs/HttpService.log" />
+	<param name="DatePattern" value="'.'yyyyMMdd" />
+	<layout class="org.apache.log4j.PatternLayout">
+	    <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %p]%m%n" />
+	</layout>
+    </appender>
+    <appender name="AsyncGMLogAppender" class="org.apache.log4j.AsyncAppender">
+	<param name="BufferSize" value="2048" />
+	<appender-ref ref="GMLogFileAppender" />
+    </appender>
+    <!-- logger -->
+    <logger name="game.server.http.GameHttpServer" additivity="false">
+	<level value="info"></level>
+	<appender-ref ref="AsyncGMLogAppender"/>
+    </logger>
+    <logger name="game.server.http.HttpRequestHandler" additivity="false">
+	<level value="info"></level>
+	<appender-ref ref="AsyncGMLogAppender"/>
+    </logger>
+    <logger name="game.server.http.HttpService" additivity="false">
+	<level value="info"></level>
+	<appender-ref ref="AsyncGMLogAppender"/>
+    </logger>
+    <!-- root logger -->
+    <root>
+	<level value="info" />
+	<appender-ref ref="AsyncFileAppender" />
+    </root>
+</log4j:configuration>

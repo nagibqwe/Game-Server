@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Object type="Object"
+name="[ServerSceneEditor]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="[MonsterStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+</Object>
+<Object type="Object"
+name="[NpcStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+</Object>
+<Object type="Object"
+name="[DynamicBlocker]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="DynamicBlocker">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="25.69,17.61,22.19,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_modeType type="Enum"
+value="None"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+ModelType"/>
+<m_modelResourcePath type="String"
+value=""
+valueType="System.String"/>
+<m_modelOffset type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="0"
+valueType="System.Single"/>
+<y type="Atom"
+value="0"
+valueType="System.Single"/>
+<z type="Atom"
+value="0"
+valueType="System.Single"/>
+</m_modelOffset>
+<m_modelRotation type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="0"
+valueType="System.Single"/>
+<y type="Atom"
+value="0"
+valueType="System.Single"/>
+<z type="Atom"
+value="0"
+valueType="System.Single"/>
+</m_modelRotation>
+<m_modelScale type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="1"
+valueType="System.Single"/>
+<y type="Atom"
+value="1"
+valueType="System.Single"/>
+<z type="Atom"
+value="1"
+valueType="System.Single"/>
+</m_modelScale>
+<m_type type="Enum"
+value="Circle"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+DyBlockType"/>
+<m_radius type="Atom"
+value="6.89"
+valueType="System.Single"/>
+<m_size type="NonAton"
+valueType="UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="1"
+valueType="System.Single"/>
+<y type="Atom"
+value="1"
+valueType="System.Single"/>
+</m_size>
+<m_openMessageId type="String"
+value=""
+valueType="System.String"/>
+<m_openArgFormat type="String"
+value=""
+valueType="System.String"/>
+<m_openArgs type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"/>
+<m_openDelayTime type="Atom"
+value="0"
+valueType="System.Single"/>
+<m_closeMessageId type="String"
+value=""
+valueType="System.String"/>
+<m_closeArgFormat type="String"
+value=""
+valueType="System.String"/>
+<m_closeArgs type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"/>
+<m_closeDelayTime type="Atom"
+value="0"
+valueType="System.Single"/>
+<openCondition type="Enum"
+value="None"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+OpenCondition"/>
+<OpenConditionParam type="String"
+value=""
+valueType="System.String"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="DynamicBlocker"
+valueType="System.String"/>
+<m_id type="Atom"
+value="0"
+valueType="System.Int32"/>
+</component>
+</Object>
+</Object>
+</Object>
+

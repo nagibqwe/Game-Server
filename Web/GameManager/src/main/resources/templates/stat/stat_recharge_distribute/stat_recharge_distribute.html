@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('充值金额分布统计列表')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/stat_group_server_head"></div>
+
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_date_head.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <div class="btn-group">
+                    <button name="group_tab" class="btn btn-primary" id="pay_level_stat" type="button">充值档位分布</button>
+                    <button name="group_tab" class="btn btn-white" id="pay_day_stat" type="button">每日充值金额</button>
+                    <button name="group_tab" class="btn btn-white" id="payGoodIdslStat" type="button">礼包id分布</button>
+
+                </div>
+            </div>
+
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('stat:stat_pay_distribute:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('stat:stat_pay_distribute:remove')}]];
+        var prefix = ctx + "stat/stat_recharge_distribute";
+
+        $(function() {
+            $("button[name='group_tab']").bind("click",function(e){
+                $("button[name='group_tab']").removeClass();
+                $("button[name='group_tab']").addClass("btn btn-white");
+                $("#"+e.target.id+"").removeClass();
+                $("#"+e.target.id+"").addClass("btn btn-primary");
+                $.table.destroy('bootstrap-table');
+               // initTable(e.target.id);
+               // alert(e.target.id)
+                if("pay_level_stat" == e.target.id){
+                    initPayLevelStatTable();
+                    $("#endDate").show();
+                }else  if("pay_day_stat" == e.target.id){
+                    initPayDayStatTable();
+                    $("#endDate").hide();
+                }else  if("payGoodIdslStat" == e.target.id){
+                    initPayGoodIdslStatTable();
+                    $("#endDate").show();
+                }
+            });
+            initPayLevelStatTable();
+        });
+
+        function initPayLevelStatTable() {
+            var options = {
+                url: prefix + "/payLevelStat",
+                modalName: "充值金额分布统计",
+                firstLoad:false,
+                pagination: false,
+                showExport:true,
+                columns: [{
+                    field: 'totalFee',
+                    title: '金额',
+                }
+                    ,{
+                        field: 'count',
+                        title: '人数',
+                    }]
+            };
+            $.table.init(options);
+        }
+
+
+        function initPayDayStatTable() {
+            var options = {
+                url: prefix + "/payDaylStat",
+                modalName: "充值金额分布统计",
+                firstLoad:false,
+                pagination: false,
+                showExport:true,
+                columns: [{
+                        field: 'time',
+                        title: '时间段',
+                    },{
+                        field: 'amountSum',
+                        title: '金额',
+                    },{
+                        field: 'countSum',
+                        title: '人数',
+                     }
+                     ]
+            };
+            $.table.init(options);
+        }
+
+
+        function initPayGoodIdslStatTable() {
+            var options = {
+                url: prefix + "/payGoodIdslStat",
+                modalName: "充值礼包分布",
+                firstLoad:false,
+                pagination: false,
+                showExport:true,
+                columns: [{
+                    field: 'goodsId',
+                    title: '礼包id',
+                },{
+                    field: 'goodsName',
+                    title: '礼包名称',
+                },{
+                    field: 'count',
+                    title: '人数',
+                },{
+                    field: 'countRate',
+                    title: '占总人数比例',
+                    formatter: function (value) {
+                        return value+"%";
+                     }
+                }
+                ]
+            };
+            $.table.init(options);
+        }
+
+    </script>
+</body>
+</html>

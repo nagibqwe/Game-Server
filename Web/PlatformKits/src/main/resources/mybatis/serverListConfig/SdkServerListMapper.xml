@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.serverList.mapper.SdkServerListMapper">
+
+    <resultMap type="SdkServerList" id="SdkServerListResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="loginServerGroup"    column="login_server_group"    />
+        <result property="channelIds"    column="channel_ids"    />
+        <result property="serverIds"    column="server_ids"    />
+        <result property="status"    column="status"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectSdkServerListVo">
+        select id, name, login_server_group, channel_ids, server_ids, status, update_time, create_time from sdk_server_list
+    </sql>
+
+    <select id="selectSdkServerListList" parameterType="SdkServerList" resultMap="SdkServerListResult">
+        <include refid="selectSdkServerListVo"/>
+        <where>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+
+    <select id="selectSdkServerListById" parameterType="Long" resultMap="SdkServerListResult">
+        <include refid="selectSdkServerListVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSdkServerList" parameterType="SdkServerList" useGeneratedKeys="true" keyProperty="id">
+        insert into sdk_server_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="loginServerGroup != null">login_server_group,</if>
+            <if test="channelIds != null">channel_ids,</if>
+            <if test="serverIds != null">server_ids,</if>
+            <if test="status != null">status,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="loginServerGroup != null">#{loginServerGroup},</if>
+            <if test="channelIds != null">#{channelIds},</if>
+            <if test="serverIds != null">#{serverIds},</if>
+            <if test="status != null">#{status},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSdkServerList" parameterType="SdkServerList">
+        update sdk_server_list
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="loginServerGroup != null">login_server_group = #{loginServerGroup},</if>
+            <if test="channelIds != null">channel_ids = #{channelIds},</if>
+            <if test="serverIds != null">server_ids = #{serverIds},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSdkServerListById" parameterType="Long">
+        delete from sdk_server_list where id = #{id}
+    </delete>
+
+    <delete id="deleteSdkServerListByIds" parameterType="String">
+        delete from sdk_server_list where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectServerIdsById" parameterType="Long" resultType="String">
+        select server_ids from sdk_server_list where id = #{id}
+    </select>
+    <select id="selectChannelIdsById" parameterType="Long" resultType="String">
+        select channel_ids from sdk_server_list where id = #{id}
+    </select>
+</mapper>

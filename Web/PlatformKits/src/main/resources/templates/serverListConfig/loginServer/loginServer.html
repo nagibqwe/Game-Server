@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('登录服信息列表')" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>登录服务器名称：</label>
+                            <input type="text" name="loginServerName"/>
+                        </li>
+                        <li>
+                            <label>登录服务器IP：</label>
+                            <input type="text" name="loginServerIp"/>
+                        </li>
+                        <li>
+                            <label>登录服端口：</label>
+                            <input type="text" name="loginServerPort"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="serverListConfig:loginServer:add">
+                <i class="fa fa-plus"></i> 添加
+            </a>
+            <a class="btn btn-primary single disabled" onclick="$.operate.edit()"
+               shiro:hasPermission="serverListConfig:loginServer:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="serverListConfig:loginServer:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+            <a class="btn btn-warning" onclick="$.table.exportExcel()"
+               shiro:hasPermission="serverListConfig:loginServer:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('serverListConfig:loginServer:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('serverListConfig:loginServer:remove')}]];
+    var prefix = ctx + "serverListConfig/loginServer";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "登录服信息",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: 'id'
+                },
+                {
+                    field: 'loginServerName',
+                    title: '登录服务器名称'
+                },
+                {
+                    field: 'loginServerIp',
+                    title: '登录服务器IP'
+                },
+                {
+                    field: 'loginServerPort',
+                    title: '登录服端口'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

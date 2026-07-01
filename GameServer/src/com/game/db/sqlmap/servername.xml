@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="servername">
+
+    <resultMap id="bean" type="com.game.db.bean.ServerNameBean" >
+        <id column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="changeName" property="changeName" jdbcType="VARCHAR" />
+        <result column="changeTime" property="changeTime" jdbcType="INTEGER" />
+        <result column="roleId" property="roleId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.game.db.bean.ServerNameBean">
+        insert into servername (serverId, changeName, changeTime, roleId) values (#{serverId,jdbcType=INTEGER}, #{changeName,jdbcType=VARCHAR}, #{changeTime,jdbcType=INTEGER}, #{roleId,jdbcType=BIGINT})
+    </insert>
+
+    <update id="update" parameterType="com.game.db.bean.ServerNameBean">
+        update servername set changeName=#{changeName,jdbcType=VARCHAR}, changeTime=#{changeTime, jdbcType=INTEGER}, roleId=#{roleId, jdbcType=BIGINT} where serverId= #{serverId, jdbcType=INTEGER}
+    </update>
+
+</mapper>
+

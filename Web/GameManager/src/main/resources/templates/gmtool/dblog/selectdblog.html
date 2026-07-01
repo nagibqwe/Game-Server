@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('服务器选择列表')" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <select id="select_group" name="groupName" onchange="openServerSelect(this.value)" class="type form-control m-b"></select>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+
+    </div>
+</div>
+<th:block th:include="include :: footer" />
+
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('gmtool:dblog:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('gmtool:dblog:remove')}]];
+    var typeDatas = [[${@dict.getType('db_log_type')}]];
+    var isHeFuDatas = [[${@dict.getType('he_fu_type')}]];
+    var serverTypeDatas = [[${@dict.getType('server_type')}]];
+    var isDeletedDatas = [[${@dict.getType('deleted_type')}]];
+    var prefix = ctx + "gmtool/dblog";
+
+    var selectServerIdList =  [[${selectServerIdList}]];
+
+
+    function selectCancel() {
+        var datas = $("#bootstrap-table").bootstrapTable('getData');
+        for (var j = 0; j < datas.length; j++) {
+            $("#bootstrap-table").bootstrapTable('uncheck', j);
+        }
+    }
+    /**
+     *选中区间
+     */
+    function selectRange() {
+
+        var selections = $("#bootstrap-table").bootstrapTable('getSelections');
+        var datas = $("#bootstrap-table").bootstrapTable('getData');
+        var beginIndex = -1;
+        var endIndex = -1;
+        for (var j = 0; j < datas.length; j++) {
+            for(var i = 0;i<selections.length;i++){
+                if(datas[j].serverId == selections[i].serverId){
+                    if(beginIndex == -1){
+                        beginIndex = j;
+                    }
+                    endIndex = j;
+                }
+            }
+
+        }
+        if(endIndex > beginIndex){
+            for(var i = beginIndex;i<endIndex+1;i++){
+
+                $("#bootstrap-table").bootstrapTable('check', i);
+            }
+        }
+
+    }
+    //获取选中的数据
+    function getSelections(){
+        var selections = $("#bootstrap-table").bootstrapTable('getSelections');
+        var serverIdList = [];
+        for (var i = 0; i < selections.length; i++) {
+            serverIdList.push(selections[i].serverId);
+        }
+        return serverIdList;
+    }
+    /**
+     * 全部选中
+     */
+    function selectAll(){
+        var datas = $("#bootstrap-table").bootstrapTable('getData');
+        for (var j = 0; j < datas.length; j++) {
+            $("#bootstrap-table").bootstrapTable('check', j);
+        }
+    }
+    /**
+     * 初始化选中
+     * @param selectServerIdHideValue
+     */
+    function initSelectData(selectServerIdHideValue){
+
+    }
+    $(function() {
+        var options = {
+            pageSize: 10000000,
+            pageList: [],
+            clickToSelect: true,
+            showToggle:false,
+            showRefresh:false,
+            showSearch:false,
+            showColumns:false,
+            striped:true,
+
+            mobileResponsive:false,
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "日志库列",
+            onLoadSuccess: function(data){
+                if (typeof selectServerIdList === 'string') {
+                    var selectServerIdHideValueArray = selectServerIdList.split(',');
+                    for (var i = 0; i < selectServerIdHideValueArray.length; i++) {
+                        var datas = $("#bootstrap-table").bootstrapTable('getData');
+                        for (var j = 0; j < datas.length; j++) {
+                            if(datas[j].serverId == selectServerIdHideValueArray[i]){
+                                $("#bootstrap-table").bootstrapTable('check', j);
+                            }
+                        }
+                    }
+                }
+            },
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'serverId',
+                    title: '服务器ID'
+                },
+                {
+                    field: 'serverName',
+                    title: '服务器名称'
+                },
+
+                {
+                    field: 'serverOpenTime',
+                    title: '开服时间'
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

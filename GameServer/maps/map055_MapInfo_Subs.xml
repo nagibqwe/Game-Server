@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Object type="Object"
+name="[ServerSceneEditor]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="[MonsterStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="MonsterStub">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184,21.00505,194.3,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.MonsterStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="0"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="m_000"
+valueType="System.String"/>
+<m_id type="Atom"
+value="-1"
+valueType="System.Int32"/>
+</component>
+</Object>
+</Object>
+<Object type="Object"
+name="[DynamicBlocker]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="DynamicBlocker">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05749,190.18,0,358.1856,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_modeType type="Enum"
+value="Model"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+ModelType"/>
+<m_modelResourcePath type="String"
+value="Prefab/Monster/m_10270"
+valueType="System.String"/>
+<m_modelOffset type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="0"
+valueType="System.Single"/>
+<y type="Atom"
+value="0"
+valueType="System.Single"/>
+<z type="Atom"
+value="0"
+valueType="System.Single"/>
+</m_modelOffset>
+<m_modelRotation type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="0"
+valueType="System.Single"/>
+<y type="Atom"
+value="0"
+valueType="System.Single"/>
+<z type="Atom"
+value="0"
+valueType="System.Single"/>
+</m_modelRotation>
+<m_modelScale type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="1"
+valueType="System.Single"/>
+<y type="Atom"
+value="1"
+valueType="System.Single"/>
+<z type="Atom"
+value="1"
+valueType="System.Single"/>
+</m_modelScale>
+<m_type type="Enum"
+value="OBB"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+DyBlockType"/>
+<m_radius type="Atom"
+value="1"
+valueType="System.Single"/>
+<m_size type="NonAton"
+valueType="UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="25"
+valueType="System.Single"/>
+<y type="Atom"
+value="2"
+valueType="System.Single"/>
+</m_size>
+<m_openMessageId type="String"
+value=""
+valueType="System.String"/>
+<m_openArgFormat type="String"
+value=""
+valueType="System.String"/>
+<m_openArgs type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"/>
+<m_openDelayTime type="Atom"
+value="0"
+valueType="System.Single"/>
+<m_closeMessageId type="String"
+value=""
+valueType="System.String"/>
+<m_closeArgFormat type="String"
+value=""
+valueType="System.String"/>
+<m_closeArgs type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"/>
+<m_closeDelayTime type="Atom"
+value="0"
+valueType="System.Single"/>
+<openCondition type="Enum"
+value="None"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+OpenCondition"/>
+<OpenConditionParam type="String"
+value=""
+valueType="System.String"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="DynamicBlocker"
+valueType="System.String"/>
+<m_id type="Atom"
+value="0"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="m_10270(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05749,190.18,0,358.1856,0"/>
+<component type="Component"
+valueType="Thousandto.Launcher.ExternalLibs.AnimListScript, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<AnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.AnimationClip, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<SelfAnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.AnimationClip, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<IsSaveClip type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<NewAnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[Thousandto.Launcher.ExternalLibs.AnimInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<SlotTrans type="Array"
+count="29"
+valueType="UnityEngine.Transform[]">
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</SlotTrans>
+<BuildinLevel1 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+<BuildinLevel2 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+<BuildinLevel3 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+</component>
+<Object type="Object"
+name="other_guangmu">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05749,190.18,0,358.1856,0"/>
+<Object type="Object"
+name="effect_pinzhang">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,20.25259,190.18,0,358.1856,0"/>
+<Object type="Object"
+name="yan">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="185.5427,20.6664,190.2275,270,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystem, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystemRenderer, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="2_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="183.8854,27.12611,190.2771,9.334668E-06,358.1856,1.272222E-14"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="5_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="183.8854,24.93349,190.2771,0,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="6_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="186.0143,25.73569,190.3446,0,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="3_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="185.6677,19.76633,190.2314,270,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystem, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystemRenderer, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="DynamicBlocker1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05751,159,0,358.1856,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_modeType type="Enum"
+value="Model"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+ModelType"/>
+<m_modelResourcePath type="String"
+value="Prefab/Monster/m_10270"
+valueType="System.String"/>
+<m_modelOffset type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="0"
+valueType="System.Single"/>
+<y type="Atom"
+value="0"
+valueType="System.Single"/>
+<z type="Atom"
+value="0"
+valueType="System.Single"/>
+</m_modelOffset>
+<m_modelRotation type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="0"
+valueType="System.Single"/>
+<y type="Atom"
+value="0"
+valueType="System.Single"/>
+<z type="Atom"
+value="0"
+valueType="System.Single"/>
+</m_modelRotation>
+<m_modelScale type="NonAton"
+valueType="UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="1"
+valueType="System.Single"/>
+<y type="Atom"
+value="1"
+valueType="System.Single"/>
+<z type="Atom"
+value="1"
+valueType="System.Single"/>
+</m_modelScale>
+<m_type type="Enum"
+value="OBB"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+DyBlockType"/>
+<m_radius type="Atom"
+value="1"
+valueType="System.Single"/>
+<m_size type="NonAton"
+valueType="UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<x type="Atom"
+value="25"
+valueType="System.Single"/>
+<y type="Atom"
+value="2"
+valueType="System.Single"/>
+</m_size>
+<m_openMessageId type="String"
+value=""
+valueType="System.String"/>
+<m_openArgFormat type="String"
+value=""
+valueType="System.String"/>
+<m_openArgs type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"/>
+<m_openDelayTime type="Atom"
+value="0"
+valueType="System.Single"/>
+<m_closeMessageId type="String"
+value=""
+valueType="System.String"/>
+<m_closeArgFormat type="String"
+value=""
+valueType="System.String"/>
+<m_closeArgs type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"/>
+<m_closeDelayTime type="Atom"
+value="0"
+valueType="System.Single"/>
+<openCondition type="Enum"
+value="None"
+valueType="SceneEditor.Proxy.Plugin.DynamicBlocker+OpenCondition"/>
+<OpenConditionParam type="String"
+value=""
+valueType="System.String"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="DynamicBlocker1"
+valueType="System.String"/>
+<m_id type="Atom"
+value="1"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="m_10270(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05751,159,0,358.1856,0"/>
+<component type="Component"
+valueType="Thousandto.Launcher.ExternalLibs.AnimListScript, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<AnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.AnimationClip, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<SelfAnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.AnimationClip, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<IsSaveClip type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<NewAnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[Thousandto.Launcher.ExternalLibs.AnimInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<SlotTrans type="Array"
+count="29"
+valueType="UnityEngine.Transform[]">
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</SlotTrans>
+<BuildinLevel1 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+<BuildinLevel2 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+<BuildinLevel3 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+</component>
+<Object type="Object"
+name="other_guangmu">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05751,159,0,358.1856,0"/>
+<Object type="Object"
+name="effect_pinzhang">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,20.25261,159,0,358.1856,0"/>
+<Object type="Object"
+name="yan">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="185.5427,20.66642,159.0475,270,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystem, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystemRenderer, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="2_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="183.8854,27.12613,159.0971,9.334668E-06,358.1856,1.272222E-14"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="5_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="183.8854,24.93351,159.0971,0,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="6_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="186.0143,25.73572,159.1646,0,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="3_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="185.6677,19.76635,159.0515,270,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystem, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystemRenderer, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="m_10270(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05751,159,0,358.1856,0"/>
+<component type="Component"
+valueType="Thousandto.Launcher.ExternalLibs.AnimListScript, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<AnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.AnimationClip, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<SelfAnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.AnimationClip, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<IsSaveClip type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<NewAnimList type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[Thousandto.Launcher.ExternalLibs.AnimInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<SlotTrans type="Array"
+count="29"
+valueType="UnityEngine.Transform[]">
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<item type="NonAton"
+valueType="UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</SlotTrans>
+<BuildinLevel1 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+<BuildinLevel2 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+<BuildinLevel3 type="Array"
+count="0"
+valueType="UnityEngine.GameObject[]"/>
+</component>
+<Object type="Object"
+name="other_guangmu">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,21.05751,159,0,358.1856,0"/>
+<Object type="Object"
+name="effect_pinzhang">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="184.0435,20.25261,159,0,358.1856,0"/>
+<Object type="Object"
+name="yan">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="185.5427,20.66642,159.0475,270,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystem, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystemRenderer, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="2_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="183.8854,27.12613,159.0971,9.334668E-06,358.1856,1.272222E-14"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="5_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="183.8854,24.93351,159.0971,0,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="6_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="186.0143,25.73572,159.1646,0,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="3_1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="185.6677,19.76635,159.0515,270,358.1856,0"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystem, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.ParticleSystemRenderer, UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+

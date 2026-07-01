@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.changereason.mapper.TChangereasonMapper">
+    
+    <resultMap type="TChangereason" id="TChangereasonResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+    </resultMap>
+
+    <sql id="selectTChangereasonVo">
+        select id, name from t_changereason
+    </sql>
+
+    <select id="selectTChangereasonList" parameterType="TChangereason" resultMap="TChangereasonResult">
+        <include refid="selectTChangereasonVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTChangereasonById" parameterType="Long" resultMap="TChangereasonResult">
+        <include refid="selectTChangereasonVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTChangereason" parameterType="TChangereason">
+        insert into t_changereason
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTChangereason" parameterType="TChangereason">
+        update t_changereason
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTChangereasonById" parameterType="Long">
+        delete from t_changereason where id = #{id}
+    </delete>
+
+    <delete id="deleteTChangereasonByIds" parameterType="String">
+        delete from t_changereason where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteAllTChangereason">
+        delete from t_changereason
+    </delete>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.x8channel.mapper.TX8ChannelMapper">
+    
+    <resultMap type="TX8Channel" id="TX8ChannelResult">
+        <result property="chnId"    column="chn_id"    />
+        <result property="logicChnId"    column="logic_chn_id"    />
+        <result property="appId"    column="app_id"    />
+        <result property="chnmId"    column="chnm_id"    />
+        <result property="cpAppId"    column="cp_app_id"    />
+        <result property="cpAppKey"    column="cp_app_key"    />
+        <result property="cpAppSecret"    column="cp_app_secret"    />
+        <result property="enablePay"    column="enable_pay"    />
+        <result property="enableLogin"    column="enable_login"    />
+        <result property="cpPayId"    column="cp_pay_id"    />
+        <result property="cpPayKey"    column="cp_pay_key"    />
+        <result property="cpPayPriKey"    column="cp_pay_pri_key"    />
+        <result property="cpConfig"    column="cp_config"    />
+        <result property="authUrl"    column="auth_url"    />
+        <result property="payCallbackUrl"    column="pay_callback_url"    />
+        <result property="orderUrl"    column="order_url"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="updateUser"    column="update_user"    />
+        <result property="sdkParams"    column="sdk_params"    />
+        <result property="notes"    column="notes"    />
+    </resultMap>
+
+    <sql id="selectTX8ChannelVo">
+        select chn_id, logic_chn_id, app_id, chnm_id, cp_app_id, cp_app_key, cp_app_secret, enable_pay, enable_login, cp_pay_id, cp_pay_key, cp_pay_pri_key, cp_config, auth_url, pay_callback_url, order_url, update_time, create_time, create_user, update_user, sdk_params, notes from t_x8_channel
+    </sql>
+
+    <select id="selectTX8ChannelList" parameterType="TX8Channel" resultMap="TX8ChannelResult">
+        <include refid="selectTX8ChannelVo"/>
+        <where>  
+            <if test="logicChnId != null "> and logic_chn_id = #{logicChnId}</if>
+            <if test="appId != null "> and app_id = #{appId}</if>
+            <if test="chnmId != null "> and chnm_id = #{chnmId}</if>
+            <if test="cpAppId != null  and cpAppId != ''"> and cp_app_id = #{cpAppId}</if>
+            <if test="cpAppKey != null  and cpAppKey != ''"> and cp_app_key = #{cpAppKey}</if>
+            <if test="cpAppSecret != null  and cpAppSecret != ''"> and cp_app_secret = #{cpAppSecret}</if>
+            <if test="enablePay != null "> and enable_pay = #{enablePay}</if>
+            <if test="enableLogin != null "> and enable_login = #{enableLogin}</if>
+            <if test="cpPayId != null  and cpPayId != ''"> and cp_pay_id = #{cpPayId}</if>
+            <if test="cpPayKey != null  and cpPayKey != ''"> and cp_pay_key = #{cpPayKey}</if>
+            <if test="cpPayPriKey != null  and cpPayPriKey != ''"> and cp_pay_pri_key = #{cpPayPriKey}</if>
+            <if test="cpConfig != null  and cpConfig != ''"> and cp_config = #{cpConfig}</if>
+            <if test="authUrl != null  and authUrl != ''"> and auth_url = #{authUrl}</if>
+            <if test="payCallbackUrl != null  and payCallbackUrl != ''"> and pay_callback_url = #{payCallbackUrl}</if>
+            <if test="orderUrl != null  and orderUrl != ''"> and order_url = #{orderUrl}</if>
+            <if test="createUser != null  and createUser != ''"> and create_user = #{createUser}</if>
+            <if test="updateUser != null  and updateUser != ''"> and update_user = #{updateUser}</if>
+            <if test="sdkParams != null  and sdkParams != ''"> and sdk_params = #{sdkParams}</if>
+            <if test="notes != null  and notes != ''"> and notes = #{notes}</if>
+        </where>
+    </select>
+    
+    <select id="selectTX8ChannelById" parameterType="Long" resultMap="TX8ChannelResult">
+        <include refid="selectTX8ChannelVo"/>
+        where chn_id = #{chnId}
+    </select>
+        
+    <insert id="insertTX8Channel" parameterType="TX8Channel" useGeneratedKeys="true" keyProperty="chnId">
+        insert into t_x8_channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="logicChnId != null">logic_chn_id,</if>
+            <if test="appId != null">app_id,</if>
+            <if test="chnmId != null">chnm_id,</if>
+            <if test="cpAppId != null">cp_app_id,</if>
+            <if test="cpAppKey != null">cp_app_key,</if>
+            <if test="cpAppSecret != null">cp_app_secret,</if>
+            <if test="enablePay != null">enable_pay,</if>
+            <if test="enableLogin != null">enable_login,</if>
+            <if test="cpPayId != null">cp_pay_id,</if>
+            <if test="cpPayKey != null">cp_pay_key,</if>
+            <if test="cpPayPriKey != null">cp_pay_pri_key,</if>
+            <if test="cpConfig != null">cp_config,</if>
+            <if test="authUrl != null">auth_url,</if>
+            <if test="payCallbackUrl != null">pay_callback_url,</if>
+            <if test="orderUrl != null">order_url,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="updateUser != null">update_user,</if>
+            <if test="sdkParams != null">sdk_params,</if>
+            <if test="notes != null">notes,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="logicChnId != null">#{logicChnId},</if>
+            <if test="appId != null">#{appId},</if>
+            <if test="chnmId != null">#{chnmId},</if>
+            <if test="cpAppId != null">#{cpAppId},</if>
+            <if test="cpAppKey != null">#{cpAppKey},</if>
+            <if test="cpAppSecret != null">#{cpAppSecret},</if>
+            <if test="enablePay != null">#{enablePay},</if>
+            <if test="enableLogin != null">#{enableLogin},</if>
+            <if test="cpPayId != null">#{cpPayId},</if>
+            <if test="cpPayKey != null">#{cpPayKey},</if>
+            <if test="cpPayPriKey != null">#{cpPayPriKey},</if>
+            <if test="cpConfig != null">#{cpConfig},</if>
+            <if test="authUrl != null">#{authUrl},</if>
+            <if test="payCallbackUrl != null">#{payCallbackUrl},</if>
+            <if test="orderUrl != null">#{orderUrl},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+            <if test="sdkParams != null">#{sdkParams},</if>
+            <if test="notes != null">#{notes},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTX8Channel" parameterType="TX8Channel">
+        update t_x8_channel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="logicChnId != null">logic_chn_id = #{logicChnId},</if>
+            <if test="appId != null">app_id = #{appId},</if>
+            <if test="chnmId != null">chnm_id = #{chnmId},</if>
+            <if test="cpAppId != null">cp_app_id = #{cpAppId},</if>
+            <if test="cpAppKey != null">cp_app_key = #{cpAppKey},</if>
+            <if test="cpAppSecret != null">cp_app_secret = #{cpAppSecret},</if>
+            <if test="enablePay != null">enable_pay = #{enablePay},</if>
+            <if test="enableLogin != null">enable_login = #{enableLogin},</if>
+            <if test="cpPayId != null">cp_pay_id = #{cpPayId},</if>
+            <if test="cpPayKey != null">cp_pay_key = #{cpPayKey},</if>
+            <if test="cpPayPriKey != null">cp_pay_pri_key = #{cpPayPriKey},</if>
+            <if test="cpConfig != null">cp_config = #{cpConfig},</if>
+            <if test="authUrl != null">auth_url = #{authUrl},</if>
+            <if test="payCallbackUrl != null">pay_callback_url = #{payCallbackUrl},</if>
+            <if test="orderUrl != null">order_url = #{orderUrl},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+            <if test="sdkParams != null">sdk_params = #{sdkParams},</if>
+            <if test="notes != null">notes = #{notes},</if>
+        </trim>
+        where chn_id = #{chnId}
+    </update>
+
+    <delete id="deleteTX8ChannelById" parameterType="Long">
+        delete from t_x8_channel where chn_id = #{chnId}
+    </delete>
+
+    <delete id="deleteTX8ChannelByIds" parameterType="String">
+        delete from t_x8_channel where chn_id in 
+        <foreach item="chnId" collection="array" open="(" separator="," close=")">
+            #{chnId}
+        </foreach>
+    </delete>
+
+</mapper>

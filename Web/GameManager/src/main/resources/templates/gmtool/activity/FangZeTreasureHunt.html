@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('方泽探宝')" />
+    <th:block th:include="include :: footer" />
+    <style>
+        h3{font-weight: lighter}
+    </style>
+
+    <script>
+
+        var actType = [[${type}]];
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+            for (var i=1;i<=9;i++){
+                setConfig(i);
+            }
+        });
+
+        function setConfig(i) {
+            addSaltIpGrp($("#addSaltIpGrpBtn"+i).get(0),i);
+            showOrHide($("#addSaltIpGrpBtn"+i).get(0),i);
+        }
+
+    </script>
+
+    <script>
+        function showOrHide(obj,i) {
+            var cfgName="cfg"+i;
+            var rewardCfgName="rewardCfg"+i;
+            var costCfgName="costCfg"+i;
+            if ($(obj).find("span").attr("class") == "glyphicon glyphicon-plus"){
+                $(obj).find("span").attr("class","glyphicon glyphicon-minus");
+                $(obj).attr("title","折叠");
+                // $("#cfg"+i).show();
+                // $("#rewardCfg"+i).show();
+                $("div[name="+cfgName+"]").show();
+                $("div[name="+rewardCfgName+"]").show();
+                $("div[name="+costCfgName+"]").show();
+            }else {
+                $(obj).find("span").attr("class","glyphicon glyphicon-plus");
+                $(obj).attr("title","展开");
+                // $("#cfg"+i).hide();
+                // $("#rewardCfg"+i).hide();
+                $("div[name="+cfgName+"]").hide();
+                $("div[name="+rewardCfgName+"]").hide();
+                $("div[name="+costCfgName+"]").hide();
+            }
+        }
+    </script>
+
+    <script>
+        function addSaltIpGrp(obj,count) {
+            var rewardInputBase = 'i_RewardGroup' + count;
+            var rewardInput = rewardInputBase + 1;
+            var rewardAddBtnBase = 'showRewardModel' + count;
+            var rewardAddBtn = rewardAddBtnBase + 1;
+            var weight = 'weight' + count;
+            var minDrawNum = 'minDrawNum' + count;
+            var i_RewardGroup = 'i_RewardGroup' + count;
+            var costNum = 'costNum' + count;
+            $(obj).attr("title","折叠");
+            $(obj).find("span").attr("class","glyphicon glyphicon-minus");
+            html = '<div name="cfg'+count+'" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">奖励全部获得后奖励的抽奖道具数量:</label>' +
+                '<input type="text" class="form-control" id="allFinishDrawItemNum" name="allFinishDrawItemNum" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:150px;">' +
+                '<label class="input-group-addon">开启下个图所需完成的探宝次数:</label>' +
+                '<input type="text" class="form-control" id="openNextMapDrawNum" name="openNextMapDrawNum" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:150px;">' +
+                '<label class="input-group-addon">重置本图需要的灵玉数量:</label>' +
+                '<input type="text" class="form-control" id="resetNeedlingyu" name="resetNeedlingyu" style="max-width:150px;">' +
+                '</div>'+
+                '<div name="rewardCfg'+count+'" class="input-group saltIp" style="width:79%;padding:0 0 1px 0;">'+
+                '<h3>奖励设置</h3><h3 style="float: right;margin-top: -25px;margin-left: -100px">消耗设置</h3>'+
+                '</div>'+
+                '<div name="rewardCfg'+count+'" class="input-group saltIp" style="width:100%;padding:0;">'+
+                '<label class="input-group-addon" style="background-color:#ffcc33;width: 94px">大奖权重:</label>'+
+                '<input type="text" class="form-control" id="weight" name="'+weight+'" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:150px;">' +
+                '<label class="input-group-addon">最低抽奖数:</label>'+
+                '<input type="text" class="form-control" id="minDrawNum" name="'+minDrawNum+'" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:150px;">' +
+                '<label class="input-group-addon">奖励列表:</label>' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖励列表" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUILimit(' + rewardInput + ',' + rewardAddBtn + ',1)">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="'+i_RewardGroup+'"/></div>' +
+                '</span>' +
+                '<div name="costCfg'+count+'" class="input-group saltIp" style="width:300px;padding:0 0 1px 0;float:right;">'+
+                '<label class="input-group-addon">奖励1消耗抽奖道具数量:</label>'+
+                '<input type="text" class="form-control" id="costNum" name="'+costNum+'" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">' +
+                '</div>'+
+                '</div>'
+
+            add2to9(obj,count,rewardInputBase,rewardAddBtnBase,weight,minDrawNum,i_RewardGroup,costNum);
+
+            obj.insertAdjacentHTML('afterend', html);
+            addHeightSet();
+        }
+        //每个图的奖励设置(2-9)
+        function add2to9(obj,count,rewardInputBase,rewardAddBtnBase,weight,minDrawNum,i_RewardGroup,costNum) {
+            for (var i=9;i>1;i--){
+                var rewardInput = rewardInputBase + i;
+                var rewardAddBtn = rewardAddBtnBase + i;
+                var html = '<div name="rewardCfg'+count+'" class="input-group saltIp" style="width:100%;padding:0;">'+
+                    '<label class="input-group-addon">奖励'+i+'权重:</label>'+
+                    '<input type="text" class="form-control" id="weight" name="'+weight+'" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:150px;">' +
+                    '<label class="input-group-addon">最低抽奖数:</label>'+
+                    '<input type="text" class="form-control" id="minDrawNum" name="'+minDrawNum+'" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:150px;">' +
+                    '<label class="input-group-addon">奖励列表:</label>' +
+                    '<span class="input-group-btn" >' +
+                    '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖励列表" id="' + rewardAddBtn +
+                    '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUILimit(' + rewardInput + ',' + rewardAddBtn + ',1)">' +
+                    '<span class="glyphicon glyphicon-plus"></span></button>' +
+                    '<div class="hide"><input id="' + rewardInput + '" name="'+i_RewardGroup+'"/></div>' +
+                    '</span>' +
+                    '<div name="costCfg'+count+'" class="input-group saltIp" style="width:300px;padding:0 0 1px 0;float:right;">'+
+                    '<label class="input-group-addon">奖励'+i+'消耗抽奖道具数量:</label>'+
+                    '<input type="text" class="form-control" id="costNum" name="'+costNum+'" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">' +
+                    '</div>'+
+                    '</div>'
+                obj.insertAdjacentHTML('afterend', html);
+            }
+        }
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>方泽探宝<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="在配置活动的时候活动名字,支持多语言展示,需要运营人员使用一下副文本进行填写: [CH]中文简体[/CH][EN]英文[/EN][TW]中文繁体[/TW][KR]韩文[/KR][VIE]越南[/VIE][TH]泰文[/TH][JP]日文[/JP]"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5 ">
+                            <legend>探宝道具</legend>
+                            <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                <label class="input-group-addon ">道具ID:</label>
+                                <input type="text" class="form-control " id="drawItemId" name="drawItemId" onkeyup="value=value.replace(/\D/g,'')" style="max-width:390px;">
+                                <label class="input-group-addon ">每个道具的灵玉价值:</label>
+                                <input type="text" class="form-control " id="drawItemNeedLingyu" name="drawItemNeedLingyu" onkeyup="value=value.replace(/\D/g,'')" style="max-width:390px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>探宝设置</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup1">
+                                    <label class="input-group-addon2">第一图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,1)" id="addSaltIpGrpBtn1"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup2" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第二图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,2)" id="addSaltIpGrpBtn2"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup3" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第三图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,3)" id="addSaltIpGrpBtn3"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup4" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第四图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,4)" id="addSaltIpGrpBtn4"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup5" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第五图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,5)" id="addSaltIpGrpBtn5"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup6" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第六图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,6)" id="addSaltIpGrpBtn6"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup7" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第七图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,7)" id="addSaltIpGrpBtn7"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup8" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第八图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,8)" id="addSaltIpGrpBtn8"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                                <div class="input-group" id="saltIpGroup9" style="margin-top: 20px">
+                                    <label class="input-group-addon2">第九图:</label>
+                                    <button class="btn btn-info" type="button" title="展开" onclick="showOrHide(this,9)" id="addSaltIpGrpBtn9"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

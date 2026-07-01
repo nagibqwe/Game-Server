@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('历史记录')"/>
+    <th:block th:include="include :: footer"/>
+</head>
+<body class="gray-bg">
+<div id="chatData">
+
+</div>
+
+
+<script th:inline="javascript">
+    var chatlogList = [[${chatlogList}]];
+    $(function () {
+        console.log(JSON.stringify(chatlogList));
+
+        var tableStr = createChatResult(null, chatlogList);
+
+        $("#chatData").html(tableStr);
+
+    });
+
+    function createChatResult(fields, datas) {
+        var list_html = "<div>";
+        for (var i = 0; i < datas.length; i++) {
+            var record = datas[i];
+            list_html += "<label>";
+            list_html += record["time"] + "[" + getChannel(record["channel"]) + "]";
+            list_html += "<span style='color: #0e90d2'>" + record["roleName"] + "</span>";
+            if (record["receRoleId"] != "0") {
+                list_html += "对" + record["receRoleId"];
+            }
+            list_html += "说:" + record["content"];
+            list_html += "</label></br>";
+        }
+        list_html += "</div>";
+        return list_html;
+    };
+
+</script>
+</body>
+</html>

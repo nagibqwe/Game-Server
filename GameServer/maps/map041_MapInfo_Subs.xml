@@ -1,0 +1,2506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Object type="Object"
+name="[ServerSceneEditor]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="[NpcStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+</Object>
+<Object type="Object"
+name="[WayPoint]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="WayPoint">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="115.15,16.8466,51.15,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="0"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint"
+valueType="System.String"/>
+<m_id type="Atom"
+value="0"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="107.3,19.26089,51.15,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint1"
+valueType="System.String"/>
+<m_id type="Atom"
+value="1"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint2">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="104.93,19.26089,61.96,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint2"
+valueType="System.String"/>
+<m_id type="Atom"
+value="2"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint3">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.6,19.26089,67.87,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint2"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint3"
+valueType="System.String"/>
+<m_id type="Atom"
+value="3"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint4">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.40807,20.42519,70.93,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint3"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint4"
+valueType="System.String"/>
+<m_id type="Atom"
+value="4"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint5">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="87.34,21.57669,72.21999,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint4"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint5"
+valueType="System.String"/>
+<m_id type="Atom"
+value="5"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint6">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="87,21.73219,62.2,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint5"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint6"
+valueType="System.String"/>
+<m_id type="Atom"
+value="6"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint7">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="87.3,21.73536,53.39,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint6"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint7"
+valueType="System.String"/>
+<m_id type="Atom"
+value="7"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint8">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="80.81001,21.73219,52.44,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint7"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint8"
+valueType="System.String"/>
+<m_id type="Atom"
+value="8"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint9">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="75.28999,21.73219,50.99,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint8"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint9"
+valueType="System.String"/>
+<m_id type="Atom"
+value="9"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint10">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="71.74,21.73219,50.67,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint9"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint10"
+valueType="System.String"/>
+<m_id type="Atom"
+value="10"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint11">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="61.44,26.97489,50.63,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint10"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint11"
+valueType="System.String"/>
+<m_id type="Atom"
+value="11"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint12">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="51.4,24.53366,50.88,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint11"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint12"
+valueType="System.String"/>
+<m_id type="Atom"
+value="12"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint13">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="42.84,24.69754,50.78,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint12"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint13"
+valueType="System.String"/>
+<m_id type="Atom"
+value="13"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint14">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="37.38,24.93854,50.69,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint13"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint14"
+valueType="System.String"/>
+<m_id type="Atom"
+value="14"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint15">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="91.75,21.7322,48.24,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint7"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint15"
+valueType="System.String"/>
+<m_id type="Atom"
+value="15"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint16">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="82.57,21.7322,47.82,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint7"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint16"
+valueType="System.String"/>
+<m_id type="Atom"
+value="16"
+valueType="System.Int32"/>
+</component>
+</Object>
+<Object type="Object"
+name="WayPoint17">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="87.24,21.7322,44.87,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.WayPoint, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<m_neighbors type="List"
+count="1"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]">
+<item type="WayPoint"
+name="WayPoint7"
+valueType="System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+</m_neighbors>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="WayPoint17"
+valueType="System.String"/>
+<m_id type="Atom"
+value="17"
+valueType="System.Int32"/>
+</component>
+</Object>
+</Object>
+<Object type="Object"
+name="[CollectionStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="CollectionStub">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.77,21.7322,60.95,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="210"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_210"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100002"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_210(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.77,21.7322,60.95,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.58,21.73219,59.24,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.58,21.73219,59.24,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.57,21.73219,59.235,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.58,21.73219,59.757,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.826,21.87519,59.541,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.109,21.73219,59.24,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.122,21.73219,59.781,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (2)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.92,21.73219,60.68,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.92,21.73219,60.68,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.91,21.73219,60.675,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.92,21.73219,61.197,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="79.166,21.87519,60.981,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="79.449,21.73219,60.68,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="79.462,21.73219,61.221,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (3)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.48,21.73219,62.11,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.48,21.73219,62.11,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.47,21.73219,62.105,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.48,21.73219,62.627,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="77.72601,21.87519,62.411,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.009,21.73219,62.11,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="78.022,21.73219,62.651,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (4)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.16,21.73219,60.65,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.16,21.73219,60.65,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.15,21.73219,60.645,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.16,21.73219,61.167,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.40601,21.87519,60.951,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.689,21.73219,60.65,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.702,21.73219,61.191,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (5)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.64,21.7322,63.04,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="210"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_210"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100002"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_210(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.64,21.7322,63.04,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (6)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.45,21.73219,61.33,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.45,21.73219,61.33,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.44,21.73219,61.325,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.45,21.73219,61.847,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.69601,21.87519,61.631,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.979,21.73219,61.33,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.992,21.73219,61.871,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (7)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.79,21.73219,62.77,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.79,21.73219,62.77,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.78,21.73219,62.765,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.79,21.73219,63.287,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.036,21.87519,63.071,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.319,21.73219,62.77,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.332,21.73219,63.311,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (8)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.35001,21.73219,64.2,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.35001,21.73219,64.2,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.34,21.73219,64.19501,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.35001,21.73219,64.717,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.59601,21.87519,64.50101,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.87901,21.73219,64.2,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.89201,21.73219,64.741,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (9)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.03001,21.7322,62.74,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.03001,21.7322,62.74,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.02,21.7322,62.735,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.03001,21.7322,63.257,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.27601,21.8752,63.041,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.55901,21.7322,62.74,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.57201,21.7322,63.281,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (10)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.81999,21.7322,52.49,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="210"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_210"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100002"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_210(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.81999,21.7322,52.49,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (11)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.63,21.73219,50.78,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.63,21.73219,50.78,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.62,21.73219,50.775,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.63,21.73219,51.297,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.876,21.87519,51.081,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.159,21.73219,50.78,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.172,21.73219,51.321,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (12)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.97,21.73219,52.22,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.97,21.73219,52.22,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.96,21.73219,52.215,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.97,21.73219,52.737,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.216,21.87519,52.521,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.499,21.73219,52.22,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.512,21.73219,52.761,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (13)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.53,21.73219,53.65,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.53,21.73219,53.65,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.52,21.73219,53.645,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.53,21.73219,54.167,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.776,21.87519,53.951,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.059,21.73219,53.65,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.072,21.73219,54.191,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (14)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.21,21.73219,52.19,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.21,21.73219,52.19,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.2,21.73219,52.185,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.21,21.73219,52.707,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.456,21.87519,52.491,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.739,21.73219,52.19,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.752,21.73219,52.731,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (15)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.58,21.7322,39.69,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="210"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_210"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100002"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_210(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.58,21.7322,39.69,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (16)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.39001,21.73219,37.98,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.39001,21.73219,37.98,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.38,21.73219,37.975,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.39001,21.73219,38.497,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.63601,21.87519,38.281,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.91901,21.73219,37.98,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.93201,21.73219,38.521,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (17)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.73,21.73219,39.42,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.73,21.73219,39.42,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.72,21.73219,39.415,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.73,21.73219,39.937,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="95.97601,21.87519,39.721,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="96.259,21.73219,39.42,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="96.272,21.73219,39.961,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (18)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.29001,21.73219,40.85,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.29001,21.73219,40.85,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.28001,21.73219,40.845,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.29001,21.73219,41.367,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.53601,21.87519,41.151,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.81901,21.73219,40.85,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="94.83201,21.73219,41.391,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (19)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.97001,21.7322,39.39,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.97001,21.7322,39.39,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.96001,21.7322,39.385,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="92.97001,21.7322,39.907,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.21601,21.8752,39.691,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.49901,21.7322,39.39,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="93.51201,21.7322,39.931,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (20)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.56999,21.73221,36.66,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="210"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_210"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100002"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_210(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.56999,21.73221,36.66,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (21)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.38,21.73219,34.95,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.38,21.73219,34.95,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.37,21.73219,34.945,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.38,21.73219,35.467,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.626,21.87519,35.251,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.909,21.73219,34.95,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.922,21.73219,35.491,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (22)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="84.71999,21.73219,36.39,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="84.71999,21.73219,36.39,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="84.70999,21.73219,36.385,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="84.71999,21.73219,36.907,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="84.966,21.87519,36.691,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="85.24899,21.73219,36.39,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="85.26199,21.73219,36.931,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (23)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.28,21.73219,37.82,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.28,21.73219,37.82,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.27,21.73219,37.815,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.28,21.73219,38.337,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.526,21.87519,38.121,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.809,21.73219,37.82,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="83.822,21.73219,38.361,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (24)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="81.96,21.7322,36.36,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="81.96,21.7322,36.36,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="81.95,21.7322,36.355,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="81.96,21.7322,36.877,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="82.206,21.8752,36.661,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="82.489,21.7322,36.36,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="82.502,21.7322,36.901,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (25)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.98999,21.7322,44.74,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="210"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_210"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100002"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_210(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.98999,21.7322,44.74,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (26)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.8,21.73219,43.03,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.8,21.73219,43.03,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.78999,21.73219,43.025,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.8,21.73219,43.547,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="75.046,21.87519,43.331,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="75.32899,21.73219,43.03,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="75.342,21.73219,43.571,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (27)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.13999,21.73219,44.47,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.13999,21.73219,44.47,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.12999,21.73219,44.465,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.13999,21.73219,44.987,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.38599,21.87519,44.771,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.66899,21.73219,44.47,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="76.68199,21.73219,45.011,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (28)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.7,21.73219,45.9,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.7,21.73219,45.9,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.68999,21.73219,45.895,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.7,21.73219,46.417,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="74.946,21.87519,46.201,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="75.229,21.73219,45.9,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="75.242,21.73219,46.441,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="CollectionStub (29)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="73.38,21.7322,44.44,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="220"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_220"
+valueType="System.String"/>
+<m_id type="Atom"
+value="100001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_220(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="73.38,21.7322,44.44,0,0,0"/>
+<Object type="Object"
+name="map041_shiwu02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="73.37,21.7322,44.435,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu03">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="73.38,21.7322,44.957,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu05">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="73.626,21.8752,44.741,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu04">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="73.909,21.7322,44.44,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="map041_shiwu02 (1)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="73.922,21.7322,44.981,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+

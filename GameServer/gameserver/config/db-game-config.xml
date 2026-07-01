@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="defaultStatementTimeout" value="120"/>
+    </settings>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <property name="poolPingQuery" value="select 1"/>
+                <property name="poolPingEnabled" value="true"/>
+                <property name="poolPingConnectionsNotUsedFor" value="3600000"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/game/db/sqlmap/role.xml"/>
+        <mapper resource="com/game/db/sqlmap/gold.xml"/>
+        <mapper resource="com/game/db/sqlmap/mail.xml"/>
+        <mapper resource="com/game/db/sqlmap/serverParam.xml"/>
+        <mapper resource="com/game/db/sqlmap/jjc.xml"/>
+        <mapper resource="com/game/db/sqlmap/goldChange.xml"/>
+        <mapper resource="com/game/db/sqlmap/activityConfig.xml"/>
+        <mapper resource="com/game/db/sqlmap/activityData.xml"/>
+        <mapper resource="com/game/db/sqlmap/roleActivityData.xml"/>
+        <mapper resource="com/game/db/sqlmap/RechargeBeanMapper.xml"/>
+        <mapper resource="com/game/db/sqlmap/userActivity.xml"/>
+        <mapper resource="com/game/db/sqlmap/forbidword.xml"/>
+        <mapper resource="com/game/db/sqlmap/PlayerWorldInfo.xml"/>
+        <mapper resource="com/game/db/sqlmap/friend.xml"/>
+        <mapper resource="com/game/db/sqlmap/guild.xml"/>
+        <mapper resource="com/game/db/sqlmap/guildMember.xml"/>
+        <mapper resource="com/game/db/sqlmap/rankplayer.xml"/>
+        <mapper resource="com/game/db/sqlmap/roleLoginInfo.xml"/>
+        <mapper resource="com/game/db/sqlmap/newServerActivity.xml"/>
+        <mapper resource="com/game/db/sqlmap/redpacket.xml"/>
+        <mapper resource="com/game/db/sqlmap/activityrank.xml"/>
+        <mapper resource="com/game/db/sqlmap/bossDieRecord.xml"/>
+        <mapper resource="com/game/db/sqlmap/DailyAccRecharge.xml"/>
+        <mapper resource="com/game/db/sqlmap/auction.xml"/>
+        <mapper resource="com/game/db/sqlmap/marray.xml"/>
+        <mapper resource="com/game/db/sqlmap/PeakPk.xml"/>
+        <mapper resource="com/game/db/sqlmap/ShopBeanMapper.xml"/>
+        <mapper resource="com/game/db/sqlmap/ChumBeanMapper.xml"/>
+    </mappers>
+
+</configuration> 

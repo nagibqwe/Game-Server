@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="ActiveCode">
+    <resultMap id="bean" type="com.game.db.bean.ActiveCodeBean" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="activeName" property="activeName" jdbcType="VARCHAR" />
+        <result column="batch" property="batch" jdbcType="VARCHAR" />
+        <result column="itemList" property="itemList" jdbcType="LONGVARCHAR" />
+        <result column="param" property="param" jdbcType="INTEGER" />
+        <result column="valide_time_begin" property="valide_time_begin" jdbcType="VARCHAR" />
+        <result column="valide_time_end" property="valide_time_end" jdbcType="VARCHAR" />
+        <result column="plateform_name_big" property="plateform_name_big" jdbcType="VARCHAR" />
+        <result column="plateform_name_small" property="plateform_name_small" jdbcType="VARCHAR" />
+        <result column="valide_server_id_list" property="valide_server_id_list" jdbcType="VARCHAR" />
+        <result column="get_player_id" property="get_player_id" jdbcType="BIGINT" />
+        <result column="get_server_id" property="get_server_id" jdbcType="BIGINT" />
+        <result column="get_account_id" property="get_account_id" jdbcType="BIGINT" />
+        <result column="get_plateform_aid" property="get_plateform_aid" jdbcType="VARCHAR" />
+        <result column="get_plateform_name" property="get_plateform_name" jdbcType="VARCHAR" />
+        <result column="deleteTime" property="deleteTime" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from ActiveCode
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.ActiveCodeBean">
+        insert into ActiveCode (id,code,activeName,batch,itemList,param,valide_time_begin,valide_time_end,plateform_name_big,plateform_name_small,valide_server_id_list,get_player_id,get_server_id,get_account_id,get_plateform_aid,get_plateform_name,deleteTime)
+        values
+        (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{activeName,jdbcType=INTEGER}, #{batch,jdbcType=VARCHAR}, #{itemList,jdbcType=LONGVARCHAR}, 
+        #{param,jdbcType=INTEGER}, #{valide_time_begin,jdbcType=VARCHAR}, #{valide_time_end,jdbcType=VARCHAR}, #{plateform_name_big,jdbcType=VARCHAR}, #{plateform_name_small,jdbcType=VARCHAR}, 
+        #{valide_server_id_list,jdbcType=VARCHAR}, #{get_player_id,jdbcType=BIGINT}, #{get_server_id,jdbcType=BIGINT}, #{get_account_id,jdbcType=BIGINT}, #{get_plateform_aid,jdbcType=VARCHAR}, #{get_plateform_name,jdbcType=VARCHAR},#{deleteTime,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <select id="update" parameterType="com.game.db.bean.ActiveCodeBean" resultType="java.lang.Integer">
+        update ActiveCode set get_player_id=#{get_player_id,jdbcType=BIGINT },get_account_id=#{get_account_id,jdbcType=BIGINT },get_server_id=#{get_server_id,jdbcType=BIGINT },get_plateform_aid=#{get_plateform_aid,jdbcType=VARCHAR },
+        get_plateform_name=#{get_plateform_name,jdbcType=VARCHAR },deleteTime=#{deleteTime,jdbcType=INTEGER } where code = #{code,jdbcType=VARCHAR } and get_player_id = 0
+        <!--call updateGetedActiveCode(#{code,jdbcType=VARCHAR },#{get_player_id,jdbcType=BIGINT },#{get_account_id,jdbcType=BIGINT },#{get_plateform_aid,jdbcType=VARCHAR },
+        #{get_plateform_name,jdbcType=VARCHAR })
+        -->
+    </select>
+    
+    <select id="select" resultMap="bean" parameterType="java.lang.String">
+        select * from ActiveCode where code = #{code,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="getBatchCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select count(*) from ActiveCode where get_player_id = #{get_player_id,jdbcType=BIGINT} and batch = #{batch,jdbcType=VARCHAR}
+    </select>
+		
+</mapper>
+

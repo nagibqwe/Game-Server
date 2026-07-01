@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.channel.mapper.SdkChannelMapper">
+    
+    <resultMap type="SdkChannel" id="SdkChannelResult">
+        <result property="id"    column="id"    />
+        <result property="channelId"    column="channel_id"    />
+        <result property="channelName"    column="channel_name"    />
+        <result property="isUse"    column="is_use"    />
+    </resultMap>
+
+    <sql id="selectSdkChannelVo">
+        select id, channel_id, channel_name, is_use from sdk_channel
+    </sql>
+
+    <select id="selectSdkChannelList" parameterType="SdkChannel" resultMap="SdkChannelResult">
+        <include refid="selectSdkChannelVo"/>
+        <where>  
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+            <if test="channelName != null  and channelName != ''"> and channel_name like concat('%', #{channelName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectSdkChannelById" parameterType="Long" resultMap="SdkChannelResult">
+        <include refid="selectSdkChannelVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSdkChannel" parameterType="SdkChannel" useGeneratedKeys="true" keyProperty="id">
+        insert into sdk_channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="channelId != null">channel_id,</if>
+            <if test="channelName != null">channel_name,</if>
+            <if test="isUse != null">is_use,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="channelId != null">#{channelId},</if>
+            <if test="channelName != null">#{channelName},</if>
+            <if test="isUse != null">#{isUse},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSdkChannel" parameterType="SdkChannel">
+        update sdk_channel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="channelId != null">channel_id = #{channelId},</if>
+            <if test="channelName != null">channel_name = #{channelName},</if>
+            <if test="isUse != null">is_use = #{isUse},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSdkChannelById" parameterType="Long">
+        delete from sdk_channel where id = #{id}
+    </delete>
+
+    <delete id="deleteSdkChannelByIds" parameterType="String">
+        delete from sdk_channel where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectChannels" parameterType="String" resultMap="SdkChannelResult">
+        select * from sdk_channel where is_use=0 or channel_id in
+        <foreach item="channel_id" collection="array" open="(" separator="," close=")">
+            #{channel_id}
+        </foreach>
+    </select>
+    <select id="selectShowChannels" parameterType="String" resultMap="SdkChannelResult">
+        select * from sdk_channel where channel_id in
+        <foreach item="channel_id" collection="array" open="(" separator="," close=")">
+            #{channel_id}
+        </foreach>
+    </select>
+    <update id="updateSdkChannelIsUse" parameterType="java.util.Map">
+        update sdk_channel set is_use = #{isUse} where channel_id in
+        <foreach item="channel_id" collection="channelIds" open="(" separator="," close=")">
+            #{channel_id}
+        </foreach>
+    </update>
+    <select id="selectChannelIdsByIds" parameterType="String" resultType="Long">
+        select channel_id from sdk_channel where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

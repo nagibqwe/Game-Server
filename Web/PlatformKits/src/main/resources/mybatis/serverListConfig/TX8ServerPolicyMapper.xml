@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.x8serverExtra.mapper.TX8ServerPolicyMapper">
+    
+    <resultMap type="TX8ServerPolicy" id="TX8ServerPolicyResult">
+        <result property="policyId"    column="policy_id"    />
+        <result property="gameId"    column="game_id"    />
+        <result property="chnId"    column="chn_id"    />
+        <result property="svrId"    column="svr_id"    />
+        <result property="sortId"    column="sort_id"    />
+        <result property="svrStatus"    column="svr_status"    />
+        <result property="svrTag"    column="svr_tag"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="sceId"    column="sce_id"    />
+        <result property="svrPreStatus"    column="svr_pre_status"    />
+        <result property="svrPreTag"    column="svr_pre_tag"    />
+        <result property="svrPreStatusDate"    column="svr_pre_status_date"    />
+        <result property="svrPreTagDate"    column="svr_pre_tag_date"    />
+    </resultMap>
+
+    <sql id="selectTX8ServerPolicyVo">
+        select policy_id, game_id, chn_id, svr_id, sort_id, svr_status, svr_tag, update_time, create_time, sce_id, svr_pre_status, svr_pre_tag, svr_pre_status_date, svr_pre_tag_date from t_x8_server_policy
+    </sql>
+
+    <select id="selectTX8ServerPolicyList" parameterType="TX8ServerPolicy" resultMap="TX8ServerPolicyResult">
+        <include refid="selectTX8ServerPolicyVo"/>
+        <where>  
+            <if test="gameId != null "> and game_id = #{gameId}</if>
+            <if test="chnId != null "> and chn_id = #{chnId}</if>
+            <if test="svrId != null "> and svr_id = #{svrId}</if>
+            <if test="sortId != null "> and sort_id = #{sortId}</if>
+            <if test="svrStatus != null "> and svr_status = #{svrStatus}</if>
+            <if test="svrTag != null  and svrTag != ''"> and svr_tag = #{svrTag}</if>
+            <if test="sceId != null  and sceId != ''"> and sce_id = #{sceId}</if>
+            <if test="svrPreStatus != null "> and svr_pre_status = #{svrPreStatus}</if>
+            <if test="svrPreTag != null  and svrPreTag != ''"> and svr_pre_tag = #{svrPreTag}</if>
+            <if test="svrPreStatusDate != null  and svrPreStatusDate != ''"> and svr_pre_status_date = #{svrPreStatusDate}</if>
+            <if test="svrPreTagDate != null  and svrPreTagDate != ''"> and svr_pre_tag_date = #{svrPreTagDate}</if>
+        </where>
+    </select>
+    
+    <select id="selectTX8ServerPolicyById" parameterType="Long" resultMap="TX8ServerPolicyResult">
+        <include refid="selectTX8ServerPolicyVo"/>
+        where policy_id = #{policyId}
+    </select>
+        
+    <insert id="insertTX8ServerPolicy" parameterType="TX8ServerPolicy" useGeneratedKeys="true" keyProperty="policyId">
+        insert into t_x8_server_policy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="gameId != null">game_id,</if>
+            <if test="chnId != null">chn_id,</if>
+            <if test="svrId != null">svr_id,</if>
+            <if test="sortId != null">sort_id,</if>
+            <if test="svrStatus != null">svr_status,</if>
+            <if test="svrTag != null and svrTag != ''">svr_tag,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="sceId != null">sce_id,</if>
+            <if test="svrPreStatus != null">svr_pre_status,</if>
+            <if test="svrPreTag != null">svr_pre_tag,</if>
+            <if test="svrPreStatusDate != null">svr_pre_status_date,</if>
+            <if test="svrPreTagDate != null">svr_pre_tag_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gameId != null">#{gameId},</if>
+            <if test="chnId != null">#{chnId},</if>
+            <if test="svrId != null">#{svrId},</if>
+            <if test="sortId != null">#{sortId},</if>
+            <if test="svrStatus != null">#{svrStatus},</if>
+            <if test="svrTag != null and svrTag != ''">#{svrTag},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="sceId != null">#{sceId},</if>
+            <if test="svrPreStatus != null">#{svrPreStatus},</if>
+            <if test="svrPreTag != null">#{svrPreTag},</if>
+            <if test="svrPreStatusDate != null">#{svrPreStatusDate},</if>
+            <if test="svrPreTagDate != null">#{svrPreTagDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTX8ServerPolicy" parameterType="TX8ServerPolicy">
+        update t_x8_server_policy
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="gameId != null">game_id = #{gameId},</if>
+            <if test="chnId != null">chn_id = #{chnId},</if>
+            <if test="svrId != null">svr_id = #{svrId},</if>
+            <if test="sortId != null">sort_id = #{sortId},</if>
+            <if test="svrStatus != null">svr_status = #{svrStatus},</if>
+            <if test="svrTag != null and svrTag != ''">svr_tag = #{svrTag},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="sceId != null">sce_id = #{sceId},</if>
+            <if test="svrPreStatus != null">svr_pre_status = #{svrPreStatus},</if>
+            <if test="svrPreTag != null">svr_pre_tag = #{svrPreTag},</if>
+            <if test="svrPreStatusDate != null">svr_pre_status_date = #{svrPreStatusDate},</if>
+            <if test="svrPreTagDate != null">svr_pre_tag_date = #{svrPreTagDate},</if>
+        </trim>
+        where policy_id = #{policyId}
+    </update>
+
+    <delete id="deleteTX8ServerPolicyById" parameterType="Long">
+        delete from t_x8_server_policy where policy_id = #{policyId}
+    </delete>
+
+    <delete id="deleteTX8ServerPolicyByIds" parameterType="String">
+        delete from t_x8_server_policy where policy_id in 
+        <foreach item="policyId" collection="array" open="(" separator="," close=")">
+            #{policyId}
+        </foreach>
+    </delete>
+
+</mapper>

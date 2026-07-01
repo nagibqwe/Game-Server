@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增聊天替换字')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-replaceWord-add">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div th:replace="common/select_server_single.html"></div>
+                    <!--此处作为服务器请求分组地址映射设置地方-->
+                    <input type="hidden" id="requestUrl" value="gameServer">
+                    <input type="hidden" id="ignoreMerge" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">类型：</label>
+                    <div class="col-sm-8">
+                        <select id="replaceType" class="form-control">
+                            <option value="0">关键字</option>
+                            <option value="1">整句话</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">内容：</label>
+                    <div class="col-sm-8">
+                        <input id="word" class="form-control" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">替换内容：</label>
+                    <div class="col-sm-8">
+                        <textarea id="replaceWord" class="form-control" ></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/banChat";
+
+        $(function() {
+            $("#select_group_label").attr('class','col-sm-3 control-label');
+        });
+
+        $("#form-replaceWord-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/addReplaceWord",
+                    // $('#form-replaceWord-add').serialize()
+                    {
+                        "serverId" : $("#select_server").val(),
+                        "replaceType" : $("#replaceType").val(),
+                        "word" : $("#word").val(),
+                        "replaceWord" : $("#replaceWord").val()
+                    }
+                );
+            }
+        }
+    </script>
+</body>
+</html>

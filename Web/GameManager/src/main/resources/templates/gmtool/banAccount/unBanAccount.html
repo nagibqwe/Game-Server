@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('账号解封列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>封号的条件：</label>
+                                <input type="text" name="con"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+<!--                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="gmtool:banAccount:add">-->
+<!--                    <i class="fa fa-plus"></i> 添加-->
+<!--                </a>-->
+<!--                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:banAccount:edit">-->
+<!--                    <i class="fa fa-edit"></i> 修改-->
+<!--                </a>-->
+<!--                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:banAccount:remove">-->
+<!--                    <i class="fa fa-remove"></i> 删除-->
+<!--                </a>-->
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:banAccount:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        // var editFlag = [[${@permission.hasPermi('gmtool:banAccount:edit')}]];
+        // var removeFlag = [[${@permission.hasPermi('gmtool:banAccount:remove')}]];
+        var prefix = ctx + "gmtool/banAccount";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                // createUrl: prefix + "/add",
+                // updateUrl: prefix + "/edit/{id}",
+                // removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "账号解封",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },
+                {
+                    field: 'con',
+                    title: '封号的条件'
+                },
+                {
+                    field: 'endTime',
+                    title: '封禁结束时间'
+                },
+                {
+                    field: 'state',
+                    title: '状态0:封禁1:解封'
+                },
+                {
+                    field: 'reason',
+                    title: '操作理由'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="unBanAccount(' + row.id + ')">解除封号</a> ');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        //解除封禁
+        function unBanAccount(id){
+            $.modal.confirm("确认是否解除？",function () {
+                $.ajax({
+                    url: prefix + "/unBan",
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        "id": id
+                    },
+                    beforeSend: function () {
+                        $.modal.loading("正在处理中，请稍后...");
+                        $.modal.disable();
+                    },
+                    success: function (data) {
+                        $.modal.alertWarning(data.msg);
+                        $.modal.closeLoading();
+                        $.modal.enable();
+                        $.table.refresh();
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

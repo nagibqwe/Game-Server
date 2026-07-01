@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改公告管理')" />
+    <th:block th:include="include :: datetimepicker-css" />
+    <th:block th:include="include :: select2-css" />
+    <th:block th:include="include :: bootstrap-select-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-notice-edit" th:object="${sdkNotice}">
+            <input name="noticeId" th:field="*{noticeId}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">公告名：</label>
+                <div class="col-sm-8">
+                    <input name="noticeName" th:field="*{noticeName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">公告类型：</label>
+                <div class="col-sm-8">
+                    <select name="noticeType" class="form-control m-b" th:with="type=${@dict.getType('notice_type')}">
+                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{noticeType}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">公告内容：</label>
+                <div class="col-sm-8">
+                    <textarea name="noticeContent" class="form-control">[[*{noticeContent}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">渠道：</label>
+                <div class="col-sm-5">
+                    <select id="channel" class="form-control noselect2 selectpicker" data-none-selected-text="请选择渠道" multiple>
+
+                    </select>
+                    <input type="hidden" name="channel" th:field="*{channel}">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">备注：</label>
+                <div class="col-sm-8">
+                    <input name="remark" th:field="*{remark}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否自动弹出：</label>
+                <div class="col-sm-8">
+                    <div class="radio-box" th:each="dict : ${@dict.getType('notice_auto')}">
+                        <input type="radio" th:id="${'auto_' + dict.dictCode}" name="auto" th:value="${dict.dictValue}" th:field="*{auto}">
+                        <label th:for="${'auto_' + dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">开始时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="startTime" th:value="${#dates.format(sdkNotice.startTime, 'yyyy-MM-dd HH:mm:ss')}" class="form-control" readonly placeholder="yyyy-MM-dd HH:mm:ss" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">结束时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="endTime" th:value="${#dates.format(sdkNotice.endTime, 'yyyy-MM-dd HH:mm:ss')}" class="form-control" readonly placeholder="yyyy-MM-dd HH:mm:ss" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">状态：</label>
+                <div class="col-sm-8">
+                    <div class="radio-box" th:each="dict : ${@dict.getType('notice_status')}">
+                        <input type="radio" th:id="${'status_' + dict.dictCode}" name="status" th:value="${dict.dictValue}" th:field="*{status}">
+                        <label th:for="${'status_' + dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <th:block th:include="include :: select2-js" />
+    <th:block th:include="include :: bootstrap-select-js" />
+    <script th:src="@{/ruoyi/js/global.js}"></script>
+    <script th:inline="javascript">
+        $(function () {
+            loadChannelsInfo();
+            var hasChannels=$("input[name='channel']").val();
+            loadHaveChannelsInfo(hasChannels);
+        });
+        var prefix = ctx + "serverListConfig/notice";
+        $("#form-notice-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-notice-edit').serialize());
+            }
+        }
+
+        $("input[name='startTime']").datetimepicker({
+            CustomFormat: "yyyy-mm-dd HH:mm:ss",
+            // minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='endTime']").datetimepicker({
+            CustomFormat: "yyyy-mm-dd HH:mm:ss",
+            // minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>

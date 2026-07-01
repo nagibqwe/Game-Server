@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Object type="Object"
+name="[ServerSceneEditor]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="[NpcStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="NpcStub">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.95,22.38931,185.36,0,15.2,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.NpcStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="10014"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="m_10014"
+valueType="System.String"/>
+<m_id type="Atom"
+value="39001"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="m_10014(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.95,22.38931,185.36,0,15.2,0"/>
+<component type="Component"
+valueType="UnityEngine.Animation, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.CharacterController, UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<Object type="Object"
+name="Bip001">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9419,23.11354,185.3222,270,105.1999,0"/>
+<Object type="Object"
+name="Bip001 Pelvis">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9419,23.11354,185.3222,0,285.1998,270"/>
+<Object type="Object"
+name="Bip001 Spine">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9419,23.25316,185.322,8.708491E-05,285.2001,269.9544"/>
+<Object type="Object"
+name="Bip001 L Thigh">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8362,23.11354,185.3509,2.962786,104.7713,93.55782"/>
+<Object type="Object"
+name="Bip001 L Calf">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.811,22.73044,185.3329,2.962783,104.7713,93.97838"/>
+<Object type="Object"
+name="Bip001 L Foot">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.7917,22.44596,185.3175,-7.513208E-05,91.52666,90.00002"/>
+<Object type="Object"
+name="Bip001 L Toe0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.7941,22.39014,185.41,-7.416184E-05,91.52666,2.804443E-05"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Thigh">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0477,23.11354,185.2935,357.037,105.6286,93.55782"/>
+<Object type="Object"
+name="Bip001 R Calf">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0603,22.73044,185.2651,357.037,105.6286,93.97837"/>
+<Object type="Object"
+name="Bip001 R Foot">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0692,22.44596,185.2421,-8.025472E-05,118.8732,89.99999"/>
+<Object type="Object"
+name="Bip001 R Toe0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.1139,22.39014,185.3232,-7.293689E-05,118.8732,-7.832402E-06"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 Spine1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9419,23.41034,185.322,8.708491E-05,285.2001,269.9544"/>
+<Object type="Object"
+name="Bip001 Neck">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9419,23.64249,185.3221,8.708491E-05,285.2001,269.9544"/>
+<Object type="Object"
+name="Bip001 Head">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9419,23.6789,185.3222,8.025472E-05,285.2001,270.0001"/>
+<Object type="Object"
+name="Bone001">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9103,23.83373,185.2141,-8.537737E-05,105.2,102.9074"/>
+<Object type="Object"
+name="Bone002">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9014,23.68452,185.1811,-8.366982E-05,105.2,102.0949"/>
+<Object type="Object"
+name="Bone003">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8949,23.56848,185.1571,-7.854718E-05,105.2,88.88758"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone025">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0127,23.8375,185.343,353.041,13.57629,103.1681"/>
+<Object type="Object"
+name="Bone026">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0337,23.75608,185.3481,353.041,13.57628,84.78072"/>
+<Object type="Object"
+name="Bone027">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0289,23.67706,185.3592,353.041,13.57629,85.10544"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone029">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.872,23.80453,185.3812,6.882482,15.05744,88.8103"/>
+<Object type="Object"
+name="Bone030">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8683,23.73398,185.3734,6.882486,15.05736,94.82325"/>
+<Object type="Object"
+name="Bone031">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.871,23.68233,185.3662,344.5025,12.54528,96.52412"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 L Clavicle">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8913,23.58466,185.2952,283.2879,285.1999,90.00004"/>
+<Object type="Object"
+name="Bip001 L UpperArm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.7642,23.55355,185.3297,330.6667,288.4321,83.42427"/>
+<Object type="Object"
+name="Bip001 L Forearm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.6531,23.36043,185.3398,330.6667,288.4321,99.57147"/>
+<Object type="Object"
+name="Bip001 L Hand">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.5861,23.21834,185.3911,8.312286,203.1945,119.6834"/>
+<Object type="Object"
+name="Bip001 L Finger0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.613,23.1967,185.4264,351.1342,308.9349,117.7414"/>
+<Object type="Object"
+name="Bip001 L Finger01">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.6181,23.17234,185.4389,351.1342,308.9349,104.3724"/>
+<Object type="Object"
+name="Bip001 L Finger02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.6193,23.14458,185.4472,351.1342,308.9349,91.0034"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 L Finger1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.5567,23.15358,185.446,8.334874,203.1544,113.7574"/>
+<Object type="Object"
+name="Bip001 L Finger11">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.5475,23.12739,185.4541,8.334867,203.1544,100.3883"/>
+<Object type="Object"
+name="Bip001 L Finger12">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.5446,23.10202,185.4594,8.334876,203.1544,87.01933"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 L Finger2">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.5517,23.15241,185.405,8.334868,203.1544,101.4793"/>
+<Object type="Object"
+name="Bip001 L Finger21">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.548,23.12423,185.4111,8.334877,203.1544,75.16987"/>
+<Object type="Object"
+name="Bip001 L Finger22">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.5559,23.09816,185.4119,8.334882,203.1544,61.80085"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Clavicle">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.972,23.58466,185.2733,76.7123,285.1999,89.99999"/>
+<Object type="Object"
+name="Bip001 R UpperArm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0991,23.55355,185.2387,29.33345,281.9677,83.42426"/>
+<Object type="Object"
+name="Bip001 R Forearm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.2,23.36043,185.1912,29.33345,281.9677,99.57147"/>
+<Object type="Object"
+name="Bip001 R Hand">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.2838,23.21834,185.2016,351.6877,7.205318,119.6835"/>
+<Object type="Object"
+name="Bip001 R Finger0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.2785,23.1967,185.2456,8.865967,261.4649,117.7414"/>
+<Object type="Object"
+name="Bip001 R Finger01">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.2803,23.17234,185.259,8.865976,261.4649,104.3724"/>
+<Object type="Object"
+name="Bip001 R Finger02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.2835,23.14458,185.2668,8.865973,261.4649,91.00334"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Finger1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.3369,23.15359,185.234,351.6651,7.245389,113.7575"/>
+<Object type="Object"
+name="Bip001 R Finger11">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.3489,23.12739,185.2363,351.6652,7.245385,100.3885"/>
+<Object type="Object"
+name="Bip001 R Finger12">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.3541,23.10202,185.2394,351.6651,7.245366,87.0195"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Finger2">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.3205,23.15242,185.1961,351.6652,7.245369,101.4794"/>
+<Object type="Object"
+name="Bip001 R Finger21">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.3268,23.12423,185.1995,351.6652,7.245371,75.17003"/>
+<Object type="Object"
+name="Bip001 R Finger22">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.3203,23.09816,185.2042,351.6651,7.245385,61.80101"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone005">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0806,23.54518,185.1666,359.8216,105.1081,117.2555"/>
+<Object type="Object"
+name="Bone006">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0627,23.40841,185.0984,359.8217,105.1081,117.2351"/>
+<Object type="Object"
+name="Bone007">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0257,23.12658,184.9582,359.8216,105.1081,113.845"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone009">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.129,23.50552,185.1583,352.6799,101.4056,117.4981"/>
+<Object type="Object"
+name="Bone010">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.132,23.37016,185.0852,352.6799,101.4057,117.4778"/>
+<Object type="Object"
+name="Bone011">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.1382,23.09124,184.9348,352.6799,101.4057,114.0877"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="slot_hit">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9419,23.41034,185.322,8.708491E-05,285.2001,269.9544"/>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone013">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0207,23.27854,185.43,347.3275,107.5926,79.21639"/>
+<Object type="Object"
+name="Bone014">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0583,23.14117,185.4463,347.3275,107.5926,84.37846"/>
+<Object type="Object"
+name="Bone015">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.086,23.028,185.4495,347.3275,107.5926,90.81745"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone037">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8704,23.23525,185.4493,7.683963E-06,15.2,80.28474"/>
+<Object type="Object"
+name="Bone038">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8512,23.11862,185.4546,1.024528E-05,15.20001,78.35202"/>
+<Object type="Object"
+name="Bone039">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8242,22.98319,185.4619,1.195283E-05,15.2,75.18781"/>
+<Object type="Object"
+name="Bone040">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8016,22.89453,185.468,1.195283E-05,15.2,75.53085"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone042">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0461,23.23023,185.3977,3.980267,16.16659,107.291"/>
+<Object type="Object"
+name="Bone043">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0777,23.11752,185.3804,3.98026,16.16661,105.3583"/>
+<Object type="Object"
+name="Bone044">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.1103,22.9845,185.3613,3.980257,16.1666,102.1941"/>
+<Object type="Object"
+name="Bone045">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.1272,22.89508,185.3499,3.980265,16.1666,102.5371"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone047">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8682,23.26737,185.2786,340.2008,193.5735,96.35217"/>
+<Object type="Object"
+name="Bone048">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8492,23.1721,185.2479,340.2008,193.5735,97.8445"/>
+<Object type="Object"
+name="Bone049">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.8186,23.03708,185.2053,340.2008,193.5735,92.59473"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone051">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9928,23.26229,185.2433,339.4305,186.3708,84.75183"/>
+<Object type="Object"
+name="Bone052">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.9981,23.16731,185.2069,339.4305,186.3707,86.24415"/>
+<Object type="Object"
+name="Bone053">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0019,23.03198,185.1554,339.4305,186.3708,80.99439"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone055">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="101.0462,23.27816,185.2803,6.318607,20.2827,128.9432"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="m_10014">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.95,22.38931,185.36,270,15.2,0"/>
+<component type="Component"
+valueType="UnityEngine.SkinnedMeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="p_m_origin">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.95,22.38931,185.36,0,15.2,0"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="NpcStub1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,26.23982,148.39,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.NpcStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="10011"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="m_10011"
+valueType="System.String"/>
+<m_id type="Atom"
+value="39024"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="m_10011(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,26.23982,148.39,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.Animation, UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.CharacterController, UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<Object type="Object"
+name="Bip001">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.40161,148.4071,270,89.99992,0"/>
+<Object type="Object"
+name="Bip001 Footsteps">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,26.22041,148.4071,270,0,0"/>
+</Object>
+<Object type="Object"
+name="Bip001 Pelvis">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.40161,148.4071,3.415095E-06,269.9998,270"/>
+<Object type="Object"
+name="Bip001 Spine">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.50693,148.407,8.025472E-05,270.0001,269.9544"/>
+<Object type="Object"
+name="Bip001 L Thigh">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.99627,27.40161,148.4071,5.216384,89.47506,93.82314"/>
+<Object type="Object"
+name="Bip001 L Calf">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.95023,26.89393,148.3726,5.21638,89.47506,94.83167"/>
+<Object type="Object"
+name="Bip001 L Foot">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.89433,26.27624,148.3197,-8.708491E-05,89.99979,90.00121"/>
+<Object type="Object"
+name="Bip001 L Toe0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.89433,26.22041,148.4319,-8.741888E-05,89.99981,0.001207905"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Thigh">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.26733,27.40161,148.4071,354.7835,90.52476,93.82394"/>
+<Object type="Object"
+name="Bip001 R Calf">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.31337,26.89393,148.3726,354.7835,90.52476,94.83364"/>
+<Object type="Object"
+name="Bip001 R Foot">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.36928,26.27624,148.3196,-4.781133E-05,89.99998,90.0007"/>
+<Object type="Object"
+name="Bip001 R Toe0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.36928,26.22042,148.4319,-4.296135E-05,89.99998,0.0007094563"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 Spine1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.59975,148.407,8.025472E-05,270.0001,269.9544"/>
+<Object type="Object"
+name="Bip001 Spine2">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.73993,148.4069,8.025472E-05,270.0001,269.9544"/>
+<Object type="Object"
+name="Bip001 Neck">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.96091,148.407,9.220756E-05,270.0001,269.9544"/>
+<Object type="Object"
+name="Bip001 Head">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.99732,148.4071,8.879246E-05,270.0001,270.0001"/>
+<Object type="Object"
+name="Bone073">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,28.27022,148.3388,0.0001041604,270,10.45977"/>
+<Object type="Object"
+name="Bone074">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,28.25778,148.2715,8.537737E-05,270,52.89582"/>
+<Object type="Object"
+name="Bone075">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,28.17697,148.2103,9.050001E-05,270,44.44389"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone076">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13006,28.02974,148.4894,-1.931873E-05,4.346703E-05,90.00011"/>
+<Object type="Object"
+name="Bone077">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13006,28.00232,148.4894,-2.176566E-05,7.147396E-06,90.51166"/>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone079">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.06218,28.0995,148.39,320.0961,349.9932,92.01321"/>
+<Object type="Object"
+name="Bone080">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.05804,28.05818,148.4244,318.8907,344.2143,89.38273"/>
+<Object type="Object"
+name="Bone081">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.04704,28.01437,148.461,326.2058,343.7328,99.96752"/>
+<Object type="Object"
+name="Bone082">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.04803,27.95056,148.5058,338.7543,348.7876,105.6578"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone084">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.19922,28.10277,148.3924,33.42512,182.8624,93.29005"/>
+<Object type="Object"
+name="Bone085">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.19761,28.05787,148.4221,33.42512,182.8623,86.58064"/>
+<Object type="Object"
+name="Bone086">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.20267,28.00942,148.4539,33.42511,182.8621,99.14293"/>
+<Object type="Object"
+name="Bone087">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.19242,27.94518,148.4968,33.42509,182.8621,103.9597"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 L Clavicle">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.0449,27.89043,148.4071,270,-1.931869E-05,0"/>
+<Object type="Object"
+name="Bip001 L UpperArm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.91343,27.89043,148.4071,325.6565,273.9311,83.0556"/>
+<Object type="Object"
+name="Bip001 L Forearm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.71796,27.60787,148.3787,325.6565,273.9311,94.51466"/>
+<Object type="Object"
+name="Bip001 L Hand">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.56824,27.38609,148.4103,3.700608,186.5193,124.4289"/>
+<Object type="Object"
+name="Bip001 L Finger0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.56581,27.37519,148.4503,17.19473,252.2025,113.7129"/>
+<Object type="Object"
+name="Bip001 L Finger01">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.56864,27.35684,148.4601,17.19473,252.2026,100.3439"/>
+<Object type="Object"
+name="Bip001 L Finger02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.57599,27.32574,148.4686,17.19473,252.2026,86.97486"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 L Finger1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.52811,27.34412,148.4416,3.726391,186.4816,124.4264"/>
+<Object type="Object"
+name="Bip001 L Finger11">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.51342,27.32237,148.4447,3.72639,186.4816,111.0574"/>
+<Object type="Object"
+name="Bip001 L Finger12">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.49712,27.27903,148.4494,3.726384,186.4816,97.6884"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 L Finger2">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.51532,27.34588,148.3933,1.915964,177.5966,124.3743"/>
+<Object type="Object"
+name="Bip001 L Finger21">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.50356,27.32872,148.3934,1.915956,177.5966,104.7579"/>
+<Object type="Object"
+name="Bip001 L Finger22">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.49115,27.28185,148.3944,1.915951,177.5966,91.38885"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone035">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.5913,27.53665,148.3517,357.0239,112.7891,117.7757"/>
+<Object type="Object"
+name="Bone036">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.56776,27.3861,148.2755,357.0239,112.7891,116.1734"/>
+<Object type="Object"
+name="Bone037">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.54379,27.21806,148.1959,357.0239,112.7891,115.6546"/>
+<Object type="Object"
+name="Bone038">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.51732,27.02679,148.1072,357.0239,112.7891,122.9442"/>
+<Object type="Object"
+name="Bone039">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.47268,26.80732,147.9715,357.0239,112.7891,138.4652"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone069">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.90669,27.88633,148.39,-0.0002789479,0.000311003,18.47816"/>
+<Object type="Object"
+name="Bone070">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.784,27.84533,148.39,-0.000275138,0.000329963,31.81326"/>
+<Object type="Object"
+name="Bone071">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.62368,27.74587,148.39,-0.0002930767,0.0003151387,13.92415"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Clavicle">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.2187,27.89043,148.4071,90,180,0"/>
+<Object type="Object"
+name="Bip001 R UpperArm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.35017,27.89043,148.4071,34.34359,266.0691,83.0554"/>
+<Object type="Object"
+name="Bip001 R Forearm">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.54564,27.60788,148.3787,34.34359,266.0691,94.51463"/>
+<Object type="Object"
+name="Bip001 R Hand">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.69537,27.38609,148.4103,356.2994,353.4808,124.429"/>
+<Object type="Object"
+name="Bip001 R Finger0">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.69779,27.37519,148.4503,342.8054,287.7976,113.7129"/>
+<Object type="Object"
+name="Bip001 R Finger01">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.69496,27.35684,148.4601,342.8054,287.7976,100.3439"/>
+<Object type="Object"
+name="Bip001 R Finger02">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.68761,27.32574,148.4686,342.8054,287.7976,86.9749"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Finger1">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.7355,27.34412,148.4416,356.2737,353.5185,124.4266"/>
+<Object type="Object"
+name="Bip001 R Finger11">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.75018,27.32237,148.4447,356.2737,353.5185,111.0575"/>
+<Object type="Object"
+name="Bip001 R Finger12">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.76648,27.27903,148.4494,356.2736,353.5185,97.68851"/>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bip001 R Finger2">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.74828,27.34588,148.3933,358.084,2.403533,124.3744"/>
+<Object type="Object"
+name="Bip001 R Finger21">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.76005,27.32872,148.3933,358.0841,2.403535,104.758"/>
+<Object type="Object"
+name="Bip001 R Finger22">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.77245,27.28186,148.3944,358.084,2.403525,91.38895"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone029">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.70312,27.53665,148.3517,5.963789,77.94023,119.3987"/>
+<Object type="Object"
+name="Bone030">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.70551,27.38901,148.2667,5.963787,77.94024,117.7965"/>
+<Object type="Object"
+name="Bone031">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.70692,27.22405,148.1776,5.963777,77.94022,117.2776"/>
+<Object type="Object"
+name="Bone032">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.70808,27.03623,148.0783,5.963789,77.94023,124.5672"/>
+<Object type="Object"
+name="Bone033">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.71722,26.82175,147.9283,5.963796,77.94022,140.0882"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone065">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.33865,27.89149,148.39,-0.0001313975,0.0001072163,151.607"/>
+<Object type="Object"
+name="Bone066">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.466,27.82265,148.39,-0.0001194325,7.620818E-05,145.6698"/>
+<Object type="Object"
+name="Bone067">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.60711,27.72628,148.39,-0.0001067222,7.134422E-05,169.6952"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone001">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.3876,27.81737,148.2441,311.1034,75.8905,125.5895"/>
+<Object type="Object"
+name="Bone002">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.52589,27.71694,148.1662,311.1034,75.89047,130.164"/>
+<Object type="Object"
+name="Bone003">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.79792,27.52598,147.9818,311.099,75.88512,128.1524"/>
+<Object type="Object"
+name="Bone004">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.11,27.30357,147.7862,311.1765,75.98116,129.264"/>
+<Object type="Object"
+name="Bone005">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.3686,27.12013,147.616,309.4422,77.46107,131.4423"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone007">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.24995,27.67939,148.2925,321.4136,85.31937,122.6197"/>
+<Object type="Object"
+name="Bone008">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.37484,27.53452,148.1837,321.4136,85.31937,126.1255"/>
+<Object type="Object"
+name="Bone009">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.6133,27.26088,147.9468,321.4342,85.3375,124.8648"/>
+<Object type="Object"
+name="Bone010">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.89146,26.94008,147.6827,321.3017,85.21202,126.9532"/>
+<Object type="Object"
+name="Bone011">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="100.0665,26.74095,147.5048,319.8177,86.76128,128.0855"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone013">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.90324,27.7644,148.2532,51.57019,97.92028,121.5993"/>
+<Object type="Object"
+name="Bone014">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.76553,27.66495,148.173,51.5702,97.92029,126.1738"/>
+<Object type="Object"
+name="Bone015">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.49655,27.47424,147.9839,51.56558,97.91512,124.1541"/>
+<Object type="Object"
+name="Bone016">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.18706,27.25292,147.7831,51.64719,98.00806,125.4109"/>
+<Object type="Object"
+name="Bone017">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="97.93024,27.07092,147.6086,49.95904,99.6483,129.9892"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone019">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.00967,27.65582,148.2953,45.94251,82.89052,115.3632"/>
+<Object type="Object"
+name="Bone020">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.87954,27.51755,148.1841,45.94252,82.89052,118.869"/>
+<Object type="Object"
+name="Bone021">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.63479,27.25363,147.9427,45.96477,82.90701,117.6314"/>
+<Object type="Object"
+name="Bone022">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.34737,26.94569,147.6733,45.82084,82.79157,119.5586"/>
+<Object type="Object"
+name="Bone023">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.16953,26.75214,147.492,44.47527,84.70615,123.0327"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone025">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.29794,27.97472,148.1736,357.2084,23.27979,210.2784"/>
+</Object>
+<Object type="Object"
+name="Bone027">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.92125,27.97472,148.172,2.698795,153.9773,202.1239"/>
+</Object>
+<Object type="Object"
+name="slot_hit">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.1318,27.73993,148.4069,8.025472E-05,270.0001,269.9544"/>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone041">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.12289,27.48488,148.5665,356.6555,359.7663,93.74822"/>
+<Object type="Object"
+name="Bone042">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.12972,27.38038,148.5726,356.6555,359.7664,89.75741"/>
+<Object type="Object"
+name="Bone043">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.12869,27.15199,148.586,356.6555,359.7664,91.39384"/>
+<Object type="Object"
+name="Bone044">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13486,26.89685,148.6009,356.4813,359.7655,90.32314"/>
+<Object type="Object"
+name="Bone045">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13724,26.45511,148.6281,357.105,359.7778,91.04565"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone047">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.12554,27.52159,148.2521,9.876647,0.7785804,93.45855"/>
+<Object type="Object"
+name="Bone048">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13242,27.40512,148.2318,18.65429,0.7343451,89.16855"/>
+<Object type="Object"
+name="Bone049">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.12833,27.19709,148.1616,22.31992,1.736803,92.33031"/>
+<Object type="Object"
+name="Bone050">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13493,26.98763,148.0753,18.88396,1.228187,90.52775"/>
+<Object type="Object"
+name="Bone051">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13598,26.55208,147.9263,39.56643,1.768326,91.16537"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone053">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.28184,27.4879,148.3549,8.824548,4.046487,113.9964"/>
+<Object type="Object"
+name="Bone054">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.32839,27.38171,148.3351,8.824539,4.046516,107.9874"/>
+<Object type="Object"
+name="Bone055">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.39026,27.18641,148.3003,8.824535,4.046526,111.0711"/>
+<Object type="Object"
+name="Bone056">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.54982,26.76426,148.2233,8.824541,4.04652,129.1009"/>
+<Object type="Object"
+name="Bone057">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.80843,26.44477,148.1553,8.824536,4.046523,151.2251"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="Bone059">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.95626,27.50178,148.3375,5.743998,351.8219,77.01453"/>
+<Object type="Object"
+name="Bone060">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.93484,27.4022,148.3243,5.74399,351.8218,77.86337"/>
+<Object type="Object"
+name="Bone061">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.89024,27.1788,148.2952,5.744003,351.8219,67.76741"/>
+<Object type="Object"
+name="Bone062">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.72789,26.76497,148.2298,5.743995,351.8219,49.63306"/>
+<Object type="Object"
+name="Bone063">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="98.4735,26.45898,148.1621,5.743997,351.8219,31.81372"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+<Object type="Object"
+name="m_10011">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,26.23982,148.39,270,0,0"/>
+<component type="Component"
+valueType="UnityEngine.SkinnedMeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+<Object type="Object"
+name="Object001">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,26.23982,148.39,270,0,0"/>
+</Object>
+<Object type="Object"
+name="p_m_origin">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="99.13,26.23982,148.39,0,0,0"/>
+</Object>
+</Object>
+</Object>
+</Object>
+</Object>
+

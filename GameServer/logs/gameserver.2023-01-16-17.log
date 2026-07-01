@@ -1,0 +1,151 @@
+2023-01-16 17:54:57.822 INFO [GameServer Start][GameServer.java:283] - 当前心跳HTTP为：http://localhost:8080/TzjBackend/serverstate/checkstate?
+2023-01-16 17:54:57.829 INFO [GameServer Start][GameServer.java:293] - 设置当前游戏支持人数等级为=5
+2023-01-16 17:55:00.010 ERROR [GameServer Start][HttpUtils.java:90] - 异常http://localhost:8080/TzjBackend/serverstate/checkstate?
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[?:1.8.0_51]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_51]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_51]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_51]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_51]
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:211) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.New(HttpClient.java:308) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.New(HttpClient.java:326) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1168) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1104) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:998) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:932) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1282) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1257) ~[?:1.8.0_51]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:66) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.publicserver.structs.ConnectPublicServer.<init>(ConnectPublicServer.java:43) [GameServer/:?]
+	at com.game.publicserver.manager.PublicServerManager.init(PublicServerManager.java:63) [GameServer/:?]
+	at com.game.server.GameServer.init(GameServer.java:382) [GameServer/:?]
+	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
+	at com.game.server.GameServer.run(GameServer.java:511) [GameServer/:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51]
+2023-01-16 17:55:00.017 ERROR [GameServer Start][HttpUtils.java:93] - java.net.ConnectException: Connection refused: connect
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[?:1.8.0_51]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_51]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_51]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_51]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_51]
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:211) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.New(HttpClient.java:308) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.New(HttpClient.java:326) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1168) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1104) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:998) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:932) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1282) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1257) ~[?:1.8.0_51]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:66) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.publicserver.structs.ConnectPublicServer.<init>(ConnectPublicServer.java:43) [GameServer/:?]
+	at com.game.publicserver.manager.PublicServerManager.init(PublicServerManager.java:63) [GameServer/:?]
+	at com.game.server.GameServer.init(GameServer.java:382) [GameServer/:?]
+	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
+	at com.game.server.GameServer.run(GameServer.java:511) [GameServer/:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51]
+2023-01-16 17:55:02.048 ERROR [GameServer Start][HttpUtils.java:112] - java.net.ConnectException: Connection refused: connect
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method) ~[?:1.8.0_51]
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[?:1.8.0_51]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[?:1.8.0_51]
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172) ~[?:1.8.0_51]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[?:1.8.0_51]
+	at java.net.Socket.connect(Socket.java:589) ~[?:1.8.0_51]
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:211) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.New(HttpClient.java:308) ~[?:1.8.0_51]
+	at sun.net.www.http.HttpClient.New(HttpClient.java:326) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1168) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1104) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:998) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:932) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1512) ~[?:1.8.0_51]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1440) ~[?:1.8.0_51]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:104) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.publicserver.structs.ConnectPublicServer.<init>(ConnectPublicServer.java:43) [GameServer/:?]
+	at com.game.publicserver.manager.PublicServerManager.init(PublicServerManager.java:63) [GameServer/:?]
+	at com.game.server.GameServer.init(GameServer.java:382) [GameServer/:?]
+	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
+	at com.game.server.GameServer.run(GameServer.java:511) [GameServer/:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51]
+2023-01-16 17:55:02.048 INFO [GameServer Start][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/M:/software/javaJDK/jdk1.8.0_51/jre/lib/charsets.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/deploy.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/access-bridge-64.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/cldrdata.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/dnsns.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/jaccess.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/jfxrt.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/localedata.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/nashorn.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunec.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunjce_provider.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunmscapi.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunpkcs11.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/zipfs.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/javaws.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jce.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jfr.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jfxswt.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jsse.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/management-agent.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/plugin.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/resources.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/rt.jar;/M:/project/tzj/Server/GameServer/out/production/GameServer/;/M:/project/tzj/Server/GameServer/gameserver/lib/netty-all-4.1.11.Final.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-core-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-core-2.17.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/netty-all-4.1.11.Final-sources.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/disruptor-3.3.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-logging-1.0.4.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/druid-1.0.15.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpasyncclient-4.1.2.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/PushJavaSDK.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-databind-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/Message.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/protobuf-java-2.5.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/slf4j-api-1.7.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/mysql-connector-java-8.0.27.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/GameCfg.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-codec-1.9.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpcore-nio-4.4.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-annotations-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/slf4j-log4j12-1.7.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpclient-4.5.8.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-api-2.17.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-lang-2.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/GameCore.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-1.2.17.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/mybatis-3.2.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpcore-4.4.4.jar;/M:/project/tzj/Server/GameServer/gameserver/GameServer.jar;/M:/software/ideaIU-2020.1.1.win/lib/idea_rt.jar;bin]
+2023-01-16 17:55:02.596 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：27 脚本名：common.achievement.AchievementScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\achievement\AchievementScript.java begin makeScript
+2023-01-16 17:55:03.756 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：27 脚本名：common.achievement.AchievementScript init reload success
+2023-01-16 17:55:03.756 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：27 脚本名：common.achievement.AchievementScript
+2023-01-16 17:55:03.758 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：30 脚本名：common.activity.ActivityManageScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ActivityManageScript.java begin makeScript
+2023-01-16 17:55:04.268 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：30 脚本名：common.activity.ActivityManageScript init reload success
+2023-01-16 17:55:04.269 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：30 脚本名：common.activity.ActivityManageScript
+2023-01-16 17:55:04.270 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\CollectGoodsExchangeActivityScript.java begin makeScript
+2023-01-16 17:55:04.482 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript init reload success
+2023-01-16 17:55:04.482 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript
+2023-01-16 17:55:04.482 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ContinuousRecharge2ActivityScript.java begin makeScript
+2023-01-16 17:55:04.665 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript init reload success
+2023-01-16 17:55:04.665 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript
+2023-01-16 17:55:04.665 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ContinuousRechargeActivityScript.java begin makeScript
+2023-01-16 17:55:04.872 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript init reload success
+2023-01-16 17:55:04.872 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript
+2023-01-16 17:55:04.873 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\CornucopiaActivityScript.java begin makeScript
+2023-01-16 17:55:05.428 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript init reload success
+2023-01-16 17:55:05.428 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript
+2023-01-16 17:55:05.428 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\DailyRechargeActivityScript.java begin makeScript
+2023-01-16 17:55:05.643 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript init reload success
+2023-01-16 17:55:05.643 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript
+2023-01-16 17:55:05.644 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\DrawRewardActivityScript.java begin makeScript
+2023-01-16 17:55:06.075 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript init reload success
+2023-01-16 17:55:06.076 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript
+2023-01-16 17:55:06.076 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FBShareActivityScript.java begin makeScript
+2023-01-16 17:55:06.349 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript init reload success
+2023-01-16 17:55:06.349 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript
+2023-01-16 17:55:06.349 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestivalPreferenceActivityScript.java begin makeScript
+2023-01-16 17:55:06.496 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript init reload success
+2023-01-16 17:55:06.496 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript
+2023-01-16 17:55:06.497 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestivalWishActivityScript.java begin makeScript
+2023-01-16 17:55:06.835 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript init reload success
+2023-01-16 17:55:06.835 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript
+2023-01-16 17:55:06.836 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300022 脚本名：common.activity.FestvialSignScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestvialSignScript.java begin makeScript
+2023-01-16 17:55:07.087 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300022 脚本名：common.activity.FestvialSignScript init reload success
+2023-01-16 17:55:07.087 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300022 脚本名：common.activity.FestvialSignScript
+2023-01-16 17:55:07.087 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FZTBActivityScript.java begin makeScript
+2023-01-16 17:55:07.347 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript init reload success
+2023-01-16 17:55:07.347 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript
+2023-01-16 17:55:07.347 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\GetActiveActivityScript.java begin makeScript
+2023-01-16 17:55:07.538 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript init reload success
+2023-01-16 17:55:07.538 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript
+2023-01-16 17:55:07.539 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\GroupBuyActivityScript.java begin makeScript
+2023-01-16 17:55:07.698 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript init reload success
+2023-01-16 17:55:07.698 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript
+2023-01-16 17:55:07.698 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300011 脚本名：common.activity.HolidayBossScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayBossScript.java begin makeScript
+2023-01-16 17:55:07.928 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300011 脚本名：common.activity.HolidayBossScript init reload success
+2023-01-16 17:55:07.929 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300011 脚本名：common.activity.HolidayBossScript
+2023-01-16 17:55:07.929 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayDailyGiftActivityScript.java begin makeScript
+2023-01-16 17:55:08.060 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript init reload success
+2023-01-16 17:55:08.060 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript
+2023-01-16 17:55:08.061 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayScoreRankScript.java begin makeScript
+2023-01-16 17:55:08.292 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript init reload success
+2023-01-16 17:55:08.292 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript
+2023-01-16 17:55:08.293 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayTaskScript.java begin makeScript
+2023-01-16 17:55:08.500 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript init reload success
+2023-01-16 17:55:08.500 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript
+2023-01-16 17:55:08.500 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300013 脚本名：common.activity.HolidayWordsScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayWordsScript.java begin makeScript

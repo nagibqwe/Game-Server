@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('设置开服时间')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId1">
+                <div class="col-sm-12 search-collapse">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="gameServer">
+                                <input type="hidden" id="ignoreMerge" value="1">
+                                <br/>
+                                <br/>
+                                <button type="button" class="btn btn-w-m btn-primary" onclick="queryServerInfo()">
+                                    查看服务器设置信息
+                                </button>
+                                <span class="label" id="timeMsg" style="display: none"></span>
+                                <span class="label" id="numMsg" style="display: none"></span>
+                                <br/><br/>
+                                <label class="label" style="width: auto">设置开服时间:</label>
+                                <div class="input-group date" style="display: inline">
+                                    <input style="margin-left: 30px" type="text" class="input" name="time" id="time"
+                                           readonly>
+                                </div>
+                                <button type="button" class="btn btn-w-m btn-primary" style="min-width:20px"
+                                        onclick="setOpsTime()">设置
+                                </button>
+                                <br/><br/>
+                                <label class="label" style="width: auto">设置注册限制人数:</label>&nbsp;
+                                <div class="input-group date" style="display: inline">
+                                    <input type="number" class="input" name="num" id="num">
+                                </div>
+                                <button type="button" class="btn btn-w-m btn-primary" style="min-width:20px"
+                                        onclick="setRegisterLimitNum()">设置
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    $("input[name='time']").datetimepicker({
+        // language:  'zh-CN',
+        format : 'yyyy-mm-dd hh:ii:00',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        startView : 2,
+        minView : 0
+    });
+
+    //查看服务器设置信息
+    function queryServerInfo() {
+        $("#timeMsg").empty();
+        $("#numMsg").empty();
+        $.post(ctx + "gmtool/gmcmd/queryOpsTime", $("#formId1").serialize(), function (data) {
+            // console.log(JSON.stringify(data));
+            if (data.code == 0) {
+                $("#timeMsg").show();
+                $("#timeMsg").html("开服时间：" + data.data.data);
+            } else {
+                $("#timeMsg").css("display","none");
+                $.modal.alertError(data.msg);
+            }
+        });
+
+        $("#num").empty();
+        $.post(ctx + "gmtool/gmcmd/setRegisterLimitNum", $("#formId1").serialize(), function (data) {
+            // console.log(JSON.stringify(data));
+            if (data.code == 0) {
+                $("#numMsg").show();
+                $("#numMsg").html("注册限制人数 ：" + data.data.data);
+            } else {
+                $("#numMsg").css("display","none");
+                $.modal.alertError(data.msg);
+            }
+        });
+    }
+    //设置开服时间
+    function setOpsTime() {
+        if (!checkServerOpenTimeValid()) {
+            return;
+        }
+        if ($("[name='time']").val() == "") {
+            $.modal.alertError("未选择时间");
+            return;
+        }
+        $.post(ctx + "gmtool/gmcmd/setOpsTime", $("#formId1").serialize(), function (data) {
+            if (data.code == 0) {
+                $.modal.alertSuccess(data.data.msg);
+            } else {
+                $.modal.alertError(data.msg);
+            }
+            queryServerInfo();
+        });
+    }
+
+    function checkServerOpenTimeValid() {
+        var timeStr = $("[name='time']").val();
+        var openData = new Date(timeStr);
+        if (openData < new Date) {
+            $.modal.alertError("时间不能小于当前时间");
+            return false;
+        }
+        return true;
+    }
+
+    //设置注册限制人数
+    function setRegisterLimitNum() {
+        $.post(ctx + "gmtool/gmcmd/setRegisterLimitNum", $("#formId1").serialize(), function (data) {
+            if (data.code == 0) {
+                $.modal.alertSuccess(data.data.msg);
+            } else {
+                $.modal.alertError(data.msg);
+            }
+            $("#num").val("");
+            queryServerInfo();
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增合服')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-hefu-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">源服务器：</label>
+                <div class="col-sm-8">
+                    <input name="fromServer" placeholder="多个时用,隔开：10001,10002" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">目标服务器：</label>
+                <div class="col-sm-8">
+                    <input name="toServer" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">cn:国内，tw:台湾，kor:韩国，yn:越南，thai:泰国，ros:新马,en:英语：</label>
+                <div class="col-sm-8">
+                    <input name="language" class="form-control" type="text" required>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/hefu"
+        $("#form-hefu-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-hefu-add').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

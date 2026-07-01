@@ -1,0 +1,50 @@
+1.安装python3.6.6
+2.创建env环境
+	pyvenv -m env 
+3.安装依赖
+	pip install -r requirements.txt
+4.安装nginx
+	yum -y install nginx 
+	nginx 配置:
+	"""
+	server{
+    listen 80;
+    server_name 10.0.0.54 collon_log;
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass  127.0.0.1:9996;              
+        uwsgi_param UWSGI_SCRIPT coll_log.wsgi; 
+        uwsgi_param UWSGI_CHDIR /data/www/collection_log/;
+        index  index.html index.htm;
+        client_max_body_size 35m;
+     }
+	}
+
+	"""
+
+5.修改uwsgi.ini配置，根据具体修改
+	'''
+	[uwsgi]
+	socket = 127.0.0.1:9996
+	master = true
+	vhost = true
+	no-site = true
+	workers = 2
+	reload-mercy = 10
+	vacuum = true
+	max-requests = 1000
+	limit-as = 512
+	buffer-size = 30000
+	pidfile = /var/run/uwsgi9090.pid
+	daemonize = /var/log/uwsgi9090.log
+	pythonpath = /data/www/collection_log/env/lib/python3.6/site-packages
+	
+	'''
+6.初始化数据库
+	'''
+	python manage.py  makemigrations
+	python manage.py migrate
+	'''
+7.启动uwsgi
+	uwsgi --ini uwsgi.ini & 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('数据库备份列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>服务器id：</label>
+                                <input type="text" name="serverId"/>
+                            </li>
+                            <li>
+                                <label>类型1游戏库 2日志库：</label>
+                                <select name="type">
+                                    <option value="">所有</option>
+                                    <option value="-1">代码生成请选择字典属性</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>创建时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择创建时间" name="createTime"/>
+                            </li>
+                            <li>
+                                <label>备份文件地址：</label>
+                                <input type="text" name="url"/>
+                            </li>
+                            <li>
+                                <label>文件大小：</label>
+                                <input type="text" name="size"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="gmtool:dbbak:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:dbbak:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:dbbak:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:dbbak:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gmtool:dbbak:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gmtool:dbbak:remove')}]];
+        var prefix = ctx + "gmtool/dbbak";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "数据库备份",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'ID',
+                    visible: false
+                },
+                {
+                    field: 'serverId',
+                    title: '服务器id'
+                },
+                {
+                    field: 'type',
+                    title: '类型1游戏库 2日志库',
+                    formatter: function(value, row, index) {
+                        if(value == null){
+                            return "";
+                        }
+                        return value == 1 ? "游戏库" : value == 2 ? "日志库" : "";
+                    }
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间'
+                },
+                {
+                    field: 'url',
+                    title: '备份文件地址'
+                },
+                {
+                    field: 'size',
+                    title: '文件大小'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

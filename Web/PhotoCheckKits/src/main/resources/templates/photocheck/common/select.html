@@ -1,0 +1,44 @@
+<div class="col-sm-12 search-collapse">
+    <form id="formId">
+        <div class="row select-list">
+            <ul>
+                <li>
+                    <label>服务器ID：</label>
+                    <input type="text" name="desc1"/>
+                </li>
+                <li>
+                    <label>角色ID：</label>
+                    <input type="text" name="desc2"/>
+                </li>
+                <li>
+                    <label>角色名称：</label>
+                    <input type="text" name="desc3"/>
+                </li>
+                <li class="select-time">
+                    <label style="width: auto">图片上传时间：</label>
+                    <input type="text" class="time-input" id="uploadStartTime" placeholder="开始时间" name="params[uploadStartTime]"/>
+                    <span>-</span>
+                    <input type="text" class="time-input" id="uploadEndTime" placeholder="结束时间" name="params[uploadEndTime]"/>
+                </li>
+                <li class="select-time">
+                    <label style="width: auto">最后一次下载时间：</label>
+                    <input type="text" class="time-input" id="lastDownloadStartTime" placeholder="开始时间" name="params[lastDownloadStartTime]"/>
+                    <span>-</span>
+                    <input type="text" class="time-input" id="lastDownloadEndTime" placeholder="结束时间" name="params[lastDownloadEndTime]"/>
+                </li>
+                <!--<li>-->
+                    <!--<label>图片上传时间：</label>-->
+                    <!--<input type="text" class="form-control" placeholder="请选择图片上传时间" name="uploadTime"/>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<label>最后一次下载时间：</label>-->
+                    <!--<input type="text" class="form-control" placeholder="请选择最后一次下载时间" name="lastDownloadTime"/>-->
+                <!--</li>-->
+                <li>
+                    <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

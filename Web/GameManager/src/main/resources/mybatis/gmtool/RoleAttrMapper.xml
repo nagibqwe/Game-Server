@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.roleAttr.mapper.RoleAttrMapper">
+    
+    <resultMap type="RoleAttr" id="RoleAttrResult">
+        <result property="id"    column="id"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="roleId"    column="roleId"    />
+        <result property="attrType"    column="attrType"    />
+        <result property="attrValue"    column="attrValue"    />
+        <result property="realValue"    column="realValue"    />
+        <result property="actionTime"    column="actionTime"    />
+        <result property="reason"    column="reason"    />
+        <result property="isDelete"    column="isDelete"    />
+        <result property="actionUser"    column="actionUser"    />
+    </resultMap>
+
+    <sql id="selectRoleAttrVo">
+        select id, serverId, roleId, attrType, attrValue, realValue, actionTime, reason, isDelete, actionUser from t_role_attr
+    </sql>
+
+    <select id="selectRoleAttrList" parameterType="RoleAttr" resultMap="RoleAttrResult">
+        <include refid="selectRoleAttrVo"/>
+        <where>
+            isDelete = 0
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            <if test="roleId != null  and roleId != ''"> and roleId = #{roleId}</if>
+            <if test="attrType != null "> and attrType = #{attrType}</if>
+            <if test="attrValue != null "> and attrValue = #{attrValue}</if>
+            <if test="realValue != null "> and realValue = #{realValue}</if>
+            <if test="actionTime != null "> and actionTime = #{actionTime}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+            <if test="actionUser != null  and actionUser != ''"> and actionUser = #{actionUser}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectRoleAttrById" parameterType="Integer" resultMap="RoleAttrResult">
+        <include refid="selectRoleAttrVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertRoleAttr" parameterType="RoleAttr" useGeneratedKeys="true" keyProperty="id">
+        insert into t_role_attr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">serverId,</if>
+            <if test="roleId != null">roleId,</if>
+            <if test="attrType != null">attrType,</if>
+            <if test="attrValue != null">attrValue,</if>
+            <if test="realValue != null">realValue,</if>
+            <if test="actionTime != null">actionTime,</if>
+            <if test="reason != null">reason,</if>
+            <if test="isDelete != null">isDelete,</if>
+            <if test="actionUser != null">actionUser,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">#{serverId},</if>
+            <if test="roleId != null">#{roleId},</if>
+            <if test="attrType != null">#{attrType},</if>
+            <if test="attrValue != null">#{attrValue},</if>
+            <if test="realValue != null">#{realValue},</if>
+            <if test="actionTime != null">#{actionTime},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="actionUser != null">#{actionUser},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRoleAttr" parameterType="RoleAttr">
+        update t_role_attr
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="roleId != null">roleId = #{roleId},</if>
+            <if test="attrType != null">attrType = #{attrType},</if>
+            <if test="attrValue != null">attrValue = #{attrValue},</if>
+            <if test="realValue != null">realValue = #{realValue},</if>
+            <if test="actionTime != null">actionTime = #{actionTime},</if>
+            <if test="reason != null">reason = #{reason},</if>
+            <if test="isDelete != null">isDelete = #{isDelete},</if>
+            <if test="actionUser != null">actionUser = #{actionUser},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRoleAttrById" parameterType="Integer">
+        delete from t_role_attr where id = #{id}
+    </delete>
+
+    <delete id="deleteRoleAttrByIds" parameterType="String">
+        delete from t_role_attr where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

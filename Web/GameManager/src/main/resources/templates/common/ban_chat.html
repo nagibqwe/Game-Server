@@ -1,0 +1,102 @@
+<form id="banChatForm" class="form-horizontal m-t" method="post">
+    <div class="form-group">
+        <label class="col-sm-3 control-label is-required" for="crimeType">违规类型:</label>
+        <div class="col-sm-8">
+            <select class="form-control" id="crimeType" >
+                <option value="1">黑色产业(工作室、拉人和广告等)</option>
+                <option value="2">不良信息(黄赌毒等违规信息)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label is-required" for="banType">禁言类型:</label>
+        <div class="col-sm-8">
+            <select class="form-control" id="banType" >
+                <option value="1">工作室禁言</option>
+                <option value="2">全文替换禁言</option>
+                <option value="3">关键字替换禁言</option>
+                <option value="4">常规禁言</option>
+                <option value="5">隐形禁言</option>
+                <option value="6">隔离禁言</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group" id="userIdGroup">
+        <label class="col-sm-3 control-label is-required" for="userIds">用户ID:</label>
+        <div class="col-sm-8">
+            <input class="form-control" id="userIds" type="text" name="userIds" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label is-required" for="endTime">禁言时间(秒):</label>
+        <div class="col-sm-8">
+            <input class="form-control" id="endTime" type="text" name="endTime" placeholder="3600" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label is-required" for="reason">操作原因:</label>
+        <div class="col-sm-8">
+            <textarea id="reason" name="reason" class="form-control"></textarea>
+        </div>
+    </div>
+
+
+    <div id="msg" class="container-fluid"></div>
+</form>
+
+
+<script th:inline="javascript">
+var prefix = ctx + "gmtool/banChat";
+
+// $(function () {
+//     $("#tableDiv").hide();
+// });
+
+//账号封禁
+function banChat(successCallbak) {
+    if (!$("#banChatForm").validate().form()) {
+        $.modal.msgError("验证失败");
+        return;
+    }
+    var selectServerStr = $("#selectServerIdHide").val();
+    if (isEmpty(selectServerStr)){
+        $("#selectServerId").css("borderColor","red");
+        $.modal.alertError("请选择服务器!");
+        return;
+    }
+    $("#selectServerId").css("borderColor", "white");
+    sendBanChat(selectServerStr,successCallbak);
+}
+
+function sendBanChat(selectServerStr,successCallbak) {
+    $.ajax({
+        url: prefix + "/ban",
+        method: "post",
+        data: {
+            // groupName: $("#select_group").val(),
+            serverIdStr: selectServerStr,
+            crimeType: $("#crimeType").val(),
+            banType: $("#banType").val(),
+            userIds: $("#userIds").val(),
+            endTime: $("#endTime").val(),
+            reason: $("#reason").val()
+        },
+        success: function(data) {
+            if (data.ok) {
+                if(successCallbak!=null){
+                    successCallbak(data);
+                }
+
+            }else {
+
+                $.modal.alertError(data.msg);
+            }
+        }
+    });
+}
+
+</script>

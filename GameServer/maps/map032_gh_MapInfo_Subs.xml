@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Object type="Object"
+name="[ServerSceneEditor]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="[NpcStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+</Object>
+<Object type="Object"
+name="[CollectionStub]">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="0,0,0,0,0,0"/>
+<Object type="Object"
+name="CollectionStub">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="61.3552,35.75478,175.7406,0,0,0"/>
+<component type="Component"
+valueType="SceneEditor.Proxy.Plugin.CollectionStub, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+<modelId type="Atom"
+value="140"
+valueType="System.Int32"/>
+<m_debugDraw type="Atom"
+value="True"
+valueType="System.Boolean"/>
+<m_name type="String"
+value="obj_140"
+valueType="System.String"/>
+<m_id type="Atom"
+value="9000109"
+valueType="System.Int32"/>
+</component>
+<Object type="Object"
+name="obj_140(Clone)">
+<component type="Transform"
+valueType="UnityEngine.Transform"
+value="61.3552,35.75478,175.7406,0,0,0"/>
+<component type="Component"
+valueType="UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+<component type="Component"
+valueType="UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+</Object>
+</Object>
+</Object>
+</Object>
+

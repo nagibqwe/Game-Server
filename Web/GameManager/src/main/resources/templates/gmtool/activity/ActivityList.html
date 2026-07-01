@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('活跃兑换')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+        $(function () {
+            isActivityList = true;
+            loadActivityFestivalType();//节日类型
+            loadActivityTag();//标签
+            loadFestivalTypeAddTag();
+            initActivityTable(0);
+        });
+
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <!--活动总览页面查询条件-->
+            <form id="actListFormId" class="form-horizontal">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>活动类型：</label>
+                            <select id="type" name="type" onchange="" class="span2">
+                                <option value="1">活跃活动(1)</option>
+                                <option value="2">每日充值(2)</option>
+                                <option value="3">每日登陆(3)</option>
+                                <option value="4">限购礼包(4)</option>
+                                <option value="5">天帝宝库(5)</option>
+                                <option value="6">累计充值(6)</option>
+                                <option value="7">累计消耗(7)</option>
+                                <option value="8">集物兑换(8)</option>
+                                <option value="9">团购活动(9)</option>
+                                <option value="10">招财猫(10)</option>
+                                <option value="11">首领狂欢(11)</option>
+                                <option value="12">庆典任务(12)</option>
+                                <option value="13">节日集字(13)</option>
+                                <option value="14">节日特惠(14)</option>
+                                <option value="15">连续累充(15)</option>
+                                <option value="16">限时商城(16)</option>
+                                <option value="17">节日礼包(17)</option>
+                                <option value="18">积分排名(18)</option>
+                                <option value="19">节日许愿(19)</option>
+                                <option value="20">FB分享(20)</option>
+                                <option value="21">连续累充2(21)</option>
+                                <option value="22">节日祝福(22)</option>
+                                <option value="23">掷骰子(23)</option>
+                                <option value="24">外观展示(24)</option>
+                                <option value="25">登陆展示(25)</option>
+                                <option value="26">聚宝盆(26)</option>
+                                <option value="27">幸运砸蛋(27)</option>
+                                <option value="28">幸运宝玉(28)</option>
+                                <option value="29">方泽探宝(29)</option>
+                                <option value="-1" selected>所有</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>节日类型：</label>
+                            <select id="subType2" name="subtype2" onchange="" class="span2">
+
+                            </select>
+                        </li>
+                        <li>
+                            <label>标签：</label>
+                            <select id="tag2" name="tag2" onchange="" class="span2">
+
+                            </select>
+                        </li>
+                        <li>
+                            <label>开服自动发布：</label>
+                            <select id="autoSend2" name="autoSend2" onchange="" class="span2">
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                                <option value="-1" selected>所有</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>新服活动：</label>
+                            <select id="isOpenServer2" name="isOpenServer2" onchange="" class="span2">
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                                <option value="-1" selected>所有</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>活动名称</label>
+                            <input id="activityName" name="activityName" type="text">
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search('actListFormId','bootstrap-table')"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+    </div>
+</div>
+</body>
+</html>

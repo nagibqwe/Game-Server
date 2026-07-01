@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('幸运宝玉活动')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+        });
+        function changeStyleClass() {
+            $("#ratePool").removeClass("col-lg-4 col-sm-4 col-md-4").addClass("col-lg-6 col-sm-6 col-md-6");
+            $("#gearPool").removeClass("col-lg-9 col-sm-9 col-md-9").addClass("col-lg-9 col-sm-9 col-md-9");
+        }
+    </script>
+
+    <script>
+        function jiangliGrp(obj) {
+            changeStyleClass();
+            html = '<div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">奖品倍率:</label>' +
+                '<input type="text" class="form-control" id="i_weight" name="i_rate" placeholder="例:120" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:auto;">' +
+                '<label class="input-group-addon">奖品权重:</label>' +
+                '<input type="text" class="form-control" id="i_weight" name="i_weight" placeholder="例:1000" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:auto;">' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" id="delGridGroup"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+    </script>
+
+    <script>
+        function addSingleCfg(obj) {
+            changeStyleClass();
+            html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">消耗绑定灵玉:</label>' +
+                '<input type="text" class="form-control" id="consume" name="consume" placeholder="例:200" onkeyup="value=value.replace(/\\D/g,\'\')" class="input-xlarge" style="max-width:70px;" required/>' +
+                '<label class="input-group-addon">充值档位:</label>' +
+                '<input type="text" class="form-control" id="recharge" name="recharge" placeholder="例:100(分)" onkeyup="value=value.replace(/\\D/g,\'\')" class="input-xlarge" style="max-width:110px;" required/>' +
+                '<label class="input-group-addon">最小奖池序号:</label>' +
+                '<select id="minIndex" name="minIndex" onchange="" class="form-control heightSet" style="min-width:100px;width: 101px;">' +
+                '<option value="0">1号奖品</option>' +
+                '<option value="1">2号奖品</option>' +
+                '<option value="2">3号奖品</option>' +
+                '<option value="3">4号奖品</option>' +
+                '<option value="4">5号奖品</option>' +
+                '<option value="5">6号奖品</option>' +
+                '<option value="6">7号奖品</option>' +
+                '<option value="7">8号奖品</option>' +
+                '</select>' +
+                '<label class="input-group-addon">最大奖池序号:</label>' +
+                '<select id="maxIndex" name="maxIndex" onchange="" class="form-control heightSet" style="min-width:100px;width: 101px;">' +
+                '<option value="0">1号奖品</option>' +
+                '<option value="1">2号奖品</option>' +
+                '<option value="2">3号奖品</option>' +
+                '<option value="3">4号奖品</option>' +
+                '<option value="4">5号奖品</option>' +
+                '<option value="5">6号奖品</option>' +
+                '<option value="6">7号奖品</option>' +
+                '<option value="7">8号奖品</option>' +
+                '</select>' +
+                // '<label class="input-group-addon">最小奖池:</label>' +
+                // '<input type="text" class="form-control" id="minIndex" name="minIndex" placeholder="例:0" onkeyup="value=value.replace(/\\D/g,\'\')" class="input-xlarge" style="max-width:60px;" required/>' +
+                '<label class="input-group-addon">全服剩余次数:</label>' +
+                '<input type="text" class="form-control" id="serverRestNum" name="serverRestNum" placeholder="例:7" onkeyup="value=value.replace(/\\D/g,\'\')" class="input-xlarge" style="max-width:60px;" required/>' +
+
+                // '<input type="text" class="form-control" id="p_reward" name="p_reward" style="max-width:auto;">' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" id="delGridGroup"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+    </script>
+
+    <script>
+        $(document).on('click', '#copyGridGroup', function () {
+            var el = this.parentNode.parentNode
+            var newEl = el.cloneNode(true);
+            el.parentNode.insertBefore(newEl, el);
+        })
+        $(document).on('click', '#delGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var saltIp = $(this).parent().parent().find('#saltIp').val();
+            el.parentNode.removeChild(el);
+            return;
+        })
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>幸运宝玉活动<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                               data-container="body" data-toggle="popover" data-placement="right"
+                               data-content="在配置活动的时候活动名字,支持多语言展示,需要运营人员使用一下副文本进行填写: [CH]中文简体[/CH][EN]英文[/EN][TW]中文繁体[/TW][KR]韩文[/KR][VIE]越南[/VIE][TH]泰文[/TH][JP]日文[/JP]"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="row-fluid">
+                        <div class="span3"><b>活动参数</b></div>
+                    </div>
+
+                    <div id="ratePool" class="col-lg-6 col-sm-6 col-md-6">
+                        <div class="col-lg-6">
+                            <legend>奖池倍率数据配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="rateshuju">
+                                    <!--<label class="input-group-addon">奖池数据:</label>-->
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品1倍率:</label>
+                                        <input type="text" class="form-control" id="rate0" name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品1权重:</label>
+                                        <input type="text" class="form-control" id="weight0" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品2倍率:</label>
+                                        <input type="text" class="form-control" id="rate1" name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品2权重:</label>
+                                        <input type="text" class="form-control" id="weight1" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品3倍率:</label>
+                                        <input type="text" class="form-control" id="rate2" name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品3权重:</label>
+                                        <input type="text" class="form-control" id="weight2" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品4倍率:</label>
+                                        <input type="text" class="form-control" id="rate3"  name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品4权重:</label>
+                                        <input type="text" class="form-control" id="weight3" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品5倍率:</label>
+                                        <input type="text" class="form-control" id="rate4"  name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品5权重:</label>
+                                        <input type="text" class="form-control" id="weight4" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品6倍率:</label>
+                                        <input type="text" class="form-control" id="rate5"  name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品6权重:</label>
+                                        <input type="text" class="form-control" id="weight5" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品7倍率:</label>
+                                        <input type="text" class="form-control" id="rate6"  name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品7权重:</label>
+                                        <input type="text" class="form-control" id="weight6" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">奖品8倍率:</label>
+                                        <input type="text" class="form-control" id="rate7"  name="rate" placeholder="例:120"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:70px;">
+                                        <label class="input-group-addon">奖品8权重:</label>
+                                        <input type="text" class="form-control" id="weight7" name="weight" placeholder="例:1000"
+                                               onkeyup="value=value.replace(/\D/g,'')" style="max-width:75px;">
+                                    </div>
+                                    <!--<button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="jiangliBtn" onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>-->
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="gearPool" class="col-lg-11 col-sm-11 col-md-11">
+                        <div class="col-lg-11">
+                            <legend>规则数据配置</legend>
+                            <fieldset>
+                                <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="jiangliBtn"
+                                        onclick="addSingleCfg(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                <input type="hidden" id="cfgCount1" value="0">
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="condition" class="row-fluid">
+                    </div>
+
+                    <br/>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

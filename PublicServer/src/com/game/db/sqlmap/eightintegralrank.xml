@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="eightintegralrank">
+
+    <resultMap id="bean" type="com.game.db.bean.EightIntegralRankBean">
+        <result column="roleID" property="roleID" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="hurt" property="hurt" jdbcType="BIGINT"/>
+        <result column="integral" property="integral" jdbcType="INTEGER"/>
+        <result column="platSid" property="platSid" jdbcType="VARCHAR"/>
+        <result column="colorCamp" property="colorCamp" jdbcType="INTEGER"/>
+        <result column="serverid" property="serverid" jdbcType="INTEGER"/>
+        <result column="groupId" property="groupId" jdbcType="INTEGER"/>
+
+
+
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from eightintegralrank
+    </select>
+
+    <select id="selectByRoleId" parameterType="long" resultMap="bean">
+        select * from eightintegralrank where roleID = #{roleID,jdbcType=BIGINT}
+    </select>
+
+
+    <insert id="insertOrUpdate" parameterType="com.game.db.bean.EightIntegralRankBean">
+        insert into eightintegralrank
+        (roleID,
+         `name`,
+          hurt,
+          integral,
+          platSid,
+          colorCamp,
+          serverid,
+          groupId
+          )
+        value (
+        #{roleID},
+        #{name},
+        #{hurt},
+        #{integral},
+        #{platSid},
+        #{colorCamp},
+        #{serverid},
+        #{groupId}
+        )
+        on duplicate key update
+        `name`=#{name},
+        hurt=#{hurt},
+        integral=#{integral},
+        platSid=#{platSid},
+        colorCamp=  #{colorCamp},
+        serverid=  #{serverid},
+        groupId=  #{groupId}
+    </insert>
+
+    <delete id="clearAll">
+        delete from eightintegralrank;
+    </delete>
+
+    <delete id="delete" parameterType="com.game.db.bean.EightIntegralRankBean">
+        delete from eightintegralrank where roleID = #{roleID,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

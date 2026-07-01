@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="newServerActivity">
+    <resultMap id="bean" type="com.game.db.bean.NewServerActivityBean" >
+        <id column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="activityData" property="activityData" jdbcType="LONGVARCHAR" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from newServerActivity
+    </select>
+    
+    <select id ="select" parameterType = "long" resultMap = "bean">
+        select * from newServerActivity where roleId = #{roleId, jdbcType = BIGINT}
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.NewServerActivityBean">
+        insert into newServerActivity (roleId,activityData) 
+        values
+        (
+        #{roleId, jdbcType=BIGINT}, #{activityData, jdbcType=LONGVARCHAR}
+        )
+    </insert>
+		
+    <update id="update" parameterType="com.game.db.bean.NewServerActivityBean">
+        update newServerActivity set  
+        roleId = #{roleId,jdbcType=BIGINT },
+        activityData = #{activityData,jdbcType=LONGVARCHAR }
+        where
+        roleId = #{roleId,jdbcType=BIGINT}
+    </update>
+    
+    <delete id = "deleteByRoleId" parameterType = "long">
+        delete from newServerActivity where roleId = #{roleId, jdbcType = BIGINT}
+    </delete>	
+</mapper>
+

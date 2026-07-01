@@ -1,0 +1,292 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<script>
+    var item_btn_id_index = 200;//为了防止模板中新增道具会跟之前的重复,增加一个范围取值
+    var item_container = "";
+    var item_add_btn = "";
+    var item_old_data = "";
+    var item_id;
+</script>
+
+<script>
+    function func_edit_item(obj) {
+        // console.log("func_edit_item=" + item_id)
+        // console.log("item_container"+item_container+",item_add_btn"+item_add_btn)
+
+        var name_val = $(obj).attr("name");
+        console.log(name_val);
+        item_id = $(obj).attr("id");
+        console.log(item_id);
+
+        var params = name_val.split("@");
+        var items = params[0].split('_');
+        var index = params[1].split('<>');
+        console.log("func_edit_item++++++");
+        console.log(items);
+        console.log(index);
+
+        this.item_container = index[0];
+        this.item_add_btn = index[1];
+
+        this.item_old_data = params[0];
+        $("#dialog_item_id").val(items[0]);
+        $("#dialog_item_num").val(items[1]);
+        $("#dialog_item_bind").val(items[2]);
+        $("#dialog_item_gender").val(items[3]);
+
+        $("#item_add_btn").css('display', 'none');
+        $("#item_update_btn").css("display", "block");
+        $("#item_del_btn").css("display", "block");
+        $("#addItemModal").modal('show');
+    }
+</script>
+
+<script>
+    function func_add_item() {
+        // console.log("func_add_item=" + item_id);
+        // console.log("item_container"+item_container+",item_add_btn"+item_add_btn)
+
+        var dialog_item_id = $("#dialog_item_id").val();
+        var itemName = items.get(dialog_item_id);
+        var dialog_item_num = $("#dialog_item_num").val();
+        var dialog_item_bind = $("#dialog_item_bind").val();
+        var dialog_item_gender = $("#dialog_item_gender").val();
+
+        var itemValue = dialog_item_id + "_" + dialog_item_num + "_" + dialog_item_bind + "_" + dialog_item_gender;
+        var btnName = itemValue + "@" + item_container + "<>" + item_add_btn;
+        var item_btn_id = "item_btn_id_" + item_btn_id_index;
+        console.log("func_add_item" + btnName);
+
+        var item_container_object = $("#" + item_container);
+        var lastValue = item_container_object.val();
+        var itemArray = lastValue === "" ? new Array() : lastValue.split(';');
+        itemArray.push(itemValue);
+
+        item_container_object.val(itemArray.join(';'));
+        $("#" + item_add_btn).before("" +
+            "<input type='button' style='height:35px' class='showItem btn btn-sm btn-danger' onclick='func_edit_item(this)' " +
+            // " id= '" + item_btn_id + "' name='" + btnName + "' value='" + itemName + "x" + dialog_item_num + "'>");
+            " id= '" + item_btn_id + "' name='" + btnName + "'>");
+        $("#addItemModal").modal('hide');
+        item_id = item_btn_id;
+        item_btn_id_index += 1;
+        formatGender(item_btn_id,itemName,dialog_item_num,dialog_item_gender,dialog_item_bind);
+
+    }
+    //♂ ♀ ⚤ 🔓 🔒
+    function formatGender(item_btn_id,itemName,item_num,gender,bind) {
+        console.log("itemName:"+itemName);
+        if (itemName == "" || itemName==undefined){
+            $("#"+item_btn_id).remove();
+        }
+        if ((gender == 0 || gender == 2) && bind == 0){
+            $("#"+item_btn_id).val(itemName+"x"+item_num+"♂");
+        }
+        if ((gender == 0 || gender == 2) && bind == 1){
+            $("#"+item_btn_id).val(itemName+"x"+item_num+"♂"+"🔒");
+        }
+        if ((gender == 1 || gender == 3) && bind == 0){
+            $("#"+item_btn_id).val(itemName+"x"+item_num+"♀");
+        }
+        if ((gender == 1 || gender == 3) && bind == 1){
+            $("#"+item_btn_id).val(itemName+"x"+item_num+"♀"+"🔒");
+        }
+        if (gender == 9 && bind == 0){
+            $("#"+item_btn_id).val(itemName+"x"+item_num+"⚤");
+        }
+        if (gender == 9 && bind == 1){
+            $("#"+item_btn_id).val(itemName+"x"+item_num+"⚤"+"🔒");
+        }
+    }
+</script>
+
+<script>
+    function func_update_item(obj) {
+        // console.log("func_update_item=" + item_id);
+        // console.log("item_container=" + item_container);
+
+        var item_container_object = $("#" + item_container);
+        var itemArray = item_container_object.val().split(';');
+        itemArray.splice(itemArray.indexOf(item_old_data), 1);
+        item_container_object.val(itemArray.join(';'));
+
+        document.querySelectorAll("#" + item_id).forEach(btn => {
+            // console.log(btn)
+            btn.remove();
+        })
+        //TODO 生成更新道具
+        func_add_item()
+    }
+</script>
+
+<script>
+    function func_remove_item(obj) {
+        // console.log("item_container", item_container, "item_add_btn", item_add_btn)
+        var dialog_item_id = $("#dialog_item_id").val();
+        var itemName = items.get(dialog_item_id);
+        var dialog_item_num = $("#dialog_item_num").val();
+        var dialog_item_bind = $("#dialog_item_bind").val();
+        var dialog_item_gender = $("#dialog_item_gender").val();
+
+        var itemValue = dialog_item_id + "_" + dialog_item_num + "_" + dialog_item_bind + "_" + dialog_item_gender;
+        console.log("删除" + itemValue + ":" + itemName);
+
+        var item_container_object = $("#" + item_container);
+
+        var itemArray = item_container_object.val().split(';');
+        itemArray.splice(itemArray.indexOf(itemValue), 1)
+        item_container_object.val(itemArray.join(';'));
+
+        console.log(item_id);
+        document.querySelectorAll("#" + item_id).forEach(btn => {
+            // console.log(btn)
+            btn.remove()
+        })
+        $("#addItemModal").modal('hide')
+    }
+</script>
+<script>
+    //(道具索引, 道具数组, 道具父容器）
+    function showAddItemUI(item_clt, item_add_btn) {
+        console.log(item_clt);
+        console.log(item_add_btn);
+        if (typeof (item_clt) == 'string') {
+            this.item_container = item_clt;
+            this.item_add_btn = item_add_btn;
+        } else {
+            this.item_container = item_clt.id;
+            this.item_add_btn = item_add_btn.id;
+        }
+
+        $("#item_add_btn").css('display', 'block');
+        $("#item_update_btn").css("display", "none");
+        $("#item_del_btn").css("display", "none");
+        $("#addItemModal").modal('show');
+    }
+</script>
+<script>
+    //(道具索引, 道具数组, 道具父容器）
+    function showAddItemUILimit(item_clt, item_add_btn,limitNum) {
+        var itemNum = $(item_add_btn).parent().find("input[type='button']").length;
+        if (itemNum >=limitNum){
+            alert("添加道具不能超过"+limitNum+"个！");
+            console.log("itemNum:"+itemNum);
+        }else {
+            console.log(item_clt);
+            console.log(item_add_btn);
+            if (typeof (item_clt) == 'string') {
+                this.item_container = item_clt;
+                this.item_add_btn = item_add_btn;
+            } else {
+                this.item_container = item_clt.id;
+                this.item_add_btn = item_add_btn.id;
+            }
+
+            $("#item_add_btn").css('display', 'block');
+            $("#item_update_btn").css("display", "none");
+            $("#item_del_btn").css("display", "none");
+            $("#addItemModal").modal('show');
+        }
+    }
+</script>
+
+<div id="addItemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="_ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="_ModalLabel">添加物品</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="col-sm-12 col-md-12 col-lg-12 input-group">
+                        <div class="row" style="margin-left:20%">
+                            <div class="col-lg-8">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                                style="width:138px;">物品ID:</button>
+                                    </span>
+                                    <input type="text" class="form-control" id="dialog_item_id" list="itemList" value="12"
+                                           placeholder="物品ID列表">
+                                    <datalist id="itemList"></datalist>
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 input-group" style="top:10px">
+                        <div class="row" style="margin-left:20%">
+                            <div class="col-lg-8">
+                                <div class="input-group">
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                                style="width:138px;">物品数量:</button>
+                                      </span>
+                                    <input type="text" class="form-control" id="dialog_item_num" value="1"
+                                           placeholder="">
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-12 input-group" style="top:10px">
+                        <div class="row" style="margin-left:20%;margin-top:10px">
+                            <div class="col-lg-8">
+                                <div class="input-group">
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" style="width:138px;">职业:</button>
+                                      </span>
+                                    <select class="span4" style="height: 34px" data-width="150px" id="dialog_item_gender">
+                                        <option value="0">玄剑</option>
+                                        <option value="1">天英</option>
+                                        <option value="2">地藏</option>
+                                        <option value="3">罗刹</option>
+                                        <option value="9" selected>通用</option>
+                                    </select>
+
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 input-group">
+
+                        <div class="row" style="margin-left:20%">
+                            <div class="col-lg-8">
+                                <div class="input-group " style="margin-top:10px;top:10px">
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"
+                                                style="width:138px;">是否绑定:</button>
+                                      </span>
+                                    <select id="dialog_item_bind" class="span4" style="height: 34px" data-width="150px">
+                                        <option value="0">非绑</option>
+                                        <option value="1" selected>绑定</option>
+                                    </select>
+                                </div><!-- /input-group -->
+                            </div><!-- /.col-lg-6 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <%--<div class="row">--%>
+                <%--<div class="form-inline">--%>
+                <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                <div class="col-sm-7 col-md-7 col-lg-7">
+                    <input type="button" value="关闭" class="btn col-md-3" data-dismiss="modal" aria-hidden="true"
+                           style="text-align:center"/>
+                    <input type="button" value="修改" onclick="func_update_item(this)" class="btn btn-warning col-md-3"
+                           id="item_update_btn" style="display: none;"/>
+                    <input type="button" id="item_del_btn" value="删除" onclick="func_remove_item(this)"
+                           class="btn btn-danger col-md-3" style="display: none"/>
+                    <input type="button" id="item_add_btn" value="添加" onclick="func_add_item()"
+                           class="btn btn-success col-md-3"/>
+                </div>
+                <%--</div>--%>
+                <%--</div>--%>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

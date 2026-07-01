@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('服务器列列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>服务器ID：</label>
+                                <input type="text" name="serverId"/>
+                            </li>
+                            <li>
+                                <label>服务器名称：</label>
+                                <input type="text" name="serverName"/>
+                            </li>
+                            <li>
+                                <label>平台名：</label>
+                                <input type="text" name="groupName"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="gmtool:server:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:server:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:server:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:server:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+                <a class="btn btn-warning multiple disabled" onclick="testAll()">
+                    <i class="fa fa-bookmark"></i> 批量服务器测试
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gmtool:server:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gmtool:server:remove')}]];
+        var prefix = ctx + "gmtool/server";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "服务器列",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: false
+                },
+                {
+                    field: 'serverId',
+                    title: '服务器ID'
+                },
+                {
+                    field: 'serverName',
+                    title: '服务器名称'
+                },
+                {
+                    field: 'groupName',
+                    title: '平台名'
+                },
+                {
+                    field: 'serverIP',
+                    title: '服务器IP'
+                },
+                {
+                    field: 'serverPort',
+                    title: '服务器端口'
+                },
+                {
+                    field: 'dblogIp',
+                    title: '日志库IP'
+                },
+                {
+                    field: 'dblogPort',
+                    title: '日志库端口'
+                },
+                {
+                    field: 'dblogName',
+                    title: '日志库名称'
+                },
+                {
+                    field: 'dblogUser',
+                    title: '日志库用户名'
+                },
+                {
+                    field: 'dblogPwd',
+                    title: '日志库密码'
+                },
+                {
+                    field: 'isHeFu',
+                    title: '是否合服'
+                },
+                {
+                    field: 'hefuTime',
+                    title: '合服时间'
+                },
+                {
+                    field: 'hefuServerID',
+                    title: '合服目标服ID'
+                },
+                {
+                    field: 'serverIdList',
+                    title: '合服列表'
+                },
+                {
+                    field: 'serverType',
+                    title: '服务器类型',
+                    formatter:function (value,row,index) {
+                        if (value == 0){
+                            return "测试服";
+                        }else if (value == 1){
+                            return "正式服";
+                        }else if (value == 2){
+                            return "登录服";
+                        }else if (value == 3){
+                            return "公共服";
+                        }else if (value == 4){
+                            return "跨服";
+                        }
+                    }
+                },
+                {
+                    field: 'serverOpenTime',
+                    title: '开服时间'
+                },
+                {
+                    field: 'openState',
+                    title: '开服状态',
+                    formatter:function (value) {
+                        if (value == 0){
+                            return value+"[备服状态]"
+                        } else {
+                            return value+"[开服状态]"
+                        }
+                    }
+                },
+                {
+                    field: 'isDeleted',
+                    title: '是否生效',
+                    formatter:function (value) {
+                        if (value == 0){
+                            return "有效"
+                        }else {
+                            return "无效"
+                        }
+                    }
+                },
+                {
+                    field: 'isDeleted',
+                    title: '是否启用',
+                    formatter:function (value, row, index) {
+                        if (value == 0){
+                            return "<a class='btn btn-danger btn-xs' href='javascript:void(0)' onclick='changeIsDeleted("+row.id+","+value+")'>禁用</a>"
+                        }else {
+                            return "<a class='btn btn-success btn-xs' href='javascript:void(0)' onclick='changeIsDeleted("+row.id+","+value+")'>启用</a>"
+                        }
+                    }
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        // actions.push('<a style="margin-right: 5px" class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        // actions.push('<a style="margin-right: 5px" class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        // actions.push('<a style="margin-right: 5px" class="btn btn-info btn-xs" href="javascript:void(0)" onclick="combineclear(\''+row.id+'\')"><i class="fa fa-refresh"></i>清理合服数据</a>');
+                        actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="test(\''+row.id+'\')"><i class="fa fa-bookmark"></i>服务器测试</a>');
+                        actions.push('<a style="margin-top: 5px" class="btn btn-primary btn-xs" href="javascript:void(0)" onclick="dbTest(\''+row.id+'\')"><i class="fa fa-bookmark"></i>数据库测试</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        //清理合服数据
+        function combineclear(id) {
+            $.modal.confirm("确认清理当前服的合服信息？", function() {
+                $.post(prefix + "/cleanCombine", {"id": id}, function (data) {
+                    if (data.code > 0) {
+                        $.modal.alertError(data.msg);
+                    } else {
+                        $.modal.alertSuccess(data.msg);
+                    }
+                });
+            });
+        }
+        //测试连接(服务器测试)
+        function test(id) {
+            $.post(prefix + "/test", {"ids": id}, function (data) {
+                $.modal.alertWarning(data.msg);
+            });
+        }
+        //测试连接(数据库测试)
+        function dbTest(id) {
+            $.post(prefix + "/dbTest", {"id": id}, function (data) {
+                if (data.code > 0) {
+                    $.modal.alertError(data.msg);
+                } else {
+                    $.modal.alertSuccess(data.msg);
+                }
+            });
+        }
+        //改变服务器是否删除状态
+        function changeIsDeleted(id,isDeleted) {
+            if (isDeleted == 0){
+                isDeleted = 1;
+            } else {
+                isDeleted = 0;
+            }
+
+            $.ajax({
+                url : prefix + "/changeIsDeleted",
+                type :'POST',
+                dataType : 'json',
+                data:{
+                    "id":id,
+                    "isDeleted":isDeleted
+                },
+                async : true,
+                success : function(data){
+                    if (data.code > 0){
+                        $.modal.alertError(data.msg);
+                    }else {
+                        $.modal.alertSuccess(data.msg);
+                    }
+                    $.table.refresh();
+                }
+            });
+        }
+        //批量测试连接(服务器测试)
+        function testAll() {
+            var idsArr = $.table.selectColumns("id");
+            $.ajax({
+                url:prefix + "/test",
+                data: {
+                    "ids": idsArr.toString()
+                },
+                type :'POST',
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function (data) {
+                    $.modal.alertWarning(data.msg);
+                    $.modal.closeLoading();
+                    $.modal.enable();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

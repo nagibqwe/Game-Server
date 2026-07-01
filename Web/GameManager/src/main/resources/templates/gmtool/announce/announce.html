@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('即时公告列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>即时公告</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="searchForm"></form>
+                    <form id="announceForm" class="form-horizontal m-t" method="post">
+
+                        <div class="form-group">
+                            <div th:replace="common/select_server_byGroup.html"></div>
+                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <input type="hidden" id="selectRequestUrl" value="gameServer">
+                            <input type="hidden" id="selectIgnoreMerge" value="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">显示位置:</label>
+                            <div class="col-sm-2">
+                                <select id="type" name="type" class="selectClass">
+                                    <option value="1" selected>跑马灯</option>
+                                    <option value="2">聊天框</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content" class="col-sm-2 control-label is-required">内容:</label>
+                            <div class="col-sm-8">
+                                <textarea id="content" type="text" name="content" minlength="5" class="form-control" maxlength="100" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reason" class="col-sm-2 control-label is-required">操作理由:</label>
+                            <div class="col-sm-8">
+                                <input id="reason" type="text" name="reason" class="form-control"
+                                       placeholder="必填" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <button type="button" class="btn btn-primary" onclick="addAnnounce()">
+                                保存
+                            </button>
+                            <label class="col-sm-1 control-label"></label>
+                            <button type="button" class="btn btn-primary" onclick="publishAnnounce()">
+                                发布
+                            </button>
+                        </div>
+
+                        <div id="msg" class="container-fluid"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/announce";
+
+        $(function () {
+            $("#announceForm").validate();
+            addClass();//改变服务器选择的样式
+        });
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "即时公告",
+                columns: [
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'content',
+                    title: '内容',
+                    align: 'center'
+                },
+                {
+                    field: 'createDate',
+                    title: '创建时间'
+                },
+                {
+                    field: 'userName',
+                    title: '创建者'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="paste(' + index + ')"><i class="fa fa-copy"></i>粘贴内容</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        //保存即时公告
+        function addAnnounce() {
+            var content = $("#content").val();
+            if (content == "") {
+                return;
+            }
+            $.post(prefix + "/addAnnounceTemplate",
+                {content: content},
+                function (data) {
+                if (data.ok){
+                    $.modal.alertSuccess(data.msg);
+                } else {
+                    $.modal.alertError(data.msg);
+                }
+
+                $("#content").val('');
+                $.table.refresh();
+                }
+            );
+        }
+
+        //发布即时公告
+        function publishAnnounce() {
+            $.modal.confirm("确定发送即时公告?一经发出,即时生效,不可修改", function() {
+                if (!$('#announceForm').validate().form()) {
+                    $.modal.msgError("验证失败");
+                    return;
+                }
+
+                // console.log($("#announceForm").serialize());
+                $.ajax({
+                    url: prefix + "/addImmediateAnnounce",
+                    method: "post",
+                    dataType: "json",
+                    data: $("#announceForm").serialize(),
+
+                    beforeSend: function () {
+                        $.modal.loading("正在处理中，请稍后...");
+                        $.modal.disable();
+                    },
+                    success: function (data) {
+                        if (data.ok){
+                            $("#announceForm")[0].reset();
+                            $.modal.alertSuccess(data.msg);
+                            $.table.refresh();
+                        }else {
+                            $.modal.alertError(data.msg);
+                        }
+
+                        $.modal.closeLoading();
+                        $.modal.enable();
+                    }
+                });
+            });
+        }
+
+        //粘贴内容操作
+        function paste(index) {
+            var row = $("#bootstrap-table").bootstrapTable('getData')[index];//获取某行数据
+            $("#content").val(row.content);
+        }
+    </script>
+</body>
+</html>

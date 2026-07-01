@@ -1,0 +1,18 @@
+div#pagerDiv {
+	padding-bottom: 3px; margin: 3px; padding-left: 3px; padding-right: 3px; padding-top: 3px; font-size:13px
+}
+div#pagerDiv a {
+	border-bottom: #ddd 2px solid; border-left: #ddd 2px solid; padding-bottom: 2px; margin: 2px; padding-left: 5px; background-color: #fff; padding-right: 5px; color: #337ab7; border-top: #ddd 2px solid; border-right: #ddd 2px solid; text-decoration: none; padding-top: 2px
+}
+div#pagerDiv a:hover {
+	border-bottom: #337ab7 2px solid; border-left: #337ab7 2px solid; color: #fff; border-top: #337ab7 2px solid; background-color: #337ab7; border-right: #337ab7 2px solid
+}
+div#pagerDiv a:active {
+	border-bottom: #337ab7 2px solid; border-left: #337ab7 2px solid; color: #fff; border-top: #337ab7 2px solid; background-color: #337ab7; border-right: #337ab7 2px solid
+}
+div#pagerDiv span.current {
+	border-bottom: #337ab7 2px solid; border-left: #337ab7 2px solid; padding-bottom: 2px; background-color: #337ab7; margin: 2px; padding-left: 5px; padding-right: 5px; color: #fff; border-top: #337ab7 2px solid; font-weight: bold; border-right: #337ab7 2px solid; padding-top: 2px
+}
+div#pagerDiv span.disabled {
+	border-bottom: #ddd 2px solid; border-left: #ddd 2px solid; padding-bottom: 2px; margin: 2px; padding-left: 5px; padding-right: 5px; color: #337ab7; background-color: #fff; border-top: #ddd 2px solid; border-right: #ddd 2px solid; padding-top: 2px
+}

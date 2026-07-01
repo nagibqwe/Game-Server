@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="GameMaster"> 
+    <resultMap id="bean" type="com.game.db.bean.GameMaster" >
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="gmLevel" property="gmLevel" jdbcType="INTEGER" />
+        <result column="addTime" property="addTime" jdbcType="BIGINT" />
+        <result column="idDeleted" property="isDeleted" jdbcType="INTEGER" />
+    </resultMap>
+  
+    <select id="select" parameterType="long" resultMap="bean">
+        SELECT g.userId, g.gmLevel, g.addTime FROM gamemaster g WHERE g.isDeleted=0
+    </select>
+  
+    <select id="selectByUserId" parameterType="long" resultMap="bean">
+        SELECT g.userId, g.gmLevel, g.addTime FROM gamemaster g WHERE g.userId=#{userId, jdbcTpye=BIGINT} and g.isDeleted=0
+    </select>
+</mapper> 

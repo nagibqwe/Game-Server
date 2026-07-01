@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.serverUpdate.mapper.SdkServerUpdateMapper">
+    
+    <resultMap type="SdkServerUpdate" id="SdkServerUpdateResult">
+        <result property="updateTime"    column="updateTime"    />
+    </resultMap>
+
+    <sql id="selectSdkServerUpdateVo">
+        select updateTime from sdk_server_update
+    </sql>
+
+    <select id="selectSdkServerUpdateList" parameterType="SdkServerUpdate" resultMap="SdkServerUpdateResult">
+        <include refid="selectSdkServerUpdateVo"/>
+        <where>  
+            <if test="updateTime != null "> and updateTime = #{updateTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectSdkServerUpdateById" parameterType="Long" resultMap="SdkServerUpdateResult">
+        <include refid="selectSdkServerUpdateVo"/>
+        where updateTime = #{updateTime}
+    </select>
+        
+    <insert id="insertSdkServerUpdate" parameterType="SdkServerUpdate">
+        insert into sdk_server_update
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="updateTime != null">updateTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSdkServerUpdate" parameterType="SdkServerUpdate">
+        update sdk_server_update
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+        </trim>
+    </update>
+
+    <delete id="deleteSdkServerUpdateById" parameterType="Long">
+        delete from sdk_server_update where updateTime = #{updateTime}
+    </delete>
+
+    <delete id="deleteSdkServerUpdateByIds" parameterType="String">
+        delete from sdk_server_update where updateTime in 
+        <foreach item="updateTime" collection="array" open="(" separator="," close=")">
+            #{updateTime}
+        </foreach>
+    </delete>
+
+</mapper>

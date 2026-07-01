@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace = "roleLoginInfo">
+    <resultMap id = "bean" type = "com.game.db.bean.RoleLoginInfoBean" >
+        <result column = "userId" property = "userId" jdbcType="BIGINT" />
+        <result column = "platUserId" property="platUserId" jdbcType = "VARCHAR" />
+        <result column = "platformName" property="platformName" jdbcType = "VARCHAR" />
+        <result column = "os" property="os" jdbcType = "VARCHAR" />
+        <result column = "maCode" property="maCode" jdbcType = "VARCHAR" />
+        <result column = "uuid" property="uuid" jdbcType = "VARCHAR" />
+        <result column = "createTime" property="createTime" jdbcType="BIGINT" />
+        <result column = "lastLoginTime" property="lastLoginTime" jdbcType = "BIGINT"/>
+    </resultMap>
+    
+    <select id = "selectCount" parameterType="long"  resultType = "int">
+        select count(*) from roleloginfo where userId = #{userId,jdbcType = BIGINT}
+    </select>
+
+    <insert id="insert" parameterType="com.game.db.bean.RoleLoginInfoBean" >
+        insert into roleloginfo(userId, platUserId,platformName,os,maCode,uuid,createTime,lastLoginTime) 
+        values 
+        (
+        #{userId,jdbcType=BIGINT}, 
+        #{platUserId,jdbcType=VARCHAR},
+        #{platformName,jdbcType = VARCHAR},
+        #{os,jdbcType = VARCHAR},
+        #{maCode,jdbcType=VARCHAR},
+        #{uuid,jdbcType=VARCHAR},
+        #{createTime,jdbcType = BIGINT},
+        #{lastLoginTime,jdbcType = BIGINT}
+        )
+    </insert>
+    <update id="update" parameterType="com.game.db.bean.RoleLoginInfoBean">
+        update roleloginfo
+        <set>
+            <if test="userId != null">
+                userId = #{userId,jdbcType=BIGINT },
+            </if>
+            <if test="platformName != null">
+                platformName = #{platformName,jdbcType = VARCHAR},
+            </if>
+            <if test="os != null">
+                os = #{os,jdbcType = VARCHAR},
+            </if>
+            <if test="maCode != null">
+                maCode = #{maCode,jdbcType=VARCHAR},
+            </if>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType = BIGINT},
+            </if>
+            <if test="lastLoginTime != null">
+                lastLoginTime = #{lastLoginTime,jdbcType = BIGINT}
+            </if>
+        </set>
+        where
+        userId = #{userId,jdbcType=BIGINT }
+    </update>
+
+</mapper>

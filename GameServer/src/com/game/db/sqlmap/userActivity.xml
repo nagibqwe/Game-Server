@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="useractivity">
+    <resultMap id="bean" type="com.game.db.bean.UserActivityBean" >
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="vipRewardGet" property="vipRewardGet" jdbcType="VARCHAR" />
+        <result column="rewardContext" property="rewardContext" jdbcType="LONGVARCHAR" />
+        <result column="rewardVesionIdList" property="rewardVesionIdList" jdbcType="VARCHAR" />
+        <result column="isEvaluated" property="isEvaluated" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id = "select" parameterType = "java.util.Map" resultMap = "bean">
+        select * from useractivity where userId = #{userId, jdbcType = BIGINT} and serverId = #{serverId, jdbcType=INTEGER}
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.UserActivityBean">
+        insert into useractivity (userId,serverId,vipRewardGet,rewardContext,rewardVesionIdList,isEvaluated) 
+        values
+        (
+        #{userId, jdbcType=BIGINT},#{serverId, jdbcType=INTEGER},#{vipRewardGet, jdbcType=VARCHAR},#{rewardContext, jdbcType=LONGVARCHAR},#{rewardVesionIdList, jdbcType=VARCHAR},#{isEvaluated, jdbcType=INTEGER}
+        )
+    </insert>
+		
+    <update id="update" parameterType="com.game.db.bean.UserActivityBean">
+        update useractivity set  
+        vipRewardGet = #{vipRewardGet,jdbcType=VARCHAR},
+        rewardContext = #{rewardContext,jdbcType=LONGVARCHAR},
+        rewardVesionIdList = #{rewardVesionIdList,jdbcType=VARCHAR},
+        isEvaluated = #{isEvaluated,jdbcType=INTEGER}
+        where
+        userId = #{userId,jdbcType=BIGINT} and serverId = #{serverId,jdbcType=INTEGER}
+    </update>
+		
+</mapper>
+

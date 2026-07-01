@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.x8channelMaster.mapper.TX8ChannelMasterMapper">
+    
+    <resultMap type="TX8ChannelMaster" id="TX8ChannelMasterResult">
+        <result property="chnmId"    column="chnm_id"    />
+        <result property="chnmName"    column="chnm_name"    />
+        <result property="type"    column="type"    />
+        <result property="authUrl"    column="auth_url"    />
+        <result property="orderUrl"    column="order_url"    />
+        <result property="payCallbackUrl"    column="pay_callback_url"    />
+        <result property="sdkParamsTemplate"    column="sdk_params_template"    />
+        <result property="extParams"    column="ext_params"    />
+        <result property="notes"    column="notes"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="updateUser"    column="update_user"    />
+    </resultMap>
+    
+    <resultMap id="ChannelResult" type="com.kits.project.serverList.domain.ChannelGrid">
+        <result property="chnmId"    column="chnm_id"    />
+        <result property="chnId"    column="chn_id"    />
+        <result property="chnmName"    column="chnm_name"    />
+    </resultMap>
+
+    <sql id="selectTX8ChannelMasterVo">
+        select chnm_id, chnm_name, type, auth_url, order_url, pay_callback_url, sdk_params_template, ext_params, notes, update_time, create_time, create_user, update_user from t_x8_channel_master
+    </sql>
+
+    <select id="selectTX8ChannelMasterList" parameterType="TX8ChannelMaster" resultMap="TX8ChannelMasterResult">
+        <include refid="selectTX8ChannelMasterVo"/>
+        <where>  
+            <if test="chnmName != null  and chnmName != ''"> and chnm_name like concat('%', #{chnmName}, '%')</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="authUrl != null  and authUrl != ''"> and auth_url = #{authUrl}</if>
+            <if test="orderUrl != null  and orderUrl != ''"> and order_url = #{orderUrl}</if>
+            <if test="payCallbackUrl != null  and payCallbackUrl != ''"> and pay_callback_url = #{payCallbackUrl}</if>
+            <if test="sdkParamsTemplate != null  and sdkParamsTemplate != ''"> and sdk_params_template = #{sdkParamsTemplate}</if>
+            <if test="extParams != null  and extParams != ''"> and ext_params = #{extParams}</if>
+            <if test="notes != null  and notes != ''"> and notes = #{notes}</if>
+            <if test="createUser != null  and createUser != ''"> and create_user = #{createUser}</if>
+            <if test="updateUser != null  and updateUser != ''"> and update_user = #{updateUser}</if>
+        </where>
+    </select>
+    
+    <select id="selectTX8ChannelMasterById" parameterType="Long" resultMap="TX8ChannelMasterResult">
+        <include refid="selectTX8ChannelMasterVo"/>
+        where chnm_id = #{chnmId}
+    </select>
+        
+    <insert id="insertTX8ChannelMaster" parameterType="TX8ChannelMaster" useGeneratedKeys="true" keyProperty="chnmId">
+        insert into t_x8_channel_master
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chnmName != null and chnmName != ''">chnm_name,</if>
+            <if test="type != null">type,</if>
+            <if test="authUrl != null">auth_url,</if>
+            <if test="orderUrl != null">order_url,</if>
+            <if test="payCallbackUrl != null">pay_callback_url,</if>
+            <if test="sdkParamsTemplate != null">sdk_params_template,</if>
+            <if test="extParams != null">ext_params,</if>
+            <if test="notes != null">notes,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="updateUser != null">update_user,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chnmName != null and chnmName != ''">#{chnmName},</if>
+            <if test="type != null">#{type},</if>
+            <if test="authUrl != null">#{authUrl},</if>
+            <if test="orderUrl != null">#{orderUrl},</if>
+            <if test="payCallbackUrl != null">#{payCallbackUrl},</if>
+            <if test="sdkParamsTemplate != null">#{sdkParamsTemplate},</if>
+            <if test="extParams != null">#{extParams},</if>
+            <if test="notes != null">#{notes},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTX8ChannelMaster" parameterType="TX8ChannelMaster">
+        update t_x8_channel_master
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chnmName != null and chnmName != ''">chnm_name = #{chnmName},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="authUrl != null">auth_url = #{authUrl},</if>
+            <if test="orderUrl != null">order_url = #{orderUrl},</if>
+            <if test="payCallbackUrl != null">pay_callback_url = #{payCallbackUrl},</if>
+            <if test="sdkParamsTemplate != null">sdk_params_template = #{sdkParamsTemplate},</if>
+            <if test="extParams != null">ext_params = #{extParams},</if>
+            <if test="notes != null">notes = #{notes},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+        </trim>
+        where chnm_id = #{chnmId}
+    </update>
+
+    <delete id="deleteTX8ChannelMasterById" parameterType="Long">
+        delete from t_x8_channel_master where chnm_id = #{chnmId}
+    </delete>
+
+    <delete id="deleteTX8ChannelMasterByIds" parameterType="String">
+        delete from t_x8_channel_master where chnm_id in 
+        <foreach item="chnmId" collection="array" open="(" separator="," close=")">
+            #{chnmId}
+        </foreach>
+    </delete>
+    <select id="selectChannelInfo" resultMap="ChannelResult">
+        SELECT txcm.chnm_id,txc.chn_id,txcm.chnm_name FROM t_x8_channel_master txcm LEFT JOIN t_x8_channel txc ON txcm.chnm_id = txc.chnm_id ORDER BY txcm.chnm_id;
+    </select>
+
+</mapper>

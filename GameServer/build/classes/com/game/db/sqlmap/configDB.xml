@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="configdb">
+    <resultMap id="bean" type="game.core.db.bean.ConfigDbBean">
+        <result column="serverId" property="serverId" jdbcType="INTEGER"/>
+        <result column="lsId" property="lsId" jdbcType="INTEGER"/>
+
+        <result column="db_game" property="db_game" jdbcType="VARCHAR"/>
+        <result column="db_log_info" property="db_log_info" jdbcType="VARCHAR"/>
+        <result column="db_public_data" property="db_public_data" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+
+        <result column="serverIdList" property="serverIdList" jdbcType="VARCHAR"/>
+        <result column="openTime" property="openTime" jdbcType="VARCHAR"/>
+        <result column="heartHttp" property="heartHttp" jdbcType="VARCHAR"/>
+        <result column="errorlog" property="errorlog" jdbcType="VARCHAR"/>
+        <result column="login_data" property="login_data" jdbcType="VARCHAR"/>
+
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="port" property="port" jdbcType="INTEGER"/>
+        <result column="privatekey" property="privatekey" jdbcType="VARCHAR"/>
+        <result column="serverType" property="serverType" jdbcType="INTEGER"/>
+        <result column="serverName" property="serverName" jdbcType="VARCHAR"/>
+        <result column="publicIp" property="publicIp" jdbcType="VARCHAR"/>
+        <result column="publicPort" property="publicPort" jdbcType="INTEGER"/>
+        <result column="backgrand_port" property="backgrand_port" jdbcType="INTEGER"/>
+        <result column="rechargePort" property="rechargePort" jdbcType="INTEGER"/>
+
+        <result column="biBakDir" property="biBakDir" jdbcType="VARCHAR"/>
+        <result column="openNet" property="openNet" jdbcType="INTEGER"/>
+        <result column="sysLogHost" property="sysLogHost" jdbcType="VARCHAR"/>
+        <result column="sysLogPort" property="sysLogPort" jdbcType="VARCHAR"/>
+        <result column="sysLogProtocol" property="sysLogProtocol" jdbcType="VARCHAR"/>
+        <result column="bi4399Dir" property="bi4399Dir" jdbcType="VARCHAR"/>
+        <result column="bi4399Host" property="bi4399Host" jdbcType="VARCHAR"/>
+        <result column="bi4399Port" property="bi4399Port" jdbcType="VARCHAR"/>
+        <result column="bi4399Protocol" property="bi4399Protocol" jdbcType="VARCHAR"/>
+        <result column="bi4399OpenNet" property="bi4399OpenNet" jdbcType="INTEGER"/>
+        <result column="bi4399Sql" property="bi4399Sql" jdbcType="INTEGER"/>
+
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from configdb
+    </select>
+
+    <select id="select" parameterType="java.util.Map" resultMap="bean">
+        select * from configdb where serverId = #{serverId,jdbcType=INTEGER} and lsId = #{lsId,jdbcType=INTEGER}
+    </select>
+
+</mapper>
+

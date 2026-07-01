@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- server Type字段服务器类型：0表示测试服，1表示正式游戏服，2表示跨服 3 是公共服-->
+<server>
+    <db-game url="jdbc:mysql://localhost/tzj_social?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
+             username="root"
+             password="o4W3TKCtvm5GYab3"
+    />
+    <db-log-info
+            url="jdbc:mysql://localhost/tzj_social_log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
+            username="root"
+            password="o4W3TKCtvm5GYab3"
+    />
+    <version version="1.0.0.0"/>
+    <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
+
+    <heartHttp host="http://127.0.0.1:8080/TzjBackend/serverstate/checkstate?"/>
+    <errorlog http="http://127.0.0.1:8080/TzjBackend"/>
+
+    <backgrand port="9521"/>
+
+    <public publicIp="127.0.0.1" publicPort="9200"/>
+
+    <serverType serverType="5"/>
+    <serverInfo serverName="socialServer" port="9520" serverId="5000" platfrom="cn" lsId="1"/>
+</server>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('后台数据加载')" />
+    <th:block th:include="include :: footer" />
+    <script>
+        var prefix = ctx + "gmtool/backenddataload";
+
+        function reload(name){
+            $.ajax({
+                url : prefix+"/"+name,
+                method: 'POST',
+                dataType : "json",
+                success : function(data) {
+                    if (data.ok) {
+                        $.modal.alertSuccess("加载完成");
+                    }else{
+                        $.modal.alertError("加载失败");
+                    }
+                }
+            });
+        }
+
+        function loadItem() {
+            var data = new FormData();
+            data.append('itemFile', $("#items").prop('files')[0]);
+            $.ajax({
+                url: prefix + "/loadItem",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        $("#itemLoadModel").modal('hide');
+                        $.modal.alertSuccess(data.msg);
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        function loadFunction() {
+            var data = new FormData();
+            data.append('functionFile', $("#functionFile").prop('files')[0]);
+            $.ajax({
+                url: prefix + "/loadFunction",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        $("#functionLoadModel").modal('hide');
+                        $.modal.alertSuccess(data.msg);
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        function loadActivityBossType() {
+            var data = new FormData();
+            data.append('activityBossTypeFile', $("#activityBossTypeFile").prop('files')[0]);
+            $.ajax({
+                url: prefix + "/loadActivityBossType",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        $("#activityBossTypeLoadModel").modal('hide');
+                        $.modal.alertSuccess(data.msg);
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        function loadActivityFestivalType() {
+            var data = new FormData();
+            data.append('activityFestivalTypeFile', $("#activityFestivalTypeFile").prop('files')[0]);
+            $.ajax({
+                url: prefix + "/loadActivityFestivalType",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        $("#activityFestivalTypeLoadModel").modal('hide');
+                        $.modal.alertSuccess(data.msg);
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        function loadActivityFestivalRelation() {
+            var data = new FormData();
+            data.append('activityFestivalRelationFile', $("#activityFestivalRelationFile").prop('files')[0]);
+            $.ajax({
+                url: prefix + "/loadActivityFestivalRelation",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        $("#activityFestivalRelationLoadModel").modal('hide');
+                        $.modal.alertSuccess(data.msg);
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        function loadItemChangeReason() {
+            var data = new FormData();
+            data.append('changeReasonFile', $("#changeReasonFile").prop('files')[0]);
+            $.ajax({
+                url: prefix + "/loadChangeReason",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        $("#changeReasonLoadModel").modal('hide');
+                        $.modal.alertSuccess(data.msg);
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-fluid">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>功能模块</th>
+            <th>后台数据</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td rowspan="9" style="vertical-align: middle;"><p class="text-center">其他数据</p></td>
+            <td>公告数据加载</td>
+            <td><input type="button" value="重新加载" class="btn btn-primary" onclick="reload('reloadAnnouce');"></td>
+        </tr>
+        <tr>
+            <td>黑名单数据加载</td>
+            <td><input type="button" value="重新加载" class="btn btn-primary" onclick="reload('reloadBlackList');"></td>
+        </tr>
+        <tr>
+            <td>物品装备数据加载</td>
+            <td><a href="#itemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+        </tr>
+        <tr>
+            <td>功能开放列表加载</td>
+            <td><a href="#functionLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+        </tr>
+        <tr>
+            <td>原因码加载</td>
+            <td><a href="#changeReasonLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+        </tr>
+        <tr>
+            <td>有奖问答加载</td>
+            <td><a href="#questionnaireLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+        </tr>
+        <tr>
+            <td>运营活动BOSS类型加载</td>
+            <td><a href="#activityBossTypeLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+        </tr>
+        <tr>
+            <td>运营活动节日类型加载</td>
+            <td><a href="#activityFestivalTypeLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+        </tr>
+        <tr>
+            <td>运营活动节日关系加载</td>
+            <td><a href="#activityFestivalRelationLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="itemLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>物品装备表</h3>
+                </div>
+                <div class="modal-body">
+                    <input id="items" type="file" name="itemFile"/>
+                    <label>注意，先加载item.xlsx，再加载equip.xlsx</label>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="上传" onclick="loadItem()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <div id="functionLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>功能开放配置表</h3>
+                </div>
+                <div class="modal-body">
+                    <input id="functionFile" type="file" name="functionFile"/>
+                    <label>加载FunctionStart.xlsx</label>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="上传" onclick="loadFunction()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <div id="changeReasonLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>原因码配置表</h3>
+                </div>
+                <div class="modal-body">
+                    <input id="changeReasonFile" type="file" name="changeReasonFile"/>
+                    <label>加载ItemChangeReason.xlsx</label>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="上传" onclick="loadItemChangeReason()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <div id="questionnaireLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>有奖问卷配置表</h3>
+                </div>
+                <div class="modal-body">
+                    <input id="questionnaireFile" type="file" name="questionnaireFile"/>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="上传" onclick="loadQuestionnaire()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <div id="activityBossTypeLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>运营活动BOSS类型配置表</h3>
+                </div>
+                <div class="modal-body">
+                    <input id="activityBossTypeFile" type="file" name="activityBossTypeFile"/>
+                    <label>加载activity_boss_type.xlsx表</label>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="上传" onclick="loadActivityBossType()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <div id="activityFestivalTypeLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>运营活动节日类型配置表</h3>
+                </div>
+                <div class="modal-body">
+                    <input id="activityFestivalTypeFile" type="file" name="activityFestivalTypeFile"/>
+                    <label>加载activity_festival.xlsx表</label>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="上传" onclick="loadActivityFestivalType()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <div id="activityFestivalRelationLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>运营活动节日关系配置表</h3>
+                </div>
+                <div class="modal-body">
+                    <input id="activityFestivalRelationFile" type="file" name="activityFestivalRelationFile"/>
+                    <label>加载activity_yunying.xlsx表</label>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="上传" onclick="loadActivityFestivalRelation()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+</body>
+</html>

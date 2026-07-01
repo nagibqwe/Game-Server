@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+<mapper namespace="guild"> 
+    <resultMap id="bean" type="com.game.db.bean.GuildBean" >
+        <id column="guildId" property="guildId" jdbcType="BIGINT" />
+        <result column="guildName" property="guildName" jdbcType="VARCHAR" />
+        <result column="chairmanId" property="chairmanId" jdbcType="BIGINT" />
+        <result column="createTime" property="createTime" jdbcType="INTEGER" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="buildValue" property="buildValue" jdbcType="BIGINT" />
+        <result column="datas" property="datas" jdbcType="LONGVARCHAR" />
+        <result column="guildredpacket" property="guildredpacket" jdbcType="LONGVARCHAR" />
+    </resultMap>
+
+    <select id = "selectAll" resultMap = "bean">
+        select * from guild
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.GuildBean" >
+        insert into guild (guildId,guildName, chairmanId, createTime,level,buildValue,datas,guildredpacket)
+        values (#{guildId,jdbcType=BIGINT},#{guildName,jdbcType=VARCHAR}, #{chairmanId,jdbcType=BIGINT}, #{createTime,jdbcType=INTEGER},
+        #{level,jdbcType=INTEGER}, #{buildValue,jdbcType=BIGINT},#{datas,jdbcType=LONGVARCHAR},#{guildredpacket,jdbcType=LONGVARCHAR})
+    </insert>
+   
+    <select id="selectById" parameterType="long" resultMap="bean">
+        select * from guild where guildId = #{guildId,jdbcType=BIGINT}
+    </select>
+  
+    <update id="update" parameterType="com.game.db.bean.GuildBean" >
+        update guild set datas = #{datas,jdbcType=LONGVARCHAR},level = #{level,jdbcType=INTEGER},buildValue = #{buildValue,jdbcType=BIGINT},guildredpacket=#{guildredpacket,jdbcType=LONGVARCHAR}
+        where guildId = #{guildId,jdbcType=BIGINT}
+    </update>
+  
+    <update id="changeGuildName" parameterType="com.game.db.bean.GuildBean" >
+        update guild set guildName = #{guildName,jdbcType=VARCHAR} where guildId = #{guildId,jdbcType=BIGINT}
+    </update>
+  
+    <update id="changeChairmanId" parameterType="com.game.db.bean.GuildBean" >
+        update guild set chairmanId = #{chairmanId,jdbcType=BIGINT} where guildId = #{guildId,jdbcType=BIGINT}
+    </update>
+    
+    <update id="changeguildredpacket" parameterType="com.game.db.bean.GuildBean" >
+        update guild set guildredpacket=#{guildredpacket,jdbcType=LONGVARCHAR} where guildId = #{guildId,jdbcType=BIGINT}
+    </update>
+
+    <delete id="delete" parameterType="Long" >
+        delete from guild where guildId = #{guildId,jdbcType=BIGINT };
+    </delete>
+  
+</mapper>

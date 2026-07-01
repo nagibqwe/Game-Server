@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="activityrank">
+    
+    <resultMap id="bean" type="com.game.db.bean.ActivityRankBean" >        
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="funtionV" property="funtionV" jdbcType="INTEGER" />
+        <result column="rankDate" property="rankDate" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="LONGVARCHAR" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="plat" property="plat" jdbcType="VARCHAR" />
+        <result column="serial" property="serial" jdbcType="INTEGER" />
+        <result column="send" property="send" jdbcType="BIT" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from activityrank
+    </select>
+	
+    <select id="selectById" parameterType="com.game.db.bean.ActivityRankBean" resultMap="bean">
+        select * from activityrank where roleId = #{roleId,jdbcType=INTEGER} and id = #{id, jdbcType=BIGINT} and type = #{type, jdbcType=INTEGER}
+    </select>
+        
+    <select id="selectByType" parameterType="com.game.db.bean.ActivityRankBean" resultMap="bean">
+        select * from activityrank where send = #{send,jdbcType=BIT} and id = #{id, jdbcType=BIGINT} and type = #{type, jdbcType=INTEGER}
+    </select>
+        
+    <insert id="insert" parameterType="com.game.db.bean.ActivityRankBean">
+        insert into activityrank values 
+        (#{id, jdbcType=BIGINT},#{roleId, jdbcType=BIGINT},#{type, jdbcType=INTEGER},#{funtionV, jdbcType=INTEGER},#{rankDate, jdbcType=INTEGER},#{name, jdbcType=LONGVARCHAR},#{serverId, jdbcType=BIGINT},#{plat, jdbcType=VARCHAR},#{serial,jdbcType=INTEGER},#{send,jdbcType=BIT})
+    </insert>
+    
+    <update id="update" parameterType="com.game.db.bean.ActivityRankBean">
+        update activityrank 
+            set 
+                id = #{id, jdbcType=BIGINT},
+                roleId = #{roleId, jdbcType=BIGINT},
+                funtionV = #{funtionV, jdbcType=INTEGER},
+                rankDate = #{rankDate, jdbcType=BIGINT},
+                name = #{name, jdbcType=LONGVARCHAR},
+                serverId = #{serverId, jdbcType=BIGINT},
+                type = #{type, jdbcType=INTEGER},
+                plat = #{plat, jdbcType=INTEGER},
+                serial = #{serial,jdbcType=INTEGER},
+                send = #{send,jdbcType=BIT}
+           where 
+                roleId = #{roleId,jdbcType=INTEGER} and id = #{id, jdbcType=BIGINT} and type = #{type, jdbcType=INTEGER}
+    </update>
+    
+    <delete id = "delete" parameterType="java.lang.Long">
+        delete from activityrank where id = #{id, jdbcType=BIGINT}
+    </delete>
+                
+                
+                
+</mapper>

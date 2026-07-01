@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('二次付费统计')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/stat_group_server_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_date_head.html"></div>
+                            <div th:replace="common/stat_black_list_head.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <div class="btn-group">
+                    <button name="group_tab" class="btn btn-primary" id="stat_recharge_second_time_interval" type="button">二次付费间隔统计</button>
+                    <button name="group_tab" class="btn btn-white" id="stat_recharge_second_item" type="button">二次付费项目统计</button>
+                </div>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+<script th:inline="javascript">
+    var prefix = ctx + "stat/stat_recharge_second";
+    $(function() {
+        $("button[name='group_tab']").bind("click",function(e){
+            $("button[name='group_tab']").removeClass();
+            $("button[name='group_tab']").addClass("btn btn-white");
+            $("#"+e.target.id+"").removeClass();
+            $("#"+e.target.id+"").addClass("btn btn-primary");
+            $.table.destroy('bootstrap-table');
+            // initTable(e.target.id);
+            // alert(e.target.id)
+            if("stat_recharge_second_time_interval" == e.target.id){
+                init_stat_recharge_second_time_interval();
+            }else  if("stat_recharge_second_item" == e.target.id){
+                init_stat_recharge_second_item();
+            }
+        });
+        init_stat_recharge_second_time_interval();
+    });
+
+
+
+    function init_stat_recharge_second_time_interval() {
+        var options = {
+            url: prefix + "/stat_recharge_second_time_interval",
+            modalName: "二次付费间隔统计",
+            pagination: false,
+            firstLoad:false,
+            showExport:true,
+            columns: [{
+                field: 'intervaDay',
+                title: '间隔天数',
+            }
+                ,{
+                    field: 'roles',
+                    title: '人数',
+                }]
+        };
+        $.table.init(options);
+    }
+
+
+    function init_stat_recharge_second_item() {
+        var options = {
+            url: prefix + "/stat_recharge_second_item",
+            modalName: "二次付费项目统计",
+            pagination: false,
+            columns: [{
+                field: 'secondItem',
+                title: '二次付费项目',
+            },{
+                field: 'roles',
+                title: '人数',
+            }
+            ]
+        };
+        $.table.init(options);
+    }
+
+</script>
+</body>
+</html>

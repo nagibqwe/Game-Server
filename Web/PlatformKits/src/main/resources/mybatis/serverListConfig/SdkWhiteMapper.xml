@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.whiteList.mapper.SdkWhiteMapper">
+    
+    <resultMap type="SdkWhite" id="SdkWhiteResult">
+        <result property="id"    column="id"    />
+        <result property="whiteName"    column="white_name"    />
+        <result property="tips"    column="tips"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectSdkWhiteVo">
+        select id, white_name, tips, update_time, create_time from sdk_white
+    </sql>
+
+    <select id="selectSdkWhiteList" parameterType="SdkWhite" resultMap="SdkWhiteResult">
+        <include refid="selectSdkWhiteVo"/>
+        <where>  
+            <if test="whiteName != null  and whiteName != ''"> and white_name like concat('%', #{whiteName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectSdkWhiteById" parameterType="Long" resultMap="SdkWhiteResult">
+        <include refid="selectSdkWhiteVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSdkWhite" parameterType="SdkWhite" useGeneratedKeys="true" keyProperty="id">
+        insert into sdk_white
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="whiteName != null">white_name,</if>
+            <if test="tips != null">tips,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="whiteName != null">#{whiteName},</if>
+            <if test="tips != null">#{tips},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSdkWhite" parameterType="SdkWhite">
+        update sdk_white
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="whiteName != null">white_name = #{whiteName},</if>
+            <if test="tips != null">tips = #{tips},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSdkWhiteById" parameterType="Long">
+        delete from sdk_white where id = #{id}
+    </delete>
+
+    <delete id="deleteSdkWhiteByIds" parameterType="String">
+        delete from sdk_white where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('玩家流失统计')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/stat_group_server_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_date_head.html"></div>
+
+                            <li>
+                                <label >选择条件:</label>
+                                <select id="select_condition" name="select_condition" class="span2" onchange="selectConditionChange(this.value);">
+                                    <option value="0">普通玩家</option>
+                                    <option value="1">付费玩家</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label  for="minPay">付费最低值:</label>
+                                <input type="text" id="minPay" name="minPay" class="span2"/>
+                            </li>
+
+                            <li>
+                                <label  for="maxPay">付费最高值:</label>
+                                <input type="text" id="maxPay" name="maxPay" class="span2"/>
+                            </li>
+                            <div th:replace="common/stat_black_list_head.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <div class="btn-group">
+                    <button name="group_tab" class="btn btn-primary" id="stat_player_leave_count" type="button">流失用户统计</button>
+                    <button name="group_tab" class="btn btn-white" id="stat_player_leave_rank" type="button">流失用户等级分布</button>
+                    <button name="group_tab" class="btn btn-white" id="stat_player_leave_amount" type="button">流失用户付费金额与次数统计</button>
+                </div>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+<script th:inline="javascript">
+    var prefix = ctx + "stat/stat_churn_rate";
+    $(function() {
+        $("button[name='group_tab']").bind("click",function(e){
+            $("button[name='group_tab']").removeClass();
+            $("button[name='group_tab']").addClass("btn btn-white");
+            $("#"+e.target.id+"").removeClass();
+            $("#"+e.target.id+"").addClass("btn btn-primary");
+            $.table.destroy('bootstrap-table');
+            // initTable(e.target.id);
+            // alert(e.target.id)
+            if("stat_player_leave_count" == e.target.id){
+                init_stat_player_leave_count();
+            }else  if("stat_player_leave_amount" == e.target.id){
+                init_stat_player_leave_amount();
+            }else  if("stat_player_leave_rank" == e.target.id){
+                init_stat_player_leave_rank();
+            }
+        });
+        init_stat_player_leave_count();
+    });
+
+
+
+    function init_stat_player_leave_count() {
+        var options = {
+            url: prefix + "/stat_player_leave_count",
+            modalName: "流失用户统计",
+            pagination: false,
+            firstLoad:false,
+            showExport:true,
+            showExport:true,
+            columns: [{
+                field: 'date',
+                title: '时间',
+            },{
+                field: 'roleLoginCount',
+                title: '登录用户总数',
+            },{
+                field: 'roleLostCount',
+                title: '用户流失数',
+            },{
+                field: 'rate',
+                title: '用户流失率',
+                formatter: function (value) {
+                    var val = value*100;
+                    return val.toFixed(2)+"%";
+                }
+            }]
+        };
+        $.table.init(options);
+    }
+    function init_stat_player_leave_amount() {
+        var options = {
+            url: prefix + "/stat_player_leave_amount",
+            modalName: "流失用户付费金额与次数统计",
+            pagination: false,
+            showExport:true,
+            columns: [{
+                field: 'key',
+                title: '累计金额',
+            },{
+                field: 'paylcount',
+                title: '账号数',
+            },{
+                field: 'rechargeSum',
+                title: '流失用户充值总金额',
+            }]
+        };
+        $.table.init(options);
+    }
+
+    function init_stat_player_leave_rank() {
+        var options = {
+            url: prefix + "/stat_player_leave_rank",
+            modalName: "流失用户等级分布",
+            pagination: false,
+            showExport:true,
+            columns: [{
+                field: 'rank',
+                title: '等级分布',
+            },{
+                field: 'userLeaveCount',
+                title: '用户流失数',
+            },{
+                field: 'vipUserLeaveCount',
+                title: '付费用户流失数',
+            }]
+        };
+        $.table.init(options);
+    }
+
+
+</script>
+</body>
+</html>

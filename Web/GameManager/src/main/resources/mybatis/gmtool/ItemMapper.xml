@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.item.mapper.ItemMapper">
+    
+    <resultMap type="Item" id="ItemResult">
+        <result property="itemId"    column="itemId"    />
+        <result property="itemName"    column="itemName"    />
+        <result property="itemType"    column="itemType"    />
+        <result property="color"    column="color"    />
+    </resultMap>
+
+    <sql id="selectItemVo">
+        select itemId, itemName, itemType, color from t_item
+    </sql>
+
+    <select id="selectItemList" parameterType="Item" resultMap="ItemResult">
+        <include refid="selectItemVo"/>
+        <where>  
+            <if test="itemName != null  and itemName != ''"> and itemName like concat('%', #{itemName}, '%')</if>
+            <if test="itemType != null "> and itemType = #{itemType}</if>
+            <if test="color != null "> and color = #{color}</if>
+        </where>
+    </select>
+    
+    <select id="selectItemById" parameterType="Integer" resultMap="ItemResult">
+        <include refid="selectItemVo"/>
+        where itemId = #{itemId}
+    </select>
+
+    <insert id="insertItem" parameterType="Item" useGeneratedKeys="true" keyProperty="itemId">
+        insert into t_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="itemId != null">itemId,</if>
+            <if test="itemName != null">itemName,</if>
+            <if test="itemType != null">itemType,</if>
+            <if test="color != null">color,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="itemId != null">#{itemId},</if>
+            <if test="itemName != null">#{itemName},</if>
+            <if test="itemType != null">#{itemType},</if>
+            <if test="color != null">#{color},</if>
+        </trim>
+    </insert>
+
+    <update id="updateItem" parameterType="Item">
+        update t_item
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="itemName != null">itemName = #{itemName},</if>
+            <if test="itemType != null">itemType = #{itemType},</if>
+            <if test="color != null">color = #{color},</if>
+        </trim>
+        where itemId = #{itemId}
+    </update>
+
+    <delete id="deleteItemById" parameterType="Integer">
+        delete from t_item where itemId = #{itemId}
+    </delete>
+
+    <delete id="deleteItemByIds" parameterType="String">
+        delete from t_item where itemId in 
+        <foreach item="itemId" collection="array" open="(" separator="," close=")">
+            #{itemId}
+        </foreach>
+    </delete>
+
+    <update id="clearItem" parameterType="String">
+        truncate table ${tableName}
+    </update>
+</mapper>

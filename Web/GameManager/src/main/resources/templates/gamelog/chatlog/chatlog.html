@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('聊天日志列表')"/>
+    <th:block th:include="include :: footer"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div th:replace="common/log_head.html"></div>
+
+                <input type="hidden" id="chatlogUrl" value="/list">
+
+                <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                    <ul>
+                        <li>
+                            <label>角色ID：</label>
+                            <input type="text" name="roleId"/>
+                        </li>
+                        <li>
+                            <label>等级：</label>
+                            <input style="width: 60px" type="text" name="level"/>
+                        </li>
+                        <li>
+                            <label>接收角色ID：</label>
+                            <input type="text" name="receRoleId"/>
+                        </li>
+                        <li>
+                            <label>聊天类型：</label>
+                            <input type="text" style="width: 60px" name="channel"/>
+                        </li>
+
+                        <div th:replace="common/log_limit.html"></div>
+
+                        <div th:replace="common/stat_search_head.html"></div>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-danger multiple disabled" onclick="batchBanAccount()">
+                <i></i> 批量封号
+            </a>
+
+            <a class="btn btn-danger multiple disabled" onclick="batchBanChat()">
+                <i></i> 批量禁言
+            </a>
+            <a class="btn btn-warning" onclick="$.table.exportExcel()">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" style="word-break:break-all; word-wrap:break-word;"></table>
+        </div>
+    </div>
+</div>
+<div th:replace="common/chatlogCommon.html"></div>
+
+</body>
+</html>

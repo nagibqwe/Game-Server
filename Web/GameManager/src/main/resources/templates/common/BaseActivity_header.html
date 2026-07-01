@@ -1,0 +1,253 @@
+
+<script>
+    function t_v_change() {
+        var timeType = $("#timeType").val();
+        if (timeType === '1') {
+            $("#beginTimeDiv").hide();
+            $("#endTimeDiv").hide();
+            $("#openServerOffsetBeginDiv").show();
+            $("#openServerOffsetDiv").show();
+
+            //记录时间
+            $("#startRecordTimeDiv").hide();
+            $("#endRecordTimeDiv").hide();
+            $("#openServerRecordOffsetBeginDiv").show();
+            $("#openServerRecordOffsetDiv").show();
+        }else {
+            $("#beginTimeDiv").show();
+            $("#endTimeDiv").show();
+            $("#openServerOffsetBeginDiv").hide();
+            $("#openServerOffsetDiv").hide();
+
+            //记录时间
+            $("#startRecordTimeDiv").show();
+            $("#endRecordTimeDiv").show();
+            $("#openServerRecordOffsetBeginDiv").hide();
+            $("#openServerRecordOffsetDiv").hide();
+        }
+    }
+    //显示鼠标样式和输入框的边框变色
+    function showMouse(obj) {
+        obj.style.cursor="pointer";
+        obj.style.borderColor="#82D900";
+    }
+    //鼠标移出时改变输入框的边框颜色
+    function hiddenMouse(obj) {
+        obj.style.borderColor="#DCDCDC";
+    }
+
+</script>
+
+<script>
+    //(活动模板父容器）
+    function showAddTemplateUI(add_btn) {
+        if (!$('#activity_form').validate().form()) {
+            $.modal.msgError("验证失败");
+            return;
+        }
+        // console.log(add_btn);
+        $("#addTemplateModal").modal('show')
+    }
+</script>
+
+<div class="col-lg-12 col-sm-12 col-md-12">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-11">
+        <legend>模板选择</legend>
+        <fieldset>
+            <div class="input-group">
+                <!--<label>选择模板:</label>-->
+                <select id="template" class="selectClass" onchange="copyTemplate(this.value)" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
+                    <!--<option>请选择模板</option>-->
+                </select>
+                <br/>
+                <input type="button" class="btn btn-info" name="addTemplate" id="addTemplate" value="保存模板" style="margin-top: 3px" onclick="showAddTemplateUI(this)"/>
+                <input type="button" class="btn btn-info" name="delTemplate" id="delTemplate" value="删除模板" style="margin-top: 3px;margin-left: 8px" onclick="deleteTemplate()"/>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="col-lg-12 col-sm-12 col-md-12">
+    <div class="col-lg-1"></div>
+    <div id="publicCondition" class="col-lg-11">
+        <legend>活动基础信息 - 公共信息</legend>
+        <fieldset>
+            <!--活动类型参数-->
+            <input id="id" type="hidden" name="id" value="0">
+            <input id="type" type="hidden" name="type">
+
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="name" class="control-label col-md-3 col-sm-3 col-xs-12">活动名称:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="例：活动1" value=""
+                           onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="description" class="control-label col-md-3 col-sm-3 col-xs-12">活动备注:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="description" name="description" placeholder="描述" value=""
+                           onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12 ">
+                <label for="minLv" class="control-label col-md-3 col-sm-3 col-xs-12">最小开放等级:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="minLv" name="minLv" placeholder="例：1"
+                           onkeyup="value=value.replace(/\D/g,'')" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="maxLv" class="control-label col-md-3 col-sm-3 col-xs-12">最大开放等级:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="maxLv" name="maxLv" placeholder="例：800"
+                           onkeyup="value=value.replace(/\D/g,'')" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="subType" class="control-label col-md-3 col-sm-3 col-xs-12">节日类型:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="subType" name="subType" onchange="" class="form-control" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
+
+                    </select>
+                </div>
+            </div>
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="tag" class="control-label col-md-3 col-sm-3 col-xs-12">活动标签:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="tag" name="tag" onchange="" class="form-control" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
+
+                    </select>
+                </div>
+            </div>
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12 ">
+                <label for="sort" class="control-label col-md-3 col-sm-3 col-xs-12">标签中的排序:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="sort" name="sort" placeholder="例：1 （从1开始）"
+                           onkeyup="value=value.replace(/\D/g,'')" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="timeType" class="control-label col-md-3 col-sm-3 col-xs-12">时间类型:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="timeType" name="timeType" onchange="t_v_change()" class="form-control" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
+                        <option value="0">固定时间变量(0)</option>
+                        <option value="1">开服时间变量(1)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="beginTimeDiv" class="item form-group col-md-4 col-sm-4 col-xs-12" >
+                <label for="beginTime" class="control-label col-md-3 col-sm-3 col-xs-12">开始时间:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control datetimepicker validate[required] span10" id="beginTime"
+                           name="beginTime" placeholder="2020-09-07 15:30" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" readonly required/>
+
+                </div>
+            </div>
+
+            <div id="endTimeDiv" class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="endTime" class="control-label col-md-3 col-sm-3 col-xs-12">结束时间:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control datetimepicker validate[required] span10" id="endTime"
+                           name="endTime" placeholder="2020-09-07 16:30" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" readonly required/>
+                </div>
+            </div>
+
+            <div id="startRecordTimeDiv" class="item form-group col-md-4 col-sm-4 col-xs-12" >
+                <label for="startRecordTime" class="control-label col-md-3 col-sm-3 col-xs-12">开始记录时间:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control datetimepicker span10" id="startRecordTime"
+                           name="startRecordTime" placeholder="2020-09-07 15:30" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" readonly required/>
+                </div>
+            </div>
+
+            <div id="endRecordTimeDiv" class="item form-group col-md-4 col-sm-4 col-xs-12" >
+                <label for="endRecordTime" class="control-label col-md-3 col-sm-3 col-xs-12">结束记录时间:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control datetimepicker span10" id="endRecordTime"
+                           name="endRecordTime" placeholder="2020-09-07 15:30" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" readonly required/>
+                </div>
+            </div>
+
+            <div id="openServerOffsetBeginDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
+                <label for="openServerOffsetBegin" class="control-label col-md-3 col-sm-3 col-xs-12">开服第几天生效:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="openServerOffsetBegin" name="openServerOffsetBegin" placeholder="例：1 （开服第1天）"
+                           onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+
+            <div id="openServerOffsetDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
+                <label for="openServerOffset" class="control-label col-md-3 col-sm-3 col-xs-12">活动持续天数:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="openServerOffset" name="openServerOffset" placeholder="例：1 (活动持续天数)"
+                           onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+
+            <div id="openServerRecordOffsetBeginDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
+                <label for="openServerRecordOffsetBegin" class="control-label col-md-3 col-sm-3 col-xs-12">记录从开服第几天开始:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="openServerRecordOffsetBegin" name="openServerRecordOffsetBegin" placeholder="例：1 （开服第1天）"
+                           onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+
+            <div id="openServerRecordOffsetDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
+                <label for="openServerRecordOffset" class="control-label col-md-3 col-sm-3 col-xs-12">记录持续天数:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" class="form-control" id="openServerRecordOffset" name="openServerRecordOffset" placeholder="例：1 (记录持续天数)"
+                           onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
+                </div>
+            </div>
+
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="autoSend" class="control-label col-md-3 col-sm-3 col-xs-12">开服自动发布:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="autoSend" name="autoSend" class="form-control" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="item form-group col-md-4 col-sm-4 col-xs-12">
+                <label for="isOpenServer" class="control-label col-md-3 col-sm-3 col-xs-12">新服活动:</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="isOpenServer" name="isOpenServer" class="form-control" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                    <span style="color: red">*若开服时间<=7天则必须选择是才会生效,否则无效</span>
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
+
+<div id="addTemplateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>添加模板</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="input-group">
+                        <label for="templateName">模板名称：</label><input type="text" class="selectClass" id="templateName"/>
+                        <label style="margin-left: 3px" for="description">模板说明：</label><input type="text" class="selectClass" id="templateDec"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                <input type="button" value="添加" onclick="submitTemplate()" class="btn btn-primary"/>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

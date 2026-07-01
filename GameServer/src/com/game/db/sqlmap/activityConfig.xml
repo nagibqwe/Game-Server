@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="activityConfig">
+    <resultMap id="bean" type="com.game.db.bean.ActivityConfigBean">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="minLv" property="minLv" jdbcType="INTEGER"/>
+        <result column="maxLv" property="maxLv" jdbcType="INTEGER"/>
+        <result column="tag" property="tag" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="TINYINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="beginTime" property="beginTime" jdbcType="BIGINT"/>
+        <result column="endTime" property="endTime" jdbcType="BIGINT"/>
+        <result column="isDelete" property="isDelete" jdbcType="TINYINT"/>
+        <result column="custom" property="custom" jdbcType="LONGVARCHAR"/>
+        <result column="state" property="state" jdbcType="TINYINT"/>
+        <result column="startRecordTime" property="startRecordTime" jdbcType="BIGINT"/>
+        <result column="endRecordTime" property="endRecordTime" jdbcType="BIGINT"/>
+        <result column="isOpenServer" property="isOpenServer" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from activityConfig where isDelete = 0;
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultMap="bean">
+        select * from activityConfig where id = #{id, jdbcType=INTEGER};
+    </select>
+
+    <insert id="insert" parameterType="com.game.db.bean.ActivityConfigBean">
+        insert into activityConfig (id,type,minLv,maxLv,tag,sort,name,beginTime,endTime,isDelete,custom,state,startRecordTime,endRecordTime,isOpenServer)
+        values
+        (
+        #{id, jdbcType=INTEGER}, #{type, jdbcType=INTEGER}, #{minLv, jdbcType=INTEGER}, #{maxLv, jdbcType=INTEGER}, #{tag, jdbcType=TINYINT}, #{sort, jdbcType=TINYINT}, #{name, jdbcType=VARCHAR},
+        #{beginTime, jdbcType=BIGINT}, #{endTime, jdbcType=BIGINT},
+        #{isDelete, jdbcType=TINYINT}, #{custom, jdbcType=LONGVARCHAR},
+        #{state, jdbcType=TINYINT},#{startRecordTime, jdbcType=BIGINT},#{endRecordTime, jdbcType=BIGINT},#{isOpenServer, jdbcType=TINYINT}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.game.db.bean.ActivityConfigBean">
+        update activityConfig set name = #{name,jdbcType=VARCHAR },
+        id = #{id, jdbcType=INTEGER},
+        type = #{type, jdbcType=INTEGER},
+        minLv = #{minLv, jdbcType=INTEGER},
+        maxLv = #{maxLv, jdbcType=INTEGER},
+        tag = #{tag,jdbcType=TINYINT },
+        sort = #{sort, jdbcType=TINYINT},
+        beginTime = #{beginTime,jdbcType=BIGINT },
+        endTime = #{endTime,jdbcType=BIGINT },
+        isDelete = #{isDelete,jdbcType=TINYINT },
+        custom = #{custom,jdbcType=LONGVARCHAR },
+        state = #{state, jdbcType=TINYINT},
+        startRecordTime = #{startRecordTime,jdbcType=BIGINT },
+        endRecordTime = #{endRecordTime,jdbcType=BIGINT },
+        isOpenServer = #{isOpenServer, jdbcType=TINYINT}
+        where
+        id = #{id, jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        update activityConfig set isDelete = 1, state = 0 where id = #{id, jdbcType=INTEGER};
+    </delete>
+
+    <update id="recover" parameterType="Integer">
+        update activityConfig set isDelete = 0 where id = #{id, jdbcType=INTEGER};
+    </update>
+</mapper>
+

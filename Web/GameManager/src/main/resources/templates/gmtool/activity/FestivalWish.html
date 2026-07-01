@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('节日许愿')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var count_01 = 0;
+        var count_02 = 0;
+        var count_06 = 0;
+        var count_07 = 0;
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+        });
+
+    </script>
+
+    <script>
+        function baodijiangliGrp(obj) {
+            console.log("count_01:"+count_01);
+            var rewardInput = 'baoDiReward' + count_01;
+            var rewardAddBtn = 'showRewardModel' + count_01;
+            count_01 += 1;
+            html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">积分:</label>' +
+                '<input type="text" class="form-control" id="score" name="score" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
+                '<label class="input-group-addon">保底奖励:</label>' +
+                // '<input type="text" class="form-control" id="baoDiReward" name="baoDiReward" style="max-width:auto;">' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="保底奖励" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="baoDiReward"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delExChangeConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        function jiangliGrp(obj) {
+            console.log("count_02:"+count_02);
+            var rewardInput = 'rewardData' + count_02;
+            var rewardAddBtn = 'showRewardModel2' + count_02;
+            count_02 += 1;
+            html = '<div name="cfg2" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">钥匙开启的权重:</label>' +
+                '<input type="text" class="form-control" id="keyWeight" name="keyWeight" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
+                '<label class="input-group-addon">元宝开启的权重:</label>' +
+                '<input type="text" class="form-control" id="goldWeight" name="goldWeight" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
+                '<label class="input-group-addon">是否是大奖:</label>' +
+                '<select id="isBig" name="isBig" onchange="" class="form-control heightSet" style="min-width:40px;width: 61px;">' +
+                '<option value="0">否</option>' +
+                '<option value="1">是</option>' +
+                '</select>' +
+                '<label class="input-group-addon">是否显示:</label>' +
+                '<select id="isShow" name="isShow" onchange="" class="form-control heightSet" style="min-width:40px;width: 61px;">' +
+                '<option value="0">否</option>' +
+                '<option value="1">是</option>' +
+                '</select>' +
+                '<label class="input-group-addon">奖品:</label>' +
+                // '<input type="text" class="form-control" id="rewardData" name="rewardData" style="max-width:auto;">' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖品" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="rewardData"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        $(document).on('click', '#copyGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var newEl = el.cloneNode(true);
+            el.parentNode.insertBefore(newEl, el);
+        })
+        $(document).on('click', '#delGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var saltIp = $(this).parent().parent().find('#saltIp').val();
+            el.parentNode.removeChild(el);
+            return;
+        })
+    </script>
+    <script>
+        function validate() {
+            if (checkBaodi() && checkBaoDiRange() && checkBaoDiRangeInfo()){
+                return true;
+            }else {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>节日许愿<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="在配置活动的时候活动名字,支持多语言展示,需要运营人员使用一下副文本进行填写: [CH]中文简体[/CH][EN]英文[/EN][TW]中文繁体[/TW][KR]韩文[/KR][VIE]越南[/VIE][TH]泰文[/TH][JP]日文[/JP]"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div id="costGroup" class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>消耗配置</legend>
+                            <fieldset>
+                                <div class="input-group saltIp">
+                                    <label class="input-group-addon">钥匙ID:</label>
+                                    <input name="keyId" id="keyId" value="" title="钥匙ID" placeholder=""
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">单次消耗钥匙数:</label>
+                                    <input name="oneCostKey" id="oneCostKey" value="" title="单次消耗钥匙数"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">十次消耗钥匙数:</label>
+                                    <input name="tenCostKey" id="tenCostKey" value="" title="十次消耗钥匙数"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">单次次消耗元宝数:</label>
+                                    <input name="oneCostGold" id="oneCostGold" value="" title="单次次消耗元宝数"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">十次消耗元宝数:</label>
+                                    <input name="tenCostGold" id="tenCostGold" value="" title="十次消耗元宝数"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="drawCfg" class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>抽奖配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="drawshuju">
+                                    <label class="input-group-addon">每次增加祝福值:</label>
+                                    <input name="addWish" id="addWish" value="" title="每次增加祝福值"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">每次增加的积分:</label>
+                                    <input name="addScore" id="addScore" value="" title="每次增加的积分"
+                                           type="text" class="form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">祝福值上限:</label>
+                                    <input name="wishMax" id="wishMax" value="" title="祝福值上限"
+                                           type="text" class="form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">抽奖X次才会出大奖:</label>
+                                    <input name="wasteGoldCount" id="wasteGoldCount" value="" title="抽奖X次才会出大奖"
+                                           type="text" class="form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="baoDiRewardPool" class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>保底奖励配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="baodishuju">
+                                    <label class="input-group-addon">保底数据:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="baoDiRewardBtn"
+                                            onclick="baodijiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount1" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="rewardPool" class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>奖池数据配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="jianglishuju">
+                                    <label class="input-group-addon">奖池数据:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="jiangliBtn"
+                                            onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount2" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="luckyGroup" class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>抽奖幸运值配置</legend>
+                            <fieldset>
+                                <div class="input-group saltIp">
+                                    <label class="input-group-addon">参与一次增加的幸运值:</label>
+                                    <input name="oneLuckyValue" id="oneLuckyValue"
+                                           type="text" class=" form-control" style="width:100px;" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">奖励列表:</label>
+                                    <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" data-toggle="tooltip" title="奖励列表" id="addOneLuckyBtn"
+                                    onclick="showAddItemUI('luckyAwardGift','addOneLuckyBtn')"><span class="glyphicon glyphicon-plus"></span></button>
+                            <input type="hidden" id="cfgCount5" value="0">
+                        </span>
+                                    <input name="luckyAwardGift" id="luckyAwardGift" value="" type="text" class=" hide"/>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="baodiPool" class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>保底次数配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="baodinumshuju">
+                                    <label class="input-group-addon">保底次数:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="baoDiBtn"
+                                            onclick="baoDiGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

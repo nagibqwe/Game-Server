@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('运营活动模板列表')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+        $(function () {
+            loadActivityFestivalType();//节日类型
+            loadActivityTag();//标签
+            loadFestivalTypeAddTag();
+        });
+        
+        function loadActivityTemplate() {
+            var data = new FormData();
+            data.append('activityTemplateFile', $("#activityTemplateFile").prop('files')[0]);
+            $.ajax({
+                url: prefixTemplate + "/loadActivityTemplate",
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.ok){
+                        $("#activityTemplateLoadModel").modal('hide');
+                        $.modal.alertSuccess(data.msg);
+                        $.table.search();
+                    }else {
+                        $.modal.alertError(data.msg);
+                        $.table.search();
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>模版名称：</label>
+                                <input type="text" name="templateName"/>
+                            </li>
+                            <li>
+                                <label>活动类型：</label>
+                                <select id="type" name="type" onchange="" class="span2">
+                                    <option value="1">活跃活动(1)</option>
+                                    <option value="2">每日充值(2)</option>
+                                    <option value="3">每日登陆(3)</option>
+                                    <option value="4">限购礼包(4)</option>
+                                    <option value="5">天帝宝库(5)</option>
+                                    <option value="6">累计充值(6)</option>
+                                    <option value="7">累计消耗(7)</option>
+                                    <option value="8">集物兑换(8)</option>
+                                    <option value="9">团购活动(9)</option>
+                                    <option value="10">招财猫(10)</option>
+                                    <option value="11">首领狂欢(11)</option>
+                                    <option value="12">庆典任务(12)</option>
+                                    <option value="13">节日集字(13)</option>
+                                    <option value="14">节日特惠(14)</option>
+                                    <option value="15">连续累充(15)</option>
+                                    <option value="16">限时商城(16)</option>
+                                    <option value="17">节日礼包(17)</option>
+                                    <option value="18">积分排名(18)</option>
+                                    <option value="19">节日许愿(19)</option>
+                                    <option value="20">FB分享(20)</option>
+                                    <option value="21">连续累充2(21)</option>
+                                    <option value="22">节日祝福(22)</option>
+                                    <option value="23">掷骰子(23)</option>
+                                    <option value="24">外观展示(24)</option>
+                                    <option value="25">登陆展示(25)</option>
+                                    <option value="26">聚宝盆(26)</option>
+                                    <option value="27">幸运砸蛋(27)</option>
+                                    <option value="28">幸运宝玉(28)</option>
+                                    <option value="29">方泽探宝(29)</option>
+                                    <option value="-1" selected>所有</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>节日类型：</label>
+                                <select id="subType2" name="subType" onchange="" class="span2">
+
+                                </select>
+                            </li>
+                            <li>
+                                <label>标签：</label>
+                                <select id="tag2" name="tag" onchange="" class="span2">
+
+                                </select>
+                            </li>
+                            <li>
+                                <label>开服自动发布：</label>
+                                <select id="autoSend" name="autoSend" onchange="" class="span2">
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                    <option value="-1" selected>所有</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>新服活动：</label>
+                                <select id="isOpenServer" name="isOpenServer" onchange="" class="span2">
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                    <option value="-1" selected>所有</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+                <a href="#activityTemplateLoadModel" role="button" class="btn btn-info" data-toggle="modal">
+                    <i class="fa fa-upload"></i> 导入
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        var prefixTemplate = ctx + "gmtool/activityTemplate";
+
+        $(function() {
+            var options = {
+                sidePagination: "client",
+                url: prefixTemplate + "/list",
+                removeUrl: prefixTemplate + "/remove",
+                exportUrl: prefixTemplate + "/export",
+                importUrl: prefixTemplate + "/importData",
+                maintainSelected: true,
+                rememberSelected: true,
+                modalName: "运营活动模板",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'ID'
+                },
+                {
+                    field: 'templateName',
+                    title: '名称'
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间'
+                },
+                {
+                    field: 'type',
+                    title: '活动类型'
+                },
+                {
+                    field: 'subType',
+                    title: '活动子类型'
+                },
+                {
+                    field: 'minLv',
+                    title: '最小等级'
+                },
+                {
+                    field: 'maxLv',
+                    title: '最大等级'
+                },
+                {
+                    field: 'tag',
+                    title: '活动标签'
+                },
+                {
+                    field: 'sort',
+                    title: '标签排序'
+                },
+                {
+                    field: 'name',
+                    title: '活动名称'
+                },
+                {
+                    field: 'timeType',
+                    title: '时间类型'
+                },
+                {
+                    field: 'openServerOffsetBegin',
+                    title: '距离开服多少天'
+                },
+                {
+                    field: 'openServerOffset',
+                    title: '活动天数'
+                },
+                {
+                    field: 'beginTime',
+                    title: '活动开始时间'
+                },
+                {
+                    field: 'endTime',
+                    title: '活动结束时间'
+                },
+                {
+                    field: 'openServerRecordOffsetBegin',
+                    title: '记录距离开服多少天'
+                },
+                {
+                    field: 'openServerRecordOffset',
+                    title: '活动记录持续天数'
+                },
+                {
+                    field: 'startRecordTime',
+                    title: '开始记录时间'
+                },
+                {
+                    field: 'endRecordTime',
+                    title: '结束记录时间'
+                },
+                {
+                    field: 'autoSend',
+                    title: '开服自动发布'
+                },
+                {
+                    field: 'isOpenServer',
+                    title: '新服活动'
+                },
+                {
+                    field: 'custom',
+                    title: '自定义参数',
+                    formatter:formatterValue
+                },
+                {
+                    field: 'description',
+                    title: '模板描述'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+<!-- 导入区域 -->
+<div id="activityTemplateLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>运营活动模板数据</h3>
+            </div>
+            <div class="modal-body">
+                <input id="activityTemplateFile" type="file" name="activityTemplateFile"/>
+                <label>提示：仅允许导入“xls”或“xlsx”格式文件！</label>
+            </div>
+            <div class="modal-footer">
+                <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                <input type="button" value="上传" onclick="loadActivityTemplate()" class="btn btn-primary"/>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+</html>

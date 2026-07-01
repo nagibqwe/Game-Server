@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('实时排行榜查询')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="selectServerList">
+                                <input type="hidden" id="ignoreMerge" value="0">
+                                <input type="hidden" id="serverTypeList" value="0,1">
+                            </li>
+                            <li>
+                                <select id="rankType" name="rankType" class="span2">
+                                    <option value="101" selected>等级排行榜(101)</option>
+                                    <option value="102">战力排行榜(102)</option>
+                                    <option value="103">坐骑排行榜(103)</option>
+                                    <option value="104">仙羽战力排行榜(104)</option>
+                                    <option value="105">装备战力排行榜(105)</option>
+                                    <option value="106">法宝战力排行榜(106)</option>
+                                    <option value="109">神兵战力排行榜(109)</option>
+
+                                    <option value="110">宝石战力排行榜(110)</option>
+                                    <option value="112">装备洗练排行榜(112)</option>
+                                    <option value="113">装备强化排行榜(113)</option>
+                                    <option value="114">装备宝石排行榜(114)</option>
+                                    <option value="115">星级排行榜(115)</option>
+                                    <option value="116">星级排行榜(116)</option>
+                                    <option value="117">星级排行榜(117)</option>
+
+                                    <option value="118">灵体排行榜(118)</option>
+                                    <option value="119">仙甲排行榜(119)</option>
+
+                                    <option value="120">圣装排行榜(120)</option>
+                                    <option value="121">神兽排行榜(121)</option>
+                                    <option value="122">宠物御魂排行榜(122)</option>
+                                    <option value="123">宠物等级排行榜(123)</option>
+                                    <option value="124">坐骑御魂排行榜(124)</option>
+                                    <option value="125">坐骑等级排行榜(125)</option>
+                                    <option value="126">消费排名排行榜(126)</option>
+
+                                    <option value="127">魂甲排行榜(127)</option>
+                                    <option value="128">八卦排行榜(128)</option>
+                                    <option value="129">灵魄排行榜(129)</option>
+
+                                    <option value="130">魔魂排行榜(130)</option>
+                                    <option value="131">坐骑脉轮排行榜(131)</option>
+
+                                    <option value="201">竞技场排行榜(201)</option>
+                                    <option value="202">识海排行榜(202)</option>
+
+                                    <option value="301">宗派战力排行榜(301)</option>
+
+                                    <option value="401">魅力榜排行榜(401)</option>
+                                    <option value="402">送花榜排行榜(402)</option>
+                                    <option value="403">亲密度榜排行榜(403)</option>
+
+                                    <option value="501">名人堂排名排行榜(501)</option>
+                                    <option value="601">天墟战场名人堂(601)</option>
+                                </select>
+                            </li>
+
+
+                                <li>
+                                    <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                                </li>
+
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="stat:stat_career_distribute:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('stat:stat_career_distribute:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('stat:stat_career_distribute:remove')}]];
+        var prefix = ctx + "gmquerydata/rankinglist";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                exportUrl: prefix + "/export",
+                modalName: "实时排行榜查询",
+                pagination: false,
+                firstLoad:false,
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'rank',
+                    title: '排名'
+                },
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },{
+                    field: 'roleName',
+                    title: '角色名'
+                },{
+                    field: 'rankData',
+                    title: '排行数据'
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

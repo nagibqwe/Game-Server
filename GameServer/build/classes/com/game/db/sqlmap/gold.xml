@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+<mapper namespace="game_gold">
+
+    <resultMap id="gold" type="com.game.gold.structs.Gold" >
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="platformName" property="platformName" jdbcType="VARCHAR" />
+        <result column="rechargeGold" property="rechargeGold" jdbcType="INTEGER" />
+        <result column="reaminGold" property="reaminGold" jdbcType="INTEGER" />
+        <result column="costGold" property="costGold" jdbcType="INTEGER" />
+        <result column="tradeAddGold" property="tradeAddGold" jdbcType="INTEGER" />
+        <result column="tradeCostGold" property="tradeCostGold" jdbcType="INTEGER" />
+    </resultMap>
+	
+    <select id="selectAll" resultMap="gold">
+        select * from gold
+    </select>
+
+    <insert id="insert" parameterType="com.game.gold.structs.Gold" >
+        insert into gold (
+        userId,
+        serverId,
+        platformName,
+        rechargeGold,
+        reaminGold,
+        costGold,
+        tradeAddGold,
+        tradeCostGold
+        ) values (
+        #{userId,jdbcType=BIGINT},
+        #{serverId,jdbcType=INTEGER},
+        #{platformName,jdbcType=VARCHAR},
+        #{rechargeGold,jdbcType=INTEGER},
+        #{reaminGold,jdbcType=INTEGER},
+        #{costGold,jdbcType=INTEGER}, 
+        #{tradeAddGold,jdbcType=INTEGER},
+        #{tradeCostGold,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.game.gold.structs.Gold" >
+        update gold set 
+        rechargeGold = #{rechargeGold,jdbcType=INTEGER},
+        reaminGold = #{reaminGold,jdbcType=INTEGER},
+        costGold = #{costGold,jdbcType=INTEGER},
+        tradeAddGold = #{tradeAddGold,jdbcType=INTEGER},
+        tradeCostGold = #{tradeCostGold,jdbcType=INTEGER}
+        where userId = #{userId,jdbcType=BIGINT} and serverId = #{serverId,jdbcType=INTEGER}
+    </update>
+</mapper> 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('元宝变化日志列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/log_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <label>角色ID：</label>
+                                <input type="text" name="roleId"/>
+                            </li>
+                            <li>
+                                <label>原因码：</label>
+                                <input type="text" name="reason"/>
+                            </li>
+
+                            <div th:replace="common/log_limit.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gamelog:goldchangelog:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gamelog:goldchangelog:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gamelog:goldchangelog:remove')}]];
+        var prefix = ctx + "gamelog/goldchangelog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                exportUrl: prefix + "/export",
+                modalName: "元宝变化日志",
+                pagination: false,
+                firstLoad:false,
+                height:$(document).height() - 160,
+                columns: [
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'time',
+                    title: '时间',
+                    formatter: formatterDate
+                },
+                {
+                    field: 'actionId',
+                    title: '关联ID'
+                },
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },
+                {
+                    field: 'roleName',
+                    title: '角色名'
+                },
+                {
+                    field: 'roleLevel',
+                    title: '角色等级',
+                    formatter: formatterRoleLevel
+                },
+                {
+                    field: 'loginIp',
+                    title: '登录ip'
+                },
+                {
+                    field: 'changeNum',
+                    title: '变化量'
+                },
+                {
+                    field: 'beforeNum',
+                    title: '变化前元宝数'
+                },
+                {
+                    field: 'afterNum',
+                    title: '变化后元宝数'
+                },
+                {
+                    field: 'reason',
+                    title: '原因码'
+                },
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

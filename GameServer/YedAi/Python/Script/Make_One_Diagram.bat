@@ -1,0 +1,5 @@
+%CONV_TOOL% %REAL_SOURCE_PATH% %DEST_ROOT%\%REAL_SOURCE%
+FOR /F "delims=."  %%i IN ("%REAL_SOURCE%") DO (
+ echo %%i_graphml	-	%RES_COUNT%
+)
+SET /A RES_COUNT=RES_COUNT+1

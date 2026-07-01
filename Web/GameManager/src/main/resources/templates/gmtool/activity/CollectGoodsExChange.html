@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('集物兑换')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var count_01 = 0;
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+        });
+
+    </script>
+
+    <script>
+        function addSaltIpGrp(obj) {
+            console.log(count_01);
+            var rewardInput = 'reward' + count_01;
+            var rewardAddBtn = 'showRewardModel' + count_01;
+            count_01 += 1;
+            html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">兑换次数:</label>' +
+                '<input type="text" class="form-control" id="exChangeTimes" name="exChangeTimes" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:180px;">' +
+                '<label class="input-group-addon">兑换价格:</label>' +
+                '<input type="text" class="form-control" id="exChangePrice" name="exChangePrice" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:220px;">' +
+                '<label class="input-group-addon">兑换道具表:</label>' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="固定奖励组" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="reward"/></div>' +
+                '</span>' +
+                // '<input type="text" class="form-control" id="reward" name="reward" style="max-width:390px;">' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delExChangeConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>集物兑换<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="集物道具ID：填入item表中的ID<br/>
+                                活动关闭兑换货币：活动关闭时未兑换完毕的活动道具，系统进行回收"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11 ">
+                            <legend>集物配置表</legend>
+                            <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                <label class="input-group-addon ">集物道具ID:</label>
+                                <input type="text" class="form-control " id="exChangeMaterialsId" name="exChangeMaterialsId" onkeyup="value=value.replace(/\D/g,'')" style="max-width:390px;">
+                                <label class="input-group-addon ">活动关闭兑换货币:</label>
+                                <select id="returnMoneyCoinType" name="returnMoneyCoinType" onchange="" class="form-control heightSet">
+                                    <option value="3">铜币</option>
+                                    <option value="12">银元宝</option>
+                                </select>
+                                <label class="input-group-addon">兑换数量:</label>
+                                <input type="text" class="form-control " id="returnMoneyCoinNum" name="returnMoneyCoinNum" onkeyup="value=value.replace(/\D/g,'')" style="max-width:120px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>兑换配置表</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup">
+                                    <label class="input-group-addon">兑换配置:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn"
+                                            onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount1" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

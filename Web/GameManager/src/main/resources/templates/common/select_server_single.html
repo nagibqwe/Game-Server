@@ -1,0 +1,61 @@
+<label id="select_group_label">区服：</label>
+<select class="selectClass"  id="select_group" name="groupName" onchange="queryServerByGroup(this.value)"></select>
+<select class="selectClass" id="select_server" name="serverId" data-first-title="请选择服务器">
+    <option value="">请选择服务器</option>
+</select>
+<script th:inline="javascript">
+
+    $(function() {
+        group_reload();
+    });
+
+    function group_reload() {
+        $.ajax({
+            type: "POST",
+            url: ctx + "gmtool/selectgroup/selectServerGroup",
+            data: "",
+            dataType: "json",
+            async:false,
+            success: function (data) {
+                // alert(JSON.stringify(data));
+                var select = $("#select_group");
+                select.empty();
+                var dataList = data.rows;
+                for (var i = 0; i < dataList.length; i++) {
+                    var option = $("<option>").val(dataList[i]).text(dataList[i]);
+                    select.append(option);
+                }
+                queryServerByGroup(select.val());
+            }
+        });
+    }
+
+    function queryServerByGroup(groupName) {
+        var requestUrl = $("#requestUrl").val();
+        var ignoreMerge = $("#ignoreMerge").val();
+        var serverTypeList = $("#serverTypeList").val();
+        console.log("ignoreMerge:"+ignoreMerge);
+        $.ajax({
+            type: "POST",
+            url: ctx + "gmtool/selectgroup/"+requestUrl,
+            data: {
+                "groupName": groupName,
+                "ignoreMerge": ignoreMerge,
+                "serverTypeList": serverTypeList
+            },
+            dataType: "json",
+            async:false,
+            success: function (data) {
+                var select = $("#select_server");
+                select.empty();
+                var dataList = data.rows;
+                // console.log(JSON.stringify(dataList));
+                for (var i = 0; i < dataList.length; i++) {
+                    var dbserver = dataList[i];
+                    var option = $("<option>").val(dbserver.serverId).text(dbserver.serverName + "(" + dbserver.serverId + ")");
+                    select.append(option);
+                }
+            }
+        });
+    }
+</script>

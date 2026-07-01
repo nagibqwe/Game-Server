@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.db.mapper.RechargeBeanMapper">
+  <resultMap id="BaseResultMap" type="com.game.db.bean.RechargeBean">
+    <id column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="srv_id" jdbcType="INTEGER" property="srvId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_type" jdbcType="VARCHAR" property="goodsType" />
+    <result column="goods_ext" jdbcType="VARCHAR" property="goodsExt" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_cfg" jdbcType="VARCHAR" property="goodsCfg" />
+    <result column="total_fee" jdbcType="INTEGER" property="totalFee" />
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="game_money" jdbcType="INTEGER" property="gameMoney" />
+    <result column="ext_param" jdbcType="VARCHAR" property="extParam" />
+    <result column="sign_type" jdbcType="VARCHAR" property="signType" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="add_time" jdbcType="BIGINT" property="addTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="src" jdbcType="TINYINT" property="src" />
+    <result column="money_type" jdbcType="VARCHAR" property="moneyType" />
+    <result column="notify_time" jdbcType="VARCHAR" property="notify_time" />
+    <result column="notify_id" jdbcType="VARCHAR" property="notify_id" />
+    <result column="trade_no" jdbcType="VARCHAR" property="trade_no" />
+    <result column="trade_status" jdbcType="INTEGER" property="trade_status" />
+    <result column="totalRecharge" jdbcType="INTEGER" property="totalRecharge" />
+    <result column="totalVipPower" jdbcType="INTEGER" property="totalVipPower" />
+
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.game.db.bean.RechargeBean">
+    <result column="data" jdbcType="LONGVARCHAR" property="data" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    order_no, user_id, role_id, srv_id, goods_id, goods_type, goods_ext, goods_name, 
+    goods_cfg, total_fee, item_id, game_money, ext_param, sign_type, sign, add_time, 
+    status, src, money_type,notify_time,notify_id,trade_no,trade_status,totalRecharge,totalVipPower
+  </sql>
+  <sql id="Blob_Column_List">
+    data
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.game.db.bean.RechargeBeanExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from recharge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.game.db.bean.RechargeBeanExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from recharge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from recharge
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from recharge
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.game.db.bean.RechargeBeanExample">
+    delete from recharge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.game.db.bean.RechargeBean">
+    insert into recharge (order_no, user_id, role_id, 
+      srv_id, goods_id, goods_type, 
+      goods_ext, goods_name, goods_cfg, 
+      total_fee, item_id, game_money, 
+      ext_param, sign_type, sign, 
+      add_time, status, src, data,
+      money_type,notify_time,notify_id,trade_no,trade_status,totalRecharge,totalVipPower)
+    values (#{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, 
+      #{srvId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsType,jdbcType=VARCHAR}, 
+      #{goodsExt,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsCfg,jdbcType=VARCHAR}, 
+      #{totalFee,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{gameMoney,jdbcType=INTEGER}, 
+      #{extParam,jdbcType=VARCHAR}, #{signType,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{src,jdbcType=TINYINT}, 
+      #{data,jdbcType=LONGVARCHAR}, #{moneyType,jdbcType=VARCHAR}, #{notify_time,jdbcType=VARCHAR},
+       #{notify_id,jdbcType=VARCHAR}, #{trade_no,jdbcType=VARCHAR},#{trade_status,jdbcType=INTEGER},
+        #{totalRecharge,jdbcType=INTEGER},#{totalVipPower,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.game.db.bean.RechargeBean">
+    insert into recharge
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="srvId != null">
+        srv_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsType != null">
+        goods_type,
+      </if>
+      <if test="goodsExt != null">
+        goods_ext,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsCfg != null">
+        goods_cfg,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="gameMoney != null">
+        game_money,
+      </if>
+      <if test="extParam != null">
+        ext_param,
+      </if>
+      <if test="signType != null">
+        sign_type,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="src != null">
+        src,
+      </if>
+      <if test="data != null">
+        data,
+      </if>
+      <if test="moneyType != null">
+        money_type,
+      </if>
+      <if test="notify_time != null">
+        notify_time,
+      </if>
+      <if test="notify_id != null">
+        notify_id,
+      </if>
+      <if test="trade_no != null">
+        trade_no,
+      </if>
+      <if test="trade_status != null">
+        trade_status,
+      </if>
+      <if test="totalRecharge != null">
+        totalRecharge,
+      </if>
+      <if test="totalVipPower != null">
+        totalVipPower,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="srvId != null">
+        #{srvId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsExt != null">
+        #{goodsExt,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCfg != null">
+        #{goodsCfg,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="gameMoney != null">
+        #{gameMoney,jdbcType=INTEGER},
+      </if>
+      <if test="extParam != null">
+        #{extParam,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="src != null">
+        #{src,jdbcType=TINYINT},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="moneyType != null">
+        #{moneyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notify_time != null">
+        #{notify_time,jdbcType=VARCHAR},
+      </if>
+      <if test="notify_id != null">
+        #{notify_id,jdbcType=VARCHAR},
+      </if>
+      <if test="trade_no != null">
+        #{trade_no,jdbcType=VARCHAR},
+      </if>
+      <if test="trade_status != null">
+        #{trade_status,jdbcType=INTEGER},
+      </if>
+      <if test="totalRecharge != null">
+        #{totalRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="totalVipPower != null">
+        #{totalVipPower,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.game.db.bean.RechargeBeanExample" resultType="java.lang.Long">
+    select count(*) from recharge
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
+  <select id="selectRechargeByRoleId" parameterType="java.util.Map" resultType="java.lang.Long">
+    select sum(total_fee) from recharge
+    where role_id = #{role_id,jdbcType=VARCHAR}
+    and
+    add_time <![CDATA[>]]> #{begin,jdbcType=BIGINT}
+    and
+    add_time <![CDATA[<]]> #{end,jdbcType=BIGINT};
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update recharge
+    <set>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.srvId != null">
+        srv_id = #{record.srvId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsType != null">
+        goods_type = #{record.goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsExt != null">
+        goods_ext = #{record.goodsExt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCfg != null">
+        goods_cfg = #{record.goodsCfg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalFee != null">
+        total_fee = #{record.totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemId != null">
+        item_id = #{record.itemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gameMoney != null">
+        game_money = #{record.gameMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.extParam != null">
+        ext_param = #{record.extParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signType != null">
+        sign_type = #{record.signType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sign != null">
+        sign = #{record.sign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.src != null">
+        src = #{record.src,jdbcType=TINYINT},
+      </if>
+      <if test="record.data != null">
+        data = #{record.data,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.moneyType != null">
+        money_type = #{record.moneyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notify_time != null">
+        notify_time = #{record.notify_time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notify_id != null">
+        notify_id = #{record.notify_id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trade_no != null">
+        trade_no = #{record.trade_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trade_status != null">
+        trade_status = #{record.trade_status,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalRecharge != null">
+        totalRecharge = #{record.totalRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalVipPower != null">
+        totalVipPower = #{record.totalVipPower,jdbcType=INTEGER},
+      </if>
+
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update recharge
+    set order_no = #{record.orderNo,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      srv_id = #{record.srvId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_type = #{record.goodsType,jdbcType=VARCHAR},
+      goods_ext = #{record.goodsExt,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_cfg = #{record.goodsCfg,jdbcType=VARCHAR},
+      total_fee = #{record.totalFee,jdbcType=INTEGER},
+      item_id = #{record.itemId,jdbcType=INTEGER},
+      game_money = #{record.gameMoney,jdbcType=INTEGER},
+      ext_param = #{record.extParam,jdbcType=VARCHAR},
+      sign_type = #{record.signType,jdbcType=VARCHAR},
+      sign = #{record.sign,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      src = #{record.src,jdbcType=TINYINT},
+      data = #{record.data,jdbcType=LONGVARCHAR},
+      notify_time = #{record.notify_time,jdbcType=VARCHAR},
+      notify_id = #{record.notify_id,jdbcType=VARCHAR},
+    trade_no = #{record.trade_no,jdbcType=VARCHAR},
+    trade_status = #{record.trade_status,jdbcType=INTEGER},
+    totalRecharge = #{record.totalRecharge,jdbcType=INTEGER},
+    totalVipPower = #{record.totalVipPower,jdbcType=INTEGER}
+
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update recharge
+    set order_no = #{record.orderNo,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      srv_id = #{record.srvId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_type = #{record.goodsType,jdbcType=VARCHAR},
+      goods_ext = #{record.goodsExt,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_cfg = #{record.goodsCfg,jdbcType=VARCHAR},
+      total_fee = #{record.totalFee,jdbcType=INTEGER},
+      item_id = #{record.itemId,jdbcType=INTEGER},
+      game_money = #{record.gameMoney,jdbcType=INTEGER},
+      ext_param = #{record.extParam,jdbcType=VARCHAR},
+      sign_type = #{record.signType,jdbcType=VARCHAR},
+      sign = #{record.sign,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      src = #{record.src,jdbcType=TINYINT},
+      money_type = #{record.moneyType,jdbcType=VARCHAR},
+    notify_time = #{record.notify_time,jdbcType=VARCHAR},
+    notify_id = #{record.notify_id,jdbcType=VARCHAR},
+    trade_no = #{record.trade_no,jdbcType=VARCHAR},
+    trade_status = #{record.trade_status,jdbcType=INTEGER},
+    totalRecharge = #{record.totalRecharge,jdbcType=INTEGER},
+    totalVipPower = #{record.totalVipPower,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.game.db.bean.RechargeBean">
+    update recharge
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="srvId != null">
+        srv_id = #{srvId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsExt != null">
+        goods_ext = #{goodsExt,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCfg != null">
+        goods_cfg = #{goodsCfg,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        total_fee = #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="gameMoney != null">
+        game_money = #{gameMoney,jdbcType=INTEGER},
+      </if>
+      <if test="extParam != null">
+        ext_param = #{extParam,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        sign_type = #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="src != null">
+        src = #{src,jdbcType=TINYINT},
+      </if>
+      <if test="data != null">
+        data = #{data,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="moneyType != null">
+        money_type = #{moneyType,jdbcType=VARCHAR},
+      </if>
+
+      <if test="notify_time != null">
+        notify_time = #{notify_time,jdbcType=VARCHAR},
+      </if>
+
+      <if test="notify_id != null">
+        notify_id = #{notify_id,jdbcType=VARCHAR},
+      </if>
+
+      <if test="trade_no != null">
+        trade_no = #{trade_no,jdbcType=VARCHAR},
+      </if>
+
+      <if test="trade_status != null">
+        trade_status = #{trade_status,jdbcType=INTEGER},
+      </if>
+      <if test="totalRecharge != null">
+        totalRecharge = #{totalRecharge,jdbcType=INTEGER},
+      </if>
+      <if test="totalVipPower != null">
+        totalVipPower = #{totalVipPower,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.game.db.bean.RechargeBean">
+    update recharge
+    set user_id = #{userId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT},
+      srv_id = #{srvId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      goods_ext = #{goodsExt,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_cfg = #{goodsCfg,jdbcType=VARCHAR},
+      total_fee = #{totalFee,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=INTEGER},
+      game_money = #{gameMoney,jdbcType=INTEGER},
+      ext_param = #{extParam,jdbcType=VARCHAR},
+      sign_type = #{signType,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      src = #{src,jdbcType=TINYINT},
+      data = #{data,jdbcType=LONGVARCHAR},
+      money_type = #{moneyType,jdbcType=VARCHAR},
+      notify_time = #{notify_time,jdbcType=VARCHAR},
+      notify_id = #{notify_id,jdbcType=VARCHAR},
+      trade_no = #{trade_no,jdbcType=VARCHAR},
+      trade_status = #{trade_status,jdbcType=INTEGER},
+      totalRecharge = #{totalRecharge,jdbcType=INTEGER},
+      totalVipPower = #{totalVipPower,jdbcType=INTEGER}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.game.db.bean.RechargeBean">
+    update recharge
+    set user_id = #{userId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT},
+      srv_id = #{srvId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      goods_ext = #{goodsExt,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_cfg = #{goodsCfg,jdbcType=VARCHAR},
+      total_fee = #{totalFee,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=INTEGER},
+      game_money = #{gameMoney,jdbcType=INTEGER},
+      ext_param = #{extParam,jdbcType=VARCHAR},
+      sign_type = #{signType,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      src = #{src,jdbcType=TINYINT}
+      money_type = #{moneyType,jdbcType=VARCHAR},
+      notify_time = #{notify_time,jdbcType=VARCHAR},
+      notify_id = #{notify_id,jdbcType=VARCHAR},
+      trade_no = #{trade_no,jdbcType=VARCHAR},
+      trade_status = #{trade_status,jdbcType=INTEGER},
+      totalRecharge = #{totalRecharge,jdbcType=INTEGER},
+      totalVipPower = #{totalVipPower,jdbcType=INTEGER}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

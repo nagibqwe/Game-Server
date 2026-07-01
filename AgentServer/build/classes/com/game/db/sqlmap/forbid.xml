@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="forbid">
+
+	<resultMap id="bean" type="com.game.db.bean.ForbidBean" >
+		<result column="str" property="str" jdbcType="VARCHAR" />
+		<result column="time" property="time" jdbcType="INTEGER" />
+    </resultMap>
+
+	<select id="selectAll" resultMap="bean">
+        select * from forbid
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.ForbidBean">
+        insert into forbid (str,time) values (#{str,jdbcType=VARCHAR},#{time,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="delete" parameterType="java.lang.String">
+        delete from  forbid where str = (#{str,jdbcType=VARCHAR})
+    </insert>
+
+		
+</mapper>
+

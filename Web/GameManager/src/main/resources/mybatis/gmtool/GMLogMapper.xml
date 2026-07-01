@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.gmlog.mapper.GMLogMapper">
+    
+    <resultMap type="GMLog" id="GMLogResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="deptName"    column="dept_name"    />
+        <result property="ip"    column="ip"    />
+        <result property="content"    column="content"    />
+        <result property="time"    column="time"    />
+    </resultMap>
+
+    <sql id="selectGMLogVo">
+        select id, name, dept_name, ip, content, time from t_gm_log
+    </sql>
+
+    <select id="selectGMLogList" parameterType="GMLog" resultMap="GMLogResult">
+        <include refid="selectGMLogVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="deptName != null  and deptName != ''"> and dept_name like concat('%', #{deptName}, '%')</if>
+            <if test="ip != null  and ip != ''"> and ip = #{ip}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="time != null "> and time = #{time}</if>
+        </where>
+        ORDER BY id DESC
+    </select>
+    
+    <select id="selectGMLogById" parameterType="Long" resultMap="GMLogResult">
+        <include refid="selectGMLogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertGMLog" parameterType="GMLog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_gm_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="deptName != null">dept_name,</if>
+            <if test="ip != null">ip,</if>
+            <if test="content != null">content,</if>
+            <if test="time != null">time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="deptName != null">#{deptName},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="content != null">#{content},</if>
+            <if test="time != null">#{time},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGMLog" parameterType="GMLog">
+        update t_gm_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="deptName != null">dept_name = #{deptName},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="time != null">time = #{time},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteGMLogById" parameterType="Long">
+        delete from t_gm_log where id = #{id}
+    </delete>
+
+    <delete id="deleteGMLogByIds" parameterType="String">
+        delete from t_gm_log where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

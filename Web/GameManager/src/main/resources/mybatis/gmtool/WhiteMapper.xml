@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.white.mapper.WhiteMapper">
+    
+    <resultMap type="White" id="WhiteResult">
+        <result property="id"    column="id"    />
+        <result property="con"    column="con"    />
+        <result property="state"    column="state"    />
+    </resultMap>
+
+    <sql id="selectWhiteVo">
+        select id, con, state from t_white
+    </sql>
+
+    <select id="selectWhiteList" parameterType="White" resultMap="WhiteResult">
+        <include refid="selectWhiteVo"/>
+        <where>  
+            <if test="con != null  and con != ''"> and con = #{con}</if>
+            <if test="state != null "> and state = #{state}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectWhiteById" parameterType="Long" resultMap="WhiteResult">
+        <include refid="selectWhiteVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWhite" parameterType="White" useGeneratedKeys="true" keyProperty="id">
+        insert into t_white
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="con != null">con,</if>
+            <if test="state != null">state,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="con != null">#{con},</if>
+            <if test="state != null">#{state},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWhite" parameterType="White">
+        update t_white
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="con != null">con = #{con},</if>
+            <if test="state != null">state = #{state},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWhiteById" parameterType="Long">
+        delete from t_white where id = #{id}
+    </delete>
+
+    <delete id="deleteWhiteByIds" parameterType="String">
+        delete from t_white where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

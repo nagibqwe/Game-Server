@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('运营活动操作')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId1">
+                <div class="col-sm-12 search-collapse">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="gameServer">
+                                <input type="hidden" id="ignoreMerge" value="1">
+                            </li>
+                            <li>
+                                <label>活动类型：</label>
+                                <select id="type" name="type" onchange="" class="span2">
+                                    <option value="-1" selected>所有</option>
+                                    <option value="1">活跃活动(1)</option>
+                                    <option value="2">每日充值(2)</option>
+                                    <option value="3">每日登陆(3)</option>
+                                    <option value="4">限购礼包(4)</option>
+                                    <option value="5">天帝宝库(5)</option>
+                                    <option value="6">累计充值(6)</option>
+                                    <option value="7">累计消耗(7)</option>
+                                    <option value="8">集物兑换(8)</option>
+                                    <option value="9">团购活动(9)</option>
+                                    <option value="10">招财猫(10)</option>
+                                    <option value="11">首领狂欢(11)</option>
+                                    <option value="12">庆典任务(12)</option>
+                                    <option value="13">节日集字(13)</option>
+                                    <option value="14">节日特惠(14)</option>
+                                    <option value="15">连续累充(15)</option>
+                                    <option value="16">限时商城(16)</option>
+                                    <option value="17">节日礼包(17)</option>
+                                    <option value="18">积分排名(18)</option>
+                                    <option value="19">节日许愿(19)</option>
+                                    <option value="20">FB分享(20)</option>
+                                    <option value="21">连续累充2(21)</option>
+                                    <option value="22">节日祝福(22)</option>
+                                    <option value="23">掷骰子(23)</option>
+                                    <option value="24">外观展示(24)</option>
+                                    <option value="25">登陆展示(25)</option>
+                                    <option value="26">聚宝盆(26)</option>
+                                    <option value="27">幸运砸蛋(27)</option>
+                                    <option value="28">幸运宝玉(28)</option>
+                                    <option value="29">方泽探宝(29)</option>
+                                </select>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label is-required" for="subType">节日子类型:</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="subType" name="subType">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label is-required" for="isPre">查询类型:</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="isPre" name="isPre" >
+                                            <option value="0">正在进行活动</option>
+                                            <option value="1">预备队列活动</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;查看</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="reloadAllActivity()"><i class="fa fa-refresh"></i> 重新加载所有运营活动</a>
+<!--                                <button type="button" class="btn btn-w-m btn-primary" onclick="queryServerInfo()">-->
+<!--                                    查看-->
+<!--                                </button>-->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+<!--        <div class="btn-group-sm" id="toolbar" role="group">-->
+<!--            <a class="btn btn-success" onclick="saveFunctionSwitch()">-->
+<!--                <i class="fa fa-plus"></i> 应用此次修改-->
+<!--            </a>-->
+<!--            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:function:edit">-->
+<!--                <i class="fa fa-edit"></i> 修改-->
+<!--            </a>-->
+<!--            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:function:remove">-->
+<!--                <i class="fa fa-remove"></i> 删除-->
+<!--            </a>-->
+<!--            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:function:export">-->
+<!--                <i class="fa fa-download"></i> 导出-->
+<!--            </a>-->
+<!--        </div>-->
+
+        <div class="col-sm-12 select-table table-striped">
+            <form id="formId2">
+                <table id="bootstrap-table"></table>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('gmtool:function:edit')}]];
+    var prefix = ctx + "gmtool/activity";
+    var dealPrefix = ctx + "gmtool/activityDeal";
+
+    $(function () {
+        loadActivityFestivalType();//节日类型
+
+        var op = {
+            url: dealPrefix + "/searchActivity",
+            modalName: "游戏功能列表",
+            pagination: false,
+            firstLoad: false,
+            // pageSize: 9999,
+            columns: [{
+                checkbox: false
+            },
+                {
+                    field: 'id',
+                    title: '活动ID'
+                },
+                {
+                    field: 'name',
+                    title: '活动名称'
+                },
+                {
+                    field: 'description',
+                    title: '活动备注'
+                },
+                {
+                    field: 'type',
+                    title: '活动类型'
+                },
+                {
+                    field: 'subType',
+                    title: '节日类型'
+                },
+                {
+                    field: 'minLv',
+                    title: '最小等级'
+                },
+                {
+                    field: 'maxLv',
+                    title: '最大等级'
+                },
+                {
+                    field: 'tag',
+                    title: '活动标签'
+                },
+                {
+                    field: 'sort',
+                    title: '标签排序'
+                },
+                {
+                    field: 'autoSend',
+                    title: '开服自动发布'
+                },
+                {
+                    field: 'isOpenServer',
+                    title: '新服活动'
+                },
+                {
+                    field: 'timeType',
+                    title: '时间类型',
+                    formatter:getTimeType
+                },
+                {
+                    field: 'beginTime',
+                    title: '开始时间',
+                    formatter:getBeginTime
+                },
+                {
+                    field: 'endTime',
+                    title: '结束时间',
+                    formatter:getEndTime
+                },
+                {
+                    field: 'custom',
+                    title: '数据',
+                    formatter:formatterValue
+                },
+                // {
+                //     field: 'state',
+                //     title: '活动状态',
+                //     formatter:getState
+                // },
+                // {
+                //     field: 'toSidList',
+                //     title: '发布列表',
+                //     formatter:formatterValue
+                // },
+                // {
+                //     field: 'okSidList',
+                //     title: '成功列表',
+                //     formatter:formatterValue
+                // },
+                {
+                    field: 'opAct',
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        if($("#isPre").val() == 0){
+                            actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="reloadActivity(\'' + row.id + '\')">重新加载正在运行的运营活动</a><br />');
+                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="removeData(\'' + (row.type*1000+row.subType) + '\')">删除正在运行的运营活动</a>');
+                        }else{
+                            actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="removePreData(\'' + (row.type*1000+row.subType) + '\',\'' + row.id + '\')">删除预备队列的运营活动</a>');
+                        }
+                        return actions.join('');
+                    }
+                }
+            ],
+            onLoadSuccess: function(data) {
+                // console.log(JSON.stringify(data));
+                // console.log(data);
+            },
+            onPostBody: function(data) {
+                // console.log(JSON.stringify(data));
+                // console.log(data);
+            }
+        };
+
+        $.table.init(op);
+    });
+
+    function removeData(actType) {
+        $.modal.confirm("确认是否删除？",function () {
+            $.ajax({
+                type: "POST",
+                url: dealPrefix + "/removeActivity",
+                data: {
+                    "serverId": $("#select_server").val(),
+                    "actType": actType
+                },
+                // data:$("#formId2").serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if (!data.ok) {
+                        $.modal.alertError(data.msg);
+                    } else {
+                        $.modal.alertSuccess("操作成功");
+                    }
+                    $.table.refresh();
+                }
+            });
+        });
+    }
+
+    function removePreData(actType, actId) {
+        $.modal.confirm("确认是否删除？",function () {
+            $.ajax({
+                type: "POST",
+                url: dealPrefix + "/removePreActivity",
+                data: {
+                    "serverId": $("#select_server").val(),
+                    "actType": actType,
+                    "actId": actId
+                },
+                // data:$("#formId2").serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if (!data.ok) {
+                        $.modal.alertError(data.msg);
+                    } else {
+                        $.modal.alertSuccess("操作成功");
+                    }
+                    $.table.refresh();
+                }
+            });
+        });
+    }
+
+    function reloadActivity(actId) {
+        $.modal.confirm("确认是否重新加载？注意：该操作会先把服务器正在运行的该活动移除，再重新加载，且部分活动在移除时会结算活动奖励",function () {
+            $.ajax({
+                type: "POST",
+                url: dealPrefix + "/reloadActivity",
+                data: {
+                    "serverId": $("#select_server").val(),
+                    "actId": actId
+                },
+                // data:$("#formId2").serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if (!data.ok) {
+                        $.modal.alertError(data.msg);
+                    } else {
+                        $.modal.alertSuccess("操作成功");
+                    }
+                    $.table.refresh();
+                }
+            });
+        });
+    }
+
+    function reloadAllActivity() {
+        $.modal.confirm("确认是否重新加载？注意：该操作会先把服务器正在运行的所有活动移除，再重新加载，且部分活动在移除时会结算活动奖励",function () {
+            $.ajax({
+                type: "POST",
+                url: dealPrefix + "/reloadAllActivity",
+                data: {
+                    "serverId": $("#select_server").val()
+                },
+                // data:$("#formId2").serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if (!data.ok) {
+                        $.modal.alertError(data.msg);
+                    } else {
+                        $.modal.alertSuccess("操作成功");
+                    }
+                    $.table.refresh();
+                }
+            });
+        });
+    }
+
+    //查看服务器功能信息
+    function queryServerInfo() {
+        // $.post(ctx + "gmtool/activityDeal/searchActivity", $("#formId1").serialize(), function (data) {
+        //     console.log(JSON.stringify(data));
+        //     if (data.code == 0) {
+
+
+            // } else {
+            //     $.modal.alertError(data.msg);
+            // }
+        // });
+    }
+
+    function getTimeType(value, row, index) {
+        switch (value) {
+            case 0:
+                return "固定时间";
+            case 1:
+                return "开服天数";
+        }
+        return value;
+    }
+
+    function getBeginTime(value, row, index) {
+        switch (row.timeType) {
+            case 0:
+                return row.beginTime;
+            case 1:
+                return row.openServerOffsetBegin;
+        }
+        return "error";
+    }
+
+    function getEndTime(value, row, index) {
+        switch (row.timeType) {
+            case 0:
+                return row.endTime;
+            case 1:
+                return row.openServerRecordOffset;
+        }
+        return "error";
+    }
+
+    function getState(value, row, index) {
+        switch (value) {
+            case 0:
+            case 1:
+            case 2:
+                return "待发布";
+            case 3:
+                return "已发布";
+            case 4:
+                return "发布后修改"
+        }
+        return "error";
+    }
+
+</script>
+</body>
+</html>

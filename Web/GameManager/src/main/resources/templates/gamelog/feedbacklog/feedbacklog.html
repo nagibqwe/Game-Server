@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('反馈日志列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/log_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <label>角色ID：</label>
+                                <input type="text" name="roleId"/>
+                            </li>
+
+                            <div th:replace="common/log_limit.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gamelog:feedbacklog:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gamelog:feedbacklog:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gamelog:feedbacklog:remove')}]];
+        var prefix = ctx + "gamelog/feedbacklog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                exportUrl: prefix + "/export",
+                modalName: "反馈日志",
+                pagination: false,
+                firstLoad:false,
+                height:$(document).height() - 160,
+                columns: [
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'time',
+                    title: '时间',
+                    formatter: formatterDate
+                },
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },
+                {
+                    field: 'roleName',
+                    title: '角色名'
+                },
+                {
+                    field: 'sender',
+                    title: 'sender'
+                },
+                {
+                    field: 'type',
+                    title: 'type'
+                },
+                {
+                    field: 'content',
+                    title: 'content'
+                },
+                {
+                    field: 'sendTime',
+                    title: 'sendTime'
+                },
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

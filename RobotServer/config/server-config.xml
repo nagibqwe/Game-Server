@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<server>
+    <db-game
+            url="jdbc:mysql://127.0.0.1:3306/tzj_game?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
+            username="root" password="nengwan@2023"/>
+<!--    <db-game-data-->
+<!--            url="jdbc:mysql://10.0.0.59:3306/tzj_game_data?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"-->
+<!--            username="root" password="root"/>-->
+<!--    <db-public-data-->
+<!--            url="jdbc:mysql://10.0.0.59:3306/tzj_login?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"-->
+<!--            username="root" password="root"/>-->
+    <robotCfg
+            loginServerIp="10.0.2.160"
+            loginServerPort="8888"
+            serverIp="10.0.2.160"
+            serverPort="9101"
+            serverId="1001"
+            connectNum="0"
+            userIdBegin="1"
+            eventType="1"
+            toMapId="102599"
+            aifilename="robotmain"/>
+    <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
+    <!--    serverIp="10.0.1.3"-->
+    <!--    serverId="65000"-->
+    <!--    serverIp="10.0.1.98"-->
+    <!--    serverId="65004"-->
+</server>

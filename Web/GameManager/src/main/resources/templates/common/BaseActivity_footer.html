@@ -1,0 +1,179 @@
+<!--通用运营活动页面查询条件-->
+<form style="display: none" id="formId">
+    <input type="text" name="searchType" id="searchType" style="display: none">
+</form>
+
+<div class="btn-group-sm" id="toolbar" role="group">
+    <!--此处作为服务器请求分组地址映射设置地方-->
+    <input type="hidden" id="requestUrl" value="gameServer">
+    <input type="hidden" id="ignoreMerge" value="1">
+    <input type="button" id="batchTest" value="批量发布" onclick="publishEvent(3)" class="btn btn-primary">
+    <!--<input type="button" id="batchValid" value="批量验证" onclick="verifyEvent()" class="btn btn-primary">-->
+    <!--<input type="button" id="batchPublish" value="批量发布" onclick="publishEvent(3)" class="btn btn-primary">-->
+    <input type="button" id="batchDelete" value="批量删除" onclick="deleteActivity()" class="btn btn-danger">
+    <!--<input type="button" id="oneKeyDelete" value="一键删除过期活动" onclick="oneKeyDelete()" class="btn btn-primary">-->
+    <a href="javascript:;" class="file">导入
+        <input type="file" name="" id="" onchange="importf(this)">
+    </a>
+</div>
+<div class="col-sm-12 select-table table-striped">
+    <table id="bootstrap-table"></table>
+</div>
+
+<script th:inline="javascript">
+    function initActivityTable(pageType) {
+        var formId = "";
+        var options = {
+            url: prefix + "/list",
+            formId:formId,
+            showSearch: false,
+            // clickToSelect: true,
+            modalName: "运营活动",
+            columns: [
+                {
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: '活动ID'
+                },
+                {
+                    field: 'name',
+                    title: '活动名称'
+                },
+                {
+                    field: 'description',
+                    title: '活动备注'
+                },
+                {
+                    field: 'type',
+                    title: '活动类型'
+                },
+                {
+                    field: 'subType',
+                    title: '节日类型'
+                },
+                {
+                    field: 'minLv',
+                    title: '最小等级'
+                },
+                {
+                    field: 'maxLv',
+                    title: '最大等级'
+                },
+                {
+                    field: 'tag',
+                    title: '活动标签'
+                },
+                {
+                    field: 'sort',
+                    title: '标签排序'
+                },
+                {
+                    field: 'autoSend',
+                    title: '开服自动发布'
+                },
+                {
+                    field: 'isOpenServer',
+                    title: '新服活动'
+                },
+                {
+                    field: 'timeType',
+                    title: '时间类型'
+                },
+                {
+                    field: 'beginTime',
+                    title: '开始时间',
+                    formatter:getBeginTime
+                },
+                {
+                    field: 'endTime',
+                    title: '结束时间',
+                    formatter:getEndTime
+                },
+                {
+                    field: 'custom',
+                    title: '数据',
+                    formatter:formatterValue
+                },
+                {
+                    field: 'state',
+                    title: '活动状态',
+                    formatter:getState
+                },
+                {
+                    field: 'toSidList',
+                    title: '发布列表',
+                    formatter:formatterValue
+                },
+                {
+                    field: 'okSidList',
+                    title: '成功列表',
+                    formatter:formatterValue
+                }]
+        };
+
+        if (pageType == 0){
+            options["formId"] = "actListFormId";
+            options["columns"].push({
+                title: '操作',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    var actions = [];
+                    actions.push("<form style='display: inline' name='actForm"+index+"' method='post' action='exportActivityData'><input name='actId' type='hidden' value='"+row.id+"'><a class='btn btn-warning btn-xs' href='javascript:void(0)' id='export' onclick='exportActivityData("+index+",this)'><i class='fa fa-bookmark'>导出Excel</a></form>");
+                    return actions.join('');
+                }
+            });
+        } else {
+            options["formId"] = "formId";
+            options["columns"].push({
+                title: '操作',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    var actions = [];
+                    if (row.configData == undefined || row.configData == null){
+                        actions.push('<a disabled="disable" class="btn btn-success btn-xs" href="javascript:void(0)"><i class="fa fa-edit"></i>编辑</a> ');
+                    }else {
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="editActData(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                    }
+                    actions.push("<form style='display: inline' name='actForm"+index+"' method='post' action='exportActivityData'><input name='actId' type='hidden' value='"+row.id+"'><a class='btn btn-warning btn-xs' href='javascript:void(0)' id='export' onclick='exportActivityData("+index+",this)'><i class='fa fa-bookmark'>导出Excel</a></form>");
+                    return actions.join('');
+                }
+            });
+        }
+        $.table.init(options);
+    }
+
+
+    function getBeginTime(value, row, index) {
+        switch (row.timeType) {
+            case 0:
+                return row.beginTime;
+            case 1:
+                return row.openServerOffsetBegin;
+        }
+        return "error";
+    }
+    function getEndTime(value, row, index) {
+        switch (row.timeType) {
+            case 0:
+                return row.endTime;
+            case 1:
+                return row.openServerRecordOffset;
+        }
+        return "error";
+    }
+    function getState(value, row, index) {
+        switch (value) {
+            case 0:
+            case 1:
+            case 2:
+                return "待发布";
+            case 3:
+                return "已发布";
+            case 4:
+                return "发布后修改"
+        }
+        return "error";
+    }
+</script>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- verifyUrl字段正式验证地址：https://auth.funcell123.com/verify -->
+<!-- isNeedVerify 字段：0表示测试版版本不用验证，1表示正式版本都需验证-->
+<!-- serverinfo 信息当前进程的监听端口 及服务器ID 信息-->
+
+<server>
+	<db-login-data url="jdbc:mysql://127.0.0.1:3306/tzj_login?autoReconnect=true" username="root" password="o4W3TKCtvm5GYab3" />
+	<db-log-info url="jdbc:mysql://127.0.0.1:3306/tzj_login_log?autoReconnect=true"  username="root" password="o4W3TKCtvm5GYab3" />
+	<privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
+	<serverInfo serverName="agentserver" httpPort="3001" port="3002" serverId="3000" platfrom="cn"  lsId="1"/>
+
+	<!--qq大厅日志 openNet：1开启，0关闭-->
+	<qq appKey="SignKey@2019AclieDEV786" appId="DSADKLAIQEMXNJCOPQNM" appName="QQ" openLog="0" logUrl="https://tglog.datamore.qq.com/testdev/report/"/>
+	<!--本服游戏服IP，不配置就程序自动获取 -->
+	<gameServerIp gameServerIp="127.0.0.1"/>
+</server>

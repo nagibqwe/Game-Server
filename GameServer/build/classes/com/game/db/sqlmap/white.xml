@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="white">
+
+
+    <select id="selectAll" resultType="java.lang.String">
+        select str from white
+    </select>
+	
+    <insert id="insert" parameterType="java.lang.String">
+        insert into white (str) values (#{str,jdbcType=VARCHAR})
+    </insert>
+
+	<insert id="delete" parameterType="java.lang.String">
+        delete from white where str = (#{str,jdbcType=VARCHAR})
+    </insert>
+    
+    <select id="selectAllPlatform" resultType="java.lang.String">
+        select str from `platforms`
+    </select>
+    
+    <insert id="insertPlatform" parameterType="java.lang.String">
+        insert into `platforms` (str) values (#{str,jdbcType=VARCHAR})
+    </insert>
+		
+</mapper>
+

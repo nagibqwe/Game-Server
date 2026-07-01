@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.recharge.mapper.RechargeMapper">
+    
+    <resultMap type="Recharge" id="RechargeResult">
+        <result property="id"    column="id"    />
+        <result property="roleId"    column="roleId"    />
+        <result property="rechargeNumber"    column="rechargeNumber"    />
+        <result property="rechargeTotalGold"    column="rechargeTotalGold"    />
+        <result property="rechargeVipExp"    column="rechargeVipExp"    />
+        <result property="rechargeState"    column="rechargeState"    />
+        <result property="reason"    column="reason"    />
+        <result property="toServerId"    column="toServerId"    />
+    </resultMap>
+
+    <sql id="selectRechargeVo">
+        select id, roleId, rechargeNumber, rechargeTotalGold, rechargeVipExp, rechargeState, reason, toServerId from t_recharge
+    </sql>
+
+    <select id="selectRechargeList" parameterType="Recharge" resultMap="RechargeResult">
+        <include refid="selectRechargeVo"/>
+        <where>  
+            <if test="roleId != null  and roleId != ''"> and roleId = #{roleId}</if>
+            <if test="rechargeNumber != null "> and rechargeNumber = #{rechargeNumber}</if>
+            <if test="rechargeTotalGold != null "> and rechargeTotalGold = #{rechargeTotalGold}</if>
+            <if test="rechargeVipExp != null "> and rechargeVipExp = #{rechargeVipExp}</if>
+            <if test="rechargeState != null "> and rechargeState = #{rechargeState}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+            <if test="toServerId != null "> and toServerId = #{toServerId}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectRechargeById" parameterType="Long" resultMap="RechargeResult">
+        <include refid="selectRechargeVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertRecharge" parameterType="Recharge" useGeneratedKeys="true" keyProperty="id">
+        insert into t_recharge
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">roleId,</if>
+            <if test="rechargeNumber != null">rechargeNumber,</if>
+            <if test="rechargeTotalGold != null">rechargeTotalGold,</if>
+            <if test="rechargeVipExp != null">rechargeVipExp,</if>
+            <if test="rechargeState != null">rechargeState,</if>
+            <if test="reason != null">reason,</if>
+            <if test="toServerId != null">toServerId,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">#{roleId},</if>
+            <if test="rechargeNumber != null">#{rechargeNumber},</if>
+            <if test="rechargeTotalGold != null">#{rechargeTotalGold},</if>
+            <if test="rechargeVipExp != null">#{rechargeVipExp},</if>
+            <if test="rechargeState != null">#{rechargeState},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="toServerId != null">#{toServerId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRecharge" parameterType="Recharge">
+        update t_recharge
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="roleId != null">roleId = #{roleId},</if>
+            <if test="rechargeNumber != null">rechargeNumber = #{rechargeNumber},</if>
+            <if test="rechargeTotalGold != null">rechargeTotalGold = #{rechargeTotalGold},</if>
+            <if test="rechargeVipExp != null">rechargeVipExp = #{rechargeVipExp},</if>
+            <if test="rechargeState != null">rechargeState = #{rechargeState},</if>
+            <if test="reason != null">reason = #{reason},</if>
+            <if test="toServerId != null">toServerId = #{toServerId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRechargeById" parameterType="Long">
+        delete from t_recharge where id = #{id}
+    </delete>
+
+    <delete id="deleteRechargeByIds" parameterType="String">
+        delete from t_recharge where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('邮件日志列表')"/>
+    <th:block th:include="include :: footer"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+
+                    <div th:replace="common/log_head.html"></div>
+
+                    <ul>
+                        <li>
+                            <label>邮件操作类型：</label>
+                            <input type="text" name="mailAction"/>
+                        </li>
+                        <li>
+                            <label>收件人ID：</label>
+                            <input type="text" name="receiverId"/>
+                        </li>
+                    </ul>
+
+
+                    <div th:replace="common/log_limit.html"></div>
+                    <div th:replace="common/stat_search_head.html"></div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gamelog:maillog:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" style="word-break:break-all; word-wrap:break-word;"></table>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('gamelog:maillog:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('gamelog:maillog:remove')}]];
+    var prefix = ctx + "gamelog/maillog";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            exportUrl: prefix + "/export",
+            modalName: "邮件日志",
+            pagination: false,
+            firstLoad: false,
+            height:$(document).height() - 160,
+            columns: [
+                {
+                    field: 'time',
+                    title: '时间',
+                    width: 136,
+                    formatter: formatterDate
+                },
+                {
+                    field: 'mailAction',
+                    title: '邮件操作类型',
+                    formatter: formatterMailAction
+                },
+                {
+                    field: 'type',
+                    title: '邮件类型'
+                },
+                {
+                    field: 'mailId',
+                    width: 155,
+                    title: '邮件唯一Id'
+                },
+                {
+                    field: 'receiveTime',
+                    title: '邮件收到时间',
+                    width: 136,
+                    formatter: formatterDate
+                },
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'sender',
+                    title: 'sender'
+                },
+                {
+                    field: 'mailTitle',
+                    title: '邮件标题'
+                },
+                {
+                    field: 'mailContend',
+
+                    title: '邮件内容'
+                },
+                {
+                    field: 'receiverId',
+                    width: 155,
+                    title: '收件人ID'
+                },
+                {
+                    field: 'receiverName',
+                    title: '收件人'
+                },
+                {
+                    field: 'attachment',
+                    title: '附件'
+                }
+            ]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

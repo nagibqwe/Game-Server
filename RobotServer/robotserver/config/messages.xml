@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 每条客户端消息及其对应的服务端处理器配置文件 -->
+
+<messages>
+    <msg message="game.message.backpackMessage$ResItemInfos" handler="com.game.backpack.client.ResItemInfosHandler" />
+    <msg message="game.message.backpackMessage$ResItemAdd" handler="com.game.backpack.client.ResItemAddHandler" />
+    <msg message="game.message.backpackMessage$ResItemChange" handler="com.game.backpack.client.ResItemChangeHandler" />
+    <msg message="game.message.backpackMessage$ResItemDelete" handler="com.game.backpack.client.ResItemDeleteHandler" />
+    <msg message="game.message.backpackMessage$ResCoinInfos" handler="com.game.backpack.client.ResCoinInfosHandler" />
+    <msg message="game.message.backpackMessage$ResCoinChange" handler="com.game.backpack.client.ResCoinChangeHandler" />
+    <msg message="game.message.backpackMessage$ResOpenGiftEffects" handler="com.game.backpack.client.ResOpenGiftEffectsHandler" />
+    <msg message="game.message.backpackMessage$ResItemNotEnough" handler="com.game.backpack.client.ResItemNotEnoughHandler" />
+    <msg message="game.message.backpackMessage$ResExpChange" handler="com.game.backpack.client.ResExpChangeHandler" />
+
+    <msg message="game.message.EquipMessage$ResEquipWearFailed" handler="com.game.equip.client.ResEquipWearFailedHandler" />
+    <msg message="game.message.EquipMessage$ResEquipWearSuccess" handler="com.game.equip.client.ResEquipWearSuccessHandler" />
+    <msg message="game.message.EquipMessage$ResEquipPartInfo" handler="com.game.equip.client.ResEquipPartInfoHandler" />
+    <msg message="game.message.RecycleMessage$ResRecycle" handler="com.game.equip.client.ResRecycleHandler" />
+
+    <msg message="game.message.RegisterMessage$ResLoginGameSuccess" handler="com.game.register.client.ResLoginGameSuccessHandler" />
+    <msg message="game.message.RegisterMessage$ResPlayerMapInfo" handler="com.game.register.client.ResPlayerMapInfoHandler" />
+    <msg message="game.message.RegisterMessage$ResCreateRoleFailed" handler="com.game.register.client.ResCreateRoleFailedHandler" />
+	
+    <msg message="game.message.MapMessage$ResEnterMap" handler="com.game.map.client.ResEnterMapHandler" />
+    <msg message="game.message.MapMessage$ResMapPlayer" handler="com.game.map.client.ResMapPlayerHandler" />
+    <msg message="game.message.MapMessage$ResPlayerDisappear" handler="com.game.map.client.ResPlayerDisappearHandler" />
+    <msg message="game.message.MapMessage$ResMapMonster" handler="com.game.map.client.ResMapMonsterHandler" />
+    <msg message="game.message.MapMessage$ResMonsterDisappear" handler="com.game.map.client.ResMonsterDisappearHandler" />
+    <msg message="game.message.MapMessage$ResMapGatherInfo" handler="com.game.map.client.ResMapGatherInfoHandler" />
+    <msg message="game.message.MapMessage$ResGatherDisappear" handler="com.game.map.client.ResGatherDisappearHandler" />
+    <msg message="game.message.MapMessage$ResRelive" handler="com.game.map.client.ResReliveHandler" />
+    <msg message="game.message.MapMessage$ResStopMove" handler="com.game.map.client.ResStopMoveHandler" />
+    <msg message="game.message.MapMessage$ResRoundObjs" handler="com.game.map.client.ResRoundObjsHandler" />
+    <msg message="game.message.MapMessage$ResRoundNpcInfo" handler="com.game.map.client.ResRoundNpcInfoHandler" />
+    <msg message="game.message.MapMessage$ResRoundNpcDisappear" handler="com.game.map.client.ResRoundNpcDisappearHandler" />
+    <msg message="game.message.MapMessage$ResJumpDown" handler="com.game.map.client.ResJumpDownHandler" />
+    <msg message="game.message.MapMessage$ResBreakGather" handler="com.game.map.client.ResBreakGatherHandler" />
+    <msg message="game.message.MapMessage$ResEndGather" handler="com.game.map.client.ResEndGatherHandler" />
+    <msg message="game.message.MapMessage$ResBeginGather" handler="com.game.map.client.ResBeginGatherHandler" />
+    <msg message="game.message.MapMessage$ResMoveSpeedChange" handler="com.game.map.client.ResMoveSpeedChangeHandler" />
+    <msg message="game.message.MapMessage$ResMoveTo" handler="com.game.map.client.ResMoveToHandler" />
+    <msg message="game.message.MapMessage$ResMonsterPos" handler="com.game.map.client.ResMonsterPosHandler" />
+    <msg message="game.message.MapMessage$ResUpdateCamp" handler="com.game.map.client.ResUpdateCampHandler" />
+        
+    <msg message="game.message.PlayerMessage$ResPlayerOnLineAttribute" handler="com.game.player.client.ResPlayerOnLineAttributeHandler" />
+    <msg message="game.message.PlayerMessage$ResPlayerAttributeChange" handler="com.game.player.client.ResPlayerAttributeChangeHandler" />
+    <msg message="game.message.PlayerMessage$ResPlayerBaseInfo" handler="com.game.player.client.ResPlayerBaseInfoHandler" />
+    <msg message="game.message.PlayerMessage$ResLevelChange" handler="com.game.player.client.ResLevelChangeHandler" />
+    <msg message="game.message.PlayerMessage$ResUpdataPkValue" handler="com.game.player.client.ResUpdataPkValueHandler" />
+    <msg message="game.message.PlayerMessage$ResUpdataPkStateResult" handler="com.game.player.client.ResUpdataPkStateResultHandler" />
+<!--    <msg message="game.message.StateVipMessage$ResStateVip" handler="com.game.player.client.ResStateVipHandler" />-->
+    <msg message="game.message.StateVipMessage$ResStateVipBroadcast" handler="com.game.player.client.ResStateVipBroadcastHandler" />
+
+    <msg message="game.message.FightMessage$ResObjDead" handler="com.game.fight.client.ResObjDeadHandler" />
+    <msg message="game.message.FightMessage$ResUseSkill" handler="com.game.fight.client.ResUseSkillHandler" />
+    <msg message="game.message.FightMessage$ResUseSkillError" handler="com.game.fight.client.ResUseSkillErrorHandler" />
+    <msg message="game.message.FightMessage$ResRollMove" handler="com.game.fight.client.ResRollMoveHandler" />
+
+    <msg message="game.message.SkillMessage$ResUpdateSkill" handler="com.game.skill.client.ResUpdateSkillHandler" />
+    <msg message="game.message.SkillMessage$ResSkillOnline" handler="com.game.skill.client.ResSkillOnlineHandler" />
+    <msg message="game.message.SkillMessage$ResUpSkillStar" handler="com.game.skill.client.ResUpSkillStarHandler" />
+
+    <msg message="game.message.taskMessage$ResTaskList" handler="com.game.task.client.ResTaskListHandler" />
+    <msg message="game.message.taskMessage$ResMainTaskChange" handler="com.game.task.client.ResMainTaskChangeHandler" />
+    <msg message="game.message.taskMessage$ResTaskFinish" handler="com.game.task.client.ResTaskFinishHandler" />
+	
+    <msg message="game.message.PetMessage$ResSyncPet" handler="com.game.pet.client.ResSyncPetHandler" />
+	
+    <msg message="game.message.heartMessage$ResHeart" handler="com.game.heart.client.ResHeartHandler" />
+    
+    <msg message="game.message.TeamMessage$ResTeamInfo" handler="com.game.team.client.ResTeamInfoHandler" />
+    <msg message="game.message.TeamMessage$ResCallAllMemberRes" handler="com.game.team.client.ResCallAllMemberResHandler" />
+    <msg message="game.message.TeamMessage$ResInviteInfo" handler="com.game.team.client.ResInviteInfoHandler" />
+    
+    <msg message="game.message.ChatMessage$PersonalNotice" handler="com.game.player.client.PersonalNoticeHandler" />
+
+    <msg message="game.message.ZoneMessage$ResEnterZone" handler="com.game.team.client.ResEnterZoneHandler" />
+    <msg message="game.message.ZoneMessage$ResTeamEnterZoneISOK" handler="com.game.zone.client.ResTeamEnterZoneISOKHandler" />
+    <msg message="game.message.ZoneMessage$ResTeamEnterZoneFailure" handler="com.game.zone.client.ResTeamEnterZoneFailureHandler" />
+    <msg message="game.message.ZoneMessage$ResEnterCrossZoneReady" handler="com.game.zone.client.ResEnterCrossZoneReadyHandler" />
+    <msg message="game.message.ZoneMessage$ResEnterZoneTeamInfo" handler="com.game.zone.client.ResEnterZoneTeamInfoHandler" />
+    <msg message="game.message.ZoneMessage$ResTeamAcceptEnterZone" handler="com.game.zone.client.ResTeamAcceptEnterZoneHandler" />
+    <msg message="game.message.ZoneMessage$ResEnterZoneTeamInfo" handler="com.game.player.client.ResEnterZoneTeamInfoHandler" />
+
+    <msg message="game.message.NatureMessage$ResNatureInfo" handler="com.game.nature.client.ResNatureInfoHandler" />
+    <msg message="game.message.PetMessage$ResPetList" handler="com.game.pet.client.ResPetListHandler" />
+
+    <msg message="game.message.BossMessage$ResOpenDreamBoss" handler="com.game.boss.client.ResOpenDreamBossHandler" />
+    <msg message="game.message.BossMessage$ResUpDateWorldBossReMainRankCount" handler="com.game.boss.client.ResUpdateWorldBossReMainRankCountHandler" />
+    <msg message="game.message.BossMessage$ResSuitGemBossPanel" handler="com.game.boss.client.ResSuitGemBossPanelHandler" />
+
+</messages>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('充值日志列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="selectServerList">
+                                <input type="hidden" id="ignoreMerge" value="1">
+                                <input type="hidden" id="serverTypeList" value="0,1">
+                            </li>
+                            <div th:replace="common/stat_date_head2.html"></div>
+                        </ul>
+                    </div>
+
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <label>订单编号：</label>
+                                <input type="text" name="orderNo"/>
+                            </li>
+                            <li>
+                                <label>角色ID：</label>
+                                <input type="text" name="roleId"/>
+                            </li>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gamelog:rechargelog:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gamelog:rechargelog:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gamelog:rechargelog:remove')}]];
+        var prefix = ctx + "gamelog/rechargelog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                exportUrl: prefix + "/export",
+                modalName: "充值日志",
+                firstLoad:false,
+                height:$(document).height() - 160,
+                columns: [
+                {
+                    field: 'id',
+                    title: '',
+                    visible: false
+                },
+                {
+                    field: 'orderNo',
+                    title: '订单编号'
+                },
+                {
+                    field: 'userId',
+                    title: '用户ID'
+                },
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },
+                {
+                    field: 'goodsId',
+                    title: '商品ID'
+                },
+                {
+                    field: 'goodsType',
+                    title: '商品类型'
+                },
+                {
+                    field: 'goodsExt',
+                    title: '商品额外参数'
+                },
+                {
+                    field: 'totalFee',
+                    title: '金额'
+                },
+                {
+                    field: 'itemId',
+                    title: '道具ID'
+                },
+                {
+                    field: 'gameMoney',
+                    title: '货币数'
+                },
+                {
+                    field: 'extParam',
+                    title: '额外参数'
+                },
+                {
+                    field: 'status',
+                    title: '状态'
+                },
+                {
+                    field: 'statusReason',
+                    title: '状态码'
+                },
+                {
+                    field: 'roleName',
+                    title: '角色名'
+                },
+                {
+                    field: 'time',
+                    title: '时间',
+                    formatter: formatterDate
+                },
+               ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

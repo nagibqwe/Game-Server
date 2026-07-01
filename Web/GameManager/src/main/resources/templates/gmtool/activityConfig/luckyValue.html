@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('抽奖幸运值')" />
+    <th:block th:include="include :: footer" />
+    <script>
+
+        //清空数据
+        function reload() {
+            $("#idCopy").val("0");
+            $("#totalLuckyValue").val("");
+            $("#tips").val("");
+        }
+
+        //提交按钮
+        function submitConfig() {
+            var idCopy=$("#idCopy").val();
+            var totalLuckyValue=$("#totalLuckyValue").val();
+            var tips=$("#tips").val();
+            if (!$('#activity_form').validate().form()) {
+                $.modal.msgError("验证失败");
+                return;
+            }
+            $.ajax({
+                url: prefix + "/addLuckyValue",
+                method: "post",
+                dataType: "json",
+                data: {"idCopy" : idCopy,
+                    "totalLuckyValue" : totalLuckyValue,
+                    "tips" : tips
+                },
+                success: function (data) {
+                    if (data.ok) {
+                        if($("#idCopy").val()>0){
+                            $("#idCopy").val(0);
+                            reload();
+                            $.modal.alertSuccess("活动修改成功");
+                            $.table.refresh();
+                        }else{
+                            reload();
+                            $.modal.alertSuccess("活动添加成功");
+                            $.table.refresh();
+                        }
+                    } else {
+                        $.modal.alertError("活动添加失败" + data.msg);
+                    }
+                }
+            });
+        }
+
+        //发布按钮
+        function publish(id,totalLuckyValue) {
+            var requestUrl = $("#requestUrl").val();
+            var ignoreMerge = $("#ignoreMerge").val();
+            var modelName = "actLuckyValue";
+            var url = 'requestUrl='+requestUrl+'&ignoreMerge='+ignoreMerge+'&modelName='+modelName;
+            openServerList(url,function (index, layero) {
+                $.modal.confirm("是否覆盖正在进行的活动?",function () {
+                    //点击确定后操作
+                    cover = 1;
+                    var iframeWin = getIframeWin(layero);
+                    var selections =  selectionsSid(iframeWin);
+                    var platform = getGroupName(iframeWin);
+                    // console.log("aaaa:"+typeof (selections));
+                    $.ajax({
+                        url: prefix + "/publishActivity",
+                        method: "post",
+                        dataType: "json",
+                        async:false,
+                        data: {
+                            "groupName": platform,
+                            "serverids":selections.toString(),
+                            "id":id,
+                            "totalLuckyValue":totalLuckyValue,
+                            "cover": cover
+                        },
+                        beforeSend: function () {
+                            $.modal.loading("正在处理中，请稍后...");
+                            $.modal.disable();
+                        },
+                        success: function (data) {
+                            if (data.ok){
+                                $("#msg").html("<span>" + data.msg + "</span>");
+                                $.modal.alertMsg(data.msg,alert_type.INFO);
+                            }else {
+                                $("#msg").html("<span>" + data.msg + "</span>");
+                                $.modal.alertMsg(data.msg,alert_type.FAIL);
+                            }
+                            $.table.refresh();
+                            $.modal.closeLoading();
+                            $.modal.enable();
+                        }
+                    });
+                });
+            });
+        }
+
+        //修改数据
+        function edit(id,totalLuckyValue,tips) {
+            $("#idCopy").val(id);
+            $("#totalLuckyValue").val(totalLuckyValue);
+            $("#tips").val(tips);
+        }
+
+        function deleteConfig(id) {
+            $.modal.confirm("确定删除?", function () {
+                $.ajax({
+                    url: prefix + "/deleteLuckyValue",
+                    method: "post",
+                    dataType: "json",
+                    data: {"id": id},
+                    success: function (data) {
+                        if (data.ok) {
+                            $.modal.alertSuccess("活动删除成功");
+                            $.table.refresh();
+                        } else {
+                            $.modal.alertError("活动删除失败");
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>总幸运值配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="Luckyshuju">
+                                    <label class="input-group-addon">总幸运值配置:</label>
+                                    <div class="col-md-2 col-sm-2 col-xs-2">
+                                        <input type="text" class="form-control" id="totalLuckyValue"
+                                               name="totalLuckyValue" placeholder="例：50"
+                                               onkeyup="value=value.replace(/\D/g,'')" value="" required/>
+                                    </div>
+                                </div>
+                                <div class="input-group" id="tipshuju" style="margin-top: 10px">
+                                    <label class="input-group-addon">备注说明:</label>
+                                    <div class="col-md-2 col-sm-2 col-xs-2" style="margin-left: 28px">
+                                        <input type="text" class="form-control" id="tips" name="tips" value=""/>
+                                        <input type="hidden" id="idCopy" value="0">
+                                    </div>
+                                </div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="gameServer">
+                                <input type="hidden" id="ignoreMerge" value="1">
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-md-12 col-sm-12 col-lg-12" style="height: 30px"></div>
+            <div class="col-sm-5 col-sm-5"></div>
+            <div class="row-fluid col-sm-7 col-md-7">
+                <input type="button" value="提交" onclick="submitConfig()" class="btn btn-sm btn-danger" style="margin-right: 30px"/>
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+            <div id="msg" class="container-fluid"></div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var prefix = ctx + "gmtool/activityConfig";
+
+    $(function() {
+        var options = {
+            url: prefix + "/luckyValueList",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "抽奖幸运值",
+            columns: [
+                {
+                    field: 'id',
+                    title: '活动ID'
+                },
+                {
+                    field: 'totalLuckyValue',
+                    title: '总幸运值'
+                },
+                {
+                    field: 'tips',
+                    title: '备注说明'
+                },
+                {
+                    field: 'state',
+                    title: '活动状态',
+                    formatter:function (value) {
+                        if (value == 0){
+                            return "已提交待发布";
+                        }else if (value == 3){
+                            return "发布成功";
+                        }else {
+                            return "error";
+                        }
+                    }
+                },
+                {
+                    field: 'toSidList',
+                    title: '发布列表'
+                },
+                {
+                    field: 'okSidList',
+                    title: '成功列表'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="publish(\'' + row.id + '\','+row.totalLuckyValue+')"><i class="fa fa-bookmark"></i>发布</a> ');
+                        actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="edit(\'' + row.id + '\','+row.totalLuckyValue+',\''+row.tips+'\')"><i class="fa fa-edit"></i>编辑</a>');
+                        actions.push('<a class="btn btn-danger btn-xs" style="margin-left: 4px" href="javascript:void(0)" onclick="deleteConfig(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

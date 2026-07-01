@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改属性列表')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>自定义sql语句查询</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="customSqlForm" class="form-horizontal m-t" method="post">
+
+                        <div class="form-group">
+                            <div th:replace="common/select_server_single.html"></div>
+                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <input type="hidden" id="requestUrl" value="selectServerList">
+                            <input type="hidden" id="ignoreMerge" value="0">
+                            <input type="hidden" id="serverTypeList" value="0,1">
+                            <button type="button" class="btn btn-primary" onclick="search()">
+                                查询
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="exportExcel()">
+                                导出Excel
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="sqlStr" class="col-sm-2 control-label is-required">要查询的SQL语句:</label>
+                            <div class="col-sm-8">
+                                <textarea id="sqlStr" type="text" name="sqlStr" class="form-control" rows="6" required></textarea>
+                            </div>
+                        </div>
+                        <div id="msg" class="container-fluid"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped" id="tableDiv">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var prefix = ctx + "gmtool/server";
+
+    $(function () {
+        $("#tableDiv").hide();
+    });
+
+    function createTable(fields) {
+        var options = {
+            url: prefix + "/customSql",
+            modalName: "自定义sql查询",
+            columns: []
+        };
+        pushFields(options,fields);
+    }
+
+    function pushFields(options,fields) {
+        for (var i=0;i<fields.length;i++){
+            options.columns.push({
+                field: fields[i],
+                title: fields[i]
+            });
+        }
+
+        $.table.init(options);
+    }
+
+
+    //点击查询
+    function search() {
+        if (!$('#customSqlForm').validate().form()) {
+            $.modal.msgError("验证失败");
+            return;
+        }
+        $.table.destroy();
+        $("#tableDiv").show();
+        $.ajax({
+            url: prefix + "/customSqlField",
+            method: "post",
+            data: {
+                serverId: $("#select_server").val(),
+                sqlStr: $("#sqlStr").val()
+            },
+            success: function(data) {
+                if (data.ok) {
+                    createTable(data.fields);
+                }else {
+                    $.modal.alertError(data.msg);
+                }
+            }
+        });
+    }
+
+    /**
+     * 导出当前显示的table数据
+     */
+    function exportExcel() {
+        $(".select-table").each(function () {
+            var table = $(this).find("table").eq(1);//生成后的表格有3个table
+            var tableId = $(table).prop("id");
+            console.log("tableId:"+tableId);
+            $("#"+tableId).tableExport({type: 'excel', escape: 'false'});
+        });
+    }
+
+</script>
+</body>
+</html>

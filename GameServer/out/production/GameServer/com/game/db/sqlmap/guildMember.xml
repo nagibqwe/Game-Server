@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="guildMember">
+    <resultMap id="bean" type="com.game.db.bean.GuildMemberBean">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="guildId" property="guildId" jdbcType="BIGINT"/>
+        <result column="joinTime" property="joinTime" jdbcType="BIGINT"/>
+        <result column="contribute" property="contribute" jdbcType="BIGINT"/>
+        <result column="position" property="position" jdbcType="INTEGER"/>
+        <result column="datas" property="datas" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from guildMember
+    </select>
+
+    <insert id="insert" parameterType="com.game.db.bean.GuildMemberBean">
+        insert into guildMember (id,guildId, joinTime, contribute,position,datas)
+        values (#{id,jdbcType=BIGINT},#{guildId,jdbcType=BIGINT}, #{joinTime,jdbcType=BIGINT}, #{contribute,jdbcType=BIGINT},
+        #{position,jdbcType=INTEGER}, #{datas,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.game.db.bean.GuildMemberBean">
+        update guildMember set datas = #{datas,jdbcType=LONGVARCHAR},position = #{position,jdbcType=INTEGER},contribute = #{contribute,jdbcType=BIGINT},guildId=#{guildId,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+</mapper>

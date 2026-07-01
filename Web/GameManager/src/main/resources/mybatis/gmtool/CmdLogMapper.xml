@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.cmd.mapper.CmdLogMapper">
+    
+    <resultMap type="CmdLog" id="CmdLogResult">
+        <result property="id"    column="id"    />
+        <result property="action"    column="action"    />
+        <result property="params"    column="params"    />
+        <result property="serverName"    column="serverName"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="isOk"    column="isOk"    />
+        <result property="result"    column="result"    />
+        <result property="operDate"    column="operDate"    />
+        <result property="user"    column="user"    />
+        <result property="ip"    column="ip"    />
+        <result property="gmType"    column="gmType"    />
+    </resultMap>
+
+    <sql id="selectCmdLogVo">
+        select id, action, params, serverName, serverId, isOk, result, operDate, user, ip, gmType from t_cmd_log
+    </sql>
+
+    <select id="selectCmdLogList" parameterType="CmdLog" resultMap="CmdLogResult">
+        <include refid="selectCmdLogVo"/>
+        <where>  
+            <if test="action != null  and action != ''"> and action like concat('%', #{action}, '%')</if>
+            <if test="params != null  and params != ''"> and params like concat('%', #{params}, '%')</if>
+            <if test="serverName != null  and serverName != ''"> and serverName like concat('%', #{serverName}, '%')</if>
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            and gmType = #{gmType}
+        </where>
+        order by operDate desc
+    </select>
+    
+    <select id="selectCmdLogById" parameterType="Long" resultMap="CmdLogResult">
+        <include refid="selectCmdLogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCmdLog" parameterType="CmdLog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cmd_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="action != null">action,</if>
+            <if test="params != null">params,</if>
+            <if test="serverName != null">serverName,</if>
+            <if test="serverId != null">serverId,</if>
+            <if test="isOk != null">isOk,</if>
+            <if test="result != null">result,</if>
+            <if test="operDate != null">operDate,</if>
+            <if test="user != null">user,</if>
+            <if test="ip != null">ip,</if>
+            <if test="gmType != null">gmType,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="action != null">#{action},</if>
+            <if test="params != null">#{params},</if>
+            <if test="serverName != null">#{serverName},</if>
+            <if test="serverId != null">#{serverId},</if>
+            <if test="isOk != null">#{isOk},</if>
+            <if test="result != null">#{result},</if>
+            <if test="operDate != null">#{operDate},</if>
+            <if test="user != null">#{user},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="gmType != null">#{gmType},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCmdLog" parameterType="CmdLog">
+        update t_cmd_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="action != null">action = #{action},</if>
+            <if test="params != null">params = #{params},</if>
+            <if test="serverName != null">serverName = #{serverName},</if>
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="isOk != null">isOk = #{isOk},</if>
+            <if test="result != null">result = #{result},</if>
+            <if test="operDate != null">operDate = #{operDate},</if>
+            <if test="user != null">user = #{user},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="gmType != null">gmType = #{gmType},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCmdLogById" parameterType="Long">
+        delete from t_cmd_log where id = #{id}
+    </delete>
+
+    <delete id="deleteCmdLogByIds" parameterType="String">
+        delete from t_cmd_log where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

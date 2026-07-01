@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('FB分享')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var count = 0;
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+            jiangliGrp($("#aaa"));
+        });
+
+    </script>
+
+    <script>
+        function jiangliGrp(obj) {
+            console.log(count);
+            var rewardInput = 'reward' + count;
+            var rewardAddBtn = 'showAddItemModel' + count;
+            count += 1;
+            html = '<div class="input-group saltIp" style="width:100%;padding:0 0 1px 0; margin-left: fill">' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="添加奖励" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 37px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input type="text" id="' + rewardInput + '" name="reward" class="hide"/></div>' +
+                '</span>' +
+                '</div>'
+
+            $("#aaa").html(html);
+        }
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>FB分享<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="在配置活动的时候活动名字,支持多语言展示,需要运营人员使用一下副文本进行填写: [CH]中文简体[/CH][EN]英文[/EN][TW]中文繁体[/TW][KR]韩文[/KR][VIE]越南[/VIE][TH]泰文[/TH][JP]日文[/JP]"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>档位奖励</legend>
+                            <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                <label class="input-group-addon ">奖励列表:</label>
+                                <div id = "aaa"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

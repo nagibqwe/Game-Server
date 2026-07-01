@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.cyAnnounce.mapper.CyAnnounceMapper">
+    
+    <resultMap type="CyAnnounce" id="CyAnnounceResult">
+        <result property="id"    column="id"    />
+        <result property="groupName"    column="groupName"    />
+        <result property="serverIds"    column="serverIds"    />
+        <result property="batchTag"    column="batchTag"    />
+        <result property="content"    column="content"    />
+        <result property="createTime"    column="createTime"    />
+        <result property="createDate"    column="createDate"    />
+        <result property="createUserId"    column="createUserId"    />
+        <result property="createUserName"    column="createUserName"    />
+        <result property="fromTime"    column="fromTime"    />
+        <result property="fromDate"    column="fromDate"    />
+        <result property="toTime"    column="toTime"    />
+        <result property="toDate"    column="toDate"    />
+        <result property="totalTimes"    column="totalTimes"    />
+        <result property="nowTimes"    column="nowTimes"    />
+        <result property="nextTimes"    column="nextTimes"    />
+        <result property="nextDate"    column="nextDate"    />
+        <result property="state"    column="state"    />
+        <result property="cycleInterval"    column="cycleInterval"    />
+        <result property="type"    column="type"    />
+    </resultMap>
+
+    <sql id="selectCyAnnounceVo">
+        select id, groupName, serverIds, batchTag, content, createTime, createDate, createUserId, createUserName, fromTime, fromDate, toTime, toDate, totalTimes, nowTimes, nextTimes, nextDate, state, cycleInterval, type from t_cyannounce
+    </sql>
+
+    <select id="selectCyAnnounceList" parameterType="CyAnnounce" resultMap="CyAnnounceResult">
+        <include refid="selectCyAnnounceVo"/>
+        <where>  
+            <if test="groupName != null  and groupName != ''"> and groupName = #{groupName}</if>
+            <if test="serverIds != null  and serverIds != ''"> and serverIds = #{serverIds}</if>
+            <if test="batchTag != null  and batchTag != ''"> and batchTag = #{batchTag}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="createTime != null "> and createTime = #{createTime}</if>
+            <if test="createDate != null  and createDate != ''"> and createDate = #{createDate}</if>
+            <if test="createUserId != null "> and createUserId = #{createUserId}</if>
+            <if test="createUserName != null  and createUserName != ''"> and createUserName like concat('%', #{createUserName}, '%')</if>
+            <if test="fromTime != null "> and fromTime = #{fromTime}</if>
+            <if test="fromDate != null  and fromDate != ''"> and fromDate = #{fromDate}</if>
+            <if test="toTime != null "> and toTime = #{toTime}</if>
+            <if test="toDate != null  and toDate != ''"> and toDate = #{toDate}</if>
+            <if test="totalTimes != null "> and totalTimes = #{totalTimes}</if>
+            <if test="nowTimes != null "> and nowTimes = #{nowTimes}</if>
+            <if test="nextTimes != null "> and nextTimes = #{nextTimes}</if>
+            <if test="nextDate != null  and nextDate != ''"> and nextDate = #{nextDate}</if>
+            <if test="state != null "> and state = #{state}</if>
+            <if test="cycleInterval != null "> and cycleInterval = #{cycleInterval}</if>
+            <if test="type != null "> and type = #{type}</if>
+        </where>
+        order by createTime desc
+    </select>
+    
+    <select id="selectCyAnnounceById" parameterType="Integer" resultMap="CyAnnounceResult">
+        <include refid="selectCyAnnounceVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCyAnnounce" parameterType="CyAnnounce" useGeneratedKeys="true" keyProperty="id">
+        insert into t_cyannounce
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupName != null">groupName,</if>
+            <if test="serverIds != null">serverIds,</if>
+            <if test="batchTag != null">batchTag,</if>
+            <if test="content != null">content,</if>
+            <if test="createTime != null">createTime,</if>
+            <if test="createDate != null">createDate,</if>
+            <if test="createUserId != null">createUserId,</if>
+            <if test="createUserName != null">createUserName,</if>
+            <if test="fromTime != null">fromTime,</if>
+            <if test="fromDate != null">fromDate,</if>
+            <if test="toTime != null">toTime,</if>
+            <if test="toDate != null">toDate,</if>
+            <if test="totalTimes != null">totalTimes,</if>
+            <if test="nowTimes != null">nowTimes,</if>
+            <if test="nextTimes != null">nextTimes,</if>
+            <if test="nextDate != null">nextDate,</if>
+            <if test="state != null">state,</if>
+            <if test="cycleInterval != null">cycleInterval,</if>
+            <if test="type != null">type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="groupName != null">#{groupName},</if>
+            <if test="serverIds != null">#{serverIds},</if>
+            <if test="batchTag != null">#{batchTag},</if>
+            <if test="content != null">#{content},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUserId != null">#{createUserId},</if>
+            <if test="createUserName != null">#{createUserName},</if>
+            <if test="fromTime != null">#{fromTime},</if>
+            <if test="fromDate != null">#{fromDate},</if>
+            <if test="toTime != null">#{toTime},</if>
+            <if test="toDate != null">#{toDate},</if>
+            <if test="totalTimes != null">#{totalTimes},</if>
+            <if test="nowTimes != null">#{nowTimes},</if>
+            <if test="nextTimes != null">#{nextTimes},</if>
+            <if test="nextDate != null">#{nextDate},</if>
+            <if test="state != null">#{state},</if>
+            <if test="cycleInterval != null">#{cycleInterval},</if>
+            <if test="type != null">#{type},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCyAnnounce" parameterType="CyAnnounce">
+        update t_cyannounce
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="groupName != null">groupName = #{groupName},</if>
+            <if test="serverIds != null">serverIds = #{serverIds},</if>
+            <if test="batchTag != null">batchTag = #{batchTag},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="createDate != null">createDate = #{createDate},</if>
+            <if test="createUserId != null">createUserId = #{createUserId},</if>
+            <if test="createUserName != null">createUserName = #{createUserName},</if>
+            <if test="fromTime != null">fromTime = #{fromTime},</if>
+            <if test="fromDate != null">fromDate = #{fromDate},</if>
+            <if test="toTime != null">toTime = #{toTime},</if>
+            <if test="toDate != null">toDate = #{toDate},</if>
+            <if test="totalTimes != null">totalTimes = #{totalTimes},</if>
+            <if test="nowTimes != null">nowTimes = #{nowTimes},</if>
+            <if test="nextTimes != null">nextTimes = #{nextTimes},</if>
+            <if test="nextDate != null">nextDate = #{nextDate},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="cycleInterval != null">cycleInterval = #{cycleInterval},</if>
+            <if test="type != null">type = #{type},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCyAnnounceById" parameterType="Integer">
+        delete from t_cyannounce where id = #{id}
+    </delete>
+
+    <delete id="deleteCyAnnounceByIds" parameterType="String">
+        delete from t_cyannounce where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectCyAnnounceDisableList" parameterType="CyAnnounce" resultMap="CyAnnounceResult">
+        select * from t_cyannounce where state &gt; 0 and state &lt; 4 order by createTime desc
+    </select>
+    
+</mapper>

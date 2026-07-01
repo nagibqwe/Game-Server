@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('留存统计列表')" />
+    <th:block th:include="include :: footer" />
+
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/stat_group_server_head.html"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_date_head.html"></div>
+                            <div th:replace="common/stat_black_list_head.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <div class="btn-group">
+                    <button name="group_tab" class="btn btn-primary" id="new_user_remain" type="button">新用户留存</button>
+                    <button name="group_tab" class="btn btn-white" id="new_user_pay_remain" type="button">付费用户留存</button>
+                    <button name="group_tab" class="btn btn-white" id="old_user_remain" type="button">老用户留存</button>
+                    <button name="group_tab" class="btn btn-white" id="new_role_remain" type="button">新创角留存</button>
+                </div>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+
+    <script th:inline="javascript">
+        var prefix = ctx + "stat/stat_remain";
+        var helptip = "<span style='color:Black'> " +
+            "<b>功能说明(点击键盘Esc关闭)</b></br>" +
+            "-统计不同类型的玩家的1~30日留存、45日留存、60日留存、120日留存。</br>" +
+            "-按照日期展示，按照选中的服去重与日期无关</br>" +
+            "<b>指标说明</b></br>" +
+            "-次留:当天有登录且在次日(第2天)有登录的玩家数/当天登录玩家数</br>" +
+            "-3留:当天有登录且在第3天有登录的玩家数/当天登录玩家数</br>" +
+            "-7留当天有登录且在第7天有登灵的玩家数/当天登录玩家数</br>" +
+            "-30留:当天有登录且在第30天有登录的玩家数/当天登录玩家数</br>" +
+            "-新用户:当日新增加的账号</br>" +
+            "-付费用户:有过付费的用户</br>" +
+            "-老用户:当天之前有登录过目当日有登录的帐号</br>" +
+            "-新创角:当日新创角" +
+            "</span>";
+
+        $(function() {
+            $("button[name='group_tab']").bind("click",function(e){
+                $("button[name='group_tab']").removeClass();
+                $("button[name='group_tab']").addClass("btn btn-white");
+                $("#"+e.target.id+"").removeClass();
+                $("#"+e.target.id+"").addClass("btn btn-primary");
+                $.table.destroy('bootstrap-table');
+                initRemainTable(e.target.id);
+            });
+            //默认初始化第一个
+            initRemainTable("new_user_remain");
+        });
+
+        /**
+         * 留存表格
+         * @param name
+         */
+        function initRemainTable(remainType) {
+            var caclNewCountNameMap = {};
+            caclNewCountNameMap["new_user_remain"] = "新用户";
+            caclNewCountNameMap["new_user_pay_remain"] = "付费用户";
+            caclNewCountNameMap["old_user_remain"] = "老用户";
+            caclNewCountNameMap["new_role_remain"] = "新创角";
+            var options = {
+                pageSize: 10000000,
+                pageList: [],
+                //singleSelect: false,
+                url: prefix + "/list?remainType="+remainType,
+                modalName: remainType,
+                fixedColumns: true,
+                fixedNumber: 1,
+                striped: true,
+                firstLoad:false,
+                pagination: false,
+                showExport:true,
+                columns: [
+                    {
+                        field: 'caclStartTime',
+                        title: '日期',
+                        formatter: function(value, row, index) {
+                            return  value.replace('-','/').replace('-','/');
+                        }
+
+                    },{
+                        field: 'diffDay',
+                        title: '天数',
+                    }
+                    ,{
+                        field: 'currDayKeep',
+                        title: '今日留',
+                    },
+                    {
+                        field: 'caclNewCount',
+                        title: caclNewCountNameMap[remainType],
+                    },
+                    {
+                        field: 'keep2',
+                        title: '次留'
+                    }]
+            };
+            var list = []
+            for(var j = 3;j<31;j++ ){
+                list.push(j)
+            }
+            list.push(45);
+            list.push(60);
+            list.push(120);
+            for(var i =0;i<list.length;i++){
+                options.columns.push({
+                    field: 'keep'+list[i],
+                    title: list[i]+'留'
+                });
+            }
+            $.table.init(options);
+        }
+    </script>
+</body>
+</html>

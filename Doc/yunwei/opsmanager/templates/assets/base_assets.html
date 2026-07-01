@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+{% block css-content %}
+    {% load static %}
+    <style type="text/css">
+        .ue-container {
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 0;
+            padding: 20px 40px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+        #zoneAssetsTable_filter input {
+            width: 80px;
+        }
+
+        #lineAssetsTable_filter input, #cabinetAssetsTable_filter input, #raidAssetsTable_filter input {
+            width: 120px;
+        }
+    </style>
+{% endblock %}
+{% block page-content %}
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> 基础资产配置
+                        <small>Base Assets</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#tab_content2" role="tab" id="profile-tab"
+                                                                      data-toggle="tab" aria-expanded="false"><i
+                                    class="fa fa-building"></i> 项目信息</a>
+                            </li>
+                            <li role="presentation" class=""><a href="#tab_content5" role="tab" id="profile-tab5"
+                                                                data-toggle="tab" aria-expanded="false"><i
+                                    class="fa fa-bookmark"></i> 渠道信息</a>
+                            </li>
+                            <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2"
+                                                                data-toggle="tab" aria-expanded="false"><i
+                                    class="fa fa-bars"></i> 机房信息 </a>
+                            </li>
+                            <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab3"
+                                                                data-toggle="tab" aria-expanded="false"><i
+                                    class="fa fa-bookmark"></i> 状态信息</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content2"
+                                 aria-labelledby="profile-tab">
+
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>项目信息
+                                                <small>Project</small>
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <table class="table" id="projecttable">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>项目名称</th>
+                                                    <th>项目简称</th>
+                                                    <th class="text-center">操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="projecttabletbody">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade " id="tab_content5"
+                                 aria-labelledby="profile-tab">
+
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>渠道信息
+                                                <small>Region</small>
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <table class="table" id="regiontable">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>渠道名称</th>
+                                                    <th>渠道简称</th>
+                                                    <th class="text-center">操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="regiontablebody">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>机房信息
+                                                <small>Machine</small>
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <table class="table" id="machinetable">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>机房名称</th>
+                                                    <th>机房地址</th>
+                                                    <th>机房联系人</th>
+                                                    <th>邮件地址</th>
+                                                    <th class="text-center">操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="machinetabletbody">
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
+
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h2>状态信息
+                                                <small>Status</small>
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <table class="table" id="statustable">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>服务器状态</th>
+                                                    <th class="text-center">操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="statustabletbody">
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-tags-info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myTagsModalLabel">标签分类</h4>
+                </div><!---------九---零一-起玩- -w-w-w-.-9-0-1--7-5-.-c-o-m--------------->
+                <div class="modal-body ue-container">
+
+                    <select multiple="multiple" size="10" name="doublebox" class="demo">
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="taggroupsubmit" class="btn btn-primary">保存</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="addCabinetModal" class="modal fade bs-example-modal-cabinet" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">添加机柜</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="cabinetAssetsform" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">所属机房<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" id="idc_cabinet_select">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">机柜名称<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="cabinet_name" name="last-name" required="required"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="cabinetsubmit" class="btn btn-primary">保存</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="addGroupModal" class="modal fade bs-example-modal-group" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">添加使用组</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="groupAssetsform" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">使用组名称<span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="group_name" name="last-name" required="required"
+                                       class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="groupsubmit" class="btn btn-primary">保存</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js-content %}
+    <script src="{% static 'js/assets/base_assets.js' %}"></script>
+{% endblock %}

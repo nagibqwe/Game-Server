@@ -1,0 +1,12 @@
+<div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+    <li>
+        <div th:replace="common/select_server_single.html"></div>
+        <!--此处作为服务器请求分组地址映射设置地方-->
+        <input type="hidden" id="requestUrl" value="selectServerList">
+        <input type="hidden" id="ignoreMerge" value="0">
+        <input type="hidden" id="serverTypeList" value="0,1">
+    </li>
+    <div th:replace="common/stat_date_head2.html"></div>
+</div>
+
+

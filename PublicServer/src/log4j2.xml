@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration state = "info">
+    <properties>  
+        <property name="LOG_HOME">logs</property>  
+        <property name="GAMESERVERLOG">PublicServer</property>
+        <property name="SQLERRORFILE">SqlError</property>
+        <property name="SPECUSERFILE">Handler</property>
+    </properties>  
+    <appenders>
+        <!-- 定义控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread]%l - %msg%n" />  
+        </Console>  
+        <!-- 正常输出日志 -->  
+        <RollingRandomAccessFile name="DevLog" fileName="${LOG_HOME}/${GAMESERVERLOG}" filePattern="${LOG_HOME}/${GAMESERVERLOG}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="SQLERRORLOG" fileName="${LOG_HOME}/${SQLERRORFILE}" filePattern="${LOG_HOME}/${SQLERRORFILE}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="HANDLERLOG" fileName="${LOG_HOME}/${SPECUSERFILE}" filePattern="${LOG_HOME}/${SPECUSERFILE}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>
+    </appenders>
+    <loggers>
+        <logger name="HandlerDealTime" >
+            <level value="info"></level>
+            <appender-ref ref="HANDLERLOG"/>
+        </logger>
+        <!-- Root Logger -->  
+        <root level="info" includeLocation="true"> 
+            <appender-ref ref="Console" />
+        </root>  
+    </loggers>
+</configuration>

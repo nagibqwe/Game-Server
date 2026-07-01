@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.x8app.mapper.TX8AppMapper">
+    
+    <resultMap type="TX8App" id="TX8AppResult">
+        <result property="appId"    column="app_id"    />
+        <result property="appName"    column="app_name"    />
+        <result property="gameId"    column="game_id"    />
+        <result property="appKey"    column="app_key"    />
+        <result property="appSecret"    column="app_secret"    />
+        <result property="appRsaPubKey"    column="app_rsa_pub_key"    />
+        <result property="appRsaPriKey"    column="app_rsa_pri_key"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="payCallbackUrl"    column="pay_callback_url"    />
+        <result property="dataOperateTime"    column="data_operate_time"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="updateUser"    column="update_user"    />
+        <result property="notes"    column="notes"    />
+        <result property="extParams"    column="ext_params"    />
+    </resultMap>
+
+    <resultMap id="PublicResult" type="com.kits.project.serverList.domain.PublicServerGrid">
+        <result property="extParams"    column="ext_params"    />
+        <result property="policyId"    column="policy_id"    />
+        <result property="chnIds"    column="chn_ids"    />
+    </resultMap>
+
+    <sql id="selectTX8AppVo">
+        select app_id, app_name, game_id, app_key, app_secret, app_rsa_pub_key, app_rsa_pri_key, create_time, update_time, pay_callback_url, data_operate_time, create_user, update_user, notes, ext_params from t_x8_app
+    </sql>
+
+    <select id="selectTX8AppList" parameterType="TX8App" resultMap="TX8AppResult">
+        <include refid="selectTX8AppVo"/>
+        <where>  
+            <if test="appName != null  and appName != ''"> and app_name like concat('%', #{appName}, '%')</if>
+            <if test="gameId != null  and gameId != ''"> and game_id = #{gameId}</if>
+            <if test="appKey != null  and appKey != ''"> and app_key = #{appKey}</if>
+            <if test="appSecret != null  and appSecret != ''"> and app_secret = #{appSecret}</if>
+            <if test="appRsaPubKey != null  and appRsaPubKey != ''"> and app_rsa_pub_key = #{appRsaPubKey}</if>
+            <if test="appRsaPriKey != null  and appRsaPriKey != ''"> and app_rsa_pri_key = #{appRsaPriKey}</if>
+            <if test="payCallbackUrl != null  and payCallbackUrl != ''"> and pay_callback_url = #{payCallbackUrl}</if>
+            <if test="dataOperateTime != null "> and data_operate_time = #{dataOperateTime}</if>
+            <if test="createUser != null  and createUser != ''"> and create_user = #{createUser}</if>
+            <if test="updateUser != null  and updateUser != ''"> and update_user = #{updateUser}</if>
+            <if test="notes != null  and notes != ''"> and notes = #{notes}</if>
+            <if test="extParams != null  and extParams != ''"> and ext_params = #{extParams}</if>
+        </where>
+    </select>
+    
+    <select id="selectTX8AppById" parameterType="Long" resultMap="TX8AppResult">
+        <include refid="selectTX8AppVo"/>
+        where app_id = #{appId}
+    </select>
+        
+    <insert id="insertTX8App" parameterType="TX8App" useGeneratedKeys="true" keyProperty="appId">
+        insert into t_x8_app
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="appName != null and appName != ''">app_name,</if>
+            <if test="gameId != null">game_id,</if>
+            <if test="appKey != null">app_key,</if>
+            <if test="appSecret != null">app_secret,</if>
+            <if test="appRsaPubKey != null">app_rsa_pub_key,</if>
+            <if test="appRsaPriKey != null">app_rsa_pri_key,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="payCallbackUrl != null">pay_callback_url,</if>
+            <if test="dataOperateTime != null">data_operate_time,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="updateUser != null">update_user,</if>
+            <if test="notes != null">notes,</if>
+            <if test="extParams != null">ext_params,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="appName != null and appName != ''">#{appName},</if>
+            <if test="gameId != null">#{gameId},</if>
+            <if test="appKey != null">#{appKey},</if>
+            <if test="appSecret != null">#{appSecret},</if>
+            <if test="appRsaPubKey != null">#{appRsaPubKey},</if>
+            <if test="appRsaPriKey != null">#{appRsaPriKey},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="payCallbackUrl != null">#{payCallbackUrl},</if>
+            <if test="dataOperateTime != null">#{dataOperateTime},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+            <if test="notes != null">#{notes},</if>
+            <if test="extParams != null">#{extParams},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTX8App" parameterType="TX8App">
+        update t_x8_app
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="appName != null and appName != ''">app_name = #{appName},</if>
+            <if test="gameId != null">game_id = #{gameId},</if>
+            <if test="appKey != null">app_key = #{appKey},</if>
+            <if test="appSecret != null">app_secret = #{appSecret},</if>
+            <if test="appRsaPubKey != null">app_rsa_pub_key = #{appRsaPubKey},</if>
+            <if test="appRsaPriKey != null">app_rsa_pri_key = #{appRsaPriKey},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="payCallbackUrl != null">pay_callback_url = #{payCallbackUrl},</if>
+            <if test="dataOperateTime != null">data_operate_time = #{dataOperateTime},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+            <if test="notes != null">notes = #{notes},</if>
+            <if test="extParams != null">ext_params = #{extParams},</if>
+        </trim>
+        where app_id = #{appId}
+    </update>
+
+    <delete id="deleteTX8AppById" parameterType="Long">
+        delete from t_x8_app where app_id = #{appId}
+    </delete>
+
+    <delete id="deleteTX8AppByIds" parameterType="String">
+        delete from t_x8_app where app_id in 
+        <foreach item="appId" collection="array" open="(" separator="," close=")">
+            #{appId}
+        </foreach>
+    </delete>
+    <select id="selectPublicInfo" resultMap="PublicResult">
+        SELECT txa.ext_params,txsl.policy_id,txsl.chn_ids FROM t_x8_app txa LEFT JOIN t_x8_server_list txsl ON txa.game_id = txsl.game_id;
+    </select>
+</mapper>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('ltv统计列表')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <th:block th:include="include :: stat_common" />
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <div class="btn-group">
+
+
+                </div>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+     <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "stat/stat_ltv";
+        var helptip = "<span style='color:Black'> " +
+            "<b>指标说明(点击键盘Esc关闭)</b></br>" +
+            "-新注册用户:当天登录的用户总数(根据帐号去重)</br>" +
+            "-LTV7ARPU:LTV7充值金额/新玩家人数</br>" +
+            "-LTV7充值金额:当天的新玩家，在第1-7天内充值金额(比如1号新用户，在1-7号的充值金额)</br>" +
+            "</span>";
+        $(function() {
+            $("button[name='group_tab']").bind("click",function(e){
+                $("button[name='group_tab']").removeClass();
+                $("button[name='group_tab']").addClass("btn btn-white");
+                $("#"+e.target.id+"").removeClass();
+                $("#"+e.target.id+"").addClass("btn btn-primary");
+                $.table.destroy('bootstrap-table');
+                initRemainTable(e.target.id);
+            });
+            //默认初始化第一个
+            initTable();
+        });
+
+        /**
+         * 留存表格
+         * @param name
+         */
+        function initTable() {
+            var options = {
+                pageSize: 10000000,
+                pageList: [],
+                //singleSelect: false,
+                url: prefix + "/list",
+                modalName: "ltv",
+                fixedColumns: true,
+                fixedNumber: 1,
+                striped: true,
+                columns: [
+                    {
+                        field: 'caclStartTime',
+                        title: '日期',
+                        formatter: function(value, row, index) {
+                            return  value.replace('-','/').replace('-','/');
+                        }
+
+                    },{
+                        field: 'diffDay',
+                        title: '天数',
+                    }
+                    ,{
+                        field: 'currDayKeep',
+                        title: '今日LTV',
+                    },
+                    {
+                        field: 'caclNewCount',
+                        title: "新增人数",
+                    }]
+            };
+            var list = []
+            for(var j = 1;j<31;j++ ){
+                list.push(j)
+            }
+            list.push(45);
+            list.push(60);
+            list.push(120);
+            for(var i =0;i<list.length;i++){
+                options.columns.push({
+                    field: 'ltv'+list[i],
+                    title: 'ltv'+list[i],
+                });
+            }
+            $.table.init(options);
+        }
+    </script>
+</body>
+</html>

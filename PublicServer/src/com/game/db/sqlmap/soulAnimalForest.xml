@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="soulAnimalForest">
+    <resultMap id="bean" type="com.game.db.bean.SoulAnimalForestBean" >
+        <result column="saf_configId" property="saf_configId" jdbcType="INTEGER" />
+        <result column="bornTime" property="bornTime" jdbcType="BIGINT" />
+        <result column="dieTimes" property="dieTimes" jdbcType="INTEGER" />
+        <result column="reBornBaseTime" property="reBornBaseTime" jdbcType="INTEGER" />
+        <result column="rebornTime" property="rebornTime" jdbcType="BIGINT" />
+        <result column="killer" property="killer" jdbcType="VARCHAR" />
+        <result column="serverGroupId" property="serverGroupId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from soulAnimalForest
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.SoulAnimalForestBean">
+        insert into soulAnimalForest (saf_configId,bornTime,dieTimes,reBornBaseTime,rebornTime,killer, serverGroupId) 
+        values
+        (
+        #{saf_configId, jdbcType=INTEGER}, #{bornTime, jdbcType=BIGINT}, #{dieTimes, jdbcType=INTEGER}, #{reBornBaseTime, jdbcType=INTEGER}, #{rebornTime, jdbcType=BIGINT}, #{killer, jdbcType=VARCHAR}, #{serverGroupId, jdbcType=BIGINT}
+        )
+    </insert>
+		
+    <update id="update" parameterType="com.game.db.bean.SoulAnimalForestBean">
+        update soulAnimalForest set  
+        saf_configId = #{saf_configId,jdbcType=INTEGER },bornTime = #{bornTime,jdbcType=BIGINT },dieTimes = #{dieTimes,jdbcType=INTEGER },reBornBaseTime = #{reBornBaseTime,jdbcType=INTEGER },rebornTime = #{rebornTime,jdbcType=BIGINT },killer = #{killer,jdbcType=VARCHAR }, serverGroupId = #{serverGroupId, jdbcType=BIGINT} 
+        where
+        saf_configId = #{saf_configId,jdbcType=INTEGER} and serverGroupId = #{serverGroupId, jdbcType=BIGINT}
+    </update>
+    
+    <delete id="delete" parameterType="com.game.db.bean.SoulAnimalForestBean">
+        delete from soulAnimalForest where saf_configId = #{saf_configId,jdbcType=INTEGER} and serverGroupId = #{serverGroupId, jdbcType=BIGINT}
+    </delete>	
+</mapper>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="chatWord">
+    <resultMap id="bean" type="com.game.db.bean.ChatWordBean" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="word" property="word" jdbcType="VARCHAR" />
+        <result column="replace" property="replace" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />            
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from chatword
+    </select>
+
+    <select id="selectAllByServerId" resultMap="bean" parameterType="integer">
+        select * from chatword where serverId=#{serverId, jdbcType = INTEGER}
+    </select>
+
+    <select id="selectAllByServerIds" resultMap="bean">
+        select * from chatword where serverId in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <insert id="insert" parameterType="com.game.db.bean.ChatWordBean">
+        insert into chatword (serverId,word,replace,type)
+        values (#{serverId, jdbcType=INTEGER},#{word, jdbcType=VARCHAR},#{replace, jdbcType=VARCHAR}, #{type, jdbcType=INTEGER} )
+        <selectKey resultType="int" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        
+    </insert>
+
+    <delete id="delete" parameterType="integer">
+        delete from chatword where id = #{id, jdbcType = INTEGER}
+    </delete>
+</mapper>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.announce.mapper.AnnounceMapper">
+    
+    <resultMap type="Announce" id="AnnounceResult">
+        <result property="id"    column="id"    />
+        <result property="createTime"    column="createTime"    />
+        <result property="createDate"    column="createDate"    />
+        <result property="userId"    column="userId"    />
+        <result property="userName"    column="userName"    />
+        <result property="groupName"    column="groupName"    />
+        <result property="serverIds"    column="serverIds"    />
+        <result property="type"    column="type"    />
+        <result property="content"    column="content"    />
+        <result property="reason"    column="reason"    />
+    </resultMap>
+
+    <sql id="selectAnnounceVo">
+        select id, createTime, createDate, userId, userName, groupName, serverIds, type, content, reason from t_announce
+    </sql>
+
+    <select id="selectAnnounceList" parameterType="Announce" resultMap="AnnounceResult">
+        <include refid="selectAnnounceVo"/>
+        <where>  
+            <if test="createTime != null "> and createTime = #{createTime}</if>
+            <if test="createDate != null  and createDate != ''"> and createDate = #{createDate}</if>
+            <if test="userId != null "> and userId = #{userId}</if>
+            <if test="userName != null  and userName != ''"> and userName like concat('%', #{userName}, '%')</if>
+            <if test="groupName != null  and groupName != ''"> and groupName like concat('%', #{groupName}, '%')</if>
+            <if test="serverIds != null  and serverIds != ''"> and serverIds = #{serverIds}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+        </where>
+    </select>
+    
+    <select id="selectAnnounceById" parameterType="Integer" resultMap="AnnounceResult">
+        <include refid="selectAnnounceVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAnnounce" parameterType="Announce" useGeneratedKeys="true" keyProperty="id">
+        insert into t_announce
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createTime != null">createTime,</if>
+            <if test="createDate != null">createDate,</if>
+            <if test="userId != null">userId,</if>
+            <if test="userName != null">userName,</if>
+            <if test="groupName != null">groupName,</if>
+            <if test="serverIds != null">serverIds,</if>
+            <if test="type != null">type,</if>
+            <if test="content != null">content,</if>
+            <if test="reason != null">reason,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="groupName != null">#{groupName},</if>
+            <if test="serverIds != null">#{serverIds},</if>
+            <if test="type != null">#{type},</if>
+            <if test="content != null">#{content},</if>
+            <if test="reason != null">#{reason},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAnnounce" parameterType="Announce">
+        update t_announce
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="createDate != null">createDate = #{createDate},</if>
+            <if test="userId != null">userId = #{userId},</if>
+            <if test="userName != null">userName = #{userName},</if>
+            <if test="groupName != null">groupName = #{groupName},</if>
+            <if test="serverIds != null">serverIds = #{serverIds},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="reason != null">reason = #{reason},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAnnounceById" parameterType="Integer">
+        delete from t_announce where id = #{id}
+    </delete>
+
+    <delete id="deleteAnnounceByIds" parameterType="String">
+        delete from t_announce where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

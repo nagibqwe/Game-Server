@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="userlogin">
+    <resultMap id="bean" type="com.game.db.bean.UserloginBean" >
+            <id column="userId" property="userId" jdbcType="BIGINT" />
+            <result column="userName" property="userName" jdbcType="VARCHAR" />
+            <result column="platformAccount" property="platformAccount" jdbcType="VARCHAR" />
+            <result column="platformName" property="platformName" jdbcType="VARCHAR" />
+            <result column="lastEnterServerId" property="lastEnterServerId" jdbcType="INTEGER" />
+            <result column="data" property="data" jdbcType="LONGVARCHAR" />
+            <result column="createTime" property="createTime" jdbcType="INTEGER" />
+            <result column="isDelete" property="isDelete" jdbcType="INTEGER" />
+            <result column="lastLoginIp" property="lastLoginIp" jdbcType="VARCHAR"/>
+        <result column="lastEnterRoleId" property="lastEnterRoleId" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from userlogin
+    </select>
+	
+    <select id="selectByUserName" parameterType="String" resultMap="bean">
+            select * from userlogin where userName = #{userName,jdbcType=VARCHAR} AND isDelete = 0
+    </select>
+        
+    <select id="selectByUserId" parameterType="long" resultMap="bean">
+            select * from userlogin where userId = #{userId,jdbcType=BIGINT} AND isDelete = 0
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.UserloginBean" >
+            insert into userlogin (userId, userName, platformAccount, platformName, lastEnterServerId, data, createTime, isDelete, lastLoginIp, lastEnterRoleId)
+            values (#{userId,jdbcType=BIGINT},#{userName,jdbcType=VARCHAR},#{platformAccount,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}, #{lastEnterServerId,jdbcType=INTEGER}, 
+                            #{data,jdbcType=LONGVARCHAR}, #{createTime,jdbcType=INTEGER},#{isDelete,jdbcType=INTEGER},#{lastLoginIp,jdbcType=VARCHAR}, #{lastEnterRoleId,jdbcType=BIGINT})
+    </insert>
+	
+    <update id="update" parameterType="com.game.db.bean.UserloginBean" >
+            update userlogin set lastEnterServerId = #{lastEnterServerId,jdbcType=INTEGER},data = #{data,jdbcType=LONGVARCHAR},lastLoginIp=#{lastLoginIp,jdbcType=VARCHAR},lastEnterRoleId = #{lastEnterRoleId,jdbcType=BIGINT} where userId = #{userId,jdbcType=BIGINT}
+    </update>
+
+    <update id="deleteUser" parameterType="long" >
+            update userlogin set isDelete = 1 where userId = #{userId,jdbcType=BIGINT}
+    </update>
+
+    <update id="deleteUserByUserName" parameterType="String" >
+            update userlogin set isDelete = 1 where userName = #{userName,jdbcType=VARCHAR}
+    </update>
+        
+    <update id="recoverUser" parameterType="long" >
+            update userlogin set isDelete = 0 where userId = #{userId,jdbcType=BIGINT}
+    </update>
+
+</mapper>

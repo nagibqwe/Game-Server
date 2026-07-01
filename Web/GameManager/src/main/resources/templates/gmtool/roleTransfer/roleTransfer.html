@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('角色转移列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <div th:replace="common/query_game_role.html"></div>
+            </div>
+            <div class="col-sm-12 search-collapse">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>角色转移</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="transferForm" class="form-horizontal m-t" method="post">
+                            <div id="roleDiv" class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="roleId">角色ID:</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="roleId" type="text" name="roleId" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label is-required" for="userId">目标账号ID:</label>
+                                <div class="col-sm-3">
+                                    <input class="form-control" id="userId" type="text" name="userId" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reason" class="col-sm-2 control-label is-required">操作原因:</label>
+                                <div class="col-sm-4">
+                                    <input id="reason" type="text" name="reason" class="form-control" required/>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 4px">
+                                <label class="col-sm-2 control-label"></label>
+                                <button type="button" class="btn btn-success" onclick="transfer()">
+                                    提交
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="showList()">
+                                    查看记录
+                                </button>
+                            </div>
+
+                            <div id="msg" class="container-fluid"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 select-table table-striped" id="tableDiv">
+                    <table id="bootstrap-table"></table>
+                </div>
+            </div>
+        </div>
+
+     </div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/roleTransfer";
+
+        $(function () {
+           $("#tableDiv").hide();
+        });
+
+        $(function() {
+            var options = {
+                id:"bootstrap-table",
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                showSearch:false,
+                modalName: "角色转移",
+                columns: [
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },
+                {
+                    field: 'srcUserId',
+                    title: '原账号ID'
+                },
+                {
+                    field: 'targetUserId',
+                    title: '目标账号ID'
+                },
+                {
+                    field: 'serverId',
+                    title: '服务器ID'
+                },
+                {
+                    field: 'reason',
+                    title: '操作原因'
+                },
+                {
+                    field: 'time',
+                    title: '执行时间'
+                }]
+            };
+            $.table.init(options);
+        });
+
+        //角色转移操作
+        function transfer() {
+            var select_server = $("#select_server").val();
+            if (!$('#transferForm').validate().form()) {
+                $.modal.msgError("验证失败");
+                return;
+            }
+
+            $.ajax({
+                url: prefix + "/transfer",
+                method: "post",
+                data: {
+                    serverId: $("#select_server").val(),
+                    roleId: $("#roleId").val(),
+                    userId: $("#userId").val(),
+                    reason: $("#reason").val()
+                },
+                success: function(data) {
+                    if (data.ok) {
+                        $("#transferForm")[0].reset();
+                        $.modal.alertSuccess(data.msg);
+                        $("#select_server").val(select_server);
+                        $.table.refresh("roleTable");
+                        showList();
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        //查看角色转移记录
+        function showList() {
+            $("#tableDiv").show();
+            $.table.refresh("bootstrap-table");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.server.mapper.TServerMapper">
+    
+    <resultMap type="TServer" id="TServerResult">
+        <result property="id"    column="id"    />
+        <result property="serverName"    column="serverName"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="groupName"    column="groupName"    />
+        <result property="serverIP"    column="serverIP"    />
+        <result property="serverPort"    column="serverPort"    />
+        <result property="dblogIp"    column="dblogIp"    />
+        <result property="dblogPort"    column="dblogPort"    />
+        <result property="dblogName"    column="dblogName"    />
+        <result property="dblogUser"    column="dblogUser"    />
+        <result property="dblogPwd"    column="dblogPwd"    />
+        <result property="isHeFu"    column="isHeFu"    />
+        <result property="hefuTime"    column="hefuTime"    />
+        <result property="hefuServerID"    column="hefuServerID"    />
+        <result property="serverIdList"    column="serverIdList"    />
+        <result property="serverType"    column="serverType"    />
+        <result property="isDeleted"    column="isDeleted"    />
+        <result property="isShow"    column="isShow"    />
+        <result property="serverOpenTime"    column="serverOpenTime"    />
+        <result property="openState"    column="openState"    />
+        <result property="heartTime"    column="heartTime"    />
+    </resultMap>
+
+    <sql id="selectTServerVo">
+        select id, serverName, serverId, groupName, serverIP, serverPort, dblogIp, dblogPort, dblogName, dblogUser, dblogPwd, isHeFu, hefuTime, hefuServerID, serverIdList, serverType, isDeleted, isShow, serverOpenTime, openState, heartTime from t_server
+    </sql>
+
+    <select id="selectTServerListShow" parameterType="TServer" resultMap="TServerResult">
+        <include refid="selectTServerVo"/>
+        <where>
+            <if test="serverId != null">and serverId = #{serverId}</if>
+            <if test="serverName != null  and serverName != ''"> and serverName like concat('%', #{serverName}, '%')</if>
+            <if test="groupName != null  and groupName != ''"> and groupName like concat('%', #{groupName}, '%')</if>
+            <if test="serverType != null"> and serverType = #{serverType}</if>
+            <if test="isHeFu != null"> and isHeFu = #{isHeFu}</if>
+        </where>
+        order by serverId
+    </select>
+
+    <select id="selectTServerList" parameterType="TServer" resultMap="TServerResult">
+        <include refid="selectTServerVo"/>
+        <where>
+             isDeleted = 0
+            <if test="serverId != null">and serverId = #{serverId}</if>
+            <if test="serverName != null  and serverName != ''"> and serverName like concat('%', #{serverName}, '%')</if>
+            <if test="groupName != null  and groupName != ''"> and groupName like concat('%', #{groupName}, '%')</if>
+            <if test="serverType != null"> and serverType = #{serverType}</if>
+            <if test="isHeFu != null"> and isHeFu = #{isHeFu}</if>
+        </where>
+        order by serverId
+    </select>
+    
+    <select id="selectTServerById" parameterType="Long" resultMap="TServerResult">
+        <include refid="selectTServerVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTServer" parameterType="TServer" useGeneratedKeys="true" keyProperty="id">
+        insert into t_server
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverName != null and serverName != ''">serverName,</if>
+            <if test="serverId != null">serverId,</if>
+            <if test="groupName != null and groupName != ''">groupName,</if>
+            <if test="serverIP != null and serverIP != ''">serverIP,</if>
+            <if test="serverPort != null">serverPort,</if>
+            <if test="dblogIp != null">dblogIp,</if>
+            <if test="dblogPort != null">dblogPort,</if>
+            <if test="dblogName != null">dblogName,</if>
+            <if test="dblogUser != null">dblogUser,</if>
+            <if test="dblogPwd != null">dblogPwd,</if>
+            <if test="isHeFu != null">isHeFu,</if>
+            <if test="hefuTime != null">hefuTime,</if>
+            <if test="hefuServerID != null">hefuServerID,</if>
+            <if test="serverIdList != null">serverIdList,</if>
+            <if test="serverType != null">serverType,</if>
+            <if test="isDeleted != null">isDeleted,</if>
+            <if test="isShow != null">isShow,</if>
+            <if test="serverOpenTime != null">serverOpenTime,</if>
+            <if test="openState != null">openState,</if>
+            <if test="heartTime != null">heartTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverName != null and serverName != ''">#{serverName},</if>
+            <if test="serverId != null">#{serverId},</if>
+            <if test="groupName != null and groupName != ''">#{groupName},</if>
+            <if test="serverIP != null and serverIP != ''">#{serverIP},</if>
+            <if test="serverPort != null">#{serverPort},</if>
+            <if test="dblogIp != null">#{dblogIp},</if>
+            <if test="dblogPort != null">#{dblogPort},</if>
+            <if test="dblogName != null">#{dblogName},</if>
+            <if test="dblogUser != null">#{dblogUser},</if>
+            <if test="dblogPwd != null">#{dblogPwd},</if>
+            <if test="isHeFu != null">#{isHeFu},</if>
+            <if test="hefuTime != null">#{hefuTime},</if>
+            <if test="hefuServerID != null">#{hefuServerID},</if>
+            <if test="serverIdList != null">#{serverIdList},</if>
+            <if test="serverType != null">#{serverType},</if>
+            <if test="isDeleted != null">#{isDeleted},</if>
+            <if test="isShow != null">#{isShow},</if>
+            <if test="serverOpenTime != null">#{serverOpenTime},</if>
+            <if test="openState != null">#{openState},</if>
+            <if test="heartTime != null">#{heartTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTServer" parameterType="TServer">
+        update t_server
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverName != null and serverName != ''">serverName = #{serverName},</if>
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="groupName != null and groupName != ''">groupName = #{groupName},</if>
+            <if test="serverIP != null and serverIP != ''">serverIP = #{serverIP},</if>
+            <if test="serverPort != null">serverPort = #{serverPort},</if>
+            <if test="dblogIp != null">dblogIp = #{dblogIp},</if>
+            <if test="dblogPort != null">dblogPort = #{dblogPort},</if>
+            <if test="dblogName != null">dblogName = #{dblogName},</if>
+            <if test="dblogUser != null">dblogUser = #{dblogUser},</if>
+            <if test="dblogPwd != null">dblogPwd = #{dblogPwd},</if>
+            <if test="isHeFu != null">isHeFu = #{isHeFu},</if>
+            <if test="hefuTime != null">hefuTime = #{hefuTime},</if>
+            <if test="hefuServerID != null">hefuServerID = #{hefuServerID},</if>
+            <if test="serverIdList != null">serverIdList = #{serverIdList},</if>
+            <if test="serverType != null">serverType = #{serverType},</if>
+            <if test="isDeleted != null">isDeleted = #{isDeleted},</if>
+            <if test="isShow != null">isShow = #{isShow},</if>
+            <if test="serverOpenTime != null">serverOpenTime = #{serverOpenTime},</if>
+            <if test="openState != null">openState = #{openState},</if>
+            <if test="heartTime != null">heartTime = #{heartTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTServerById" parameterType="Long">
+        delete from t_server where id = #{id}
+    </delete>
+
+    <delete id="deleteTServerByIds" parameterType="String">
+        delete from t_server where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectTServerByInput" parameterType="TServer" resultMap="TServerResult">
+        select * from t_server
+        <where>
+             isDeleted = 0
+            <if test="serverId != null"> and serverId = #{serverId}</if>
+            <if test="serverName != null and serverName != ''">and serverName = #{serverName}</if>
+        </where>
+        order by serverId
+    </select>
+    <select id="selectTServerByServerId" parameterType="Integer" resultMap="TServerResult">
+        <include refid="selectTServerVo"/>
+        <where>
+             isDeleted = 0
+            <if test="serverId != null"> and serverId = #{serverId}</if>
+        </where>
+    </select>
+
+
+
+    <!-- 服务器分组 begin-->
+    <select id="selectServerGroup" resultType="java.lang.String">
+        select DISTINCT groupName from t_server
+    </select>
+
+    <select id="selectServerList" parameterType="java.lang.String" resultMap="TServerResult">
+        <include refid="selectTServerVo"/>
+        <where>
+            isDeleted = 0
+            and serverType in(${serverTypeList})
+            <if test="groupName != null  and groupName != ''"> and groupName = #{groupName}</if>
+        </where>
+        order by serverId
+    </select>
+    <!-- 服务器分组 end-->
+    <select id="selectServerByServerIds" parameterType="String" resultMap="TServerResult">
+        select * from t_server where serverId in
+        <foreach item="serverId" collection="array" open="(" separator="," close=")">
+            #{serverId}
+        </foreach>
+        and isDeleted = 0
+    </select>
+</mapper>

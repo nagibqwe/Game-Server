@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.apiserver.mapper.SdkApiserverMapper">
+    
+    <resultMap type="SdkApiserver" id="SdkApiserverResult">
+        <result property="id"    column="id"    />
+        <result property="apiUrl"    column="api_url"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectSdkApiserverVo">
+        select id, api_url, remark from sdk_apiserver
+    </sql>
+
+    <select id="selectSdkApiserverList" parameterType="SdkApiserver" resultMap="SdkApiserverResult">
+        <include refid="selectSdkApiserverVo"/>
+        <where>  
+            <if test="apiUrl != null  and apiUrl != ''"> and api_url like concat('%', #{apiUrl}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectSdkApiserverById" parameterType="Long" resultMap="SdkApiserverResult">
+        <include refid="selectSdkApiserverVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSdkApiserver" parameterType="SdkApiserver" useGeneratedKeys="true" keyProperty="id">
+        insert into sdk_apiserver
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="apiUrl != null">api_url,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="apiUrl != null">#{apiUrl},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSdkApiserver" parameterType="SdkApiserver">
+        update sdk_apiserver
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="apiUrl != null">api_url = #{apiUrl},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSdkApiserverById" parameterType="Long">
+        delete from sdk_apiserver where id = #{id}
+    </delete>
+
+    <delete id="deleteSdkApiserverByIds" parameterType="String">
+        delete from sdk_apiserver where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

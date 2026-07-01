@@ -1,0 +1,58 @@
+/**
+ * Auto generated, do not edit it
+ *
+ * activity_task_type配置表
+ */
+package com.data.container;
+
+
+import com.data.ConfigBase;
+import java.util.Map;
+import com.data.bean.Cfg_Activity_task_type_Bean; 
+import config.Cfg_Activity_task_type_Load;
+
+	
+public final class Cfg_Activity_task_type_Container extends ConfigBase<Cfg_Activity_task_type_Bean> {
+	
+    /**
+     * 初始化activity_task_type配置表容器数据
+     */
+    @SuppressWarnings({"deprecation"})
+    private Cfg_Activity_task_type_Container(){
+        Cfg_Activity_task_type_Load load = new Cfg_Activity_task_type_Load();
+        Map<Integer, Cfg_Activity_task_type_Bean> map = newMapValuees();
+        load.load(map);
+        initValue(map);
+    }
+
+    @Override
+    protected Cfg_Activity_task_type_Bean[] newBeanArray(int size) {
+        return new Cfg_Activity_task_type_Bean[size];
+    }
+
+    /**
+     * 用枚举来实现单例
+     */
+    private enum Singleton {
+        
+        INSTANCE;                               //一个枚举的元素，它就代表了Singleton的一个实例
+        Cfg_Activity_task_type_Container manager;
+        
+        Singleton() {
+            this.manager = new Cfg_Activity_task_type_Container();
+        }
+        
+        Cfg_Activity_task_type_Container getProcessor() {
+            return manager;
+        }
+    }
+    
+    /**
+     * 获取Cfg_Activity_task_type_Container的实例对象
+     *
+     * @return
+     */
+    public static Cfg_Activity_task_type_Container GetInstance() {
+        return Singleton.INSTANCE.getProcessor();
+    }
+}

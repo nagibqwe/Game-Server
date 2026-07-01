@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.activityBossType.mapper.ActivityBossTypeMapper">
+    
+    <resultMap type="ActivityBossType" id="ActivityBossTypeResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="bossId"    column="boss_id"    />
+    </resultMap>
+
+    <sql id="selectActivityBossTypeVo">
+        select id, name, boss_id from t_activity_boss_type
+    </sql>
+
+    <select id="selectActivityBossTypeList" parameterType="ActivityBossType" resultMap="ActivityBossTypeResult">
+        <include refid="selectActivityBossTypeVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="bossId != null  and bossId != ''"> and boss_id = #{bossId}</if>
+        </where>
+    </select>
+    
+    <select id="selectActivityBossTypeById" parameterType="Integer" resultMap="ActivityBossTypeResult">
+        <include refid="selectActivityBossTypeVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertActivityBossType" parameterType="ActivityBossType">
+        insert into t_activity_boss_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="bossId != null">boss_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="bossId != null">#{bossId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateActivityBossType" parameterType="ActivityBossType">
+        update t_activity_boss_type
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="bossId != null">boss_id = #{bossId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteActivityBossTypeById" parameterType="Long">
+        delete from t_activity_boss_type where id = #{id}
+    </delete>
+
+    <delete id="deleteActivityBossTypeByIds" parameterType="String">
+        delete from t_activity_boss_type where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteAllActBossType">
+        delete from t_activity_boss_type
+    </delete>
+
+</mapper>

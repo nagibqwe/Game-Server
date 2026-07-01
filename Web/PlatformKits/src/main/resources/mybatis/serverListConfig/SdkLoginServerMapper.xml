@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.loginServer.mapper.SdkLoginServerMapper">
+    
+    <resultMap type="SdkLoginServer" id="SdkLoginServerResult">
+        <result property="id"    column="id"    />
+        <result property="loginServerName"    column="login_server_name"    />
+        <result property="loginServerIp"    column="login_server_ip"    />
+        <result property="loginServerPort"    column="login_server_port"    />
+    </resultMap>
+
+    <sql id="selectSdkLoginServerVo">
+        select id, login_server_name, login_server_ip, login_server_port from sdk_login_server
+    </sql>
+
+    <select id="selectSdkLoginServerList" parameterType="SdkLoginServer" resultMap="SdkLoginServerResult">
+        <include refid="selectSdkLoginServerVo"/>
+        <where>  
+            <if test="loginServerName != null  and loginServerName != ''"> and login_server_name like concat('%', #{loginServerName}, '%')</if>
+            <if test="loginServerIp != null  and loginServerIp != ''"> and login_server_ip = #{loginServerIp}</if>
+            <if test="loginServerPort != null "> and login_server_port = #{loginServerPort}</if>
+        </where>
+    </select>
+    
+    <select id="selectSdkLoginServerById" parameterType="Long" resultMap="SdkLoginServerResult">
+        <include refid="selectSdkLoginServerVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSdkLoginServer" parameterType="SdkLoginServer" useGeneratedKeys="true" keyProperty="id">
+        insert into sdk_login_server
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="loginServerName != null">login_server_name,</if>
+            <if test="loginServerIp != null">login_server_ip,</if>
+            <if test="loginServerPort != null">login_server_port,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="loginServerName != null">#{loginServerName},</if>
+            <if test="loginServerIp != null">#{loginServerIp},</if>
+            <if test="loginServerPort != null">#{loginServerPort},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSdkLoginServer" parameterType="SdkLoginServer">
+        update sdk_login_server
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="loginServerName != null">login_server_name = #{loginServerName},</if>
+            <if test="loginServerIp != null">login_server_ip = #{loginServerIp},</if>
+            <if test="loginServerPort != null">login_server_port = #{loginServerPort},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSdkLoginServerById" parameterType="Long">
+        delete from sdk_login_server where id = #{id}
+    </delete>
+
+    <delete id="deleteSdkLoginServerByIds" parameterType="String">
+        delete from sdk_login_server where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectShowLoginServers" parameterType="String" resultMap="SdkLoginServerResult">
+        select * from sdk_login_server where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('更新公告列表')" />
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/updateNotice";
+        $(function () {
+            $("#updateNoticeForm").validate();
+            loadAllItem();
+            addClass();//改变服务器选择的样式
+        });
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "更新公告",
+                columns: [
+                    {
+                        field: 'id',
+                        title: '公告ID'
+                    },
+                    {
+                        field: 'serverIds',
+                        title: '服务器ID'
+                    },
+                    {
+                        field: 'content',
+                        title: '公告内容',
+                        align: 'center'
+                    },
+                    {
+                        field: 'reward',
+                        title: '公告奖励'
+                    },
+                    {
+                        field: 'type',
+                        title: '操作类型',
+                        formatter:function (value, row, index) {
+                            if (value == 0){
+                                return "更新公告和奖励信息";
+                            } else {
+                                return "更新并重置奖励";
+                            }
+                        }
+                    },
+                    {
+                        title: '操作',
+                        align: 'center',
+                        formatter: function(value, row, index) {
+                            var actions = [];
+                            actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="parse('+index+')"><i class="fa fa-copy"></i>粘贴内容</a> ');
+                            return actions.join('');
+                        }
+                    }]
+            };
+            $.table.init(options);
+        });
+
+        function showAddItemModel() {
+            $("#addItemModal").modal('toggle');
+            $("#addItemForm")[0].reset();
+        }
+
+        function addItem() {
+            var itemId = $("#itemId").val();
+            var itemName = items.get(itemId);
+            var itemNum = $("#itemNum").val();
+            var isBind = $("#isBind").val();
+            var itemValue = itemId + "," + itemNum + "," + isBind;
+            console.log(itemValue + ":" + itemName);
+            var lastValue = $("#reward").val();
+            var itemArray = lastValue.split('}');
+            if (lastValue == "") {
+                itemArray = new Array();
+            }
+            itemArray.push(itemValue);
+            $("#reward").val(itemArray.join("}"));
+            console.log(itemArray.join("}"))
+            $("#items").append("<span class=\"label\">" + itemName + "*" + itemNum +
+                "<i class=\"fa fa-remove\" onclick=\"removeItem(this, " + itemId +", " + itemNum + ")\"></i></span>");
+            $("#addItemModal").modal('hide');
+        }
+
+        function removeItem(obj, itemId, itemNum) {
+            var pos;
+            var value = $(obj).parent().parent().prev(".rewardInput").val();
+            var itemArray = value.split('}');
+            $.each(itemArray, function (i, n) {
+                var item = n.split(",");
+                if (item[0] == itemId && item[1] == itemNum) {
+                    pos = i;
+                }
+            });
+            itemArray.splice(pos, 1);
+            $(obj).parent().parent().prev(".rewardInput").val(itemArray.join("}"));
+            console.log(itemArray.join(";"));
+            $(obj).parent().remove();
+            event.stopPropagation();
+        }
+
+        //提交更新公告
+        function sendUpdateNotice() {
+            if (!$('#updateNoticeForm').validate().form()) {
+                $.modal.msgError("验证失败");
+                return;
+            }
+            $.ajax({
+                url: prefix + "/sendUpdateNotice",
+                method: "post",
+                dataType: "json",
+                data: $("#updateNoticeForm").serialize(),
+
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function (data) {
+                    $("#updateNoticeForm")[0].reset();
+                    $("#msg").html("<span>" + data.msg + "</span>");
+                    $.table.refresh();
+
+                    $.modal.closeLoading();
+                    $.modal.enable();
+                }
+            });
+        }
+
+        //粘贴内容
+        function parse(index) {
+            var row = $("#bootstrap-table").bootstrapTable('getData')[index];//获取某行数据
+            $("#content").val(row.content);
+        }
+
+    </script>
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>更新公告</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="searchForm"></form>
+                    <form id="updateNoticeForm" class="form-horizontal m-t" method="post">
+
+                        <div class="form-group">
+                            <div th:replace="common/select_server_byGroup.html"></div>
+                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <input type="hidden" id="selectRequestUrl" value="gameServer">
+                            <input type="hidden" id="selectIgnoreMerge" value="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content" class="col-sm-2 control-label is-required">更新公告:</label>
+                            <div class="col-sm-8">
+                                <textarea id="content" type="text" name="content" minlength="1" class="form-control" maxlength="2048" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">奖励道具:</label>
+                            <div class="col-sm-8">
+                                <div class="span6" style="border: 1px solid rgb(204, 204, 204); border-radius: 2px; height: 25px; margin-left: 0" onclick="showAddItemModel()">
+                                    <input type="hidden" id="reward" name="items" class="rewardInput validate[required]"/>
+                                    <div id="items" class="items" style="margin-top: 3px; display: block"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">操作类型:</label>
+                            <div class="col-sm-2">
+                                <select id="type" name="type" class="selectClass">
+                                    <!--<option value="0">更新公告和奖励信息</option>-->
+                                    <option value="1">更新公告和奖励信息并且重置领奖状态</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-left: 5px">
+                            <label class="col-sm-2 control-label"></label>
+                            <button type="button" class="btn btn-primary" onclick="sendUpdateNotice()">
+                                提交
+                            </button>
+                        </div>
+
+                        <div id="msg" class="container-fluid"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div id="addItemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 430px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>添加物品</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="addItemForm" class="form-horizontal m-t">
+                        <div class="offset1 span10">
+                            <input id="curObj" type="hidden"/>
+                            <label for="itemId">物品ID:</label><input type="text" id="itemId"
+                                                                    onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
+                                                                    list="itemList"
+                                                                    class="selectClass" style="margin-left: 25px"/>
+                            <datalist id="itemList"></datalist>
+                            <br/>
+                            <label for="itemNum">物品数量:</label><input id="itemNum" type="text"
+                                                                     onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
+                                                                     class="selectClass"
+                                                                     style="margin-top: 10px;margin-left: 13px"/>
+                            <br/>
+                            <label for="isBind">是否绑定:</label>
+                            <select id="isBind" class="selectClass" style="margin-top: 10px;margin-left: 10px">
+                                <option value="0" selected>非绑</option>
+                                <option value="1">绑定</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="添加" onclick="addItem()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('连续累充')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var count_01 = 0;
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+        });
+
+    </script>
+
+    <script>
+        function addSaltIpGrp(obj){
+            console.log(count_01);
+            var fixRewardInput = 'i_fixRewardGroup' + count_01;
+            var fixRewardAddBtn = 'showFixRewardModel' + count_01;
+            var totalRewardInput = 'i_totalRewardGroup' + count_01;
+            var totalRewardAddBtn = 'showTotalRewardModel' + count_01;
+            count_01 += 1;
+            var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">'+
+                '<label class="input-group-addon">充值天数:</label>'+
+                '<input type="text" class="form-control" name="i_day" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:auto;">'+
+                '<label class="input-group-addon">固定奖励组:</label>'+
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="固定奖励组" id="' + fixRewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + fixRewardInput + ',' + fixRewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + fixRewardInput + '" name="i_fixRewardGroup"/></div>' +
+                '</span>' +
+                // '<input type="text" class="form-control" name="i_fixRewardGroup"  style="max-width:auto;">'+
+                '<label class="input-group-addon">累计奖励组:</label>'+
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="累计奖励组" id="' + totalRewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + totalRewardInput + ',' + totalRewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + totalRewardInput + '" name="i_totalRewardGroup"/></div>' +
+                '</span>' +
+                // '<input type="text" class="form-control" name="i_totalRewardGroup"  style="max-width:auto;">'+
+                '<span class="input-group-btn">'+
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>'+
+                '</span>'+
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin',html);
+            addHeightSet();
+
+            var dayCount = $(obj).parent().parent().find("input[name='dayCount']").val();
+            $(obj).parent().parent().find("input[name='dayCount']").val(dayCount*1+1);//每个充值配置中的充值天数计数
+        }
+        //删除配置
+        function delExChangeConfig(obj) {
+            var dayCount = $(obj).parent().parent().parent().find("input[name='dayCount']").val();
+            $(obj).parent().parent().parent().find("input[name='dayCount']").val(dayCount*1-1);//每个充值配置中的充值天数计数
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        $(document).on('click','#delGridGroup',function(){
+            var el = this.parentNode.parentNode
+            var saltIp = $(this).parent().parent().find('#saltIp').val()
+            el.parentNode.removeChild(el)
+
+            var dayCount = $(obj).parent().parent().find("input[name='dayCount']").val();
+            if(dayCount>0){
+                $(obj).parent().parent().find("input[name='dayCount']").val(dayCount*1-1);
+            }
+        })
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>连续累充<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="可配置多个档位的连续充值天数（比如同时存在30，68等多个档位的连续充值）"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                       <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>充值配置1</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup1">
+                                    <label class="input-group-addon">充值金额:</label>
+                                    <input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\D/g,'')" style="max-width:200px;" placeholder="单位分">
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn0" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" name="dayCount" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <legend>充值配置2</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup2">
+                                    <label class="input-group-addon">充值金额:</label>
+                                    <input type="text" class="form-control" id="i_reach" name="i_reach" onkeyup="value=value.replace(/\D/g,'')" style="max-width:200px;" placeholder="单位分">
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn1" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" name="dayCount" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <legend>充值配置3</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup3">
+                                    <label class="input-group-addon">充值金额:</label>
+                                    <input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\D/g,'')" style="max-width:200px;" placeholder="单位分">
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn2" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" name="dayCount" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <legend>充值配置4</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup4">
+                                    <label class="input-group-addon">充值金额:</label>
+                                    <input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\D/g,'')" style="max-width:200px;" placeholder="单位分">
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn3" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" name="dayCount" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <legend>充值配置5</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup5">
+                                    <label class="input-group-addon">充值金额:</label>
+                                    <input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\D/g,'')" style="max-width:200px;" placeholder="单位分">
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn4" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" name="dayCount" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <legend>充值配置6</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup6">
+                                    <label class="input-group-addon">充值金额:</label>
+                                    <input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\D/g,'')" style="max-width:200px;" placeholder="单位分">
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn5" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" name="dayCount" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

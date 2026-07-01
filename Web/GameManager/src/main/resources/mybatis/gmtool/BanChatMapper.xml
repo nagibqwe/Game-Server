@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.banChat.mapper.BanChatMapper">
+    
+    <resultMap type="BanChat" id="BanChatResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="userId"    />
+        <result property="crimeType"    column="crimeType"    />
+        <result property="banType"    column="banType"    />
+        <result property="endTime"    column="endTime"    />
+        <result property="reason"    column="reason"    />
+        <result property="serverIds"    column="serverIds"    />
+        <result property="state"    column="state"    />
+    </resultMap>
+
+    <sql id="selectBanChatVo">
+        select id, userId, crimeType, banType, endTime, reason, serverIds, state from t_ban_chat
+    </sql>
+
+    <select id="selectBanChatList" parameterType="BanChat" resultMap="BanChatResult">
+        <include refid="selectBanChatVo"/>
+        <where>  
+            <if test="userId != null  and userId != ''"> and userId = #{userId}</if>
+            <if test="crimeType != null "> and crimeType = #{crimeType}</if>
+            <if test="banType != null "> and banType = #{banType}</if>
+            <if test="endTime != null  and endTime != ''"> and endTime = #{endTime}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+            <if test="serverIds != null  and serverIds != ''"> and serverIds = #{serverIds}</if>
+            <if test="state != null "> and state = #{state}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectBanChatById" parameterType="Long" resultMap="BanChatResult">
+        <include refid="selectBanChatVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBanChat" parameterType="BanChat" useGeneratedKeys="true" keyProperty="id">
+        insert into t_ban_chat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">userId,</if>
+            <if test="crimeType != null">crimeType,</if>
+            <if test="banType != null">banType,</if>
+            <if test="endTime != null">endTime,</if>
+            <if test="reason != null">reason,</if>
+            <if test="serverIds != null">serverIds,</if>
+            <if test="state != null">state,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="crimeType != null">#{crimeType},</if>
+            <if test="banType != null">#{banType},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="reason != null">#{reason},</if>
+            <if test="serverIds != null">#{serverIds},</if>
+            <if test="state != null">#{state},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBanChat" parameterType="BanChat">
+        update t_ban_chat
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">userId = #{userId},</if>
+            <if test="crimeType != null">crimeType = #{crimeType},</if>
+            <if test="banType != null">banType = #{banType},</if>
+            <if test="endTime != null">endTime = #{endTime},</if>
+            <if test="reason != null">reason = #{reason},</if>
+            <if test="serverIds != null">serverIds = #{serverIds},</if>
+            <if test="state != null">state = #{state},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBanChatById" parameterType="Long">
+        delete from t_ban_chat where id = #{id}
+    </delete>
+
+    <delete id="deleteBanChatByIds" parameterType="String">
+        delete from t_ban_chat where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="crossrank">
+    
+    <resultMap id="bean" type="com.game.db.bean.CrossRankBean" >
+        <result column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="roleName" property="roleName" jdbcType="VARCHAR" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="career" property="career" jdbcType="INTEGER" />
+        <result column="stateVip" property="stateVip" jdbcType="INTEGER" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="fightPower" property="fightPower" jdbcType="BIGINT" />
+        <result column="fashionBodyId" property="fashionBodyId" jdbcType="INTEGER" />
+        <result column="fashionWeaponId" property="fashionWeaponId" jdbcType="INTEGER" />
+        <result column="wingModel" property="wingModel" jdbcType="INTEGER" />
+        <result column="fashionHalo" property="fashionHalo" jdbcType="INTEGER" />
+        <result column="fashionMatrix" property="fashionMatrix" jdbcType="INTEGER" />
+        <result column="spiritId" property="spiritId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from crossrank
+    </select>
+	
+    <select id="selectByRoleId" parameterType="long" resultMap="bean">
+        select * from crossrank where roleId = #{roleid,jdbcType=BIGINT}
+    </select>
+        
+    <insert id="insert" parameterType="com.game.db.bean.CrossRankBean">
+        insert into crossrank (roleId,roleName,serverId,career,stateVip,level,fightPower,fashionBodyId,fashionWeaponId,wingModel,fashionHalo,fashionMatrix,spiritId)
+         values
+        (#{roleId, jdbcType=BIGINT},
+        #{roleName, jdbcType=VARCHAR},
+        #{serverId, jdbcType=INTEGER},
+        #{career, jdbcType=INTEGER},
+        #{stateVip, jdbcType=INTEGER},
+        #{level, jdbcType=INTEGER},
+        #{fightPower, jdbcType=BIGINT},
+        #{fashionBodyId, jdbcType=INTEGER},
+        #{fashionWeaponId, jdbcType=INTEGER},
+        #{wingModel, jdbcType=INTEGER},
+        #{fashionHalo, jdbcType=INTEGER},
+        #{fashionMatrix, jdbcType=INTEGER},
+        #{spiritId, jdbcType=INTEGER})
+    </insert>
+    
+    <update id="update" parameterType="com.game.db.bean.CrossRankBean">
+        update crossrank set
+              roleId= #{roleId, jdbcType=BIGINT},
+              roleName=#{roleName, jdbcType=VARCHAR},
+              serverId=#{serverId, jdbcType=INTEGER},
+              career=#{career, jdbcType=INTEGER},
+              stateVip=#{stateVip, jdbcType=INTEGER},
+              level=  #{level, jdbcType=INTEGER},
+              fightPower=  #{fightPower, jdbcType=BIGINT},
+              fashionBodyId=  #{fashionBodyId, jdbcType=INTEGER},
+              fashionWeaponId=  #{fashionWeaponId, jdbcType=INTEGER},
+              wingModel=  #{wingModel, jdbcType=INTEGER},
+              fashionHalo=  #{fashionHalo, jdbcType=INTEGER},
+              fashionMatrix=  #{fashionMatrix, jdbcType=INTEGER},
+              spiritId=  #{spiritId, jdbcType=INTEGER}
+           where 
+              roleId = #{roleId,jdbcType=BIGINT}
+    </update>
+    
+    <delete id = "delete" parameterType="java.lang.Long">
+        delete from crossrank where id = #{id, jdbcType=BIGINT}
+    </delete>
+                
+                
+                
+</mapper>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('图片回收站')" />
+    <th:block th:include="include :: datetimepicker-css" />
+    <style>
+        .my-skin .layui-layer-btn .layui-layer-btn0 {
+            background-color: #ed5565;
+            border: 1px solid #ed5565;
+        }
+        .my-skin .layui-layer-btn .layui-layer-btn2 {
+            background-color: #23c6c8;
+            border: 1px solid #23c6c8;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div th:replace="photocheck/common/select.html"></div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-danger multiple disabled" onclick="removeMore()">
+                <i class="fa fa-remove"></i> 批量销毁
+            </a>
+            <a class="btn btn-danger" onclick="deleteAll()">
+                <i class="fa fa-recycle"></i> 全部清空
+            </a>
+            <a class="btn btn-info multiple disabled" onclick="recoverMore()">
+                <i class="fa fa-adjust"></i> 批量恢复
+            </a>
+            <a class="btn btn-success" onclick="recoverAll()">
+                <i class="fa fa-bookmark"></i> 全部恢复
+            </a>
+            <a style="margin-left: 900px" ondblclick="editDayLimit(this)">
+                <input onblur="confirmEdit(this)" id="dayLimit" name="dayLimit" style="border-color: lightgrey;border-radius: 4px;width: 55px;height: 28px" type="number" disabled="true" >天以后销毁(双击可修改)
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-page-size="10"
+                   data-show-custom-view="true" data-custom-view="customViewFormatter"
+                   data-show-custom-view-button="true">
+            </table>
+        </div>
+    </div>
+</div>
+
+<template id="profileTemplate">
+    <div class="col-sm-3">
+        <div class="contact-box" onmouseover="changeBorder(this)" onmouseout="changeBorder2(this)" onclick="selectBox(this)">
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img alt="image" style="width:130px;height:130px " class="" src="%desc6%">
+                    <p>编号:%id2%</p>
+                    <input style="width: 15px;height: 15px" type="checkbox" disabled name="checkboxId" value="%checkboxId%">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <input type="hidden" name="id" id="id" value="%id%">
+                <p style="margin-left: 50px">上传时间:%uploadTime%</p>
+                <div style="margin-left: 50px" class="m-t-xs font-bold">审核状态:%checkStatus%</div>
+                <a style="margin-left: 50px;margin-top: 60px" class="btn btn-success btn-xs" href="javascript:void(0)" onclick="getOpenDetail(this)"><i class="fa fa-edit"></i>详情</a>
+                <a style="margin-top: 60px" class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="getRemove(this)"><i class="fa fa-remove"></i>销毁</a>
+                <a style="margin-top: 60px" class="btn btn-info btn-xs" href="javascript:void(0)" onclick="getRecover(this)"><i class="fa fa-adjust"></i>恢复</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</template>
+
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: datetimepicker-js" />
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('photocheck:photodata:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('photocheck:photodata:remove')}]];
+    var prefix = ctx + "photocheck/photodata";
+
+    $(function() {
+        var options = {
+            url: prefix + "/backPageList",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            clickToSelect: true,
+            modalName: "",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: true
+                },
+                {
+                    field: 'desc6',
+                    title: '图片',
+                    formatter:function (value, row, index) {
+                        return "<img src=\'"+value+"\'>";
+                    }
+                },
+                {
+                    field: 'uploadTime',
+                    title: '图片上传时间'
+                },
+                {
+                    field: 'checkStatus',
+                    title: '审核状态',
+                    formatter:formatterCheckStatus
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="openDetail(\'' + row.id + '\')"><i class="fa fa-edit"></i>详情</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>销毁</a>');
+                        actions.push('<a style="margin-left: 4px" class="btn btn-info btn-xs" href="javascript:void(0)" onclick="recover(\'' + row.id + '\')"><i class="fa fa-adjust"></i>恢复</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+    //获取id值打开详情框
+    function getOpenDetail(obj){
+        openDetail(getId(obj));
+        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+    }
+    //获取id值执行放回回收站操作
+    function getRemove(obj){
+        remove(getId(obj));
+        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+    }
+    //获取id值执行恢复操作
+    function getRecover(obj){
+        recover(getId(obj));
+        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+    }
+    //获取删除时间
+    $(function() {
+        getDayLimit();
+    });
+
+    function getDayLimit(){
+        $.post(prefix + "/getDayLimit", function(result) {
+            if (result){
+                if (result.code == web_status.SUCCESS) {
+                    $("#dayLimit").val(result.data);
+                }
+            }
+        });
+    }
+
+    $("input[name='uploadTime']").datetimepicker({
+        CustomFormat: "yyyy-mm-dd HH:mm:ss",
+        // minView: "month",
+        autoclose: true
+    });
+    $("input[name='lastDownloadTime']").datetimepicker({
+        CustomFormat: "yyyy-mm-dd HH:mm:ss",
+        // minView: "month",
+        autoclose: true
+    });
+    // 批量删除信息
+    function removeMore() {
+        var isCustom = $(".fixed-table-custom-view").css('display');//判断当前浏览模式是表格还是自定义方式
+        var rows = $.common.isEmpty(table.options.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns(table.options.uniqueId);
+        if (isCustom == "block"){
+            var ids = getAllSelect();
+            sendRemoveMore(ids);
+        }else {
+            sendRemoveMore(rows);
+        }
+    }
+
+    function sendRemoveMore(rows) {
+        $.modal.confirm("确认要删除选中的"+ rows.length +"数据吗？", function() {
+            $.post(prefix + "/remove",{ "ids": rows.join()},function(result) {
+                if (result){
+                    if (result.code == web_status.SUCCESS) {
+                        $.modal.msgSuccess(result.msg);
+                        $.table.refresh();
+                    }else {
+                        $.modal.msgError("操作失败");
+                    }
+                }
+            });
+        })
+    }
+
+    //单个删除
+    function remove(id) {
+        $.modal.confirm("确定删除该条数据？", function() {
+            $.post(prefix + "/remove",{"ids": id},function(result) {
+                if (result){
+                    if (result.code == web_status.SUCCESS) {
+                        $.modal.msgSuccess(result.msg);
+                        $.table.refresh();
+                        layer.closeAll('iframe');//关闭所有的iframe层
+                    }else {
+                        $.modal.msgError("操作失败");
+                    }
+                }
+            });
+        })
+    }
+
+    //删除回收站所有数据
+    function deleteAll() {
+        $.modal.confirm("确定要清空所有数据吗？", function() {
+            $.post(prefix + "/deleteAll", function(result) {
+                if (result){
+                    if (result.code == web_status.SUCCESS) {
+                        $.modal.msgSuccess(result.msg);
+                        $.table.refresh();
+                    }else {
+                        $.modal.msgError("操作失败");
+                    }
+                }
+            });
+        })
+    }
+    //批量恢复
+    function recoverMore() {
+        // var rows = $('#bootstrap-table').bootstrapTable('getSelections');
+        var isCustom = $(".fixed-table-custom-view").css('display');//判断当前浏览模式是表格还是自定义方式
+        var rows = $.common.isEmpty(table.options.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns(table.options.uniqueId);
+        if (isCustom == "block"){
+            var ids = getAllSelect();
+            sendRecoverMore(ids);
+        }else {
+            sendRecoverMore(rows);
+        }
+    }
+
+    function sendRecoverMore(rows) {
+        $.modal.confirm("确定要恢复选中的"+ rows.length +"数据吗？", function() {
+            $.post(prefix + "/recoverMore",{ "ids": rows.join()},function(result) {
+                if (result){
+                    if (result.code == web_status.SUCCESS) {
+                        $.modal.msgSuccess(result.msg);
+                        $.table.refresh();
+                    }else {
+                        $.modal.msgError("操作失败");
+                    }
+                }
+            });
+        })
+    }
+
+    //单个恢复
+    function recover(id) {
+        $.modal.confirm("确定要恢复该条数据吗？", function() {
+            $.post(prefix + "/recoverMore",{"ids": id},function(result) {
+                if (result){
+                    if (result.code == web_status.SUCCESS) {
+                        $.modal.msgSuccess(result.msg);
+                        $.table.refresh();
+                        layer.closeAll('iframe');//关闭所有的iframe层
+                    }else {
+                        $.modal.msgError("操作失败");
+                    }
+                }
+            });
+        })
+    }
+    //全部恢复
+    function recoverAll() {
+        $.modal.confirm("确定要恢复全部数据吗？", function() {
+            $.post(prefix + "/recoverAll",function(result) {
+                if (result){
+                    if (result.code == web_status.SUCCESS) {
+                        $.modal.msgSuccess(result.msg);
+                        $.table.refresh();
+                    }else {
+                        $.modal.msgError("操作失败");
+                    }
+                }
+            });
+        })
+    }
+    //将修改删除时间框改为可编辑
+    function editDayLimit(obj) {
+        console.log(obj.firstChild);
+        $(obj.firstChild.nextSibling).css("border","2px solid #993366");
+        $("input[name='dayLimit']").attr("disabled",false);
+    }
+    //确认修改删除时间
+    function confirmEdit(obj) {
+        var dayLimit = $("#dayLimit").val();
+        $.modal.confirm2("确定要修改删除时间吗？", function() {
+            $.ajax({
+                type: "POST",
+                url: prefix + "/editDayLimit",
+                data: {"dayLimit": dayLimit},
+                dataType: "json",
+                async:false,
+                success: function (result) {
+                    if (result){
+                        if (result.code == web_status.SUCCESS) {
+                            $.modal.msgSuccess(result.msg);
+                            $.table.refresh();
+                            $("input[name='dayLimit']").attr("disabled",true);
+                            changeCss(obj);
+                        }else {
+                            $.modal.msgError("操作失败");
+                            $("input[name='dayLimit']").attr("disabled",true);
+                            changeCss(obj);
+                        }
+                    }
+                }
+            });
+
+        },function () {
+            getDayLimit();
+            $("input[name='dayLimit']").attr("disabled",true);
+            changeCss(obj);
+        });
+    }
+    function changeCss(obj) {
+        $(obj).css("border","2px solid #E8E8E8");
+    }
+    //打开详情页面
+    function openDetail(id) {
+        layer.open({
+            type: 2,
+            area: ['60%' ,'80%'],
+            fix: false,
+            //不固定
+            maxmin: true,
+            shade: 0.3,
+            title: "详情",
+            content: prefix + "/edit?id=" + id,
+            btn: ['销毁', '关闭', '恢复'],
+            // 弹层外区域关闭
+            shadeClose: true,
+            skin:"my-skin",
+            yes: function (index,layero) {
+                var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+                $.operate.remove(id);
+            },
+            cancel: function(index,layero) {
+                return true;
+            },
+            btn3: function(index){
+                recover(id);
+                return false;
+            },
+            success: function(layero, index){
+
+            }
+        });
+    }
+</script>
+</body>
+</html>

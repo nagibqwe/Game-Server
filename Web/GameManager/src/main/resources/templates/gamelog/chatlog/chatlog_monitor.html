@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('聊天日志监控列表')"/>
+    <th:block th:include="include :: footer"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                    <li>
+                        <div th:replace="common/select_server_single.html"></div>
+                        <!--此处作为服务器请求分组地址映射设置地方-->
+                        <input type="hidden" id="requestUrl" value="selectServerList">
+                        <input type="hidden" id="ignoreMerge" value="0">
+                        <input type="hidden" id="serverTypeList" value="0,1">
+
+                        <input type="hidden" id="chatlogUrl" value="/chatlog_monitor">
+
+                    </li>
+                    <li>
+                        <label style="width: auto">日志表:</label>&nbsp;
+                    </li>
+                    <li>
+                        <select class="selectClass" id="tableNameList" name="tableNameList" data-first-title="请选择服务器"></select>
+                    </li>
+                    <div th:replace="common/stat_date_head2.html"></div>
+
+                </div>
+                <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                    <ul>
+                        <li>
+                            <label>角色ID：</label>
+                            <input type="text" name="roleId"/>
+                        </li>
+                        <li>
+                            <label>等级：</label>
+                            <input style="width: 60px" type="text" name="level"/>
+                        </li>
+                        <li>
+                            <label>接收角色ID：</label>
+                            <input type="text" name="receRoleId"/>
+                        </li>
+                        <li>
+                            <label>聊天类型：</label>
+                            <input type="text" style="width: 60px" name="channel"/>
+                        </li>
+                        <div th:replace="common/stat_search_head.html"></div>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-danger multiple disabled" onclick="batchBanAccount()">
+                <i></i> 批量封号
+            </a>
+            <a class="btn btn-danger multiple disabled" onclick="batchBanChat()">
+                <i></i> 批量禁言
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" style="word-break:break-all; word-wrap:break-word;"></table>
+        </div>
+    </div>
+</div>
+<div th:replace="common/chatlogCommon.html"></div>
+</body>
+</html>

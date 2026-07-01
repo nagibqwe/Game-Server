@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- http://zengxiantao.iteye.com/blog/1881706 配置介绍-->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<!-- 常规日志输出文件 -->
+    <appender name="FileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="logs/tools.log" />
+        <param name="Threshold" value="INFO" />
+        <param name="DatePattern" value="'.'yyyyMMddHH" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %p]%m%n" />
+        </layout>
+    </appender>
+    <appender name="AsyncFileAppender" class="org.apache.log4j.AsyncAppender"> <!-- 异步输出 -->
+        <param name="BufferSize" value="2048" />
+        <appender-ref ref="FileAppender" />
+    </appender>
+	
+	<!-- 错误日志输出 -->
+	<appender name="ErrorFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="logs/Error.log" />
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{HH:mm:ss} %p]%m%n" />
+        </layout>
+    </appender>
+    <appender name="ErrorAppender" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="2048" />
+        <appender-ref ref="ErrorFileAppender" />
+    </appender>
+	
+	<!-- 控制台输出 -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <param name="Threshold" value="INFO" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:SSS} %p][%l]%m%n" />
+        </layout>
+    </appender>
+	
+	<logger name="ERRORLOG" >
+        <level value="INFO"></level>
+        <appender-ref ref="ErrorAppender"/>
+    </logger>
+    
+    <!-- 根logger的设置 -->
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="AsyncFileAppender" />
+		<appender-ref ref="CONSOLE" /> <!-- 控制台输出 开发时使用，正式版时需注释掉-->
+    </root>
+	
+</log4j:configuration>

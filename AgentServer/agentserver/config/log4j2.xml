@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration state = "info">
+    <properties>  
+        <property name="LOG_HOME">logs</property>  
+        <property name="GAMESERVERLOG">LoginServer</property>
+        <property name="SQLERRORFILE">SqlError</property>
+        <property name="SPECUSERFILE">SpecUser</property>
+    </properties>  
+    <appenders>
+        <!-- 定义控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line][%c{1}] - %msg%n" />  
+        </Console>  
+        <!-- 正常输出日志 -->  
+        <RollingRandomAccessFile name="DevLog" fileName="${LOG_HOME}/${GAMESERVERLOG}" filePattern="${LOG_HOME}/${GAMESERVERLOG}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="SQLERRORLOG" fileName="${LOG_HOME}/${SQLERRORFILE}" filePattern="${LOG_HOME}/${SQLERRORFILE}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="SPECUSERLOGTOFILE" fileName="${LOG_HOME}/${SPECUSERFILE}" filePattern="${LOG_HOME}/${SPECUSERFILE}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>
+    </appenders>
+    <loggers>
+        <AsyncLogger name="com.game.db.dao.UserloginDao" additivity="false" level="info">
+            <appender-ref ref="SQLERRORLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.game.db.dao.ForbidDao" additivity="false" level="info">
+            <appender-ref ref="SQLERRORLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.game.db.dao.LogUserDao" additivity="false" level="info">
+            <appender-ref ref="SQLERRORLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.game.db.dao.LogUserDoDao" additivity="false" level="info">
+            <appender-ref ref="SQLERRORLOG"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.game.Login.Handler.ReqLoginHandler" additivity="false" level="info">
+            <appender-ref ref="SQLERRORLOG"/>
+        </AsyncLogger>
+
+        <AsyncLogger name="SPECUSERLOG" additivity="false" level="info">
+            <appender-ref ref="SPECUSERLOGTOFILE"/>
+        </AsyncLogger>
+        <!-- Root Logger -->  
+        <AsyncRoot level="info" includeLocation="true">
+            <appender-ref ref="DevLog" />
+        </AsyncRoot>  
+    </loggers>
+</configuration>

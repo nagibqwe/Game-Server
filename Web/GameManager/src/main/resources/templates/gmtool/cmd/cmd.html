@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('热更服务器操作日志列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId1">
+                    <div class="form-group">
+                        <div th:replace="common/select_server_byGroup.html"></div>
+                        <!--此处作为服务器请求分组地址映射设置地方-->
+                        <input type="hidden" id="selectRequestUrl" value="gameAndFightServer">
+                        <input type="hidden" id="selectIgnoreMerge" value="1">
+                    </div>
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label for="cmdType">命令类型：</label>
+                                <select id="cmdType" onchange="changeCMDType(this.value)" class="span2">
+                                    <option value="gmReloadScript" selected="selected">热更新脚本</option>
+                                    <option value="gmReloadConfig">热更新配置表</option>
+                                    <option value="gmRefreshShop">刷新商城</option>
+                                    <option value="gmSetWorldLevel">设置世界等级</option>
+                                    <option value="">自定义命令</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label for="cmdAction">命令：</label>
+                                <input type="text" id="cmdAction" name="action"/>
+                            </li>
+                            <li>
+                                <label for="cmdParam">参数：</label>
+                                <input type="text" id="cmdParam" name="params"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="sendCommand()"><i class="fa fa-adjust"></i>&nbsp;执行命令</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-12 search-collapse">
+                <form id="formId2">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>操作命令：</label>
+                                <input type="text" name="action"/>
+                            </li>
+                            <li>
+                                <label>参数：</label>
+                                <input type="text" name="params"/>
+                            </li>
+                            <li>
+                                <label>服务器名：</label>
+                                <input type="text" name="serverName"/>
+                            </li>
+                            <li>
+                                <label>服务器ID：</label>
+                                <input type="text" name="serverId"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search('formId2')"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+     <div th:replace="common/commonmodal.html"></div>
+    <script th:inline="javascript">
+
+        var editFlag = [[${@permission.hasPermi('gmtool:log:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gmtool:log:remove')}]];
+        var prefix = ctx + "gmtool/cmd";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "热更服务器操作日志",
+                columns: [
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: true
+                },
+                {
+                    field: 'serverName',
+                    title: '服务器',
+                    formatter:function (value,row,index) {
+                        return value + "("+row.serverId+")";
+                    }
+                },
+                {
+                    field: 'action',
+                    title: '执行语句',
+                    formatter:function (value,row,index) {
+                        return value + "("+row.params+")";
+                    }
+                },
+                {
+                    field: 'isOk',
+                    title: '操作结果',
+                    formatter:function (value) {
+                        if (value == 0){
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                },
+                {
+                    field: 'result',
+                    title: '结果描述'
+                },
+                {
+                    field: 'user',
+                    title: '用户'
+                },
+                {
+                    field: 'ip',
+                    title: '操作者IP'
+                },
+                {
+                    field: 'operDate',
+                    title: '操作时间'
+                }]
+            };
+            $.table.init(options);
+        });
+
+        $(function () {
+            changeCMDType($("#cmdType").val());
+        });
+
+        //切换命令类型
+        function changeCMDType(type){
+            $("#cmdAction").val(type);
+            $("#cmdParam").val("");
+        }
+        //执行命令
+        function sendCommand() {
+            var selectServerStr = $("#selectServerIdHide").val();
+            if (selectServerStr == '' || null == selectServerStr){
+                $("#selectServerId").css("borderColor","red");
+                $.modal.alertError("请选择服务器!");
+            }else {
+                $("#selectServerId").css("borderColor","white");
+                $("#progressmodal").modal({backdrop:'static',keyboard:false});
+                $("#proDiv").attr("class","progress progress-striped active");
+                $("#bar").attr("style","width: 20%;");
+                $("#progressdetail").empty();
+                $("#closemodal").attr("disabled","disabled");
+
+                $.post(ctx + "gmtool/gmcmd/sendCommand",{"serverIdStr":selectServerStr,"action":$("#cmdAction").val(),"params":$("#cmdParam").val()}, function(data) {
+                    if (data.code == 0) {
+                        $("#proDiv").attr("class","progress progress-success progress-striped active");
+                    } else {
+                        $("#proDiv").attr("class","progress progress-danger progress-striped active");
+                    }
+                    var msg=data.msg;
+                    var reg=new RegExp("\n","g");
+                    msg = msg.replace(reg,"<br/>");
+
+                    $("#command").empty();
+                    $("#msg").empty();
+
+                    $("#bar").attr("style","width: 100%;");
+                    $("#progressdetail").html(msg);
+                    $("#closemodal").removeAttr("disabled");
+                    setTimeout(function () {
+                        $("#progressmodal").modal('hide');
+                        $.table.search('formId2');
+                    }, 2000)
+                });
+            }
+        }
+    </script>
+</body>
+</html>

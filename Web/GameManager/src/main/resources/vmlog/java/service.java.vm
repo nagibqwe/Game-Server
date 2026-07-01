@@ -1,0 +1,27 @@
+package ${packageName}.${businessName}.service;
+
+import java.util.List;
+import java.util.Map;
+import ${packageName}.${businessName}.domain.${ClassName};
+#if($table.tree)
+import com.gm.framework.web.domain.Ztree;
+#end
+
+/**
+ * ${functionName}Service接口
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface I${ClassName}Service 
+{
+
+    /**
+     * 查询${functionName}列表
+     * 
+     * @param ${className} ${functionName}
+     * @return ${functionName}集合
+     */
+    public List<${ClassName}> select${ClassName}List(${ClassName} ${className},String startDate,String endDate,Integer selectServerId);
+
+}

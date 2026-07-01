@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.activityModel.mapper.ActivityModelMapper">
+    
+    <resultMap type="ActivityModel" id="ActivityModelResult">
+        <result property="id"    column="id"    />
+        <result property="career"    column="career"    />
+        <result property="modelId"    column="modelId"    />
+        <result property="scale"    column="scale"    />
+        <result property="rotX"    column="rotX"    />
+        <result property="rotY"    column="rotY"    />
+        <result property="rotZ"    column="rotZ"    />
+        <result property="posX"    column="posX"    />
+        <result property="posY"    column="posY"    />
+        <result property="tips"    column="tips"    />
+        <result property="modelData"    column="modelData"    />
+    </resultMap>
+
+    <sql id="selectModelVo">
+        select id, career, modelId, scale, rotX, rotY, rotZ, posX, posY, tips, modelData from t_activity_model
+    </sql>
+
+    <select id="selectModelList" parameterType="ActivityModel" resultMap="ActivityModelResult">
+        <include refid="selectModelVo"/>
+        <where>  
+            <if test="career != null  and career != ''"> and career = #{career}</if>
+            <if test="modelId != null  and modelId != ''"> and modelId = #{modelId}</if>
+            <if test="scale != null  and scale != ''"> and scale = #{scale}</if>
+            <if test="rotX != null  and rotX != ''"> and rotX = #{rotX}</if>
+            <if test="rotY != null  and rotY != ''"> and rotY = #{rotY}</if>
+            <if test="rotZ != null  and rotZ != ''"> and rotZ = #{rotZ}</if>
+            <if test="posX != null  and posX != ''"> and posX = #{posX}</if>
+            <if test="posY != null  and posY != ''"> and posY = #{posY}</if>
+            <if test="tips != null  and tips != ''"> and tips = #{tips}</if>
+            <if test="modelData != null  and modelData != ''"> and modelData = #{modelData}</if>
+        </where>
+    </select>
+    
+    <select id="selectModelById" parameterType="Integer" resultMap="ActivityModelResult">
+        <include refid="selectModelVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertModel" parameterType="ActivityModel" useGeneratedKeys="true" keyProperty="id">
+        insert into t_activity_model
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="career != null">career,</if>
+            <if test="modelId != null">modelId,</if>
+            <if test="scale != null">scale,</if>
+            <if test="rotX != null">rotX,</if>
+            <if test="rotY != null">rotY,</if>
+            <if test="rotZ != null">rotZ,</if>
+            <if test="posX != null">posX,</if>
+            <if test="posY != null">posY,</if>
+            <if test="tips != null">tips,</if>
+            <if test="modelData != null">modelData,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="career != null">#{career},</if>
+            <if test="modelId != null">#{modelId},</if>
+            <if test="scale != null">#{scale},</if>
+            <if test="rotX != null">#{rotX},</if>
+            <if test="rotY != null">#{rotY},</if>
+            <if test="rotZ != null">#{rotZ},</if>
+            <if test="posX != null">#{posX},</if>
+            <if test="posY != null">#{posY},</if>
+            <if test="tips != null">#{tips},</if>
+            <if test="modelData != null">#{modelData},</if>
+         </trim>
+    </insert>
+
+    <update id="updateModel" parameterType="ActivityModel">
+        update t_activity_model
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="career != null">career = #{career},</if>
+            <if test="modelId != null">modelId = #{modelId},</if>
+            <if test="scale != null">scale = #{scale},</if>
+            <if test="rotX != null">rotX = #{rotX},</if>
+            <if test="rotY != null">rotY = #{rotY},</if>
+            <if test="rotZ != null">rotZ = #{rotZ},</if>
+            <if test="posX != null">posX = #{posX},</if>
+            <if test="posY != null">posY = #{posY},</if>
+            <if test="tips != null">tips = #{tips},</if>
+            <if test="modelData != null">modelData = #{modelData},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteModelById" parameterType="Integer">
+        delete from t_activity_model where id = #{id}
+    </delete>
+
+    <delete id="deleteModelByIds" parameterType="String">
+        delete from t_activity_model where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

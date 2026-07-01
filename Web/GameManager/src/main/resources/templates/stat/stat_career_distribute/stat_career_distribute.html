@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('职业分布列表')" />
+    <th:block th:include="include :: footer" />
+
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="selectServerList">
+                                <input type="hidden" id="ignoreMerge" value="1">
+                                <input type="hidden" id="serverTypeList" value="0,1">
+                            </li>
+                            <div th:replace="common/stat_date_head2.html"></div>
+                        </ul>
+                    </div>
+
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('stat:stat_career_distribute:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('stat:stat_career_distribute:remove')}]];
+        var prefix = ctx + "stat/stat_career_distribute";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "职业分布",
+                firstLoad:false,
+                pagination: false,
+                showExport:true,
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'career',
+                    title: '职业',
+                    formatter: function (value) {
+                        if(value==0){
+                            return "玄剑";
+                        }
+
+                        if(value==1){
+                            return "天英";
+                        }
+
+                        if(value==2){
+                            return "地藏";
+                        }
+                    }
+                },
+                {
+                    field: 'rolecount',
+                    title: '人数'
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.db.mapper.ChumBeanMapper">
+  <resultMap id="BaseResultMap" type="com.game.db.bean.ChumBean">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rID1" jdbcType="BIGINT" property="rid1" />
+    <result column="rID2" jdbcType="BIGINT" property="rid2" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="anno" jdbcType="VARCHAR" property="anno" />
+    <result column="lvl" jdbcType="INTEGER" property="lvl" />
+    <result column="exp" jdbcType="INTEGER" property="exp" />
+    <result column="freeT" jdbcType="SMALLINT" property="freet" />
+    <result column="lastFreshTime" jdbcType="BIGINT" property="lastfreshtime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.game.db.bean.ChumBean">
+    <result column="datas" jdbcType="LONGVARCHAR" property="datas" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rID1, rID2, `name`, anno, lvl, exp, freeT, lastFreshTime
+  </sql>
+  <sql id="Blob_Column_List">
+    datas
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.game.db.bean.ChumBeanExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from chum
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.game.db.bean.ChumBeanExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from chum
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from chum
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from chum
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.game.db.bean.ChumBeanExample">
+    delete from chum
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.game.db.bean.ChumBean">
+    insert into chum (id, rID1, rID2, 
+      `name`, anno, lvl, exp,
+      freeT, lastFreshTime, datas
+      )
+    values (#{id,jdbcType=BIGINT}, #{rid1,jdbcType=BIGINT}, #{rid2,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{anno,jdbcType=VARCHAR}, #{lvl,jdbcType=INTEGER}, #{exp,jdbcType=INTEGER}, 
+      #{freet,jdbcType=SMALLINT}, #{lastfreshtime,jdbcType=BIGINT}, #{datas,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.game.db.bean.ChumBean">
+    insert into chum
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rid1 != null">
+        rID1,
+      </if>
+      <if test="rid2 != null">
+        rID2,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="anno != null">
+        anno,
+      </if>
+      <if test="lvl != null">
+        lvl,
+      </if>
+      <if test="exp != null">
+        exp,
+      </if>
+      <if test="freet != null">
+        freeT,
+      </if>
+      <if test="lastfreshtime != null">
+        lastFreshTime,
+      </if>
+      <if test="datas != null">
+        datas,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rid1 != null">
+        #{rid1,jdbcType=BIGINT},
+      </if>
+      <if test="rid2 != null">
+        #{rid2,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="anno != null">
+        #{anno,jdbcType=VARCHAR},
+      </if>
+      <if test="lvl != null">
+        #{lvl,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null">
+        #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="freet != null">
+        #{freet,jdbcType=SMALLINT},
+      </if>
+      <if test="lastfreshtime != null">
+        #{lastfreshtime,jdbcType=BIGINT},
+      </if>
+      <if test="datas != null">
+        #{datas,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.game.db.bean.ChumBeanExample" resultType="java.lang.Long">
+    select count(*) from chum
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update chum
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rid1 != null">
+        rID1 = #{record.rid1,jdbcType=BIGINT},
+      </if>
+      <if test="record.rid2 != null">
+        rID2 = #{record.rid2,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.anno != null">
+        anno = #{record.anno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lvl != null">
+        lvl = #{record.lvl,jdbcType=INTEGER},
+      </if>
+      <if test="record.exp != null">
+        exp = #{record.exp,jdbcType=INTEGER},
+      </if>
+      <if test="record.freet != null">
+        freeT = #{record.freet,jdbcType=SMALLINT},
+      </if>
+      <if test="record.lastfreshtime != null">
+        lastFreshTime = #{record.lastfreshtime,jdbcType=BIGINT},
+      </if>
+      <if test="record.datas != null">
+        datas = #{record.datas,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update chum
+    set id = #{record.id,jdbcType=BIGINT},
+      rID1 = #{record.rid1,jdbcType=BIGINT},
+      rID2 = #{record.rid2,jdbcType=BIGINT},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      anno = #{record.anno,jdbcType=VARCHAR},
+      lvl = #{record.lvl,jdbcType=INTEGER},
+      exp = #{record.exp,jdbcType=INTEGER},
+      freeT = #{record.freet,jdbcType=SMALLINT},
+      lastFreshTime = #{record.lastfreshtime,jdbcType=BIGINT},
+      datas = #{record.datas,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update chum
+    set id = #{record.id,jdbcType=BIGINT},
+      rID1 = #{record.rid1,jdbcType=BIGINT},
+      rID2 = #{record.rid2,jdbcType=BIGINT},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      anno = #{record.anno,jdbcType=VARCHAR},
+      lvl = #{record.lvl,jdbcType=INTEGER},
+      exp = #{record.exp,jdbcType=INTEGER},
+      freeT = #{record.freet,jdbcType=SMALLINT},
+      lastFreshTime = #{record.lastfreshtime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.game.db.bean.ChumBean">
+    update chum
+    <set>
+      <if test="rid1 != null">
+        rID1 = #{rid1,jdbcType=BIGINT},
+      </if>
+      <if test="rid2 != null">
+        rID2 = #{rid2,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="anno != null">
+        anno = #{anno,jdbcType=VARCHAR},
+      </if>
+      <if test="lvl != null">
+        lvl = #{lvl,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null">
+        exp = #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="freet != null">
+        freeT = #{freet,jdbcType=SMALLINT},
+      </if>
+      <if test="lastfreshtime != null">
+        lastFreshTime = #{lastfreshtime,jdbcType=BIGINT},
+      </if>
+      <if test="datas != null">
+        datas = #{datas,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.game.db.bean.ChumBean">
+    update chum
+    set rID1 = #{rid1,jdbcType=BIGINT},
+      rID2 = #{rid2,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      anno = #{anno,jdbcType=VARCHAR},
+      lvl = #{lvl,jdbcType=INTEGER},
+      exp = #{exp,jdbcType=INTEGER},
+      freeT = #{freet,jdbcType=SMALLINT},
+      lastFreshTime = #{lastfreshtime,jdbcType=BIGINT},
+      datas = #{datas,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.game.db.bean.ChumBean">
+    update chum
+    set rID1 = #{rid1,jdbcType=BIGINT},
+      rID2 = #{rid2,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      anno = #{anno,jdbcType=VARCHAR},
+      lvl = #{lvl,jdbcType=INTEGER},
+      exp = #{exp,jdbcType=INTEGER},
+      freeT = #{freet,jdbcType=SMALLINT},
+      lastFreshTime = #{lastfreshtime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

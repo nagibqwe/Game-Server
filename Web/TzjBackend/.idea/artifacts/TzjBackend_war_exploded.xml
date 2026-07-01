@@ -1,0 +1,61 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="TzjBackend:war exploded">
+    <output-path>$PROJECT_DIR$/target/TzjBackend</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>TzjBackend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="TzjBackend" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-email:1.3.3" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4.5" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.2.5" />
+          <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.3.2" />
+          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.2" />
+          <element id="library" level="project" name="Maven: com.hynnet:json-lib:2.4" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.34" />
+          <element id="library" level="project" name="Maven: org.nutz:nutz:1.r.66" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi:3.17" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-collections4:4.1" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.17" />
+          <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.04" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-scratchpad:3.17" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:3.17" />
+          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" />
+          <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:servlet-api:6.0.53" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-coyote:9.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jni:9.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.1" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util:9.0.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.11.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.11.1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/TzjBackend/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="TzjBackend/web/Web" />
+    </root>
+  </artifact>
+</component>

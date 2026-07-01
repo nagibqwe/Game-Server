@@ -1,0 +1,755 @@
+2023-01-17 01:01:19.328 INFO [GameServer Start][GameServer.java:283] - 当前心跳HTTP为：http://localhost:8086/TzjBackend/serverstate/checkstate?
+2023-01-17 01:01:19.334 INFO [GameServer Start][GameServer.java:293] - 设置当前游戏支持人数等级为=5
+2023-01-17 01:01:22.138 INFO [GameServer Start][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/M:/software/javaJDK/jdk1.8.0_51/jre/lib/charsets.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/deploy.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/access-bridge-64.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/cldrdata.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/dnsns.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/jaccess.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/jfxrt.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/localedata.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/nashorn.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunec.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunjce_provider.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunmscapi.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunpkcs11.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/zipfs.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/javaws.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jce.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jfr.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jfxswt.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jsse.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/management-agent.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/plugin.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/resources.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/rt.jar;/M:/project/tzj/Server/GameServer/out/production/GameServer/;/M:/project/tzj/Server/GameServer/gameserver/lib/netty-all-4.1.11.Final.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-core-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-core-2.17.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/netty-all-4.1.11.Final-sources.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/disruptor-3.3.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-logging-1.0.4.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/druid-1.0.15.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpasyncclient-4.1.2.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/PushJavaSDK.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-databind-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/Message.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/protobuf-java-2.5.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/slf4j-api-1.7.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/mysql-connector-java-8.0.27.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/GameCfg.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-codec-1.9.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpcore-nio-4.4.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-annotations-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/slf4j-log4j12-1.7.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpclient-4.5.8.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-api-2.17.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-lang-2.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/GameCore.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-1.2.17.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/mybatis-3.2.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpcore-4.4.4.jar;/M:/project/tzj/Server/GameServer/gameserver/GameServer.jar;/M:/software/ideaIU-2020.1.1.win/lib/idea_rt.jar;/M:/software/ideaIU-2020.1.1.win/plugins/java/lib/rt/debugger-agent.jar;bin]
+2023-01-17 01:01:25.718 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：27 脚本名：common.achievement.AchievementScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\achievement\AchievementScript.java begin makeScript
+2023-01-17 01:01:26.842 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：27 脚本名：common.achievement.AchievementScript init reload success
+2023-01-17 01:01:26.842 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：27 脚本名：common.achievement.AchievementScript
+2023-01-17 01:01:26.861 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：30 脚本名：common.activity.ActivityManageScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ActivityManageScript.java begin makeScript
+2023-01-17 01:01:27.641 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：30 脚本名：common.activity.ActivityManageScript init reload success
+2023-01-17 01:01:27.641 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：30 脚本名：common.activity.ActivityManageScript
+2023-01-17 01:01:27.648 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\CollectGoodsExchangeActivityScript.java begin makeScript
+2023-01-17 01:01:28.020 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript init reload success
+2023-01-17 01:01:28.021 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript
+2023-01-17 01:01:28.021 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ContinuousRecharge2ActivityScript.java begin makeScript
+2023-01-17 01:01:28.351 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript init reload success
+2023-01-17 01:01:28.351 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript
+2023-01-17 01:01:28.352 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ContinuousRechargeActivityScript.java begin makeScript
+2023-01-17 01:01:28.588 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript init reload success
+2023-01-17 01:01:28.588 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript
+2023-01-17 01:01:28.589 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\CornucopiaActivityScript.java begin makeScript
+2023-01-17 01:01:29.323 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript init reload success
+2023-01-17 01:01:29.323 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript
+2023-01-17 01:01:29.324 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\DailyRechargeActivityScript.java begin makeScript
+2023-01-17 01:01:29.546 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript init reload success
+2023-01-17 01:01:29.546 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript
+2023-01-17 01:01:29.547 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\DrawRewardActivityScript.java begin makeScript
+2023-01-17 01:01:29.919 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript init reload success
+2023-01-17 01:01:29.919 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript
+2023-01-17 01:01:29.920 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FBShareActivityScript.java begin makeScript
+2023-01-17 01:01:30.186 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript init reload success
+2023-01-17 01:01:30.186 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript
+2023-01-17 01:01:30.186 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestivalPreferenceActivityScript.java begin makeScript
+2023-01-17 01:01:30.381 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript init reload success
+2023-01-17 01:01:30.381 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript
+2023-01-17 01:01:30.382 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestivalWishActivityScript.java begin makeScript
+2023-01-17 01:01:30.892 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript init reload success
+2023-01-17 01:01:30.893 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript
+2023-01-17 01:01:30.893 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300022 脚本名：common.activity.FestvialSignScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestvialSignScript.java begin makeScript
+2023-01-17 01:01:31.245 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300022 脚本名：common.activity.FestvialSignScript init reload success
+2023-01-17 01:01:31.245 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300022 脚本名：common.activity.FestvialSignScript
+2023-01-17 01:01:31.246 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FZTBActivityScript.java begin makeScript
+2023-01-17 01:01:31.648 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript init reload success
+2023-01-17 01:01:31.648 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript
+2023-01-17 01:01:31.649 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\GetActiveActivityScript.java begin makeScript
+2023-01-17 01:01:31.925 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript init reload success
+2023-01-17 01:01:31.925 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript
+2023-01-17 01:01:31.926 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\GroupBuyActivityScript.java begin makeScript
+2023-01-17 01:01:32.148 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript init reload success
+2023-01-17 01:01:32.148 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript
+2023-01-17 01:01:32.148 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300011 脚本名：common.activity.HolidayBossScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayBossScript.java begin makeScript
+2023-01-17 01:01:32.367 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300011 脚本名：common.activity.HolidayBossScript init reload success
+2023-01-17 01:01:32.367 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300011 脚本名：common.activity.HolidayBossScript
+2023-01-17 01:01:32.367 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayDailyGiftActivityScript.java begin makeScript
+2023-01-17 01:01:32.567 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript init reload success
+2023-01-17 01:01:32.567 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript
+2023-01-17 01:01:32.568 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayScoreRankScript.java begin makeScript
+2023-01-17 01:01:32.832 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript init reload success
+2023-01-17 01:01:32.832 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript
+2023-01-17 01:01:32.832 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayTaskScript.java begin makeScript
+2023-01-17 01:01:33.057 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript init reload success
+2023-01-17 01:01:33.057 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript
+2023-01-17 01:01:33.058 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300013 脚本名：common.activity.HolidayWordsScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayWordsScript.java begin makeScript
+2023-01-17 01:01:33.289 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300013 脚本名：common.activity.HolidayWordsScript init reload success
+2023-01-17 01:01:33.289 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300013 脚本名：common.activity.HolidayWordsScript
+2023-01-17 01:01:33.290 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300023 脚本名：common.activity.JumpGridScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\JumpGridScript.java begin makeScript
+2023-01-17 01:01:33.570 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300023 脚本名：common.activity.JumpGridScript init reload success
+2023-01-17 01:01:33.570 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300023 脚本名：common.activity.JumpGridScript
+2023-01-17 01:01:33.570 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300004 脚本名：common.activity.LimitGiftBagActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LimitGiftBagActivityScript.java begin makeScript
+2023-01-17 01:01:33.726 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300004 脚本名：common.activity.LimitGiftBagActivityScript init reload success
+2023-01-17 01:01:33.726 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300004 脚本名：common.activity.LimitGiftBagActivityScript
+2023-01-17 01:01:33.726 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300016 脚本名：common.activity.LimitShopActivtyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LimitShopActivtyScript.java begin makeScript
+2023-01-17 01:01:33.885 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300016 脚本名：common.activity.LimitShopActivtyScript init reload success
+2023-01-17 01:01:33.885 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300016 脚本名：common.activity.LimitShopActivtyScript
+2023-01-17 01:01:33.885 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300003 脚本名：common.activity.LimitTimeLoginActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LimitTimeLoginActivityScript.java begin makeScript
+2023-01-17 01:01:34.195 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300003 脚本名：common.activity.LimitTimeLoginActivityScript init reload success
+2023-01-17 01:01:34.195 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300003 脚本名：common.activity.LimitTimeLoginActivityScript
+2023-01-17 01:01:34.195 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300028 脚本名：common.activity.LuckyCat2ActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LuckyCat2ActivityScript.java begin makeScript
+2023-01-17 01:01:34.365 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300028 脚本名：common.activity.LuckyCat2ActivityScript init reload success
+2023-01-17 01:01:34.365 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300028 脚本名：common.activity.LuckyCat2ActivityScript
+2023-01-17 01:01:34.365 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300010 脚本名：common.activity.LuckyCatActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LuckyCatActivityScript.java begin makeScript
+2023-01-17 01:01:34.525 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300010 脚本名：common.activity.LuckyCatActivityScript init reload success
+2023-01-17 01:01:34.526 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300010 脚本名：common.activity.LuckyCatActivityScript
+2023-01-17 01:01:34.526 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300025 脚本名：common.activity.PicTipsActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\PicTipsActivityScript.java begin makeScript
+2023-01-17 01:01:34.605 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300025 脚本名：common.activity.PicTipsActivityScript init reload success
+2023-01-17 01:01:34.605 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300025 脚本名：common.activity.PicTipsActivityScript
+2023-01-17 01:01:34.605 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300006 脚本名：common.activity.RechargeTotalActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\RechargeTotalActivityScript.java begin makeScript
+2023-01-17 01:01:34.797 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300006 脚本名：common.activity.RechargeTotalActivityScript init reload success
+2023-01-17 01:01:34.797 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300006 脚本名：common.activity.RechargeTotalActivityScript
+2023-01-17 01:01:34.798 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300024 脚本名：common.activity.ShowActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ShowActivityScript.java begin makeScript
+2023-01-17 01:01:34.879 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300024 脚本名：common.activity.ShowActivityScript init reload success
+2023-01-17 01:01:34.879 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300024 脚本名：common.activity.ShowActivityScript
+2023-01-17 01:01:34.880 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300027 脚本名：common.activity.SmashEggActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\SmashEggActivityScript.java begin makeScript
+2023-01-17 01:01:35.339 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300027 脚本名：common.activity.SmashEggActivityScript init reload success
+2023-01-17 01:01:35.339 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300027 脚本名：common.activity.SmashEggActivityScript
+2023-01-17 01:01:35.339 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300007 脚本名：common.activity.TotalConsumeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\TotalConsumeActivityScript.java begin makeScript
+2023-01-17 01:01:35.537 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300007 脚本名：common.activity.TotalConsumeActivityScript init reload success
+2023-01-17 01:01:35.537 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300007 脚本名：common.activity.TotalConsumeActivityScript
+2023-01-17 01:01:35.538 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：151 脚本名：common.activityRank.ActivityRankScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activityRank\ActivityRankScript.java begin makeScript
+2023-01-17 01:01:35.856 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：151 脚本名：common.activityRank.ActivityRankScript init reload success
+2023-01-17 01:01:35.856 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：151 脚本名：common.activityRank.ActivityRankScript
+2023-01-17 01:01:35.856 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2011 脚本名：common.alienGem.AlienGemCopyMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\alienGem\AlienGemCopyMapScript.java begin makeScript
+2023-01-17 01:01:36.027 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2011 脚本名：common.alienGem.AlienGemCopyMapScript init reload success
+2023-01-17 01:01:36.027 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2011 脚本名：common.alienGem.AlienGemCopyMapScript
+2023-01-17 01:01:36.027 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：171 脚本名：common.alienGem.AlienGemScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\alienGem\AlienGemScript.java begin makeScript
+2023-01-17 01:01:36.112 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：171 脚本名：common.alienGem.AlienGemScript init reload success
+2023-01-17 01:01:36.112 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：171 脚本名：common.alienGem.AlienGemScript
+2023-01-17 01:01:36.112 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280014 脚本名：common.attribute.AmuletTaskAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\AmuletTaskAttributeScript.java begin makeScript
+2023-01-17 01:01:36.219 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280014 脚本名：common.attribute.AmuletTaskAttributeScript init reload success
+2023-01-17 01:01:36.219 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280014 脚本名：common.attribute.AmuletTaskAttributeScript
+2023-01-17 01:01:36.232 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：28 脚本名：common.attribute.AttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\AttributeScript.java begin makeScript
+2023-01-17 01:01:36.653 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：28 脚本名：common.attribute.AttributeScript init reload success
+2023-01-17 01:01:36.653 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：28 脚本名：common.attribute.AttributeScript
+2023-01-17 01:01:36.653 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280001 脚本名：common.attribute.BaseAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\BaseAttributeScript.java begin makeScript
+2023-01-17 01:01:36.743 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280001 脚本名：common.attribute.BaseAttributeScript init reload success
+2023-01-17 01:01:36.743 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280001 脚本名：common.attribute.BaseAttributeScript
+2023-01-17 01:01:36.743 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280003 脚本名：common.attribute.BuffAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\BuffAttributeScript.java begin makeScript
+2023-01-17 01:01:36.809 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280003 脚本名：common.attribute.BuffAttributeScript init reload success
+2023-01-17 01:01:36.809 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280003 脚本名：common.attribute.BuffAttributeScript
+2023-01-17 01:01:36.809 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280029 脚本名：common.attribute.DevilSeriesAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\DevilSeriesAttributeScript.java begin makeScript
+2023-01-17 01:01:36.927 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280029 脚本名：common.attribute.DevilSeriesAttributeScript init reload success
+2023-01-17 01:01:36.928 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280029 脚本名：common.attribute.DevilSeriesAttributeScript
+2023-01-17 01:01:36.928 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280002 脚本名：common.attribute.EquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\EquipAttributeScript.java begin makeScript
+2023-01-17 01:01:37.078 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280002 脚本名：common.attribute.EquipAttributeScript init reload success
+2023-01-17 01:01:37.078 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280002 脚本名：common.attribute.EquipAttributeScript
+2023-01-17 01:01:37.078 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280021 脚本名：common.attribute.FabaoAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\FabaoAttributeScript.java begin makeScript
+2023-01-17 01:01:37.247 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280021 脚本名：common.attribute.FabaoAttributeScript init reload success
+2023-01-17 01:01:37.247 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280021 脚本名：common.attribute.FabaoAttributeScript
+2023-01-17 01:01:37.248 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280018 脚本名：common.attribute.GemAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\GemAttributeScript.java begin makeScript
+2023-01-17 01:01:37.378 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280018 脚本名：common.attribute.GemAttributeScript init reload success
+2023-01-17 01:01:37.378 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280018 脚本名：common.attribute.GemAttributeScript
+2023-01-17 01:01:37.378 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280023 脚本名：common.attribute.HolyEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\HolyEquipAttributeScript.java begin makeScript
+2023-01-17 01:01:37.630 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280023 脚本名：common.attribute.HolyEquipAttributeScript init reload success
+2023-01-17 01:01:37.630 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280023 脚本名：common.attribute.HolyEquipAttributeScript
+2023-01-17 01:01:37.630 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280005 脚本名：common.attribute.HorseAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\HorseAttributeScript.java begin makeScript
+2023-01-17 01:01:37.919 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280005 脚本名：common.attribute.HorseAttributeScript init reload success
+2023-01-17 01:01:37.919 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280005 脚本名：common.attribute.HorseAttributeScript
+2023-01-17 01:01:37.920 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280026 脚本名：common.attribute.HuaxinFlySwordAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\HuaxinFlySwordAttributeScript.java begin makeScript
+2023-01-17 01:01:38.025 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280026 脚本名：common.attribute.HuaxinFlySwordAttributeScript init reload success
+2023-01-17 01:01:38.025 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280026 脚本名：common.attribute.HuaxinFlySwordAttributeScript
+2023-01-17 01:01:38.026 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280025 脚本名：common.attribute.ImmortalEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\ImmortalEquipAttributeScript.java begin makeScript
+2023-01-17 01:01:38.234 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280025 脚本名：common.attribute.ImmortalEquipAttributeScript init reload success
+2023-01-17 01:01:38.234 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280025 脚本名：common.attribute.ImmortalEquipAttributeScript
+2023-01-17 01:01:38.234 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280020 脚本名：common.attribute.ImmortalsoulAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\ImmortalsoulAttributeScript.java begin makeScript
+2023-01-17 01:01:38.343 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280020 脚本名：common.attribute.ImmortalsoulAttributeScript init reload success
+2023-01-17 01:01:38.343 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280020 脚本名：common.attribute.ImmortalsoulAttributeScript
+2023-01-17 01:01:38.343 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280016 脚本名：common.attribute.MagicAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\MagicAttributeScript.java begin makeScript
+2023-01-17 01:01:38.432 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280016 脚本名：common.attribute.MagicAttributeScript init reload success
+2023-01-17 01:01:38.432 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280016 脚本名：common.attribute.MagicAttributeScript
+2023-01-17 01:01:38.432 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280006 脚本名：common.attribute.MarriageAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\MarriageAttributeScript.java begin makeScript
+2023-01-17 01:01:38.528 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280006 脚本名：common.attribute.MarriageAttributeScript init reload success
+2023-01-17 01:01:38.528 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280006 脚本名：common.attribute.MarriageAttributeScript
+2023-01-17 01:01:38.528 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280004 脚本名：common.attribute.MedicineAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\MedicineAttributeScript.java begin makeScript
+2023-01-17 01:01:38.595 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280004 脚本名：common.attribute.MedicineAttributeScript init reload success
+2023-01-17 01:01:38.595 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280004 脚本名：common.attribute.MedicineAttributeScript
+2023-01-17 01:01:38.595 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280027 脚本名：common.attribute.NewFashionAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\NewFashionAttributeScript.java begin makeScript
+2023-01-17 01:01:38.694 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280027 脚本名：common.attribute.NewFashionAttributeScript init reload success
+2023-01-17 01:01:38.694 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280027 脚本名：common.attribute.NewFashionAttributeScript
+2023-01-17 01:01:38.694 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280007 脚本名：common.attribute.PetAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\PetAttributeScript.java begin makeScript
+2023-01-17 01:01:38.927 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280007 脚本名：common.attribute.PetAttributeScript init reload success
+2023-01-17 01:01:38.927 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280007 脚本名：common.attribute.PetAttributeScript
+2023-01-17 01:01:38.927 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280019 脚本名：common.attribute.ShiHaiAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\ShiHaiAttributeScript.java begin makeScript
+2023-01-17 01:01:38.991 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280019 脚本名：common.attribute.ShiHaiAttributeScript init reload success
+2023-01-17 01:01:38.991 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280019 脚本名：common.attribute.ShiHaiAttributeScript
+2023-01-17 01:01:38.991 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280010 脚本名：common.attribute.SkillAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SkillAttributeScript.java begin makeScript
+2023-01-17 01:01:39.117 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280010 脚本名：common.attribute.SkillAttributeScript init reload success
+2023-01-17 01:01:39.117 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280010 脚本名：common.attribute.SkillAttributeScript
+2023-01-17 01:01:39.118 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280013 脚本名：common.attribute.SoulBeastAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SoulBeastAttributeScript.java begin makeScript
+2023-01-17 01:01:39.241 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280013 脚本名：common.attribute.SoulBeastAttributeScript init reload success
+2023-01-17 01:01:39.241 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280013 脚本名：common.attribute.SoulBeastAttributeScript
+2023-01-17 01:01:39.241 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280028 脚本名：common.attribute.SoulEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SoulEquipAttributeScript.java begin makeScript
+2023-01-17 01:01:39.357 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280028 脚本名：common.attribute.SoulEquipAttributeScript init reload success
+2023-01-17 01:01:39.357 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280028 脚本名：common.attribute.SoulEquipAttributeScript
+2023-01-17 01:01:39.357 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280022 脚本名：common.attribute.SpiritAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SpiritAttributeScript.java begin makeScript
+2023-01-17 01:01:39.560 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280022 脚本名：common.attribute.SpiritAttributeScript init reload success
+2023-01-17 01:01:39.560 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280022 脚本名：common.attribute.SpiritAttributeScript
+2023-01-17 01:01:39.560 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280009 脚本名：common.attribute.StateVipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\StateVipAttributeScript.java begin makeScript
+2023-01-17 01:01:39.631 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280009 脚本名：common.attribute.StateVipAttributeScript init reload success
+2023-01-17 01:01:39.631 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280009 脚本名：common.attribute.StateVipAttributeScript
+2023-01-17 01:01:39.631 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280015 脚本名：common.attribute.TalismanAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\TalismanAttributeScript.java begin makeScript
+2023-01-17 01:01:39.721 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280015 脚本名：common.attribute.TalismanAttributeScript init reload success
+2023-01-17 01:01:39.721 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280015 脚本名：common.attribute.TalismanAttributeScript
+2023-01-17 01:01:39.721 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280012 脚本名：common.attribute.TaskAttributeCalculator;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\TaskAttributeCalculator.java begin makeScript
+2023-01-17 01:01:39.839 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280012 脚本名：common.attribute.TaskAttributeCalculator init reload success
+2023-01-17 01:01:39.839 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280012 脚本名：common.attribute.TaskAttributeCalculator
+2023-01-17 01:01:39.839 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280008 脚本名：common.attribute.TitleAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\TitleAttributeScript.java begin makeScript
+2023-01-17 01:01:39.925 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280008 脚本名：common.attribute.TitleAttributeScript init reload success
+2023-01-17 01:01:39.925 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280008 脚本名：common.attribute.TitleAttributeScript
+2023-01-17 01:01:39.925 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280031 脚本名：common.attribute.UnrealEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\UnrealEquipAttributeScript.java begin makeScript
+2023-01-17 01:01:40.128 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280031 脚本名：common.attribute.UnrealEquipAttributeScript init reload success
+2023-01-17 01:01:40.128 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280031 脚本名：common.attribute.UnrealEquipAttributeScript
+2023-01-17 01:01:40.128 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280030 脚本名：common.attribute.VipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\VipAttributeScript.java begin makeScript
+2023-01-17 01:01:40.212 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280030 脚本名：common.attribute.VipAttributeScript init reload success
+2023-01-17 01:01:40.212 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280030 脚本名：common.attribute.VipAttributeScript
+2023-01-17 01:01:40.212 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280017 脚本名：common.attribute.WeaponAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\WeaponAttributeScript.java begin makeScript
+2023-01-17 01:01:40.388 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280017 脚本名：common.attribute.WeaponAttributeScript init reload success
+2023-01-17 01:01:40.388 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280017 脚本名：common.attribute.WeaponAttributeScript
+2023-01-17 01:01:40.388 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280011 脚本名：common.attribute.WingAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\WingAttributeScript.java begin makeScript
+2023-01-17 01:01:40.479 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280011 脚本名：common.attribute.WingAttributeScript init reload success
+2023-01-17 01:01:40.479 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280011 脚本名：common.attribute.WingAttributeScript
+2023-01-17 01:01:40.479 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280024 脚本名：common.attribute.XiSuiAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\XiSuiAttributeScript.java begin makeScript
+2023-01-17 01:01:40.543 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280024 脚本名：common.attribute.XiSuiAttributeScript init reload success
+2023-01-17 01:01:40.543 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280024 脚本名：common.attribute.XiSuiAttributeScript
+2023-01-17 01:01:40.553 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：120 脚本名：common.auction.AuctionScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\auction\AuctionScript.java begin makeScript
+2023-01-17 01:01:41.088 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：120 脚本名：common.auction.AuctionScript init reload success
+2023-01-17 01:01:41.088 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：120 脚本名：common.auction.AuctionScript
+2023-01-17 01:01:41.098 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：31 脚本名：common.backgrand.BackCommandScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backgrand\BackCommandScript.java begin makeScript
+2023-01-17 01:01:41.932 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：31 脚本名：common.backgrand.BackCommandScript init reload success
+2023-01-17 01:01:41.932 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：31 脚本名：common.backgrand.BackCommandScript
+2023-01-17 01:01:41.933 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：56 脚本名：common.backpack.BackpackHandlerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backpack\BackpackHandlerScript.java begin makeScript
+2023-01-17 01:01:42.891 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：56 脚本名：common.backpack.BackpackHandlerScript init reload success
+2023-01-17 01:01:42.891 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：56 脚本名：common.backpack.BackpackHandlerScript
+2023-01-17 01:01:42.910 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：57 脚本名：common.backpack.BackpackManagerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backpack\BackpackManagerScript.java begin makeScript
+2023-01-17 01:01:44.647 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：57 脚本名：common.backpack.BackpackManagerScript init reload success
+2023-01-17 01:01:44.647 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：57 脚本名：common.backpack.BackpackManagerScript
+2023-01-17 01:01:44.680 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：130 脚本名：common.backpack.CurrencyManagerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backpack\CurrencyManagerScript.java begin makeScript
+2023-01-17 01:01:45.191 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：130 脚本名：common.backpack.CurrencyManagerScript init reload success
+2023-01-17 01:01:45.191 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：130 脚本名：common.backpack.CurrencyManagerScript
+2023-01-17 01:01:45.191 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3005 脚本名：common.behavior.AttackMoveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\AttackMoveBehaviorScript.java begin makeScript
+2023-01-17 01:01:45.282 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3005 脚本名：common.behavior.AttackMoveBehaviorScript init reload success
+2023-01-17 01:01:45.282 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3005 脚本名：common.behavior.AttackMoveBehaviorScript
+2023-01-17 01:01:45.282 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3002 脚本名：common.behavior.DirMoveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\DirMoveBehaviorScript.java begin makeScript
+2023-01-17 01:01:45.353 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3002 脚本名：common.behavior.DirMoveBehaviorScript init reload success
+2023-01-17 01:01:45.353 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3002 脚本名：common.behavior.DirMoveBehaviorScript
+2023-01-17 01:01:45.353 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3003 脚本名：common.behavior.FlyBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\FlyBehaviorScript.java begin makeScript
+2023-01-17 01:01:45.395 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3003 脚本名：common.behavior.FlyBehaviorScript init reload success
+2023-01-17 01:01:45.396 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3003 脚本名：common.behavior.FlyBehaviorScript
+2023-01-17 01:01:45.399 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3009 脚本名：common.behavior.GatherBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\GatherBehaviorScript.java begin makeScript
+2023-01-17 01:01:45.681 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3009 脚本名：common.behavior.GatherBehaviorScript init reload success
+2023-01-17 01:01:45.681 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3009 脚本名：common.behavior.GatherBehaviorScript
+2023-01-17 01:01:45.681 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3011 脚本名：common.behavior.JumpBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\JumpBehaviorScript.java begin makeScript
+2023-01-17 01:01:45.743 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3011 脚本名：common.behavior.JumpBehaviorScript init reload success
+2023-01-17 01:01:45.743 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3011 脚本名：common.behavior.JumpBehaviorScript
+2023-01-17 01:01:45.743 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3023 脚本名：common.behavior.MagicAiBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\MagicAiBehaviorScript.java begin makeScript
+2023-01-17 01:01:45.811 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3023 脚本名：common.behavior.MagicAiBehaviorScript init reload success
+2023-01-17 01:01:45.811 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3023 脚本名：common.behavior.MagicAiBehaviorScript
+2023-01-17 01:01:45.819 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3020 脚本名：common.behavior.MagicBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\MagicBehaviorScript.java begin makeScript
+2023-01-17 01:01:45.995 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3020 脚本名：common.behavior.MagicBehaviorScript init reload success
+2023-01-17 01:01:45.995 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3020 脚本名：common.behavior.MagicBehaviorScript
+2023-01-17 01:01:45.995 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3001 脚本名：common.behavior.MoveBehaviorScirpt;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\MoveBehaviorScirpt.java begin makeScript
+2023-01-17 01:01:46.080 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3001 脚本名：common.behavior.MoveBehaviorScirpt init reload success
+2023-01-17 01:01:46.080 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3001 脚本名：common.behavior.MoveBehaviorScirpt
+2023-01-17 01:01:46.080 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3006 脚本名：common.behavior.ReviveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\ReviveBehaviorScript.java begin makeScript
+2023-01-17 01:01:46.306 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3006 脚本名：common.behavior.ReviveBehaviorScript init reload success
+2023-01-17 01:01:46.306 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3006 脚本名：common.behavior.ReviveBehaviorScript
+2023-01-17 01:01:46.306 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3010 脚本名：common.behavior.RunBackBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\RunBackBehaviorScript.java begin makeScript
+2023-01-17 01:01:46.460 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3010 脚本名：common.behavior.RunBackBehaviorScript init reload success
+2023-01-17 01:01:46.461 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3010 脚本名：common.behavior.RunBackBehaviorScript
+2023-01-17 01:01:46.461 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3004 脚本名：common.behavior.RunBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\RunBehaviorScript.java begin makeScript
+2023-01-17 01:01:46.620 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3004 脚本名：common.behavior.RunBehaviorScript init reload success
+2023-01-17 01:01:46.620 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3004 脚本名：common.behavior.RunBehaviorScript
+2023-01-17 01:01:46.621 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3012 脚本名：common.behavior.SkillMoveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\SkillMoveBehaviorScript.java begin makeScript
+2023-01-17 01:01:46.689 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3012 脚本名：common.behavior.SkillMoveBehaviorScript init reload success
+2023-01-17 01:01:46.689 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3012 脚本名：common.behavior.SkillMoveBehaviorScript
+2023-01-17 01:01:46.728 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：139 脚本名：common.bi.Bi4399Script;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\bi\Bi4399Script.java begin makeScript
+2023-01-17 01:01:46.975 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：139 脚本名：common.bi.Bi4399Script init reload success
+2023-01-17 01:01:46.976 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：139 脚本名：common.bi.Bi4399Script
+2023-01-17 01:01:46.977 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：133 脚本名：common.bi.BiScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\bi\BiScript.java begin makeScript
+2023-01-17 01:01:47.531 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：133 脚本名：common.bi.BiScript init reload success
+2023-01-17 01:01:47.531 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：133 脚本名：common.bi.BiScript
+2023-01-17 01:01:47.533 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：175 脚本名：common.bi.QQScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\bi\QQScript.java begin makeScript
+2023-01-17 01:01:47.728 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：175 脚本名：common.bi.QQScript init reload success
+2023-01-17 01:01:47.728 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：175 脚本名：common.bi.QQScript
+2023-01-17 01:01:47.734 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：75 脚本名：common.boss.WorldBossManagerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\boss\WorldBossManagerScript.java begin makeScript
+2023-01-17 01:01:48.254 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：75 脚本名：common.boss.WorldBossManagerScript init reload success
+2023-01-17 01:01:48.254 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：75 脚本名：common.boss.WorldBossManagerScript
+2023-01-17 01:01:48.255 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：66 脚本名：common.buff.BuffScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\BuffScript.java begin makeScript
+2023-01-17 01:01:48.579 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：66 脚本名：common.buff.BuffScript init reload success
+2023-01-17 01:01:48.580 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：66 脚本名：common.buff.BuffScript
+2023-01-17 01:01:48.580 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660007 脚本名：common.buff.script.AddAllHpRateBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\AddAllHpRateBuff.java begin makeScript
+2023-01-17 01:01:48.667 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660007 脚本名：common.buff.script.AddAllHpRateBuff init reload success
+2023-01-17 01:01:48.667 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660007 脚本名：common.buff.script.AddAllHpRateBuff
+2023-01-17 01:01:48.667 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660008 脚本名：common.buff.script.AddCurHpRateBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\AddCurHpRateBuff.java begin makeScript
+2023-01-17 01:01:48.724 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660008 脚本名：common.buff.script.AddCurHpRateBuff init reload success
+2023-01-17 01:01:48.724 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660008 脚本名：common.buff.script.AddCurHpRateBuff
+2023-01-17 01:01:48.725 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660006 脚本名：common.buff.script.AddHpBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\AddHpBuff.java begin makeScript
+2023-01-17 01:01:48.779 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660006 脚本名：common.buff.script.AddHpBuff init reload success
+2023-01-17 01:01:48.779 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660006 脚本名：common.buff.script.AddHpBuff
+2023-01-17 01:01:48.779 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660001 脚本名：common.buff.script.AttributeBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\AttributeBuff.java begin makeScript
+2023-01-17 01:01:48.826 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660001 脚本名：common.buff.script.AttributeBuff init reload success
+2023-01-17 01:01:48.826 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660001 脚本名：common.buff.script.AttributeBuff
+2023-01-17 01:01:48.826 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660018 脚本名：common.buff.script.BigBoom;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\BigBoom.java begin makeScript
+2023-01-17 01:01:48.906 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660018 脚本名：common.buff.script.BigBoom init reload success
+2023-01-17 01:01:48.906 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660018 脚本名：common.buff.script.BigBoom
+2023-01-17 01:01:48.907 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660022 脚本名：common.buff.script.ChangeModeBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\ChangeModeBuff.java begin makeScript
+2023-01-17 01:01:48.950 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660022 脚本名：common.buff.script.ChangeModeBuff init reload success
+2023-01-17 01:01:48.950 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660022 脚本名：common.buff.script.ChangeModeBuff
+2023-01-17 01:01:48.950 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660023 脚本名：common.buff.script.ChuanDaoBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\ChuanDaoBuff.java begin makeScript
+2023-01-17 01:01:48.991 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660023 脚本名：common.buff.script.ChuanDaoBuff init reload success
+2023-01-17 01:01:48.991 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660023 脚本名：common.buff.script.ChuanDaoBuff
+2023-01-17 01:01:48.991 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660000 脚本名：common.buff.script.CommonBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\CommonBuff.java begin makeScript
+2023-01-17 01:01:49.031 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660000 脚本名：common.buff.script.CommonBuff init reload success
+2023-01-17 01:01:49.032 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660000 脚本名：common.buff.script.CommonBuff
+2023-01-17 01:01:49.032 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660004 脚本名：common.buff.script.DecAllHpRateBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\DecAllHpRateBuff.java begin makeScript
+2023-01-17 01:01:49.094 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660004 脚本名：common.buff.script.DecAllHpRateBuff init reload success
+2023-01-17 01:01:49.094 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660004 脚本名：common.buff.script.DecAllHpRateBuff
+2023-01-17 01:01:49.094 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660005 脚本名：common.buff.script.DecCurHpRateBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\DecCurHpRateBuff.java begin makeScript
+2023-01-17 01:01:49.156 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660005 脚本名：common.buff.script.DecCurHpRateBuff init reload success
+2023-01-17 01:01:49.156 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660005 脚本名：common.buff.script.DecCurHpRateBuff
+2023-01-17 01:01:49.157 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660003 脚本名：common.buff.script.DecHpBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\DecHpBuff.java begin makeScript
+2023-01-17 01:01:49.216 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660003 脚本名：common.buff.script.DecHpBuff init reload success
+2023-01-17 01:01:49.216 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660003 脚本名：common.buff.script.DecHpBuff
+2023-01-17 01:01:49.216 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660015 脚本名：common.buff.script.DingShengBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\DingShengBuff.java begin makeScript
+2023-01-17 01:01:49.307 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660015 脚本名：common.buff.script.DingShengBuff init reload success
+2023-01-17 01:01:49.307 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660015 脚本名：common.buff.script.DingShengBuff
+2023-01-17 01:01:49.307 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660021 脚本名：common.buff.script.DizzinessBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\DizzinessBuff.java begin makeScript
+2023-01-17 01:01:49.381 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660021 脚本名：common.buff.script.DizzinessBuff init reload success
+2023-01-17 01:01:49.381 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660021 脚本名：common.buff.script.DizzinessBuff
+2023-01-17 01:01:49.381 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660011 脚本名：common.buff.script.ExpBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\ExpBuff.java begin makeScript
+2023-01-17 01:01:49.439 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660011 脚本名：common.buff.script.ExpBuff init reload success
+2023-01-17 01:01:49.439 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660011 脚本名：common.buff.script.ExpBuff
+2023-01-17 01:01:49.439 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660024 脚本名：common.buff.script.FeijianBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\FeijianBuff.java begin makeScript
+2023-01-17 01:01:49.499 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660024 脚本名：common.buff.script.FeijianBuff init reload success
+2023-01-17 01:01:49.499 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660024 脚本名：common.buff.script.FeijianBuff
+2023-01-17 01:01:49.499 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660016 脚本名：common.buff.script.FightStateBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\FightStateBuff.java begin makeScript
+2023-01-17 01:01:49.562 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660016 脚本名：common.buff.script.FightStateBuff init reload success
+2023-01-17 01:01:49.562 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660016 脚本名：common.buff.script.FightStateBuff
+2023-01-17 01:01:49.562 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660002 脚本名：common.buff.script.HpPoolBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\HpPoolBuff.java begin makeScript
+2023-01-17 01:01:49.622 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660002 脚本名：common.buff.script.HpPoolBuff init reload success
+2023-01-17 01:01:49.622 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660002 脚本名：common.buff.script.HpPoolBuff
+2023-01-17 01:01:49.622 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660025 脚本名：common.buff.script.JinliaoBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\JinliaoBuff.java begin makeScript
+2023-01-17 01:01:49.668 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660025 脚本名：common.buff.script.JinliaoBuff init reload success
+2023-01-17 01:01:49.668 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660025 脚本名：common.buff.script.JinliaoBuff
+2023-01-17 01:01:49.668 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660010 脚本名：common.buff.script.MoneyBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\MoneyBuff.java begin makeScript
+2023-01-17 01:01:49.723 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660010 脚本名：common.buff.script.MoneyBuff init reload success
+2023-01-17 01:01:49.723 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660010 脚本名：common.buff.script.MoneyBuff
+2023-01-17 01:01:49.730 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660019 脚本名：common.buff.script.PosTriggerBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\PosTriggerBuff.java begin makeScript
+2023-01-17 01:01:49.848 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660019 脚本名：common.buff.script.PosTriggerBuff init reload success
+2023-01-17 01:01:49.848 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660019 脚本名：common.buff.script.PosTriggerBuff
+2023-01-17 01:01:49.848 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660017 脚本名：common.buff.script.ReDamageFromBoss;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\ReDamageFromBoss.java begin makeScript
+2023-01-17 01:01:49.894 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660017 脚本名：common.buff.script.ReDamageFromBoss init reload success
+2023-01-17 01:01:49.894 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660017 脚本名：common.buff.script.ReDamageFromBoss
+2023-01-17 01:01:49.895 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660020 脚本名：common.buff.script.SummonTriggerBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\SummonTriggerBuff.java begin makeScript
+2023-01-17 01:01:49.971 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660020 脚本名：common.buff.script.SummonTriggerBuff init reload success
+2023-01-17 01:01:49.971 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660020 脚本名：common.buff.script.SummonTriggerBuff
+2023-01-17 01:01:49.971 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660009 脚本名：common.buff.script.SuperManBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\SuperManBuff.java begin makeScript
+2023-01-17 01:01:50.019 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660009 脚本名：common.buff.script.SuperManBuff init reload success
+2023-01-17 01:01:50.019 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660009 脚本名：common.buff.script.SuperManBuff
+2023-01-17 01:01:50.019 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：660013 脚本名：common.buff.script.SuperPveBuff;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\script\SuperPveBuff.java begin makeScript
+2023-01-17 01:01:50.084 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：660013 脚本名：common.buff.script.SuperPveBuff init reload success
+2023-01-17 01:01:50.084 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：660013 脚本名：common.buff.script.SuperPveBuff
+2023-01-17 01:01:50.088 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：148 脚本名：common.cangbaoge.CangbaogeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\cangbaoge\CangbaogeScript.java begin makeScript
+2023-01-17 01:01:50.376 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：148 脚本名：common.cangbaoge.CangbaogeScript init reload success
+2023-01-17 01:01:50.376 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：148 脚本名：common.cangbaoge.CangbaogeScript
+2023-01-17 01:01:50.381 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：52 脚本名：common.chat.ChatScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\chat\ChatScript.java begin makeScript
+2023-01-17 01:01:50.867 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：52 脚本名：common.chat.ChatScript init reload success
+2023-01-17 01:01:50.867 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：52 脚本名：common.chat.ChatScript
+2023-01-17 01:01:50.867 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：71 脚本名：common.chat.ShareScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\chat\ShareScript.java begin makeScript
+2023-01-17 01:01:51.137 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：71 脚本名：common.chat.ShareScript init reload success
+2023-01-17 01:01:51.137 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：71 脚本名：common.chat.ShareScript
+2023-01-17 01:01:51.138 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：123 脚本名：common.chum.ChumScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\chum\ChumScript.java begin makeScript
+2023-01-17 01:01:51.482 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：123 脚本名：common.chum.ChumScript init reload success
+2023-01-17 01:01:51.482 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：123 脚本名：common.chum.ChumScript
+2023-01-17 01:01:51.483 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1031 脚本名：common.command.CommandScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\command\CommandScript.java begin makeScript
+2023-01-17 01:01:51.743 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1031 脚本名：common.command.CommandScript init reload success
+2023-01-17 01:01:51.743 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1031 脚本名：common.command.CommandScript
+2023-01-17 01:01:51.751 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：99 脚本名：common.commercialize.DailyRechargeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\commercialize\DailyRechargeScript.java begin makeScript
+2023-01-17 01:01:52.051 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：99 脚本名：common.commercialize.DailyRechargeScript init reload success
+2023-01-17 01:01:52.051 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：99 脚本名：common.commercialize.DailyRechargeScript
+2023-01-17 01:01:52.052 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：149 脚本名：common.commercialize.DailyRechargeTotalScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\commercialize\DailyRechargeTotalScript.java begin makeScript
+2023-01-17 01:01:52.283 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：149 脚本名：common.commercialize.DailyRechargeTotalScript init reload success
+2023-01-17 01:01:52.284 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：149 脚本名：common.commercialize.DailyRechargeTotalScript
+2023-01-17 01:01:52.288 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：34 脚本名：common.commercialize.FCChargeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\commercialize\FCChargeScript.java begin makeScript
+2023-01-17 01:01:52.534 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：34 脚本名：common.commercialize.FCChargeScript init reload success
+2023-01-17 01:01:52.534 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：34 脚本名：common.commercialize.FCChargeScript
+2023-01-17 01:01:52.534 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：162 脚本名：common.community.CommunityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\community\CommunityScript.java begin makeScript
+2023-01-17 01:01:52.767 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：162 脚本名：common.community.CommunityScript init reload success
+2023-01-17 01:01:52.767 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：162 脚本名：common.community.CommunityScript
+2023-01-17 01:01:52.768 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：62 脚本名：common.control.ControlScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\control\ControlScript.java begin makeScript
+2023-01-17 01:01:53.388 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：62 脚本名：common.control.ControlScript init reload success
+2023-01-17 01:01:53.388 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：62 脚本名：common.control.ControlScript
+2023-01-17 01:01:53.389 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：113 脚本名：common.copyMap.base.CopyMapLogicScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\base\CopyMapLogicScript.java begin makeScript
+2023-01-17 01:01:53.740 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：113 脚本名：common.copyMap.base.CopyMapLogicScript init reload success
+2023-01-17 01:01:53.740 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：113 脚本名：common.copyMap.base.CopyMapLogicScript
+2023-01-17 01:01:53.745 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：26 脚本名：common.copyMap.base.CopyMapScriptManager;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\base\CopyMapScriptManager.java begin makeScript
+2023-01-17 01:01:54.298 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：26 脚本名：common.copyMap.base.CopyMapScriptManager init reload success
+2023-01-17 01:01:54.299 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：26 脚本名：common.copyMap.base.CopyMapScriptManager
+2023-01-17 01:01:54.299 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1007 脚本名：common.copyMap.boss.BossHomeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\BossHomeScript.java begin makeScript
+2023-01-17 01:01:54.556 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1007 脚本名：common.copyMap.boss.BossHomeScript init reload success
+2023-01-17 01:01:54.556 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1007 脚本名：common.copyMap.boss.BossHomeScript
+2023-01-17 01:01:54.561 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1020 脚本名：common.copyMap.boss.BossStateScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\BossStateScript.java begin makeScript
+2023-01-17 01:01:54.923 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1020 脚本名：common.copyMap.boss.BossStateScript init reload success
+2023-01-17 01:01:54.923 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1020 脚本名：common.copyMap.boss.BossStateScript
+2023-01-17 01:01:54.924 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1025 脚本名：common.copyMap.boss.GemBossScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\GemBossScript.java begin makeScript
+2023-01-17 01:01:55.203 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1025 脚本名：common.copyMap.boss.GemBossScript init reload success
+2023-01-17 01:01:55.203 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1025 脚本名：common.copyMap.boss.GemBossScript
+2023-01-17 01:01:55.203 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1030 脚本名：common.copyMap.boss.NoobBossMapCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\NoobBossMapCopyScript.java begin makeScript
+2023-01-17 01:01:55.408 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1030 脚本名：common.copyMap.boss.NoobBossMapCopyScript init reload success
+2023-01-17 01:01:55.408 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1030 脚本名：common.copyMap.boss.NoobBossMapCopyScript
+2023-01-17 01:01:55.408 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1006 脚本名：common.copyMap.boss.OnceBossCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\OnceBossCopyScript.java begin makeScript
+2023-01-17 01:01:55.622 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1006 脚本名：common.copyMap.boss.OnceBossCopyScript init reload success
+2023-01-17 01:01:55.622 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1006 脚本名：common.copyMap.boss.OnceBossCopyScript
+2023-01-17 01:01:55.622 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1013 脚本名：common.copyMap.boss.PersonalUnLimitBossScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\PersonalUnLimitBossScript.java begin makeScript
+2023-01-17 01:01:55.709 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1013 脚本名：common.copyMap.boss.PersonalUnLimitBossScript init reload success
+2023-01-17 01:01:55.709 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1013 脚本名：common.copyMap.boss.PersonalUnLimitBossScript
+2023-01-17 01:01:55.714 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1024 脚本名：common.copyMap.boss.SuitBossScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\SuitBossScript.java begin makeScript
+2023-01-17 01:01:55.974 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1024 脚本名：common.copyMap.boss.SuitBossScript init reload success
+2023-01-17 01:01:55.974 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1024 脚本名：common.copyMap.boss.SuitBossScript
+2023-01-17 01:01:55.974 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1003 脚本名：common.copyMap.boss.WorldBossScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\boss\WorldBossScript.java begin makeScript
+2023-01-17 01:01:56.249 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1003 脚本名：common.copyMap.boss.WorldBossScript init reload success
+2023-01-17 01:01:56.250 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1003 脚本名：common.copyMap.boss.WorldBossScript
+2023-01-17 01:01:56.250 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2003 脚本名：common.copyMap.crosscopy.BravePeakActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\crosscopy\BravePeakActivityScript.java begin makeScript
+2023-01-17 01:01:56.566 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2003 脚本名：common.copyMap.crosscopy.BravePeakActivityScript init reload success
+2023-01-17 01:01:56.566 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2003 脚本名：common.copyMap.crosscopy.BravePeakActivityScript
+2023-01-17 01:01:56.566 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1023 脚本名：common.copyMap.crosscopy.EightDiagramsWarCloneScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\crosscopy\EightDiagramsWarCloneScript.java begin makeScript
+2023-01-17 01:01:56.848 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1023 脚本名：common.copyMap.crosscopy.EightDiagramsWarCloneScript init reload success
+2023-01-17 01:01:56.848 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1023 脚本名：common.copyMap.crosscopy.EightDiagramsWarCloneScript
+2023-01-17 01:01:56.849 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2004 脚本名：common.copyMap.crosscopy.GodDevilWarScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\crosscopy\GodDevilWarScript.java begin makeScript
+2023-01-17 01:01:57.191 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2004 脚本名：common.copyMap.crosscopy.GodDevilWarScript init reload success
+2023-01-17 01:01:57.191 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2004 脚本名：common.copyMap.crosscopy.GodDevilWarScript
+2023-01-17 01:01:57.192 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1019 脚本名：common.copyMap.crosscopy.NineDaysFoucusedWarCloneScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\crosscopy\NineDaysFoucusedWarCloneScript.java begin makeScript
+2023-01-17 01:01:57.519 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1019 脚本名：common.copyMap.crosscopy.NineDaysFoucusedWarCloneScript init reload success
+2023-01-17 01:01:57.519 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1019 脚本名：common.copyMap.crosscopy.NineDaysFoucusedWarCloneScript
+2023-01-17 01:01:57.519 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2005 脚本名：common.copyMap.crosscopy.WorldBonfireMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\crosscopy\WorldBonfireMapScript.java begin makeScript
+2023-01-17 01:01:57.827 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2005 脚本名：common.copyMap.crosscopy.WorldBonfireMapScript init reload success
+2023-01-17 01:01:57.827 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2005 脚本名：common.copyMap.crosscopy.WorldBonfireMapScript
+2023-01-17 01:01:57.831 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：140 脚本名：common.copyMap.crossrank.CrossRankScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\crossrank\CrossRankScript.java begin makeScript
+2023-01-17 01:01:58.026 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：140 脚本名：common.copyMap.crossrank.CrossRankScript init reload success
+2023-01-17 01:01:58.026 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：140 脚本名：common.copyMap.crossrank.CrossRankScript
+2023-01-17 01:01:58.026 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1029 脚本名：common.copyMap.guild.GuildBaseMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\guild\GuildBaseMapScript.java begin makeScript
+2023-01-17 01:01:58.332 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1029 脚本名：common.copyMap.guild.GuildBaseMapScript init reload success
+2023-01-17 01:01:58.332 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1029 脚本名：common.copyMap.guild.GuildBaseMapScript
+2023-01-17 01:01:58.340 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1027 脚本名：common.copyMap.guild.GuildBattleMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\guild\GuildBattleMapScript.java begin makeScript
+2023-01-17 01:01:58.833 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1027 脚本名：common.copyMap.guild.GuildBattleMapScript init reload success
+2023-01-17 01:01:58.833 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1027 脚本名：common.copyMap.guild.GuildBattleMapScript
+2023-01-17 01:01:58.838 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1008 脚本名：common.copyMap.guild.GuildFudScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\guild\GuildFudScript.java begin makeScript
+2023-01-17 01:01:59.260 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1008 脚本名：common.copyMap.guild.GuildFudScript init reload success
+2023-01-17 01:01:59.260 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1008 脚本名：common.copyMap.guild.GuildFudScript
+2023-01-17 01:01:59.261 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1021 脚本名：common.copyMap.guild.GuildLastBattleScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\guild\GuildLastBattleScript.java begin makeScript
+2023-01-17 01:01:59.624 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1021 脚本名：common.copyMap.guild.GuildLastBattleScript init reload success
+2023-01-17 01:01:59.624 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1021 脚本名：common.copyMap.guild.GuildLastBattleScript
+2023-01-17 01:01:59.624 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1028 脚本名：common.copyMap.guild.GuildTaskMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\guild\GuildTaskMapScript.java begin makeScript
+2023-01-17 01:01:59.897 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1028 脚本名：common.copyMap.guild.GuildTaskMapScript init reload success
+2023-01-17 01:01:59.897 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1028 脚本名：common.copyMap.guild.GuildTaskMapScript
+2023-01-17 01:01:59.897 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1009 脚本名：common.copyMap.marry.MarryHoneyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\marry\MarryHoneyScript.java begin makeScript
+2023-01-17 01:02:00.198 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1009 脚本名：common.copyMap.marry.MarryHoneyScript init reload success
+2023-01-17 01:02:00.198 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1009 脚本名：common.copyMap.marry.MarryHoneyScript
+2023-01-17 01:02:00.199 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1001 脚本名：common.copyMap.marry.MarryWeddingCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\marry\MarryWeddingCopyScript.java begin makeScript
+2023-01-17 01:02:00.525 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1001 脚本名：common.copyMap.marry.MarryWeddingCopyScript init reload success
+2023-01-17 01:02:00.525 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1001 脚本名：common.copyMap.marry.MarryWeddingCopyScript
+2023-01-17 01:02:00.530 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1017 脚本名：common.copyMap.multicopy.EquipCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\multicopy\EquipCopyScript.java begin makeScript
+2023-01-17 01:02:00.876 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1017 脚本名：common.copyMap.multicopy.EquipCopyScript init reload success
+2023-01-17 01:02:00.876 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1017 脚本名：common.copyMap.multicopy.EquipCopyScript
+2023-01-17 01:02:00.881 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1015 脚本名：common.copyMap.multicopy.ExpCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\multicopy\ExpCopyScript.java begin makeScript
+2023-01-17 01:02:01.183 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1015 脚本名：common.copyMap.multicopy.ExpCopyScript init reload success
+2023-01-17 01:02:01.183 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1015 脚本名：common.copyMap.multicopy.ExpCopyScript
+2023-01-17 01:02:01.187 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1018 脚本名：common.copyMap.multicopy.StrengthenCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\multicopy\StrengthenCopyScript.java begin makeScript
+2023-01-17 01:02:01.474 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1018 脚本名：common.copyMap.multicopy.StrengthenCopyScript init reload success
+2023-01-17 01:02:01.474 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1018 脚本名：common.copyMap.multicopy.StrengthenCopyScript
+2023-01-17 01:02:01.479 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1005 脚本名：common.copyMap.plane.PlaneScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\plane\PlaneScript.java begin makeScript
+2023-01-17 01:02:01.802 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1005 脚本名：common.copyMap.plane.PlaneScript init reload success
+2023-01-17 01:02:01.802 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1005 脚本名：common.copyMap.plane.PlaneScript
+2023-01-17 01:02:01.806 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1014 脚本名：common.copyMap.singlecopy.FairyLandScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\singlecopy\FairyLandScript.java begin makeScript
+2023-01-17 01:02:02.163 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1014 脚本名：common.copyMap.singlecopy.FairyLandScript init reload success
+2023-01-17 01:02:02.163 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1014 脚本名：common.copyMap.singlecopy.FairyLandScript
+2023-01-17 01:02:02.164 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1010 脚本名：common.copyMap.singlecopy.SingleTowerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\singlecopy\SingleTowerScript.java begin makeScript
+2023-01-17 01:02:02.419 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1010 脚本名：common.copyMap.singlecopy.SingleTowerScript init reload success
+2023-01-17 01:02:02.419 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1010 脚本名：common.copyMap.singlecopy.SingleTowerScript
+2023-01-17 01:02:02.419 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1011 脚本名：common.copyMap.singlecopy.StarCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\singlecopy\StarCopyScript.java begin makeScript
+2023-01-17 01:02:02.723 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1011 脚本名：common.copyMap.singlecopy.StarCopyScript init reload success
+2023-01-17 01:02:02.723 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1011 脚本名：common.copyMap.singlecopy.StarCopyScript
+2023-01-17 01:02:02.723 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1033 脚本名：common.copyMap.singlecopy.SwordSoulCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\singlecopy\SwordSoulCopyScript.java begin makeScript
+2023-01-17 01:02:03.000 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1033 脚本名：common.copyMap.singlecopy.SwordSoulCopyScript init reload success
+2023-01-17 01:02:03.000 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1033 脚本名：common.copyMap.singlecopy.SwordSoulCopyScript
+2023-01-17 01:02:03.001 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：1032 脚本名：common.copyMap.singlecopy.SwordTowerCopyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\singlecopy\SwordTowerCopyScript.java begin makeScript
+2023-01-17 01:02:03.329 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：1032 脚本名：common.copyMap.singlecopy.SwordTowerCopyScript init reload success
+2023-01-17 01:02:03.329 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：1032 脚本名：common.copyMap.singlecopy.SwordTowerCopyScript
+2023-01-17 01:02:03.330 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2006 脚本名：common.copyMap.universe.UniverseWarScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\copyMap\universe\UniverseWarScript.java begin makeScript
+2023-01-17 01:02:03.909 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2006 脚本名：common.copyMap.universe.UniverseWarScript init reload success
+2023-01-17 01:02:03.910 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2006 脚本名：common.copyMap.universe.UniverseWarScript
+2023-01-17 01:02:03.910 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：169 脚本名：common.couplefight.CoupleEscortScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\couplefight\CoupleEscortScript.java begin makeScript
+2023-01-17 01:02:04.378 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：169 脚本名：common.couplefight.CoupleEscortScript init reload success
+2023-01-17 01:02:04.378 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：169 脚本名：common.couplefight.CoupleEscortScript
+2023-01-17 01:02:04.378 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2009 脚本名：common.couplefight.CouplefightMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\couplefight\CouplefightMapScript.java begin makeScript
+2023-01-17 01:02:04.824 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2009 脚本名：common.couplefight.CouplefightMapScript init reload success
+2023-01-17 01:02:04.824 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2009 脚本名：common.couplefight.CouplefightMapScript
+2023-01-17 01:02:04.824 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2008 脚本名：common.couplefight.CouplefightPreMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\couplefight\CouplefightPreMapScript.java begin makeScript
+2023-01-17 01:02:05.023 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2008 脚本名：common.couplefight.CouplefightPreMapScript init reload success
+2023-01-17 01:02:05.023 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2008 脚本名：common.couplefight.CouplefightPreMapScript
+2023-01-17 01:02:05.023 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：159 脚本名：common.couplefight.CouplefightScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\couplefight\CouplefightScript.java begin makeScript
+2023-01-17 01:02:05.463 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：159 脚本名：common.couplefight.CouplefightScript init reload success
+2023-01-17 01:02:05.463 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：159 脚本名：common.couplefight.CouplefightScript
+2023-01-17 01:02:05.463 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：161 脚本名：common.couplefight.CoupleShopScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\couplefight\CoupleShopScript.java begin makeScript
+2023-01-17 01:02:05.740 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：161 脚本名：common.couplefight.CoupleShopScript init reload success
+2023-01-17 01:02:05.740 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：161 脚本名：common.couplefight.CoupleShopScript
+2023-01-17 01:02:05.740 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3026 脚本名：common.crazyweek.CrazyWeekScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\crazyweek\CrazyWeekScript.java begin makeScript
+2023-01-17 01:02:05.814 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3026 脚本名：common.crazyweek.CrazyWeekScript init reload success
+2023-01-17 01:02:05.814 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3026 脚本名：common.crazyweek.CrazyWeekScript
+2023-01-17 01:02:05.820 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：42 脚本名：common.cross.CrossChangeMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\cross\CrossChangeMapScript.java begin makeScript
+2023-01-17 01:02:06.172 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：42 脚本名：common.cross.CrossChangeMapScript init reload success
+2023-01-17 01:02:06.172 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：42 脚本名：common.cross.CrossChangeMapScript
+2023-01-17 01:02:06.173 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：41 脚本名：common.cross.CrossFightScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\cross\CrossFightScript.java begin makeScript
+2023-01-17 01:02:13.985 INFO [GameServer Start][GameServer.java:283] - 当前心跳HTTP为：http://localhost:8086/TzjBackend/serverstate/checkstate?
+2023-01-17 01:02:13.987 INFO [GameServer Start][GameServer.java:293] - 设置当前游戏支持人数等级为=5
+2023-01-17 01:02:14.542 INFO [GameServer Start][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/M:/software/javaJDK/jdk1.8.0_51/jre/lib/charsets.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/deploy.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/access-bridge-64.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/cldrdata.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/dnsns.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/jaccess.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/jfxrt.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/localedata.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/nashorn.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunec.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunjce_provider.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunmscapi.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/sunpkcs11.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/ext/zipfs.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/javaws.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jce.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jfr.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jfxswt.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/jsse.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/management-agent.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/plugin.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/resources.jar;/M:/software/javaJDK/jdk1.8.0_51/jre/lib/rt.jar;/M:/project/tzj/Server/GameServer/out/production/GameServer/;/M:/project/tzj/Server/GameServer/gameserver/lib/netty-all-4.1.11.Final.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-core-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-core-2.17.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/netty-all-4.1.11.Final-sources.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/disruptor-3.3.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-logging-1.0.4.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/druid-1.0.15.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpasyncclient-4.1.2.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/PushJavaSDK.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-databind-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/Message.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/protobuf-java-2.5.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/slf4j-api-1.7.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/mysql-connector-java-8.0.27.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/GameCfg.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-codec-1.9.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpcore-nio-4.4.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/jackson-annotations-2.11.1.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/slf4j-log4j12-1.7.6.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpclient-4.5.8.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-api-2.17.0.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/commons-lang-2.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/GameCore.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/log4j-1.2.17.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/mybatis-3.2.5.jar;/M:/project/tzj/Server/GameServer/gameserver/lib/httpcore-4.4.4.jar;/M:/project/tzj/Server/GameServer/gameserver/GameServer.jar;/M:/software/ideaIU-2020.1.1.win/lib/idea_rt.jar;/M:/software/ideaIU-2020.1.1.win/plugins/java/lib/rt/debugger-agent.jar;bin]
+2023-01-17 01:02:14.778 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：27 脚本名：common.achievement.AchievementScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\achievement\AchievementScript.java begin makeScript
+2023-01-17 01:02:15.961 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：27 脚本名：common.achievement.AchievementScript init reload success
+2023-01-17 01:02:15.961 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：27 脚本名：common.achievement.AchievementScript
+2023-01-17 01:02:15.964 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：30 脚本名：common.activity.ActivityManageScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ActivityManageScript.java begin makeScript
+2023-01-17 01:02:16.816 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：30 脚本名：common.activity.ActivityManageScript init reload success
+2023-01-17 01:02:16.816 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：30 脚本名：common.activity.ActivityManageScript
+2023-01-17 01:02:16.818 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\CollectGoodsExchangeActivityScript.java begin makeScript
+2023-01-17 01:02:17.026 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript init reload success
+2023-01-17 01:02:17.026 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300008 脚本名：common.activity.CollectGoodsExchangeActivityScript
+2023-01-17 01:02:17.027 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ContinuousRecharge2ActivityScript.java begin makeScript
+2023-01-17 01:02:17.253 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript init reload success
+2023-01-17 01:02:17.254 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300021 脚本名：common.activity.ContinuousRecharge2ActivityScript
+2023-01-17 01:02:17.254 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ContinuousRechargeActivityScript.java begin makeScript
+2023-01-17 01:02:17.485 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript init reload success
+2023-01-17 01:02:17.485 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300015 脚本名：common.activity.ContinuousRechargeActivityScript
+2023-01-17 01:02:17.486 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\CornucopiaActivityScript.java begin makeScript
+2023-01-17 01:02:18.225 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript init reload success
+2023-01-17 01:02:18.225 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300026 脚本名：common.activity.CornucopiaActivityScript
+2023-01-17 01:02:18.225 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\DailyRechargeActivityScript.java begin makeScript
+2023-01-17 01:02:18.483 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript init reload success
+2023-01-17 01:02:18.483 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300002 脚本名：common.activity.DailyRechargeActivityScript
+2023-01-17 01:02:18.484 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\DrawRewardActivityScript.java begin makeScript
+2023-01-17 01:02:18.949 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript init reload success
+2023-01-17 01:02:18.949 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300005 脚本名：common.activity.DrawRewardActivityScript
+2023-01-17 01:02:18.950 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FBShareActivityScript.java begin makeScript
+2023-01-17 01:02:19.174 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript init reload success
+2023-01-17 01:02:19.174 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300020 脚本名：common.activity.FBShareActivityScript
+2023-01-17 01:02:19.174 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestivalPreferenceActivityScript.java begin makeScript
+2023-01-17 01:02:19.437 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript init reload success
+2023-01-17 01:02:19.437 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300014 脚本名：common.activity.FestivalPreferenceActivityScript
+2023-01-17 01:02:19.438 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestivalWishActivityScript.java begin makeScript
+2023-01-17 01:02:20.068 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript init reload success
+2023-01-17 01:02:20.068 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300019 脚本名：common.activity.FestivalWishActivityScript
+2023-01-17 01:02:20.069 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300022 脚本名：common.activity.FestvialSignScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FestvialSignScript.java begin makeScript
+2023-01-17 01:02:20.517 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300022 脚本名：common.activity.FestvialSignScript init reload success
+2023-01-17 01:02:20.517 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300022 脚本名：common.activity.FestvialSignScript
+2023-01-17 01:02:20.518 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\FZTBActivityScript.java begin makeScript
+2023-01-17 01:02:20.914 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript init reload success
+2023-01-17 01:02:20.914 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300029 脚本名：common.activity.FZTBActivityScript
+2023-01-17 01:02:20.915 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\GetActiveActivityScript.java begin makeScript
+2023-01-17 01:02:21.095 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript init reload success
+2023-01-17 01:02:21.095 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300001 脚本名：common.activity.GetActiveActivityScript
+2023-01-17 01:02:21.095 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\GroupBuyActivityScript.java begin makeScript
+2023-01-17 01:02:21.273 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript init reload success
+2023-01-17 01:02:21.273 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300009 脚本名：common.activity.GroupBuyActivityScript
+2023-01-17 01:02:21.274 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300011 脚本名：common.activity.HolidayBossScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayBossScript.java begin makeScript
+2023-01-17 01:02:21.503 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300011 脚本名：common.activity.HolidayBossScript init reload success
+2023-01-17 01:02:21.503 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300011 脚本名：common.activity.HolidayBossScript
+2023-01-17 01:02:21.503 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayDailyGiftActivityScript.java begin makeScript
+2023-01-17 01:02:21.666 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript init reload success
+2023-01-17 01:02:21.666 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300017 脚本名：common.activity.HolidayDailyGiftActivityScript
+2023-01-17 01:02:21.666 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayScoreRankScript.java begin makeScript
+2023-01-17 01:02:21.886 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript init reload success
+2023-01-17 01:02:21.886 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300018 脚本名：common.activity.HolidayScoreRankScript
+2023-01-17 01:02:21.887 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayTaskScript.java begin makeScript
+2023-01-17 01:02:22.072 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript init reload success
+2023-01-17 01:02:22.072 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300012 脚本名：common.activity.HolidayTaskScript
+2023-01-17 01:02:22.073 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300013 脚本名：common.activity.HolidayWordsScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\HolidayWordsScript.java begin makeScript
+2023-01-17 01:02:22.378 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300013 脚本名：common.activity.HolidayWordsScript init reload success
+2023-01-17 01:02:22.378 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300013 脚本名：common.activity.HolidayWordsScript
+2023-01-17 01:02:22.379 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300023 脚本名：common.activity.JumpGridScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\JumpGridScript.java begin makeScript
+2023-01-17 01:02:22.772 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300023 脚本名：common.activity.JumpGridScript init reload success
+2023-01-17 01:02:22.772 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300023 脚本名：common.activity.JumpGridScript
+2023-01-17 01:02:22.772 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300004 脚本名：common.activity.LimitGiftBagActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LimitGiftBagActivityScript.java begin makeScript
+2023-01-17 01:02:23.233 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300004 脚本名：common.activity.LimitGiftBagActivityScript init reload success
+2023-01-17 01:02:23.233 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300004 脚本名：common.activity.LimitGiftBagActivityScript
+2023-01-17 01:02:23.234 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300016 脚本名：common.activity.LimitShopActivtyScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LimitShopActivtyScript.java begin makeScript
+2023-01-17 01:02:23.470 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300016 脚本名：common.activity.LimitShopActivtyScript init reload success
+2023-01-17 01:02:23.470 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300016 脚本名：common.activity.LimitShopActivtyScript
+2023-01-17 01:02:23.470 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300003 脚本名：common.activity.LimitTimeLoginActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LimitTimeLoginActivityScript.java begin makeScript
+2023-01-17 01:02:23.988 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300003 脚本名：common.activity.LimitTimeLoginActivityScript init reload success
+2023-01-17 01:02:23.988 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300003 脚本名：common.activity.LimitTimeLoginActivityScript
+2023-01-17 01:02:23.988 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300028 脚本名：common.activity.LuckyCat2ActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LuckyCat2ActivityScript.java begin makeScript
+2023-01-17 01:02:24.165 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300028 脚本名：common.activity.LuckyCat2ActivityScript init reload success
+2023-01-17 01:02:24.165 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300028 脚本名：common.activity.LuckyCat2ActivityScript
+2023-01-17 01:02:24.165 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300010 脚本名：common.activity.LuckyCatActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\LuckyCatActivityScript.java begin makeScript
+2023-01-17 01:02:24.338 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300010 脚本名：common.activity.LuckyCatActivityScript init reload success
+2023-01-17 01:02:24.338 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300010 脚本名：common.activity.LuckyCatActivityScript
+2023-01-17 01:02:24.338 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300025 脚本名：common.activity.PicTipsActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\PicTipsActivityScript.java begin makeScript
+2023-01-17 01:02:24.421 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300025 脚本名：common.activity.PicTipsActivityScript init reload success
+2023-01-17 01:02:24.421 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300025 脚本名：common.activity.PicTipsActivityScript
+2023-01-17 01:02:24.422 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300006 脚本名：common.activity.RechargeTotalActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\RechargeTotalActivityScript.java begin makeScript
+2023-01-17 01:02:24.613 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300006 脚本名：common.activity.RechargeTotalActivityScript init reload success
+2023-01-17 01:02:24.613 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300006 脚本名：common.activity.RechargeTotalActivityScript
+2023-01-17 01:02:24.613 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300024 脚本名：common.activity.ShowActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\ShowActivityScript.java begin makeScript
+2023-01-17 01:02:24.689 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300024 脚本名：common.activity.ShowActivityScript init reload success
+2023-01-17 01:02:24.689 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300024 脚本名：common.activity.ShowActivityScript
+2023-01-17 01:02:24.690 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300027 脚本名：common.activity.SmashEggActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\SmashEggActivityScript.java begin makeScript
+2023-01-17 01:02:25.126 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300027 脚本名：common.activity.SmashEggActivityScript init reload success
+2023-01-17 01:02:25.126 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300027 脚本名：common.activity.SmashEggActivityScript
+2023-01-17 01:02:25.126 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：300007 脚本名：common.activity.TotalConsumeActivityScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activity\TotalConsumeActivityScript.java begin makeScript
+2023-01-17 01:02:25.359 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：300007 脚本名：common.activity.TotalConsumeActivityScript init reload success
+2023-01-17 01:02:25.360 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：300007 脚本名：common.activity.TotalConsumeActivityScript
+2023-01-17 01:02:25.360 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：151 脚本名：common.activityRank.ActivityRankScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\activityRank\ActivityRankScript.java begin makeScript
+2023-01-17 01:02:25.716 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：151 脚本名：common.activityRank.ActivityRankScript init reload success
+2023-01-17 01:02:25.716 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：151 脚本名：common.activityRank.ActivityRankScript
+2023-01-17 01:02:25.716 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：2011 脚本名：common.alienGem.AlienGemCopyMapScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\alienGem\AlienGemCopyMapScript.java begin makeScript
+2023-01-17 01:02:25.865 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：2011 脚本名：common.alienGem.AlienGemCopyMapScript init reload success
+2023-01-17 01:02:25.865 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：2011 脚本名：common.alienGem.AlienGemCopyMapScript
+2023-01-17 01:02:25.865 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：171 脚本名：common.alienGem.AlienGemScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\alienGem\AlienGemScript.java begin makeScript
+2023-01-17 01:02:25.948 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：171 脚本名：common.alienGem.AlienGemScript init reload success
+2023-01-17 01:02:25.948 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：171 脚本名：common.alienGem.AlienGemScript
+2023-01-17 01:02:25.948 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280014 脚本名：common.attribute.AmuletTaskAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\AmuletTaskAttributeScript.java begin makeScript
+2023-01-17 01:02:26.013 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280014 脚本名：common.attribute.AmuletTaskAttributeScript init reload success
+2023-01-17 01:02:26.013 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280014 脚本名：common.attribute.AmuletTaskAttributeScript
+2023-01-17 01:02:26.015 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：28 脚本名：common.attribute.AttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\AttributeScript.java begin makeScript
+2023-01-17 01:02:26.392 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：28 脚本名：common.attribute.AttributeScript init reload success
+2023-01-17 01:02:26.392 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：28 脚本名：common.attribute.AttributeScript
+2023-01-17 01:02:26.393 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280001 脚本名：common.attribute.BaseAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\BaseAttributeScript.java begin makeScript
+2023-01-17 01:02:26.474 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280001 脚本名：common.attribute.BaseAttributeScript init reload success
+2023-01-17 01:02:26.474 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280001 脚本名：common.attribute.BaseAttributeScript
+2023-01-17 01:02:26.475 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280003 脚本名：common.attribute.BuffAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\BuffAttributeScript.java begin makeScript
+2023-01-17 01:02:26.530 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280003 脚本名：common.attribute.BuffAttributeScript init reload success
+2023-01-17 01:02:26.530 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280003 脚本名：common.attribute.BuffAttributeScript
+2023-01-17 01:02:26.531 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280029 脚本名：common.attribute.DevilSeriesAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\DevilSeriesAttributeScript.java begin makeScript
+2023-01-17 01:02:26.630 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280029 脚本名：common.attribute.DevilSeriesAttributeScript init reload success
+2023-01-17 01:02:26.630 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280029 脚本名：common.attribute.DevilSeriesAttributeScript
+2023-01-17 01:02:26.630 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280002 脚本名：common.attribute.EquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\EquipAttributeScript.java begin makeScript
+2023-01-17 01:02:26.773 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280002 脚本名：common.attribute.EquipAttributeScript init reload success
+2023-01-17 01:02:26.773 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280002 脚本名：common.attribute.EquipAttributeScript
+2023-01-17 01:02:26.773 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280021 脚本名：common.attribute.FabaoAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\FabaoAttributeScript.java begin makeScript
+2023-01-17 01:02:26.938 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280021 脚本名：common.attribute.FabaoAttributeScript init reload success
+2023-01-17 01:02:26.938 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280021 脚本名：common.attribute.FabaoAttributeScript
+2023-01-17 01:02:26.938 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280018 脚本名：common.attribute.GemAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\GemAttributeScript.java begin makeScript
+2023-01-17 01:02:27.100 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280018 脚本名：common.attribute.GemAttributeScript init reload success
+2023-01-17 01:02:27.100 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280018 脚本名：common.attribute.GemAttributeScript
+2023-01-17 01:02:27.101 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280023 脚本名：common.attribute.HolyEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\HolyEquipAttributeScript.java begin makeScript
+2023-01-17 01:02:27.349 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280023 脚本名：common.attribute.HolyEquipAttributeScript init reload success
+2023-01-17 01:02:27.349 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280023 脚本名：common.attribute.HolyEquipAttributeScript
+2023-01-17 01:02:27.349 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280005 脚本名：common.attribute.HorseAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\HorseAttributeScript.java begin makeScript
+2023-01-17 01:02:27.561 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280005 脚本名：common.attribute.HorseAttributeScript init reload success
+2023-01-17 01:02:27.561 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280005 脚本名：common.attribute.HorseAttributeScript
+2023-01-17 01:02:27.561 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280026 脚本名：common.attribute.HuaxinFlySwordAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\HuaxinFlySwordAttributeScript.java begin makeScript
+2023-01-17 01:02:27.646 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280026 脚本名：common.attribute.HuaxinFlySwordAttributeScript init reload success
+2023-01-17 01:02:27.646 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280026 脚本名：common.attribute.HuaxinFlySwordAttributeScript
+2023-01-17 01:02:27.646 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280025 脚本名：common.attribute.ImmortalEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\ImmortalEquipAttributeScript.java begin makeScript
+2023-01-17 01:02:27.851 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280025 脚本名：common.attribute.ImmortalEquipAttributeScript init reload success
+2023-01-17 01:02:27.851 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280025 脚本名：common.attribute.ImmortalEquipAttributeScript
+2023-01-17 01:02:27.851 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280020 脚本名：common.attribute.ImmortalsoulAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\ImmortalsoulAttributeScript.java begin makeScript
+2023-01-17 01:02:27.956 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280020 脚本名：common.attribute.ImmortalsoulAttributeScript init reload success
+2023-01-17 01:02:27.956 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280020 脚本名：common.attribute.ImmortalsoulAttributeScript
+2023-01-17 01:02:27.956 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280016 脚本名：common.attribute.MagicAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\MagicAttributeScript.java begin makeScript
+2023-01-17 01:02:28.034 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280016 脚本名：common.attribute.MagicAttributeScript init reload success
+2023-01-17 01:02:28.034 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280016 脚本名：common.attribute.MagicAttributeScript
+2023-01-17 01:02:28.035 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280006 脚本名：common.attribute.MarriageAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\MarriageAttributeScript.java begin makeScript
+2023-01-17 01:02:28.121 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280006 脚本名：common.attribute.MarriageAttributeScript init reload success
+2023-01-17 01:02:28.121 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280006 脚本名：common.attribute.MarriageAttributeScript
+2023-01-17 01:02:28.121 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280004 脚本名：common.attribute.MedicineAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\MedicineAttributeScript.java begin makeScript
+2023-01-17 01:02:28.183 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280004 脚本名：common.attribute.MedicineAttributeScript init reload success
+2023-01-17 01:02:28.183 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280004 脚本名：common.attribute.MedicineAttributeScript
+2023-01-17 01:02:28.183 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280027 脚本名：common.attribute.NewFashionAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\NewFashionAttributeScript.java begin makeScript
+2023-01-17 01:02:28.261 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280027 脚本名：common.attribute.NewFashionAttributeScript init reload success
+2023-01-17 01:02:28.261 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280027 脚本名：common.attribute.NewFashionAttributeScript
+2023-01-17 01:02:28.262 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280007 脚本名：common.attribute.PetAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\PetAttributeScript.java begin makeScript
+2023-01-17 01:02:28.526 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280007 脚本名：common.attribute.PetAttributeScript init reload success
+2023-01-17 01:02:28.526 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280007 脚本名：common.attribute.PetAttributeScript
+2023-01-17 01:02:28.526 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280019 脚本名：common.attribute.ShiHaiAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\ShiHaiAttributeScript.java begin makeScript
+2023-01-17 01:02:28.582 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280019 脚本名：common.attribute.ShiHaiAttributeScript init reload success
+2023-01-17 01:02:28.582 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280019 脚本名：common.attribute.ShiHaiAttributeScript
+2023-01-17 01:02:28.583 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280010 脚本名：common.attribute.SkillAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SkillAttributeScript.java begin makeScript
+2023-01-17 01:02:28.689 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280010 脚本名：common.attribute.SkillAttributeScript init reload success
+2023-01-17 01:02:28.689 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280010 脚本名：common.attribute.SkillAttributeScript
+2023-01-17 01:02:28.689 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280013 脚本名：common.attribute.SoulBeastAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SoulBeastAttributeScript.java begin makeScript
+2023-01-17 01:02:28.790 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280013 脚本名：common.attribute.SoulBeastAttributeScript init reload success
+2023-01-17 01:02:28.790 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280013 脚本名：common.attribute.SoulBeastAttributeScript
+2023-01-17 01:02:28.790 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280028 脚本名：common.attribute.SoulEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SoulEquipAttributeScript.java begin makeScript
+2023-01-17 01:02:28.918 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280028 脚本名：common.attribute.SoulEquipAttributeScript init reload success
+2023-01-17 01:02:28.918 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280028 脚本名：common.attribute.SoulEquipAttributeScript
+2023-01-17 01:02:28.918 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280022 脚本名：common.attribute.SpiritAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\SpiritAttributeScript.java begin makeScript
+2023-01-17 01:02:29.117 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280022 脚本名：common.attribute.SpiritAttributeScript init reload success
+2023-01-17 01:02:29.117 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280022 脚本名：common.attribute.SpiritAttributeScript
+2023-01-17 01:02:29.117 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280009 脚本名：common.attribute.StateVipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\StateVipAttributeScript.java begin makeScript
+2023-01-17 01:02:29.194 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280009 脚本名：common.attribute.StateVipAttributeScript init reload success
+2023-01-17 01:02:29.194 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280009 脚本名：common.attribute.StateVipAttributeScript
+2023-01-17 01:02:29.195 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280015 脚本名：common.attribute.TalismanAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\TalismanAttributeScript.java begin makeScript
+2023-01-17 01:02:29.286 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280015 脚本名：common.attribute.TalismanAttributeScript init reload success
+2023-01-17 01:02:29.286 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280015 脚本名：common.attribute.TalismanAttributeScript
+2023-01-17 01:02:29.286 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280012 脚本名：common.attribute.TaskAttributeCalculator;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\TaskAttributeCalculator.java begin makeScript
+2023-01-17 01:02:29.368 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280012 脚本名：common.attribute.TaskAttributeCalculator init reload success
+2023-01-17 01:02:29.368 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280012 脚本名：common.attribute.TaskAttributeCalculator
+2023-01-17 01:02:29.369 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280008 脚本名：common.attribute.TitleAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\TitleAttributeScript.java begin makeScript
+2023-01-17 01:02:29.448 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280008 脚本名：common.attribute.TitleAttributeScript init reload success
+2023-01-17 01:02:29.449 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280008 脚本名：common.attribute.TitleAttributeScript
+2023-01-17 01:02:29.449 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280031 脚本名：common.attribute.UnrealEquipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\UnrealEquipAttributeScript.java begin makeScript
+2023-01-17 01:02:29.648 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280031 脚本名：common.attribute.UnrealEquipAttributeScript init reload success
+2023-01-17 01:02:29.648 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280031 脚本名：common.attribute.UnrealEquipAttributeScript
+2023-01-17 01:02:29.648 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280030 脚本名：common.attribute.VipAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\VipAttributeScript.java begin makeScript
+2023-01-17 01:02:29.734 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280030 脚本名：common.attribute.VipAttributeScript init reload success
+2023-01-17 01:02:29.734 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280030 脚本名：common.attribute.VipAttributeScript
+2023-01-17 01:02:29.734 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280017 脚本名：common.attribute.WeaponAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\WeaponAttributeScript.java begin makeScript
+2023-01-17 01:02:29.942 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280017 脚本名：common.attribute.WeaponAttributeScript init reload success
+2023-01-17 01:02:29.942 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280017 脚本名：common.attribute.WeaponAttributeScript
+2023-01-17 01:02:29.942 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280011 脚本名：common.attribute.WingAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\WingAttributeScript.java begin makeScript
+2023-01-17 01:02:30.039 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280011 脚本名：common.attribute.WingAttributeScript init reload success
+2023-01-17 01:02:30.039 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280011 脚本名：common.attribute.WingAttributeScript
+2023-01-17 01:02:30.039 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：280024 脚本名：common.attribute.XiSuiAttributeScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\attribute\XiSuiAttributeScript.java begin makeScript
+2023-01-17 01:02:30.114 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：280024 脚本名：common.attribute.XiSuiAttributeScript init reload success
+2023-01-17 01:02:30.114 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：280024 脚本名：common.attribute.XiSuiAttributeScript
+2023-01-17 01:02:30.116 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：120 脚本名：common.auction.AuctionScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\auction\AuctionScript.java begin makeScript
+2023-01-17 01:02:30.747 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：120 脚本名：common.auction.AuctionScript init reload success
+2023-01-17 01:02:30.747 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：120 脚本名：common.auction.AuctionScript
+2023-01-17 01:02:30.749 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：31 脚本名：common.backgrand.BackCommandScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backgrand\BackCommandScript.java begin makeScript
+2023-01-17 01:02:31.458 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：31 脚本名：common.backgrand.BackCommandScript init reload success
+2023-01-17 01:02:31.458 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：31 脚本名：common.backgrand.BackCommandScript
+2023-01-17 01:02:31.458 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：56 脚本名：common.backpack.BackpackHandlerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backpack\BackpackHandlerScript.java begin makeScript
+2023-01-17 01:02:31.748 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：56 脚本名：common.backpack.BackpackHandlerScript init reload success
+2023-01-17 01:02:31.748 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：56 脚本名：common.backpack.BackpackHandlerScript
+2023-01-17 01:02:31.750 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：57 脚本名：common.backpack.BackpackManagerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backpack\BackpackManagerScript.java begin makeScript
+2023-01-17 01:02:32.488 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：57 脚本名：common.backpack.BackpackManagerScript init reload success
+2023-01-17 01:02:32.488 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：57 脚本名：common.backpack.BackpackManagerScript
+2023-01-17 01:02:32.490 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：130 脚本名：common.backpack.CurrencyManagerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\backpack\CurrencyManagerScript.java begin makeScript
+2023-01-17 01:02:32.988 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：130 脚本名：common.backpack.CurrencyManagerScript init reload success
+2023-01-17 01:02:32.988 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：130 脚本名：common.backpack.CurrencyManagerScript
+2023-01-17 01:02:32.989 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3005 脚本名：common.behavior.AttackMoveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\AttackMoveBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.050 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3005 脚本名：common.behavior.AttackMoveBehaviorScript init reload success
+2023-01-17 01:02:33.050 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3005 脚本名：common.behavior.AttackMoveBehaviorScript
+2023-01-17 01:02:33.050 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3002 脚本名：common.behavior.DirMoveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\DirMoveBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.106 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3002 脚本名：common.behavior.DirMoveBehaviorScript init reload success
+2023-01-17 01:02:33.107 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3002 脚本名：common.behavior.DirMoveBehaviorScript
+2023-01-17 01:02:33.107 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3003 脚本名：common.behavior.FlyBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\FlyBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.143 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3003 脚本名：common.behavior.FlyBehaviorScript init reload success
+2023-01-17 01:02:33.143 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3003 脚本名：common.behavior.FlyBehaviorScript
+2023-01-17 01:02:33.144 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3009 脚本名：common.behavior.GatherBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\GatherBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.401 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3009 脚本名：common.behavior.GatherBehaviorScript init reload success
+2023-01-17 01:02:33.401 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3009 脚本名：common.behavior.GatherBehaviorScript
+2023-01-17 01:02:33.402 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3011 脚本名：common.behavior.JumpBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\JumpBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.454 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3011 脚本名：common.behavior.JumpBehaviorScript init reload success
+2023-01-17 01:02:33.454 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3011 脚本名：common.behavior.JumpBehaviorScript
+2023-01-17 01:02:33.454 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3023 脚本名：common.behavior.MagicAiBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\MagicAiBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.510 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3023 脚本名：common.behavior.MagicAiBehaviorScript init reload success
+2023-01-17 01:02:33.510 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3023 脚本名：common.behavior.MagicAiBehaviorScript
+2023-01-17 01:02:33.511 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3020 脚本名：common.behavior.MagicBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\MagicBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.680 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3020 脚本名：common.behavior.MagicBehaviorScript init reload success
+2023-01-17 01:02:33.680 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3020 脚本名：common.behavior.MagicBehaviorScript
+2023-01-17 01:02:33.680 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3001 脚本名：common.behavior.MoveBehaviorScirpt;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\MoveBehaviorScirpt.java begin makeScript
+2023-01-17 01:02:33.753 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3001 脚本名：common.behavior.MoveBehaviorScirpt init reload success
+2023-01-17 01:02:33.753 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3001 脚本名：common.behavior.MoveBehaviorScirpt
+2023-01-17 01:02:33.753 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3006 脚本名：common.behavior.ReviveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\ReviveBehaviorScript.java begin makeScript
+2023-01-17 01:02:33.947 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3006 脚本名：common.behavior.ReviveBehaviorScript init reload success
+2023-01-17 01:02:33.947 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3006 脚本名：common.behavior.ReviveBehaviorScript
+2023-01-17 01:02:33.947 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3010 脚本名：common.behavior.RunBackBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\RunBackBehaviorScript.java begin makeScript
+2023-01-17 01:02:34.102 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3010 脚本名：common.behavior.RunBackBehaviorScript init reload success
+2023-01-17 01:02:34.102 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3010 脚本名：common.behavior.RunBackBehaviorScript
+2023-01-17 01:02:34.102 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3004 脚本名：common.behavior.RunBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\RunBehaviorScript.java begin makeScript
+2023-01-17 01:02:34.296 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3004 脚本名：common.behavior.RunBehaviorScript init reload success
+2023-01-17 01:02:34.296 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3004 脚本名：common.behavior.RunBehaviorScript
+2023-01-17 01:02:34.296 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：3012 脚本名：common.behavior.SkillMoveBehaviorScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\behavior\SkillMoveBehaviorScript.java begin makeScript
+2023-01-17 01:02:34.362 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：3012 脚本名：common.behavior.SkillMoveBehaviorScript init reload success
+2023-01-17 01:02:34.362 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：3012 脚本名：common.behavior.SkillMoveBehaviorScript
+2023-01-17 01:02:34.365 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：139 脚本名：common.bi.Bi4399Script;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\bi\Bi4399Script.java begin makeScript
+2023-01-17 01:02:34.589 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：139 脚本名：common.bi.Bi4399Script init reload success
+2023-01-17 01:02:34.589 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：139 脚本名：common.bi.Bi4399Script
+2023-01-17 01:02:34.590 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：133 脚本名：common.bi.BiScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\bi\BiScript.java begin makeScript
+2023-01-17 01:02:35.023 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：133 脚本名：common.bi.BiScript init reload success
+2023-01-17 01:02:35.023 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：133 脚本名：common.bi.BiScript
+2023-01-17 01:02:35.024 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：175 脚本名：common.bi.QQScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\bi\QQScript.java begin makeScript
+2023-01-17 01:02:35.168 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：175 脚本名：common.bi.QQScript init reload success
+2023-01-17 01:02:35.168 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：175 脚本名：common.bi.QQScript
+2023-01-17 01:02:35.169 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：75 脚本名：common.boss.WorldBossManagerScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\boss\WorldBossManagerScript.java begin makeScript
+2023-01-17 01:02:35.666 INFO [GameServer Start][ScriptAbstractManager.java:387] - 脚本id：75 脚本名：common.boss.WorldBossManagerScript init reload success
+2023-01-17 01:02:35.666 INFO [GameServer Start][ScriptAbstractManager.java:400] - 脚本id：75 脚本名：common.boss.WorldBossManagerScript
+2023-01-17 01:02:35.667 INFO [GameServer Start][ScriptAbstractManager.java:320] - 脚本id：66 脚本名：common.buff.BuffScript;fullJavaFilePath:M:\project\tzj\Server\GameServer\script\common\buff\BuffScript.java begin makeScript

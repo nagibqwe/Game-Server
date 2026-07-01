@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="role">
+    <resultMap id="bean" type="com.game.db.bean.roleBean" >
+        <id column="roleid" property="roleid" jdbcType="BIGINT" />
+        <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="platformName" property="platformName" jdbcType="VARCHAR" />
+        <result column="career" property="career" jdbcType="TINYINT" />
+        <result column="degree" property="degree" jdbcType="TINYINT" />
+        <result column="lv" property="lv" jdbcType="INTEGER" />
+        <result column="weapon" property="weapon" jdbcType="INTEGER" />
+        <result column="wingId" property="wingId" jdbcType="INTEGER" />
+        <result column="vipLevel" property="vipLevel" jdbcType="TINYINT" />
+        <result column="roledata" property="roledata" jdbcType="LONGVARCHAR" />		
+        <result column="createTime" property="createTime" jdbcType="BIGINT" />
+        <result column="deleteTime" property="deleteTime" jdbcType="INTEGER" />
+        <result column="serverId" property="serverId" jdbcType="INTEGER" />
+        <result column="equipMinStar" property="equipMinStar" jdbcType="INTEGER" />
+        <result column="languageType" property="languageType" jdbcType="INTEGER" />
+        <result column="fashionBodyId" property="fashionBodyId" jdbcType="INTEGER" />
+        <result column="fashionWeaponId" property="fashionWeaponId" jdbcType="INTEGER" />
+        <result column="lastLoginTime" property="lastLoginTime" jdbcType="BIGINT" /> 
+        <result column="useIconState" property="useIconState" jdbcType="INTEGER" />             
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from role
+    </select>
+	
+    <insert id="insert" parameterType="com.game.db.bean.roleBean">
+        insert into role (roleid,rolename,userId,platformName,career,degree,lv,weapon,wingId,roledata,createTime,deleteTime,serverId,equipMinStar,languageType,fashionBodyId,fashionWeaponId,lastLoginTime,useIconState) 
+        values(
+        #{roleid,jdbcType=BIGINT},
+        #{rolename,jdbcType=VARCHAR}, 
+        #{userId,jdbcType=BIGINT}, 
+        #{platformName,jdbcType=VARCHAR}, 
+        #{career,jdbcType=TINYINT}, 
+        #{degree,jdbcType=TINYINT}, 
+        #{lv,jdbcType=INTEGER},
+        #{weapon,jdbcType=INTEGER}, 
+        #{wingId,jdbcType=TINYINT},
+        #{roledata,jdbcType=LONGVARCHAR}, 
+        #{createTime,jdbcType=BIGINT}, 
+        #{deleteTime,jdbcType=INTEGER}, 
+        #{serverId,jdbcType=INTEGER},
+        #{equipMinStar,jdbcType=INTEGER},
+        #{languageType,jdbcType=INTEGER},
+        #{fashionBodyId,jdbcType=INTEGER},
+        #{fashionWeaponId,jdbcType=INTEGER},
+        #{lastLoginTime,jdbcType=BIGINT},
+        #{useIconState,jdbcType=INTEGER}
+        )
+    </insert>
+	
+    <insert id="update" parameterType="com.game.db.bean.roleBean">
+        update role set
+        rolename=#{rolename,jdbcType=VARCHAR}, 
+        degree=#{degree,jdbcType=TINYINT},
+        lv=#{lv,jdbcType=INTEGER},
+        weapon=#{weapon,jdbcType=INTEGER},
+        wingId=#{wingId,jdbcType=TINYINT},
+        roledata=#{roledata,jdbcType=LONGVARCHAR},
+        equipMinStar=#{equipMinStar,jdbcType=INTEGER},
+        languageType=#{languageType,jdbcType=INTEGER},
+        fashionBodyId=#{fashionBodyId,jdbcType=INTEGER},
+        fashionWeaponId=#{fashionBodyId,jdbcType=INTEGER},
+        lastLoginTime=#{lastLoginTime,jdbcType=BIGINT},
+        career=#{career,jdbcType=TINYINT},
+        useIconState=#{useIconState,jdbcType=INTEGER}
+        where roleid =#{roleid,jdbcType=BIGINT}
+    </insert>
+	
+    <select id="selectByUserId" parameterType="long" resultMap="bean">
+        select roleid,rolename,career,degree,lv,weapon,wingId,deleteTime,serverId,equipMinStar,languageType,fashionBodyId,fashionWeaponId,lastLoginTime from role where userId = #{userId,jdbcType=VARCHAR}
+    </select>
+     
+    <select id="select" parameterType="long" resultMap="bean">
+        select * from role where roleid = #{roleid,jdbcType=BIGINT}
+    </select>
+     
+    <select id="selectNameById" parameterType="long" resultType="java.lang.String">
+        select rolename from role where roleid = #{roleid,jdbcType=BIGINT}
+    </select>
+    
+    <select id="selectAllNames" resultType="java.lang.String">
+        select rolename from role
+    </select>
+    
+    <select id="selectAllIdAndNames" resultMap="bean">
+        select roleid, rolename, languageType from role
+    </select>
+    
+    <update id="deleteRole" parameterType="long">
+        update role set deleteTime=UNIX_TIMESTAMP(NOW()) where roleid = #{roleid,jdbcType=BIGINT}
+    </update>
+    
+    <update id="regainRole" parameterType="long">
+        update role set deleteTime=0 where roleid = #{roleid,jdbcType=BIGINT}
+    </update>
+	
+    <update id="updateUserId" parameterType="long">
+        update role set userId = #{userId, jdbcType = BIGINT} where roleid = #{roleid,jdbcType=BIGINT}
+    </update>
+    
+    <update id="updateIconStateByRoleId" parameterType="com.game.db.bean.roleBean">
+        update role set useIconState=#{useIconState,jdbcType=INTEGER} where roleid = #{roleid, jdbcType=BIGINT}
+    </update>
+    
+    <update id="updateIconStateByUserId" parameterType="com.game.db.bean.roleBean">
+        update role set useIconState=#{useIconState,jdbcType=INTEGER} where userId = #{userId, jdbcType = BIGINT}
+    </update>
+</mapper>
+

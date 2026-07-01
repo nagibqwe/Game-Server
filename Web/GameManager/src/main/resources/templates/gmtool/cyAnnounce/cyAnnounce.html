@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('循环公告列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-fluid">
+         <div class="container-fluid" style="margin-top: 10px">
+             <a id="mail1" class="label label-info" onclick="toggleTable(enableListDiv)">启用列表</a>
+             <div class="btn-group-sm" id="toolbar1" role="group">
+                 <a class="btn btn-success" onclick="$.operate.add()">
+                     <i class="fa fa-plus"></i> 添加
+                 </a>
+             </div>
+
+             <div id="enableListDiv" class="col-sm-12 select-table table-striped"
+                  style="word-break:break-all; word-wrap:break-all;">
+                 <table id="enableList"></table>
+             </div>
+         </div>
+         <div class="container-fluid" style="margin-top: 10px">
+             <a id="mail3" class="label label-info" onclick="toggleTable(disableListDiv)">禁用列表</a>
+             <div id="disableListDiv" class="col-sm-12 select-table table-striped"
+                  style="word-break:break-all; word-wrap:break-all;">
+                 <table id="disableList"></table>
+             </div>
+         </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/cyAnnounce";
+
+        $(function() {
+            initTable("enableList","toolbar1",prefix+"/list");
+            initTable("disableList","toolbar",prefix+"/disableList");
+            setInterval(function () {
+                $.table.search("", "enableList");
+                $.table.search("", "disableList");
+            }, 5000);
+        });
+        function initTable(id,toolbar,url) {
+            var options = {
+                id:id,
+                toolbar:toolbar,
+                url:url,
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                showSearch:false,
+                modalName: "循环公告",
+                columns: [
+                    {
+                        field: 'id',
+                        title: 'id',
+                        visible: false
+                    },
+                    {
+                        title: '序号',
+                        formatter: function (value, row, index) {
+                            return $.table.serialNumber(index);
+                        }
+                    },
+                    {
+                        field: 'content',
+                        title: '公告的内容'
+                    },
+                    {
+                        field: 'createDate',
+                        title: '创建时间'
+                    },
+                    {
+                        field: 'createUserName',
+                        title: '创建者'
+                    },
+                    {
+                        field: 'serverIds',
+                        title: '发送的服务器'
+                    },
+                    {
+                        field: 'fromDate',
+                        title: '开始日期'
+                    },
+                    {
+                        field: 'toDate',
+                        title: '结束日期'
+                    },
+                    {
+                        field: 'totalTimes',
+                        title: '总次数'
+                    },
+                    {
+                        field: 'nowTimes',
+                        title: '当前次数'
+                    },
+                    {
+                        field: 'cycleInterval',
+                        title: '时间频率(分)'
+                    },
+                    {
+                        field: 'nextDate',
+                        title: '下次满足时间'
+                    },
+                    {
+                        field: 'state',
+                        title: '状态',
+                        formatter:function (value, row, index) {
+                            if (value == 0){
+                                return "启用";
+                            }else if (value == 1){
+                                return "停用";
+                            }else if (value == 2){
+                                return "已过期";
+                            }else if (value == 3){
+                                return "已结束";
+                            }else if (value == 4){
+                                return "已删除";
+                            } else {
+                                return "未知";
+                            }
+                        }
+                    },
+                    {
+                        title: '操作',
+                        align: 'center',
+                        formatter: function(value, row, index) {
+                            var actions = [];
+                            if (row.state == 1){
+                                actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="updateState(\'' + row.id + '\',0)"><i class="fa fa-edit"></i>启用</a> ');
+                            }else if (row.state == 0){
+                                actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="updateState(\'' + row.id + '\',1)"><i class="fa fa-edit"></i>停用</a> ');
+                            }else if (row.state < 4){
+                                actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="deleteCyAnnounce(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a> ');
+                            }
+                            return actions.join('');
+                        }
+                    }]
+            };
+            $.table.init(options);
+        }
+
+        //更新循环公告的状态
+        function updateState(id, value) {
+            $.modal.confirm("确定要操作此公告吗？",function(){
+                $.post(prefix + "/jYCyAnnounce",
+                    {announceId: id, state: value},
+                    function (data) {
+                        if (data.ok) {
+                            $.modal.alertSuccess(data.msg);
+                            $.table.search("", "enableList");
+                            $.table.search("", "disableList");
+                        } else {
+                            $.modal.alertError(data.msg);
+                        }
+                    });
+            });
+        }
+
+        //删除循环公告
+        function deleteCyAnnounce(id) {
+            $.modal.confirm("确定要删除吗？",function(){
+                $.post(prefix + "/deleteCyAnnounce",
+                    {announceId: id},
+                    function (data) {
+                        if (data.ok) {
+                            $.modal.alertSuccess(data.msg);
+                            $.table.search("", "enableList");
+                            $.table.search("", "disableList");
+                        } else {
+                            $.modal.alertError(data.msg);
+                        }
+                    });
+            });
+        }
+
+    </script>
+</body>
+</html>

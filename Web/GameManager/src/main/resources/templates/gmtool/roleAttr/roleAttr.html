@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改属性列表')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>修改属性</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="setRoleAttrForm" class="form-horizontal m-t" method="post">
+
+                        <div class="form-group">
+                            <div th:replace="common/select_server_single.html"></div>
+                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <input type="hidden" id="requestUrl" value="gameServer">
+                            <input type="hidden" id="ignoreMerge" value="1">
+                        </div>
+                        <div id="roleDiv" class="form-group">
+                            <label class="col-sm-2 control-label is-required" for="roleId">角色ID:</label>
+                            <div class="col-sm-2">
+                                <input class="form-control" id="roleId" type="text" name="roleId" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label is-required" for="select_attrType">属性类型:</label>
+                            <div class="col-sm-2">
+                                <select id="select_attrType" name="attrType" class="selectClass">
+                                    <option value="0">等级</option>
+                                    <option value="1">境界</option>
+                                    <option value="2">重新接取主线任务(用于程序改bug用)</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -74px">
+                                <input class="form-control" id="attrValue" type="text" name="attrValue" placeholder="属性值" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reason" class="col-sm-2 control-label is-required">操作理由:</label>
+                            <div class="col-sm-2">
+                                <input id="reason" type="text" name="reason" class="form-control" value="用于游戏测试" required/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 4px">
+                            <label class="col-sm-2 control-label"></label>
+                            <button type="button" class="btn btn-primary" onclick="setRoleAttrByRoleId()">
+                                执行操作
+                            </button>
+                        </div>
+
+                        <div id="msg" class="container-fluid"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/roleAttr";
+
+        $(function () {
+            serverGroupChange();
+        });
+
+        $(function() {
+            var platform = $("#select_group").val();
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "修改属性",
+                columns: [
+                {
+                    field: 'id',
+                    title: '编号'
+                },
+                {
+                    title: '平台',
+                    formatter:function (value, row, index) {
+                        return platform;
+                    }
+                },
+                {
+                    field: 'serverId',
+                    title: '区服ID'
+                },
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },
+                {
+                    field: 'attrType',
+                    title: '属性类型'
+                },
+                {
+                    field: 'attrValue',
+                    title: '属性值'
+                },
+                {
+                    field: 'realValue',
+                    title: '真实属性值'
+                },
+                {
+                    field: 'actionTime',
+                    title: '操作时间'
+                },
+                {
+                    field: 'actionUser',
+                    title: '操作者名字'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="delRoleAttr(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        //设置角色属性操作
+        function setRoleAttrByRoleId() {
+            var select_server = $("#select_server").val();
+            if (!$('#setRoleAttrForm').validate().form()) {
+                $.modal.msgError("验证失败");
+                return;
+            }
+            $.ajax({
+                url: prefix + "/setRoleAttrByRoleId",
+                data: $("#setRoleAttrForm").serialize(),
+                method: "post",
+                dataType: "json",
+                success: function (data) {
+                    if (data.ok) {
+                        $("#setRoleAttrForm")[0].reset();
+                        $.modal.alertSuccess(data.msg);
+                        $("#select_server").val(select_server);
+                        $.table.search();
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+
+        //删除操作
+        function delRoleAttr(id) {
+            var select_server = $("#select_server").val();
+            $.ajax({
+                url: prefix + "/delRoleAttr",
+                data: {
+                    id: id
+                },
+                method: "post",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data.ok) {
+                        $.modal.alertSuccess(data.msg);
+                        $("#select_server").val(select_server);
+                        $.table.search();
+                    }else {
+                        $.modal.alertError(data.msg);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

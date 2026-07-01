@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('元宝用途统计')" />
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: bootstrap-table-export-js" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/stat_group_server_head"></div>
+
+
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <div th:replace="common/stat_date_head.html"></div>
+                            <li>
+                                <label class="col-sm-2 control-label" style="width: auto">道具</label>
+                                <select id="goldType" name="goldType" class="span3">
+                                    <option value="0" selected="selected">灵玉</option>
+                                    <option value="1">绑定灵玉</option>
+                                </select>
+                            </li>
+                            <div th:replace="common/stat_black_list_head.html"></div>
+                            <div th:replace="common/stat_search_head.html"></div>
+                        </ul>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+<script th:inline="javascript">
+    var prefix = ctx + "stat/stat_gold_purpose";
+    $(function() {
+        var options = {
+            url: prefix + "/stat_gold_purpose",
+            modalName: "DAU统计",
+            pagination: false,
+            firstLoad:false,
+            showExport:true,
+            columns: [{
+                field: 'reason',
+                title: '消耗途径',
+            }
+            ,{
+                field: 'users',
+                title: '消耗人数（帐号）',
+            },{
+                field: 'totalConsume',
+                title: '消耗数量',
+            },{
+                field: 'sid',
+                title: '所属服务器',
+             }]
+        };
+        $.table.init(options);
+    });
+
+</script>
+</body>
+</html>

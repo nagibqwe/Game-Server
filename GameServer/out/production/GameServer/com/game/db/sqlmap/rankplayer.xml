@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="rankplayer">
+
+    <resultMap id="bean" type="com.game.db.bean.RankPlayer">
+        <result column="roleId" property="roleId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="guildFlag" property="guildFlag" jdbcType="BOOLEAN" />
+        <result column="career" property="career" jdbcType="TINYINT"/>
+        <result column="createTime" property="createTime" jdbcType="BIGINT"/>
+        <result column="createSid" property="createSid" jdbcType="INTEGER"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="levelUpTime" property="levelUpTime" jdbcType="INTEGER"/>
+        <result column="fightPower" property="fightPower" jdbcType="BIGINT"/>
+        <result column="horseId" property="horseId" jdbcType="INTEGER"/>
+        <result column="horseFightPoint" property="horseFightPoint" jdbcType="INTEGER"/>
+        <result column="wingId" property="wingId" jdbcType="INTEGER"/>
+        <result column="wingFightPoint" property="wingFightPoint" jdbcType="INTEGER"/>
+        <result column="beWorshipedNum" property="beWorshipedNum" jdbcType="INTEGER"/>
+        <result column="exp" property="exp" jdbcType="BIGINT"/>
+        <result column="equipWashPer" property="equipWashPer" jdbcType="INTEGER"/>
+        <result column="equipStrengthenLv" property="equipStrengthenLv" jdbcType="INTEGER"/>
+        <result column="equipFightPower" property="equipFightPower" jdbcType="INTEGER"/>
+        <result column="gemFightPower" property="gemFightPower" jdbcType="INTEGER"/>
+        <result column="gemLv" property="gemLv" jdbcType="INTEGER"/>
+        <result column="magicWeaponDamage" property="magicWeaponDamage" jdbcType="INTEGER"/>
+        <result column="talismanFightPower" property="talismanFightPower" jdbcType="INTEGER"/>
+        <result column="magicFightPower" property="magicFightPower" jdbcType="INTEGER"/>
+        <result column="weaponFightPower" property="weaponFightPower" jdbcType="INTEGER"/>
+        <result column="strengthenFightPower" property="strengthenFightPower" jdbcType="INTEGER"/>
+        <result column="charm" property="charm" jdbcType="INTEGER"/>
+        <result column="offlineEfficiency" property="offlineEfficiency" jdbcType="INTEGER"/>
+        <result column="sendFlower" property="sendFlower" jdbcType="INTEGER"/>
+        <result column="shihai" property="shihai" jdbcType="INTEGER"/>
+        <result column="arenaRank" property="arenaRank" jdbcType="INTEGER" />
+        <result column="topHallFightPower" property="topHallFightPower" jdbcType="BIGINT" />
+        <result column="universeFightPower" property="universeFightPower" jdbcType="BIGINT" />
+        <result column="equipStar" property="equipStar" jdbcType="INTEGER" />
+        <result column="equipStarGradeNum" property="equipStarGradeNum" jdbcType="INTEGER" />
+        <result column="equipAllStar" property="equipAllStar" jdbcType="INTEGER" />
+        <result column="petFightPower" property="petFightPower" jdbcType="INTEGER" />
+        <result column="spiritFightPower" property="spiritFightPower" jdbcType="INTEGER" />
+        <result column="immEquipFightPower" property="immEquipFightPower" jdbcType="INTEGER" />
+        <result column="consumeGold" property="consumeGold" jdbcType="INTEGER" />
+        <result column="intimacy" property="intimacy" jdbcType="INTEGER" />
+
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from rankplayer
+    </select>
+
+    <insert id="insert" parameterType="com.game.db.bean.RankPlayer">
+        insert into rankplayer (roleId, name, guildFlag, career, createTime, createSid, level, levelUpTime, fightPower, horseId, horseFightPoint, wingId,
+        beWorshipedNum,exp,wingFightPoint,equipWashPer,equipStrengthenLv,equipFightPower,gemFightPower,gemLv,magicWeaponDamage,
+        talismanFightPower,magicFightPower,weaponFightPower,strengthenFightPower,charm,offlineEfficiency,sendFlower,shihai, arenaRank, topHallFightPower, universeFightPower, equipStar, equipStarGradeNum, equipAllStar,
+        petFightPower,spiritFightPower,immEquipFightPower,consumeGold,intimacy)
+        values (
+        #{roleId, jdbcType = BIGINT},
+        #{name, jdbcType = VARCHAR},
+        #{guildFlag, jdbcType = BOOLEAN},
+        #{career, jdbcType = TINYINT},
+        #{createTime, jdbcType = BIGINT},
+        #{createSid, jdbcType = INTEGER},
+        #{level, jdbcType = INTEGER},
+        #{levelUpTime, jdbcType = INTEGER},
+        #{fightPower, jdbcType = BIGINT},
+        #{horseId, jdbcType = INTEGER},
+        #{horseFightPoint, jdbcType = INTEGER},
+        #{wingId, jdbcType = INTEGER},
+        #{beWorshipedNum, jdbcType = INTEGER},
+        #{exp, jdbcType = BIGINT},
+        #{wingFightPoint, jdbcType = INTEGER},
+        #{equipWashPer, jdbcType= INTEGER},
+        #{equipStrengthenLv, jdbcType= INTEGER},
+        #{equipFightPower, jdbcType= INTEGER},
+        #{gemFightPower, jdbcType= INTEGER},
+        #{gemLv, jdbcType= INTEGER},
+        #{magicWeaponDamage, jdbcType= INTEGER},
+        #{talismanFightPower, jdbcType= INTEGER},
+        #{magicFightPower, jdbcType= INTEGER},
+        #{weaponFightPower, jdbcType= INTEGER},
+        #{strengthenFightPower, jdbcType= INTEGER},
+        #{charm, jdbcType= INTEGER},
+        #{offlineEfficiency, jdbcType= INTEGER},
+        #{sendFlower, jdbcType= INTEGER},
+        #{shihai, jdbcType= INTEGER},
+        #{arenaRank, jdbcType= INTEGER},
+        #{topHallFightPower, jdbcType= BIGINT},
+        #{universeFightPower, jdbcType= BIGINT},
+        #{equipStar, jdbcType= INTEGER},
+        #{equipStarGradeNum, jdbcType= INTEGER},
+        #{equipAllStar, jdbcType= INTEGER},
+        #{petFightPower, jdbcType= INTEGER},
+        #{spiritFightPower, jdbcType= INTEGER},
+        #{immEquipFightPower, jdbcType= INTEGER},
+        #{consumeGold, jdbcType= INTEGER},
+        #{intimacy, jdbcType= INTEGER}
+
+        )
+    </insert>
+
+    <update id="update" parameterType="com.game.db.bean.RankPlayer">
+        update rankplayer set
+        career = #{career, jdbcType = TINYINT},
+        name = #{name, jdbcType = VARCHAR},
+        guildFlag = #{guildFlag, jdbcType= BOOLEAN},
+        createTime = #{createTime, jdbcType = BIGINT},
+        createSid = #{createSid, jdbcType = INTEGER},
+        level = #{level, jdbcType = INTEGER},
+        levelUpTime = #{levelUpTime, jdbcType = INTEGER},
+        fightPower = #{fightPower, jdbcType = BIGINT},
+        horseId = #{horseId, jdbcType = INTEGER},
+        horseFightPoint = #{horseFightPoint, jdbcType = INTEGER},
+        wingId = #{wingId, jdbcType = INTEGER},
+        beWorshipedNum = #{beWorshipedNum, jdbcType = INTEGER},
+        exp = #{exp, jdbcType = BIGINT},
+        wingFightPoint = #{wingFightPoint, jdbcType = INTEGER},
+        equipWashPer=#{equipWashPer, jdbcType= INTEGER},
+        equipStrengthenLv=#{equipStrengthenLv, jdbcType= INTEGER},
+        equipFightPower=#{equipFightPower, jdbcType= INTEGER},
+        gemFightPower=#{gemFightPower, jdbcType= INTEGER},
+        gemLv=#{gemLv, jdbcType= INTEGER},
+        magicWeaponDamage=#{magicWeaponDamage, jdbcType= INTEGER},
+        talismanFightPower=#{talismanFightPower, jdbcType= INTEGER},
+        magicFightPower=#{magicFightPower, jdbcType= INTEGER},
+        weaponFightPower=#{weaponFightPower, jdbcType= INTEGER},
+        strengthenFightPower=#{strengthenFightPower, jdbcType= INTEGER},
+        charm=#{charm, jdbcType= INTEGER},
+        offlineEfficiency=#{offlineEfficiency, jdbcType= INTEGER},
+        sendFlower=#{sendFlower, jdbcType= INTEGER},
+        shihai=#{shihai, jdbcType= INTEGER},
+        arenaRank=#{arenaRank, jdbcType= INTEGER},
+        topHallFightPower=#{topHallFightPower, jdbcType= BIGINT},
+        universeFightPower=#{universeFightPower, jdbcType= BIGINT},
+        equipStar=#{equipStar, jdbcType= INTEGER},
+        equipStarGradeNum=#{equipStarGradeNum, jdbcType= INTEGER},
+        equipAllStar=#{equipAllStar, jdbcType= INTEGER},
+        petFightPower=#{petFightPower, jdbcType= INTEGER},
+        spiritFightPower=#{spiritFightPower, jdbcType= INTEGER},
+        immEquipFightPower=#{immEquipFightPower, jdbcType= INTEGER},
+        consumeGold=#{consumeGold, jdbcType= INTEGER},
+        intimacy=#{intimacy, jdbcType= INTEGER}
+        where roleId = #{roleId, jdbcType = BIGINT}
+    </update>
+
+    <delete id="deleteByRoleId" parameterType="long">
+        delete from rankplayer where roleId = #{roleId, jdbcType = BIGINT}
+    </delete>
+
+</mapper>

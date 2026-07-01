@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('禁言')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <div th:replace="common/ban_chat.html"></div>
+
+    <input class="form-control" id="selectServerIdHide" type="text" name="selectServerIdHide" required/>
+</div>
+
+<script th:inline="javascript">
+    function init(serverId, roleIds) {
+        $("#userIdGroup").hide();
+        $("#selectServerIdHide").hide();
+        $("#selectServerIdHide").val(serverId);
+        $("#userIds").val(roleIds);
+    }
+
+</script>
+</body>
+</html>

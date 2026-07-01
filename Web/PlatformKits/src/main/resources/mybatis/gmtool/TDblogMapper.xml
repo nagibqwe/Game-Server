@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.gmtool.dblog.mapper.TDblogMapper">
+    
+    <resultMap type="TDblog" id="TDblogResult">
+        <result property="id"    column="id"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="serverName"    column="serverName"    />
+        <result property="groupName"    column="groupName"    />
+        <result property="type"    column="type"    />
+        <result property="serverIpPort"    column="serverIpPort"    />
+        <result property="dbname"    column="dbname"    />
+        <result property="dbuser"    column="dbuser"    />
+        <result property="dbpassword"    column="dbpassword"    />
+        <result property="owerlist"    column="owerlist"    />
+        <result property="isHeFu"    column="isHeFu"    />
+        <result property="hefuServerID"    column="hefuServerID"    />
+        <result property="hefuTime"    column="hefuTime"    />
+        <result property="serverType"    column="serverType"    />
+        <result property="isDeleted"    column="isDeleted"    />
+        <result property="serverOpenTime"    column="serverOpenTime"    />
+    </resultMap>
+
+    <sql id="selectTDblogVo">
+        select id, serverId, serverName, groupName, type, serverIpPort, dbname, dbuser, dbpassword, owerlist, isHeFu, hefuServerID, hefuTime, serverType, isDeleted, serverOpenTime from t_dblog
+    </sql>
+
+    <select id="selectTDblogList" parameterType="TDblog" resultMap="TDblogResult">
+        <include refid="selectTDblogVo"/>
+        <where>  
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            <if test="serverName != null  and serverName != ''"> and serverName like concat('%', #{serverName}, '%')</if>
+            <if test="groupName != null  and groupName != ''"> and groupName like concat('%', #{groupName}, '%')</if>
+            <if test="type != null "> and type = #{type}</if>
+        </where>
+    </select>
+    
+    <select id="selectTDblogById" parameterType="Long" resultMap="TDblogResult">
+        <include refid="selectTDblogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTDblog" parameterType="TDblog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_dblog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">serverId,</if>
+            <if test="serverName != null">serverName,</if>
+            <if test="groupName != null">groupName,</if>
+            <if test="type != null">type,</if>
+            <if test="serverIpPort != null">serverIpPort,</if>
+            <if test="dbname != null">dbname,</if>
+            <if test="dbuser != null">dbuser,</if>
+            <if test="dbpassword != null">dbpassword,</if>
+            <if test="owerlist != null">owerlist,</if>
+            <if test="isHeFu != null">isHeFu,</if>
+            <if test="hefuServerID != null">hefuServerID,</if>
+            <if test="hefuTime != null">hefuTime,</if>
+            <if test="serverType != null">serverType,</if>
+            <if test="isDeleted != null">isDeleted,</if>
+            <if test="serverOpenTime != null">serverOpenTime,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">#{serverId},</if>
+            <if test="serverName != null">#{serverName},</if>
+            <if test="groupName != null">#{groupName},</if>
+            <if test="type != null">#{type},</if>
+            <if test="serverIpPort != null">#{serverIpPort},</if>
+            <if test="dbname != null">#{dbname},</if>
+            <if test="dbuser != null">#{dbuser},</if>
+            <if test="dbpassword != null">#{dbpassword},</if>
+            <if test="owerlist != null">#{owerlist},</if>
+            <if test="isHeFu != null">#{isHeFu},</if>
+            <if test="hefuServerID != null">#{hefuServerID},</if>
+            <if test="hefuTime != null">#{hefuTime},</if>
+            <if test="serverType != null">#{serverType},</if>
+            <if test="isDeleted != null">#{isDeleted},</if>
+            <if test="serverOpenTime != null">#{serverOpenTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTDblog" parameterType="TDblog">
+        update t_dblog
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="serverName != null">serverName = #{serverName},</if>
+            <if test="groupName != null">groupName = #{groupName},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="serverIpPort != null">serverIpPort = #{serverIpPort},</if>
+            <if test="dbname != null">dbname = #{dbname},</if>
+            <if test="dbuser != null">dbuser = #{dbuser},</if>
+            <if test="dbpassword != null">dbpassword = #{dbpassword},</if>
+            <if test="owerlist != null">owerlist = #{owerlist},</if>
+            <if test="isHeFu != null">isHeFu = #{isHeFu},</if>
+            <if test="hefuServerID != null">hefuServerID = #{hefuServerID},</if>
+            <if test="hefuTime != null">hefuTime = #{hefuTime},</if>
+            <if test="serverType != null">serverType = #{serverType},</if>
+            <if test="isDeleted != null">isDeleted = #{isDeleted},</if>
+            <if test="serverOpenTime != null">serverOpenTime = #{serverOpenTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTDblogById" parameterType="Long">
+        delete from t_dblog where id = #{id}
+    </delete>
+
+    <delete id="deleteTDblogByIds" parameterType="String">
+        delete from t_dblog where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.serverExtra.mapper.SdkServerExtraMapper">
+
+    <resultMap type="SdkServerExtra" id="SdkServerExtraResult">
+        <result property="id"    column="id"    />
+        <result property="serverListId"    column="server_list_id"    />
+        <result property="serverId"    column="server_id"    />
+        <result property="sortId"    column="sort_id"    />
+        <result property="serverStatus"    column="server_status"    />
+        <result property="groupType"    column="group_type"    />
+        <result property="serverLabel"    column="server_label"    />
+        <result property="sceId"    column="sce_id"    />
+        <result property="appVersion"    column="appVersion"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectSdkServerExtraVo">
+        select id, server_list_id, server_id, sort_id, server_status, group_type, server_label, sce_id, appVersion, update_time, create_time from sdk_server_extra
+    </sql>
+
+    <select id="selectSdkServerExtraList" parameterType="SdkServerExtra" resultMap="SdkServerExtraResult">
+        <include refid="selectSdkServerExtraVo"/>
+        <where>
+            <if test="sortId != null "> and sort_id = #{sortId}</if>
+            <if test="serverStatus != null "> and server_status = #{serverStatus}</if>
+            <if test="groupType != null "> and group_type = #{groupType}</if>
+            <if test="serverLabel != null "> and server_label = #{serverLabel}</if>
+            <if test="sceId != null  and sceId != ''"> and sce_id = #{sceId}</if>
+            <if test="appVersion != null  and appVersion != ''"> and appVersion = #{appVersion}</if>
+        </where>
+    </select>
+
+    <select id="selectSdkServerExtraById" parameterType="Long" resultMap="SdkServerExtraResult">
+        <include refid="selectSdkServerExtraVo"/>
+        where server_list_id = #{serverListId}
+    </select>
+
+    <insert id="insertSdkServerExtra" parameterType="SdkServerExtra" useGeneratedKeys="true" keyProperty="id">
+        insert into sdk_server_extra
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="serverListId != null">server_list_id,</if>
+            <if test="serverId != null">server_id,</if>
+            <if test="sortId != null">sort_id,</if>
+            <if test="serverStatus != null">server_status,</if>
+            <if test="groupType != null">group_type,</if>
+            <if test="serverLabel != null">server_label,</if>
+            <if test="sceId != null">sce_id,</if>
+            <if test="appVersion != null">appVersion,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="serverListId != null">#{serverListId},</if>
+            <if test="serverId != null">#{serverId},</if>
+            <if test="sortId != null">#{sortId},</if>
+            <if test="serverStatus != null">#{serverStatus},</if>
+            <if test="groupType != null">#{groupType},</if>
+            <if test="serverLabel != null">#{serverLabel},</if>
+            <if test="sceId != null">#{sceId},</if>
+            <if test="appVersion != null">#{appVersion},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSdkServerExtra" parameterType="SdkServerExtra">
+        update sdk_server_extra
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null">id = #{id},</if>
+            <if test="serverId != null">server_id = #{serverId},</if>
+            <if test="sortId != null">sort_id = #{sortId},</if>
+            <if test="serverStatus != null">server_status = #{serverStatus},</if>
+            <if test="groupType != null">group_type = #{groupType},</if>
+            <if test="serverLabel != null">server_label = #{serverLabel},</if>
+            <if test="sceId != null">sce_id = #{sceId},</if>
+            <if test="appVersion != null">appVersion = #{appVersion},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where server_list_id = #{serverListId}
+    </update>
+
+    <delete id="deleteSdkServerExtraById" parameterType="Long">
+        delete from sdk_server_extra where server_list_id = #{serverListId}
+    </delete>
+
+    <delete id="deleteSdkServerExtraByIds" parameterType="String">
+        delete from sdk_server_extra where server_list_id in
+        <foreach item="serverListId" collection="array" open="(" separator="," close=")">
+            #{serverListId}
+        </foreach>
+    </delete>
+    <select id="selectServerExtraByServerIds" parameterType="java.util.Map" resultMap="SdkServerExtraResult">
+        select * from sdk_server_extra where server_id in
+        <foreach item="server_id" collection="serverIds" open="(" separator="," close=")">
+            #{server_id}
+        </foreach>
+        and server_list_id = #{serverListId}
+    </select>
+    <insert id="saveServerExtra" parameterType="SdkServerExtra">
+		replace into sdk_server_extra(id,server_list_id, server_id, sort_id, server_status, group_type, server_label, sce_id, appVersion, update_time,create_time)
+        values (#{id},#{serverListId}, #{serverId}, #{sortId}, #{serverStatus}, #{groupType}, #{serverLabel}, #{sceId}, #{appVersion}, #{updateTime},#{createTime})
+	</insert>
+    <select id="selectServerIdsByServerListId" parameterType="Long" resultType="Long">
+        select server_id from sdk_server_extra where server_list_id = #{serverListId}
+    </select>
+    <delete id="deleteServerExtraByServerListIdAndServerId" parameterType="java.util.Map">
+        delete from sdk_server_extra where server_list_id = #{serverListId} and server_id = #{serverId}
+    </delete>
+    <delete id="deleteServerExtraByServerId" parameterType="java.util.Map">
+        delete from sdk_server_extra where server_id in
+        <foreach item="server_id" collection="serverIds" open="(" separator="," close=")">
+            #{server_id}
+        </foreach>
+    </delete>
+    <select id="selectSdkServerExtraByServerListId" parameterType="Long" resultMap="SdkServerExtraResult">
+        <include refid="selectSdkServerExtraVo"/>
+        where server_list_id = #{serverListId}
+    </select>
+    <select id="selectSdkServerExtraByServerListIdAndServerId" parameterType="java.util.Map" resultMap="SdkServerExtraResult">
+        <include refid="selectSdkServerExtraVo"/>
+        where server_list_id = #{serverListId} and server_id = #{serverId}
+    </select>
+    <select id="selectSdkServerExtraByServerId" parameterType="java.util.Map" resultMap="SdkServerExtraResult">
+        select * from sdk_server_extra where server_id in
+        <foreach item="server_id" collection="serverIds" open="(" separator="," close=")">
+            #{server_id}
+        </foreach>
+    </select>
+    <select id="selectSdkServerExtraId" resultType="Long">
+        select id from sdk_server_extra order by id
+    </select>
+</mapper>

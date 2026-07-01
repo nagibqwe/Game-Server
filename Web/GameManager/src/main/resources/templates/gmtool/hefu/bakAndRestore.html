@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('数据库备份列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="bakall()" shiro:hasPermission="gmtool:dbbak:add">
+                    <i class="fa"></i> 全部备份
+                </a>
+                <a class="btn btn-success" onclick="restoreAll()" shiro:hasPermission="gmtool:dbbak:edit">
+                    <i class="fa"></i> 全部还原
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+
+            <input name="id" type="hidden" th:value="${id}" />
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gmtool:dbbak:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gmtool:dbbak:remove')}]];
+        var prefix = ctx + "gmtool/hefu";
+        var id = $(" input[ name='id' ] ").val();
+        $(function() {
+            var options = {
+                url: prefix + "/bakList/",
+                modalName: "数据库备份",
+                queryParams: {"id":id},
+                columns: [
+                //     {
+                //     checkbox: true
+                // },
+                {
+                    field: 'id',
+                    title: 'ID',
+                    visible: false
+                },
+                {
+                    field: 'serverId',
+                    title: '服务器id'
+                },
+                {
+                    field: 'type',
+                    title: '类型',
+                    formatter: function(value, row, index) {
+                        return value == 1 ? "游戏库" : "日志库";
+                    }
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间'
+                },
+                {
+                    field: 'url',
+                    title: '备份文件地址',
+                    formatter: function(value, row, index) {
+                        return value == null ? "" : value.length > 15 ? '<span title="'+value+'">'+value.substring(0,15) + "..."+'</span>' : value;
+                    }
+                },
+                {
+                    field: 'size',
+                    title: '文件大小'
+                },
+                {
+                    field: 'baking',
+                    title: '状态',
+                    formatter: function(value, row, index) {
+                        return value == null ? "" : "备份中";
+                    }
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="bak('+row.serverId+','+row.type+')"><i class="fa"></i>备份</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="restore('+row.serverId+','+row.type+')"><i class="fa"></i>还原</a> ');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        function bakall(){
+            var reloadCacheUrl = prefix + "/dbbak";
+            $.post(reloadCacheUrl, {id:id}, function (data,status){
+                if(status =='success'){
+                    if(data.code == 0){
+                        $.modal.alertSuccess('操作成功');
+                    }else{
+                        $.modal.alertError(data.msg);
+                    }
+                }else{
+                    $.modal.alertError('操作失败');
+                }
+            });
+        }
+
+        function bak(serverId, type){
+            var reloadCacheUrl = prefix + "/dbbak";
+            $.post(reloadCacheUrl, {id : id, serverId : serverId, type : type}, function (data,status){
+                if(status =='success'){
+                    if(data.code == 0){
+                        $.modal.alertSuccess('操作成功');
+                    }else{
+                        $.modal.alertError(data.msg);
+                    }
+                }else{
+                    $.modal.alertError('操作失败');
+                }
+            });
+        }
+
+        function restoreAll(){
+            var reloadCacheUrl = prefix + "/dbrestore";
+            $.modal.loading("数据库还原中...");
+            $.post(reloadCacheUrl, {id : id}, function (data,status){
+                $.modal.closeLoading();
+                if(status =='success'){
+                    if(data.code == 0){
+                        $.modal.alertSuccess('操作成功');
+                    }else{
+                        $.modal.alertError(data.msg);
+                    }
+                }else{
+                    $.modal.alertError('操作失败');
+                }
+            });
+        }
+
+        function restore(serverId, type){
+            var reloadCacheUrl = prefix + "/dbrestore";
+            $.modal.loading("数据库还原中...");
+            $.post(reloadCacheUrl, {id : id, serverId : serverId, type : type}, function (data,status){
+                $.modal.closeLoading();
+                if(status =='success'){
+                    if(data.code == 0){
+                        $.modal.alertSuccess('操作成功');
+                    }else{
+                        $.modal.alertError(data.msg);
+                    }
+                }else{
+                    $.modal.alertError('操作失败');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

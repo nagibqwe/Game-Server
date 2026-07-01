@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('节日特惠')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var recharges=new Map();
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+            loadRecharge();
+        });
+
+        //加载goods_type类型为11的充值表数据
+        function loadRecharge() {
+            $.ajax({
+                url: ctx + "gmtool/rechargeItem/getRechargeByType",
+                method: "post",
+                dataType: "json",
+                async:false,
+                success: function (data) {
+                    if (!data.ok) {
+                        $.modal.alertError("recharges load failed");
+                        return;
+                    }
+                    $.each(data.data, function (i, n) {
+                        recharges.set(n.goodsId + "",n.goodsName);
+                    });
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        function jiangliGrp(obj) {
+            var count = $("#cfgCount").val();
+            console.log("count"+count);
+            var rewardInput = 'reward' + count;
+            var rewardAddBtn = 'showAddItemModel' + count;
+            $("#cfgCount").val(Number(count)+1);
+            html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">充值配置ID:</label>' +
+                // '<input type="text" class="form-control"  name="rechargeId" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="购买金额(单位分)" style="">' +
+                '<select id="select_rechargeId" name="rechargeId" class="form-control heightSet">' +
+                '</select>' +
+                '<label class="input-group-addon">奖励列表:</label>' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="添加奖励" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="reward"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" id="delGridGroup"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+            loadRechargeData();
+        }
+        //下拉框选项生成
+        var countRecharge=0;
+        function loadRechargeData() {
+            recharges.forEach(function(value, key) {
+                $("select[name='rechargeId']").eq(countRecharge).append("<option value='" + key +"'>("+key+") " + value +"</option>");
+            });
+            countRecharge+=1;
+        }
+
+    </script>
+
+    <script>
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $(document).on('click', '#delGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var saltIp = $(this).parent().parent().find('#saltIp').val();
+            el.parentNode.removeChild(el);
+            return;
+        })
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>节日特惠<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="对应充值表rechargeitem中的类型为11的充值档位，如需新增其他档位，需要添加rechargeitem表"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11">
+                            <legend>档位奖励</legend>
+                            <fieldset>
+                                <div class="input-group" id="jianglishuju">
+                                    <label class="input-group-addon">奖励数据配置:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="jiangliBtn"
+                                            onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <input type="hidden" id="cfgCount" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

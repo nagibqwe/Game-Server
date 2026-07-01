@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('服务器额外信息编辑')" />
+    <th:block th:include="include :: select2-css" />
+    <th:block th:include="include :: bootstrap-select-css" />
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="serverListEdit">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">服务器ID：</label>
+            <div class="col-sm-3">
+                <input name="serverId" id="serverId" class="form-control" type="text" readonly>
+            </div>
+            <label class="col-sm-2 control-label">服务器名：</label>
+            <div class="col-sm-3">
+                <input name="serverName" class="form-control" type="text" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">排序值：</label>
+            <div class="col-sm-3">
+                <input name="sortId" class="form-control" type="text" onkeyup="value=value.replace(/\D/g,'')">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">服务器状态：</label>
+            <div class="col-sm-3">
+                <select name="serverStatus" id="serverStatus" class="form-control noselect2 selectpicker">
+                    <option value="0">未开放</option>
+                    <option value="1">开放中</option>
+                    <option value="2">维护中</option>
+                </select>
+            </div>
+            <label class="col-sm-2 control-label">游戏服类型：</label>
+            <div class="col-sm-3">
+                <select name="groupType" id="groupType" class="form-control noselect2 selectpicker">
+                    <option value="0">测试</option>
+                    <option value="1">先锋</option>
+                    <option value="2">正式</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">热度标签：</label>
+            <div class="col-sm-5">
+                <label><input name="serverLabel" type="checkbox" value="0"/>正常</label>
+                <label><input name="serverLabel" type="checkbox" value="1"/>爆满</label>
+                <label><input name="serverLabel" type="checkbox" value="2"/>推荐</label>
+                <label><input name="serverLabel" type="checkbox" value="3"/>新服</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">场景ID：</label>
+            <div class="col-sm-4">
+                <input name="sceId" class="form-control" type="text" onkeyup='isContains(this)' placeholder='多个场景ID请用英文(,)隔开'>
+            </div>
+            <div style="margin-top: 5px"><i id = "helpSceId" class="fa fa-question-circle" onclick="showTips(this,'helpSceId')"></i></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">客户端版本ID：</label>
+            <div class="col-sm-4">
+                <input name="appVersion" class="form-control" type="text">
+            </div>
+            <div style="margin-top: 5px"><i id = "helpAppVersion" class="fa fa-question-circle" onclick="showTips(this,'helpAppVersion')"></i></div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer" />
+<script th:src="@{/js/jquery.tmpl.js}"></script>
+<script th:src="@{/ruoyi/js/serverList.js}"></script>
+<th:block th:include="include :: select2-js" />
+<th:block th:include="include :: bootstrap-select-js" />
+
+<script th:inline="javascript">
+
+    var helpSceId = "<span style='color:Black'> " +
+        "<b>指标说明(点击键盘Esc关闭)</b></br>" +
+        "场景ID为空:查询时只能获取场景ID为空的服务器列表</br>" +
+        "场景ID不为空:查询时获取场景ID为空和是当前选择的场景ID的服务器列表</br>" +
+        "</span>";
+    var helpAppVersion = "<span style='color:Black'> " +
+        "<b>指标说明(点击键盘Esc关闭)</b></br>" +
+        "客户端版本ID为空:查询时只能获取客户端版本ID为空的服务器列表</br>" +
+        "客户端版本ID不为空:查询时获取客户端版本ID为空和是当前选择的客户端版本ID的服务器列表</br>" +
+        "</span>";
+    function showTips(obj,helpName) {
+        var helpStr="";
+        if (helpName == 'helpSceId'){
+            helpStr = helpSceId;
+        }else {
+            helpStr = helpAppVersion;
+        }
+        layer.tips(helpStr, obj, {
+            tips: [4,'#ffffff'],
+            time: -1,
+            closeBtn:1,
+            area: ['auto', 'auto'],
+            success: function () {
+                $(".layui-layer-tips .layui-layer-setwin").css({'top':'14px','right':'16px'}); //按钮位置 
+                $(".layui-layer-content").css('padding-right', '10px');
+            }
+        });
+    }
+
+    //将表中的数据传到弹出的页面中(赋值到弹框中)
+    function initEditValue(data) {
+        $("input[name='serverId']").val(data.serverId);
+        $("input[name='serverName']").val(data.serverName);
+        $("input[name='sortId']").val(data.sortId);
+        $(":input[name='serverStatus']").selectpicker('val', data.serverStatus);
+        $(":input[name='groupType']").selectpicker('val', data.groupType);
+        setServerLabelValue(data);
+        $("input[name='sceId']").val(data.sceId);
+        $("input[name='appVersion']").val(data.appVersion);
+        $("input[name='serverId']").val(data.serverId);
+        $("input[name='serverName']").val(data.serverName);
+
+    }
+
+    function setServerLabelValue(data) {
+        var list2=["正常","爆满","推荐","新服"];
+        var serverLabelArr = data.serverLabel.split(",");
+        var serverLabelName = $("input:checkbox[name='serverLabel']");
+        console.log(serverLabelName);
+        for (var j=0;j<serverLabelArr.length;j++){
+            for (k=0;k<list2.length;k++){
+                var serverLabelValue = serverLabelName.eq(k).val();
+                if (parseInt(serverLabelArr[j]) == serverLabelValue){
+                    serverLabelName.eq(k).prop("checked",true);
+                }else {
+                    continue;
+                }
+            }
+        }
+    }
+    function initAddValue(serversId,serverName) {
+        $("input[name='serverId']").val(serversId);
+        $("input[name='serverName']").val(serverName);
+    }
+    //保存修改后的值
+    function saveClientData() {
+        var serverLabelArr=[];
+        var obj=new Object();
+        var newData = $("#serverListEdit").serializeArray();
+        for (var i=0;i<newData.length;i++){
+            if (newData[i].name == "serverLabel"){
+                serverLabelArr.push(newData[i].value);
+            }
+            var name=newData[i].name;
+            var value=newData[i].value;
+            obj[name]=value;
+        }
+        obj["serverLabel"]=serverLabelArr.toString();
+        // alert(JSON.stringify(newData));
+        return obj;
+    }
+
+</script>
+</body>
+</html>

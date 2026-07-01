@@ -1,0 +1,625 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="${base}/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${base}/css/jquery.shCircleLoader.css">
+    <script type="text/javascript" src="${base}/js/jquery/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="${base}/css/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${base}/js/global.js"></script>
+    <script type="text/javascript" src="${base}/js/tableExport.js"></script>
+    <script type="text/javascript" src="${base}/js/jquery/jquery.shCircleLoader-min.js"></script>
+    <script type="text/javascript" src="${base}/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${base}/easyui/jquery.edatagrid.js"></script>
+    <script type="text/javascript" src="${base}/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="${base}/easyui/themes/default/easyui.css" type="text/css">
+    <link rel="stylesheet" href="${base}/easyui/themes/icon.css" type="text/css">
+    <script type="text/javascript">
+        var base = '${base}';
+        var jspName = "serverGroup.jsp";
+        var editBoxing = undefined;//是否有正在编辑行的标识
+        var countServer = 0;//每组数据中包含的服务器个数统计
+        var tempAdd = {};//点击加号按钮临时存放的数据集合
+        var oldEditData;//点击修改时保存当前行的数据
+        $(function () {
+            loadPublicGroup(jspName);
+            setTimeout(function () {
+                getServerGroupList();
+            }, 500)
+        });
+
+        $(function(){
+            $("#serverGroupDataGrid").datagrid({
+                // url:base+"/serverGroup/getServerGroup",
+                striped:true,//交替显示行背景
+                fit:true,
+                iconCls:"icon-save",
+                fitColumns:true,
+                rownumbers:true,
+                pagination:true,
+                singleSelect: true,
+                pageSize:10000,
+                pageList:[10000],
+                idField : 'bigGroupId',
+                columns:[[
+                    {
+                        field:'bigGroupId',
+                        title:'大组ID',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'groupId',
+                        title:'组ID',
+                        width:'10%',
+                        align:'left'
+                    },
+                    {
+                        field:'area',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverId1',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName1',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field:'serverId2',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName2',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field:'serverId3',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName3',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field:'serverId4',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName4',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field:'serverId5',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName5',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field:'serverId6',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName6',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field:'serverId7',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName7',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field:'serverId8',
+                        title:'',
+                        width:'0%',
+                        align:'left',
+                        hidden:true
+                    },
+                    {
+                        field:'serverName8',
+                        title:'服务器名',
+                        width:'10%',
+                        align:'left',
+                        formatter:formatServer
+                    },
+                    {
+                        field: 'action', title: '【操作】', width: '10%', align: 'center',
+                        formatter: function (value, row, index) {
+                            if (row.editing) {
+                                var s = '<a href="#" onclick="saverow('+index+')">保存</a> ';
+                                var c = '<a href="#" onclick="cancelrow('+index+')">取消</a>';
+                                return s + c;
+                            } else {
+                                var e = '<a href="#" onclick="editrow('+index+')">修改</a> ';
+                                return e;
+                            }
+                        }
+                    }
+                ]],
+                onBeforeEdit:function(index,row){
+                    row.editing = true;
+                    $('#serverGroupDataGrid').datagrid('selectRow',index);
+                    $('#serverGroupDataGrid').datagrid('refreshRow', index);
+                    // updateActions(index);
+                },
+                onAfterEdit:function(index,row){
+                    row.editing = false;
+                    $('#serverGroupDataGrid').datagrid('selectRow',index);
+                    $('#serverGroupDataGrid').datagrid('refreshRow', index);
+                    console.log(row);
+                    // updateActions(index);
+                },
+                onCancelEdit:function(index,row){
+                    row.editing = false;
+                    $('#serverGroupDataGrid').datagrid('selectRow',index);
+                    $('#serverGroupDataGrid').datagrid('refreshRow', index);
+                    // updateActions(index);
+                }
+            });
+        });
+
+        function updateActions(index,updateData){
+            $('#serverGroupDataGrid').datagrid('updateRow',{
+                index: index,
+                // row:{serverName2:"dfgsgsg"}
+                row:updateData
+            });
+        }
+        function removeServer(obj,index,oldServerName) {
+            var updateData=new Object();
+            if (editBoxing==index){
+                var row = selectRow(index);
+                var serverId="serverId";
+                var serverName="serverName";
+                for (var i=1;i<9;i++){//最多8个
+                    serverId+=i;
+                    console.log("dddd:"+serverId);
+                    serverName+=i;
+                    if (row[serverName] == oldServerName){
+                        addToNotGroup(row[serverId],row[serverName]);
+                        updateData[serverId]=0;
+                        updateData[serverName]="";
+
+                        $(obj).parent().remove();
+                        countServer-=1;
+                        // console.log("aaaa:"+countServer);
+                        // event.stopPropagation();
+                        $('#serverGroupDataGrid').datagrid('updateRow',{
+                            index: index,
+                            // row:{serverName2:"dfgsgsg"}
+                            row:updateData
+                        });
+                        return;
+                    }else {
+                        //还原
+                        serverId="serverId";
+                        serverName="serverName";
+                        continue;
+                    }
+                }
+            }else if (editBoxing==undefined) {
+                return;
+            }else {
+                $.messager.alert("提示","有未保存的编辑！","info",function () {
+                    $('#serverGroupDataGrid').datagrid('selectRow',editBoxing);
+                });
+                return;
+            }
+        }
+
+        function editrow(index){
+            if (editBoxing!=undefined){
+                if (index != editBoxing){
+                    $.messager.alert("提示","有未保存的编辑！","info",function () {
+                        $('#serverGroupDataGrid').datagrid('selectRow',editBoxing);
+                    });
+                    return;
+                }
+            }else {
+                editBoxing=index;
+                countServer=0;//每次点击修改将countServer重置为0
+                var row = selectRow(index);
+                oldEditData=JSON.stringify(row);
+                console.log("oldEditData:"+JSON.stringify(oldEditData));
+                for (var j=1;j<9;j++){
+                    var serverId="serverId";
+                    var serverName="serverName";
+                    serverId+=j;
+                    // console.log("serverId:"+serverId);
+                    serverName+=j;
+                    if (row[serverId] != 0){
+                        countServer+=1; //点击修改时初始化最开始的每行服务器总个数
+                    }
+                    // console.log("countServer:"+countServer);
+                }
+            }
+
+            $('#serverGroupDataGrid').datagrid('beginEdit', index);
+        }
+        function saverow(index){
+            var data=$('#serverGroupDataGrid').datagrid("getData"); // 获取所有数据
+            tempAdd={};//清空临时存放的服务器数据
+            console.log(data.rows);
+            editBoxing = undefined;
+            $('#serverGroupDataGrid').datagrid('endEdit', index);
+
+            var row = selectRow(index);
+            // delete row.editing;//删除编辑状态的字段不然loadData会出问题
+
+            sortServer(index,row);//点击保存时对编辑行的服务器进行排序
+            $('#serverGroupDataGrid').datagrid('updateRow',{
+                index: index,
+                row:{editing:false}
+            });
+            // $('#serverGroupDataGrid').datagrid('loadData',{total:data.total,rows:data.rows});
+        }
+        function cancelrow(index){
+            editBoxing = undefined;
+            var row = JSON.parse(oldEditData);//由JSON字符串转换为JSON对象
+            console.log(JSON.stringify(row));
+            var notGroup = $("span[name='notGroupServer']");
+            console.log("length:"+notGroup);
+            for (var j=1;j<9;j++){
+                var serverId="serverId";
+                var serverName="serverName";
+                serverId+=j;
+                serverName+=j;
+                for (var i=0;i<notGroup.length;i++){
+                    if (row[serverName] == notGroup.eq(i).find("a").text()){
+                        notGroup.eq(i).remove();
+                    }
+                };
+                cancelAddToNotGroup(row);
+                $('#serverGroupDataGrid').datagrid('deleteRow', index);
+                $('#serverGroupDataGrid').datagrid('insertRow',{
+                    index: index,
+                    // row:{serverName2:"dfgsgsg"}
+                    row:row
+                });
+            }
+            console.log("cancelrow:"+JSON.stringify(row));
+            // $('#serverGroupDataGrid').datagrid('cancelEdit', index);
+        }
+
+        function formatServer(value,row,index) {
+            if (row.editing){
+                if (value == undefined || value == "" || value==null){
+                    return "";
+                } else {
+                    return '<span id="defaultItem0" class="label"><a style=\'display: inline-block\' href=\'#\'>'+value+'</a>' +
+                        '           <img width="10px" height="10px" src="${base}/css/img/diy/jianhao.jpg" onmouseover="bigImg(this)" onmouseout="normalImg(this)"  onclick="removeServer(this,'+index+',\''+value+'\')">\n' +
+                        '                                </span>'
+                }
+            }else {
+                if (value == undefined || value == "" || value==null){
+                    return "";
+                } else {
+                    return '<span id="defaultItem0" class="label"><a style=\'display: inline-block\' href=\'#\'>'+value+'</a>' +
+                        '           <i onclick="removeServer(this,'+index+',\''+value+'\')"></i>\n' +
+                        '                                </span>'
+                }
+            }
+        }
+        //获取跨服分组信息
+        function getServerGroupList() {
+            // alert($("#select_server").val());
+            $.ajax({
+                type: "POST",
+                url: base + "/serverGroup/getServerGroup",
+                data: {"publicServerId": $("#select_server").val()},
+                dataType: "json",
+                async:false,
+                success: function (data) {
+                    if (data.ok){
+                        console.log(data.rows);
+                        $("#serverGroupDataGrid").datagrid("loadData", {total:data.total, rows:data.rows});
+                    }else {
+                        alert("向公共服获取跨服分组失败");
+                        $("#serverGroupDataGrid").datagrid("loadData", {total:0, rows:[]});
+                    }
+                }
+            });
+        }
+        //全部清空
+        function clearAll() {
+            var data=$('#serverGroupDataGrid').datagrid("getData"); // 获取所有数据
+            var isEditing=checkIsEditing(data.rows);
+            if (isEditing){
+                $.messager.alert("提示","有未保存的编辑！");
+                return;
+            }
+            $("#notGroup").empty();
+            getServerGroupList();
+            var data=$('#serverGroupDataGrid').datagrid("getData"); // 获取所有数据
+            for (var i=0;i<data.rows.length;i++){
+                var row=data.rows[i];
+                for (var j=1;j<9;j++){
+                    var serverId="serverId";
+                    var serverName="serverName";
+                    serverId+=j;
+                    // console.log("serverId:"+serverId);
+                    serverName+=j;
+                    if (row[serverId] != 0){
+                        addToNotGroup(row[serverId],row[serverName]);
+                    }
+                }
+                $('#serverGroupDataGrid').datagrid('updateRow',{
+                    index: i,
+                    // row:{serverName2:"dfgsgsg"}
+                    row:{bigGroupId:row['bigGroupId'],groupId:row['groupId'],area:row['area'],serverId1:0,serverName1:"",serverId2:0,serverName2:"",serverId3:0,serverName3:"",serverId4:0,serverName4:"",serverId5:0,serverName5:"",serverId6:0,serverName6:"",serverId7:0,serverName7:"",serverId8:0,serverName8:""}
+                });
+            }
+        }
+        //向服务器保存分组信息
+        function saveAll() {
+            var data=$('#serverGroupDataGrid').datagrid("getData"); // 获取所有数据
+            var isEditing=checkIsEditing(data.rows);
+            if (isEditing){
+                $.messager.alert("提示","有未保存的编辑！");
+                return;
+            }
+            var notGroup = $("span[name='notGroupServer']");
+            if (notGroup.length > 0){
+                $.messager.alert("提示","还有未进跨服组的服务器！");
+                return;
+            }
+            // alert(JSON.stringify(data.rows));
+            $.ajax({
+                url : base+"/serverGroup/setServerGroupList",
+                type :'POST',
+                dataType : 'json',
+                data:{
+                    "publicServerId":$("#select_server").val(),
+                    "serverGroupList":JSON.stringify(data.rows)
+                },
+                async : true,
+                success : function(data){
+                    if (data.ok){
+                        $.messager.alert("提示","保存成功");
+                    } else {
+                        $.messager.alert("提示","保存失败");
+                    }
+                }
+            });
+        }
+        //保存数据时检测是否有正在编辑的行
+        function checkIsEditing(rows) {
+            for (var i=0;i<rows.length;i++){
+                if (rows[i]['editing'] == true){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        }
+        //将服务器添加到未进跨服组内
+        function addToNotGroup(serverId,serverName) {
+            $("#notGroup").append('<span name="notGroupServer" style="display: inline-block" class="label"><a style=\'display: inline-block\' href=\'#\'>'+serverName+'</a>' +
+                '           <img width="10px" height="10px" src="${base}/css/img/diy/jiahao.jpg" onmouseover="bigImg(this)" onmouseout="normalImg(this)" onclick="addToGroup(this,'+serverId+',\''+serverName+'\')">\n' +
+                '                                </span> ');
+        }
+        function bigImg(obj) {
+            obj.style.height="20px";
+            obj.style.width="20px";
+        }
+        function normalImg(obj) {
+            obj.style.height="10px";
+            obj.style.width="10px";
+        }
+        //将未进跨服组的服务器添加到跨服组中
+        function addToGroup(obj,serverId,serverName) {
+            countServer+=1;
+            if (editBoxing == undefined){
+                $.messager.alert("警告","请操作需要修改的大组！");
+                return;
+            }else if (countServer > 8) {
+                $.messager.alert("警告", "每组服务器不能超过8个！");
+                return;
+            } else {
+                $(obj).parent().remove();
+                console.log("index:"+editBoxing);
+                var row = selectRow(editBoxing);
+                setMap(serverId,serverName);//临时存放添加到跨服组中的服务器
+                for (var j=1;j<9;j++){
+                    var serverIdRow="serverId";
+                    var serverNameRow="serverName";
+                    serverIdRow+=j;
+                    console.log("serverId:"+serverIdRow);
+                    serverNameRow+=j;
+                    if (row[serverIdRow] == 0) {
+                        var obj=new Object();
+                        obj[serverIdRow]=serverId;
+                        obj[serverNameRow]=serverName;
+                        $('#serverGroupDataGrid').datagrid('updateRow',{
+                            index: editBoxing,
+                            row:obj
+                            // row:updateData
+                        });
+                        return;
+                    }
+                }
+            }
+        }
+        function selectRow(index) {
+            $('#serverGroupDataGrid').datagrid('selectRow',index);//先选中这行
+            var row = $('#serverGroupDataGrid').datagrid('getSelected');//然后获取选中行的数据
+            return row;
+        }
+        //点击取消时将临时加入到行中的服务器返回到未进跨服组的div中
+        function cancelAddToNotGroup(row) {
+            var delArr = [];
+            for(var key in tempAdd){
+                for (var i=1;i<9;i++){
+                    var serverId="serverId";
+                    var serverName="serverName";
+                    serverId+=i;
+                    serverName+=i;
+                    if (row[serverId] == key){
+                        console.log("key:"+key);
+                        delArr.push(key);
+                        // delete tempAdd[key];
+                        // console.log("tempAdd[key]:"+tempAdd[key]);
+                    }else {
+                        continue;
+                    }
+                }
+            }
+
+            console.log(tempAdd);
+            for (var j=0;j<delArr.length;j++){
+                console.log("delArr:"+delArr[j]);
+                deleteMap(delArr[j]);
+            }
+
+            for(var key in tempAdd){
+                addToNotGroup(key,tempAdd[key]);
+                console.log("key:"+key+",value:"+tempAdd[key]);
+            }
+
+            console.log(tempAdd);
+
+            tempAdd={};//清空临时存放的服务器数据
+        }
+
+        //设置map里面的值
+        function setMap(id,newsObj)
+        {
+            //如果key也是动态的，则如下处理
+            var key=id;
+            tempAdd[key]=newsObj;
+        }
+
+        //删除map里面的元素
+        function deleteMap(id)
+        {
+            delete tempAdd[id];
+        }
+
+        //获取map里面的值
+        function getListforMap()
+        {
+            for(var i in tempAdd)
+            {
+                // alert("map:"+tempAdd[i].title);
+            }
+
+        }
+
+        //点击保存时对编辑行的服务器进行排序
+        function sortServer(index,row) {
+            var serverIdArr = [];
+            var obj = new Object();
+            var server = new Map();
+            for (var i=1;i<9;i++){
+                var serverId="serverId";
+                var serverName="serverName";
+                serverId+=i;
+                serverName+=i;
+                if (row[serverId] != 0){
+                    serverIdArr.push(row[serverId]);
+                    server.set(row[serverId],row[serverName]);
+                }
+            }
+            serverIdArr.sort();
+            console.log(serverIdArr.toString());
+
+            var count=0;
+            for (var j=1;j<9;j++){
+                count+=1;
+                var serverId="serverId";
+                var serverName="serverName";
+                if (count<=serverIdArr.length){
+                    serverId+=j;
+                    serverName+=j;
+                    obj[serverId]=serverIdArr[j-1];
+                    obj[serverName]=server.get(serverIdArr[j-1]);
+                } else {
+                    serverId+=j;
+                    serverName+=j;
+                    obj[serverId]=0;
+                    obj[serverName]="";
+                }
+            }
+            console.log(JSON.stringify(obj));
+            $('#serverGroupDataGrid').datagrid('updateRow',{
+                index: index,
+                row:obj
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <form action="#" id="query_form" class="well form-inline">
+        <select class="input" id="select_group" onchange="loadPublic(this.value)"></select>
+        <%--<select id="select_group" onchange="queryServerByGroup(this.value)" class="span2"></select>--%>
+        <select id="select_server" onchange="getServerGroupList()" class="span2"></select>
+    </form>
+    <span><b>【当前未进跨服组的服务器】</b><b style="color: red">(当前位置没有服务器才可以保存)</b></span>
+
+    <div id="notGroup" style="border:#698cba solid;border-width:1;width: 100%;height: 249px"></div>
+
+    <table id="serverGroupDataGrid" class="easyui-datagrid" title="【当前跨服组】">
+
+    </table>
+    <div style="margin-left: 85%;margin-top: 10px">
+        <a href="#" role="button" class="btn btn-primary" data-toggle="modal" onclick="clearAll()">全部清空</a>
+        <a style="margin-left: 60px" href="#" role="button" class="btn btn-primary" data-toggle="modal" onclick="saveAll()">保存</a>
+    </div>
+</div>
+<jsp:include page="../commonmodal.jsp"/>
+</body>
+</html>

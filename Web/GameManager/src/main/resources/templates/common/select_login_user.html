@@ -1,0 +1,195 @@
+<div class="col-sm-12 search-collapse">
+    <div class="ibox-title">
+        <h5>查询白名单用户</h5>
+    </div>
+<form id="formId">
+    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+        <ul>
+            <li>
+<!--                <label id="select_group_label">区服：</label>-->
+<!--                <select class="selectClass" id="select_group" name="groupName" onchange="queryServerByGroup(this.value)"></select>-->
+<!--                <select class="selectClass" id="select_server" name="serverId" data-first-title="请选择登录服">-->
+<!--                    <option value="">请选择登录服</option>-->
+<!--                </select>-->
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div th:replace="common/stat_date_head2.html"></div>
+<!--                <div th:replace="common/log_limit.html"></div>-->
+            </li>
+<!--            <li>-->
+<!--                <label>限制条数：</label>-->
+<!--                <select id="pageSize" name="pageSize" class="span3" style="width: 60px">-->
+<!--                    <option value="10">10</option>-->
+<!--                    <option value="20">20</option>-->
+<!--                    <option value="50">50</option>-->
+<!--                    <option value="100">100</option>-->
+<!--                </select>-->
+<!--            </li>-->
+            <li>
+                <a class="btn btn-primary btn-rounded btn-sm" onclick="userLoginSearch()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+            </li>
+        </ul>
+    </div>
+</form>
+    <div id="userLogin" class="col-sm-12 select-table table-striped">
+        <table id="userLoginTable"></table>
+    </div>
+</div>
+
+
+
+
+<script th:inline="javascript">
+
+    $(function() {
+        // group_reload();
+
+        $("#userLogin").hide();
+        initUserLoginSearch("userLogin", "formId");
+    });
+
+    // function group_reload() {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: ctx + "gmtool/selectgroup/selectServerGroup",
+    //         data: "",
+    //         dataType: "json",
+    //         async:false,
+    //         success: function (data) {
+    //             // alert(JSON.stringify(data));
+    //             var select = $("#select_group");
+    //             select.empty();
+    //             var dataList = data.rows;
+    //             for (var i = 0; i < dataList.length; i++) {
+    //                 var option = $("<option>").val(dataList[i]).text(dataList[i]);
+    //                 select.append(option);
+    //             }
+    //             queryServerByGroup(select.val());
+    //         }
+    //     });
+    // }
+
+    // function queryServerByGroup(groupName) {
+    //     var requestUrl = $("#requestUrl").val();
+    //     var ignoreMerge = $("#ignoreMerge").val();
+    //     var serverTypeList = $("#serverTypeList").val();
+    //     console.log("ignoreMerge:"+ignoreMerge);
+    //     $.ajax({
+    //         type: "POST",
+    //         url: ctx + "gmtool/selectgroup/"+requestUrl,
+    //         data: {
+    //             "groupName": groupName,
+    //             "ignoreMerge": ignoreMerge,
+    //             "serverTypeList": serverTypeList
+    //         },
+    //         dataType: "json",
+    //         async:false,
+    //         success: function (data) {
+    //             var select = $("#select_server");
+    //             select.empty();
+    //             var dataList = data.rows;
+    //             // console.log(JSON.stringify(dataList));
+    //             for (var i = 0; i < dataList.length; i++) {
+    //                 var dbserver = dataList[i];
+    //                 var option = $("<option>").val(dbserver.serverId).text(dbserver.serverName + "(" + dbserver.serverId + ")");
+    //                 select.append(option);
+    //             }
+    //         }
+    //     });
+    // }
+
+    function userLoginSearch(){
+        $.table.refresh("userLogin");
+        $("#userLogin").show();
+    }
+
+    function initUserLoginSearch(id, formId){
+        console.log("startDate:"+$('#startDate').val());
+            // ?startDate="+$('#startDate').val()+"&endDate="+$('#endDate').val()+"&pageSize=20
+        var options = {
+            id:id,
+            form: formId,
+            // toolbar:toolId,
+            url: ctx + "gmtool/gamerole/userLogin",
+            // createUrl: prefix + "/add",
+            // updateUrl: prefix + "/edit/{id}",
+            // removeUrl: prefix + "/remove",
+            // exportUrl: pre + "/export",
+            modalName: "账号登录信息",
+            // showSearch: true,
+            // pagination: false,
+            firstLoad: false,
+            columns: [
+                {
+                    field: 'userId',
+                    title: '用户ID'
+                },
+                {
+                    field: 'userName',
+                    title: '平台账号ID'
+                },
+                {
+                    field: 'platformAccount',
+                    title: '平台账号'
+                },
+                {
+                    field: 'platformName',
+                    title: '渠道'
+                },
+                {
+                    field: 'lastEnterServerId',
+                    title: '最后进入的区服ID'
+                },
+                {
+                    field: 'data',
+                    title: '创建角色的区服信息'
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间',
+                    formatter: formatterDate
+                },
+                {
+                    field: 'isDelete',
+                    title: '0未删除，1删除',
+                    formatter: formatterDelete
+                },
+                // {
+                //     field: 'forbidenTime',
+                //     title: '禁止登录结束时间,0正常登录，-1永久禁止'
+                // },
+                {
+                    field: 'lastLoginIp',
+                    title: '最后登录的IP'
+                },
+                {
+                    field: 'lastEnterRoleId',
+                    title: '上次登录的角色ID'
+                }
+                // {
+                //     title: '操作',
+                //     align: 'center',
+                //     formatter: function(value, row, index) {
+                //         var actions = [];
+                //         // actions.push('<a class="btn btn-success btn-xs ' + detailFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.roleId + '\')"><i class="fa fa-eye"></i>更多详情</a> ');
+                //         // actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.roleId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                //         return actions.join('');
+                //     }
+                // }
+            ]
+        };
+        $.table.init(options);
+    }
+
+    function formatterDelete(value){
+        if(value == 0){
+            return "未删除";
+        }else {
+            return "删除";
+        }
+    }
+
+</script>

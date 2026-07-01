@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.dbbak.mapper.DbbakMapper">
+    
+    <resultMap type="Dbbak" id="DbbakResult">
+        <result property="id"    column="id"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="type"    column="type"    />
+        <result property="createTime"    column="createTime"    />
+        <result property="url"    column="url"    />
+        <result property="size"    column="size"    />
+    </resultMap>
+
+    <sql id="selectDbbakVo">
+        select id, serverId, type, createTime, url, size from t_dbbak
+    </sql>
+
+    <select id="selectDbbakList" parameterType="Dbbak" resultMap="DbbakResult">
+        <include refid="selectDbbakVo"/>
+        <where>  
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="createTime != null "> and createTime = #{createTime}</if>
+            <if test="url != null  and url != ''"> and url = #{url}</if>
+            <if test="size != null "> and size = #{size}</if>
+        </where>
+        ORDER BY createTime DESC
+    </select>
+    
+    <select id="selectDbbakById" parameterType="Long" resultMap="DbbakResult">
+        <include refid="selectDbbakVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectLatestDbbak" parameterType="Dbbak" resultMap="DbbakResult">
+        <include refid="selectDbbakVo"/>
+        <where>
+            <if test="serverId != null "> and serverId = #{serverId}</if>
+            <if test="type != null "> and type = #{type}</if>
+        </where>
+        order by createTime desc limit 0,1;
+    </select>
+        
+    <insert id="insertDbbak" parameterType="Dbbak">
+        insert into t_dbbak
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="serverId != null">serverId,</if>
+            <if test="type != null">type,</if>
+            <if test="createTime != null">createTime,</if>
+            <if test="url != null and url != ''">url,</if>
+            <if test="size != null">size,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="serverId != null">#{serverId},</if>
+            <if test="type != null">#{type},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="url != null and url != ''">#{url},</if>
+            <if test="size != null">#{size},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDbbak" parameterType="Dbbak">
+        update t_dbbak
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="url != null and url != ''">url = #{url},</if>
+            <if test="size != null">size = #{size},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDbbakById" parameterType="Long">
+        delete from t_dbbak where id = #{id}
+    </delete>
+
+    <delete id="deleteDbbakByIds" parameterType="String">
+        delete from t_dbbak where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

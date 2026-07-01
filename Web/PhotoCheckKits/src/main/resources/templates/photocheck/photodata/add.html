@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增图片信息')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-photodata-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">服务器ID：</label>
+                <div class="col-sm-8">
+                    <input name="desc1" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">角色ID：</label>
+                <div class="col-sm-8">
+                    <input name="desc2" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">角色名称：</label>
+                <div class="col-sm-8">
+                    <input name="desc3" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">预留描述：</label>
+                <div class="col-sm-8">
+                    <input name="desc4" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">预留描述：</label>
+                <div class="col-sm-8">
+                    <input name="desc5" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">预留描述：</label>
+                <div class="col-sm-8">
+                    <input name="desc6" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">原图的MD5：</label>
+                <div class="col-sm-8">
+                    <input name="photoMD5" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">原始图片的MD5+数据自增ID：</label>
+                <div class="col-sm-8">
+                    <input name="photoID" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">图片大小：</label>
+                <div class="col-sm-8">
+                    <input name="photoSize" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">小图图片大小：</label>
+                <div class="col-sm-8">
+                    <input name="smallPhotoSize" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">小图的MD5：</label>
+                <div class="col-sm-8">
+                    <input name="smallMD5" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">大图文件相对路径:{上传时间YYYYMMDD}/big/{图片ID}.{扩展名}：</label>
+                <div class="col-sm-8">
+                    <textarea name="bigPhotoPath" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">小图文件相对路径:{上传时间YYYYMMDD}/small/{图片ID}.{扩展名}：</label>
+                <div class="col-sm-8">
+                    <textarea name="smallPhotoPath" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">图片扩展名:jpeg 或者 png：</label>
+                <div class="col-sm-8">
+                    <input name="photoExtName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">图片上传时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="uploadTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">请求次数：</label>
+                <div class="col-sm-8">
+                    <input name="requestNum" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">最后一次请求时间：</label>
+                <div class="col-sm-8">
+                    <input name="lastRquestTime" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">最后一次下载时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="lastDownloadTime" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否删除：</label>
+                <div class="col-sm-8">
+                    <input name="isDelete" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">删除时间：</label>
+                <div class="col-sm-8">
+                    <input name="deleteTime" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">审核状态:0未审核 1:审核中 2:审核通过 3:审核未通过：</label>
+                <div class="col-sm-8">
+                    <div class="radio-box">
+                        <input type="radio" name="checkStatus" value="">
+                        <label th:for="checkStatus" th:text="未知"></label>
+                    </div>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "photocheck/photodata"
+        $("#form-photodata-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-photodata-add').serialize());
+            }
+        }
+
+        $("input[name='uploadTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='lastDownloadTime']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>

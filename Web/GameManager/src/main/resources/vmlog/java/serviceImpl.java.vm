@@ -1,0 +1,69 @@
+package ${packageName}.${businessName}.service.impl;
+
+import java.util.List;
+import java.util.Map;
+#if($table.tree)
+import java.util.ArrayList;
+
+import com.gm.framework.web.domain.Ztree;
+#end
+#foreach ($column in $columns)
+#if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
+import com.gm.common.utils.DateUtils;
+#break
+#end
+#end
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+#if($table.sub)
+import com.gm.common.utils.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
+import ${packageName}.${businessName}.domain.${subClassName};
+#end
+
+import ${packageName}.${businessName}.domain.${ClassName};
+import ${packageName}.${businessName}.service.I${ClassName}Service;
+import com.gm.common.utils.text.Convert;
+import com.gm.project.common.utils.GameLogUtil;
+/**
+ * ${functionName}Service业务层处理
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl implements I${ClassName}Service 
+{
+
+
+    /**
+     * 查询${functionName}列表
+     * 
+     * @param ${className} ${functionName}
+     * @return ${functionName}
+     */
+    @Override
+    public List<${ClassName}> select${ClassName}List(${ClassName} ${className},String startDate,String endDate,Integer selectServerId)
+    {
+        StringBuilder wheresql = new StringBuilder(" where 1 = 1");
+        //自定义查询条件
+#foreach($column in $columns)
+#if($column.query)
+
+    #if(!$table.isSuperColumn($column.javaField))
+        #if($column.javaField.length() > 2 && $column.javaField.substring(1,2).matches("[A-Z]"))
+            #set($AttrName=$column.javaField)
+        #else
+            #set($AttrName=$column.javaField.substring(0,1).toUpperCase() + ${column.javaField.substring(1)})
+
+            if(${className}.get${AttrName}() != null){
+                wheresql.append(" and $column.javaField = " + ${className}.get${AttrName}());
+            }
+        #end
+    #end
+#end
+#end
+
+        return GameLogUtil.getLogDataList(selectServerId,"${className}",startDate,endDate,wheresql,${ClassName}.class);
+    }
+}

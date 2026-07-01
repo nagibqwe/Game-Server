@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('积分排名')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var count_01 = 0;
+        var count_02 = 0;
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+        });
+
+    </script>
+
+    <script>
+        function addSaltIpGrp(obj) {
+            console.log(count_01);
+            var rewardInput = 'rankRewards' + count_01;
+            var rewardAddBtn = 'showRewardModel' + count_01;
+            count_01 += 1;
+            var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">开始名次:</label>' +
+                '<input type="text" class="form-control" name="start" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
+                '<label class="input-group-addon">结束名次:</label>' +
+                '<input type="text" class="form-control" name="tail" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
+                '<label class="input-group-addon">积分条件:</label>' +
+                '<input type="text" class="form-control" name="rankScore" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
+                '<label class="input-group-addon">奖励组:</label>'+
+                // '<input type="text" class="form-control" id="rankRewards" name="rankRewards"  style="max-width:auto;">'+
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖励组" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="rankRewards"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delExChangeConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        function jiangliGrp(obj) {
+            var rewardInput = 'rewards' + count_02;
+            var rewardAddBtn = 'showRewardModel2' + count_02;
+            count_02 += 1;
+            var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">积分条件:</label>' +
+                '<input type="text" class="form-control"  name="score" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
+                '<label class="input-group-addon">奖励组:</label>'+
+                // '<input type="text" class="form-control" id="rewards" name="rewards"  style="max-width:auto;">'+
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖励组" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="rewards"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $(document).on('click', '#delGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var saltIp = $(this).parent().parent().find('#saltIp').val();
+            el.parentNode.removeChild(el);
+            return;
+        })
+    </script>
+
+    <script>
+        function validate() {
+            return true;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>积分排名<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="消耗灵玉获得积分，积分进行排名的活动<br/>
+                                奖励组里面需要作为模型显示的物品，必须放在第一个，且必须要有模型展示的物品，否则界面会异常"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>排名奖励</legend>
+                            <fieldset>
+                                <div class="input-group" id="saltIpGroup">
+                                    <label class="input-group-addon">排名奖励配置:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSaltIpGrpBtn"
+                                            onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount1" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-sm-12 col-md-12">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>积分奖励</legend>
+                            <fieldset>
+                                <div class="input-group" id="jianglishuju">
+                                    <label class="input-group-addon">积分奖励配置:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="jiangliBtn"
+                                            onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <input type="hidden" id="cfgCount2" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <legend>其他配置</legend>
+                            <fieldset>
+                                <div class="input-group " id="otherCfg">
+                                    <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
+                                        <label class="input-group-addon">排名展示限制:</label>
+                                        <input type="text" class="form-control" id="limit" name="limit" onkeyup="value=value.replace(/\D/g,'')" style="" value="50" readonly>
+                                        <label class="input-group-addon">一个积分等于多少元宝:</label>
+                                        <input type="text" class="form-control" id="gold" name="gold" onkeyup="value=value.replace(/\D/g,'')" style="">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

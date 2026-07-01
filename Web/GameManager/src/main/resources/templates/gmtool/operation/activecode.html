@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('激活码列表')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+        $(function () {
+            loadAllItem();
+            $("#codeDiv").hide();
+            formatDate();
+        });
+
+        var prefix = ctx + "gmtool/operation";
+
+        /**
+         * 切换激活码类型操作
+         * @param type
+         */
+        function changeParam(type) {
+            if (type == 1) {
+                $("#code").val("");
+                $("#codeDiv").show();
+                $("#tips").html("");
+                $("#codeNum").attr("readonly", "readonly").val(1);
+            } else {
+                $("#code").val("");
+                $("#codeDiv").hide();
+                $("#tips").html("");
+                $("#codeNum").attr("readonly", false).val("");
+            }
+        }
+
+        /**
+         * 点击生成操作
+         */
+        function insert() {
+            if ($("#activeCodeForm").validate().form()){
+                var sDate = $("#valide_time_begin").val();
+                var eDate = $("#valide_time_begin").val();
+                if (!checkDate(sDate, eDate)) {
+                    return;
+                }
+                var items = $("#reward").val();
+                if (items == undefined || items == "") {
+                    $.modal.alertError("未选择物品！");
+                    return;
+                }
+                $("#activeCodeForm").submit();
+                $("#activeCodeForm")[0].reset();
+                $.modal.alertSuccess("信息检测完成,已经启动当前批次的激活码生成!");
+            }
+        }
+
+        //显示添加物品的组件
+        function showAddItemModel() {
+            $("#addItemModal").modal('toggle');
+            $("#addItemForm")[0].reset();
+        }
+
+        //点击添加物品
+        function addItem() {
+            if (!$('#addItemForm').validate().form()) {
+                $.modal.alertError("物品配置错误!");
+                return;
+            }
+            var itemId = $("#itemId").val();
+            var itemName = items.get(itemId);
+            var itemNum = $("#itemNum").val();
+            var isBind = $("#isBind").val();
+            var itemValue = itemId + "," + itemNum + "," + isBind;
+            console.log(itemValue + ":" + itemName);
+            var lastValue = $("#reward").val();
+            var itemArray = lastValue.split(';');
+            if (lastValue == "") {
+                itemArray = new Array();
+            }
+            itemArray.push(itemValue);
+            $("#reward").val(itemArray.join(";"));
+            console.log(itemArray.join(";"));
+            $("#items").append("<span class=\"label\" style=\"float: left\">" + itemName + "*" + itemNum +
+                "<i class=\"fa fa-remove\" onclick=\"removeItem(this, " + itemId + ", " + itemNum + ")\"></i></span>");
+            $("#addItemModal").modal('hide');
+        }
+
+        //删除物品操作
+        function removeItem(obj, itemId, itemNum) {
+            var pos;
+            var value = $(obj).parent().parent().prev(".rewardInput").val();
+            var itemArray = value.split(';');
+            $.each(itemArray, function (i, n) {
+                var item = n.split(",");
+                if (item[0] == itemId && item[1] == itemNum) {
+                    pos = i;
+                }
+            });
+            itemArray.splice(pos, 1);
+            $(obj).parent().parent().prev(".rewardInput").val(itemArray.join(";"));
+            console.log(itemArray.join(";"));
+            $(obj).parent().remove();
+            event.stopPropagation();
+        }
+
+        //检测礼包码可用性
+        function checkCode() {
+            var code = $("#code").val();
+            if (code == "") {
+                $.modal.alertError("礼包码不能为空！")
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: prefix + "/checkActiveCode",
+                data: {
+                    "code": code
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.ok) {
+                        $("#tips").html("<span style='color:green'>激活码可用</span>")
+                    } else {
+                        $("#tips").html("<span style='color:red'>激活码重复</span>")
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>激活码生成</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="activeCodeForm" action="activecode" class="form-horizontal m-t" method="post">
+
+                        <div class="form-group">
+                            <!--<label class="control-label">${msg['jsp.activecode.universalcode']}</label>-->
+
+                            <label class="radio col-sm-5 control-label" style="margin-left: 22px">
+                                <input checked="checked" value="0" name="param" type="radio" onchange="changeParam(0);"/>
+                                普通码(一批可生成多个,同一批激活码1个角色只能使用其中一个,获得1次奖励)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="radio col-sm-4 control-label" style="margin-left: 1px">
+                                <input value="1" name="param" type="radio" onchange="changeParam(1);"/>
+                                万能码(一批生成一个,不同角色均可使用此激活码)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="radio col-sm-5 control-label" style="margin-left: 4px">
+                                <input value="2" name="param" type="radio" onchange="changeParam(2);"/>
+                                多次码(一批可生成多个,同一批激活码1个角色可以使用多个,获得多次奖励)
+                            </label>
+
+                        </div>
+
+                        <div id="codeDiv" class="form-group">
+                            <label for="code" class="col-sm-2 control-label is-required">礼包码</label>
+                            <div class="col-sm-2">
+                                <input id="code" name="code" type="text" class="form-control input" onblur="checkCode()" required/>
+                                <div id="tips" class="help-inline"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codeNum" class="col-sm-2 control-label is-required">激活码数量</label>
+                            <div class="col-sm-2">
+                                <input id="codeNum" name="codeNum" type="text" class="form-control input" onkeyup="value=value.replace(/\D/g,'')" minlength="1"  required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activeName" class="col-sm-2 control-label is-required">类型名(用途简述)</label>
+                            <div class="col-sm-2">
+                                <input id="activeName" name="activeName" type="text" class="input form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">附件物品</label>
+                            <div class="col-sm-8">
+                                <div class="span6" style="border: 1px solid rgb(204, 204, 204); border-radius: 2px; height: 60px; margin-left: 0" onclick="showAddItemModel()">
+                                    <input type="hidden" id="reward" name="itemList" class="rewardInput validate[required]"/>
+                                    <div id="items" class="items" style="margin-top: 3px; display: block"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="valide_time_begin" class="col-sm-2 control-label is-required">有效开始时间</label>
+                            <div class="col-sm-2">
+                                <input id="valide_time_begin" name="valide_time_begin" type="text" class="datetimepicker form-control input" required readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="valide_time_end" class="col-sm-2 control-label is-required">有效结束时间</label>
+                            <div class="col-sm-2">
+                                <input id="valide_time_end" name="valide_time_end" type="text" class="datetimepicker form-control input" required readonly/>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">-->
+                            <!--<label for="select_group" class="col-sm-2 control-label">平台名</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<select id="select_group" name="groupName" class="input validate[required]"-->
+                                        <!--onchange="getChannelNameSelect(this.value); getServer(this.value)"></select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="form-group">-->
+                            <!--<label for="select_channel" class="col-sm-2 control-label">生效渠道</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<select id="select_channel" name="plateform_name_big" class="input">-->
+                                    <!--<option value="">所有渠道</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">生效区服</label>
+                            <div class="col-sm-2">
+                                <div th:replace="common/select_server_byGroup.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="selectRequestUrl" value="gameServer">
+                                <input type="hidden" id="selectIgnoreMerge" value="1">
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px;margin-bottom: 10px;margin-left: 90px">
+                            <span style="color: red;margin-left: 180px;">（若不勾选任何选项，则默认所有区服，包括后续新加入的区服）</span>
+                        </div>
+                        <div class="form-group" style="margin-top: 40px">
+                            <label class="col-sm-2 control-label" style="margin-left: 13px"></label>
+                            <button type="button" class="btn btn-primary" onclick="insert()">
+                                生成
+                            </button>
+                        </div>
+
+                        <div id="msg" class="container-fluid"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="form-group">
+    <div id="addItemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 430px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>添加物品</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="addItemForm" class="form-horizontal m-t">
+                        <div class="offset1 span10">
+                            <input id="curObj" type="hidden"/>
+                            <label for="itemId">物品ID:</label><input type="text" id="itemId"
+                                                                    onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
+                                                                    list="itemList"
+                                                                    class="selectClass" style="margin-left: 25px"/>
+                            <datalist id="itemList"></datalist>
+                            <br/>
+                            <label for="itemNum">物品数量:</label><input id="itemNum" type="text"
+                                                                     onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
+                                                                     class="selectClass"
+                                                                     style="margin-top: 10px;margin-left: 13px"/>
+                            <br/>
+                            <label for="isBind">是否绑定:</label>
+                            <select id="isBind" class="selectClass" style="margin-top: 10px;margin-left: 10px">
+                                <option value="0" selected>非绑</option>
+                                <option value="1">绑定</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="添加" onclick="addItem()" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+</body>
+</html>

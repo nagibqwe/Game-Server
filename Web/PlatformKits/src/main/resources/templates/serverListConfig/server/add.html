@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增服务器配置信息')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-server-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">服务器ID：</label>
+                <div class="col-sm-5">
+                    <input name="serverId" class="form-control" type="text" onblur="checkServerId()" required>
+                    <span id="checkServerId"></span>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">服务器名称：</label>
+                <div class="col-sm-5">
+                    <input name="serverName" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">服务器IP：</label>
+                <div class="col-sm-5">
+                    <input name="serverIp" class="form-control" type="text" required>
+                    <span id="checkServerIp"></span>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label is-required">端口：</label>
+                <div class="col-sm-5">
+                    <input name="serverPort" class="form-control" type="text" onkeyup="value=value.replace(/\D/g,'')" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">是否为备服状态：</label>
+                <div class="col-sm-8">
+                    <div class="radio-box" th:each="dict : ${@dict.getType('is_backup')}">
+                        <input type="radio" th:id="${'isBackup_' + dict.dictCode}" name="isBackup" th:value="${dict.dictValue}" th:checked="${dict.default}">
+                        <label th:for="${'isBackup_' + dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-3 control-label">扩展数据：</label>-->
+                <!--<div class="col-sm-8">-->
+                    <!--<textarea name="serverExtconfig" class="form-control"></textarea>-->
+                <!--</div>-->
+            <!--</div>-->
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:src="@{/ruoyi/js/serverList.js}"></script>
+    <script th:inline="javascript">
+        var prefix = ctx + "serverListConfig/server"
+        $("#form-server-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-server-add').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

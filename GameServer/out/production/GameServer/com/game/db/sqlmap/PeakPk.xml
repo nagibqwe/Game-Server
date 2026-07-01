@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="peakpk">
+
+    <resultMap id="bean" type="com.game.db.bean.PeakBean">
+        <result column="roleId" property="roleId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="serverId" property="serverId" jdbcType="INTEGER"/>
+        <result column="rankId" property="rankId" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="time" property="time" jdbcType="BIGINT"/>
+        <result column="times" property="times" jdbcType="INTEGER"/>
+        <result column="dayTimes" property="dayTimes" jdbcType="INTEGER"/>
+        <result column="timesReward" property="timesReward" jdbcType="BIGINT"/>
+        <result column="stageReward" property="stageReward" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="selectAll" parameterType="INTEGER" resultMap="bean">
+        select
+        k.roleId,
+        i.rolename as name,
+        k.rankId,
+        k.score,
+        k.time,
+        k.times,
+        k.dayTimes,
+        k.timesReward,
+        k.stageReward,
+        i.fightPower as power
+        from peakpk k left join playerworldinfo i on k.roleId = i.roleid
+        order by k.score desc, i.fightPower desc
+        <if test="size != null">
+            limit #{size}
+        </if>
+    </select>
+
+    <insert id="insertOrUpdate" parameterType="com.game.db.bean.PeakBean">
+        insert into peakpk (roleId, rankId, score, `time`, times, dayTimes, timesReward, stageReward)
+        value ( #{roleId}, #{rankId}, #{score}, #{time}, #{times}, #{dayTimes}, #{timesReward}, #{stageReward})
+        on duplicate key
+        update rankId = #{rankId},
+                score = #{score},
+                `time` = #{time},
+                times = #{times},
+                dayTimes = #{dayTimes},
+                timesReward = #{timesReward},
+                stageReward = #{stageReward}
+    </insert>
+
+    <delete id="clearAll">
+        delete from peakpk;
+    </delete>
+
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.activityTemplate.mapper.ActivityTemplateMapper">
+    
+    <resultMap type="ActivityTemplate" id="ActivityTemplateResult">
+        <result property="id"    column="id"    />
+        <result property="templateName"    column="templateName"    />
+        <result property="createTime"    column="createTime"    />
+        <result property="type"    column="type"    />
+        <result property="subType"    column="subType"    />
+        <result property="minLv"    column="minLv"    />
+        <result property="maxLv"    column="maxLv"    />
+        <result property="tag"    column="tag"    />
+        <result property="sort"    column="sort"    />
+        <result property="name"    column="name"    />
+        <result property="timeType"    column="timeType"    />
+        <result property="openServerOffsetBegin"    column="openServerOffsetBegin"    />
+        <result property="openServerOffset"    column="openServerOffset"    />
+        <result property="beginTime"    column="beginTime"    />
+        <result property="endTime"    column="endTime"    />
+        <result property="openServerRecordOffsetBegin"    column="openServerRecordOffsetBegin"    />
+        <result property="openServerRecordOffset"    column="openServerRecordOffset"    />
+        <result property="startRecordTime"    column="startRecordTime"    />
+        <result property="endRecordTime"    column="endRecordTime"    />
+        <result property="autoSend"    column="autoSend"    />
+        <result property="isOpenServer"    column="isOpenServer"    />
+        <result property="custom"    column="custom"    />
+        <result property="templateDec"    column="templateDec"    />
+        <result property="description"    column="description"    />
+    </resultMap>
+
+    <sql id="selectActivityTemplateVo">
+        select id, templateName, createTime, type, subType, minLv, maxLv, tag, sort, name, timeType, openServerOffsetBegin, openServerOffset, beginTime, endTime, openServerRecordOffsetBegin, openServerRecordOffset, startRecordTime, endRecordTime, autoSend, isOpenServer, custom, templateDec, description from t_activity_template
+    </sql>
+
+    <select id="selectActivityTemplateList" parameterType="ActivityTemplate" resultMap="ActivityTemplateResult">
+        <include refid="selectActivityTemplateVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+            <if test="templateName != null  and templateName != ''"> and templateName like concat('%', #{templateName}, '%')</if>
+            <if test="createTime != null  and createTime != ''"> and createTime = #{createTime}</if>
+            <if test="type != null and type != -1"> and type = #{type}</if>
+            <if test="subType != null and subType!= -1"> and subType = #{subType}</if>
+            <if test="minLv != null "> and minLv = #{minLv}</if>
+            <if test="maxLv != null "> and maxLv = #{maxLv}</if>
+            <if test="tag != null and tag != -1"> and tag = #{tag}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="timeType != null "> and timeType = #{timeType}</if>
+            <if test="openServerOffsetBegin != null "> and openServerOffsetBegin = #{openServerOffsetBegin}</if>
+            <if test="openServerOffset != null "> and openServerOffset = #{openServerOffset}</if>
+            <if test="beginTime != null  and beginTime != ''"> and beginTime = #{beginTime}</if>
+            <if test="endTime != null  and endTime != ''"> and endTime = #{endTime}</if>
+            <if test="openServerRecordOffsetBegin != null "> and openServerRecordOffsetBegin = #{openServerRecordOffsetBegin}</if>
+            <if test="openServerRecordOffset != null "> and openServerRecordOffset = #{openServerRecordOffset}</if>
+            <if test="startRecordTime != null  and startRecordTime != ''"> and startRecordTime = #{startRecordTime}</if>
+            <if test="endRecordTime != null  and endRecordTime != ''"> and endRecordTime = #{endRecordTime}</if>
+            <if test="autoSend != null and autoSend != -1"> and autoSend = #{autoSend}</if>
+            <if test="isOpenServer != null and isOpenServer != -1"> and isOpenServer = #{isOpenServer}</if>
+            <if test="custom != null  and custom != ''"> and custom = #{custom}</if>
+            <if test="templateDec != null  and templateDec != ''"> and templateDec = #{templateDec}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+        </where>
+    </select>
+    
+    <select id="selectActivityTemplateById" parameterType="Integer" resultMap="ActivityTemplateResult">
+        <include refid="selectActivityTemplateVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertActivityTemplate" parameterType="ActivityTemplate" useGeneratedKeys="true" keyProperty="id">
+        insert into t_activity_template
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="templateName != null">templateName,</if>
+            <if test="createTime != null">createTime,</if>
+            <if test="type != null">type,</if>
+            <if test="subType != null">subType,</if>
+            <if test="minLv != null">minLv,</if>
+            <if test="maxLv != null">maxLv,</if>
+            <if test="tag != null">tag,</if>
+            <if test="sort != null">sort,</if>
+            <if test="name != null">name,</if>
+            <if test="timeType != null">timeType,</if>
+            <if test="openServerOffsetBegin != null">openServerOffsetBegin,</if>
+            <if test="openServerOffset != null">openServerOffset,</if>
+            <if test="beginTime != null">beginTime,</if>
+            <if test="endTime != null">endTime,</if>
+            <if test="openServerRecordOffsetBegin != null">openServerRecordOffsetBegin,</if>
+            <if test="openServerRecordOffset != null">openServerRecordOffset,</if>
+            <if test="startRecordTime != null">startRecordTime,</if>
+            <if test="endRecordTime != null">endRecordTime,</if>
+            <if test="autoSend != null">autoSend,</if>
+            <if test="isOpenServer != null">isOpenServer,</if>
+            <if test="custom != null">custom,</if>
+            <if test="templateDec != null">templateDec,</if>
+            <if test="description != null">description,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="templateName != null">#{templateName},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="type != null">#{type},</if>
+            <if test="subType != null">#{subType},</if>
+            <if test="minLv != null">#{minLv},</if>
+            <if test="maxLv != null">#{maxLv},</if>
+            <if test="tag != null">#{tag},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="name != null">#{name},</if>
+            <if test="timeType != null">#{timeType},</if>
+            <if test="openServerOffsetBegin != null">#{openServerOffsetBegin},</if>
+            <if test="openServerOffset != null">#{openServerOffset},</if>
+            <if test="beginTime != null">#{beginTime},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="openServerRecordOffsetBegin != null">#{openServerRecordOffsetBegin},</if>
+            <if test="openServerRecordOffset != null">#{openServerRecordOffset},</if>
+            <if test="startRecordTime != null">#{startRecordTime},</if>
+            <if test="endRecordTime != null">#{endRecordTime},</if>
+            <if test="autoSend != null">#{autoSend},</if>
+            <if test="isOpenServer != null">#{isOpenServer},</if>
+            <if test="custom != null">#{custom},</if>
+            <if test="templateDec != null">#{templateDec},</if>
+            <if test="description != null">#{description},</if>
+         </trim>
+    </insert>
+
+    <update id="updateActivityTemplate" parameterType="ActivityTemplate">
+        update t_activity_template
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="templateName != null">templateName = #{templateName},</if>
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="subType != null">subType = #{subType},</if>
+            <if test="minLv != null">minLv = #{minLv},</if>
+            <if test="maxLv != null">maxLv = #{maxLv},</if>
+            <if test="tag != null">tag = #{tag},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="timeType != null">timeType = #{timeType},</if>
+            <if test="openServerOffsetBegin != null">openServerOffsetBegin = #{openServerOffsetBegin},</if>
+            <if test="openServerOffset != null">openServerOffset = #{openServerOffset},</if>
+            <if test="beginTime != null">beginTime = #{beginTime},</if>
+            <if test="endTime != null">endTime = #{endTime},</if>
+            <if test="openServerRecordOffsetBegin != null">openServerRecordOffsetBegin = #{openServerRecordOffsetBegin},</if>
+            <if test="openServerRecordOffset != null">openServerRecordOffset = #{openServerRecordOffset},</if>
+            <if test="startRecordTime != null">startRecordTime = #{startRecordTime},</if>
+            <if test="endRecordTime != null">endRecordTime = #{endRecordTime},</if>
+            <if test="autoSend != null">autoSend = #{autoSend},</if>
+            <if test="isOpenServer != null">isOpenServer = #{isOpenServer},</if>
+            <if test="custom != null">custom = #{custom},</if>
+            <if test="templateDec != null">templateDec = #{templateDec},</if>
+            <if test="description != null">description = #{description},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteActivityTemplateById" parameterType="Integer">
+        delete from t_activity_template where id = #{id}
+    </delete>
+
+    <delete id="deleteActivityTemplateByIds" parameterType="String">
+        delete from t_activity_template where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectActivityTemplateByIds" parameterType="String" resultMap="ActivityTemplateResult">
+        select * from t_activity_template where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>

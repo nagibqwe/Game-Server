@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="forbidchat">
+    <resultMap id="bean" type="com.game.db.bean.ForbidChatBean" >
+        <id column="userId" property="userId" jdbcType="BIGINT" />
+        <result column="forbidType" property="forbidType" jdbcType="INTEGER" />
+        <result column="createTime" property="createTime" jdbcType="VARCHAR" />
+        <result column="endTime" property="endTime" jdbcType="BIGINT" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="bean">
+        select * from forbidspeeking where endTime = -1 or (UNIX_TIMESTAMP(NOW()) * 1000) <![CDATA[<]]>  endTime
+    </select>
+		
+</mapper>
+

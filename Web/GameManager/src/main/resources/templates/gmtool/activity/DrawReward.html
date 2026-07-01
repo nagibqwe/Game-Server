@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('天帝宝库')" />
+    <th:block th:include="include :: footer" />
+
+    <script>
+
+        var actType = [[${type}]];
+        var changeStyle = false;
+        var count_01 = 0;
+        var count_02 = 0;
+        var count_03 = 0;
+        var count_04 = 0;
+        var count_06 = 0;
+        var count_07 = 0;
+        $(function () {
+            getActivityType(actType);
+            addHeightSet();
+            load(actType);
+        });
+
+        function changeStyleClass() {
+            if (!changeStyle) {
+                $("#singleGroup").removeClass("col-lg-3 col-sm-3 col-md-3").addClass("col-lg-6 col-sm-6 col-md-6");
+                $("#serverGroup").removeClass("col-lg-3 col-sm-3 col-md-3").addClass("col-lg-6 col-sm-6 col-md-6");
+                $("#rewardPool").removeClass("col-lg-3 col-sm-3 col-md-3").addClass("col-lg-6 col-sm-6 col-md-6");
+                $("#costGroup").removeClass("col-lg-3 col-sm-3 col-md-3").addClass("col-lg-6 col-sm-6 col-md-6");
+                changeStyle = true;
+            }
+        }
+    </script>
+
+    <script>
+        function addSingleCfg(obj) {
+            changeStyleClass();
+            console.log(count_01);
+            var rewardInput = 'p_reward' + count_01;
+            var rewardAddBtn = 'showRewardModel' + count_01;
+            count_01 += 1;
+            html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">轮次:</label>' +
+                '<input type="text" class="form-control" id="p_round" name="p_round" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
+                '<label class="input-group-addon">奖品:</label>' +
+                // '<input type="text" class="form-control" id="p_reward" name="p_reward" style="max-width:auto;">' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖品" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="p_reward"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delExChangeConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+    <script>
+        function addServerCfg(obj) {
+            changeStyleClass();
+            var rewardInput = 'g_reward' + count_02;
+            var rewardAddBtn = 'showRewardModel2' + count_02;
+            count_02 += 1;
+            html = '<div name="cfg2" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">全服进度:</label>' +
+                '<input type="text" class="form-control" id="g_s_reach" name="g_s_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
+                '<label class="input-group-addon">个人进度:</label>' +
+                '<input type="text" class="form-control" id="g_p_reach" name="g_p_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
+                '<label class="input-group-addon">奖品:</label>' +
+                // '<input type="text" class="form-control" id="g_reward" name="g_reward" style="max-width:auto;">' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖品" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="g_reward"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                '</span>' +
+                '</div>'
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        //删除配置
+        function delConfig(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        function jiangliGrp(obj) {
+            changeStyleClass();
+            var rewardInput = 'i_reward' + count_03;
+            var rewardAddBtn = 'showRewardModel3' + count_03;
+            count_03 += 1;
+            html = '<div name="cfg3" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
+                '<label class="input-group-addon">奖品权重:</label>' +
+                '<input type="text" class="form-control" id="i_weight" name="i_weight" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
+                '<label class="input-group-addon">大奖:</label>' +
+                '<select id="i_big" name="i_big" onchange="" class="form-control heightSet" style="min-width:40px;width: 61px;">' +
+                '<option value="0">否</option>' +
+                '<option value="1">是</option>' +
+                '</select>' +
+                '<label class="input-group-addon">奖品:</label>' +
+                // '<input type="text" class="form-control" id="i_reward" name="i_reward" style="max-width:auto;">' +
+                '<span class="input-group-btn" >' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="奖品" id="' + rewardAddBtn +
+                '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
+                '<span class="glyphicon glyphicon-plus"></span></button>' +
+                '<div class="hide"><input id="' + rewardInput + '" name="i_reward"/></div>' +
+                '</span>' +
+                '<span class="input-group-btn">' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" onclick="delConfig3(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                '</span>' +
+                '</div>';
+            obj.insertAdjacentHTML('beforeBegin', html);
+            addHeightSet();
+        }
+        function delConfig3(obj) {
+            $(obj).parent().parent().remove();
+        }
+    </script>
+
+    <script>
+        $(document).on('click', '#copyGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var newEl = el.cloneNode(true);
+            el.parentNode.insertBefore(newEl, el);
+        });
+        $(document).on('click', '#delGridGroup', function () {
+            var el = this.parentNode.parentNode;
+            var saltIp = $(this).parent().parent().find('#saltIp').val();
+            el.parentNode.removeChild(el);
+            return;
+            // if (saltIp == ""){
+            //     el.parentNode.removeChild(el)
+            //     return
+            // }
+            // alertify.confirm('您确定要删除选中的命令？',
+            //     function (e) {
+            //         el.parentNode.removeChild(el)
+            //         return
+            //     }
+            //     )
+
+        })
+    </script>
+
+    <script>
+        function validate() {
+            if (checkBaodi() && checkBaoDiRange() && checkBaoDiRangeInfo()){
+                return true;
+            }else {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <div id="header">
+                <h3>天帝宝库<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                              data-container="body" data-toggle="popover" data-placement="right"
+                              data-content="【抽奖道具】<br/>
+                                大奖系数：N次后才可能抽中大奖<br/>
+                                抽奖道具：使用道具抽奖所需的道具ID，代码写死1个道具抽奖1次，10个道具抽奖10次，以此类推<br/>
+                                抽奖元宝：抽奖所需灵玉数量（后续”+“填入抽奖赠送道具，原则上默认填写铜钱*10000，用于避免防赌博审核）<br/>
+                                【个人轮次奖励】<br/>
+                                轮次：递增的int值即可，达到指定轮数获得对应奖励（抽中1次大奖算作1轮）<br/>
+                                【全服进度奖励】<br/>
+                                ”全服抽奖“次数达到X次，和”个人进度“同时满足，可领取奖励）<br/>
+                                【奖池数据配置】<br/>
+                                奖品权重：抽中当前物品的概率（每抽中当前物品，则当前轮不会再次抽中）<br/>
+                                大奖：是否为大奖，玩家抽中为大奖的物品会跳转到下一轮，重置所有牌组<br/>
+                                奖品：对应物品，不同职业的需要配置为多个物品<br/>
+                                【抽取幸运值】<br/>
+                                参与一次增加幸运值：抽奖一次增加幸运值（原则上和单次抽取消耗灵玉数量相同）<br/>
+                                奖励列表：原则上和本次抽奖最大的大奖相同<br/>"></span></h3>
+            </div>
+            <form id="activity_form" method="post" class="form-horizontal" action="#">
+                <div th:replace="common/BaseActivity_header.html"></div>
+
+                <div id="customForm">
+                    <div id="costGroup" class="col-lg-3 col-sm-3 col-md-3">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>抽奖道具</legend>
+                            <fieldset>
+                                <div class="input-group saltIp">
+                                    <label class="input-group-addon">大奖系数:</label>
+                                    <input name="i_big_limit" id="i_big_limit" value="" title="默认抽奖道具" placeholder="大奖n次之后开放"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">抽奖道具:</label>
+                                    <input name="i_costItem" id="i_costItem" value="1061" title="默认抽奖道具"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">抽奖元宝:</label>
+                                    <input name="i_costGold" id="i_costGold" value="50" title="默认抽奖道具"
+                                           type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" data-toggle="tooltip" title="元宝抽奖赠送道具" id="addGoldGiftBtn"
+                                    onclick="showAddItemUI('i_GoldGift','addGoldGiftBtn')"><span class="glyphicon glyphicon-plus"></span></button>
+                            <input type="hidden" id="cfgCount1" value="0">
+                        </span>
+                                    <input name="i_GoldGift" id="i_GoldGift" value="" type="text" class=" hide"/>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="singleGroup" class="col-lg-3 col-sm-3 col-md-3">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>个人轮次奖励</legend>
+                            <fieldset>
+                                <div class="input-group" id="singlePrcCfg">
+                                    <label class="input-group-addon">进度配置:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addSingleCfgBtn"
+                                            onclick="addSingleCfg(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount2" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="serverGroup" class="col-lg-3 col-sm-3 col-md-3">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>全服进度奖励</legend>
+                            <fieldset>
+                                <div class="input-group" id="serverPrcCfg">
+                                    <label class="input-group-addon">进度配置:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="addServerCfgBtn"
+                                            onclick="addServerCfg(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount3" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="rewardPool" class="col-lg-3 col-sm-3 col-md-3">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>奖池数据配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="jianglishuju">
+                                    <label class="input-group-addon">奖池数据:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="jiangliBtn"
+                                            onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="hidden" id="cfgCount4" value="0">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div id="luckyGroup" class="col-lg-3 col-sm-3 col-md-3">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-12">
+                            <legend>抽奖幸运值配置</legend>
+                            <fieldset>
+                                <div class="input-group saltIp">
+                                    <label class="input-group-addon">参与一次增加的幸运值:</label>
+                                    <input name="oneLuckyValue" id="oneLuckyValue"
+                                           type="text" class=" form-control" style="width:100px;" onkeyup="value=value.replace(/\D/g,'')"/>
+                                    <label class="input-group-addon">奖励列表:</label>
+                                    <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" data-toggle="tooltip" title="奖励列表" id="addOneLuckyBtn"
+                                    onclick="showAddItemUI('luckyAwardGift','addOneLuckyBtn')"><span class="glyphicon glyphicon-plus"></span></button>
+                            <input type="hidden" id="cfgCount5" value="0">
+                        </span>
+                                    <input name="luckyAwardGift" id="luckyAwardGift" value="" type="text" class=" hide"/>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div id="baodiPool" class="col-lg-12 col-sm-12 col-md-12">
+                        <!--<div class="col-lg-1"></div>-->
+                        <div class="col-lg-11">
+                            <legend>保底次数配置</legend>
+                            <fieldset>
+                                <div class="input-group" id="baodishuju">
+                                    <label class="input-group-addon">保底次数:</label>
+                                    <button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="baoDiBtn"
+                                            onclick="baoDiGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div th:replace="common/import.html"></div>
+        </div>
+
+        <div th:replace="common/BaseActivity_footer.html"></div>
+
+        <div th:replace="common/itemAddModel.html"></div>
+    </div>
+</div>
+</body>
+</html>

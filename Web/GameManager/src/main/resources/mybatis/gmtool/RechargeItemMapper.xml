@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.rechargeItem.mapper.RechargeItemMapper">
+    
+    <resultMap type="RechargeItem" id="RechargeItemResult">
+        <result property="goodsId"    column="goods_id"    />
+        <result property="goodsSystemCfgId"    column="goods_system_cfg_id"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="goodsPayChannel"    column="goods_pay_channel"    />
+        <result property="goodsPayType"    column="goods_pay_type"    />
+        <result property="goodsType"    column="goods_type"    />
+        <result property="goodsSubtype"    column="goods_subtype"    />
+        <result property="goodsLimit"    column="goods_limit"    />
+        <result property="goodsIcon"    column="goods_icon"    />
+        <result property="goodsurl"    column="goods_url"    />
+        <result property="goodsPrice"    column="goods_price"    />
+        <result property="goodsPricePoint"    column="goods_price_point"    />
+        <result property="goodsShowPrice"    column="goods_show_price"    />
+        <result property="goodsReward"    column="goods_reward"    />
+        <result property="goodsMultiple"    column="goods_multiple"    />
+        <result property="goodsExtraReward"    column="goods_extra_reward"    />
+        <result property="goodsExtraRewardLimit"    column="goods_extra_reward_limit"    />
+        <result property="isTotalRecharge"    column="isTotalRecharge"    />
+        <result property="totalVipPower"    column="totalVipPower"    />
+    </resultMap>
+
+    <sql id="selectRechargeItemVo">
+        select goods_id, goods_system_cfg_id, goods_name, goods_pay_channel, goods_pay_type, goods_type, goods_subtype, goods_limit, goods_icon, goods_url, goods_price, goods_price_point, goods_show_price, goods_reward, goods_multiple, goods_extra_reward, goods_extra_reward_limit, isTotalRecharge, totalVipPower from t_recharge_item
+    </sql>
+
+    <select id="selectRechargeItemList" parameterType="RechargeItem" resultMap="RechargeItemResult">
+        <include refid="selectRechargeItemVo"/>
+        <where>
+            <if test="goodsType != null "> and goods_type = #{goodsType}</if>
+        </where>
+    </select>
+    
+    <select id="selectRechargeItemById" parameterType="Integer" resultMap="RechargeItemResult">
+        <include refid="selectRechargeItemVo"/>
+        where goods_id = #{goodsId}
+    </select>
+        
+    <insert id="insertRechargeItem" parameterType="RechargeItem">
+        insert into t_recharge_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">goods_id,</if>
+            <if test="goodsSystemCfgId != null">goods_system_cfg_id,</if>
+            <if test="goodsName != null">goods_name,</if>
+            <if test="goodsPayChannel != null">goods_pay_channel,</if>
+            <if test="goodsPayType != null">goods_pay_type,</if>
+            <if test="goodsType != null">goods_type,</if>
+            <if test="goodsSubtype != null">goods_subtype,</if>
+            <if test="goodsLimit != null">goods_limit,</if>
+            <if test="goodsIcon != null">goods_icon,</if>
+            <if test="goodsurl != null">goods_url,</if>
+            <if test="goodsPrice != null">goods_price,</if>
+            <if test="goodsPricePoint != null">goods_price_point,</if>
+            <if test="goodsShowPrice != null">goods_show_price,</if>
+            <if test="goodsReward != null">goods_reward,</if>
+            <if test="goodsMultiple != null">goods_multiple,</if>
+            <if test="goodsExtraReward != null">goods_extra_reward,</if>
+            <if test="goodsExtraRewardLimit != null">goods_extra_reward_limit,</if>
+            <if test="isTotalRecharge != null">isTotalRecharge,</if>
+            <if test="totalVipPower != null">totalVipPower,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="goodsSystemCfgId != null">#{goodsSystemCfgId},</if>
+            <if test="goodsName != null">#{goodsName},</if>
+            <if test="goodsPayChannel != null">#{goodsPayChannel},</if>
+            <if test="goodsPayType != null">#{goodsPayType},</if>
+            <if test="goodsType != null">#{goodsType},</if>
+            <if test="goodsSubtype != null">#{goodsSubtype},</if>
+            <if test="goodsLimit != null">#{goodsLimit},</if>
+            <if test="goodsIcon != null">#{goodsIcon},</if>
+            <if test="goodsurl != null">#{goodsurl},</if>
+            <if test="goodsPrice != null">#{goodsPrice},</if>
+            <if test="goodsPricePoint != null">#{goodsPricePoint},</if>
+            <if test="goodsShowPrice != null">#{goodsShowPrice},</if>
+            <if test="goodsReward != null">#{goodsReward},</if>
+            <if test="goodsMultiple != null">#{goodsMultiple},</if>
+            <if test="goodsExtraReward != null">#{goodsExtraReward},</if>
+            <if test="goodsExtraRewardLimit != null">#{goodsExtraRewardLimit},</if>
+            <if test="isTotalRecharge != null">#{isTotalRecharge},</if>
+            <if test="totalVipPower != null">#{totalVipPower},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRechargeItem" parameterType="RechargeItem">
+        update t_recharge_item
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsSystemCfgId != null">goods_system_cfg_id = #{goodsSystemCfgId},</if>
+            <if test="goodsName != null">goods_name = #{goodsName},</if>
+            <if test="goodsPayChannel != null">goods_pay_channel = #{goodsPayChannel},</if>
+            <if test="goodsPayType != null">goods_pay_type = #{goodsPayType},</if>
+            <if test="goodsType != null">goods_type = #{goodsType},</if>
+            <if test="goodsSubtype != null">goods_subtype = #{goodsSubtype},</if>
+            <if test="goodsLimit != null">goods_limit = #{goodsLimit},</if>
+            <if test="goodsIcon != null">goods_icon = #{goodsIcon},</if>
+            <if test="goodsurl != null">goods_url = #{goodsurl},</if>
+            <if test="goodsPrice != null">goods_price = #{goodsPrice},</if>
+            <if test="goodsPricePoint != null">goods_price_point = #{goodsPricePoint},</if>
+            <if test="goodsShowPrice != null">goods_show_price = #{goodsShowPrice},</if>
+            <if test="goodsReward != null">goods_reward = #{goodsReward},</if>
+            <if test="goodsMultiple != null">goods_multiple = #{goodsMultiple},</if>
+            <if test="goodsExtraReward != null">goods_extra_reward = #{goodsExtraReward},</if>
+            <if test="goodsExtraRewardLimit != null">goods_extra_reward_limit = #{goodsExtraRewardLimit},</if>
+            <if test="isTotalRecharge != null">isTotalRecharge = #{isTotalRecharge},</if>
+            <if test="totalVipPower != null">totalVipPower = #{totalVipPower},</if>
+        </trim>
+        where goods_id = #{goodsId}
+    </update>
+
+    <delete id="deleteRechargeItemById" parameterType="Integer">
+        delete from t_recharge_item where goods_id = #{goodsId}
+    </delete>
+
+    <delete id="deleteRechargeItemByIds" parameterType="String">
+        delete from t_recharge_item where goods_id in 
+        <foreach item="goodsId" collection="array" open="(" separator="," close=")">
+            #{goodsId}
+        </foreach>
+    </delete>
+    <select id="selectRechargeItemBygoodsPayChannel" resultMap="RechargeItemResult">
+        select * from t_recharge_item where goods_pay_channel = '' or goods_pay_channel IS NULL
+    </select>
+    <select id="selectRechargeItemBygoodsPayChannel3" resultMap="RechargeItemResult">
+        select * from t_recharge_item where goods_pay_channel != '' and goods_pay_channel is not null
+    </select>
+    <delete id="deleteRechargeItemBygoodsPayChannel">
+        delete from t_recharge_item where goods_pay_channel = '' or goods_pay_channel IS NULL
+    </delete>
+    <delete id="deleteRechargeItemBygoodsPayChannel3">
+        delete from t_recharge_item where goods_pay_channel != '' and goods_pay_channel is not null
+    </delete>
+
+    <update id="clearRechargeItem" parameterType="String">
+        truncate table ${tableName}
+    </update>
+</mapper>

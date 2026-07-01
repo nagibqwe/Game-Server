@@ -1,0 +1,17 @@
+<label class="col-sm-2 control-label"></label>
+<textarea id="selectServerId" onclick="selectServer()"  type="text" style="height: auto;"  class="form-control" onblur="changeStyle()">服务器选择:[]</textarea>
+<input id="selectServerIdHide"   name = "selectServerIdList" style="display:none" type="text"  class="form-control" value="">
+<input id="selectGroupNameHide"   name = "selectGroupName" style="display:none" type="text"  class="form-control" value="">
+
+<script th:inline="javascript">
+    function changeStyle() {
+        var selectServerStr = $("#selectServerIdHide").val();
+        if (selectServerStr == '' || null == selectServerStr){
+            $("#selectServerId").css("borderColor","red");
+        }else {
+            $("#selectServerId").css("borderColor","white");
+        }
+    }
+
+
+</script>

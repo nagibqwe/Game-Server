@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.allMail.mapper.AllMailDataMapper">
+    
+    <resultMap type="AllMailData" id="AllMailDataResult">
+        <result property="id"    column="id"    />
+        <result property="groupName"    column="groupName"    />
+        <result property="minLv"    column="minLv"    />
+        <result property="maxLv"    column="maxLv"    />
+        <result property="career"    column="career"    />
+        <result property="serverIdList"    column="serverIdList"    />
+        <result property="title"    column="title"    />
+        <result property="content"    column="content"    />
+        <result property="items"    column="items"    />
+        <result property="reason"    column="reason"    />
+        <result property="createDate"    column="createDate"    />
+        <result property="createUser"    column="createUser"    />
+        <result property="adminUser"    column="adminUser"    />
+        <result property="adminDate"    column="adminDate"    />
+        <result property="adminState"    column="adminState"    />
+        <result property="sendState"    column="sendState"    />
+        <result property="sendErrorMess"    column="sendErrorMess"    />
+        <result property="isDelete"    column="isDelete"    />
+        <result property="sended"    column="sended"    />
+    </resultMap>
+
+    <sql id="selectAllMailDataVo">
+        select id, groupName, minLv, maxLv, career, serverIdList, title, content, items, reason, createDate, createUser, adminUser, adminDate, adminState, sendState, sendErrorMess, isDelete, sended from t_mail_all
+    </sql>
+
+    <select id="selectAllMailDataList" parameterType="AllMailData" resultMap="AllMailDataResult">
+        <include refid="selectAllMailDataVo"/>
+        <where>  
+            <if test="groupName != null  and groupName != ''"> and groupName like concat('%', #{groupName}, '%')</if>
+            <if test="minLv != null "> and minLv = #{minLv}</if>
+            <if test="maxLv != null "> and maxLv = #{maxLv}</if>
+            <if test="career != null "> and career = #{career}</if>
+            <if test="serverIdList != null  and serverIdList != ''"> and serverIdList = #{serverIdList}</if>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="items != null  and items != ''"> and items = #{items}</if>
+            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
+            <if test="createDate != null  and createDate != ''"> and createDate = #{createDate}</if>
+            <if test="createUser != null  and createUser != ''"> and createUser = #{createUser}</if>
+            <if test="adminUser != null  and adminUser != ''"> and adminUser = #{adminUser}</if>
+            <if test="adminDate != null  and adminDate != ''"> and adminDate = #{adminDate}</if>
+            <if test="adminState != null "> and adminState = #{adminState}</if>
+            <if test="sendState != null "> and sendState = #{sendState}</if>
+            <if test="sendErrorMess != null  and sendErrorMess != ''"> and sendErrorMess = #{sendErrorMess}</if>
+            <if test="isDelete != null "> and isDelete = #{isDelete}</if>
+            <if test="sended != null "> and sended = #{sended}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectAllMailDataById" parameterType="Long" resultMap="AllMailDataResult">
+        <include refid="selectAllMailDataVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAllMailData" parameterType="AllMailData" useGeneratedKeys="true" keyProperty="id">
+        insert into t_mail_all
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupName != null">groupName,</if>
+            <if test="minLv != null">minLv,</if>
+            <if test="maxLv != null">maxLv,</if>
+            <if test="career != null">career,</if>
+            <if test="serverIdList != null and serverIdList != ''">serverIdList,</if>
+            <if test="title != null and title != ''">title,</if>
+            <if test="content != null and content != ''">content,</if>
+            <if test="items != null">items,</if>
+            <if test="reason != null and reason != ''">reason,</if>
+            <if test="createDate != null">createDate,</if>
+            <if test="createUser != null">createUser,</if>
+            <if test="adminUser != null">adminUser,</if>
+            <if test="adminDate != null">adminDate,</if>
+            <if test="adminState != null">adminState,</if>
+            <if test="sendState != null">sendState,</if>
+            <if test="sendErrorMess != null">sendErrorMess,</if>
+            <if test="isDelete != null">isDelete,</if>
+            <if test="sended != null">sended,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="groupName != null">#{groupName},</if>
+            <if test="minLv != null">#{minLv},</if>
+            <if test="maxLv != null">#{maxLv},</if>
+            <if test="career != null">#{career},</if>
+            <if test="serverIdList != null and serverIdList != ''">#{serverIdList},</if>
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="content != null and content != ''">#{content},</if>
+            <if test="items != null">#{items},</if>
+            <if test="reason != null and reason != ''">#{reason},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="adminUser != null">#{adminUser},</if>
+            <if test="adminDate != null">#{adminDate},</if>
+            <if test="adminState != null">#{adminState},</if>
+            <if test="sendState != null">#{sendState},</if>
+            <if test="sendErrorMess != null">#{sendErrorMess},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="sended != null">#{sended},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAllMailData" parameterType="AllMailData">
+        update t_mail_all
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="groupName != null">groupName = #{groupName},</if>
+            <if test="minLv != null">minLv = #{minLv},</if>
+            <if test="maxLv != null">maxLv = #{maxLv},</if>
+            <if test="career != null">career = #{career},</if>
+            <if test="serverIdList != null and serverIdList != ''">serverIdList = #{serverIdList},</if>
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="items != null">items = #{items},</if>
+            <if test="reason != null and reason != ''">reason = #{reason},</if>
+            <if test="createDate != null">createDate = #{createDate},</if>
+            <if test="createUser != null">createUser = #{createUser},</if>
+            <if test="adminUser != null">adminUser = #{adminUser},</if>
+            <if test="adminDate != null">adminDate = #{adminDate},</if>
+            <if test="adminState != null">adminState = #{adminState},</if>
+            <if test="sendState != null">sendState = #{sendState},</if>
+            <if test="sendErrorMess != null">sendErrorMess = #{sendErrorMess},</if>
+            <if test="isDelete != null">isDelete = #{isDelete},</if>
+            <if test="sended != null">sended = #{sended},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAllMailDataById" parameterType="Long">
+        delete from t_mail_all where id = #{id}
+    </delete>
+
+    <delete id="deleteAllMailDataByIds" parameterType="String">
+        delete from t_mail_all where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectWaitDealMail" resultMap="AllMailDataResult">
+        select * from t_mail_all where isDelete = 0 and adminState = 1
+    </select>
+    <select id="selectMineMail" parameterType="java.util.Map" resultMap="AllMailDataResult">
+        select * from t_mail_all where isDelete = 0 and adminState &gt; 2 and createUser = #{createUser} and createDate &lt;= #{createDate} order by id desc
+    </select>
+    <select id="selectHistoryMail" parameterType="java.util.Map" resultMap="AllMailDataResult">
+        select * from t_mail_all where isDelete = 0 and adminState &gt;= 2 order by id desc
+    </select>
+
+    <select id="selectMailByState" resultMap="AllMailDataResult">
+        select * from t_mail_all where isDelete = 0 and adminState &lt; 3
+    </select>
+</mapper>

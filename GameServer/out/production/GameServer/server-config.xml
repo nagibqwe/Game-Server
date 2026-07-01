@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- serverType字段服务器类型：0表示测试服，1表示正式游戏服，4表示跨服 -->
+<server>
+    <db-game
+            url="jdbc:mysql://127.0.0.1:3306/tzj_game?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"
+            username="root" password="nengwan@2023"/>
+    <db-public-data
+            url="jdbc:mysql://127.0.0.1:3306/tzj_login?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"
+            username="root" password="nengwan@2023"/>
+    <db-log-info
+            url="jdbc:mysql://127.0.0.1:3306/tzj_game_log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"
+            username="root" password="nengwan@2023"/>
+    <serverIdList serverIdList=""/>
+
+    <openTime openTime="2023-05-06 00:00:00"/>
+
+    <heartHttp host="http://localhost:8099/TzjBackend/serverstate/checkstate?"/>
+
+    <errorlog http="http://localhost:8099/TzjBackend"/>
+
+    <login-data verifyUrl="http://tzj-xpt.iwgame.cc/usr/vtk.do"/>
+
+    <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
+
+    <serverType serverType="1"/>
+    
+    <version version="1.0.0.0"/>
+
+    <!--是否审核服-->
+    <isShenHe isShenHe="0"/>
+
+    <public publicIp="127.0.0.1" publicPort="9300"/>
+
+    <serverInfo serverName="gameserver" port="9101" serverId="1001" platfrom="cn" lsId="1"/><!--TET-->
+
+    <language language="cn"/>
+	
+	<!-- 服务器下单地址 -->
+    <serverOrderUrl serverOrderUrl="http://tzj-xpt.iwgame.cc/pay/gid.do"/>
+	
+    <!--充值发货回调地址IP-->
+    <rechargeNotifyUrl rechargeNotifyUrl="http://222.212.88.34:8989/"/>
+
+    <!--充值端口-->
+    <recharge rechargePort="8890"/>
+
+    <!--后台监听端口-->
+    <backgrand port="8891"/>
+
+    <!--BI syslog config:openNet开启日志标签，0关闭所有日志/1仅开启文本日志/2仅开启网络日志(废弃)/3开启所有日志(废弃)-->
+    <biSysLog biBakDir="/data/tzj/bi" openNet="1" sysLogHost="localhost" sysLogPort="6789" sysLogProtocol="TCP"/>
+
+    <!--bi4399Sql 1开启4399的数据日志，0关闭-->
+    <bi4399SysLog bi4399Dir="/data/tzj/4399" bi4399OpenNet="0" bi4399Host="localhost" bi4399Port="1516"
+                  bi4399Protocol="UDP"
+                  bi4399Sql="1"/>
+
+	<!--qq大厅配置 openLog：1开启，0关闭-->
+    <qq appKey="sD8S4PVdopYXzdcI" appId="1112139976" GameID="11553" appName="QQ" openLog="0"
+        uicFilterUrl="https://openapi.minigame.qq.com/v3/user/uic_filter"
+        logUrl="https://tglog.datamore.qq.com/testdev/report/"/>
+
+    <!--登录检测时间 分钟单位-->
+    <checkLoginTime checkLoginTime="30"/>
+
+    <!--充值检测时间 分钟单位-->
+    <checkRechargeTime checkRechargeTime="30"/>
+
+    <!--根据当前游戏人数 设置游戏协议接收发送长度等级以及线程分配数量 -->
+    <peopleLevels peopleLevels = "5" />
+	
+	<!--是否支持返利，0不支持，1要支持，根据运营要求来填写-->
+    <isrebate isrebate = "0" />
+
+    <!--本服游戏服IP，不配置就程序自动获取 -->
+    <gameServerIp gameServerIp="127.0.0.1"/>
+</server>

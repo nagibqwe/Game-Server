@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('公会动态信息列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="selectServerList">
+                                <input type="hidden" id="ignoreMerge" value="0">
+                                <input type="hidden" id="serverTypeList" value="0,1">
+                            </li>
+                            <li>
+                                <label>公会ID：</label>
+                                <input type="text" name="guildId"/>
+                                <input type="hidden" name="queryType" value="2"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gamelog:guildbaselog:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('gamelog:guildbaselog:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('gamelog:guildbaselog:remove')}]];
+        var prefix = ctx + "gamelog/guildbaselog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                exportUrl: prefix + "/export",
+                modalName: "公会动态信息",
+                pagination: false,
+                firstLoad: false,
+                columns: [
+                {
+                    field: 'id',
+                    title: 'ID',
+                    visible: false
+                },
+                {
+                    field: 'guildId',
+                    title: '公会ID'
+                },
+                {
+                    field: 'roleId',
+                    title: '角色ID'
+                },
+                {
+                    field: 'platformName',
+                    title: '渠道名称'
+                },
+                {
+                    field: 'param',
+                    title: '其他参数'
+                },
+                {
+                    field: 'sid',
+                    title: '服务器ID'
+                },
+                {
+                    field: 'guildName',
+                    title: '公会名称'
+                },
+                {
+                    field: 'roleName',
+                    title: '角色名称'
+                },
+                {
+                    field: 'userId',
+                    title: '用户ID'
+                },
+                {
+                    field: 'actionId',
+                    title: '操作唯一编号'
+                },
+                {
+                    field: 'time',
+                    title: '记录时间'
+                },
+                {
+                    field: 'actId',
+                    title: '被操作角色ID'
+                },
+                {
+                    field: 'actName',
+                    title: '被操作角色名称'
+                },
+                {
+                    field: 'type',
+                    title: '操作类型 1:公会创建2:公会解散3:加入公会4:主动退会5:被踢出公会6：公会信息设置7：公会改名8：开始弹劾会长 9:取消弹劾会长 10:弹劾会长成功'
+                }
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

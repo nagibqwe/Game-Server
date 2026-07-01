@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('服务器列列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>发送邮件</h5>
+                </div>
+                <div class="ibox-content">
+                    <form id="sendMailForm" class="form-horizontal m-t" method="post">
+
+                        <div class="form-group">
+                            <div th:replace="common/select_server_single.html"></div>
+                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <input type="hidden" id="requestUrl" value="gameServer">
+                            <input type="hidden" id="ignoreMerge" value="1">
+                            <input id="all" style="width: 18px;height: 15px" type="checkbox" onclick="allServerMail()"/>全服邮件
+                        </div>
+                        <div id="roleDiv" class="form-group">
+                            <label class="col-sm-2 control-label is-required">角色ID:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="roleIds" type="text" onblur="autocheckRoleIds()"
+                                       name="roleIds" placeholder="支持输入多个角色ID[','分隔]" required/>
+                                <span id="autoCheckResult"></span>
+
+                                <input style="margin-top: 10px;" id="roleFile" type="file"
+                                       onchange="fileSelected(this.files);"/>
+                                <br/>
+                                <label class="label" style="color: #00B83F;width: auto;">请上传txt格式文件，多个数据请使用换行来分割</label>
+                                <br/>
+                                <br/>
+                                <button type="button" class="btn btn-warning" onclick="checkRoleIds()">
+                                    检查角色ID有效性
+                                </button>
+                                <label id="checkResult"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mailTitle" class="col-sm-2 control-label is-required">邮件标题:</label>
+                            <div class="col-sm-8">
+                                <input id="mailTitle" type="text" name="title" minlength="4" class="form-control"
+                                       maxlength="20" placeholder="最大20个字" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mailContent" class="col-sm-2 control-label is-required">邮件内容:</label>
+                            <div class="col-sm-8">
+                                <textarea id="mailContent" type="text" name="content" minlength="6" class="form-control" maxlength="1000" placeholder="最大1000个字" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reason" class="col-sm-2 control-label is-required">发送原因:</label>
+                            <div class="col-sm-8">
+                                <input id="reason" type="text" name="reason" minlength="6" class="form-control"
+                                       maxlength="150" required/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="margin-left: 86px">
+                                <input style="width: 18px;height: 15px" type="checkbox" id="show" onclick="showItemDiv()"/>发物品
+                            </label>
+                        </div>
+
+                        <div class="form-group" id="itemDiv">
+                            <label class="col-sm-2 control-label">附件物品</label>
+                            <div class="col-sm-8" style="border: 1px solid rgb(204, 204, 204); border-radius: 2px; height: 25px" onclick="showAddItemModel()">
+                                <input type="hidden" id="reward" name="items" class="rewardInput"/>
+                                <div id="items" class="items" style="margin-top: 3px"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <button type="button" class="btn btn-primary" onclick="saveMail()">
+                                提交
+                            </button>
+                        </div>
+
+                        <div id="msg" class="container-fluid"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var prefix = ctx + "gmtool/mail";
+    var items = new Map();
+    var addItemIndex=0;//初始化添加物品的id
+    var itemIndexAll='';
+
+    $(function () {
+        $("#sendMailForm").validate();
+        loadAllItem();
+        $("#itemDiv").hide();
+    });
+
+    //公共取值部分
+    var roleIds;
+    var serverId;
+    function coom() {
+        roleIds = $("#roleIds").val().trim();
+        if ((roleIds == undefined || roleIds == "") && roleIds != "all") {
+            $.modal.alertError("请填写正确的角色ID值！");
+            return;
+        }
+        if ($("input[name='serverId']:checked").length > 1 || $("input[name='serverId']:checked").length < 0) {
+            $.modal.alertError("必须选择一个服务器");
+            return;
+        }
+
+        serverId = $("#select_server").val();
+    }
+
+    //手动检测角色ID是否有效
+    function checkRoleIds() {
+        coom();
+        $.ajax({
+            url : prefix + '/queryRoleIds',
+            type :'POST',
+            dataType : 'json',
+            data:{
+                "roleIds":roleIds,
+                "serverId":serverId
+            },
+            async : true,
+            beforeSend: function () {
+                $.modal.loading("正在处理中，请稍后...");
+                $.modal.disable();
+            },
+            success : function(data){
+                $("#checkResult").html("<font color='red'>" + data.msg + "</font>");
+                if (data.ok) {
+                    $("#roleid").val("1");
+                }
+                $.modal.closeLoading();
+                $.modal.enable();
+            }
+        });
+    }
+
+    //异步自动检测角色ID是否有效
+    function autocheckRoleIds() {
+        coom();
+        $("#checkResult").html("");
+        $.ajax({
+            url : prefix + '/queryRoleIds',
+            type :'POST',
+            dataType : 'json',
+            data:{
+                "roleIds":roleIds,
+                "serverId":serverId
+            },
+            async : true,
+            beforeSend: function () {
+                $.modal.loading("正在处理中，请稍后...");
+                $.modal.disable();
+            },
+            success : function(data){
+                $("#autoCheckResult").html("<font color='red'>" + data.msg + "</font>");
+                if (data.ok) {
+                    $("#roleid").val("1");
+                }
+                $.modal.closeLoading();
+                $.modal.enable();
+            }
+        });
+    }
+
+    function fileSelected(files) {
+        var filePath = $("#roleFile").val();
+        var subLength = filePath.lastIndexOf(".");
+        var sub = filePath.substring(subLength + 1, filePath.length);
+        if (sub != "txt") {
+            $.modal.alertError("请上传txt格式文件，多个数据请使用换行来分割");
+            return;
+        }
+        var roleContent = "";
+        var file = files[0];
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function () {
+            var fileContent = this.result;
+            if (fileContent == "") {
+                $.modal.alertError("上传的文件内容为空！");
+                return;
+            }
+            var roleIds = fileContent.split("\n");
+            for (var i = 0; i < roleIds.length; i++) {
+                roleContent += roleIds[i].trim() + ",";
+            }
+            var result = roleContent.substring(0, roleContent.length - 1);
+            $("#roleIds").val(result);
+        };
+    }
+
+    function showItemDiv() {
+        var isShow = $("#show").prop("checked");
+        $("#itemDiv").toggle(isShow);
+        if (!isShow){
+            $("#items").empty();
+            $("#reward").val('');
+        }
+    }
+
+    //显示添加物品界面
+    function showAddItemModel() {
+
+        $("#addItemModal").modal('toggle');
+        $("#addItemForm")[0].reset();
+        $("#autoCheckItemId").html("");
+        $("h3").text("添加物品");
+        $("#updateItem").css("display", "none");
+        $("#addItem").css("display", "inline-block");
+    }
+
+    function addItem() {
+        var itemId = $("#itemId").val();
+        var itemName = items.get(itemId);
+        var itemNum = $("#itemNum").val();
+        var isBind = $("#isBind").val();
+        var picker = $("#selectpicker").val();
+        var itemValue = itemId + "," + itemNum + "," + isBind + "," + picker;
+        console.log(itemName + ":" + itemName);
+        var lastValue = $("#reward").val();
+        var itemArray = lastValue.split('}');
+        if (lastValue == "") {
+            itemArray = new Array();
+        }
+        itemArray.push(itemValue);
+        $("#reward").val(itemArray.join("}"));
+        console.log(itemArray.join("}"));
+        var itemIndex='addItem'+addItemIndex;
+        $("#items").append("<span id=\'"+itemIndex+"\' class=\"label\"><a style='display: inline-block' href='#' onclick='showUpdateItem("+itemId+","+itemNum+","+isBind+","+picker+",\""+itemIndex+"\")'>" + itemName + "*" + itemNum +
+            "</a><i class=\"fa fa-remove\" onclick=\"removeItem(this, " + itemId +", " + itemNum + ")\"></i></span>");
+        $("#addItemModal").modal('hide');
+        addItemIndex+=1;
+    }
+    //显示修改物品界面
+    var itemIdAll;
+    var itemNumAll;
+    var isBindAll;
+    var pickerAll;
+    function showUpdateItem(itemId,itemNum,isBind,picker,itemIndex) {
+        $("#addItemModal").modal('toggle');
+        $("h3").text("修改物品");
+        $("#autoCheckItemId").html("");
+        $("#updateItem").css("display", "inline-block");
+        $("#addItem").css("display", "none");
+        $("#itemId").val(itemId);
+        $("#itemNum").val(itemNum);
+        $("#isBind").val(isBind);
+        $("#selectpicker").val(picker);
+
+        itemIndexAll=itemIndex;
+        itemIdAll=itemId;
+        itemNumAll=itemNum;
+        isBindAll=isBind;
+        pickerAll=picker;
+        console.log("itemIndexAll:"+itemIndexAll);
+        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+    }
+    var count=0;
+    //确认修改物品
+    function updateItem() {
+        var itemId = $("#itemId").val();
+        var itemName = items.get(itemId);
+        var itemNum = $("#itemNum").val();
+        var isBind = $("#isBind").val();
+        var picker = $("#selectpicker").val();
+        var itemValue = itemId + "," + itemNum + "," + isBind + "," + picker;
+        var itemIndexUpdate="updateItem"+count;
+        $("#"+itemIndexAll).before("<span id=\'"+itemIndexUpdate+"\' class=\"label\"><a style='display: inline-block' href='#' onclick='showUpdateItem("+itemId+","+itemNum+","+isBind+","+picker+",\""+itemIndexUpdate+"\")'>" + itemName + "*" + itemNum +
+            "</a><i class=\"fa fa-remove\" onclick=\"removeItem(this, " + itemId +", " + itemNum + ")\"></i></span>");
+        count+=1;
+        console.log("aa:"+count);
+        addUpdateItem($("#"+itemIndexAll),itemIdAll,itemNumAll,isBindAll,pickerAll);
+        $("#addItemModal").modal('hide');
+    }
+    function addUpdateItem(obj,itemIdAll,itemNumAll,isBindAll,pickerAll) {
+        var itemId = $("#itemId").val();
+        var itemNum = $("#itemNum").val();
+        var isBind = $("#isBind").val();
+        var picker = $("#selectpicker").val();
+        var value = $(obj).parent().prev(".rewardInput").val();
+        var pos=0;
+        var itemArray = value.split('}');
+        $.each(itemArray, function (i, n) {
+            var item = n.split(",");
+            if (item[0] == itemIdAll && item[1] == itemNumAll && item[2] == isBindAll && item[3] == pickerAll) {
+                pos = i;
+            }
+        });
+        itemArray.splice(pos, 1);
+        console.log("pos："+pos);
+        var updateItem=itemId+","+itemNum+","+isBind+","+picker;
+        itemArray.splice(pos,0,updateItem);
+        $(obj).parent().prev(".rewardInput").val(itemArray.join("}"));
+        $(obj).parent().find($("#"+itemIndexAll)).remove();
+    }
+    function removeItem(obj, itemId, itemNum) {
+        console.log(obj);
+        var pos;
+        var value = $(obj).parent().parent().prev(".rewardInput").val();
+        var itemArray = value.split('}');
+        $.each(itemArray, function (i, n) {
+            var item = n.split(",");
+            if (item[0] == itemId && item[1] == itemNum) {
+                pos = i;
+            }
+        });
+        itemArray.splice(pos, 1);
+        $(obj).parent().parent().prev(".rewardInput").val(itemArray.join("}"));
+        console.log(itemArray.join(";"));
+        $(obj).parent().remove();
+        event.stopPropagation();
+    }
+
+    $(function() {
+        var options = {
+            url: prefix + "/queryMailList",
+            showSearch: false,
+            showRefresh: false,
+            showToggle: false,
+            showColumns: false,
+            modalName: "邮件列表",
+            columns: [
+                {
+                    field: 'createUser',
+                    title: '创建者'
+                },
+                {
+                    field: 'createDate',
+                    title: '创建时间'
+                },
+                {
+                    field: 'title',
+                    title: '邮件标题'
+                },
+                {
+                    field: 'roleIds',
+                    title: '角色ID',
+                    formatter:formatterValue
+                },
+                {
+                    field: 'reason',
+                    title: '发送原因'
+                },
+                {
+                    field: 'serverId',
+                    title: '服务器'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a style="margin-right: 5px" class="btn btn-success btn-xs" href="javascript:void(0)" onclick="parse(' + row.id + ')"><i class="fa fa-edit"></i>粘贴内容</a> ');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+    function allServerMail() {
+        var isShow = $("#all").prop("checked");
+        $("#roleDiv").toggle(!isShow);
+        if (!isShow){
+            $("#roleIds").val("");
+        } else {
+            $("#roleIds").val("all");
+        }
+    }
+
+    //异步自动检测物品ID有效性
+    function autoCheckItemId(obj) {
+        var itemName=items.get($(obj).val());
+        if (itemName == undefined){
+            $("#autoCheckItemId").html("<font color='red'>物品ID不存在 </font>");
+        } else {
+            $("#autoCheckItemId").html("<font color='#90ee90'>物品ID可用</font>");
+        }
+
+    }
+
+    function saveMail() {
+        var roleId = $("#roleIds").val().trim();
+        if ((roleId == "" || roleId === undefined) && roleId != "all") {
+            $.modal.alertError("请填写正确的角色ID值！");
+            return;
+        }
+        $("#roleIds").val(roleId);
+        if ($('#sendMailForm').validate().form()) {
+            $.ajax({
+                url: prefix + "/saveMail",
+                method: 'POST',
+                dataType : 'json',
+                data:$("#sendMailForm").serialize(),
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function (data) {
+                    if (data.ok){
+                        $("#msg").html("<span>" + data.msg + "</span>");
+                        $.table.refresh();
+                    } else {
+                        $.table.refresh();
+                        $.modal.alertError(data.msg);
+                    }
+                    $.modal.closeLoading();
+                    $.modal.enable();
+                }
+            });
+        } else {
+            $.modal.alertError("提交的邮件参数有错");
+        }
+    }
+
+    function parse(id) {
+        $.post(prefix + "/queryById", {id: id},
+            function (data) {
+                if (data.ok) {
+                    $("#items").empty();
+                    $("#reward").val('');
+                    $("#items").hide();
+                    $("#show").attr("checked", false);
+                    $("#itemDiv").hide();
+                    var mailData = data.data;
+                    $("#mailTitle").val(mailData.title);
+                    $("#mailContent").val(mailData.content);
+                    $("#reason").val(mailData.reason);
+
+                    if (mailData.items.length > 0) {//列如1,6,0,0}3,6,1,9
+                        $("#items").empty();
+                        $("#reward").val('');
+                        $("#items").show();
+                        $("#show").prop("checked", true);
+                        $("#itemDiv").show();
+                        var itemsArr=mailData.items.split("}");
+                        $.each(itemsArr,function (i) {//列如1,6,0,0
+                            var item=itemsArr[i].split(",");
+                            var itemId=item[0];
+                            var itemName=items.get(item[0]);
+                            var itemNum=item[1];
+                            var isBind=item[2];
+                            var picker=item[3];
+                            var itemIndex='parseItem'+i;
+                            $("#items").append("<span id=\'"+itemIndex+"\' class=\"label\"><a style='display: inline-block' href='#' onclick='showUpdateItem("+itemId+","+itemNum+","+isBind+","+picker+",\""+itemIndex+"\");'>" + itemName + "*" + itemNum +
+                                "</a><i class=\"fa fa-remove\" onclick=\"removeItem(this, " + itemId +", " + itemNum + ")\"></i></span>");
+                        });
+                        $("#reward").val(mailData.items.toString());
+                    }
+                    $("#roleId").val("");
+                }
+            }
+        );
+    }
+
+</script>
+<div class="form-group">
+    <div id="addItemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 430px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>添加物品</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="addItemForm" class="form-horizontal m-t">
+                        <div class="offset1 span10">
+                            <input id="curObj" type="hidden"/>
+                            <label for="itemId">物品ID:</label><input type="text" id="itemId"
+                                                                   onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
+                                                                   onblur="autoCheckItemId(this)" list="itemList"
+                                                                   class="selectClass" style="margin-left: 25px"/>
+                            <datalist id="itemList"></datalist>
+                            <span id="autoCheckItemId"></span>
+                            <br/>
+                            <label for="itemNum">物品数量:</label><input id="itemNum" type="text"
+                                                                    onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
+                                                                    class="selectClass" style="margin-top: 10px;margin-left: 13px"/>
+                            <br/>
+                            <label for="isBind">是否绑定:</label>
+                            <select id="isBind" class="selectClass" style="margin-top: 10px;margin-left: 10px">
+                                <option value="0" selected>非绑</option>
+                                <option value="1">绑定</option>
+                            </select>
+                            <br/>
+                            <label for="selectpicker">职业:</label>
+                            <select id="selectpicker" class="selectClass" style="margin-top: 10px;margin-left: 35px">
+                                <option value="0">玄剑</option>
+                                <option value="1">天英</option>
+                                <option value="2">地藏</option>
+                                <option value="3">罗刹</option>
+                                <option value="9" selected>通用</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" value="关闭" class="btn" data-dismiss="modal" aria-hidden="true"/>
+                    <input type="button" value="添加" id="addItem" onclick="addItem()" class="btn btn-primary"/>
+                    <input type="button" value="修改" id="updateItem" onclick="updateItem()"
+                           style="display: inline-block" class="btn btn-primary"/>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+</body>
+</html>

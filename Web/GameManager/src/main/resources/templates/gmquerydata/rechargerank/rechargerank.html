@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('充值排行榜')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div th:replace="common/stat_group_server_head"></div>
+                    <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
+                        <div th:replace="common/stat_date_head2.html"></div>
+                        <ul>
+                            <li>
+                                <label >查询类型:</label>
+                                <select id="select_type" name="type" class="span2">
+                                    <option value="0">角色</option>
+                                    <option value="1">用户</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div th:replace="common/stat_test_order.html"></div>
+                        <div th:replace="common/stat_search_head.html"></div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <i class="fa fa-download"></i> 导出
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+<script th:inline="javascript">
+    var prefix = ctx + "gmquerydata/rechargerank";
+    $(function() {
+        var options = {
+            url: prefix + "/rechargerank",
+            modalName: "日常数据",
+            pagination: true,
+            firstLoad:false,
+            columns: [{
+                field: 'rank',
+                title: '排名',
+            },{
+                field: 'userId',
+                title: '用户ID',
+            },{
+                field: 'roleId',
+                title: '角色ID',
+            },{
+                field: 'roleName',
+                title: '角色名',
+            },{
+                field: 'level',
+                title: '等级',
+                formatter: formatterRoleLevel
+            },{
+                field: 'career',
+                title: '职业',
+            },{
+                field: 'rechargeGold',
+                title: '总充值元宝',
+            },{
+                field: 'remainGold',
+                title: '剩余元宝',
+            },{
+                field: 'createTime',
+                title: '创建时间',
+            },{
+                field: 'onlineTime',
+                title: '在线时长(秒)',
+            },{
+                field: 'lastLoginTime',
+                title: '上次登录时间',
+            },{
+                field: 'createSid',
+                title: '所在服',
+            },{
+                field: 'totalRecharge',
+                title: '充值金额(元)',
+            },{
+                field: 'rechargeCount',
+                title: '充值次数',
+            },{
+                field: 'maxRecharge',
+                title: '单次最大充值(元)',
+            },{
+                field: 'minRecharge',
+                title: '单次最小充值(元)',
+            },{
+                field: 'avgRecharge',
+                title: '平均充值(元)',
+            },{
+                field: 'lastRechargeTime',
+                title: '最后充值时间',
+            }
+           ]
+        };
+        $.table.init(options);
+    });
+
+</script>
+</body>
+</html>

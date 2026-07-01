@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改服务器列表')" />
+    <th:block th:include="include :: select2-css" />
+    <th:block th:include="include :: bootstrap-select-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-serverList-edit" th:object="${sdkServerList}">
+            <input name="id" id="id" th:field="*{id}" type="hidden">
+            <h3 class="form-header h4">编辑区服列表</h3>
+            <div class="form-group">    
+                <label class="col-sm-1 control-label is-required">服务器列表名称：</label>
+                <div class="col-sm-2">
+                    <input name="name" th:field="*{name}" class="form-control" type="text" required>
+                </div>
+                <label class="col-sm-1 control-label is-required">关联渠道：</label>
+                <div class="col-sm-3">
+                <select id="channels" class="form-control noselect2 selectpicker" data-none-selected-text="请选择渠道" multiple>
+
+                </select>
+                <input type="hidden" name="channelIds">
+                    <span style="font-style: oblique;margin-left: 5px" id="showChannels"></span>
+                </div>
+                <label class="col-sm-1 control-label is-required">服务器：</label>
+                <div class="col-sm-2">
+                    <select id="servers" onchange="addServerExtra()" class="form-control noselect2 selectpicker" data-none-selected-text="请选择">
+
+                    </select>
+                    <input type="hidden" name="serverIds">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="loginServerGroup" id="loginServerGroup" th:field="*{loginServerGroup}">
+                <!--<label class="col-sm-1 control-label is-required">登陆服务器IP：</label>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<input name="loginServerIp" th:field="*{loginServerIp}" class="form-control" type="text" required>-->
+                <!--</div>-->
+
+                <!--<label class="col-sm-1 control-label is-required">登陆服务器名：</label>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<input name="loginServerName" th:field="*{loginServerName}" class="form-control" type="text" required>-->
+                <!--</div>-->
+                <!--<label class="col-sm-2 control-label is-required">登陆服务器端口：</label>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<input name="loginServerPort" th:field="*{loginServerPort}" class="form-control" type="text" required>-->
+                <!--</div>-->
+                <!--<input type="button" class="btn btn-info" value="添加登陆服" onclick="addLS()">-->
+                <label class="col-sm-1 control-label is-required">登录服务器：</label>
+                <div class="col-sm-3">
+                    <select id="loginServers" class="form-control noselect2 selectpicker" data-none-selected-text="请选择登录服" multiple>
+
+                    </select>
+                    <input type="hidden" name="loginServers">
+                    <span style="font-style: oblique;margin-left: 5px" id="showLoginServers"></span>
+                </div>
+
+            </div>
+            <div class="form-group" id="pDiv"></div>
+            <div class="form-group">
+                <div class="col-lg-3"></div>
+                <label class="col-sm-3 control-label">服务器列表状态：</label>
+                <div class="col-sm-3">
+                    <div class="radio-box" th:each="dict : ${@dict.getType('status_type')}">
+                        <input type="radio" th:id="${'status_' + dict.dictCode}" name="status" th:value="${dict.dictValue}" th:field="*{status}">
+                        <label th:for="${'status_' + dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                    </div>
+                </div>
+            </div>
+            <h3 class="form-header h4">游戏服列表</h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!--<button type="button" class="btn btn-white btn-sm" onclick="addColumn()"><i class="fa fa-plus"> 增加</i></button>-->
+                    <button type="button" class="btn btn-white btn-sm" onclick="deleteServerExtra('0')"><i class="fa fa-minus"> 删除</i></button>
+                    <div class="col-sm-12 select-table table-striped">
+                        <table id="bootstrap-table"></table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--<div id="div_window" style="z-index:200;left:90px;top:456px;visibility:visible;width:87%;position:absolute;height:6%;background-color: #9ea6b9;opacity:0.5; filter:alpha(opacity=80)"></div>-->
+
+    <th:block th:include="include :: footer" />
+    <script th:src="@{/js/jquery.tmpl.js}"></script>
+    <script th:src="@{/ruoyi/js/serverList.js}"></script>
+    <th:block th:include="include :: select2-js" />
+    <th:block th:include="include :: bootstrap-select-js" />
+    <script th:inline="javascript">
+        var serverStatus = [[${@dict.getType('server_status')}]];
+        var serverGroupType = [[${@dict.getType('server_group_type')}]];
+        var prefix = ctx + "serverListConfig/serverList";
+
+        $(function() {
+
+            // 初始化数据, 可以由后台传过来
+            var serverListId = $("#id").val();
+            loadServersInfo();
+            loadChannels(serverListId);
+            loadShowChannels(serverListId);
+            loadServers(serverListId);
+            loadChannelsInfo();
+            loadLoginServerInfo();
+            loadShowLoginServers(serverListId);
+            loadServerListExtra(serverListId);
+
+            for (var i=0;i<serverListExtraData.length;i++){//修改数据源,增加serverName的值
+                var row = serverListExtraData[i];
+                for (var x of serverInfo){
+                    if (row.serverId == parseInt(x[0])) {
+                        row.serverName = x[1]
+                    }
+                }
+            }
+            var data = serverListExtraData;
+            var options = {
+                data: data,
+                pageSize: 10000000,
+                pageList: [],
+                clickToSelect: true,
+                showToggle:false,
+                showRefresh:false,
+                showSearch:false,
+                showColumns:false,
+                pagination:false,
+                modalName: "服务器配置信息",
+                columns: [{
+                    checkbox: true
+                },
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        visible: false
+                    },
+                    {
+                        field: 'serverId',
+                        title: '服务器ID'
+                    },
+                    {
+                        field: 'serverName',
+                        title: '服务器名称'
+                    },
+                    {
+                        field: 'sortId',
+                        title: '排序值'
+                    },
+                    {
+                        field: 'serverStatus',
+                        title: '服务器状态',
+                        formatter: function(value, row, index) {
+                            return $.table.selectDictLabel(serverStatus, value);
+                        }
+                    },
+                    {
+                        field: 'groupType',
+                        title: '游戏服类型',
+                        formatter: function(value, row, index) {
+                            return $.table.selectDictLabel(serverGroupType, value);
+                        }
+                    },
+                    {
+                        field: 'serverLabel',
+                        title: '热度标签',
+                        formatter: function(value, row, index) {
+                            if (value=="" || value==undefined){
+                                return "";
+                            }
+                            var serverLabelArr=value.split(",");
+                            var serverLabel="";
+                            var list2=["正常","爆满","推荐","新服"];
+                            for (var i=0;i<serverLabelArr.length;i++){
+                                serverLabel+=list2[serverLabelArr[i]]+" ";
+                            }
+                            return serverLabel;
+                        }
+                    },
+                    {
+                        field: 'sceId',
+                        title: '场景ID'
+                    },
+                    {
+                        field: 'appVersion',
+                        title: '客户端版本ID'
+                    },
+                    {
+                        title: '操作',
+                        align: 'center',
+                        formatter: function(value, row, index) {
+                            var actions = [];
+                            actions.push('<a style="margin-right: 30px" class="btn btn-success btn-xs" href="javascript:void(0)" onclick="editServerExtra(\'' + index + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                            actions.push('<a class="btn btn-danger btn-xs " href="javascript:void(0)" onclick="deleteServerExtra(\''+row.serverId+'\')"><i class="fa fa-remove"></i>删除</a>');
+                            return actions.join('');
+                        }
+                    }]
+            };
+            $.table.init(options);
+
+            //防止旧的登陆数据影响，放在页面初始化最后一步
+            // parseLoginServerGroup();
+        });
+
+        function submitHandler() {
+            var flag=false;
+            getSaveServerIds(serverIdsArr);
+            $("input[name='serverIds']").val(saveServerIds);
+            var serverListData = $("#form-serverList-edit").serializeArray();
+            // console.log(serverListData);
+
+            if ($.validate.form()) {
+                flag=true;
+                var serverExtraData = $("#bootstrap-table").bootstrapTable('getData');
+                // console.log(JSON.stringify(serverExtraData));
+                $.ajax({
+                    url : prefix + "/editAll",
+                    type :'POST',
+                    dataType : 'json',
+                    data:{
+                        "serverListData":JSON.stringify(serverListData),
+                        "serverExtraData":JSON.stringify(serverExtraData)
+                    },
+                    async : true,
+                    success : function(data){
+                        $.modal.msgSuccess("保存成功！");
+                    }
+                });
+            }
+            return flag;
+        }
+
+        var count = 0;
+        //解析登陆服组数据到页面显示
+        function parseLoginServerGroup() {
+            var dataStr = $("#loginServerGroup").val();
+            if (dataStr=="" || !dataStr.startsWith("{")) {  //旧数据则不进行解析
+                return;
+            }
+            var parsedJson = jQuery.parseJSON(dataStr);
+            $.each(parsedJson.loginServerIp, function(i) {
+                var loginServerIp=parsedJson.loginServerIp[i];
+                var loginServerName=parsedJson.loginServerName[i];
+                var loginServerPort=parsedJson.loginServerPort[i];
+
+                addLS();
+                var loginServerIpName = "loginServerIp"+i;
+                var loginServerNameName = "loginServerName"+i;
+                var loginServerPortName = "loginServerPort"+i;
+                $("input[name='"+loginServerIpName+"']").eq(0).val(loginServerIp);
+                $("input[name='"+loginServerNameName+"']").eq(0).val(loginServerName);
+                $("input[name='"+loginServerPortName+"']").eq(0).val(loginServerPort);
+            });
+        }
+
+        //添加登陆服
+        function addLS() {
+            var loginServerIp = 'loginServerIp'+count;
+            var loginServerName = 'loginServerName'+count;
+            var loginServerPort = 'loginServerPort'+count;
+            var pDiv = $("#pDiv");
+            var div = $("<div>").attr("class", "form-group");
+            div.append("<label class='col-sm-1 control-label is-required'>登陆服务器IP：</label>");
+            div.append("<div class='col-sm-2'><input name=\'"+loginServerIp+"\' style='width: 200px' class='form-control' type='text' required></div>");
+            div.append("<label class='col-sm-1 control-label is-required'>登陆服务器名：</label>");
+            div.append("<div class='col-sm-2'><input name=\'"+loginServerName+"\' style='width: 200px' class='form-control' type='text' required></div>");
+            div.append("<label class='col-sm-2 control-label is-required'>登陆服务器端口：</label>");
+            div.append("<div class='col-sm-2'><input name=\'"+loginServerPort+"\' style='width: 200px' class='form-control' type='text' required></div>");
+            div.append("<input type='button' onclick='delParam(this)' class='btn btn-danger' value='删除'>");
+            div.append("</div>");
+            pDiv.append(div);
+            count+=1;
+        }
+
+        //删除参数
+        function delParam(o) {
+            count-=1;
+            $(o).parent().remove();
+        }
+    </script>
+</body>
+</html>

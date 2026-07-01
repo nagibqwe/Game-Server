@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="jar">
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="lib.dir" value="${basedir}/../Libs" />
+	<property name="message" value="${basedir}/../Message/dist" />
+	<property name="gamecfg" value="${basedir}/../GameCfg/dist" />
+	<property name="gamecore" value="${basedir}/../GameCore/dist" />
+	<property name="sql"     value="${basedir}/../Sql/all" />
+	
+	<property name="buildclass.dir" value="${basedir}/build/classes" />
+	<property name="project" value="${basedir}/gameserver" />
+	<property name="jarfile" value="${project}/GameServer.jar" />
+	<pathconvert property="libs.project" pathsep=" ">
+		<mapper>
+			<chainedmapper>
+				<!-- remove absolute path -->
+				<flattenmapper />
+				<!-- add lib/ prefix -->
+				<globmapper from="*" to="lib/*" />
+			</chainedmapper>
+		</mapper>
+		<path>
+			<!-- lib.home contains all jar files, in several subdirectories -->
+			<fileset dir="${lib.dir}" includes="*.jar" excludes="GameCore.jar"/>
+			<fileset dir="${message}" includes="*.jar" />
+			<fileset dir="${gamecfg}" includes="*.jar" />
+			<fileset dir="${gamecore}" includes="*.jar" />
+		</path>
+	</pathconvert>
+	
+	<tstamp>
+		<format property="build.time" pattern="yyyy/MM/dd hh:mm" locale="zh" />
+	</tstamp>
+
+	<target name="clean">
+		<delete dir="${buildclass.dir}"/>
+		<delete file="${jarfile}"/>
+	</target>
+	<target name="build" depends="clean">
+		<echo message="开始构建目录" />
+		<mkdir dir="${buildclass.dir}" />
+		<echo message="构建目录结束" />
+		<echo message="开始编译" />
+		<path id="classpath">
+			<fileset dir="${lib.dir}" includes="*.jar" excludes="GameCore.jar"/>
+			<fileset dir="${message}" includes="*.jar" />
+			<fileset dir="${gamecfg}" includes="*.jar" />
+			<fileset dir="${gamecore}" includes="*.jar" />
+		</path>
+
+		<javac debug="true" source="8" srcdir="${src.dir}:${basedir}/script" destdir="${buildclass.dir}" encoding="UTF-8" includeantruntime="on">
+			<compilerarg value="-Xlint:deprecation" />
+			<classpath refid="classpath" />
+		</javac>
+		<echo message="编译结束" />
+		<echo message="${build.time}"/>
+		
+		<mkdir dir="${project}/bin" />
+		<mkdir dir="${project}/script" />
+		<!--mkdir dir="${project}/sql" /-->
+		
+		<!--copy todir="${project}/sql">
+			<fileset dir="${sql}" includes="tzj_game.sql"/>
+		</copy-->
+		
+		<copy todir="${project}/config">
+			<fileset dir="${basedir}/config"/>
+		</copy>
+		<copy todir="${project}/YedAi/config">
+			<fileset dir="${basedir}/YedAi/config"/>
+		</copy>
+		<copy todir="${project}/maps">
+			<fileset dir="${basedir}/maps" includes="*.bytes" />
+		</copy>
+		
+		<copy todir="${buildclass.dir}/com/game/db/sqlmap">
+			<fileset dir="${basedir}/src/com/game/db/sqlmap" includes="*.xml" />
+		</copy>
+		
+		<copy todir="${project}/lib">
+			<fileset dir="${lib.dir}" includes="*.jar" excludes="GameCore.jar"/>
+			<fileset dir="${message}" includes="*.jar" />
+			<fileset dir="${gamecfg}" includes="*.jar" />
+			<fileset dir="${gamecore}" includes="*.jar" />
+		</copy>
+	</target>
+	<target name="jar" depends="build">
+		<echo message="开始打包JAR" />
+		<jar destfile="${jarfile}" basedir="${buildclass.dir}">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0" />
+				<attribute name="Main-Class" value="Main" />
+				<attribute name="package-time" value="${build.time}"/>
+				<attribute name="Class-Path" value="bin/ ${libs.project}" />
+			</manifest>
+		</jar>
+		<echo message="打包结束" />
+	</target>
+
+</project>

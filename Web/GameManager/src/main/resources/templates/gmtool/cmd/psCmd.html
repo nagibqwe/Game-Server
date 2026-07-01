@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('热更公共服操作日志列表')" />
+    <th:block th:include="include :: footer" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId1">
+                <div class="form-group">
+                    <div th:replace="common/select_server_byGroup.html"></div>
+                    <!--此处作为服务器请求分组地址映射设置地方-->
+                    <input type="hidden" id="selectRequestUrl" value="publicServer">
+                    <input type="hidden" id="selectIgnoreMerge" value="0">
+                </div>
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label for="chooseAction">命令类型：</label>
+                            <select id="chooseAction" onchange="changeAction()" >
+                                <option value="test" selected="selected">测试连接</option>
+                                <option value="script">加载脚本</option>
+                                <option value="cgm">gm命令</option>
+                                <option value="">自定义命令</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="cmdAction">命令：</label>
+                            <input type="text" id="cmdAction" name="action" placeholder="命令，例如:script"/>
+                        </li>
+
+                        <input type="button" class="btn btn-info" value="添加参数" onclick="addParam()">
+
+                        <br/><br/>
+                        <div id="pDiv"></div>
+                        <br/>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="sendCommand()"><i class="fa fa-adjust"></i>&nbsp;执行命令</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12 search-collapse">
+            <form id="formId2">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            <label>操作命令：</label>
+                            <input type="text" name="action"/>
+                        </li>
+                        <li>
+                            <label>参数：</label>
+                            <input type="text" name="params"/>
+                        </li>
+                        <li>
+                            <label>服务器名：</label>
+                            <input type="text" name="serverName"/>
+                        </li>
+                        <li>
+                            <label>服务器ID：</label>
+                            <input type="text" name="serverId"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search('formId2')"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<div th:replace="common/commonmodal.html"></div>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('gmtool:log:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('gmtool:log:remove')}]];
+    var prefix = ctx + "gmtool/cmd";
+
+    $(function() {
+        var options = {
+            url: prefix + "/pcList",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "热更公共服操作日志",
+            columns: [
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: true
+                },
+                {
+                    field: 'serverName',
+                    title: '服务器',
+                    formatter:function (value,row,index) {
+                        return value + "("+row.serverId+")";
+                    }
+                },
+                {
+                    field: 'action',
+                    title: '执行命令'
+                },
+                {
+                    field: 'params',
+                    title: '执行参数'
+                },
+                {
+                    field: 'isOk',
+                    title: '操作结果',
+                    formatter:function (value) {
+                        if (value == 0){
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                },
+                {
+                    field: 'result',
+                    title: '结果描述'
+                },
+                {
+                    field: 'user',
+                    title: '用户'
+                },
+                {
+                    field: 'ip',
+                    title: '操作者IP'
+                },
+                {
+                    field: 'operDate',
+                    title: '操作时间'
+                }]
+        };
+        $.table.init(options);
+    });
+
+    $(function () {
+        changeAction();
+    });
+
+    //切换命令类型
+    function changeAction() {
+        var chActVal = $("#chooseAction").val();
+        $("#cmdAction").val(chActVal);
+        if (chActVal === "script") {
+            addParam();
+            $("[name='pName']").val("scriptId");
+        } else if (chActVal === "test") {
+            $("#pDiv").empty();
+        } else {
+            $("[name='pName']").val("");
+        }
+        $("[name='pValue']").val("");
+    }
+
+    //添加参数
+    function addParam() {
+        var pDiv = $("#pDiv");
+        var div = $("<div>").attr("name", "params");
+        div.append("<label>参数名：</label>");
+        div.append("<input type='text' class='input' name='pName' placeholder='参数名'>");
+        div.append("<label>参数值：</label>");
+        div.append("<input type='text' class='input' name='pValue' placeholder='参数值'>");
+        div.append("<input type='button' onclick='delParam(this)' class='btn btn-danger' value='删除'>");
+        div.append("<br/>");
+        pDiv.append(div);
+        var chActVal = $("#chooseAction").val();
+        if (chActVal === "script") {
+            $("[name='pName']").val("scriptId");
+        }
+    }
+
+    //删除参数
+    function delParam(o) {
+        $(o).parent().remove();
+    }
+
+    //执行命令
+    function sendCommand() {
+        var selectServerStr = $("#selectServerIdHide").val();
+        if (selectServerStr == '' || null == selectServerStr){
+            $("#selectServerId").css("borderColor","red");
+            $.modal.alertError("请选择服务器!");
+        }else {
+            $("#selectServerId").css("borderColor","white");
+
+            var params = "";
+            $("input[name='pName']").each(function (i) {
+                console.log($(this).next("input[name='pValue']"));
+                params += $(this).val() + "=" + $(this).next().next("input[name='pValue']").val() + "&";
+            });
+
+            $("#progressmodal").modal({backdrop:'static',keyboard:false});
+            $("#proDiv").attr("class","progress progress-striped active");
+            $("#bar").attr("style","width: 20%;");
+            $("#progressdetail").empty();
+            $("#closemodal").attr("disabled","disabled");
+
+            $.post(ctx + "gmtool/gmcmd/sendPSCommand",{"serverIdStr":selectServerStr,"action":$("#cmdAction").val(),"params":params}, function(data) {
+                if (data.code == 0) {
+                    $("#proDiv").attr("class","progress progress-success progress-striped active");
+                } else {
+                    $("#proDiv").attr("class","progress progress-danger progress-striped active");
+                }
+                var msg=data.msg;
+                var reg=new RegExp("\n","g");
+                msg = msg.replace(reg,"<br/>");
+
+                $("#command").empty();
+                $("#msg").empty();
+
+                $("#bar").attr("style","width: 100%;");
+                $("#progressdetail").html(msg);
+                $("#closemodal").removeAttr("disabled");
+                setTimeout(function () {
+                    $("#progressmodal").modal('hide');
+                    $.table.search('formId2');
+                }, 2000)
+            });
+        }
+    }
+</script>
+</body>
+</html>

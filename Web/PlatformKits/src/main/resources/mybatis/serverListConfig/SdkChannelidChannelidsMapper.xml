@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.serverListConfig.channelids.mapper.SdkChannelidChannelidsMapper">
+    
+    <resultMap type="SdkChannelidChannelids" id="SdkChannelidChannelidsResult">
+        <result property="channelId"    column="channel_id"    />
+        <result property="channelIds"    column="channel_ids"    />
+    </resultMap>
+
+    <sql id="selectSdkChannelidChannelidsVo">
+        select channel_id, channel_ids from sdk_channelid_channelids
+    </sql>
+
+    <select id="selectSdkChannelidChannelidsList" parameterType="SdkChannelidChannelids" resultMap="SdkChannelidChannelidsResult">
+        <include refid="selectSdkChannelidChannelidsVo"/>
+        <where>  
+            <if test="channelId != null "> and channel_id = #{channelId}</if>
+        </where>
+    </select>
+    
+    <select id="selectSdkChannelidChannelidsById" parameterType="Long" resultMap="SdkChannelidChannelidsResult">
+        <include refid="selectSdkChannelidChannelidsVo"/>
+        where channel_id = #{channelId}
+    </select>
+        
+    <insert id="insertSdkChannelidChannelids" parameterType="SdkChannelidChannelids">
+        insert into sdk_channelid_channelids
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="channelId != null">channel_id,</if>
+            <if test="channelIds != null">channel_ids,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="channelId != null">#{channelId},</if>
+            <if test="channelIds != null">#{channelIds},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSdkChannelidChannelids" parameterType="SdkChannelidChannelids">
+        update sdk_channelid_channelids
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="channelIds != null">channel_ids = #{channelIds},</if>
+        </trim>
+        where channel_id = #{channelId}
+    </update>
+
+    <delete id="deleteSdkChannelidChannelidsById" parameterType="Long">
+        delete from sdk_channelid_channelids where channel_id = #{channelId}
+    </delete>
+
+    <delete id="deleteSdkChannelidChannelidsByIds" parameterType="String">
+        delete from sdk_channelid_channelids where channel_id in 
+        <foreach item="channelId" collection="array" open="(" separator="," close=")">
+            #{channelId}
+        </foreach>
+    </delete>
+    <update id="replaceInsertSdkChannelidChannelids" parameterType="SdkChannelidChannelids">
+       replace into sdk_channelid_channelids(channel_id,channel_ids) VALUES (#{channelId},#{channelIds})
+    </update>
+    <delete id="deleteSdkChannelidChannelidsByChannelIds" parameterType="java.util.Map">
+        delete from sdk_channelid_channelids where channel_id in
+        <foreach item="channel_id" collection="channelIds" open="(" separator="," close=")">
+            #{channel_id}
+        </foreach>
+    </delete>
+</mapper>

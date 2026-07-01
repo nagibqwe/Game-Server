@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.updateNotice.mapper.UpdateNoticeMapper">
+    
+    <resultMap type="UpdateNotice" id="UpdateNoticeResult">
+        <result property="id"    column="id"    />
+        <result property="serverIds"    column="serverIds"    />
+        <result property="content"    column="content"    />
+        <result property="reward"    column="reward"    />
+        <result property="type"    column="type"    />
+    </resultMap>
+
+    <sql id="selectUpdateNoticeVo">
+        select id, serverIds, content, reward, type from t_update_notice
+    </sql>
+
+    <select id="selectUpdateNoticeList" parameterType="UpdateNotice" resultMap="UpdateNoticeResult">
+        <include refid="selectUpdateNoticeVo"/>
+        <where>  
+            <if test="serverIds != null  and serverIds != ''"> and serverIds = #{serverIds}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="reward != null  and reward != ''"> and reward = #{reward}</if>
+            <if test="type != null "> and type = #{type}</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <select id="selectUpdateNoticeById" parameterType="Integer" resultMap="UpdateNoticeResult">
+        <include refid="selectUpdateNoticeVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertUpdateNotice" parameterType="UpdateNotice" useGeneratedKeys="true" keyProperty="id">
+        insert into t_update_notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverIds != null">serverIds,</if>
+            <if test="content != null">content,</if>
+            <if test="reward != null">reward,</if>
+            <if test="type != null">type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverIds != null">#{serverIds},</if>
+            <if test="content != null">#{content},</if>
+            <if test="reward != null">#{reward},</if>
+            <if test="type != null">#{type},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUpdateNotice" parameterType="UpdateNotice">
+        update t_update_notice
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverIds != null">serverIds = #{serverIds},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="reward != null">reward = #{reward},</if>
+            <if test="type != null">type = #{type},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUpdateNoticeById" parameterType="Integer">
+        delete from t_update_notice where id = #{id}
+    </delete>
+
+    <delete id="deleteUpdateNoticeByIds" parameterType="String">
+        delete from t_update_notice where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

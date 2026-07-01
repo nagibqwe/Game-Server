@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.rechargeItemLog.mapper.RechargeItemLogMapper">
+    
+    <resultMap type="RechargeItemLog" id="RechargeItemLogResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="userId"    />
+        <result property="ip"    column="ip"    />
+        <result property="userName"    column="userName"    />
+        <result property="time"    column="time"    />
+        <result property="tableName"    column="tableName"    />
+        <result property="content"    column="content"    />
+    </resultMap>
+
+    <sql id="selectRechargeItemLogVo">
+        select id, userId, ip, userName, time, tableName, content from t_recharge_item_log
+    </sql>
+
+    <select id="selectRechargeItemLogList" parameterType="RechargeItemLog" resultMap="RechargeItemLogResult">
+        <include refid="selectRechargeItemLogVo"/>
+        <where>  
+            <if test="userId != null "> and userId = #{userId}</if>
+            <if test="ip != null  and ip != ''"> and ip = #{ip}</if>
+            <if test="userName != null  and userName != ''"> and userName like concat('%', #{userName}, '%')</if>
+            <if test="time != null "> and time = #{time}</if>
+            <if test="tableName != null  and tableName != ''"> and tableName like concat('%', #{tableName}, '%')</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+        </where>
+        order by time desc
+    </select>
+    
+    <select id="selectRechargeItemLogById" parameterType="Integer" resultMap="RechargeItemLogResult">
+        <include refid="selectRechargeItemLogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertRechargeItemLog" parameterType="RechargeItemLog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_recharge_item_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">userId,</if>
+            <if test="ip != null">ip,</if>
+            <if test="userName != null">userName,</if>
+            <if test="time != null">time,</if>
+            <if test="tableName != null">tableName,</if>
+            <if test="content != null">content,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="time != null">#{time},</if>
+            <if test="tableName != null">#{tableName},</if>
+            <if test="content != null">#{content},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRechargeItemLog" parameterType="RechargeItemLog">
+        update t_recharge_item_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">userId = #{userId},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="userName != null">userName = #{userName},</if>
+            <if test="time != null">time = #{time},</if>
+            <if test="tableName != null">tableName = #{tableName},</if>
+            <if test="content != null">content = #{content},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRechargeItemLogById" parameterType="Integer">
+        delete from t_recharge_item_log where id = #{id}
+    </delete>
+
+    <delete id="deleteRechargeItemLogByIds" parameterType="String">
+        delete from t_recharge_item_log where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

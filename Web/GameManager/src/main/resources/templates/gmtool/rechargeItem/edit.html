@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改充值配置')" />
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var rechargeTableName = "";
+        $(function () {
+            rechargeTableName = [[${tableName}]];
+        });
+    </script>
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-rechargeItem-edit" th:object="${rechargeItem}">
+            <!--<input name="goodsId" th:field="*{goodsId}" type="hidden">-->
+            <div class="form-group">
+                <label class="col-sm-3 control-label">充值ID：</label>
+                <div class="col-sm-8">
+                    <input name="goodsId" th:field="*{goodsId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">游戏内部配置ID：</label>
+                <div class="col-sm-8">
+                    <input name="goodsSystemCfgId" th:field="*{goodsSystemCfgId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商品名字描述：</label>
+                <div class="col-sm-8">
+                    <input name="goodsName" th:field="*{goodsName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">渠道名称：</label>
+                <div class="col-sm-8">
+                    <input name="goodsPayChannel" th:field="*{goodsPayChannel}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">支付渠道：</label>
+                <div class="col-sm-8">
+                    <input name="goodsPayType" th:field="*{goodsPayType}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">充值类型：</label>
+                <div class="col-sm-8">
+                    <input name="goodsType" th:field="*{goodsType}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">充值子类型：</label>
+                <div class="col-sm-8">
+                    <input name="goodsSubtype" th:field="*{goodsSubtype}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">充值次数：</label>
+                <div class="col-sm-8">
+                    <input name="goodsLimit" th:field="*{goodsLimit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">显示的图标的ID：</label>
+                <div class="col-sm-8">
+                    <input name="goodsIcon" th:field="*{goodsIcon}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">商品图片地址：</label>
+                <div class="col-sm-8">
+                    <input name="goodsurl" th:field="*{goodsurl}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">充值档位对应消耗的真实货币：</label>
+                <div class="col-sm-8">
+                    <textarea name="goodsPrice" class="form-control">[[*{goodsPrice}]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">充值计费点：</label>
+                <div class="col-sm-8">
+                    <input name="goodsPricePoint" th:field="*{goodsPricePoint}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">界面默认显示的货币 例如:THB：</label>
+                <div class="col-sm-8">
+                    <input name="goodsShowPrice" th:field="*{goodsShowPrice}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">充值奖励：</label>
+                <div class="col-sm-8">
+                    <input name="goodsReward" th:field="*{goodsReward}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">充值奖励倍数：</label>
+                <div class="col-sm-8">
+                    <input name="goodsMultiple" th:field="*{goodsMultiple}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">额外奖励：</label>
+                <div class="col-sm-8">
+                    <input name="goodsExtraReward" th:field="*{goodsExtraReward}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">额外奖励次数：</label>
+                <div class="col-sm-8">
+                    <input name="goodsExtraRewardLimit" th:field="*{goodsExtraRewardLimit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否计入到游戏累充活动：</label>
+                <div class="col-sm-8">
+                    <input name="isTotalRecharge" th:field="*{isTotalRecharge}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否增加VIP经验：</label>
+                <div class="col-sm-8">
+                    <input name="totalVipPower" th:field="*{totalVipPower}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/rechargeItem";
+        $("#form-rechargeItem-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                var param = $('#form-rechargeItem-edit').serialize()+"&rechargeTableName="+rechargeTableName;
+                console.log(param);
+                $.ajax({
+                    url: prefix + "/saveRechargeItem",
+                    type: 'POST',
+                    dataType : "json",
+                    data: param,
+                    beforeSend: function () {
+                        $.modal.loading("正在处理中，请稍后...");
+                        $.modal.disable();
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        var parent = window.parent;
+                        var document = $(window.parent.document);
+                        // console.log($(window.parent.document));
+                        if (data.ok){
+                            $.modal.msgSuccess("修改成功");
+                            parent.$.table.refresh("rechargeItemData");
+                            parent.$.table.refresh("rechargeItemData3");
+                            parent.$.table.refresh("rechargeItemLog");
+                            $('#MD5', document).text(data.md5);
+                            $('#msg', document).text(data.msg);
+                            setTimeout(function(){
+                                $.modal.close();
+                            },1000);
+                        }else {
+                            $.modal.alertError("修改失败");
+                        }
+
+                        $.modal.closeLoading();
+                        $.modal.enable();
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

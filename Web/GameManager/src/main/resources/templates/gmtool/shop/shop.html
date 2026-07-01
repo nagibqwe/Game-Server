@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('商城列表')" />
+    <th:block th:include="include :: footer" />
+    <script>
+        $(function () {
+            loadAllItem();
+            formatDate();
+        });
+    </script>
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <div th:replace="common/select_server_single.html"></div>
+                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <input type="hidden" id="requestUrl" value="gameServer">
+                                <input type="hidden" id="ignoreMerge" value="1">
+
+                            </li>
+                            <li>
+                                <label>商城类型：</label>
+                                <select id="select_shop" name="shopId" class="span2">
+                                    <option value="0">所有</option>
+                                    <option value="1">灵玉商城</option>
+                                    <option value="2">兑换商城</option>
+                                    <option value="3">福地积分商店</option>
+                                    <option value="4">仙盟贡献商店</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="addShop()">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/shop";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                modalName: "商城",
+                columns: [
+                {
+                    field: 'id',
+                    title: '商品ID'
+                },
+                {
+                    field: 'itemid',
+                    title: '道具ID',
+                    formatter:getItemName
+                },
+                {
+                    field: 'shopid',
+                    title: '所属商城',
+                    formatter:function (value,row,index) {
+                        switch (value) {
+                            case 1:
+                                return "灵玉商城";
+                            case 2:
+                                return "兑换商城";
+                            case 3:
+                                return "福地积分商店";
+                            case 4:
+                                return "仙盟贡献商店";
+                        }
+                        return "未知" + value;
+                    }
+                },
+                {
+                    field: 'shoptype',
+                    title: '商城标签'
+                },
+                {
+                    field: 'labelid',
+                    title: '标签ID'
+                },
+                {
+                    field: 'level',
+                    title: '需求等级'
+                },
+                {
+                    field: 'occupation',
+                    title: '职业限制',
+                    formatter:function (value,row,index) {
+                        switch (value) {
+                            case -1:
+                                return "不限职业";
+                            case 0:
+                                return "玄剑";
+                            case 1:
+                                return "天英";
+                            case 2:
+                                return "地藏";
+                            case 3:
+                                return "罗刹";
+                        }
+                        return "未知" + value;
+                    }
+                },
+                {
+                    field: 'limittype',
+                    title: '限购类型',
+                    formatter:function (value,row,index) {
+                        switch (value) {
+                            case 0:
+                                return "不限购";
+                            case 1:
+                                return "日限购";
+                            case 2:
+                                return "周限购";
+                            case 3:
+                                return "月限购";
+                            case 4:
+                                return "年限购";
+                            case 5:
+                                return "终身限购";
+                        }
+                        return "未知" + value;
+                    }
+                },
+                {
+                    field: 'buynum',
+                    title: '可购买次数'
+                },
+                {
+                    field: 'currencyid',
+                    title: '货币',
+                    formatter:getItemName
+                },
+                {
+                    field: 'price',
+                    title: '打折前价格'
+                },
+                {
+                    field: 'discountprice',
+                    title: '打折后价格'
+                },
+                {
+                    field: 'discount',
+                    title: '打折数'
+                },
+                {
+                    field: 'promotion',
+                    title: '促销标签',
+                    formatter:function (value,row,index) {
+                        switch (value) {
+                            case 0:
+                                return "无";
+                            case 1:
+                                return "打折";
+                            case 2:
+                                return "推荐";
+                            case 3:
+                                return "新品";
+                            case 4:
+                                return "热卖";
+                        }
+                        return "未知" + value;
+                    }
+                },
+                {
+                    field: 'sort',
+                    title: '排列优先级'
+                },
+                {
+                    field: 'uptime',
+                    title: '上架时间'
+                },
+                {
+                    field: 'downtime',
+                    title: '下架时间'
+                },
+                {
+                    field: 'bind',
+                    title: '是否绑定',
+                    formatter:getBoolean
+                },
+                {
+                    field: 'refreshcurrency',
+                    title: '刷新使用货币类型'
+                },
+                {
+                    field: 'refreshnum',
+                    title: '刷新货币消耗数量'
+                },
+                {
+                    field: 'isdiscount',
+                    title: '是否修神锻体打折',
+                    formatter:getBoolean
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="editShop(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="deleteShop(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+
+        function getItemName(value, row, index) {
+            var itemName = items.get(value + "");
+            if (itemName == undefined) {
+                itemName = "未知";
+            }
+            return itemName + "[" + value + "]";
+        }
+
+        function getBoolean(value, row, index) {
+            if (value == 0) {
+                return "否";
+            } else {
+                return "是";
+            }
+        }
+
+        //点击修改
+        function editShop(id) {
+            table.set();
+            var groupName = $("#select_group").val();
+            var serverId =  $("#select_server").val();
+            $.modal.open("修改" + table.options.modalName, prefix + "/editShop?shopId="+id+"&groupName="+groupName+"&serverId="+serverId,1450,null);
+        }
+
+        //删除操作
+        function deleteShop(id) {
+            $.modal.confirm("确认删除？",function () {
+                $.ajax({
+                    type : "POST",
+                    url : prefix + "/deleteShop",
+                    data : {
+                        serverId : $("#select_server").val(),
+                        shopId : id
+                    },
+                    dataType : "json",
+                    success : function(data) {
+                        if (data.ok) {
+                            $.table.refresh();
+                            $.modal.alertSuccess(data.msg);
+                        }else {
+                            $.modal.alertError(data.msg);
+                        }
+                    }
+                });
+            });
+        }
+
+        //点击添加
+        function addShop() {
+            table.set();
+            var groupName = $("#select_group").val();
+            var serverId =  $("#select_server").val();
+            $.modal.open("添加" + table.options.modalName, prefix + "/add?groupName="+groupName+"&serverId="+serverId+"",1450);
+        }
+    </script>
+</body>
+</html>

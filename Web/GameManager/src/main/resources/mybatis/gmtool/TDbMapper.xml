@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.project.gmtool.db.mapper.TDbMapper">
+    
+    <resultMap type="TDb" id="TDbResult">
+        <result property="id"    column="id"    />
+        <result property="serverName"    column="serverName"    />
+        <result property="serverId"    column="serverId"    />
+        <result property="groupName"    column="groupName"    />
+        <result property="dbIp"    column="dbIp"    />
+        <result property="dbPort"    column="dbPort"    />
+        <result property="dbname"    column="dbname"    />
+        <result property="dbuser"    column="dbuser"    />
+        <result property="dbpassword"    column="dbpassword"    />
+        <result property="serverIdList"    column="serverIdList"    />
+        <result property="isHeFu"    column="isHeFu"    />
+        <result property="hefuServerID"    column="hefuServerID"    />
+        <result property="hefuTime"    column="hefuTime"    />
+        <result property="serverType"    column="serverType"    />
+        <result property="serverOpenTime"    column="serverOpenTime"    />
+        <result property="updateDate"    column="updateDate"    />
+    </resultMap>
+
+    <sql id="selectTDbVo">
+        select db.id, server.serverName, db.serverId, server.groupName, db.dbIp, db.dbPort, db.dbname, db.dbuser, db.dbpassword, server.isHeFu, server.hefuServerID, server.hefuTime, server.serverType, server.serverOpenTime, db.updateDate
+        from t_db db left join t_server server on db.serverId=server.serverId
+    </sql>
+
+    <select id="selectTDbList" parameterType="TDb" resultMap="TDbResult">
+        <include refid="selectTDbVo"/>
+        <where>  
+            <if test="serverName != null  and serverName != ''"> and server.serverName like concat('%', #{serverName}, '%')</if>
+            <if test="serverId != null "> and server.serverId = #{serverId}</if>
+            <if test="groupName != null  and groupName != ''"> and server.groupName like concat('%', #{groupName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectTDbById" parameterType="Integer" resultMap="TDbResult">
+        <include refid="selectTDbVo"/>
+        where db.id = #{id}
+    </select>
+
+    <select id="selectTDbByServerId" parameterType="Integer" resultMap="TDbResult">
+        <include refid="selectTDbVo"/>
+        where db.serverId = #{serverId}
+    </select>
+        
+    <insert id="insertTDb" parameterType="TDb" useGeneratedKeys="true" keyProperty="id">
+        insert into t_db
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">serverId,</if>
+            <if test="dbIp != null and dbIp != ''">dbIp,</if>
+            <if test="dbPort != null">dbPort,</if>
+            <if test="dbname != null and dbname != ''">dbname,</if>
+            <if test="dbuser != null and dbuser != ''">dbuser,</if>
+            <if test="dbpassword != null and dbpassword != ''">dbpassword,</if>
+            <if test="updateDate != null">updateDate,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverId != null">#{serverId},</if>
+            <if test="dbIp != null and dbIp != ''">#{dbIp},</if>
+            <if test="dbPort != null">#{dbPort},</if>
+            <if test="dbname != null and dbname != ''">#{dbname},</if>
+            <if test="dbuser != null and dbuser != ''">#{dbuser},</if>
+            <if test="dbpassword != null and dbpassword != ''">#{dbpassword},</if>
+            <if test="updateDate != null">#{updateDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTDb" parameterType="TDb">
+        update t_db
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="serverId != null">serverId = #{serverId},</if>
+            <if test="dbIp != null and dbIp != ''">dbIp = #{dbIp},</if>
+            <if test="dbPort != null">dbPort = #{dbPort},</if>
+            <if test="dbname != null and dbname != ''">dbname = #{dbname},</if>
+            <if test="dbuser != null and dbuser != ''">dbuser = #{dbuser},</if>
+            <if test="dbpassword != null and dbpassword != ''">dbpassword = #{dbpassword},</if>
+            <if test="updateDate != null">updateDate = #{updateDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTDbById" parameterType="Integer">
+        delete from t_db where id = #{id}
+    </delete>
+
+    <delete id="deleteTDbByIds" parameterType="String">
+        delete from t_db where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

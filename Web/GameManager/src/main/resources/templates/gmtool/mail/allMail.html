@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('全服邮件列表')" />
+    <th:block th:include="include :: footer" />
+    <style type="text/css">
+        .table {table-layout:fixed;}
+    </style>
+</head>
+<body class="gray-bg">
+<div class="container-fluid">
+
+    <div class="container-fluid" style="margin-top: 10px">
+        <a id="mail1" class="label label-info" onclick="toggleTable(waitDealDiv)">待处理邮件</a>
+        <div class="btn-group-sm" id="toolbar1" role="group">
+            <a class="btn btn-warning" onclick="oneKeySendAll()">一键发送</a>
+        </div>
+        <form id="waitDealForm" style="display: none">
+            <div class="select-list">
+                <ul>
+                    <li>
+                        <input type="hidden" name="type" value="1">
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <div id="waitDealDiv" class="col-sm-12 select-table table-striped"
+             style="word-break:break-all; word-wrap:break-all;">
+            <table id="waitDeal"></table>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin-top: 10px">
+        <a id="mail2" class="label label-info" onclick="toggleTable(mineDiv)">自己的邮件</a>
+        <form id="mineForm" style="display: none">
+            <div class="select-list">
+                <ul>
+                    <li>
+                        <input type="hidden" name="type" value="2">
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <div id="mineDiv" class="col-sm-12 select-table table-striped"
+             style="word-break:break-all; word-wrap:break-all;">
+            <table id="mine"></table>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin-top: 10px">
+        <a id="mail3" class="label label-info" onclick="toggleTable(historyDiv)">历史邮件</a>
+        <form id="historyForm" style="display: none">
+            <div class="select-list">
+                <ul>
+                    <li>
+                        <input type="hidden" name="type" value="3">
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <div id="historyDiv" class="col-sm-12 select-table table-striped"
+             style="word-break:break-all; word-wrap:break-all;">
+            <table id="history"></table>
+        </div>
+    </div>
+</div>
+    <script th:inline="javascript">
+        var prefix = ctx + "gmtool/mail";
+        var items = new Map();
+        $(function () {
+            loadAllItem2();
+            initAllMailList();
+        });
+        function initAllMailList() {
+            initWaitDeal();
+            initMine();
+            initHistory();
+        }
+
+        function loadAllMailList() {
+            $.table.search("waitDealForm","waitDeal");
+            $.table.search("mineForm","mine");
+            $.table.search("historyForm","history");
+        }
+
+        function initWaitDeal() {
+            var options = {
+                id:"waitDeal",
+                formId:"waitDealForm",
+                toolbar: "toolbar1",
+                url: prefix + "/queryAll",
+                showSearch: false,
+                showRefresh: false,
+                showToggle: false,
+                showColumns: false,
+                modalName: "全服邮件",
+                columns: [
+                    {
+                        field: 'id',
+                        title: '编号'
+                    },
+                    {
+                        field: 'minLv',
+                        title: '最小等级'
+                    },
+                    {
+                        field: 'maxLv',
+                        title: '最大等级'
+                    },
+                    {
+                        field: 'career',
+                        title: '职业',
+                        formatter:formatCareer
+                    },
+                    {
+                        field: 'serverIdList',
+                        title: '服务器列表'
+                    },
+                    {
+                        field: 'title',
+                        title: '邮件标题'
+                    },
+                    {
+                        field: 'content',
+                        title: '邮件内容'
+                    },
+                    {
+                        field: 'reason',
+                        title: '发送原因'
+                    },
+                    {
+                        field: 'items',
+                        title: '附件'
+                    },
+                    {
+                        field: 'items',
+                        title: '附件邮件内容',
+                        formatter:formatItems
+                    },
+                    {
+                        field: 'createUser',
+                        title: '创建者'
+                    },
+                    {
+                        field: 'createDate',
+                        title: '创建时间'
+                    },
+                    {
+                        field: 'adminState',
+                        title: '邮件状态',
+                        formatter:formatterState
+                    },
+                    {
+                        title: '操作',
+                        align: 'center',
+                        width:250,
+                        formatter: function(value, row, index) {
+                            var actions = [];
+                            actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="operateMail(' + row.id + ',1)">准予发送</a> ');
+                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="operateMail(' + row.id + ',2)">不予发送</a> ');
+                            return actions.join('');
+                        }
+                    }]
+            };
+            $.table.init(options);
+        }
+
+        function initMine() {
+            var options = {
+                id:"mine",
+                formId:"mineForm",
+                url: prefix + "/queryAll",
+                showSearch: false,
+                showRefresh: false,
+                showToggle: false,
+                showColumns: false,
+                modalName: "全服邮件",
+                columns: [
+                    {
+                        field: 'id',
+                        title: '编号'
+                    },
+                    {
+                        field: 'minLv',
+                        title: '最小等级'
+                    },
+                    {
+                        field: 'maxLv',
+                        title: '最大等级'
+                    },
+                    {
+                        field: 'career',
+                        title: '职业',
+                        formatter:formatCareer
+                    },
+                    {
+                        field: 'serverIdList',
+                        title: '服务器列表'
+                    },
+                    {
+                        field: 'title',
+                        title: '邮件标题'
+                    },
+                    {
+                        field: 'content',
+                        title: '邮件内容'
+                    },
+                    {
+                        field: 'reason',
+                        title: '发送原因'
+                    },
+                    {
+                        field: 'items',
+                        title: '附件'
+                    },
+                    {
+                        field: 'items',
+                        title: '附件邮件内容',
+                        formatter:formatItems
+                    },
+                    {
+                        field: 'createUser',
+                        title: '创建者'
+                    },
+                    {
+                        field: 'createDate',
+                        title: '创建时间'
+                    },
+                    {
+                        field: 'adminUser',
+                        title: '确认者'
+                    },
+                    {
+                        field: 'adminDate',
+                        title: '确认时间'
+                    },
+                    {
+                        field: 'sendErrorMess',
+                        title: '备注'
+                    },
+                    {
+                        field: 'adminState',
+                        title: '邮件状态',
+                        formatter:formatterState
+                    },
+                    {
+                        title: '操作',
+                        align: 'center',
+                        width:250,
+                        formatter: function(value, row, index) {
+                            var actions = [];
+                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="operateMail(' + row.id + ',3)">删除</a> ');
+                            return actions.join('');
+                        }
+                    }]
+            };
+            $.table.init(options);
+        }
+
+        function initHistory() {
+            var options = {
+                id:"history",
+                formId:"historyForm",
+                url: prefix + "/queryAll",
+                showSearch: false,
+                showRefresh: false,
+                showToggle: false,
+                showColumns: false,
+                modalName: "全服邮件",
+                columns: [
+                    {
+                        field: 'id',
+                        title: '编号'
+                    },
+                    {
+                        field: 'minLv',
+                        title: '最小等级'
+                    },
+                    {
+                        field: 'maxLv',
+                        title: '最大等级'
+                    },
+                    {
+                        field: 'career',
+                        title: '职业',
+                        formatter:formatCareer
+                    },
+                    {
+                        field: 'serverIdList',
+                        title: '服务器列表'
+                    },
+                    {
+                        field: 'title',
+                        title: '邮件标题'
+                    },
+                    {
+                        field: 'content',
+                        title: '邮件内容'
+                    },
+                    {
+                        field: 'reason',
+                        title: '发送原因'
+                    },
+                    {
+                        field: 'items',
+                        title: '附件'
+                    },
+                    {
+                        field: 'items',
+                        title: '附件邮件内容',
+                        formatter:formatItems
+                    },
+                    {
+                        field: 'createUser',
+                        title: '创建者'
+                    },
+                    {
+                        field: 'createDate',
+                        title: '创建时间'
+                    },
+                    {
+                        field: 'adminUser',
+                        title: '确认者'
+                    },
+                    {
+                        field: 'adminDate',
+                        title: '确认时间'
+                    },
+                    {
+                        field: 'sendErrorMess',
+                        title: '备注'
+                    },
+                    {
+                        field: 'adminState',
+                        title: '邮件状态',
+                        formatter:formatterState
+                    }]
+            };
+            $.table.init(options);
+        }
+
+        //一键发送
+        function oneKeySendAll() {
+            $.ajax({
+                url: prefix + "/oneKeySendAll",
+                method: 'POST',
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function (data) {
+                    loadAllMailList();
+                    $.modal.alertWarning(data.msg);
+
+                    $.modal.closeLoading();
+                    $.modal.enable();
+                }
+            });
+        }
+
+        //邮件操作，1：准予发送，2不予发送，3：删除
+        function operateMail(id, type){
+            console.log("id:"+id);
+            $.ajax({
+                url: prefix + "/adminAllMail",
+                method: 'POST',
+                dataType : 'json',
+                data:{
+                    "id":id,
+                    "type":type
+                },
+                beforeSend: function () {
+                    $.modal.loading("正在处理中，请稍后...");
+                    $.modal.disable();
+                },
+                success: function (data) {
+                    loadAllMailList();
+                    $.modal.alertWarning(data.msg);
+                    $.modal.closeLoading();
+                    $.modal.enable();
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
