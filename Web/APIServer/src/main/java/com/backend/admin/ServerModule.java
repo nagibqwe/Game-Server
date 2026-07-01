@@ -401,7 +401,7 @@ public class ServerModule {
 @Ok("json")
 @Filters
 public Object serverlist(@Param("groupName") String groupName) {
-    String sqlStr = "SELECT serverId, serverName, groupName, serverIP, serverPort, " +
+    String sqlStr = "SELECT serverId, serverName, groupName, WorldIP, worldPort, " +
             "serverOpenTime, openState, registerNum " +
             "FROM t_server " +
             "WHERE isDeleted = 0 " +
