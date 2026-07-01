@@ -206,3 +206,15 @@ The same script also supports `stop`, `restart` and `tail`.
 3. Client sees server but cannot enter: verify `GameServer/config/server-config.xml` has the same `serverIdList`/`serverInfo serverId` and that port `9101` is listening.
 4. Public-server errors: verify `GameServer/config/server-config.xml` points `<public publicIp="127.0.0.1" publicPort="9200"/>` at the running public server.
 5. Backend heartbeat errors to `localhost:8080/TzjBackend` can be ignored for the first local smoke test unless the process exits because of them.
+
+## 10. APIServer server list endpoint
+
+The public endpoint for checking game servers by group is:
+
+```text
+http://127.0.0.1:8080/APIServer/server/serverByGroup?groupName=cn
+```
+
+`Shell/ubuntu-server.sh init-db` now imports `tzj_backend` and seeds `t_server` with a local `cn` row for `serverId=1001`, so the endpoint has data to return after APIServer is deployed to Tomcat under the `APIServer` context. `Shell/ubuntu-server.sh config-db` also rewrites `Web/APIServer/src/main/resources/custom/db_backend.properties` to point APIServer at the same local `tzj_backend` database.
+
+Expected JSON fields include `serverId`, `serverName`, `groupName`, `serverIP`, `serverPort`, `serverType`, `openState`, and `registerNum`. The endpoint is intentionally unauthenticated so it can be opened directly in a browser/curl for smoke testing.

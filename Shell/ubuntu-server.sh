@@ -26,7 +26,7 @@ Usage: $(basename "$0") <command>
 
 Commands:
   deps-check      Check required Ubuntu tools (java, ant, mysql client, ss)
-  init-db         Create minimal local MySQL databases/users and import Sql/all dumps
+  init-db         Create local MySQL databases/users, import Sql/all dumps, seed APIServer
   config-db       Rewrite server XML DB credentials for local MySQL variables
   build           Build shared modules and Agent/Public/Game jars with Ant
   start           Start AgentServer, PublicServer and GameServer in Ubuntu layout
@@ -73,6 +73,7 @@ CREATE DATABASE IF NOT EXISTS tzj_public DEFAULT CHARACTER SET utf8mb4;
 CREATE DATABASE IF NOT EXISTS tzj_public_log DEFAULT CHARACTER SET utf8mb4;
 CREATE DATABASE IF NOT EXISTS tzj_game DEFAULT CHARACTER SET utf8mb4;
 CREATE DATABASE IF NOT EXISTS tzj_game_log DEFAULT CHARACTER SET utf8mb4;
+CREATE DATABASE IF NOT EXISTS tzj_backend DEFAULT CHARACTER SET utf8mb4;
 CREATE USER IF NOT EXISTS '${GAME_DB_USER}'@'127.0.0.1' IDENTIFIED BY '${GAME_DB_PASS}';
 CREATE USER IF NOT EXISTS '${GAME_DB_USER}'@'localhost' IDENTIFIED BY '${GAME_DB_PASS}';
 ALTER USER '${GAME_DB_USER}'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY '${GAME_DB_PASS}';
@@ -83,13 +84,24 @@ GRANT ALL PRIVILEGES ON tzj_public.* TO '${GAME_DB_USER}'@'127.0.0.1';
 GRANT ALL PRIVILEGES ON tzj_public_log.* TO '${GAME_DB_USER}'@'127.0.0.1';
 GRANT ALL PRIVILEGES ON tzj_game.* TO '${GAME_DB_USER}'@'127.0.0.1';
 GRANT ALL PRIVILEGES ON tzj_game_log.* TO '${GAME_DB_USER}'@'127.0.0.1';
+GRANT ALL PRIVILEGES ON tzj_backend.* TO '${GAME_DB_USER}'@'127.0.0.1';
 GRANT ALL PRIVILEGES ON tzj_login.* TO '${GAME_DB_USER}'@'localhost';
 GRANT ALL PRIVILEGES ON tzj_login_log.* TO '${GAME_DB_USER}'@'localhost';
 GRANT ALL PRIVILEGES ON tzj_public.* TO '${GAME_DB_USER}'@'localhost';
 GRANT ALL PRIVILEGES ON tzj_public_log.* TO '${GAME_DB_USER}'@'localhost';
 GRANT ALL PRIVILEGES ON tzj_game.* TO '${GAME_DB_USER}'@'localhost';
 GRANT ALL PRIVILEGES ON tzj_game_log.* TO '${GAME_DB_USER}'@'localhost';
+GRANT ALL PRIVILEGES ON tzj_backend.* TO '${GAME_DB_USER}'@'localhost';
 FLUSH PRIVILEGES;
+SQL
+}
+
+seed_api_server() {
+  echo "Seeding APIServer t_server row for group cn/serverId 1001 ..."
+  "${mysql_game[@]}" tzj_backend <<SQL
+DELETE FROM t_server WHERE serverId = 1001;
+INSERT INTO t_server (serverId, serverName, groupName, WorldIP, worldPort, isHeFu, hefuServerID, serverType, isDeleted, isShow, serverOpenTime, openState, heartTime, registerNum)
+VALUES (1001, 'Local Ubuntu GameServer', 'cn', '${GAME_PUBLIC_IP}', 8191, 0, 0, 1, 0, 0, NOW(), 1, NOW(), 0);
 SQL
 }
 
@@ -101,6 +113,8 @@ init_db() {
   "${mysql_game[@]}" tzj_login < "$ROOT_DIR/Sql/all/tzj_login.sql"
   "${mysql_game[@]}" tzj_public < "$ROOT_DIR/Sql/all/tzj_public.sql"
   "${mysql_game[@]}" tzj_game < "$ROOT_DIR/Sql/all/tzj_game.sql"
+  "${mysql_game[@]}" tzj_backend < "$ROOT_DIR/Sql/all/tzj_backend.sql"
+  seed_api_server
   echo "Done. Log DBs are intentionally empty; runtime log tables are created/checked by the servers."
 }
 
@@ -126,6 +140,7 @@ files = {
         'tzj_game_log': 'tzj_game_log',
     },
 }
+properties_files = ['Web/APIServer/src/main/resources/custom/db_backend.properties']
 for rel in files:
     path = root / rel
     text = path.read_text(encoding='utf-8')
@@ -141,6 +156,14 @@ for rel in files:
     if rel in ('AgentServer/config/server-config.xml', 'PublicServer/config/server-config.xml'):
         text = re.sub(r'<gameServerIp gameServerIp="[^"]*"/>',
                       f'<gameServerIp gameServerIp="{public_ip}"/>', text)
+    path.write_text(text, encoding='utf-8')
+    print(f'updated {rel}')
+for rel in properties_files:
+    path = root / rel
+    text = path.read_text(encoding='utf-8')
+    text = re.sub(r'db\.backend\.url=.*', f'db.backend.url=jdbc:mysql://{host}:{port}/tzj_backend?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8', text)
+    text = re.sub(r'db\.backend\.username=.*', f'db.backend.username={user}', text)
+    text = re.sub(r'db\.backend\.password=.*', f'db.backend.password={password}', text)
     path.write_text(text, encoding='utf-8')
     print(f'updated {rel}')
 PY

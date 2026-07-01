@@ -355,8 +355,45 @@ public class ServerModule {
     }
 
     @At
-    public Object serverByGroup(String groupName) {
-        return ServerListManager.getInstance().getServers(groupName);
+    @GET
+    @Filters
+    public Object serverByGroup(@Param("groupName") String groupName) {
+        String sqlStr = "SELECT id, serverId, serverName, groupName, WorldIP AS serverIP, worldPort AS serverPort, "
+                + "isHeFu, hefuServerID, serverType, isDeleted, isShow, serverOpenTime, openState, heartTime, registerNum "
+                + "FROM t_server WHERE isDeleted = 0 AND serverType < 2";
+        if (!Strings.isBlank(groupName)) {
+            sqlStr += " AND groupName = @groupName";
+        }
+        sqlStr += " ORDER BY serverId ASC";
+
+        Sql sql = Sqls.create(sqlStr);
+        if (!Strings.isBlank(groupName)) {
+            sql.params().set("groupName", groupName);
+        }
+        sql.setCallback((Connection con, ResultSet rs, Sql sql1) -> {
+            List<NutMap> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(new NutMap()
+                        .setv("id", rs.getInt("id"))
+                        .setv("serverId", rs.getInt("serverId"))
+                        .setv("serverName", rs.getString("serverName"))
+                        .setv("groupName", rs.getString("groupName"))
+                        .setv("serverIP", rs.getString("serverIP"))
+                        .setv("serverPort", rs.getInt("serverPort"))
+                        .setv("isHeFu", rs.getInt("isHeFu"))
+                        .setv("hefuServerID", rs.getInt("hefuServerID"))
+                        .setv("serverType", rs.getInt("serverType"))
+                        .setv("isDeleted", rs.getInt("isDeleted"))
+                        .setv("isShow", rs.getInt("isShow"))
+                        .setv("serverOpenTime", rs.getString("serverOpenTime"))
+                        .setv("openState", rs.getInt("openState"))
+                        .setv("heartTime", rs.getString("heartTime"))
+                        .setv("registerNum", rs.getInt("registerNum")));
+            }
+            return list;
+        });
+        dao.execute(sql);
+        return sql.getResult();
     }
 
     @At
