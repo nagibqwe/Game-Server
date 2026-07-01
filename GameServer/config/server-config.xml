@@ -3,20 +3,20 @@
 <server>
     <db-game
             url="jdbc:mysql://127.0.0.1:3306/tzj_game?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"
-            username="root" password="o4W3TKCtvm5GYab3"/>
+            username="root" password="4512kek4512"/>
     <db-public-data
             url="jdbc:mysql://127.0.0.1:3306/tzj_login?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"
-            username="root" password="o4W3TKCtvm5GYab3"/>
+            username="root" password="4512kek4512"/>
     <db-log-info
             url="jdbc:mysql://127.0.0.1:3306/tzj_game_log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"
-            username="root" password="o4W3TKCtvm5GYab3"/>
+            username="root" password="4512kek4512"/>
     <serverIdList serverIdList="1001"/>
 
     <openTime openTime="2023-05-12 00:00:00"/>
 
-    <heartHttp host="http://localhost:8080/TzjBackend/serverstate/checkstate?"/>
+    <heartHttp host="http://155.212.166.16:8080/TzjBackend/serverstate/checkstate?"/>
 
-    <errorlog http="http://localhost:8080/TzjBackend"/>
+    <errorlog http="http://155.212.166.16:8080/TzjBackend"/>
 
     <login-data verifyUrl="http://tzj-xpt.iwgame.cc/usr/vtk.do"/>
 
@@ -29,7 +29,7 @@
     <!--是否审核服-->
     <isShenHe isShenHe="0"/>
 
-    <public publicIp="127.0.0.1" publicPort="9200"/>
+    <public publicIp="155.212.166.16" publicPort="9200"/>
 
     <serverInfo serverName="gameserver" port="9101" serverId="1001" platfrom="cn" lsId="1"/><!--TET-->
 
@@ -39,7 +39,7 @@
     <serverOrderUrl serverOrderUrl="http://tzj-xpt.iwgame.cc/pay/gid.do"/>
 	
     <!--充值发货回调地址IP-->
-    <rechargeNotifyUrl rechargeNotifyUrl="http://222.212.88.34:8989/"/>
+    <rechargeNotifyUrl rechargeNotifyUrl="http://155.212.166.16:8989/"/>
 
     <!--充值端口-->
     <recharge rechargePort="8190"/>
@@ -73,5 +73,5 @@
     <isrebate isrebate = "0" />
 
     <!--本服游戏服IP，不配置就程序自动获取 -->
-    <gameServerIp gameServerIp="127.0.0.1"/>
+    <gameServerIp gameServerIp="155.212.166.16"/>
 </server>

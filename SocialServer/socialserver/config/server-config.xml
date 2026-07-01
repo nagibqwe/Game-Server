@@ -3,22 +3,22 @@
 <server>
     <db-game url="jdbc:mysql://localhost/tzj_social?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
              username="root"
-             password="o4W3TKCtvm5GYab3"
+             password="4512kek4512"
     />
     <db-log-info
             url="jdbc:mysql://localhost/tzj_social_log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
             username="root"
-            password="o4W3TKCtvm5GYab3"
+            password="4512kek4512"
     />
     <version version="1.0.0.0"/>
     <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
 
-    <heartHttp host="http://127.0.0.1:8080/TzjBackend/serverstate/checkstate?"/>
-    <errorlog http="http://127.0.0.1:8080/TzjBackend"/>
+    <heartHttp host="http://155.212.166.16:8080/TzjBackend/serverstate/checkstate?"/>
+    <errorlog http="http://155.212.166.16:8080/TzjBackend"/>
 
     <backgrand port="9521"/>
 
-    <public publicIp="127.0.0.1" publicPort="9200"/>
+    <public publicIp="155.212.166.16" publicPort="9200"/>
 
     <serverType serverType="5"/>
     <serverInfo serverName="socialServer" port="9520" serverId="5000" platfrom="cn" lsId="1"/>

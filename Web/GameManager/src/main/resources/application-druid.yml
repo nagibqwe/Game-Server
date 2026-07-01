@@ -8,17 +8,17 @@ spring:
             master:
                 url: jdbc:mysql://127.0.0.1:3306/tzj_gm?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username: root
-                password: o4W3TKCtvm5GYab3
+                password: 4512kek4512
             # 统计数据源
             stat: # 统计库数据源
                  url: jdbc:mysql://127.0.0.1:3306/tzj_stat_log?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                  username: root
-                 password: o4W3TKCtvm5GYab3
+                 password: 4512kek4512
              # 登陆逻辑服数据源
             login:
                 url: jdbc:mysql://127.0.0.1:3306/tzj_login?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username: root
-                password: o4W3TKCtvm5GYab3
+                password: 4512kek4512
             # 初始连接数
             initialSize: 5
             # 最小连接池数量

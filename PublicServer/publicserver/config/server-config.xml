@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- server Type字段服务器类型：0表示测试服，1表示正式游戏服，2表示跨服 3 是公共服-->
 <server>
-    <db-game url="jdbc:mysql://127.0.0.1:3306/tzj_public?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" username="root" password="o4W3TKCtvm5GYab3" />
-    <db-log-info url="jdbc:mysql://127.0.0.1:3306/tzj_public_log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" username="root" password="o4W3TKCtvm5GYab3" />
-    <heartHttp host="http://127.0.0.1:8080/TzjBackend/serverstate/checkstate?"/>
-    <errorlog http="http://127.0.0.1:8080/TzjBackend"/>
+    <db-game url="jdbc:mysql://127.0.0.1:3306/tzj_public?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" username="root" password="4512kek4512" />
+    <db-log-info url="jdbc:mysql://127.0.0.1:3306/tzj_public_log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" username="root" password="4512kek4512" />
+    <heartHttp host="http://155.212.166.16:8080/TzjBackend/serverstate/checkstate?"/>
+    <errorlog http="http://155.212.166.16:8080/TzjBackend"/>
     <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
     <serverType serverType="3" language="cn" />
     <backgrand port="9201" />

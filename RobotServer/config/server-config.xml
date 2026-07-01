@@ -3,7 +3,7 @@
 <server>
     <db-game
             url="jdbc:mysql://127.0.0.1:3306/tzj_game?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
-            username="root" password="nengwan@2023"/>
+            username="root" password="4512kek4512"/>
 <!--    <db-game-data-->
 <!--            url="jdbc:mysql://10.0.0.59:3306/tzj_game_data?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"-->
 <!--            username="root" password="root"/>-->
@@ -11,11 +11,11 @@
 <!--            url="jdbc:mysql://10.0.0.59:3306/tzj_login?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"-->
 <!--            username="root" password="root"/>-->
     <robotCfg
-            loginServerIp="10.0.2.160"
-            loginServerPort="8888"
-            serverIp="10.0.2.160"
-            serverPort="9101"
-            serverId="1001"
+        loginServerIp="155.212.166.16"
+        loginServerPort="3002"
+        serverIp="155.212.166.16"
+        serverPort="9101"
+        serverId="1001"
             connectNum="0"
             userIdBegin="1"
             eventType="1"
