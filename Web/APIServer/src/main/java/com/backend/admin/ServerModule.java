@@ -396,6 +396,51 @@ public class ServerModule {
         return sql.getResult();
     }
 
+    @At("/serverlist")
+@GET
+@Ok("json")
+@Filters
+public Object serverlist(@Param("groupName") String groupName) {
+    String sqlStr = "SELECT serverId, serverName, groupName, serverIP, serverPort, " +
+            "serverOpenTime, openState, registerNum " +
+            "FROM t_server " +
+            "WHERE isDeleted = 0 " +
+            "AND isHeFu = 0 " +
+            "AND isShow = 0 " +
+            "AND serverType = 1 ";
+
+    if (!Strings.isBlank(groupName)) {
+        sqlStr += " AND groupName = @groupName ";
+    }
+
+    sqlStr += " ORDER BY serverId ASC";
+
+    Sql sql = Sqls.create(sqlStr);
+
+    if (!Strings.isBlank(groupName)) {
+        sql.params().set("groupName", groupName);
+    }
+
+    sql.setCallback((Connection con, ResultSet rs, Sql sql1) -> {
+        List<NutMap> list = new ArrayList<>();
+        while (rs.next()) {
+            list.add(new NutMap()
+                    .setv("serverId", rs.getInt("serverId"))
+                    .setv("serverName", rs.getString("serverName"))
+                    .setv("groupName", rs.getString("groupName"))
+                    .setv("serverIP", rs.getString("serverIP"))
+                    .setv("serverPort", rs.getInt("serverPort"))
+                    .setv("serverOpenTime", rs.getString("serverOpenTime"))
+                    .setv("openState", rs.getInt("openState"))
+                    .setv("registerNum", rs.getInt("registerNum")));
+        }
+        return list;
+    });
+
+    dao.execute(sql);
+    return sql.getResult();
+}
+
     @At
     public Object getNoHeFuServer(String groupName, boolean hasFight) {
         List<Server> serverList = new ArrayList<>(ServerListManager.getInstance().getNoHeFuServerListByGroup(groupName));
