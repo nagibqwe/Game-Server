@@ -28,7 +28,15 @@ If Ubuntu does not provide `openjdk-8-jdk` in your release, install a Temurin/Zu
 
 ## 3. Create and import the databases
 
-All full schema dumps live in `Sql/all`. The helper `tzj_create_all.sql` assumes the SQL files are located at `/data/game/sql`, so either copy the SQL files there or edit the `source` paths before importing.
+Recommended automated path on Ubuntu:
+
+```bash
+MYSQL_ADMIN_USER=root MYSQL_ADMIN_PASS=<root_password> GAME_DB_USER=tzj GAME_DB_PASS=change_me ./Shell/ubuntu-server.sh init-db
+```
+
+This command creates/imports only the minimal local databases (`tzj_login`, `tzj_login_log`, `tzj_public`, `tzj_public_log`, `tzj_game`, `tzj_game_log`) and grants the game DB user access.
+
+Manual path if you do not want to use the script: all full schema dumps live in `Sql/all`. The helper `tzj_create_all.sql` assumes the SQL files are located at `/data/game/sql`, so either copy the SQL files there or edit the `source` paths before importing.
 
 For a minimal local setup you can import only the login, public and game schemas:
 
@@ -73,7 +81,13 @@ The log databases are created empty. The Java log service can create/check log t
 
 ## 4. Update database credentials in XML
 
-Replace the hard-coded production credentials in these files with the local MySQL user/password from step 3:
+Recommended automated path on Ubuntu:
+
+```bash
+GAME_DB_USER=tzj GAME_DB_PASS=change_me GAME_PUBLIC_IP=127.0.0.1 ./Shell/ubuntu-server.sh config-db
+```
+
+Manual path if you do not want to use the script: replace the hard-coded production credentials in these files with the local MySQL user/password from step 3:
 
 - `AgentServer/config/server-config.xml`
   - `db-login-data` -> `tzj_login`
@@ -103,18 +117,28 @@ The login server authenticates against `tzj_login`; the game server also reads `
 - platform/group: `cn`
 - login-server id (`lsId`): `1`
 
-Table names differ between code branches/dumps, so inspect the imported login schema first:
+Important: `tzj_login.servername` is only a rename table (`serverId`, `changeName`, `changeTime`, `roleId`), not the platform server list. The broader platform/server-list tables are in `tzj_platformkits` (`sdk_server`, `sdk_server_extra`, `sdk_server_list`, `sdk_login_server`) and belong to the web/platform backend, not the minimal three-process smoke test.
+
+For the minimal Java-only smoke test, inspect what the imported login schema actually contains before adding data:
 
 ```bash
 mysql -utzj -pchange_me -e "USE tzj_login; SHOW TABLES;"
-mysql -utzj -pchange_me -e "USE tzj_login; SHOW COLUMNS FROM servername;"  # if the table exists
+mysql -utzj -pchange_me -e "USE tzj_login; SHOW COLUMNS FROM userlogin;"
+mysql -utzj -pchange_me -e "USE tzj_login; SHOW COLUMNS FROM rolelogin;"
+mysql -utzj -pchange_me -e "USE tzj_login; SHOW COLUMNS FROM servername;"
 ```
 
-If there is already a server-list table in the dump, update the existing row instead of inventing a new table. If the client reaches the login port but shows no server, this server-list row is the first thing to check.
+The account cache is stored in `userlogin`; per-role login summaries are stored in `rolelogin`; optional server renames are stored in `servername`. If your client obtains the visible server list from the platform HTTP backend instead of the agent server, import `Sql/all/tzj_platformkits.sql` as well and add rows to `sdk_server`, `sdk_server_extra`, `sdk_server_list`, and `sdk_login_server`.
 
 ## 6. Build order
 
-Build the shared jars first, then the runnable servers:
+Recommended automated path:
+
+```bash
+./Shell/ubuntu-server.sh build
+```
+
+Manual path: build the shared jars first, then the runnable servers:
 
 ```bash
 (cd GameCore && ant -f build-ant.xml)
@@ -133,7 +157,14 @@ Expected runnable jars after a successful build:
 
 ## 7. Start order on Ubuntu
 
-Start the dependencies before the game server:
+Recommended automated path:
+
+```bash
+./Shell/ubuntu-server.sh start
+./Shell/ubuntu-server.sh status
+```
+
+Manual path: start the dependencies before the game server:
 
 ```bash
 (cd AgentServer/dist && nohup java -server -jar AgentServer.jar > agentserver.out 2>&1 &)
@@ -157,6 +188,8 @@ pkill -f 'AgentServer.jar'
 pkill -f 'PublicServer.jar'
 pkill -f 'GameServer.jar'
 ```
+
+The same script also supports `stop`, `restart` and `tail`.
 
 ## 8. CentOS script notes for Ubuntu
 
