@@ -39,7 +39,7 @@ function showCondition() {
 }
 
 /**
- * 查询日志
+ * 查询日志  九  零 一 起 玩 w w w . 9 0 1 7 5 . c o   m
  */
 function search(){
 	var startDate = $("#start input").val();

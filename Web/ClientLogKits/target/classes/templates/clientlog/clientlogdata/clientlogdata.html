@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('客户端日志列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>设备ID：</label>
+                                <input type="text" name="uuid"/>
+                            </li>
+                            <li>
+                                <label>游戏包名：</label>
+                                <input type="text" name="game"/>
+                            </li>
+                            <li>
+                                <label>玩家信息：</label>
+                                <input type="text" name="playerinfo"/>
+                            </li>
+                            <li>
+                                <label>版本：</label>
+                                <input type="text" name="version"/>
+                            </li>
+                            <li>
+                                <label>上传时间：</label>
+                                <input type="text" name="time"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="clientlog:clientlogdata:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="clientlog:clientlogdata:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var downloadFlag = [[${@permission.hasPermi('clientlog:clientlogdata:download')}]];
+        var prefix = ctx + "clientlog/clientlogdata";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "客户端日志",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: "序号"
+                },
+                {
+                    field: 'uuid',
+                    title: "设备ID"
+                },
+                {
+                    field: 'game',
+                    title: "游戏包名"
+                },
+                {
+                    field: 'playerinfo',
+                    title: "玩家信息"
+                },
+                {
+                    field: 'version',
+                    title: "当前版本"
+                },
+                {
+                    field: 'memUsed',
+                    title: "已使用内存"
+                },
+                {
+                    field: 'memFree',
+                    title: "剩余内存"
+                },
+                {
+                    field: 'time',
+                    title: "上传时间"
+                },
+                {
+                    title: [[#{page.action}]],
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a style="margin-right: 30px" class="btn btn-success btn-xs ' + downloadFlag + '" href="javascript:void(0)" onclick="downloadzip(' + row.id + ')"><i class="fa fa-edit"></i>下载</a> ');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+        // 生成代码
+        function downloadzip(id) {
+            $.modal.confirm("确定要下载序号为"+id+"日志文件吗?", function() {
+                location.href = prefix + "/download?id=" + id;
+                layer.msg('执行成功,正在压缩日志文件请稍后…', { icon: 1 });
+            })
+        }
+    </script>
+</body>
+</html>

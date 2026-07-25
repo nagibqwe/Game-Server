@@ -15,7 +15,7 @@ project:
   # 图片保存路径
   photofile: /photo
   # 图片访问http路径
-  photoURL: http://10.0.1.182:8888
+  photoURL: http://157.22.200.3:8888
 
 # 开发环境配置
 server:
@@ -54,7 +54,7 @@ spring:
       master:
         url: jdbc:mysql://127.0.0.1:3306/tzj_photocheckkits?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: root
-        password: root
+        password: 4512kek4512
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭
@@ -90,7 +90,7 @@ spring:
         url-pattern: /druid/*
         # 控制台管理用户名和密码
         login-username: root
-        login-password: root
+        login-password: 4512kek4512
       filter:
         stat:
           enabled: true

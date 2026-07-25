@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Locale;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -129,75 +130,171 @@ public class LogService
     }
 
     public final void checkTable() {
-        Connection connection = null;
-        try {
-            Set<Class<BaseLogBean>> subClasses = ClassUtil.getSubClasses("com.game", BaseLogBean.class);
-            connection = ds.getConnection();
-            List<String> tableName = DBUtils.getTableName(connection);
-            long currentTimeMillis = TimeUtils.Time();
-            for (Class<BaseLogBean> cls : subClasses) {
-                boolean ischou = Modifier.isAbstract(cls.getModifiers());
-                if (ischou) {
-                    continue;
-                }
-                try {
-                    BaseLogBean bean = cls.newInstance();
-                    String buildTableName = bean.buildTableName(currentTimeMillis);
-                    logger.info("检测查表" + buildTableName);
-                    if (tableName.contains(buildTableName.toLowerCase())) {
-                        List<ColumnInfo> columnDefine = DBUtils.getColumnDefine(connection, buildTableName);
-                        Iterator<ColumnInfo> iterator = columnDefine.iterator();
-                        while (iterator.hasNext()) {
-                            ColumnInfo next = iterator.next();
-                            if (next.getName().equalsIgnoreCase("id")) {
-                                iterator.remove();
-                            }
+    Connection connection = null;
 
-                        }
+    try {
+        Set<Class<BaseLogBean>> subClasses =
+                ClassUtil.getSubClasses("com.game", BaseLogBean.class);
 
-                        HashMap<String, ColumnInfo> dbmatedata = new HashMap<>();
-                        for (ColumnInfo columnInfo : columnDefine) {
-                            dbmatedata.put(columnInfo.getName(), columnInfo);
-                        }
-                        //存在表  对比结构
-                        List<ColumnInfo> codeDefine = new ArrayList<>();
-                        HashSet<MetaData> metaDataSet = bean.getMetadata();
-                        for (MetaData md : metaDataSet) {
-                            codeDefine.add(md.toColumnInfo());
-                        }
-                        List<String> compartor = TableCompar.getInstance().compartor(buildTableName, codeDefine, columnDefine);
-                        if (compartor.size() > 0) {
-                            Statement createStatement = connection.createStatement();
-                            for (String string : compartor) {
-                                logger.info("检查到变更" + string);
-                                createStatement.addBatch(string);
-                            }
-                            createStatement.executeBatch();
-                        }
-                    } else {
-                        //不存在表 略过
-                    }
-                    logger.info(buildTableName + "检查结束");
-                } catch (Exception e) {
-                    logger.error(cls.getName() + "," + e, e);
-                }
+        connection = ds.getConnection();
+
+        /*
+         * DBUtils.getTableName() в Linux/MariaDB возвращает реальные имена
+         * таблиц, обычно в нижнем регистре.
+         */
+        List<String> databaseTables = DBUtils.getTableName(connection);
+        Set<String> normalizedTables = new HashSet<>();
+
+        for (String name : databaseTables) {
+            if (name != null) {
+                normalizedTables.add(name.toLowerCase(Locale.ROOT));
             }
-        } catch (SQLException e1) {
-            logger.error(e1, e1);
-        } catch (IOException e2) {
-            logger.error(e2, e2);
-        } catch (ClassNotFoundException e3) {
-            logger.error(e3, e3);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    logger.error(e, e);
+        }
+
+        long currentTimeMillis = TimeUtils.Time();
+
+        for (Class<BaseLogBean> cls : subClasses) {
+            if (Modifier.isAbstract(cls.getModifiers())) {
+                continue;
+            }
+
+            try {
+                BaseLogBean bean = cls.newInstance();
+
+                /*
+                 * Критически важно:
+                 * одно и то же имя используется для CREATE, ALTER,
+                 * чтения структуры и дальнейшего сравнения.
+                 */
+                String buildTableName = bean
+                        .buildTableName(currentTimeMillis)
+                        .toLowerCase(Locale.ROOT);
+
+                logger.info("检测查表" + buildTableName);
+
+                /*
+                 * Создаём минимальную таблицу, если её ещё нет.
+                 * Затем TableCompar добавит поля из BaseLogBean.
+                 */
+                if (!normalizedTables.contains(buildTableName)) {
+                    String createSql =
+                            "CREATE TABLE IF NOT EXISTS `" + buildTableName + "` ("
+                            + "`id` BIGINT NOT NULL AUTO_INCREMENT,"
+                            + "PRIMARY KEY (`id`)"
+                            + ") ENGINE=InnoDB "
+                            + "DEFAULT CHARACTER SET utf8mb4 "
+                            + "COLLATE utf8mb4_unicode_ci";
+
+                    logger.info("创建日志表：" + createSql);
+
+                    try (Statement statement = connection.createStatement()) {
+                        statement.executeUpdate(createSql);
+                    }
+
+                    normalizedTables.add(buildTableName);
                 }
+
+                /*
+                 * Получаем фактические поля уже созданной таблицы.
+                 * Здесь также используем имя в нижнем регистре.
+                 */
+                List<ColumnInfo> columnDefine =
+                        DBUtils.getColumnDefine(connection, buildTableName);
+
+                Iterator<ColumnInfo> iterator = columnDefine.iterator();
+
+                while (iterator.hasNext()) {
+                    ColumnInfo next = iterator.next();
+
+                    if (next.getName().equalsIgnoreCase("id")) {
+                        iterator.remove();
+                    }
+                }
+
+                /*
+                 * Формируем описание таблицы по Java-классу лога.
+                 */
+                List<ColumnInfo> codeDefine = new ArrayList<>();
+HashSet<MetaData> metaDataSet = bean.getMetadata();
+
+/*
+ * Убираем повторяющиеся колонки.
+ * Сравнение выполняем без учёта регистра.
+ */
+Set<String> codeColumnNames = new HashSet<>();
+
+for (MetaData md : metaDataSet) {
+    ColumnInfo columnInfo = md.toColumnInfo();
+
+    if (columnInfo == null || columnInfo.getName() == null) {
+        continue;
+    }
+
+    String normalizedColumnName =
+            columnInfo.getName().toLowerCase(Locale.ROOT);
+
+    if (codeColumnNames.add(normalizedColumnName)) {
+        codeDefine.add(columnInfo);
+    } else {
+        logger.warn(
+                "Пропущена повторяющаяся колонка: "
+                + buildTableName
+                + "."
+                + columnInfo.getName()
+                + ", класс="
+                + cls.getName()
+        );
+    }
+}
+
+                /*
+                 * TableCompar теперь получает имя только в нижнем регистре,
+                 * поэтому ALTER TABLE обращается к реально созданной таблице.
+                 */
+                List<String> comparator =
+                        TableCompar.getInstance().compartor(
+                                buildTableName,
+                                codeDefine,
+                                columnDefine
+                        );
+
+                if (!comparator.isEmpty()) {
+                    try (Statement statement = connection.createStatement()) {
+                        for (String sql : comparator) {
+                            logger.info("检查到变更" + sql);
+                            statement.addBatch(sql);
+                        }
+
+                        statement.executeBatch();
+                    }
+                }
+
+                logger.info(buildTableName + "检查结束");
+
+            } catch (Exception e) {
+                logger.error(cls.getName() + "," + e, e);
+            }
+        }
+
+    } catch (SQLException e) {
+        logger.error(e, e);
+
+    } catch (IOException e) {
+        logger.error(e, e);
+
+    } catch (ClassNotFoundException e) {
+        logger.error(e, e);
+
+    } finally {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error(e, e);
             }
         }
     }
+}
 
     public void execute(BaseLogBean bean)
     {

@@ -50,7 +50,7 @@ sparam="$param&sign=$md5"
 
 echo $sparam
 
-url="http://192.168.10.97:8080/LSMBackend/"
+url="http://157.22.200.3:8080/LSMBackend/"
 serverurl="server/addserver?"
 dburl="dblog/addLog?"
 mess=`curl $url$serverurl$sparam`

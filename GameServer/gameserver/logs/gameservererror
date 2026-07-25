@@ -1,0 +1,29 @@
+2026-07-25 23:06:11.377 ERROR [GameServer Start][LogService.java:275] - com.game.backpack.log.ItemLog,java.lang.Exception: itemlog20260725 ColumnInfo [name=create_date, type=datetime, size=0, nullable=true, def=null, primary=null] to ColumnInfo [name=create_date, type=datetime, size=19, nullable=true, def=null, primary=id]列类型不匹配  无法自动变更
+java.lang.Exception: itemlog20260725 ColumnInfo [name=create_date, type=datetime, size=0, nullable=true, def=null, primary=null] to ColumnInfo [name=create_date, type=datetime, size=19, nullable=true, def=null, primary=id]列类型不匹配  无法自动变更
+	at game.core.dblog.db.util.TableCompar.compartor(TableCompar.java:199) ~[GameCore.jar:?]
+	at game.core.dblog.LogService.checkTable(LogService.java:255) [GameCore.jar:?]
+	at game.core.dblog.LogService.<init>(LogService.java:122) [GameCore.jar:?]
+	at game.core.dblog.LogService.<init>(LogService.java:47) [GameCore.jar:?]
+	at game.core.dblog.LogService$Singleton.<init>(LogService.java:61) [GameCore.jar:?]
+	at game.core.dblog.LogService$Singleton.<clinit>(LogService.java:56) [GameCore.jar:?]
+	at game.core.dblog.LogService.getInstance(LogService.java:73) [GameCore.jar:?]
+	at com.game.server.GameServer.init(GameServer.java:388) [GameServer.jar:?]
+	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
+	at com.game.server.GameServer.run(GameServer.java:511) [GameServer.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-07-25 23:06:18.020 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.034 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.038 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.040 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.044 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.048 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.049 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.050 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
+2026-07-25 23:06:18.365 ERROR [GameServer Start][ServerScript.java:465] - 获取服务器id列表错误
+java.lang.NumberFormatException: For input string: "处理结果完成"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65) ~[?:1.8.0_492]
+	at java.lang.Integer.parseInt(Integer.java:580) ~[?:1.8.0_492]
+	at java.lang.Integer.parseInt(Integer.java:615) ~[?:1.8.0_492]
+	at common.server.ServerScript.loadServerIdList(ServerScript.java:456) [GameServer.jar:?]
+	at com.game.server.GameServer.run(GameServer.java:556) [GameServer.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]

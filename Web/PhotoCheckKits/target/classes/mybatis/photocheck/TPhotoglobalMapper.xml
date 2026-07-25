@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.photocheck.photoglobal.mapper.TPhotoglobalMapper">
+    
+    <resultMap type="TPhotoglobal" id="TPhotoglobalResult">
+        <result property="keyStr"    column="keyStr"    />
+        <result property="valueStr"    column="valueStr"    />
+    </resultMap>
+
+    <sql id="selectTPhotoglobalVo">
+        select keyStr, valueStr from t_photoglobal
+    </sql>
+
+    <select id="selectTPhotoglobalList" parameterType="TPhotoglobal" resultMap="TPhotoglobalResult">
+        <include refid="selectTPhotoglobalVo"/>
+        <where>  
+            <if test="valueStr != null  and valueStr != ''"> and valueStr = #{valueStr}</if>
+        </where>
+    </select>
+    
+    <select id="selectTPhotoglobalById" parameterType="String" resultMap="TPhotoglobalResult">
+        <include refid="selectTPhotoglobalVo"/>
+        where keyStr = #{keyStr}
+    </select>
+        
+    <insert id="insertTPhotoglobal" parameterType="TPhotoglobal">
+        insert into t_photoglobal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="keyStr != null and keyStr != ''">keyStr,</if>
+            <if test="valueStr != null">valueStr,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="keyStr != null and keyStr != ''">#{keyStr},</if>
+            <if test="valueStr != null">#{valueStr},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTPhotoglobal" parameterType="TPhotoglobal">
+        replace into t_photoglobal(keyStr,valueStr) values (#{keyStr},#{valueStr})
+    </update>
+
+    <delete id="deleteTPhotoglobalById" parameterType="String">
+        delete from t_photoglobal where keyStr = #{keyStr}
+    </delete>
+
+    <delete id="deleteTPhotoglobalByIds" parameterType="String">
+        delete from t_photoglobal where keyStr in 
+        <foreach item="keyStr" collection="array" open="(" separator="," close=")">
+            #{keyStr}
+        </foreach>
+    </delete>
+
+</mapper>

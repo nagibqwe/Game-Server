@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('审核未通过页面')" />
+    <th:block th:include="include :: datetimepicker-css" />
+    <style>
+        .my-skin .layui-layer-btn .layui-layer-btn0 {
+            background-color: #23c6c8;
+            border: 1px solid #23c6c8;
+        }
+        .my-skin .layui-layer-btn .layui-layer-btn2 {
+            background-color: #f7a54a;
+            border: 1px solid #f7a54a;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div th:replace="photocheck/common/select.html"></div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-danger multiple disabled" onclick="putBackMore()">
+                <i class="fa fa-remove"></i> 移到回收站
+            </a>
+            <a class="btn btn-warning multiple disabled" onclick="backNotCheckMore()">
+                <i class="fa fa-refresh"></i> 退回未审核状态
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-page-size="10"
+                   data-show-custom-view="true" data-custom-view="customViewFormatter"
+                   data-show-custom-view-button="true">
+            </table>
+        </div>
+    </div>
+</div>
+
+<template id="profileTemplate">
+    <div class="col-sm-3">
+        <div class="contact-box" onmouseover="changeBorder(this)" onmouseout="changeBorder2(this)" onclick="selectBox(this)">
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img alt="image" style="width:130px;height:130px " class="" src="%desc6%">
+                    <p>编号:%id2%</p>
+                    <input style="width: 15px;height: 15px" type="checkbox" disabled name="checkboxId" value="%checkboxId%">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <input type="hidden" name="id" id="id" value="%id%">
+                <p style="margin-left: 50px">上传时间:%uploadTime%</p>
+                <div style="margin-left: 50px" class="m-t-xs font-bold">审核状态:%checkStatus%</div>
+                <a style="margin-left: 50px;margin-top: 45px" class="btn btn-success btn-xs" href="javascript:void(0)" onclick="getOpenDetail(this)"><i class="fa fa-edit"></i>详情</a>
+                <a style="margin-top: 45px" class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="getPutBack(this)"><i class="fa fa-remove"></i>移到回收站</a>
+                <a style="margin-top: 5px;margin-left: 50px" class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="getBackNotCheck(this)"><i class="fa fa-refresh"></i>退回未审核状态</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</template>
+
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: datetimepicker-js" />
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('photocheck:photodata:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('photocheck:photodata:remove')}]];
+    var prefix = ctx + "photocheck/photodata";
+
+    $(function() {
+        var options = {
+            url: prefix + "/checkNotPassList",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            clickToSelect: true,
+            modalName: "审核未通过",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: 'id',
+                    visible: true
+                },
+                {
+                    field: 'desc6',
+                    title: '图片',
+                    formatter:function (value, row, index) {
+                        return "<img src=\'"+value+"\'>";
+                    }
+                },
+                {
+                    field: 'uploadTime',
+                    title: '图片上传时间'
+                },
+                {
+                    field: 'checkStatus',
+                    title: '审核状态',
+                    formatter:formatterCheckStatus
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="openDetail(\'' + row.id + '\')"><i class="fa fa-edit"></i>详情</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="putBack(\'' + row.id +'\')"><i class="fa fa-remove"></i>移到回收站</a>');
+                        actions.push('<a style="margin-left: 4px" class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="backNotCheck(\'' + row.id +'\')"><i class="fa fa-refresh"></i>退回未审核状态</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+    //获取id值打开详情框
+    function getOpenDetail(obj){
+        openDetail(getId(obj));
+        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+    }
+    //获取id值执行移到回收站操作
+    function getPutBack(obj){
+        putBack(getId(obj));
+        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+    }
+    //获取id值执行退回未审核操作
+    function getBackNotCheck(obj){
+        backNotCheck(getId(obj));
+        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+    }
+
+    $("input[name='uploadTime']").datetimepicker({
+        CustomFormat: "yyyy-mm-dd HH:mm:ss",
+        // minView: "month",
+        autoclose: true
+    });
+    $("input[name='lastDownloadTime']").datetimepicker({
+        CustomFormat: "yyyy-mm-dd HH:mm:ss",
+        // minView: "month",
+        autoclose: true
+    });
+    //打开详情页面
+    function openDetail(id) {
+        layer.open({
+            type: 2,
+            area: ['60%' ,'80%'],
+            fix: false,
+            //不固定
+            maxmin: true,
+            shade: 0.3,
+            title: "详情",
+            content: prefix + "/edit?id=" + id,
+            btn: ['移到回收站', '关闭', '退回未审核状态'],
+            // 弹层外区域关闭
+            shadeClose: true,
+            skin:"my-skin",
+            yes: function (index,layero) {
+                var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+                putBack(id);
+            },
+            cancel: function(index) {
+                return true;
+            },
+            btn3: function(index){
+                backNotCheck(id);
+                return false;
+            },
+            success: function(layero, index){
+
+            }
+        });
+    }
+</script>
+</body>
+</html>

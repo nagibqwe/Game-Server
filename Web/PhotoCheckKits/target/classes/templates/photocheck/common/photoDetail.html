@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改图片信息')" />
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-photodata-edit" th:object="${tPhotodata}">
+        <input name="id" th:field="*{id}" type="hidden">
+        <p style="margin-left: 410px" th:name="desc1" id="desc1" th:value="*{desc1}">服务器ID：[[${tPhotodata.desc1}]]</p>
+        <p style="margin-left: 410px" th:name="desc2" id="desc2" th:value="*{desc1}">角色ID：[[${tPhotodata.desc2}]]</p>
+        <p style="margin-left: 410px" th:name="desc3" id="desc3" th:value="*{desc3}">角色ID：[[${tPhotodata.desc3}]]</p>
+        <div class="form-group" style="float:left;">
+            <!--<label class="col-sm-1 control-label">预留描述：</label>-->
+            <div class="col-sm-3">
+                <img th:src="*{desc6}" style="width: 380px;height: 380px">
+            </div>
+        </div>
+        <p style="margin-left: 410px" th:name="photoMD5" id="photoMD5" th:value="*{photoMD5}">原图的MD5：[[${tPhotodata.photoMD5}]]</p>
+        <p style="margin-left: 410px" th:name="photoID" id="photoID" th:value="*{photoID}">photoID：[[${tPhotodata.photoID}]]</p>
+        <p style="margin-left: 410px" th:name="photoSize" id="photoSize" th:value="*{photoSize}">图片大小：[[${tPhotodata.photoSize}]]</p>
+        <p style="margin-left: 410px" th:name="smallMD5" id="smallMD5" th:value="*{smallMD5}">小图的MD5：[[${tPhotodata.smallMD5}]]</p>
+        <p style="margin-left: 410px" th:name="bigPhotoPath" id="bigPhotoPath" th:value="*{bigPhotoPath}">大图文件相对路径：[[${tPhotodata.bigPhotoPath}]]</p>
+        <p style="margin-left: 410px" th:name="smallPhotoPath" id="smallPhotoPath" th:value="*{smallPhotoPath}">小图文件相对路径：[[${tPhotodata.smallPhotoPath}]]</p>
+        <p style="margin-left: 410px" th:name="uploadTime" id="uploadTime" th:value="*{uploadTime}">图片上传时间：[[${tPhotodata.uploadTime}]]</p>
+        <p style="margin-left: 410px" th:name="requestNum" id="requestNum" th:value="*{requestNum}">请求次数：[[${tPhotodata.requestNum}]]</p>
+        <p style="margin-left: 410px" th:name="lastRquestTime" id="lastRquestTime" th:value="*{lastRquestTime}">最后一次请求时间：[[${tPhotodata.lastRquestTime}]]</p>
+        <p style="margin-left: 410px" th:name="lastDownloadTime" id="lastDownloadTime" th:value="*{lastDownloadTime}">最后一次下载时间：[[${tPhotodata.lastDownloadTime}]]</p>
+        <p style="margin-left: 410px" th:name="isDelete" id="isDelete" th:value="*{isDelete}">是否删除：[[${tPhotodata.isDelete}]]</p>
+        <p style="margin-left: 410px" th:name="deleteTime" id="deleteTime" th:value="*{deleteTime}">删除时间：[[${tPhotodata.deleteTime}]]</p>
+        <p style="margin-left: 410px" th:name="checkStatus" id="checkStatus" th:value="*{checkStatus}">审核状态：[[${tPhotodata.checkStatus}]]</p>
+    </form>
+</div>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    $(function () {
+        formatterDelete();
+        formatterCheckStatus();
+    });
+    //格式化删除状态
+    function formatterDelete() {
+        var isDelete = [[${tPhotodata.isDelete}]];
+        if (isDelete == 0){
+            $("#isDelete").text("是否删除：否");
+        }else {
+            $("#isDelete").text("是否删除：是");
+        }
+    }
+    //格式化审核状态
+    function formatterCheckStatus() {
+        var checkStatus = [[${tPhotodata.checkStatus}]];
+        if (checkStatus == 0){
+            $("#checkStatus").text("审核状态:未审核");
+        } else if (checkStatus == 1){
+            $("#checkStatus").text("审核状态:审核中");
+        } else if (checkStatus == 2){
+            $("#checkStatus").text("审核状态:审核通过");
+        }else if (checkStatus == 3){
+            $("#checkStatus").text("审核状态:审核未通过");
+        }
+    }
+    var prefix = ctx + "photocheck/photodata";
+    $("#form-photodata-edit").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-photodata-edit').serialize());
+        }
+    }
+</script>
+</body>
+</html>

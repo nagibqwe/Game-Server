@@ -904,7 +904,7 @@ public class OperationModule {
 
     @At
     @Ok("forward:${obj}")
-    @AdaptBy(type = UploadAdaptor.class, args = {"${base}/WEB-INF/tmp", "81920", "UTF-8"})
+    @AdaptBy(type = UploadAdaptor.class, args = {"/opt/tomcat/temp/TzjBackend", "81920", "UTF-8"})
     public String upLoadBlackExcl(@Param("tempFile") TempFile tempFile) throws IOException {
         File file = tempFile.getFile();
         InputStream is = new FileInputStream(file);
@@ -943,7 +943,7 @@ public class OperationModule {
     }
 
     @At
-    @AdaptBy(type = UploadAdaptor.class, args = {"${base}/WEB-INF/tmp", "81920", "UTF-8"})
+    @AdaptBy(type = UploadAdaptor.class, args = {"/opt/tomcat/temp/TzjBackend", "81920", "UTF-8"})
     public Object blackListConvert(@Param("tempFile") TempFile tempFile, @Param("serverId") String serverId, @Param("platform") String platform) throws IOException {
         File file = tempFile.getFile();
         InputStream is = new FileInputStream(file);

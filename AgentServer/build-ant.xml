@@ -35,10 +35,10 @@
 		<delete file="${jarfile}"/>
 	</target>
 	<target name="build" depends="clean">
-		<echo message="开始构建目录" />
+		<echo message="Инициализация структуры папок" />
 		<mkdir dir="${buildclass.dir}" />
-		<echo message="构建目录结束" />
-		<echo message="开始编译" />
+		<echo message="Структура папок создана" />
+		<echo message="Начало компиляции" />
 		<path id="classpath">
 			<fileset dir="${lib.dir}" includes="*.jar" />
 			<fileset dir="${srclib.dir}" includes="*.jar" />
@@ -49,7 +49,7 @@
 			<compilerarg value="-Xlint:deprecation" />
 			<classpath refid="classpath" />
 		</javac>
-		<echo message="编译结束" />
+		<echo message="Компиляция завершена" />
 		<echo message="${build.time}"/>
 		
 		<mkdir dir="${project}/bin" />
@@ -76,7 +76,7 @@
 		</copy>
 	</target>
 	<target name="jar" depends="build">
-		<echo message="开始打包JAR" />
+		<echo message="Начало сборки JAR-архива" />
 		<jar destfile="${jarfile}" basedir="${buildclass.dir}">
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0" />
@@ -85,7 +85,7 @@
 				<attribute name="Class-Path" value="bin/ ${libs.project}" />
 			</manifest>
 		</jar>
-		<echo message="打包结束" />
+		<echo message="Сборка JAR завершена" />
 	</target>
 
 </project>

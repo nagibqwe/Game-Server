@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kits.project.clientlog.clientlogdata.mapper.ClientlogMapper">
+    
+    <resultMap type="Clientlog" id="ClientlogResult">
+        <result property="id"    column="id"    />
+        <result property="uuid"    column="uuid"    />
+        <result property="miei"    column="miei"    />
+        <result property="idfa"    column="idfa"    />
+        <result property="game"    column="game"    />
+        <result property="playerinfo"    column="playerinfo"    />
+        <result property="version"    column="version"    />
+        <result property="memUsed"    column="mem_used"    />
+        <result property="memFree"    column="mem_free"    />
+        <result property="filemd5"    column="filemd5"    />
+        <result property="time"    column="time"    />
+    </resultMap>
+
+    <sql id="selectClientlogVo">
+        select id, uuid, miei, idfa, game, playerinfo, version, mem_used, mem_free, filemd5, time from t_clientlog
+    </sql>
+
+    <select id="selectClientlogList" parameterType="Clientlog" resultMap="ClientlogResult">
+        <include refid="selectClientlogVo"/>
+        <where>  
+            <if test="uuid != null  and uuid != ''"> and uuid = #{uuid}</if>
+            <if test="miei != null  and miei != ''"> and miei = #{miei}</if>
+            <if test="idfa != null  and idfa != ''"> and idfa = #{idfa}</if>
+            <if test="game != null  and game != ''"> and game LIKE CONCAT('%',#{game}, '%')</if>
+            <if test="playerinfo != null  and playerinfo != ''"> and playerinfo LIKE CONCAT('%' , #{playerinfo} , '%') </if>
+            <if test="version != null  and version != ''"> and version LIKE CONCAT('%', #{version}, '%')</if>
+            <if test="memUsed != null  and memUsed != ''"> and mem_used = #{memUsed}</if>
+            <if test="memFree != null  and memFree != ''"> and mem_free = #{memFree}</if>
+            <if test="filemd5 != null  and filemd5 != ''"> and filemd5 = #{filemd5}</if>
+            <if test="time != null  and time != ''"> and time LIKE CONCAT('%' ,#{time}, '%')</if>
+        </where>
+        order by time desc
+    </select>
+
+    <select id="selectClientlogByKey" parameterType="Clientlog" resultMap="ClientlogResult">
+        <include refid="selectClientlogVo"/>
+        where game = #{game} and uuid = #{uuid}
+    </select>
+
+    <select id="selectClientlogById" parameterType="Long" resultMap="ClientlogResult">
+        <include refid="selectClientlogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertClientlog" parameterType="Clientlog" useGeneratedKeys="true" keyProperty="id">
+        insert into t_clientlog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid != ''">uuid,</if>
+            <if test="miei != null">miei,</if>
+            <if test="idfa != null">idfa,</if>
+            <if test="game != null and game != ''">game,</if>
+            <if test="playerinfo != null">playerinfo,</if>
+            <if test="version != null">version,</if>
+            <if test="memUsed != null">mem_used,</if>
+            <if test="memFree != null">mem_free,</if>
+            <if test="filemd5 != null">filemd5,</if>
+            <if test="time != null">time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid != ''">#{uuid},</if>
+            <if test="miei != null">#{miei},</if>
+            <if test="idfa != null">#{idfa},</if>
+            <if test="game != null and game != ''">#{game},</if>
+            <if test="playerinfo != null">#{playerinfo},</if>
+            <if test="version != null">#{version},</if>
+            <if test="memUsed != null">#{memUsed},</if>
+            <if test="memFree != null">#{memFree},</if>
+            <if test="filemd5 != null">#{filemd5},</if>
+            <if test="time != null">#{time},</if>
+         </trim>
+    </insert>
+
+    <update id="updateClientlog" parameterType="Clientlog">
+        update t_clientlog
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="uuid != null and uuid != ''">uuid = #{uuid},</if>
+            <if test="miei != null">miei = #{miei},</if>
+            <if test="idfa != null">idfa = #{idfa},</if>
+            <if test="game != null and game != ''">game = #{game},</if>
+            <if test="playerinfo != null">playerinfo = #{playerinfo},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="memUsed != null">mem_used = #{memUsed},</if>
+            <if test="memFree != null">mem_free = #{memFree},</if>
+            <if test="filemd5 != null">filemd5 = #{filemd5},</if>
+            <if test="time != null">time = #{time},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteClientlogById" parameterType="Long">
+        delete from t_clientlog where id = #{id}
+    </delete>
+
+    <delete id="deleteClientlogByIds" parameterType="String">
+        delete from t_clientlog where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

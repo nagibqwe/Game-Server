@@ -1,0 +1,53 @@
+package ${packageName}.${businessName}.service.impl;
+
+import java.util.List;
+#if($table.tree)
+import java.util.ArrayList;
+import com.kits.framework.web.domain.Ztree;
+#end
+#foreach ($column in $columns)
+#if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
+import com.kits.common.utils.DateUtils;
+#break
+#end
+#end
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+#if($table.sub)
+import com.kits.common.utils.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
+import ${packageName}.${businessName}.domain.${subClassName};
+#end
+import ${packageName}.${businessName}.mapper.${ClassName}Mapper;
+import ${packageName}.${businessName}.domain.${ClassName};
+import ${packageName}.${businessName}.service.I${ClassName}Service;
+import com.kits.common.utils.text.Convert;
+
+/**
+ * ${functionName}Service业务层处理
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl implements I${ClassName}Service 
+{
+    @Autowired
+    private ${ClassName}Mapper ${className}Mapper;
+
+    /**
+     * 查询${functionName}列表
+     * 
+     * @param ${className} ${functionName}
+     * @return ${functionName}
+     */
+    @Override
+    public List<${ClassName}> select${ClassName}List(${ClassName} ${className},String startDate,String endDate,String selectServerIdList)
+    {
+
+
+
+
+        return ${className}Mapper.select${ClassName}List(${className});
+    }
+}

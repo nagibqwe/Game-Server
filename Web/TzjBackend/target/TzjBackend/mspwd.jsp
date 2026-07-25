@@ -24,7 +24,7 @@
 
     //验证输入的密码是否为空，而且密码必须要12位以上，必须包含数字、大小写字母及特殊符号。
     function checkPassword() {
-        var numasc = 0;  //数字的个数
+        var numasc = 0;  //数字的个数九零 一起 玩 www.901 75.c om
         var charasc = 0;  //字母的个数
         var otherasc = 0; //特殊符号的个数
         var password = $("input[name='password']").val();
