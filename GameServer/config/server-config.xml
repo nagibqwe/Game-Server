@@ -14,9 +14,9 @@
 
     <openTime openTime="2023-05-12 00:00:00"/>
 
-    <heartHttp host="http://157.22.200.3:8080/TzjBackend/serverstate/checkstate?"/>
+    <heartHttp host="http://157.22.200.3:8080/APIServer/serverstate/checkstate?"/>
 
-    <errorlog http="http://157.22.200.3:8080/TzjBackend"/>
+    <errorlog http="http://157.22.200.3:8080/APIServer"/>
 
     <login-data verifyUrl="http://tzj-xpt.iwgame.cc/usr/vtk.do"/>
 

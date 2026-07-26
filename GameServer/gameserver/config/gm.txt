@@ -1,51 +1,57 @@
-1. 刷新充值列表=[gmRefreshRechargeItemInfos]
+1. 发送单个活动=[gmActivitySendMess]
+{命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
+cmd:gmActivitySendMess
+data:'***'    //活动信息
+
+
+2. 刷新充值列表=[gmRefreshRechargeItemInfos]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmRefreshRechargeItemInfos
 
 
-2. 发布公告=[gmPublishAnnounce]
+3. 发布公告=[gmPublishAnnounce]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmPublishAnnounce
 params:'***'    //脚本ID
 
 
-3. 发布运营活动幸运值=[gmPublishLuckyValue]
+4. 发布运营活动幸运值=[gmPublishLuckyValue]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmPublishLuckyValue
 totalLuckyValue:'***'    //幸运值
 
 
-4. 热更新脚本=[gmReloadScript]
+5. 热更新脚本=[gmReloadScript]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmReloadScript
 params:'***'    //脚本ID
 
 
-5. 热更新脚本=[gmReloadConfig]
+6. 热更新脚本=[gmReloadConfig]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmReloadConfig
 params:'***'    //配置表名字
 
 
-6. 删除活动=[gmActivityDeleteMess]
+7. 删除活动=[gmActivityDeleteMess]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmActivityDeleteMess
 id:'***'    //活动ID
 
 
-7. 批量删除活动=[gmBatchDeleteActMess]
+8. 批量删除活动=[gmBatchDeleteActMess]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmBatchDeleteActMess
 data:'***'    //一批活动id(列表)
 
 
-8. 批量发布活动=[gmBatchSendActMess]
+9. 批量发布活动=[gmBatchSendActMess]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmBatchSendActMess
 data:'***'    //活动信息(列表)
 
 
-9. 扣元宝和月卡功能=[gmDealPlayerMoney]
+10. 扣元宝和月卡功能=[gmDealPlayerMoney]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmDealPlayerMoney
 roleId:'***'    //角色ID
@@ -54,7 +60,7 @@ type:'***'    //类型
 sign:'***'    //签名
 
 
-10. 扣除道具=[gmDeductItemOpt]
+11. 扣除道具=[gmDeductItemOpt]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmDeductItemOpt
 roleId:'***'    //角色ID
@@ -67,117 +73,117 @@ mailContent:'***'    //邮件内容
 sendUser:'***'    //发送者
 
 
-11. 排行榜数据获取=[gmQueryRankList]
+12. 排行榜数据获取=[gmQueryRankList]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmQueryRankList
 rankKind:'***'    //排行榜类型
 
 
-12. 请求请求开关游戏功能=[gmGetFuncOpenList]
+13. 请求请求开关游戏功能=[gmGetFuncOpenList]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmGetFuncOpenList
 
 
-13. 请求开关游戏功能=[gmSwitchFunction]
+14. 请求开关游戏功能=[gmSwitchFunction]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmSwitchFunction
 data:'***'    //{功能id:功能状态}列表
 
 
-14. 设置玩家头像=[gmsetroleiconstate]
+15. 设置玩家头像=[gmsetroleiconstate]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmsetroleiconstate
 params:'***'    //{roleId:'',state:''}
 
 
-15. 获取屏蔽关键字=[gmGetKeyWords]
+16. 获取屏蔽关键字=[gmGetKeyWords]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmGetKeyWords
 
 
-16. 添加屏蔽关键字=[gmAddKeyWord]
+17. 添加屏蔽关键字=[gmAddKeyWord]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmAddKeyWord
 params:'***'    //{word:关键字,type:类型}
 
 
-17. 删除屏蔽关键字=[gmDeleteKeyWords]
+18. 删除屏蔽关键字=[gmDeleteKeyWords]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmDeleteKeyWords
 
 
-18. 更新聊天黑名单=[gmLoadChatBlackList]
+19. 更新聊天黑名单=[gmLoadChatBlackList]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmLoadChatBlackList
 
 
-19. 更新聊天替换关键字=[gmLoadChatWord]
+20. 更新聊天替换关键字=[gmLoadChatWord]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmLoadChatWord
 
 
-20. 踢人下线=[gmKickPlayer]
+21. 踢人下线=[gmKickPlayer]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmKickPlayer
 roleId:'***'    //目标玩家Id
 
 
-21. 玩家禁言=[gmForbidChat]
+22. 玩家禁言=[gmForbidChat]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmForbidChat
 
 
-22. 发送邮件=[gmSendMail]
+23. 发送邮件=[gmSendMail]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmSendMail
 
 
-23. 发送更新公告=[gmSendUpdateNotice]
+24. 发送更新公告=[gmSendUpdateNotice]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmSendUpdateNotice
 
 
-24. 后台测试连接=[gmTest]
+25. 后台测试连接=[gmTest]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmTest
 
 
-25. 后台模拟充值=[gmRecharge]
+26. 后台模拟充值=[gmRecharge]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmRecharge
 
 
-26. 请求角色可够买商品=[gmGetRoleRechargeItem]
+27. 请求角色可够买商品=[gmGetRoleRechargeItem]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmGetRoleRechargeItem
 
 
-27. 刷新商城命令=[gmRefreshShop]
+28. 刷新商城命令=[gmRefreshShop]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmRefreshShop
 
 
-28. 设置世界等级=[gmSetWorldLevel]
+29. 设置世界等级=[gmSetWorldLevel]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmSetWorldLevel
 
 
-29. 获取商城信息=[gmGetShopInfo]
+30. 获取商城信息=[gmGetShopInfo]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmGetShopInfo
 
 
-30. 更新商品信息=[gmSetShopInfo]
+31. 更新商品信息=[gmSetShopInfo]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmSetShopInfo
 
 
-31. 删除商品信息=[gmDeleteShopInfo]
+32. 删除商品信息=[gmDeleteShopInfo]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmDeleteShopInfo
 
 
-32. 设置角色属性=[gmSetRoleAttrOpt]
+33. 设置角色属性=[gmSetRoleAttrOpt]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmSetRoleAttrOpt
 roleId:'***'    //角色ID
@@ -185,30 +191,24 @@ attrType:'***'    //attrType
 attrValue:'***'    //attrValue
 
 
-33. 设置SDK评价开关=[gmEvaluateState]
+34. 设置SDK评价开关=[gmEvaluateState]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmEvaluateState
 
 
-34. 更新运营活动标签库=[gmUpdateTagInfo]
+35. 更新运营活动标签库=[gmUpdateTagInfo]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmUpdateTagInfo
 
 
-35. 发送多个服务器全服邮件=[gmSendAllMail]
+36. 发送多个服务器全服邮件=[gmSendAllMail]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmSendAllMail
 
 
-36. 通知游戏服开服=[gmOpenServer]
+37. 通知游戏服开服=[gmOpenServer]
 {命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
 cmd:gmOpenServer
-
-
-37. 发送单个活动=[gmActivitySendMess]
-{命令:'test',数值参数:123,数值参数:444,字符串参数:'物品名字,怪物名字'}
-cmd:gmActivitySendMess
-data:'***'    //活动信息
 
 
 38. 生成gm文档=[gmBuildGmDoc]

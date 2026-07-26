@@ -1,0 +1,564 @@
+2026-07-27 01:00:00.042 INFO [RankThread][UniverseRankScript.java:402] - 检查天墟战场名人堂排名
+2026-07-27 01:00:02.003 ERROR [copyMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：14数量：84
+2026-07-27 01:00:03.183 INFO [city_8][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99037
+2026-07-27 01:00:03.184 INFO [city_8][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99038
+2026-07-27 01:00:04.061 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30048
+2026-07-27 01:00:08.540 INFO [city_8][MapDealScript.java:251] - 开始采集=_9000022_{141.78,55.3}解半云(281873304391993039)
+2026-07-27 01:00:10.058 INFO [city_8][GatherBehaviorScript.java:142] - 解半云(281873304391993039)采集[]完成
+2026-07-27 01:00:10.229 INFO [city_8][LevelChange.java:69] - 解半云(281873304391993039) 从63 升级到64
+2026-07-27 01:00:10.252 INFO [city_8][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99038
+2026-07-27 01:00:10.252 INFO [city_8][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99039
+2026-07-27 01:00:12.161 INFO [city_8][MapObject.java:594] - 地图对象 定时器event执行完成清理 map=赤北沙海 ModelID:103299 line:1 id:281873439077367905, event=com.game.map.timer.GatherBrithTimer@5f5dd960
+2026-07-27 01:00:16.771 INFO [nioEventLoopGroup-3-3][ClientMsgAdapter.java:64] - [id: 0xde53331c, L:/157.22.200.3:9101 - R:/157.22.200.3:52302], id=2首次来连接
+2026-07-27 01:00:16.772 WARN [nioEventLoopGroup-3-3][SessionUtils.java:22] - remote ip:/157.22.200.3:52302 isActive:true reason:当前Session 发上来的数据异常！ totalCode =1701994868 != 4690
+2026-07-27 01:00:16.777 WARN [nioEventLoopGroup-3-3][SessionUtils.java:22] - remote ip:/157.22.200.3:52302 isActive:false reason:当前Session 发上来的数据异常！ totalCode =775320944 != 2556
+2026-07-27 01:00:16.777 WARN [nioEventLoopGroup-3-3][SessionUtils.java:22] - remote ip:/157.22.200.3:52302 isActive:false reason:当前Session 发上来的数据异常！ totalCode =577010788 != 1759
+2026-07-27 01:00:16.777 WARN [nioEventLoopGroup-3-3][SessionUtils.java:22] - remote ip:/157.22.200.3:52302 isActive:false reason:当前Session 发上来的数据异常！ totalCode =153627681 != 1202
+2026-07-27 01:00:16.777 WARN [nioEventLoopGroup-3-3][SessionUtils.java:22] - remote ip:/157.22.200.3:52302 isActive:false reason:当前Session 发上来的数据异常！ totalCode =1782260539 != 196
+2026-07-27 01:00:16.778 INFO [pool-6-thread-10][GameServer.java:614] - [id: 0xde53331c, L:/157.22.200.3:9101 ! R:/157.22.200.3:52302]发送队列时， 连接已经断开了！4
+2026-07-27 01:00:16.779 INFO [nioEventLoopGroup-3-3][ClientMsgAdapter.java:114] - [id: 0xde53331c, L:/157.22.200.3:9101 ! R:/157.22.200.3:52302] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-07-27 01:00:16.781 WARN [nioEventLoopGroup-3-3][SessionUtils.java:22] - remote ip:/157.22.200.3:52302 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-07-27 01:00:16.781 INFO [nioEventLoopGroup-3-3][ClientMsgAdapter.java:122] - [id: 0xde53331c, L:/157.22.200.3:9101 ! R:/157.22.200.3:52302],id=2 连接的已经移除了！
+2026-07-27 01:00:16.781 INFO [nioEventLoopGroup-3-3][MyOutClientHandler.java:37] - [id: 0xde53331c, L:/157.22.200.3:9101 ! R:/157.22.200.3:52302] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-07-27 01:00:16.944 INFO [nioEventLoopGroup-3-4][ClientMsgAdapter.java:64] - [id: 0xd4368220, L:/157.22.200.3:9101 - R:/157.22.200.3:52310], id=3首次来连接
+2026-07-27 01:00:16.947 WARN [nioEventLoopGroup-3-4][SessionUtils.java:22] - remote ip:/157.22.200.3:52310 isActive:true reason:当前Session 发上来的数据异常！ totalCode =1701994868 != 4866
+2026-07-27 01:00:16.947 WARN [nioEventLoopGroup-3-4][SessionUtils.java:22] - remote ip:/157.22.200.3:52310 isActive:false reason:当前Session 发上来的数据异常！ totalCode =775320944 != 2988
+2026-07-27 01:00:16.947 WARN [nioEventLoopGroup-3-4][SessionUtils.java:22] - remote ip:/157.22.200.3:52310 isActive:false reason:当前Session 发上来的数据异常！ totalCode =577010788 != 2227
+2026-07-27 01:00:16.948 WARN [nioEventLoopGroup-3-4][SessionUtils.java:22] - remote ip:/157.22.200.3:52310 isActive:false reason:当前Session 发上来的数据异常！ totalCode =153627681 != 1406
+2026-07-27 01:00:16.948 WARN [nioEventLoopGroup-3-4][SessionUtils.java:22] - remote ip:/157.22.200.3:52310 isActive:false reason:当前Session 发上来的数据异常！ totalCode =1782260539 != 368
+2026-07-27 01:00:16.949 INFO [nioEventLoopGroup-3-4][ClientMsgAdapter.java:114] - [id: 0xd4368220, L:/157.22.200.3:9101 ! R:/157.22.200.3:52310] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-07-27 01:00:16.950 WARN [nioEventLoopGroup-3-4][SessionUtils.java:22] - remote ip:/157.22.200.3:52310 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-07-27 01:00:16.950 INFO [nioEventLoopGroup-3-4][ClientMsgAdapter.java:122] - [id: 0xd4368220, L:/157.22.200.3:9101 ! R:/157.22.200.3:52310],id=3 连接的已经移除了！
+2026-07-27 01:00:16.950 INFO [nioEventLoopGroup-3-4][MyOutClientHandler.java:37] - [id: 0xd4368220, L:/157.22.200.3:9101 ! R:/157.22.200.3:52310] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-07-27 01:00:26.453 INFO [nioEventLoopGroup-3-5][ClientMsgAdapter.java:64] - [id: 0xc30f41fc, L:/157.22.200.3:9101 - R:/157.22.200.3:49452], id=4首次来连接
+2026-07-27 01:00:26.454 WARN [nioEventLoopGroup-3-5][SessionUtils.java:22] - remote ip:/157.22.200.3:49452 isActive:true reason:当前Session 发上来的数据异常！ totalCode =1701994868 != 4690
+2026-07-27 01:00:26.454 INFO [pool-6-thread-3][GameServer.java:614] - [id: 0xc30f41fc, L:/157.22.200.3:9101 ! R:/157.22.200.3:49452]发送队列时， 连接已经断开了！4
+2026-07-27 01:00:26.456 WARN [nioEventLoopGroup-3-5][SessionUtils.java:22] - remote ip:/157.22.200.3:49452 isActive:false reason:当前Session 发上来的数据异常！ totalCode =775320944 != 2556
+2026-07-27 01:00:26.456 WARN [nioEventLoopGroup-3-5][SessionUtils.java:22] - remote ip:/157.22.200.3:49452 isActive:false reason:当前Session 发上来的数据异常！ totalCode =577010788 != 1759
+2026-07-27 01:00:26.456 WARN [nioEventLoopGroup-3-5][SessionUtils.java:22] - remote ip:/157.22.200.3:49452 isActive:false reason:当前Session 发上来的数据异常！ totalCode =153627681 != 1202
+2026-07-27 01:00:26.456 WARN [nioEventLoopGroup-3-5][SessionUtils.java:22] - remote ip:/157.22.200.3:49452 isActive:false reason:当前Session 发上来的数据异常！ totalCode =1782260539 != 196
+2026-07-27 01:00:26.459 INFO [nioEventLoopGroup-3-5][ClientMsgAdapter.java:114] - [id: 0xc30f41fc, L:/157.22.200.3:9101 ! R:/157.22.200.3:49452] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-07-27 01:00:26.460 WARN [nioEventLoopGroup-3-5][SessionUtils.java:22] - remote ip:/157.22.200.3:49452 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-07-27 01:00:26.460 INFO [nioEventLoopGroup-3-5][ClientMsgAdapter.java:122] - [id: 0xc30f41fc, L:/157.22.200.3:9101 ! R:/157.22.200.3:49452],id=4 连接的已经移除了！
+2026-07-27 01:00:26.460 INFO [nioEventLoopGroup-3-5][MyOutClientHandler.java:37] - [id: 0xc30f41fc, L:/157.22.200.3:9101 ! R:/157.22.200.3:49452] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-07-27 01:00:26.631 INFO [nioEventLoopGroup-3-6][ClientMsgAdapter.java:64] - [id: 0x2e81f091, L:/157.22.200.3:9101 - R:/157.22.200.3:49460], id=5首次来连接
+2026-07-27 01:00:26.632 WARN [nioEventLoopGroup-3-6][SessionUtils.java:22] - remote ip:/157.22.200.3:49460 isActive:true reason:当前Session 发上来的数据异常！ totalCode =1701994868 != 4975
+2026-07-27 01:00:26.632 WARN [nioEventLoopGroup-3-6][SessionUtils.java:22] - remote ip:/157.22.200.3:49460 isActive:false reason:当前Session 发上来的数据异常！ totalCode =775320944 != 3343
+2026-07-27 01:00:26.632 WARN [nioEventLoopGroup-3-6][SessionUtils.java:22] - remote ip:/157.22.200.3:49460 isActive:false reason:当前Session 发上来的数据异常！ totalCode =577010788 != 2601
+2026-07-27 01:00:26.632 WARN [nioEventLoopGroup-3-6][SessionUtils.java:22] - remote ip:/157.22.200.3:49460 isActive:false reason:当前Session 发上来的数据异常！ totalCode =153627681 != 1528
+2026-07-27 01:00:26.632 WARN [nioEventLoopGroup-3-6][SessionUtils.java:22] - remote ip:/157.22.200.3:49460 isActive:false reason:当前Session 发上来的数据异常！ totalCode =1782260539 != 466
+2026-07-27 01:00:26.633 INFO [nioEventLoopGroup-3-6][ClientMsgAdapter.java:114] - [id: 0x2e81f091, L:/157.22.200.3:9101 ! R:/157.22.200.3:49460] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-07-27 01:00:26.634 WARN [nioEventLoopGroup-3-6][SessionUtils.java:22] - remote ip:/157.22.200.3:49460 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-07-27 01:00:26.634 INFO [nioEventLoopGroup-3-6][ClientMsgAdapter.java:122] - [id: 0x2e81f091, L:/157.22.200.3:9101 ! R:/157.22.200.3:49460],id=5 连接的已经移除了！
+2026-07-27 01:00:26.635 INFO [nioEventLoopGroup-3-6][MyOutClientHandler.java:37] - [id: 0x2e81f091, L:/157.22.200.3:9101 ! R:/157.22.200.3:49460] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-07-27 01:00:27.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:00:27.839 INFO [nioEventLoopGroup-3-7][ClientMsgAdapter.java:64] - [id: 0x7dcc5d89, L:/157.22.200.3:9101 - R:/157.22.200.3:49472], id=6首次来连接
+2026-07-27 01:00:27.840 WARN [nioEventLoopGroup-3-7][SessionUtils.java:22] - remote ip:/157.22.200.3:49472 isActive:true reason:当前Session 发上来的数据异常！ totalCode =1701994868 != 4975
+2026-07-27 01:00:27.841 WARN [nioEventLoopGroup-3-7][SessionUtils.java:22] - remote ip:/157.22.200.3:49472 isActive:false reason:当前Session 发上来的数据异常！ totalCode =775320944 != 3343
+2026-07-27 01:00:27.841 WARN [nioEventLoopGroup-3-7][SessionUtils.java:22] - remote ip:/157.22.200.3:49472 isActive:false reason:当前Session 发上来的数据异常！ totalCode =577010788 != 2601
+2026-07-27 01:00:27.841 WARN [nioEventLoopGroup-3-7][SessionUtils.java:22] - remote ip:/157.22.200.3:49472 isActive:false reason:当前Session 发上来的数据异常！ totalCode =153627681 != 1528
+2026-07-27 01:00:27.841 WARN [nioEventLoopGroup-3-7][SessionUtils.java:22] - remote ip:/157.22.200.3:49472 isActive:false reason:当前Session 发上来的数据异常！ totalCode =1782260539 != 466
+2026-07-27 01:00:27.842 INFO [nioEventLoopGroup-3-7][ClientMsgAdapter.java:114] - [id: 0x7dcc5d89, L:/157.22.200.3:9101 ! R:/157.22.200.3:49472] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-07-27 01:00:27.842 WARN [nioEventLoopGroup-3-7][SessionUtils.java:22] - remote ip:/157.22.200.3:49472 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-07-27 01:00:27.842 INFO [nioEventLoopGroup-3-7][ClientMsgAdapter.java:122] - [id: 0x7dcc5d89, L:/157.22.200.3:9101 ! R:/157.22.200.3:49472],id=6 连接的已经移除了！
+2026-07-27 01:00:27.843 INFO [nioEventLoopGroup-3-7][MyOutClientHandler.java:37] - [id: 0x7dcc5d89, L:/157.22.200.3:9101 ! R:/157.22.200.3:49472] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-07-27 01:00:28.730 INFO [nioEventLoopGroup-3-8][ClientMsgAdapter.java:64] - [id: 0x84ac117c, L:/157.22.200.3:9101 - R:/157.22.200.3:40248], id=7首次来连接
+2026-07-27 01:00:28.732 WARN [nioEventLoopGroup-3-8][SessionUtils.java:22] - remote ip:/157.22.200.3:40248 isActive:true reason:当前Session 发上来的数据异常！ totalCode =1701994868 != 4975
+2026-07-27 01:00:28.734 WARN [nioEventLoopGroup-3-8][SessionUtils.java:22] - remote ip:/157.22.200.3:40248 isActive:false reason:当前Session 发上来的数据异常！ totalCode =775320944 != 3343
+2026-07-27 01:00:28.734 WARN [nioEventLoopGroup-3-8][SessionUtils.java:22] - remote ip:/157.22.200.3:40248 isActive:false reason:当前Session 发上来的数据异常！ totalCode =577010788 != 2601
+2026-07-27 01:00:28.734 WARN [nioEventLoopGroup-3-8][SessionUtils.java:22] - remote ip:/157.22.200.3:40248 isActive:false reason:当前Session 发上来的数据异常！ totalCode =153627681 != 1528
+2026-07-27 01:00:28.735 WARN [nioEventLoopGroup-3-8][SessionUtils.java:22] - remote ip:/157.22.200.3:40248 isActive:false reason:当前Session 发上来的数据异常！ totalCode =1782260539 != 466
+2026-07-27 01:00:28.737 INFO [nioEventLoopGroup-3-8][ClientMsgAdapter.java:114] - [id: 0x84ac117c, L:/157.22.200.3:9101 ! R:/157.22.200.3:40248] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-07-27 01:00:28.737 WARN [nioEventLoopGroup-3-8][SessionUtils.java:22] - remote ip:/157.22.200.3:40248 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-07-27 01:00:28.738 INFO [nioEventLoopGroup-3-8][ClientMsgAdapter.java:122] - [id: 0x84ac117c, L:/157.22.200.3:9101 ! R:/157.22.200.3:40248],id=7 连接的已经移除了！
+2026-07-27 01:00:28.738 INFO [nioEventLoopGroup-3-8][MyOutClientHandler.java:37] - [id: 0x84ac117c, L:/157.22.200.3:9101 ! R:/157.22.200.3:40248] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-07-27 01:00:31.220 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 01:00:33.995 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-07-27 01:00:35.359 INFO [city_8][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99039
+2026-07-27 01:00:35.359 INFO [city_8][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990391
+2026-07-27 01:00:37.394 INFO [city_8][TransportScript.java:389] - 客户端请求切换场景: player: 281873304391993039 f:72423 n: 解半云 p:{144.12193,54.09842} mMId: 103299 i: 1 e: 11579500ReqTransportControl:102599
+2026-07-27 01:00:37.394 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:72423 n: 解半云 p:{144.12193,54.09842} mMId: 103299 i: 1 e: 11579500 mapId=0 modelId=102599 line=0 pos=null type=1 login=false
+2026-07-27 01:00:37.395 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_103299 line_1 地图总人数：0
+2026-07-27 01:00:37.395 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:72423 n: 解半云 p:{161.0,160.0} mMId: 102599 i: 1 e: 11579500;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{161.0,160.0}
+2026-07-27 01:00:42.488 INFO [recvWorker-8][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={144.12193,54.09842}
+2026-07-27 01:00:45.885 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:72423 n: 解半云 p:{202.7159,160.40353} mMId: 102599 i: 1 e: 11579500transportID:7
+2026-07-27 01:00:47.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:00:57.182 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:2
+2026-07-27 01:01:04.028 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:01:13.624 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从64 升级到65
+2026-07-27 01:01:13.639 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990391
+2026-07-27 01:01:13.641 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990401
+2026-07-27 01:01:14.315 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:72744 n: 解半云 p:{240.52023,150.4587} mMId: 102599 i: 1 e: 5065800transportID:4
+2026-07-27 01:01:14.345 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:72744 n: 解半云 p:{227.862,118.433} mMId: 102599 i: 1 e: 5065800transportID:4
+2026-07-27 01:01:14.345 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 32.808994了！{241.219,148.4}
+2026-07-27 01:01:14.345 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:72744 n: 解半云 p:{227.862,118.433} mMId: 102599 i: 1 e: 5065800进入地图失败 tranportId:4 error=-4
+2026-07-27 01:01:18.665 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=1027 param=0 player= player: 281873304391993039 f:72744 n: 解半云 p:{212.0,114.0} mMId: 102599 i: 1 e: 5065800
+2026-07-27 01:01:18.666 INFO [mapThread][MapServerGroup.java:84] - 281873440215794770开始加入地图线程zone_2, 地图数量：2
+2026-07-27 01:01:18.666 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440215794770, mapModelId=100359, line=0]在地图服务器zone_2
+2026-07-27 01:01:18.667 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:72744 n: 解半云 p:{212.0,114.0} mMId: 102599 i: 1 e: 5065800 mapId=281873440215794770 modelId=0 line=0 pos={212.0,114.0} type=-1 login=false
+2026-07-27 01:01:18.667 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:01:18.667 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:72744 n: 解半云 p:{212.0,114.0} mMId: 100359 i: 0 e: 5065800;toMapModelid:100359;mapid:281873440215794770;line:0;pos:{212.0,114.0}
+2026-07-27 01:01:18.836 INFO [recvWorker-12][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：100359 , mapId281873440215794770 old pos={212.0,114.0}
+2026-07-27 01:01:27.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:01:34.062 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:01:44.384 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 1027 mapid :方泽城(281873440215794770/100359)
+2026-07-27 01:01:44.384 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:72744 n: 解半云 p:{211.40541,114.0} mMId: 100359 i: 0 e: 5078200 mapId=0 modelId=102599 line=0 pos={211.40541,114.0} type=-1 login=false
+2026-07-27 01:01:44.385 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_100359 line_0 地图总人数：0
+2026-07-27 01:01:44.385 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:72744 n: 解半云 p:{211.40541,114.0} mMId: 102599 i: 1 e: 5078200;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{211.40541,114.0}
+2026-07-27 01:01:44.625 INFO [recvWorker-13][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={212.0,114.0}
+2026-07-27 01:01:44.626 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从65 升级到67
+2026-07-27 01:01:44.640 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990401
+2026-07-27 01:01:44.643 ERROR [city_7][NatureScript.java:1277] - nature getSkillByNatureType type: 6 is invalid
+2026-07-27 01:01:44.647 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990402
+2026-07-27 01:01:46.867 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:79279 n: 解半云 p:{230.32327,123.06381} mMId: 102599 i: 1 e: 5078300transportID:3
+2026-07-27 01:01:46.890 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:79279 n: 解半云 p:{242.3,156.34} mMId: 102599 i: 1 e: 5078300transportID:3
+2026-07-27 01:01:46.890 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 33.24792了！{231.37001,124.94}
+2026-07-27 01:01:46.890 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:79279 n: 解半云 p:{242.3,156.34} mMId: 102599 i: 1 e: 5078300进入地图失败 tranportId:3 error=-4
+2026-07-27 01:01:47.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:01:47.273 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440206291981;ZoneModelId:101032;monsterSize:0
+2026-07-27 01:01:47.273 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440204653549;ZoneModelId:101031;monsterSize:0
+2026-07-27 01:01:47.273 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440208651303;ZoneModelId:103201;monsterSize:0
+2026-07-27 01:01:47.273 INFO [mapThread][MapServerGroup.java:111] - 281873440206291981地图消毁开始！
+2026-07-27 01:01:47.273 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=2！
+2026-07-27 01:01:47.273 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440206291981, mapModelId=101032, line=0]在地图服务器赤北沙海
+2026-07-27 01:01:47.273 INFO [mapThread][MapServerGroup.java:111] - 281873440204653549地图消毁开始！
+2026-07-27 01:01:47.273 INFO [mapThread][MapServerGroup.java:162] - zone_1地图数量=9！
+2026-07-27 01:01:47.273 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440204653549, mapModelId=101031, line=0]在地图服务器赤北沙海
+2026-07-27 01:01:47.273 INFO [mapThread][MapServerGroup.java:111] - 281873440208651303地图消毁开始！
+2026-07-27 01:01:47.273 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=1！
+2026-07-27 01:01:47.273 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440208651303, mapModelId=103201, line=0]在地图服务器赤北沙海
+2026-07-27 01:01:57.179 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:02:03.993 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29930
+2026-07-27 01:02:13.961 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990402
+2026-07-27 01:02:13.967 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990403
+2026-07-27 01:02:27.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:02:29.673 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从67 升级到69
+2026-07-27 01:02:29.692 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990403
+2026-07-27 01:02:29.692 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990404
+2026-07-27 01:02:34.027 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:02:47.204 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:21
+2026-07-27 01:02:54.000 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990404
+2026-07-27 01:02:54.000 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990405
+2026-07-27 01:03:04.057 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-07-27 01:03:07.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:03:09.627 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从69 升级到70
+2026-07-27 01:03:09.639 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990405
+2026-07-27 01:03:09.641 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990406
+2026-07-27 01:03:11.315 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:81916 n: 解半云 p:{231.86783,159.42867} mMId: 102599 i: 1 e: 5078700transportID:6
+2026-07-27 01:03:26.563 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=1541 param=0 player= player: 281873304391993039 f:81916 n: 解半云 p:{204.71814,190.46625} mMId: 102599 i: 1 e: 5078700
+2026-07-27 01:03:26.564 INFO [mapThread][MapServerGroup.java:84] - 281873440224183473开始加入地图线程zone_1, 地图数量：9
+2026-07-27 01:03:26.564 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440224183473, mapModelId=1541, line=0]在地图服务器zone_1
+2026-07-27 01:03:26.565 INFO [mapThread][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11012, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11012} 
+2026-07-27 01:03:26.565 INFO [mapThread][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11013, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11013} 
+2026-07-27 01:03:26.565 INFO [mapThread][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11014, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11014} 
+2026-07-27 01:03:26.565 INFO [mapThread][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11015, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11015} 
+2026-07-27 01:03:26.566 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:81916 n: 解半云 p:{204.71814,190.46625} mMId: 102599 i: 1 e: 5078700 mapId=281873440224183473 modelId=0 line=0 pos={78.0,70.0} type=-1 login=false
+2026-07-27 01:03:26.566 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:03:26.567 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:81916 n: 解半云 p:{78.0,70.0} mMId: 1541 i: 0 e: 5078700;toMapModelid:1541;mapid:281873440224183473;line:0;pos:{78.0,70.0}
+2026-07-27 01:03:27.183 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:2
+2026-07-27 01:03:31.448 INFO [recvWorker-14][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：1541 , mapId281873440224183473 old pos={204.71814,190.46625}
+2026-07-27 01:03:33.988 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29931
+2026-07-27 01:03:58.624 INFO [zone_1][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11012, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11012} 
+2026-07-27 01:04:04.043 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30054
+2026-07-27 01:04:07.180 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:2
+2026-07-27 01:04:22.655 INFO [zone_1][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11012, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11012} 
+2026-07-27 01:04:34.075 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:04:37.179 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:2
+2026-07-27 01:04:45.582 INFO [zone_1][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11012, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11012} 
+2026-07-27 01:04:47.283 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440215794770;ZoneModelId:1027;monsterSize:0
+2026-07-27 01:04:47.283 INFO [mapThread][MapServerGroup.java:111] - 281873440215794770地图消毁开始！
+2026-07-27 01:04:47.284 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=0！
+2026-07-27 01:04:47.284 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440215794770, mapModelId=100359, line=0]在地图服务器方泽城
+2026-07-27 01:04:57.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:05:04.019 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29943
+2026-07-27 01:05:10.266 INFO [zone_1][LevelChange.java:69] - 解半云(281873304391993039) 从70 升级到72
+2026-07-27 01:05:10.281 INFO [zone_1][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990406
+2026-07-27 01:05:10.281 INFO [zone_1][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990407
+2026-07-27 01:05:10.630 INFO [zone_1][NoobBossMapCopyScript.java:133] - 新手boss 刷新 boss=Boss{, modelId=11012, mapID=1541, haveFlush=false, pos=null, nextTime=-1, configId=11012} 
+2026-07-27 01:05:17.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:05:20.303 INFO [zone_1][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 1541 mapid :新手层1(281873440224183473/1541)
+2026-07-27 01:05:20.304 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:112993 n: 解半云 p:{116.59769,69.12239} mMId: 1541 i: 0 e: 5078800 mapId=0 modelId=102599 line=0 pos={161.0,160.0} type=-1 login=false
+2026-07-27 01:05:20.304 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_1541 line_0 地图总人数：0
+2026-07-27 01:05:20.305 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:112993 n: 解半云 p:{161.0,160.0} mMId: 102599 i: 1 e: 5078800;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{161.0,160.0}
+2026-07-27 01:05:25.112 INFO [recvWorker-16][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={204.71814,190.46625}
+2026-07-27 01:05:27.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:05:28.551 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:112993 n: 解半云 p:{204.02234,160.31364} mMId: 102599 i: 1 e: 5078800transportID:7
+2026-07-27 01:05:28.575 INFO [city_7][TransportScript.java:141] - 客户端请求切换场景: player: 281873304391993039 f:112993 n: 解半云 p:{240.37,158.94} mMId: 102599 i: 1 e: 5078800transportID:7
+2026-07-27 01:05:28.575 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 34.48309了！{205.9,159.89}
+2026-07-27 01:05:28.575 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:112993 n: 解半云 p:{240.37,158.94} mMId: 102599 i: 1 e: 5078800进入地图失败 tranportId:7 error=-4
+2026-07-27 01:05:34.056 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-07-27 01:05:36.284 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 01:05:47.720 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=37 param=0 player= player: 281873304391993039 f:112993 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 5078800
+2026-07-27 01:05:47.721 INFO [mapThread][MapServerGroup.java:84] - 281873440233424089开始加入地图线程zone_2, 地图数量：0
+2026-07-27 01:05:47.721 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440233424089, mapModelId=411, line=0]在地图服务器zone_2
+2026-07-27 01:05:47.721 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:112993 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 5078800 mapId=281873440233424089 modelId=0 line=0 pos={14.0,11.0} type=-1 login=false
+2026-07-27 01:05:47.722 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:05:47.722 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:112993 n: 解半云 p:{14.0,11.0} mMId: 411 i: 0 e: 5078800;toMapModelid:411;mapid:281873440233424089;line:0;pos:{14.0,11.0}
+2026-07-27 01:05:50.911 INFO [recvWorker-17][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：411 , mapId281873440233424089 old pos={278.76416,194.53139}
+2026-07-27 01:05:55.295 INFO [zone_2][SingleTowerScript.java:63] - 万妖卷请求刷怪 layer=1 player= player: 281873304391993039 f:112993 n: 解半云 p:{14.0,11.0} mMId: 411 i: 0 e: 5078800
+2026-07-27 01:06:01.897 INFO [zone_2][LevelChange.java:69] - 解半云(281873304391993039) 从72 升级到75
+2026-07-27 01:06:02.215 INFO [zone_2][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990407
+2026-07-27 01:06:02.216 INFO [zone_2][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99041
+2026-07-27 01:06:03.991 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29936
+2026-07-27 01:06:12.362 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 37 mapid :万妖卷(281873440233424089/411)
+2026-07-27 01:06:12.363 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:113979 n: 解半云 p:{14.0,11.0} mMId: 411 i: 0 e: 10183500 mapId=0 modelId=102599 line=0 pos={161.0,160.0} type=-1 login=false
+2026-07-27 01:06:12.363 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_411 line_0 地图总人数：0
+2026-07-27 01:06:12.364 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:113979 n: 解半云 p:{161.0,160.0} mMId: 102599 i: 1 e: 10183500;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{161.0,160.0}
+2026-07-27 01:06:17.125 INFO [recvWorker-18][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={278.76416,194.53139}
+2026-07-27 01:06:17.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:06:25.859 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99041
+2026-07-27 01:06:25.860 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99042
+2026-07-27 01:06:30.122 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=100331 param=0 player= player: 281873304391993039 f:113979 n: 解半云 p:{161.0,74.0} mMId: 102599 i: 1 e: 16770480
+2026-07-27 01:06:30.123 INFO [mapThread][MapServerGroup.java:84] - 281873440236242161开始加入地图线程zone_2, 地图数量：1
+2026-07-27 01:06:30.123 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440236242161, mapModelId=100331, line=0]在地图服务器zone_2
+2026-07-27 01:06:30.124 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:113979 n: 解半云 p:{161.0,74.0} mMId: 102599 i: 1 e: 16770480 mapId=281873440236242161 modelId=0 line=0 pos={161.0,74.0} type=-1 login=false
+2026-07-27 01:06:30.124 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:06:30.124 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:113979 n: 解半云 p:{161.0,74.0} mMId: 100331 i: 0 e: 16770480;toMapModelid:100331;mapid:281873440236242161;line:0;pos:{161.0,74.0}
+2026-07-27 01:06:30.284 INFO [recvWorker-19][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：100331 , mapId281873440236242161 old pos={161.0,74.0}
+2026-07-27 01:06:34.023 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-07-27 01:06:37.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:06:40.426 INFO [zone_2][MapObject.java:594] - 地图对象 定时器event执行完成清理 map=万妖卷 ModelID:411 line:0 id:281873440233424089, event=com.game.map.timer.MapLoopScriptEventTimer@3719d8e8
+2026-07-27 01:06:51.305 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 01:06:59.206 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 100331 mapid :方泽城(281873440236242161/100331)
+2026-07-27 01:06:59.207 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:113979 n: 解半云 p:{161.0,74.0} mMId: 100331 i: 0 e: 16770480 mapId=0 modelId=102599 line=0 pos={161.0,74.0} type=-1 login=false
+2026-07-27 01:06:59.207 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_100331 line_0 地图总人数：0
+2026-07-27 01:06:59.208 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:113979 n: 解半云 p:{161.0,74.0} mMId: 102599 i: 1 e: 16770480;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{161.0,74.0}
+2026-07-27 01:06:59.359 INFO [recvWorker-20][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={161.0,74.0}
+2026-07-27 01:06:59.360 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从75 升级到76
+2026-07-27 01:06:59.376 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99042
+2026-07-27 01:06:59.378 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990421
+2026-07-27 01:07:04.053 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:07:11.713 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990421
+2026-07-27 01:07:11.714 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99043
+2026-07-27 01:07:17.183 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:3
+2026-07-27 01:07:27.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:07:27.261 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99043
+2026-07-27 01:07:27.262 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99044
+2026-07-27 01:07:32.190 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=100332 param=0 player= player: 281873304391993039 f:114301 n: 解半云 p:{122.0,139.0} mMId: 102599 i: 1 e: 17155140
+2026-07-27 01:07:32.191 INFO [mapThread][MapServerGroup.java:84] - 281873440240305418开始加入地图线程zone_2, 地图数量：2
+2026-07-27 01:07:32.191 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440240305418, mapModelId=100332, line=0]在地图服务器zone_2
+2026-07-27 01:07:32.192 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:114301 n: 解半云 p:{122.0,139.0} mMId: 102599 i: 1 e: 17155140 mapId=281873440240305418 modelId=0 line=0 pos={122.0,139.0} type=-1 login=false
+2026-07-27 01:07:32.193 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:07:32.193 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:114301 n: 解半云 p:{122.0,139.0} mMId: 100332 i: 0 e: 17155140;toMapModelid:100332;mapid:281873440240305418;line:0;pos:{122.0,139.0}
+2026-07-27 01:07:32.382 INFO [recvWorker-21][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：100332 , mapId281873440240305418 old pos={122.0,139.0}
+2026-07-27 01:07:34.080 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30027
+2026-07-27 01:07:38.115 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 100332 mapid :方泽城(281873440240305418/100332)
+2026-07-27 01:07:38.115 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:114301 n: 解半云 p:{122.0,139.0} mMId: 100332 i: 0 e: 17155140 mapId=0 modelId=102599 line=0 pos={122.0,139.0} type=-1 login=false
+2026-07-27 01:07:38.115 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_100332 line_0 地图总人数：0
+2026-07-27 01:07:38.116 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:114301 n: 解半云 p:{122.0,139.0} mMId: 102599 i: 1 e: 17155140;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{122.0,139.0}
+2026-07-27 01:07:38.287 INFO [recvWorker-15][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={122.0,139.0}
+2026-07-27 01:07:38.287 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从76 升级到77
+2026-07-27 01:07:38.299 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99044
+2026-07-27 01:07:38.303 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99045
+2026-07-27 01:07:47.192 INFO [mainThread][MapDelTimerScript.java:76] - 副本存在时间到期销毁:281873440233424089;ZoneModelId:37;deleteTime:1;monsterSize:0
+2026-07-27 01:07:47.192 INFO [mapThread][MapServerGroup.java:111] - 281873440233424089地图消毁开始！
+2026-07-27 01:07:47.192 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=2！
+2026-07-27 01:07:47.192 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440233424089, mapModelId=411, line=0]在地图服务器万妖卷
+2026-07-27 01:07:53.521 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99045
+2026-07-27 01:07:53.522 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99046
+2026-07-27 01:07:57.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:07:59.323 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 01:08:04.015 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29935
+2026-07-27 01:08:07.180 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:08:13.055 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99046
+2026-07-27 01:08:13.058 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99047
+2026-07-27 01:08:24.102 INFO [city_7][MapDealScript.java:251] - 开始采集=_9000023_{138.03,230.93}解半云(281873304391993039)
+2026-07-27 01:08:25.612 INFO [city_7][GatherBehaviorScript.java:142] - 解半云(281873304391993039)采集[]完成
+2026-07-27 01:08:25.745 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从77 升级到78
+2026-07-27 01:08:25.758 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99047
+2026-07-27 01:08:25.758 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99048
+2026-07-27 01:08:27.613 INFO [city_7][MapObject.java:594] - 地图对象 定时器event执行完成清理 map=方泽城 ModelID:102599 line:1 id:281873439077367878, event=com.game.map.timer.GatherBrithTimer@61ed1593
+2026-07-27 01:08:34.050 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:08:37.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:08:39.654 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99048
+2026-07-27 01:08:39.655 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99049
+2026-07-27 01:08:40.449 INFO [city_7][MapDealScript.java:251] - 开始采集=_9000024_{130.62001,235.95999}解半云(281873304391993039)
+2026-07-27 01:08:42.031 INFO [city_7][GatherBehaviorScript.java:142] - 解半云(281873304391993039)采集[]完成
+2026-07-27 01:08:42.124 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从78 升级到79
+2026-07-27 01:08:42.136 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99049
+2026-07-27 01:08:42.136 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99050
+2026-07-27 01:08:44.235 INFO [city_7][MapObject.java:594] - 地图对象 定时器event执行完成清理 map=方泽城 ModelID:102599 line:1 id:281873439077367878, event=com.game.map.timer.GatherBrithTimer@1d3e8f02
+2026-07-27 01:08:47.264 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440236242161;ZoneModelId:100331;monsterSize:0
+2026-07-27 01:08:47.264 INFO [mapThread][MapServerGroup.java:111] - 281873440236242161地图消毁开始！
+2026-07-27 01:08:47.264 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=1！
+2026-07-27 01:08:47.264 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440236242161, mapModelId=100331, line=0]在地图服务器方泽城
+2026-07-27 01:08:56.983 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99050
+2026-07-27 01:08:56.983 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99051
+2026-07-27 01:09:03.987 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29938
+2026-07-27 01:09:06.063 INFO [city_7][MapDealScript.java:251] - 开始采集=_9000025_{229.82,250.90999}解半云(281873304391993039)
+2026-07-27 01:09:07.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:09:07.572 INFO [city_7][GatherBehaviorScript.java:142] - 解半云(281873304391993039)采集[]完成
+2026-07-27 01:09:07.721 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从79 升级到80
+2026-07-27 01:09:07.740 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99051
+2026-07-27 01:09:07.740 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99053
+2026-07-27 01:09:09.576 INFO [city_7][MapObject.java:594] - 地图对象 定时器event执行完成清理 map=方泽城 ModelID:102599 line:1 id:281873439077367878, event=com.game.map.timer.GatherBrithTimer@2dd85d8f
+2026-07-27 01:09:09.800 INFO [city_7][TransportScript.java:389] - 客户端请求切换场景: player: 281873304391993039 f:115552 n: 解半云 p:{230.85867,249.20084} mMId: 102599 i: 1 e: 10184700ReqTransportControl:101499
+2026-07-27 01:09:09.801 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:115552 n: 解半云 p:{230.85867,249.20084} mMId: 102599 i: 1 e: 10184700 mapId=0 modelId=101499 line=0 pos=null type=1 login=false
+2026-07-27 01:09:09.802 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:09:09.802 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:115552 n: 解半云 p:{19.0,46.0} mMId: 101499 i: 1 e: 10184700;toMapModelid:101499;mapid:281873439077367860;line:1;pos:{19.0,46.0}
+2026-07-27 01:09:14.038 INFO [recvWorker-22][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101499 , mapId281873439077367860 old pos={230.85867,249.20084}
+2026-07-27 01:09:27.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:09:33.022 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99053
+2026-07-27 01:09:33.023 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99054
+2026-07-27 01:09:34.019 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-07-27 01:09:37.558 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=100333 param=0 player= player: 281873304391993039 f:115552 n: 解半云 p:{46.0,48.0} mMId: 101499 i: 1 e: 18775480
+2026-07-27 01:09:37.559 INFO [mapThread][MapServerGroup.java:84] - 281873440248497481开始加入地图线程zone_2, 地图数量：1
+2026-07-27 01:09:37.559 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440248497481, mapModelId=100333, line=0]在地图服务器zone_2
+2026-07-27 01:09:37.560 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:115552 n: 解半云 p:{46.0,48.0} mMId: 101499 i: 1 e: 18775480 mapId=281873440248497481 modelId=0 line=0 pos={46.0,49.0} type=-1 login=false
+2026-07-27 01:09:37.560 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101499 line_1 地图总人数：0
+2026-07-27 01:09:37.560 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:115552 n: 解半云 p:{46.0,49.0} mMId: 100333 i: 0 e: 18775480;toMapModelid:100333;mapid:281873440248497481;line:0;pos:{46.0,49.0}
+2026-07-27 01:09:37.749 INFO [recvWorker-23][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：100333 , mapId281873440248497481 old pos={46.0,48.0}
+2026-07-27 01:09:46.574 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 100333 mapid :从极之渊(281873440248497481/100333)
+2026-07-27 01:09:46.574 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:115552 n: 解半云 p:{46.0,49.0} mMId: 100333 i: 0 e: 18775480 mapId=0 modelId=101499 line=0 pos={46.0,49.0} type=-1 login=false
+2026-07-27 01:09:46.575 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_100333 line_0 地图总人数：0
+2026-07-27 01:09:46.575 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:115552 n: 解半云 p:{46.0,49.0} mMId: 101499 i: 1 e: 18775480;toMapModelid:101499;mapid:281873439077367860;line:1;pos:{46.0,49.0}
+2026-07-27 01:09:46.744 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从80 升级到81
+2026-07-27 01:09:46.745 INFO [recvWorker-24][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101499 , mapId281873439077367860 old pos={46.0,48.0}
+2026-07-27 01:09:46.766 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99054
+2026-07-27 01:09:46.767 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99055
+2026-07-27 01:09:47.228 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440240305418;ZoneModelId:100332;monsterSize:0
+2026-07-27 01:09:47.229 INFO [mapThread][MapServerGroup.java:111] - 281873440240305418地图消毁开始！
+2026-07-27 01:09:47.229 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=1！
+2026-07-27 01:09:47.229 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440240305418, mapModelId=100332, line=0]在地图服务器方泽城
+2026-07-27 01:09:57.179 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:2
+2026-07-27 01:10:04.056 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-07-27 01:10:33.989 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-07-27 01:11:04.023 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:11:34.056 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:11:47.268 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440248497481;ZoneModelId:100333;monsterSize:0
+2026-07-27 01:11:47.268 INFO [mapThread][MapServerGroup.java:111] - 281873440248497481地图消毁开始！
+2026-07-27 01:11:47.268 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=0！
+2026-07-27 01:11:47.268 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440248497481, mapModelId=100333, line=0]在地图服务器从极之渊
+2026-07-27 01:12:00.902 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99055
+2026-07-27 01:12:00.903 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99056
+2026-07-27 01:12:01.296 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=101421 param=0 player= player: 281873304391993039 f:115904 n: 解半云 p:{100.0,54.0} mMId: 101499 i: 1 e: 23416340
+2026-07-27 01:12:01.297 INFO [mapThread][MapServerGroup.java:84] - 281873440257934692开始加入地图线程zone_2, 地图数量：0
+2026-07-27 01:12:01.297 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440257934692, mapModelId=101421, line=0]在地图服务器zone_2
+2026-07-27 01:12:01.297 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:115904 n: 解半云 p:{100.0,54.0} mMId: 101499 i: 1 e: 23416340 mapId=281873440257934692 modelId=0 line=0 pos={100.0,54.0} type=-1 login=false
+2026-07-27 01:12:01.298 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101499 line_1 地图总人数：0
+2026-07-27 01:12:01.298 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:115904 n: 解半云 p:{100.0,54.0} mMId: 101421 i: 0 e: 23416340;toMapModelid:101421;mapid:281873440257934692;line:0;pos:{100.0,54.0}
+2026-07-27 01:12:01.471 INFO [recvWorker-25][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101421 , mapId281873440257934692 old pos={100.0,54.0}
+2026-07-27 01:12:03.990 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-07-27 01:12:10.312 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 101421 mapid :从极之渊(281873440257934692/101421)
+2026-07-27 01:12:10.313 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:115904 n: 解半云 p:{100.0,54.0} mMId: 101421 i: 0 e: 23416340 mapId=0 modelId=101499 line=0 pos={100.0,54.0} type=-1 login=false
+2026-07-27 01:12:10.314 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101421 line_0 地图总人数：0
+2026-07-27 01:12:10.314 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:115904 n: 解半云 p:{100.0,54.0} mMId: 101499 i: 1 e: 23416340;toMapModelid:101499;mapid:281873439077367860;line:1;pos:{100.0,54.0}
+2026-07-27 01:12:10.505 INFO [recvWorker-26][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101499 , mapId281873439077367860 old pos={100.0,54.0}
+2026-07-27 01:12:10.508 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从81 升级到82
+2026-07-27 01:12:10.521 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99056
+2026-07-27 01:12:10.521 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990561
+2026-07-27 01:12:23.824 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990561
+2026-07-27 01:12:23.827 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99057
+2026-07-27 01:12:27.179 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:2
+2026-07-27 01:12:34.021 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-07-27 01:12:37.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:12:43.350 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99057
+2026-07-27 01:12:43.351 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99058
+2026-07-27 01:12:43.667 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=101422 param=0 player= player: 281873304391993039 f:116199 n: 解半云 p:{106.0,43.0} mMId: 101499 i: 1 e: 23767940
+2026-07-27 01:12:43.668 INFO [mapThread][MapServerGroup.java:84] - 281873440260687227开始加入地图线程zone_2, 地图数量：1
+2026-07-27 01:12:43.668 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440260687227, mapModelId=101422, line=0]在地图服务器zone_2
+2026-07-27 01:12:43.668 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:116199 n: 解半云 p:{106.0,43.0} mMId: 101499 i: 1 e: 23767940 mapId=281873440260687227 modelId=0 line=0 pos={106.0,43.0} type=-1 login=false
+2026-07-27 01:12:43.669 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101499 line_1 地图总人数：0
+2026-07-27 01:12:43.669 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:116199 n: 解半云 p:{106.0,43.0} mMId: 101422 i: 0 e: 23767940;toMapModelid:101422;mapid:281873440260687227;line:0;pos:{106.0,43.0}
+2026-07-27 01:12:43.760 INFO [recvWorker-27][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101422 , mapId281873440260687227 old pos={106.0,43.0}
+2026-07-27 01:12:51.719 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 101422 mapid :从极之渊(281873440260687227/101422)
+2026-07-27 01:12:51.720 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:116199 n: 解半云 p:{106.0,43.0} mMId: 101422 i: 0 e: 23767940 mapId=0 modelId=101499 line=0 pos={106.0,43.0} type=-1 login=false
+2026-07-27 01:12:51.720 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101422 line_0 地图总人数：0
+2026-07-27 01:12:51.720 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:116199 n: 解半云 p:{106.0,43.0} mMId: 101499 i: 1 e: 23767940;toMapModelid:101499;mapid:281873439077367860;line:1;pos:{106.0,43.0}
+2026-07-27 01:12:51.867 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从82 升级到83
+2026-07-27 01:12:51.869 INFO [recvWorker-28][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101499 , mapId281873439077367860 old pos={106.0,43.0}
+2026-07-27 01:12:51.885 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99058
+2026-07-27 01:12:51.886 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99059
+2026-07-27 01:13:04.055 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:13:07.180 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:2
+2026-07-27 01:13:13.159 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99059
+2026-07-27 01:13:13.160 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99060
+2026-07-27 01:13:13.396 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 01:13:27.179 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:13:32.728 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99060
+2026-07-27 01:13:32.729 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99061
+2026-07-27 01:13:33.307 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=101423 param=0 player= player: 281873304391993039 f:116521 n: 解半云 p:{66.0,87.0} mMId: 101499 i: 1 e: 24122560
+2026-07-27 01:13:33.308 INFO [mapThread][MapServerGroup.java:84] - 281873440263964050开始加入地图线程zone_2, 地图数量：2
+2026-07-27 01:13:33.308 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440263964050, mapModelId=101423, line=0]在地图服务器zone_2
+2026-07-27 01:13:33.309 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:116521 n: 解半云 p:{66.0,87.0} mMId: 101499 i: 1 e: 24122560 mapId=281873440263964050 modelId=0 line=0 pos={66.0,87.0} type=-1 login=false
+2026-07-27 01:13:33.311 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101499 line_1 地图总人数：0
+2026-07-27 01:13:33.312 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:116521 n: 解半云 p:{66.0,87.0} mMId: 101423 i: 0 e: 24122560;toMapModelid:101423;mapid:281873440263964050;line:0;pos:{66.0,87.0}
+2026-07-27 01:13:33.466 INFO [recvWorker-29][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101423 , mapId281873440263964050 old pos={66.0,87.0}
+2026-07-27 01:13:34.078 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30024
+2026-07-27 01:13:47.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:13:53.744 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 101423 mapid :从极之渊(281873440263964050/101423)
+2026-07-27 01:13:53.744 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:116521 n: 解半云 p:{66.0,87.0} mMId: 101423 i: 0 e: 24122560 mapId=0 modelId=101499 line=0 pos={66.0,87.0} type=-1 login=false
+2026-07-27 01:13:53.745 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101423 line_0 地图总人数：0
+2026-07-27 01:13:53.745 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:116521 n: 解半云 p:{66.0,87.0} mMId: 101499 i: 1 e: 24122560;toMapModelid:101499;mapid:281873439077367860;line:1;pos:{66.0,87.0}
+2026-07-27 01:13:53.902 INFO [recvWorker-30][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：101499 , mapId281873439077367860 old pos={66.0,87.0}
+2026-07-27 01:13:53.902 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从83 升级到84
+2026-07-27 01:13:53.916 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99061
+2026-07-27 01:13:53.918 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990611
+2026-07-27 01:14:04.014 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29935
+2026-07-27 01:14:07.179 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:3
+2026-07-27 01:14:08.082 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990611
+2026-07-27 01:14:08.082 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99062
+2026-07-27 01:14:24.106 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99062
+2026-07-27 01:14:24.106 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=99063
+2026-07-27 01:14:26.168 INFO [city_7][TransportScript.java:389] - 客户端请求切换场景: player: 281873304391993039 f:116834 n: 解半云 p:{52.038315,76.289696} mMId: 101499 i: 1 e: 24483180ReqTransportControl:102599
+2026-07-27 01:14:26.168 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:116834 n: 解半云 p:{52.038315,76.289696} mMId: 101499 i: 1 e: 24483180 mapId=0 modelId=102599 line=0 pos=null type=1 login=false
+2026-07-27 01:14:26.168 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_101499 line_1 地图总人数：0
+2026-07-27 01:14:26.168 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:116834 n: 解半云 p:{161.0,160.0} mMId: 102599 i: 1 e: 24483180;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{161.0,160.0}
+2026-07-27 01:14:31.385 INFO [recvWorker-31][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={52.038315,76.289696}
+2026-07-27 01:14:34.050 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-07-27 01:14:37.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:14:47.261 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440260687227;ZoneModelId:101422;monsterSize:0
+2026-07-27 01:14:47.262 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440257934692;ZoneModelId:101421;monsterSize:0
+2026-07-27 01:14:47.262 INFO [mapThread][MapServerGroup.java:111] - 281873440260687227地图消毁开始！
+2026-07-27 01:14:47.262 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=2！
+2026-07-27 01:14:47.262 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440260687227, mapModelId=101422, line=0]在地图服务器从极之渊
+2026-07-27 01:14:47.262 INFO [mapThread][MapServerGroup.java:111] - 281873440257934692地图消毁开始！
+2026-07-27 01:14:47.262 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=1！
+2026-07-27 01:14:47.262 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440257934692, mapModelId=101421, line=0]在地图服务器从极之渊
+2026-07-27 01:14:51.783 INFO [city_7][LevelChange.java:69] - 解半云(281873304391993039) 从84 升级到85
+2026-07-27 01:14:51.795 INFO [city_7][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=99063
+2026-07-27 01:14:51.797 INFO [city_7][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990641
+2026-07-27 01:15:03.986 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29935
+2026-07-27 01:15:04.595 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=400003 param=0 player= player: 281873304391993039 f:117155 n: 解半云 p:{107.73986,182.83862} mMId: 102599 i: 1 e: 10186000
+2026-07-27 01:15:04.595 INFO [mapThread][MapServerGroup.java:84] - 281873440269927863开始加入地图线程zone_2, 地图数量：1
+2026-07-27 01:15:04.595 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440269927863, mapModelId=400001, line=0]在地图服务器zone_2
+2026-07-27 01:15:04.596 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:117155 n: 解半云 p:{107.73986,182.83862} mMId: 102599 i: 1 e: 10186000 mapId=281873440269927863 modelId=0 line=0 pos={49.0,60.0} type=-1 login=false
+2026-07-27 01:15:04.596 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:15:04.596 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:117155 n: 解半云 p:{49.0,60.0} mMId: 400001 i: 0 e: 10186000;toMapModelid:400001;mapid:281873440269927863;line:0;pos:{49.0,60.0}
+2026-07-27 01:15:07.178 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:15:07.636 INFO [recvWorker-32][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：400001 , mapId281873440269927863 old pos={107.73986,182.83862}
+2026-07-27 01:15:10.648 INFO [zone_2][MapObject.java:594] - 地图对象 定时器event执行完成清理 map=剑主试炼 ModelID:400001 line:0 id:281873440269927863, event=com.game.map.timer.MapLoopScriptEventTimer@32b0c50a
+2026-07-27 01:15:11.660 ERROR [copyMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：11数量：84
+2026-07-27 01:15:11.661 ERROR [worldMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：15数量：245
+2026-07-27 01:15:27.294 INFO [zone_2][MainTaskScript.java:263] - 玩家[解半云] 完成任务id=990641
+2026-07-27 01:15:27.294 INFO [zone_2][MainTaskScript.java:149] - 玩家[解半云] 领取任务id=990642
+2026-07-27 01:15:34.020 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-07-27 01:15:45.755 INFO [zone_2][CopyMapScriptManager.java:196] - 玩家（解半云）281873304391993039主动离开了副本! 发送了副本ID为： 400003 mapid :剑主试炼(281873440269927863/400001)
+2026-07-27 01:15:45.755 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:118124 n: 解半云 p:{44.792645,55.792645} mMId: 400001 i: 0 e: 17516410 mapId=0 modelId=102599 line=0 pos={161.0,160.0} type=-1 login=false
+2026-07-27 01:15:45.756 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_400001 line_0 地图总人数：0
+2026-07-27 01:15:45.756 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:118124 n: 解半云 p:{161.0,160.0} mMId: 102599 i: 1 e: 17516410;toMapModelid:102599;mapid:281873439077367878;line:1;pos:{161.0,160.0}
+2026-07-27 01:15:47.177 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-07-27 01:15:47.232 INFO [mainThread][MapDelTimerScript.java:87] - 副本无人地图销毁:281873440263964050;ZoneModelId:101423;monsterSize:0
+2026-07-27 01:15:47.232 INFO [mapThread][MapServerGroup.java:111] - 281873440263964050地图消毁开始！
+2026-07-27 01:15:47.232 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=1！
+2026-07-27 01:15:47.232 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440263964050, mapModelId=101423, line=0]在地图服务器从极之渊
+2026-07-27 01:15:50.709 INFO [recvWorker-1][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873439077367878 old pos={107.73986,182.83862}
+2026-07-27 01:15:55.895 INFO [zone_2][MapObject.java:594] - 地图对象 定时器event执行完成清理 map=剑主试炼 ModelID:400001 line:0 id:281873440269927863, event=com.game.map.timer.MapLoopScriptEventTimer@6db32730
+2026-07-27 01:16:04.053 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:16:04.791 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=30001 param=3 player= player: 281873304391993039 f:118124 n: 解半云 p:{205.78839,190.46062} mMId: 102599 i: 1 e: 17516410
+2026-07-27 01:16:04.792 INFO [mapThread][MapServerGroup.java:84] - 281873440273860036开始加入地图线程zone_2, 地图数量：1
+2026-07-27 01:16:04.792 INFO [mapThread][MapManagerScript.java:1342] - 创建地图成功,创建地图[mapId=281873440273860036, mapModelId=3001, line=0]在地图服务器zone_2
+2026-07-27 01:16:04.792 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:118124 n: 解半云 p:{205.78839,190.46062} mMId: 102599 i: 1 e: 17516410 mapId=281873440273860036 modelId=0 line=0 pos={24.0,46.0} type=-1 login=false
+2026-07-27 01:16:04.793 INFO [mapThread][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-07-27 01:16:04.793 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:118124 n: 解半云 p:{24.0,46.0} mMId: 3001 i: 0 e: 17516410;toMapModelid:3001;mapid:281873440273860036;line:0;pos:{24.0,46.0}
+2026-07-27 01:16:07.204 INFO [recvWorker-2][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：3001 , mapId281873440273860036 old pos={205.78839,190.46062}
+2026-07-27 01:16:07.205 INFO [recvWorker-2][BossStateScript.java:352] - 境界boss刷新layer=3 player= player: 281873304391993039 f:118124 n: 解半云 p:{24.0,46.0} mMId: 3001 i: 0 e: 17516410
+2026-07-27 01:16:25.529 ERROR [zone_2][DropScript.java:581] - 击杀boss获得掉落物品失败，没有在Cfg_Bossnew_dropBean中找到相应数据，dropId = 0
+2026-07-27 01:16:28.344 INFO [pool-6-thread-7][GameServer.java:614] - [id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604]发送队列时， 连接已经断开了！4
+2026-07-27 01:16:28.345 INFO [nioEventLoopGroup-3-1][ClientMsgAdapter.java:109] - [id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604] 已经注册了 ClientMsgAdapter玩家:解半云(281873304391993039)
+2026-07-27 01:16:28.345 WARN [nioEventLoopGroup-3-1][RoleQuitGame.java:63] -  开始退出游戏 player= player: 281873304391993039 f:118124 n: 解半云 p:{24.0,43.221058} mMId: 3001 i: 0 e: 17516410 sessionId:[id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604] reason=7 
+2026-07-27 01:16:28.345 WARN [nioEventLoopGroup-3-1][RegisterScript.java:894] - 移除连接 user=UserInfo{userId=844541782760554497, age=18, roleCount=1} session=[id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604]
+2026-07-27 01:16:28.345 WARN [nioEventLoopGroup-3-1][RegisterScript.java:904] - 移除连接 role=RoleInfo{roleId=281873304391993039, csId=1001, level=85} session=[id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604]
+2026-07-27 01:16:28.346 WARN [nioEventLoopGroup-3-1][RegisterScript.java:914] - 移除连接 role=281873304391993039 session=[id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604]
+2026-07-27 01:16:28.346 WARN [nioEventLoopGroup-3-1][SessionUtils.java:22] - remote ip:/95.26.138.241:18604 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-07-27 01:16:28.361 INFO [nioEventLoopGroup-3-1][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_3001 line_0 地图总人数：0
+2026-07-27 01:16:28.371 INFO [nioEventLoopGroup-3-1][RoleQuitGame.java:195] - 退出游戏完成 player: player: 281873304391993039 f:118124 n: 解半云 p:{24.0,43.221058} mMId: 3001 i: 0 e: 17516410
+2026-07-27 01:16:28.371 INFO [nioEventLoopGroup-3-1][ClientMsgAdapter.java:122] - [id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604],id=0 连接的已经移除了！
+2026-07-27 01:16:28.371 INFO [nioEventLoopGroup-3-1][MyOutClientHandler.java:37] - [id: 0x87d913f9, L:/157.22.200.3:9101 ! R:/95.26.138.241:18604] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-07-27 01:16:28.441 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 01:16:34.083 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:16:37.188 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:6
+2026-07-27 01:16:47.193 INFO [mainThread][MapDelTimerScript.java:76] - 副本存在时间到期销毁:281873440269927863;ZoneModelId:400003;deleteTime:1785104179595;monsterSize:0
+2026-07-27 01:16:47.193 INFO [mapThread][MapServerGroup.java:111] - 281873440269927863地图消毁开始！
+2026-07-27 01:16:47.193 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=1！
+2026-07-27 01:16:47.193 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440269927863, mapModelId=400001, line=0]在地图服务器剑主试炼
+2026-07-27 01:17:04.015 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29931
+2026-07-27 01:17:34.043 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-07-27 01:18:04.071 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-07-27 01:18:34.003 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-07-27 01:18:47.213 INFO [mainThread][MapDelTimerScript.java:76] - 副本存在时间到期销毁:281873440273860036;ZoneModelId:30001;deleteTime:1785104314792;monsterSize:0
+2026-07-27 01:18:47.213 INFO [mapThread][MapServerGroup.java:111] - 281873440273860036地图消毁开始！
+2026-07-27 01:18:47.213 INFO [mapThread][MapServerGroup.java:162] - zone_2地图数量=0！
+2026-07-27 01:18:47.213 INFO [mapThread][MapManagerScript.java:1322] - 移除地图成功,移除地图[mapId=281873440273860036, mapModelId=3001, line=0]在地图服务器个人首领
+2026-07-27 01:19:04.032 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-07-27 01:19:34.062 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:20:04.000 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29938
+2026-07-27 01:20:34.032 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-07-27 01:21:04.075 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30042
+2026-07-27 01:21:34.003 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29929
+2026-07-27 01:22:04.067 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30064
+2026-07-27 01:22:33.996 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29929
+2026-07-27 01:23:04.029 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:23:34.065 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-07-27 01:24:03.998 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-07-27 01:24:34.031 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:25:04.067 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-07-27 01:25:33.999 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-07-27 01:26:04.033 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:26:34.064 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-07-27 01:27:04.008 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29943
+2026-07-27 01:27:34.037 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:28:04.072 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-07-27 01:28:33.999 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29926
+2026-07-27 01:29:04.035 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-07-27 01:29:34.068 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:30:04.018 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29950
+2026-07-27 01:30:34.053 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-07-27 01:31:03.990 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29936
+2026-07-27 01:31:34.024 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:32:04.052 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-07-27 01:32:33.989 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29938
+2026-07-27 01:33:04.026 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-07-27 01:33:34.060 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:34:03.989 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29930
+2026-07-27 01:34:34.021 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-07-27 01:35:04.062 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30042
+2026-07-27 01:35:33.990 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29928
+2026-07-27 01:36:04.023 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:36:34.051 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30027
+2026-07-27 01:37:03.989 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29939
+2026-07-27 01:37:34.023 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:38:04.054 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-07-27 01:38:33.985 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29930
+2026-07-27 01:39:04.018 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:39:34.055 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-07-27 01:40:03.990 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29936
+2026-07-27 01:40:34.021 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-07-27 01:41:04.049 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-07-27 01:41:34.079 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-07-27 01:42:04.016 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29937
+2026-07-27 01:42:34.050 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-07-27 01:43:04.079 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-07-27 01:43:34.012 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-07-27 01:44:04.043 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:44:34.073 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-07-27 01:45:04.003 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29929
+2026-07-27 01:45:34.034 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-07-27 01:46:04.070 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-07-27 01:46:34.002 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-07-27 01:47:04.043 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30041
+2026-07-27 01:47:34.077 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-07-27 01:48:04.009 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-07-27 01:48:34.038 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-07-27 01:49:04.072 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-07-27 01:49:34.004 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-07-27 01:50:04.034 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:50:34.066 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-07-27 01:51:04.002 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29935
+2026-07-27 01:51:34.040 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30039
+2026-07-27 01:52:04.078 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30038
+2026-07-27 01:52:34.011 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-07-27 01:53:04.045 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-07-27 01:53:34.076 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-07-27 01:54:04.016 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29939
+2026-07-27 01:54:34.048 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-07-27 01:55:04.083 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-07-27 01:55:34.018 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29935
+2026-07-27 01:56:04.056 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-07-27 01:56:33.988 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-07-27 01:57:04.021 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-07-27 01:57:34.051 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:58:03.985 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-07-27 01:58:34.013 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-07-27 01:59:04.043 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-07-27 01:59:34.068 INFO [nioEventLoopGroup-4-6][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30024

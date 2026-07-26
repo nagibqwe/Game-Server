@@ -3,8 +3,8 @@
 <server>
     <db-game url="jdbc:mysql://127.0.0.1:3306/tzj_public?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" username="root" password="4512kek4512" />
     <db-log-info url="jdbc:mysql://127.0.0.1:3306/tzj_public_log?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" username="root" password="4512kek4512" />
-    <heartHttp host="http://155.212.166.16:8080/TzjBackend/serverstate/checkstate?"/>
-    <errorlog http="http://155.212.166.16:8080/TzjBackend"/>
+    <heartHttp host="http://157.22.200.3:8080/APIServer/serverstate/checkstate?"/>
+    <errorlog http="http://157.22.200.3:8080/APIServer"/>
     <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
     <serverType serverType="3" language="cn" />
     <backgrand port="9201" />

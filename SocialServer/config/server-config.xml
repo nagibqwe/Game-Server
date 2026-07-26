@@ -13,12 +13,12 @@
     <version version="1.0.0.0"/>
     <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
 
-    <heartHttp host="http://155.212.166.16:8080/TzjBackend/serverstate/checkstate?"/>
-    <errorlog http="http://155.212.166.16:8080/TzjBackend"/>
+    <heartHttp host="http://157.22.200.3:8080/APIServer/serverstate/checkstate?"/>
+    <errorlog http="http://157.22.200.3:8080/APIServer"/>
 
     <backgrand port="9521"/>
 
-    <public publicIp="155.212.166.16" publicPort="9200"/>
+    <public publicIp="157.22.200.3" publicPort="9200"/>
 
     <serverType serverType="5"/>
     <serverInfo serverName="socialServer" port="9520" serverId="5000" platfrom="cn" lsId="1"/>

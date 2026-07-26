@@ -1,16 +1,6 @@
-2026-07-25 19:30:23.213 INFO [Thread-2][LogService.java:86] - 初始化日志数据库服务
-2026-07-25 19:30:23.232 INFO [Thread-2][LogService.java:119] - 启动日志数据库连接池完毕jdbc:mysql://127.0.0.1:3306/tzj_login_log?autoReconnect=true&nullCatalogMeansCurrent=true
-2026-07-25 19:30:23.763 INFO [Thread-2][LogService.java:146] - 检测查表LogUser202607
-2026-07-25 19:30:23.764 INFO [Thread-2][LogService.java:180] - LogUser202607检查结束
-2026-07-25 19:30:23.765 INFO [Thread-2][LogService.java:146] - 检测查表LogUserDoBean
-2026-07-25 19:30:23.765 INFO [Thread-2][LogService.java:180] - LogUserDoBean检查结束
-2026-07-25 19:30:23.765 INFO [Thread-2][LogService.java:124] - 启动日志线程池完毕
-2026-07-25 19:30:23.766 INFO [Thread-2][LogService.java:128] - 初始化日志数据库服务结束
-2026-07-25 19:30:23.783 INFO [Thread-2][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/AgentServer/agentserver/AgentServer.jar:bin]
-2026-07-25 19:30:23.789 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：1 脚本名：common.LoginUrl
-2026-07-25 19:30:23.791 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：3 脚本名：common.biqq.BiQQScript
-2026-07-25 19:30:23.791 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：2 脚本名：common.ipfind.IPFinderScript
-2026-07-25 19:30:24.319 INFO [Thread-2][IPFinderScript.java:122] - 开始加载ip2region.bytes文件... ...
-2026-07-25 19:30:24.498 INFO [Thread-2][IPFinderScript.java:151] - 加载ip2region.bytes文件完成,数据数量:162899
-2026-07-25 19:30:25.030 INFO [nioEventLoopGroup-4-1][SocketServer.java:61] - 登录HTTP服务监听3001成功！
-2026-07-25 19:30:25.030 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - agentserver监听3002成功！
+2026-07-27 02:05:39.957 ERROR [nioEventLoopGroup-3-6][ClientHandlerAdapter.java:68] - /179.43.186.223:51380 ClientHandlerAdapter 远程关闭了！
+2026-07-27 02:05:42.953 INFO [nioEventLoopGroup-3-6][ClientHandlerAdapter.java:58] - /179.43.186.223:51380　连接关闭！
+2026-07-27 02:09:27.350 ERROR [nioEventLoopGroup-3-7][ClientHandlerAdapter.java:68] - /179.43.186.223:55428 ClientHandlerAdapter 远程关闭了！
+2026-07-27 02:09:30.348 INFO [nioEventLoopGroup-3-7][ClientHandlerAdapter.java:58] - /179.43.186.223:55428　连接关闭！
+2026-07-27 02:13:16.074 ERROR [nioEventLoopGroup-3-8][ClientHandlerAdapter.java:68] - /179.43.186.223:53442 ClientHandlerAdapter 远程关闭了！
+2026-07-27 02:13:19.073 INFO [nioEventLoopGroup-3-8][ClientHandlerAdapter.java:58] - /179.43.186.223:53442　连接关闭！

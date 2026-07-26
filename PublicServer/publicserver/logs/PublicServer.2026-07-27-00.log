@@ -1,0 +1,303 @@
+2026-07-27 00:00:00.096 INFO [public服务][DailyActiveScript.java:263] - 日常活动id=115【仙侣对决】关闭阶段
+2026-07-27 00:00:00.096 INFO [public服务][CouplefightScript.java:1374] - 仙侣对决 关闭
+2026-07-27 00:00:00.128 INFO [public服务][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-07-27 00:00:00.389 INFO [public服务][TimeAxis.java:39] - 查看执行时间：eight_diagrams_trigger
+2026-07-27 00:00:00.390 INFO [public服务][EightDiagramsScript.java:1014] - ---------------八级阵图周期计算检测 ---------------
+2026-07-27 00:00:00.390 INFO [public服务][TimeAxis.java:60] - eight_diagrams_trigger执行时间=2026-07-28 00:00:00
+2026-07-27 00:00:01.106 INFO [public服务][PeakScript.java:746] - 【巅峰竞技场】 场次奖励结算。。。Time=2026-07-27 00:00:01
+2026-07-27 00:00:01.128 INFO [public服务][PeakScript.java:754] - 【巅峰竞技场】 赛季结算。。。Time=2026-07-27 00:00:01
+2026-07-27 00:00:01.194 INFO [public服务][PeakScript.java:868] - 【巅峰竞技场】 赛季结算完毕。。。
+2026-07-27 00:00:01.412 INFO [public服务][TimeAxis.java:39] - 查看执行时间：server_macth_trigger
+2026-07-27 00:00:01.426 INFO [public服务][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 8 groupID-- 30001  serverId1001-- openDay-- 1173  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-07-27 00:00:01.433 INFO [public服务][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 1 groupID-- 2  serverId1001-- openDay-- 1173  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-07-27 00:00:01.451 INFO [public服务][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 2 groupID-- 10001  serverId1001-- openDay-- 1173  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-07-27 00:00:01.457 INFO [public服务][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 4 groupID-- 20001  serverId1001-- openDay-- 1173  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-07-27 00:00:01.471 INFO [public服务][FudScript.java:777] - 跨服福地分配福地 !!!!Day=2026-07-27 00:00:01
+2026-07-27 00:00:01.534 INFO [public服务][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=30001, stage=8, openDay=1173, worldLevel=79, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=801, state=2, camp=1}
+2026-07-27 00:00:01.542 INFO [public服务][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=20001, stage=4, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=401, state=2, camp=1}
+2026-07-27 00:00:01.612 INFO [public服务][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=10001, stage=2, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=201, state=2, camp=1}
+2026-07-27 00:00:01.620 INFO [public服务][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=30001, stage=8, openDay=1173, worldLevel=79, servers=[1001]}
+2026-07-27 00:00:01.621 INFO [public服务][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=20001, stage=4, openDay=0, worldLevel=0, servers=[1001]}
+2026-07-27 00:00:01.622 INFO [public服务][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=10001, stage=2, openDay=0, worldLevel=0, servers=[1001]}
+2026-07-27 00:00:01.624 INFO [public服务][TimeAxis.java:60] - server_macth_trigger执行时间=2026-07-28 00:00:00
+2026-07-27 00:00:01.625 ERROR [public服务][ServerThread.java:87] - public服务-->LeagueTimer run:220
+2026-07-27 00:00:01.644 ERROR [public-Timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：33数量：8
+2026-07-27 00:00:02.756 ERROR [public-Timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：18数量：8
+2026-07-27 00:00:11.798 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x51248530, L:/157.22.200.3:9200 - R:/195.96.139.140:39545]
+2026-07-27 00:00:11.798 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:00:11.798 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x51248530, L:/157.22.200.3:9200 - R:/195.96.139.140:39545] 连接的序号是：11
+2026-07-27 00:00:18.797 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x51248530, L:/157.22.200.3:9200 ! R:/195.96.139.140:39545]
+2026-07-27 00:00:18.797 INFO [发送消息队列][InnerMsgAdapter.java:196] - [id: 0x51248530, L:/157.22.200.3:9200 ! R:/195.96.139.140:39545]发送队列时， 连接已经断开了！3
+2026-07-27 00:00:18.797 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:00:18.797 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x51248530, L:/157.22.200.3:9200 ! R:/195.96.139.140:39545]
+2026-07-27 00:00:30.030 INFO [public服务][FudScript.java:1064] - 刷新玩家福地积分！！！！！
+2026-07-27 00:00:30.850 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xbdd6aeea, L:/157.22.200.3:9200 - R:/185.247.137.113:51683]
+2026-07-27 00:00:30.850 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:00:30.850 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xbdd6aeea, L:/157.22.200.3:9200 - R:/185.247.137.113:51683] 连接的序号是：12
+2026-07-27 00:00:36.849 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xbdd6aeea, L:/157.22.200.3:9200 ! R:/185.247.137.113:51683]发送队列时， 连接已经断开了！4
+2026-07-27 00:00:36.849 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xbdd6aeea, L:/157.22.200.3:9200 ! R:/185.247.137.113:51683]
+2026-07-27 00:00:36.849 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:00:36.850 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xbdd6aeea, L:/157.22.200.3:9200 ! R:/185.247.137.113:51683]
+2026-07-27 00:00:48.900 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xce4551a9, L:/157.22.200.3:9200 - R:/195.96.139.137:41469]
+2026-07-27 00:00:48.900 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:00:48.900 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xce4551a9, L:/157.22.200.3:9200 - R:/195.96.139.137:41469] 连接的序号是：13
+2026-07-27 00:00:54.908 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xce4551a9, L:/157.22.200.3:9200 ! R:/195.96.139.137:41469]
+2026-07-27 00:00:54.908 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xce4551a9, L:/157.22.200.3:9200 ! R:/195.96.139.137:41469]发送队列时， 连接已经断开了！4
+2026-07-27 00:00:54.908 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:00:54.908 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xce4551a9, L:/157.22.200.3:9200 ! R:/195.96.139.137:41469]
+2026-07-27 00:01:06.958 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x038aa24e, L:/157.22.200.3:9200 - R:/195.96.139.129:37445]
+2026-07-27 00:01:06.958 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:01:06.958 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x038aa24e, L:/157.22.200.3:9200 - R:/195.96.139.129:37445] 连接的序号是：14
+2026-07-27 00:01:09.957 ERROR [nioEventLoopGroup-3-6][InnerMessageCodeC.java:109] - Not found message dictionary! msgId = 1397572210
+2026-07-27 00:01:12.958 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x038aa24e, L:/157.22.200.3:9200 ! R:/195.96.139.129:37445]
+2026-07-27 00:01:12.958 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x038aa24e, L:/157.22.200.3:9200 ! R:/195.96.139.129:37445]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:12.958 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:01:12.958 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x038aa24e, L:/157.22.200.3:9200 ! R:/195.96.139.129:37445]
+2026-07-27 00:01:13.010 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xf66c27e5, L:/157.22.200.3:9200 - R:/195.96.139.129:54207]
+2026-07-27 00:01:13.010 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:01:13.010 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xf66c27e5, L:/157.22.200.3:9200 - R:/195.96.139.129:54207] 连接的序号是：15
+2026-07-27 00:01:13.011 ERROR [nioEventLoopGroup-3-7][InnerMessageCodeC.java:109] - Not found message dictionary! msgId = 1397572160
+2026-07-27 00:01:16.012 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xf66c27e5, L:/157.22.200.3:9200 ! R:/195.96.139.129:54207]
+2026-07-27 00:01:16.012 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xf66c27e5, L:/157.22.200.3:9200 ! R:/195.96.139.129:54207]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:16.012 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:01:16.012 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xf66c27e5, L:/157.22.200.3:9200 ! R:/195.96.139.129:54207]
+2026-07-27 00:01:28.063 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x0bbc3a38, L:/157.22.200.3:9200 - R:/87.236.176.121:59633]
+2026-07-27 00:01:28.063 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:01:28.063 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x0bbc3a38, L:/157.22.200.3:9200 - R:/87.236.176.121:59633] 连接的序号是：16
+2026-07-27 00:01:34.062 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x0bbc3a38, L:/157.22.200.3:9200 ! R:/87.236.176.121:59633]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:34.063 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x0bbc3a38, L:/157.22.200.3:9200 ! R:/87.236.176.121:59633]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:34.063 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x0bbc3a38, L:/157.22.200.3:9200 ! R:/87.236.176.121:59633]
+2026-07-27 00:01:34.063 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:01:34.064 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x0bbc3a38, L:/157.22.200.3:9200 ! R:/87.236.176.121:59633]
+2026-07-27 00:01:46.113 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x0ec9ecf9, L:/157.22.200.3:9200 - R:/185.247.137.128:57687]
+2026-07-27 00:01:46.113 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:01:46.113 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x0ec9ecf9, L:/157.22.200.3:9200 - R:/185.247.137.128:57687] 连接的序号是：17
+2026-07-27 00:01:52.115 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x0ec9ecf9, L:/157.22.200.3:9200 ! R:/185.247.137.128:57687]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:52.117 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x0ec9ecf9, L:/157.22.200.3:9200 ! R:/185.247.137.128:57687]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:52.117 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x0ec9ecf9, L:/157.22.200.3:9200 ! R:/185.247.137.128:57687]
+2026-07-27 00:01:52.117 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:01:52.118 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x0ec9ecf9, L:/157.22.200.3:9200 ! R:/185.247.137.128:57687]
+2026-07-27 00:01:52.170 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x09083899, L:/157.22.200.3:9200 - R:/185.247.137.128:47961]
+2026-07-27 00:01:52.170 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:01:52.170 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x09083899, L:/157.22.200.3:9200 - R:/185.247.137.128:47961] 连接的序号是：18
+2026-07-27 00:01:55.166 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x09083899, L:/157.22.200.3:9200 ! R:/185.247.137.128:47961]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:55.166 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x09083899, L:/157.22.200.3:9200 ! R:/185.247.137.128:47961]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:55.167 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x09083899, L:/157.22.200.3:9200 ! R:/185.247.137.128:47961]
+2026-07-27 00:01:55.167 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:01:55.167 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x09083899, L:/157.22.200.3:9200 ! R:/185.247.137.128:47961]
+2026-07-27 00:01:55.216 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xa8ee0f1f, L:/157.22.200.3:9200 - R:/185.247.137.128:34679]
+2026-07-27 00:01:55.217 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:01:55.217 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xa8ee0f1f, L:/157.22.200.3:9200 - R:/185.247.137.128:34679] 连接的序号是：19
+2026-07-27 00:01:58.216 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xa8ee0f1f, L:/157.22.200.3:9200 ! R:/185.247.137.128:34679]发送队列时， 连接已经断开了！4
+2026-07-27 00:01:58.217 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xa8ee0f1f, L:/157.22.200.3:9200 ! R:/185.247.137.128:34679]
+2026-07-27 00:01:58.217 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:01:58.217 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xa8ee0f1f, L:/157.22.200.3:9200 ! R:/185.247.137.128:34679]
+2026-07-27 00:02:10.269 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x9d8b573c, L:/157.22.200.3:9200 - R:/87.236.176.112:59749]
+2026-07-27 00:02:10.269 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:02:10.272 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x9d8b573c, L:/157.22.200.3:9200 - R:/87.236.176.112:59749] 连接的序号是：20
+2026-07-27 00:02:13.266 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:145] - 游戏服InnerMsgAdapter#0 :[id: 0x9d8b573c, L:/157.22.200.3:9200 - R:/87.236.176.112:59749] 发生了异常===io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 2147483647: 2751463428 - discarded
+2026-07-27 00:02:13.268 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x9d8b573c, L:/157.22.200.3:9200 ! R:/87.236.176.112:59749]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:13.270 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x9d8b573c, L:/157.22.200.3:9200 ! R:/87.236.176.112:59749]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:13.270 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x9d8b573c, L:/157.22.200.3:9200 ! R:/87.236.176.112:59749]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:13.271 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x9d8b573c, L:/157.22.200.3:9200 ! R:/87.236.176.112:59749]
+2026-07-27 00:02:13.271 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - unreg 注销连接!
+2026-07-27 00:02:25.370 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xb181c8ea, L:/157.22.200.3:9200 - R:/185.247.137.115:52941]
+2026-07-27 00:02:25.371 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:02:25.371 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xb181c8ea, L:/157.22.200.3:9200 - R:/185.247.137.115:52941] 连接的序号是：21
+2026-07-27 00:02:31.371 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xb181c8ea, L:/157.22.200.3:9200 ! R:/185.247.137.115:52941]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:31.372 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xb181c8ea, L:/157.22.200.3:9200 ! R:/185.247.137.115:52941]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:31.373 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xb181c8ea, L:/157.22.200.3:9200 ! R:/185.247.137.115:52941]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:31.374 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xb181c8ea, L:/157.22.200.3:9200 ! R:/185.247.137.115:52941]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:31.374 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xb181c8ea, L:/157.22.200.3:9200 ! R:/185.247.137.115:52941]
+2026-07-27 00:02:31.374 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:02:31.375 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xb181c8ea, L:/157.22.200.3:9200 ! R:/185.247.137.115:52941]
+2026-07-27 00:02:43.427 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x839a0050, L:/157.22.200.3:9200 - R:/87.236.176.133:51975]
+2026-07-27 00:02:43.427 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:02:43.429 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x839a0050, L:/157.22.200.3:9200 - R:/87.236.176.133:51975] 连接的序号是：22
+2026-07-27 00:02:49.424 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.425 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.426 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.427 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.428 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.429 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.430 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.431 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.432 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.433 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.435 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.435 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.436 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.437 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.441 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.442 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.443 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.444 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.446 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.447 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.448 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.449 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.450 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.451 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.454 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.455 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.456 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.460 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.461 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.462 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.471 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]
+2026-07-27 00:02:49.471 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]发送队列时， 连接已经断开了！4
+2026-07-27 00:02:49.471 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:02:49.471 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x839a0050, L:/157.22.200.3:9200 ! R:/87.236.176.133:51975]
+2026-07-27 00:03:01.481 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xbff48f79, L:/157.22.200.3:9200 - R:/195.96.139.119:49795]
+2026-07-27 00:03:01.481 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:03:01.481 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xbff48f79, L:/157.22.200.3:9200 - R:/195.96.139.119:49795] 连接的序号是：23
+2026-07-27 00:03:05.357 ERROR [public-Timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：156数量：8
+2026-07-27 00:03:07.475 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xbff48f79, L:/157.22.200.3:9200 ! R:/195.96.139.119:49795]发送队列时， 连接已经断开了！4
+2026-07-27 00:03:07.476 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xbff48f79, L:/157.22.200.3:9200 ! R:/195.96.139.119:49795]
+2026-07-27 00:03:07.476 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xbff48f79, L:/157.22.200.3:9200 ! R:/195.96.139.119:49795]发送队列时， 连接已经断开了！4
+2026-07-27 00:03:07.476 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:03:07.476 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xbff48f79, L:/157.22.200.3:9200 ! R:/195.96.139.119:49795]
+2026-07-27 00:03:19.525 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x7c1ae933, L:/157.22.200.3:9200 - R:/87.236.176.110:42349]
+2026-07-27 00:03:19.525 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:03:19.525 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x7c1ae933, L:/157.22.200.3:9200 - R:/87.236.176.110:42349] 连接的序号是：24
+2026-07-27 00:03:25.525 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x7c1ae933, L:/157.22.200.3:9200 ! R:/87.236.176.110:42349]发送队列时， 连接已经断开了！4
+2026-07-27 00:03:25.525 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x7c1ae933, L:/157.22.200.3:9200 ! R:/87.236.176.110:42349]
+2026-07-27 00:03:25.525 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:03:25.525 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x7c1ae933, L:/157.22.200.3:9200 ! R:/87.236.176.110:42349]
+2026-07-27 00:03:37.577 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xeeccbc6e, L:/157.22.200.3:9200 - R:/185.247.137.121:38185]
+2026-07-27 00:03:37.578 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:03:37.578 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xeeccbc6e, L:/157.22.200.3:9200 - R:/185.247.137.121:38185] 连接的序号是：25
+2026-07-27 00:03:46.581 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xeeccbc6e, L:/157.22.200.3:9200 ! R:/185.247.137.121:38185]发送队列时， 连接已经断开了！4
+2026-07-27 00:03:46.581 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xeeccbc6e, L:/157.22.200.3:9200 ! R:/185.247.137.121:38185]发送队列时， 连接已经断开了！4
+2026-07-27 00:03:46.582 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xeeccbc6e, L:/157.22.200.3:9200 ! R:/185.247.137.121:38185]发送队列时， 连接已经断开了！4
+2026-07-27 00:03:46.582 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xeeccbc6e, L:/157.22.200.3:9200 ! R:/185.247.137.121:38185]
+2026-07-27 00:03:46.582 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:03:46.582 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xeeccbc6e, L:/157.22.200.3:9200 ! R:/185.247.137.121:38185]
+2026-07-27 00:03:58.634 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x23a8d7bb, L:/157.22.200.3:9200 - R:/87.236.176.133:49023]
+2026-07-27 00:03:58.634 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:03:58.634 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x23a8d7bb, L:/157.22.200.3:9200 - R:/87.236.176.133:49023] 连接的序号是：26
+2026-07-27 00:04:21.636 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x23a8d7bb, L:/157.22.200.3:9200 ! R:/87.236.176.133:49023]发送队列时， 连接已经断开了！4
+2026-07-27 00:04:21.636 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x23a8d7bb, L:/157.22.200.3:9200 ! R:/87.236.176.133:49023]
+2026-07-27 00:04:21.636 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:04:21.636 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x23a8d7bb, L:/157.22.200.3:9200 ! R:/87.236.176.133:49023]
+2026-07-27 00:04:33.687 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x52dfd99e, L:/157.22.200.3:9200 - R:/185.247.137.135:43167]
+2026-07-27 00:04:33.687 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:04:33.687 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x52dfd99e, L:/157.22.200.3:9200 - R:/185.247.137.135:43167] 连接的序号是：27
+2026-07-27 00:04:39.688 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x52dfd99e, L:/157.22.200.3:9200 ! R:/185.247.137.135:43167]发送队列时， 连接已经断开了！4
+2026-07-27 00:04:39.688 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x52dfd99e, L:/157.22.200.3:9200 ! R:/185.247.137.135:43167]
+2026-07-27 00:04:39.689 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:04:39.689 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x52dfd99e, L:/157.22.200.3:9200 ! R:/185.247.137.135:43167]
+2026-07-27 00:04:51.740 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xdad6889c, L:/157.22.200.3:9200 - R:/87.236.176.122:48229]
+2026-07-27 00:04:51.740 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:04:51.741 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xdad6889c, L:/157.22.200.3:9200 - R:/87.236.176.122:48229] 连接的序号是：28
+2026-07-27 00:04:57.744 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xdad6889c, L:/157.22.200.3:9200 ! R:/87.236.176.122:48229]
+2026-07-27 00:04:57.744 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xdad6889c, L:/157.22.200.3:9200 ! R:/87.236.176.122:48229]发送队列时， 连接已经断开了！4
+2026-07-27 00:04:57.744 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:04:57.744 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xdad6889c, L:/157.22.200.3:9200 ! R:/87.236.176.122:48229]
+2026-07-27 00:05:10.796 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xdfb0d2c3, L:/157.22.200.3:9200 - R:/87.236.176.118:36451]
+2026-07-27 00:05:10.797 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:05:10.797 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xdfb0d2c3, L:/157.22.200.3:9200 - R:/87.236.176.118:36451] 连接的序号是：29
+2026-07-27 00:05:16.798 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xdfb0d2c3, L:/157.22.200.3:9200 ! R:/87.236.176.118:36451]
+2026-07-27 00:05:16.798 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xdfb0d2c3, L:/157.22.200.3:9200 ! R:/87.236.176.118:36451]发送队列时， 连接已经断开了！4
+2026-07-27 00:05:16.798 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:05:16.798 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xdfb0d2c3, L:/157.22.200.3:9200 ! R:/87.236.176.118:36451]
+2026-07-27 00:05:28.849 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xfbc924fa, L:/157.22.200.3:9200 - R:/185.247.137.112:55937]
+2026-07-27 00:05:28.849 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:05:28.849 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xfbc924fa, L:/157.22.200.3:9200 - R:/185.247.137.112:55937] 连接的序号是：30
+2026-07-27 00:05:34.849 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xfbc924fa, L:/157.22.200.3:9200 ! R:/185.247.137.112:55937]发送队列时， 连接已经断开了！4
+2026-07-27 00:05:34.849 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xfbc924fa, L:/157.22.200.3:9200 ! R:/185.247.137.112:55937]发送队列时， 连接已经断开了！4
+2026-07-27 00:05:34.849 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xfbc924fa, L:/157.22.200.3:9200 ! R:/185.247.137.112:55937]
+2026-07-27 00:05:34.850 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:05:34.850 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xfbc924fa, L:/157.22.200.3:9200 ! R:/185.247.137.112:55937]
+2026-07-27 00:05:46.899 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xae70aa74, L:/157.22.200.3:9200 - R:/185.247.137.141:43235]
+2026-07-27 00:05:46.899 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:05:46.899 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xae70aa74, L:/157.22.200.3:9200 - R:/185.247.137.141:43235] 连接的序号是：31
+2026-07-27 00:05:52.899 INFO [发送消息队列][InnerMsgAdapter.java:196] - [id: 0xae70aa74, L:/157.22.200.3:9200 ! R:/185.247.137.141:43235]发送队列时， 连接已经断开了！3
+2026-07-27 00:05:52.900 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xae70aa74, L:/157.22.200.3:9200 ! R:/185.247.137.141:43235]发送队列时， 连接已经断开了！4
+2026-07-27 00:05:52.900 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xae70aa74, L:/157.22.200.3:9200 ! R:/185.247.137.141:43235]
+2026-07-27 00:05:52.900 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:05:52.900 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xae70aa74, L:/157.22.200.3:9200 ! R:/185.247.137.141:43235]
+2026-07-27 00:06:04.952 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x6e518e3d, L:/157.22.200.3:9200 - R:/87.236.176.123:33877]
+2026-07-27 00:06:04.952 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:06:04.952 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x6e518e3d, L:/157.22.200.3:9200 - R:/87.236.176.123:33877] 连接的序号是：32
+2026-07-27 00:06:10.952 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x6e518e3d, L:/157.22.200.3:9200 ! R:/87.236.176.123:33877]发送队列时， 连接已经断开了！4
+2026-07-27 00:06:10.952 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x6e518e3d, L:/157.22.200.3:9200 ! R:/87.236.176.123:33877]发送队列时， 连接已经断开了！4
+2026-07-27 00:06:10.952 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x6e518e3d, L:/157.22.200.3:9200 ! R:/87.236.176.123:33877]
+2026-07-27 00:06:10.952 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:06:10.952 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x6e518e3d, L:/157.22.200.3:9200 ! R:/87.236.176.123:33877]
+2026-07-27 00:06:23.004 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xc2ecf81e, L:/157.22.200.3:9200 - R:/195.96.139.140:57145]
+2026-07-27 00:06:23.004 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:06:23.004 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xc2ecf81e, L:/157.22.200.3:9200 - R:/195.96.139.140:57145] 连接的序号是：33
+2026-07-27 00:06:29.011 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xc2ecf81e, L:/157.22.200.3:9200 ! R:/195.96.139.140:57145]发送队列时， 连接已经断开了！4
+2026-07-27 00:06:29.012 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xc2ecf81e, L:/157.22.200.3:9200 ! R:/195.96.139.140:57145]发送队列时， 连接已经断开了！4
+2026-07-27 00:06:29.013 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xc2ecf81e, L:/157.22.200.3:9200 ! R:/195.96.139.140:57145]
+2026-07-27 00:06:29.013 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:06:29.013 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xc2ecf81e, L:/157.22.200.3:9200 ! R:/195.96.139.140:57145]
+2026-07-27 00:06:41.067 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x1cebb1b1, L:/157.22.200.3:9200 - R:/87.236.176.111:49117]
+2026-07-27 00:06:41.068 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:06:41.068 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x1cebb1b1, L:/157.22.200.3:9200 - R:/87.236.176.111:49117] 连接的序号是：34
+2026-07-27 00:06:47.065 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x1cebb1b1, L:/157.22.200.3:9200 ! R:/87.236.176.111:49117]发送队列时， 连接已经断开了！4
+2026-07-27 00:06:47.065 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x1cebb1b1, L:/157.22.200.3:9200 ! R:/87.236.176.111:49117]
+2026-07-27 00:06:47.065 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x1cebb1b1, L:/157.22.200.3:9200 ! R:/87.236.176.111:49117]发送队列时， 连接已经断开了！4
+2026-07-27 00:06:47.065 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:06:47.065 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x1cebb1b1, L:/157.22.200.3:9200 ! R:/87.236.176.111:49117]
+2026-07-27 00:06:59.117 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xebcd691a, L:/157.22.200.3:9200 - R:/195.96.139.144:53057]
+2026-07-27 00:06:59.118 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:06:59.118 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xebcd691a, L:/157.22.200.3:9200 - R:/195.96.139.144:53057] 连接的序号是：35
+2026-07-27 00:07:05.117 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xebcd691a, L:/157.22.200.3:9200 ! R:/195.96.139.144:53057]发送队列时， 连接已经断开了！4
+2026-07-27 00:07:05.117 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xebcd691a, L:/157.22.200.3:9200 ! R:/195.96.139.144:53057]
+2026-07-27 00:07:05.118 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:07:05.118 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xebcd691a, L:/157.22.200.3:9200 ! R:/195.96.139.144:53057]
+2026-07-27 00:07:17.166 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xe8c7ba53, L:/157.22.200.3:9200 - R:/195.96.139.120:38599]
+2026-07-27 00:07:17.166 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:07:17.166 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xe8c7ba53, L:/157.22.200.3:9200 - R:/195.96.139.120:38599] 连接的序号是：36
+2026-07-27 00:07:23.168 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xe8c7ba53, L:/157.22.200.3:9200 ! R:/195.96.139.120:38599]发送队列时， 连接已经断开了！4
+2026-07-27 00:07:23.168 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xe8c7ba53, L:/157.22.200.3:9200 ! R:/195.96.139.120:38599]
+2026-07-27 00:07:23.168 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xe8c7ba53, L:/157.22.200.3:9200 ! R:/195.96.139.120:38599]发送队列时， 连接已经断开了！4
+2026-07-27 00:07:23.168 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:07:23.168 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xe8c7ba53, L:/157.22.200.3:9200 ! R:/195.96.139.120:38599]
+2026-07-27 00:07:35.226 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xd14e071a, L:/157.22.200.3:9200 - R:/195.96.139.134:53775]
+2026-07-27 00:07:35.226 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:07:35.226 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xd14e071a, L:/157.22.200.3:9200 - R:/195.96.139.134:53775] 连接的序号是：37
+2026-07-27 00:07:41.226 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xd14e071a, L:/157.22.200.3:9200 ! R:/195.96.139.134:53775]发送队列时， 连接已经断开了！4
+2026-07-27 00:07:41.226 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xd14e071a, L:/157.22.200.3:9200 ! R:/195.96.139.134:53775]
+2026-07-27 00:07:41.226 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:07:41.226 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xd14e071a, L:/157.22.200.3:9200 ! R:/195.96.139.134:53775]
+2026-07-27 00:07:41.277 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xef30e588, L:/157.22.200.3:9200 - R:/195.96.139.134:36037]
+2026-07-27 00:07:41.277 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:07:41.277 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xef30e588, L:/157.22.200.3:9200 - R:/195.96.139.134:36037] 连接的序号是：38
+2026-07-27 00:07:41.277 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:145] - 游戏服InnerMsgAdapter#0 :[id: 0xef30e588, L:/157.22.200.3:9200 - R:/195.96.139.134:36037] 发生了异常===io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 2147483647: 4190024925 - discarded
+2026-07-27 00:07:41.278 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xef30e588, L:/157.22.200.3:9200 ! R:/195.96.139.134:36037]
+2026-07-27 00:07:41.278 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - unreg 注销连接!
+2026-07-27 00:07:41.278 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xef30e588, L:/157.22.200.3:9200 ! R:/195.96.139.134:36037]发送队列时， 连接已经断开了！4
+2026-07-27 00:07:53.380 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x492bf774, L:/157.22.200.3:9200 - R:/185.247.137.112:41457]
+2026-07-27 00:07:53.380 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:07:53.380 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x492bf774, L:/157.22.200.3:9200 - R:/185.247.137.112:41457] 连接的序号是：39
+2026-07-27 00:07:59.381 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x492bf774, L:/157.22.200.3:9200 ! R:/185.247.137.112:41457]
+2026-07-27 00:07:59.381 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:07:59.381 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x492bf774, L:/157.22.200.3:9200 ! R:/185.247.137.112:41457]发送队列时， 连接已经断开了！4
+2026-07-27 00:07:59.381 INFO [nioEventLoopGroup-3-7][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x492bf774, L:/157.22.200.3:9200 ! R:/185.247.137.112:41457]
+2026-07-27 00:08:11.432 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x66725fd0, L:/157.22.200.3:9200 - R:/185.247.137.112:45849]
+2026-07-27 00:08:11.433 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:08:11.433 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x66725fd0, L:/157.22.200.3:9200 - R:/185.247.137.112:45849] 连接的序号是：40
+2026-07-27 00:08:17.434 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x66725fd0, L:/157.22.200.3:9200 ! R:/185.247.137.112:45849]发送队列时， 连接已经断开了！4
+2026-07-27 00:08:17.434 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x66725fd0, L:/157.22.200.3:9200 ! R:/185.247.137.112:45849]
+2026-07-27 00:08:17.435 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:08:17.435 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x66725fd0, L:/157.22.200.3:9200 ! R:/185.247.137.112:45849]
+2026-07-27 00:08:29.485 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0xa1fed095, L:/157.22.200.3:9200 - R:/195.96.139.133:33327]
+2026-07-27 00:08:29.486 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:08:29.486 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0xa1fed095, L:/157.22.200.3:9200 - R:/195.96.139.133:33327] 连接的序号是：41
+2026-07-27 00:08:35.486 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xa1fed095, L:/157.22.200.3:9200 ! R:/195.96.139.133:33327]发送队列时， 连接已经断开了！4
+2026-07-27 00:08:35.487 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0xa1fed095, L:/157.22.200.3:9200 ! R:/195.96.139.133:33327]
+2026-07-27 00:08:35.487 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0xa1fed095, L:/157.22.200.3:9200 ! R:/195.96.139.133:33327]发送队列时， 连接已经断开了！4
+2026-07-27 00:08:35.487 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:08:35.487 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0xa1fed095, L:/157.22.200.3:9200 ! R:/195.96.139.133:33327]
+2026-07-27 00:08:47.538 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - 游戏服首次来注册InnerMsgAdapter#0 :[id: 0x630a0c40, L:/157.22.200.3:9200 - R:/185.247.137.112:52153]
+2026-07-27 00:08:47.538 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - 首次连接注册成功！
+2026-07-27 00:08:47.538 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - 游戏服开始连接InnerMsgAdapter#0 :[id: 0x630a0c40, L:/157.22.200.3:9200 - R:/185.247.137.112:52153] 连接的序号是：42
+2026-07-27 00:08:54.538 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:118] - 游戏服断开连接InnerMsgAdapter#0 :[id: 0x630a0c40, L:/157.22.200.3:9200 ! R:/185.247.137.112:52153]
+2026-07-27 00:08:54.538 INFO [发送消息队列][InnerMsgAdapter.java:190] - [id: 0x630a0c40, L:/157.22.200.3:9200 ! R:/185.247.137.112:52153]发送队列时， 连接已经断开了！4
+2026-07-27 00:08:54.538 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - channelInactive 注销连接!
+2026-07-27 00:08:54.538 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - 游戏服退出注册InnerMsgAdapter#0 :[id: 0x630a0c40, L:/157.22.200.3:9200 ! R:/185.247.137.112:52153]
+2026-07-27 00:18:29.407 INFO [public服务][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-07-27 00:18:29.408 ERROR [public服务][CrossRankScript.java:240] - allCrosRankMap  size  == 0

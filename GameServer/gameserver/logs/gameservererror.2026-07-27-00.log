@@ -1,0 +1,428 @@
+2026-07-27 00:00:02.477 ERROR [main_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：17数量：17
+2026-07-27 00:00:02.830 ERROR [mainThread][ServerThread.java:87] - mainThread-->ServerHeartTimer run:1568
+2026-07-27 00:01:54.310 ERROR [pool-6-thread-5][HttpUtils.java:84] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:572) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-07-27 00:01:54.346 ERROR [pool-6-thread-5][HttpUtils.java:112] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_492]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_492]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_492]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1969) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1964) ~[?:1.8.0_492]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1963) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1533) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:104) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:572) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) ~[GameCore.jar:?]
+	... 10 more
+2026-07-27 00:01:59.355 ERROR [pool-6-thread-5][HttpUtils.java:84] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:579) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-07-27 00:01:59.363 ERROR [pool-6-thread-5][HttpUtils.java:112] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_492]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_492]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_492]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1969) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1964) ~[?:1.8.0_492]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1963) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1533) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:104) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:579) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) ~[GameCore.jar:?]
+	... 10 more
+2026-07-27 00:02:49.462 ERROR [copyMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：91数量：63
+2026-07-27 00:02:54.308 ERROR [pool-6-thread-8][HttpUtils.java:84] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:572) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-07-27 00:02:54.312 ERROR [pool-6-thread-8][HttpUtils.java:112] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_492]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_492]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_492]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1969) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1964) ~[?:1.8.0_492]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1963) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1533) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:104) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:572) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) ~[GameCore.jar:?]
+	... 10 more
+2026-07-27 00:02:59.325 ERROR [pool-6-thread-8][HttpUtils.java:84] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:579) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-07-27 00:02:59.330 ERROR [pool-6-thread-8][HttpUtils.java:112] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_492]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_492]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_492]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1969) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1964) ~[?:1.8.0_492]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1963) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1533) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:104) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:579) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) ~[GameCore.jar:?]
+	... 10 more
+2026-07-27 00:03:05.356 ERROR [worldMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：164数量：245
+2026-07-27 00:03:05.357 ERROR [main_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：162数量：17
+2026-07-27 00:03:05.358 ERROR [copyMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：162数量：63
+2026-07-27 00:03:05.358 ERROR [bi_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：63数量：2
+2026-07-27 00:03:21.165 ERROR [worldMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：92数量：245
+2026-07-27 00:03:21.165 ERROR [main_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：89数量：17
+2026-07-27 00:03:21.165 ERROR [copyMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：90数量：63
+2026-07-27 00:17:05.511 ERROR [worldMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：117数量：245
+2026-07-27 00:17:05.513 ERROR [copyMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：100数量：63
+2026-07-27 00:24:54.309 ERROR [pool-6-thread-1][HttpUtils.java:84] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:572) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-07-27 00:24:54.310 ERROR [pool-6-thread-1][HttpUtils.java:112] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_492]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_492]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_492]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1969) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1964) ~[?:1.8.0_492]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1963) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1533) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:104) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:572) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) ~[GameCore.jar:?]
+	... 10 more
+2026-07-27 00:24:59.324 ERROR [pool-6-thread-1][HttpUtils.java:84] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:579) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-07-27 00:24:59.325 ERROR [pool-6-thread-1][HttpUtils.java:112] - java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_492]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_492]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_492]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1969) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1964) ~[?:1.8.0_492]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1963) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1533) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:104) [GameCore.jar:?]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:31) [GameCore.jar:?]
+	at com.game.server.GameServer$1.execute(GameServer.java:579) [GameServer.jar:?]
+	at com.game.timer.GameTimer.run(GameTimer.java:60) [GameServer.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_492]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:171) ~[?:1.8.0_492]
+	at java.net.SocketInputStream.read(SocketInputStream.java:141) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286) ~[?:1.8.0_492]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:745) ~[?:1.8.0_492]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:680) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1612) ~[?:1.8.0_492]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1517) ~[?:1.8.0_492]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480) ~[?:1.8.0_492]
+	at game.core.util.HttpUtils.sendPost(HttpUtils.java:71) ~[GameCore.jar:?]
+	... 10 more
+2026-07-27 00:35:58.098 ERROR [recvWorker-2][LuckyDrawWeekScript.java:567] - 当前奖池数据为空,需要重新初始化配置!
+2026-07-27 00:36:05.385 ERROR [recvWorker-3][RetrieveResScript.java:64] - bean.getDailyId()  not find: 0
+2026-07-27 00:36:46.833 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=103703 param=0 player= player: 281873304391993039 f:7998 n: 解半云 p:{240.0,160.0} mMId: 102599 i: 1 e: 500
+2026-07-27 00:37:49.518 ERROR [city_7][ServerThread.java:87] - city_7-->MapSavePlayerTimer run:224
+2026-07-27 00:37:49.741 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:38:06.062 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=103706 param=0 player= player: 281873304391993039 f:10903 n: 解半云 p:{285.0,173.0} mMId: 102599 i: 1 e: 700
+2026-07-27 00:38:29.009 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=19002 param=0 player= player: 281873304391993039 f:14174 n: 解半云 p:{309.0,219.0} mMId: 102599 i: 1 e: 900
+2026-07-27 00:38:34.760 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:39:26.630 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=103707 param=0 player= player: 281873304391993039 f:17714 n: 解半云 p:{285.0,159.0} mMId: 102599 i: 1 e: 1100
+2026-07-27 00:39:58.795 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:40:02.929 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=32001 param=0 player= player: 281873304391993039 f:21292 n: 解半云 p:{205.26366,190.95744} mMId: 102599 i: 1 e: 1300
+2026-07-27 00:40:34.820 ERROR [zone_2][DropScript.java:581] - 击杀boss获得掉落物品失败，没有在Cfg_Bossnew_dropBean中找到相应数据，dropId = 0
+2026-07-27 00:41:00.858 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=103701 param=0 player= player: 281873304391993039 f:25531 n: 解半云 p:{55.0,141.0} mMId: 102599 i: 1 e: 1500
+2026-07-27 00:41:35.829 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:42:22.225 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=400001 param=0 player= player: 281873304391993039 f:29137 n: 解半云 p:{110.4469,180.7429} mMId: 102599 i: 1 e: 1800
+2026-07-27 00:42:44.847 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:44:36.115 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=30001 param=1 player= player: 281873304391993039 f:41312 n: 解半云 p:{205.78839,190.46062} mMId: 102599 i: 1 e: 2100
+2026-07-27 00:45:10.833 ERROR [zone_1][DropScript.java:581] - 击杀boss获得掉落物品失败，没有在Cfg_Bossnew_dropBean中找到相应数据，dropId = 0
+2026-07-27 00:46:15.213 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=103704 param=0 player= player: 281873304391993039 f:46314 n: 解半云 p:{123.0,100.0} mMId: 102599 i: 1 e: 2400
+2026-07-27 00:46:43.934 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=103705 param=0 player= player: 281873304391993039 f:48454 n: 解半云 p:{80.0,152.0} mMId: 102599 i: 1 e: 2700
+2026-07-27 00:47:53.157 ERROR [city_8][CopyMapScriptManager.java:75] - 请求进入副本 modelId=100231 param=0 player= player: 281873304391993039 f:51203 n: 解半云 p:{134.0,23.0} mMId: 103199 i: 1 e: 3100
+2026-07-27 00:48:01.925 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:48:52.764 ERROR [city_8][CopyMapScriptManager.java:75] - 请求进入副本 modelId=100233 param=0 player= player: 281873304391993039 f:53280 n: 解半云 p:{80.0,24.0} mMId: 103199 i: 1 e: 3400
+2026-07-27 00:49:04.944 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:49:27.077 ERROR [city_8][CopyMapScriptManager.java:75] - 请求进入副本 modelId=100241 param=0 player= player: 281873304391993039 f:55091 n: 解半云 p:{58.0,52.0} mMId: 103199 i: 1 e: 3700
+2026-07-27 00:50:08.970 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:51:15.988 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:52:07.838 ERROR [worldMap_timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：25数量：245
+2026-07-27 00:52:34.589 ERROR [city_7][MapDealScript.java:355] - 玩家移动误差=3.010734 server={114.16728,177.10353}client={111.5,178.5} player: 281873304391993039 f:62582 n: 解半云 p:{114.16728,177.10353} mMId: 102599 i: 1 e: 4000
+2026-07-27 00:52:46.864 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=400002 param=0 player= player: 281873304391993039 f:62582 n: 解半云 p:{107.889755,182.98285} mMId: 102599 i: 1 e: 4000
+2026-07-27 00:52:53.015 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:53:59.706 ERROR [city_7][CopyMapScriptManager.java:75] - 请求进入副本 modelId=30001 param=2 player= player: 281873304391993039 f:64224 n: 解半云 p:{205.78839,190.46062} mMId: 102599 i: 1 e: 4200
+2026-07-27 00:54:39.516 ERROR [zone_2][DropScript.java:581] - 击杀boss获得掉落物品失败，没有在Cfg_Bossnew_dropBean中找到相应数据，dropId = 0
+2026-07-27 00:58:07.077 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:58:28.104 ERROR [city_8][CopyMapScriptManager.java:75] - 请求进入副本 modelId=101031 param=0 player= player: 281873304391993039 f:69650 n: 解半云 p:{62.0,174.0} mMId: 103299 i: 1 e: 4600
+2026-07-27 00:58:53.962 ERROR [city_8][CopyMapScriptManager.java:75] - 请求进入副本 modelId=101032 param=0 player= player: 281873304391993039 f:70322 n: 解半云 p:{95.0,173.0} mMId: 103299 i: 1 e: 466920
+2026-07-27 00:59:29.105 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-07-27 00:59:29.893 ERROR [city_8][CopyMapScriptManager.java:75] - 请求进入副本 modelId=103201 param=0 player= player: 281873304391993039 f:71788 n: 解半云 p:{98.0,112.0} mMId: 103299 i: 1 e: 5065300
