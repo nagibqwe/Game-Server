@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 激活码批次号Controller
+ * Пакет кодов активацииController
  * 
  * @author gm
  * @date 2021-09-22
@@ -43,7 +43,7 @@ public class CodeBatchController extends BaseController
     }
 
     /**
-     * 查询激活码批次号列表
+     * 查询Пакет кодов активации列表
      */
 //    @RequiresPermissions("gmtool:activeCodebatch:list")
     @PostMapping("/list")
@@ -56,21 +56,21 @@ public class CodeBatchController extends BaseController
     }
 
     /**
-     * 导出激活码批次号列表
+     * ЭкспортПакет кодов активации列表
      */
     @RequiresPermissions("gmtool:activeCodebatch:export")
-    @Log(title = "激活码批次号", businessType = BusinessType.EXPORT)
+    @Log(title = "Пакет кодов активации", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(CodeBatch codeBatch)
     {
         List<CodeBatch> list = codeBatchService.selectCodeBatchList(codeBatch);
         ExcelUtil<CodeBatch> util = new ExcelUtil<CodeBatch>(CodeBatch.class);
-        return util.exportExcel(list, "激活码批次号数据");
+        return util.exportExcel(list, "Пакет кодов активацииДанные");
     }
 
     /**
-     * 新增激活码批次号
+     * ДобавитьПакет кодов активации
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class CodeBatchController extends BaseController
     }
 
     /**
-     * 新增保存激活码批次号
+     * ДобавитьСохранитьПакет кодов активации
      */
     @RequiresPermissions("gmtool:activeCodebatch:add")
-    @Log(title = "激活码批次号", businessType = BusinessType.INSERT)
+    @Log(title = "Пакет кодов активации", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(CodeBatch codeBatch)
@@ -91,7 +91,7 @@ public class CodeBatchController extends BaseController
     }
 
     /**
-     * 修改激活码批次号
+     * ИзменитьПакет кодов активации
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class CodeBatchController extends BaseController
     }
 
     /**
-     * 修改保存激活码批次号
+     * ИзменитьСохранитьПакет кодов активации
      */
     @RequiresPermissions("gmtool:activeCodebatch:edit")
-    @Log(title = "激活码批次号", businessType = BusinessType.UPDATE)
+    @Log(title = "Пакет кодов активации", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(CodeBatch codeBatch)
@@ -114,10 +114,10 @@ public class CodeBatchController extends BaseController
     }
 
     /**
-     * 删除激活码批次号
+     * УдалитьПакет кодов активации
      */
     @RequiresPermissions("gmtool:activeCodebatch:remove")
-    @Log(title = "激活码批次号", businessType = BusinessType.DELETE)
+    @Log(title = "Пакет кодов активации", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

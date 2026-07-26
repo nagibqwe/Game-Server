@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.mail.domain.MailData;
 
 /**
- * 邮件列表Service接口
+ * Список писемService接口
  * 
  * @author gm
  * @date 2021-08-30
@@ -12,61 +12,61 @@ import com.gm.project.gmtool.mail.domain.MailData;
 public interface IMailDataService 
 {
     /**
-     * 查询邮件列表
+     * 查询Список писем
      * 
-     * @param id 邮件列表ID
-     * @return 邮件列表
+     * @param id Список писемID
+     * @return Список писем
      */
     public MailData selectMailDataById(Long id);
 
     /**
-     * 查询邮件列表列表
+     * 查询Список писем列表
      * 
-     * @param mailData 邮件列表
-     * @return 邮件列表集合
+     * @param mailData Список писем
+     * @return Список писем集合
      */
     public List<MailData> selectMailDataList(MailData mailData);
 
     /**
-     * 新增邮件列表
+     * ДобавитьСписок писем
      * 
-     * @param mailData 邮件列表
-     * @return 结果
+     * @param mailData Список писем
+     * @return Результат
      */
     public int insertMailData(MailData mailData);
 
     /**
-     * 修改邮件列表
+     * ИзменитьСписок писем
      * 
-     * @param mailData 邮件列表
-     * @return 结果
+     * @param mailData Список писем
+     * @return Результат
      */
     public int updateMailData(MailData mailData);
 
     /**
-     * 批量删除邮件列表
+     * 批量УдалитьСписок писем
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteMailDataByIds(String ids);
 
     /**
-     * 删除邮件列表信息
+     * УдалитьСписок писемИнформация
      * 
-     * @param id 邮件列表ID
-     * @return 结果
+     * @param id Список писемID
+     * @return Результат
      */
     public int deleteMailDataById(Long id);
 
     /**
-     * 待处理邮件列表
+     * 待处理Список писем
      * @return
      */
     public List<MailData> selectWaitDealMail();
 
     /**
-     * 我的邮件列表
+     * 我的Список писем
      * @param createUser
      * @param createDate
      * @return
@@ -74,7 +74,7 @@ public interface IMailDataService
     public List<MailData> selectMineMail(String createUser,String createDate);
 
     /**
-     * 历史邮件列表
+     * 历史Список писем
      * @return
      */
     public List<MailData> selectHistoryMail();

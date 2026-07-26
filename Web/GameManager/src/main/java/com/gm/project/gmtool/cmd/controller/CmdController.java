@@ -59,7 +59,7 @@ public class CmdController extends BaseController {
             return AjaxResult.error("命令为空！");
         }
         if (null == serverIdStr || "".equals(serverIdStr)) {
-            return AjaxResult.error("没有选择服务器Id");
+            return AjaxResult.error("没有选择СерверId");
         }
 
         int isOk = 1;
@@ -68,7 +68,7 @@ public class CmdController extends BaseController {
         for (int id : serverId) {
             TServer ser = tServerService.selectTServerByServerId(id);
             if (ser == null) {
-                return AjaxResult.error("选择服务器Id不存在");
+                return AjaxResult.error("Выбранный ID сервера не существует");
             }
             if (ser.getIsHeFu() == 1) {
                 continue;
@@ -79,9 +79,9 @@ public class CmdController extends BaseController {
                 isOk = 0;
             }
 
-            String result = "执行GM命令,区服:" + ser.getServerName() + "(" + ser.getServerId() + ")"
+            String result = "执行GM命令,Игровой сервер:" + ser.getServerName() + "(" + ser.getServerId() + ")"
                     + "命令：" + action + ", 参数:" + params
-                    + "结果：" + map.toString() + "\n" ;
+                    + "Результат：" + map.toString() + "\n" ;
             sb.append(result);
 
             writeCmdLog(ser, 0, action, params, isOk, result);
@@ -93,7 +93,7 @@ public class CmdController extends BaseController {
     }
 
     /**
-     * 发送公共服命令
+     * 发送Общий сервер命令
      * @param request
      * @param serverIdStr
      * @param action
@@ -107,7 +107,7 @@ public class CmdController extends BaseController {
             return AjaxResult.error("命令错误！");
         }
         if (null == serverIdStr || "".equals(serverIdStr)) {
-            return AjaxResult.error("没有选择服务器Id");
+            return AjaxResult.error("没有选择СерверId");
         }
         HashMap<String,String> paramMap = new HashMap<>();
         if(!"".equals(params)){
@@ -130,14 +130,14 @@ public class CmdController extends BaseController {
         for (int id : serverId) {
             TServer ser = tServerService.selectTServerByServerId(id);
             if (ser == null) {
-                return AjaxResult.error("选择服务器Id不存在");
+                return AjaxResult.error("Выбранный ID сервера не существует");
             }
             if (ser.getIsHeFu() == 1) {
                 continue;
             }
 
             url = "http://" + ser.getServerIP() + ":" + ser.getServerPort() + "/" + action;
-            log.info("发送公共服命令: URL = {}, param = {}",url, JSON.toJSONString(paramMap));
+            log.info("发送Общий сервер命令: URL = {}, param = {}",url, JSON.toJSONString(paramMap));
             String re = HttpConnectionUtils.get(url, null, paramMap);
             if (StringUtils.isBlank(re)) {
                 isOk = 0;
@@ -155,7 +155,7 @@ public class CmdController extends BaseController {
     }
 
     /**
-     * 查询服务器开服时间
+     * 查询СерверВремя открытия сервера
      * @param serverId
      * @return
      */
@@ -164,13 +164,13 @@ public class CmdController extends BaseController {
     public AjaxResult queryOpsTime(Integer serverId){
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return AjaxResult.error("选择服务器Id不存在");
+            return AjaxResult.error("Выбранный ID сервера не существует");
         }
         return GameServerRequestUtil.gmQueryOpsTime(server);
     }
 
     /**
-     * 查询服务器注册限制人数/设置注册限制人数
+     * 查询СерверЗарегистрироваться限制Количество/设置Зарегистрироваться限制Количество
      * @param serverId
      * @return
      */
@@ -179,7 +179,7 @@ public class CmdController extends BaseController {
     public AjaxResult setRegisterLimitNum(Integer serverId, Integer num){
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return AjaxResult.error("选择服务器Id不存在");
+            return AjaxResult.error("Выбранный ID сервера не существует");
         }
         if (num == null){
             num = 0;
@@ -188,7 +188,7 @@ public class CmdController extends BaseController {
     }
 
     /**
-     * 设置服务器开服时间
+     * 设置СерверВремя открытия сервера
      * @param serverId
      * @param time
      * @return
@@ -198,12 +198,12 @@ public class CmdController extends BaseController {
     public AjaxResult setOpsTime(Integer serverId, String time) {
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return AjaxResult.error("选择服务器Id不存在");
+            return AjaxResult.error("Выбранный ID сервера не существует");
         }
         return GameServerRequestUtil.gmSetOpsTime(server, time);
     }
     /**
-     *写入cmdlog日志
+     *写入cmdlogЖурнал
      */
     private void writeCmdLog(TServer server, int type, String action, String param, int isOk, String result) {
         CmdLog cmdLog = new CmdLog();

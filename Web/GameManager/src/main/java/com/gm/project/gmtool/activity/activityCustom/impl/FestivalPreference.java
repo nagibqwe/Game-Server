@@ -33,7 +33,7 @@ public class FestivalPreference extends Activity implements IActivityCustom {
         String[] rewards = paramMap.get("reward");
 
         if (rechargeIds.length != rewards.length) {
-            throw new RuntimeException("===奖励数据错误" );
+            throw new RuntimeException("===奖励Данные错误" );
         }
 
         HashMap<Integer, Object> awardData = new HashMap<>();

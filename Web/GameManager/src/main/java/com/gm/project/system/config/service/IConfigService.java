@@ -11,15 +11,15 @@ import java.util.List;
 public interface IConfigService
 {
     /**
-     * 查询参数配置信息
+     * 查询参数配置Информация
      * 
      * @param configId 参数配置ID
-     * @return 参数配置信息
+     * @return 参数配置Информация
      */
     public Config selectConfigById(Long configId);
 
     /**
-     * 根据键名查询参数配置信息
+     * 根据键名查询参数配置Информация
      * 
      * @param configKey 参数键名
      * @return 参数键值
@@ -29,45 +29,45 @@ public interface IConfigService
     /**
      * 查询参数配置列表
      * 
-     * @param config 参数配置信息
+     * @param config 参数配置Информация
      * @return 参数配置集合
      */
     public List<Config> selectConfigList(Config config);
 
     /**
-     * 新增参数配置
+     * Добавить参数配置
      * 
-     * @param config 参数配置信息
-     * @return 结果
+     * @param config 参数配置Информация
+     * @return Результат
      */
     public int insertConfig(Config config);
 
     /**
-     * 修改参数配置
+     * Изменить参数配置
      * 
-     * @param config 参数配置信息
-     * @return 结果
+     * @param config 参数配置Информация
+     * @return Результат
      */
     public int updateConfig(Config config);
 
     /**
-     * 批量删除参数配置信息
+     * 批量Удалить参数配置Информация
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteConfigByIds(String ids);
 
     /**
-     * 清空缓存数据
+     * 清空缓存Данные
      */
     public void clearCache();
 
     /**
-     * 校验参数键名是否唯一
+     * 校验参数键名ДаНет唯一
      * 
-     * @param config 参数信息
-     * @return 结果
+     * @param config 参数Информация
+     * @return Результат
      */
     public String checkConfigKeyUnique(Config config);
 }

@@ -16,7 +16,7 @@ import java.util.List;
 
 
 /**
- * 充值统计Controller
+ * Пополнение统计Controller
  * 
  * @author gm
  * @date 2021-09-13
@@ -49,10 +49,10 @@ public class StatRechargeCountsController extends BaseController
     @ResponseBody
     public  TableDataInfo statRechargeCounts(String selectGroupName,String selectServerIdList, String channelNames,String startDate, String endDate, Boolean isBlack){
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
         List<RechargeCountsBean> dataList= this.statRechargeCountsService.rechargeCountsStat(selectGroupName,selectServerIdList,channelNames,startDate,endDate,isBlack);

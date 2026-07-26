@@ -5,40 +5,40 @@ import java.util.List;
 import com.gm.project.monitor.online.domain.UserOnline;
 
 /**
- * 在线用户 服务层
+ * В сети用户 服务层
  * 
  * @author ruoyi
  */
 public interface IUserOnlineService
 {
     /**
-     * 通过会话序号查询信息
+     * 通过会话№查询Информация
      * 
      * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     public UserOnline selectOnlineById(String sessionId);
 
     /**
-     * 通过会话序号删除信息
+     * 通过会话№УдалитьИнформация
      * 
      * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     public void deleteOnlineById(String sessionId);
 
     /**
-     * 通过会话序号删除信息
+     * 通过会话№УдалитьИнформация
      * 
      * @param sessions 会话ID集合
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     public void batchDeleteOnline(List<String> sessions);
 
     /**
-     * 保存会话信息
+     * Сохранить会话Информация
      * 
-     * @param online 会话信息
+     * @param online 会话Информация
      */
     public void saveOnline(UserOnline online);
 
@@ -60,7 +60,7 @@ public interface IUserOnlineService
     /**
      * 清理用户缓存
      * 
-     * @param loginName 登录名称
+     * @param loginName Логин
      * @param sessionId 会话ID
      */
     public void removeUserCache(String loginName, String sessionId);

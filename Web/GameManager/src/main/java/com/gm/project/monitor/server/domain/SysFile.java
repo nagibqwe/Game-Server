@@ -1,7 +1,7 @@
 package com.gm.project.monitor.server.domain;
 
 /**
- * 系统文件相关信息
+ * 系统文件相关Информация
  * 
  * @author ruoyi
  */
@@ -13,12 +13,12 @@ public class SysFile
     private String dirName;
 
     /**
-     * 盘符类型
+     * 盘符Тип
      */
     private String sysTypeName;
 
     /**
-     * 文件类型
+     * 文件Тип
      */
     private String typeName;
 

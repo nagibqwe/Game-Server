@@ -23,7 +23,7 @@ public class StringOutputStream extends OutputStream {
     }
 
     /**
-     * 完成本方法后,确认字符串已经完成写入后,务必调用flash方法!
+     * 完成本方法后,Подтвердить字符串已经完成写入后,务必调用flash方法!
      */
     @Override
     public void write(int b) throws IOException {

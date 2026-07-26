@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 邮件列表对象 t_mail
+ * Список писем对象 t_mail
  * 
  * @author gm
  * @date 2021-08-30
@@ -20,68 +20,68 @@ public class MailData extends BaseEntity
     @Excel(name = "id")
     private Long id;
 
-    /** 平台名字 */
-    @Excel(name = "平台名字")
+    /** Название платформы */
+    @Excel(name = "Название платформы")
     private String groupName;
 
-    /** 服务器编号 */
-    @Excel(name = "服务器编号")
+    /** СерверНомер */
+    @Excel(name = "СерверНомер")
     private Integer serverId;
 
-    /** 角色ID列表 */
-    @Excel(name = "角色ID列表")
+    /** ID персонажа列表 */
+    @Excel(name = "ID персонажа列表")
     private String roleIds;
 
-    /** 邮件标题 */
-    @Excel(name = "邮件标题")
+    /** Тема письма */
+    @Excel(name = "Тема письма")
     private String title;
 
-    /** 邮件内容 */
-    @Excel(name = "邮件内容")
+    /** Текст письма */
+    @Excel(name = "Текст письма")
     private String content;
 
-    /** 邮件附件物品列表 */
-    @Excel(name = "邮件附件物品列表")
+    /** ПисьмоВложениеСписок предметов */
+    @Excel(name = "ПисьмоВложениеСписок предметов")
     private String items;
 
-    /** 邮件发送理由 */
-    @Excel(name = "邮件发送理由")
+    /** Письмо发送理由 */
+    @Excel(name = "Письмо发送理由")
     private String reason;
 
-    /** 邮件创建时间 */
-    @Excel(name = "邮件创建时间")
+    /** ПисьмоВремя создания */
+    @Excel(name = "ПисьмоВремя создания")
     private String createDate;
 
-    /** 邮件创建的后台账号名 */
-    @Excel(name = "邮件创建的后台账号名")
+    /** Письмо创建的后台账号名 */
+    @Excel(name = "Письмо创建的后台账号名")
     private String createUser;
 
-    /** 邮件审核的后台账号名 */
-    @Excel(name = "邮件审核的后台账号名")
+    /** Письмо审核的后台账号名 */
+    @Excel(name = "Письмо审核的后台账号名")
     private String adminUser;
 
-    /** 邮件审核的日期 */
-    @Excel(name = "邮件审核的日期")
+    /** Письмо审核的Дата */
+    @Excel(name = "Письмо审核的Дата")
     private String adminDate;
 
-    /** 审核是否通过 */
-    @Excel(name = "审核是否通过")
+    /** 审核ДаНет通过 */
+    @Excel(name = "审核ДаНет通过")
     private Integer adminState;
 
-    /** 发送到游戏服的状态值 */
-    @Excel(name = "发送到游戏服的状态值")
+    /** 发送到游戏服的Статус值 */
+    @Excel(name = "发送到游戏服的Статус值")
     private Integer sendState;
 
-    /** 发送到服务返回的结果信息 */
-    @Excel(name = "发送到服务返回的结果信息")
+    /** 发送到服务Назад的РезультатИнформация */
+    @Excel(name = "发送到服务Назад的РезультатИнформация")
     private String sendErrorMess;
 
-    /** 邮件的删除标志 */
-    @Excel(name = "邮件的删除标志")
+    /** Письмо的Удалить标志 */
+    @Excel(name = "Письмо的Удалить标志")
     private Integer isDelete;
 
-    /** 是否已经发送过 */
-    @Excel(name = "是否已经发送过")
+    /** ДаНет已经发送过 */
+    @Excel(name = "ДаНет已经发送过")
     private Integer sended;
 
     public void setId(Long id)

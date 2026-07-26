@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.recharge.domain.Recharge;
 
 /**
- * 后台模拟充值Mapper接口
+ * Тестовое пополнение через GMMapper接口
  * 
  * @author gm
  * @date 2021-11-28
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.recharge.domain.Recharge;
 public interface RechargeMapper 
 {
     /**
-     * 查询后台模拟充值
+     * 查询Тестовое пополнение через GM
      * 
-     * @param id 后台模拟充值ID
-     * @return 后台模拟充值
+     * @param id Тестовое пополнение через GMID
+     * @return Тестовое пополнение через GM
      */
     public Recharge selectRechargeById(Long id);
 
     /**
-     * 查询后台模拟充值列表
+     * 查询Тестовое пополнение через GM列表
      * 
-     * @param recharge 后台模拟充值
-     * @return 后台模拟充值集合
+     * @param recharge Тестовое пополнение через GM
+     * @return Тестовое пополнение через GM集合
      */
     public List<Recharge> selectRechargeList(Recharge recharge);
 
     /**
-     * 新增后台模拟充值
+     * ДобавитьТестовое пополнение через GM
      * 
-     * @param recharge 后台模拟充值
-     * @return 结果
+     * @param recharge Тестовое пополнение через GM
+     * @return Результат
      */
     public int insertRecharge(Recharge recharge);
 
     /**
-     * 修改后台模拟充值
+     * ИзменитьТестовое пополнение через GM
      * 
-     * @param recharge 后台模拟充值
-     * @return 结果
+     * @param recharge Тестовое пополнение через GM
+     * @return Результат
      */
     public int updateRecharge(Recharge recharge);
 
     /**
-     * 删除后台模拟充值
+     * УдалитьТестовое пополнение через GM
      * 
-     * @param id 后台模拟充值ID
-     * @return 结果
+     * @param id Тестовое пополнение через GMID
+     * @return Результат
      */
     public int deleteRechargeById(Long id);
 
     /**
-     * 批量删除后台模拟充值
+     * 批量УдалитьТестовое пополнение через GM
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteRechargeByIds(String[] ids);
 }

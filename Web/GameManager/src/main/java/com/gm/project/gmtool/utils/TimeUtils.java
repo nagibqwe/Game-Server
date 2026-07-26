@@ -15,11 +15,11 @@ import java.util.TimeZone;
  */
 public class TimeUtils {
     private static Logger log = LoggerFactory.getLogger(TimeUtils.class);
-    //设置的时间值
+    //设置的Время值
     private static long m_ServerBeginTime = 0;
     private static boolean isTimeGMSet = false;
 
-    //当前时间值与系统时间的差值
+    //Текущее время值与系统Время的差值
     private static long m_BetweenNowAndSetTime = 0;
 
     //用ThreadLocal处理SimpleDateFormat非线程安全的问题/////////////////////////
@@ -45,13 +45,13 @@ public class TimeUtils {
         isTimeGMSet = true;
     }
 
-    //获得游戏的当前时间值
+    //获得游戏的Текущее время值
     public static boolean isTimeGMSet() {
         return isTimeGMSet;
     }
 
     /**
-     * 获得自服务器启动以来的毫秒数
+     * 获得自Сервер启动以来的毫秒数
      *
      * @return
      */
@@ -60,7 +60,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获得自服务器启动以来的秒数
+     * 获得自Сервер启动以来的秒数
      *
      * @return
      */
@@ -69,7 +69,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取当天0时0分0秒 到现在流逝的时间
+     * 获取当День0时0分0秒 到现在流逝的Время
      *
      * @return
      */
@@ -85,10 +85,10 @@ public class TimeUtils {
     }
 
     /**
-     * 通过时刻获得当天对应时刻的时间戳
+     * 通过时刻获得当День对应时刻的Время戳
      *
      * @param str HH:mm
-     * @return 时间戳
+     * @return Время戳
      */
     public static long getTodayTimeByStr(String str) {
         long now = Time();
@@ -105,7 +105,7 @@ public class TimeUtils {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         if (Integer.parseInt(s[0]) == 0 && Integer.parseInt(s[1]) == 0) {
-            //0点就要加一天上去
+            //0点就要加一День上去
             return calendar.getTimeInMillis() + 86400000L;
         } else {
             return calendar.getTimeInMillis();
@@ -113,7 +113,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取某天开始时间
+     * 获取某ДеньВремя начала
      *
      * @param timeStr
      * @return
@@ -131,7 +131,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取某天开始时间
+     * 获取某ДеньВремя начала
      *
      * @param timeStr
      * @return
@@ -149,7 +149,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取某天开始时间
+     * 获取某ДеньВремя начала
      *
      * @param time
      * @return
@@ -166,7 +166,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取今天开始时间
+     * 获取СегодняВремя начала
      *
      * @return
      */
@@ -183,7 +183,7 @@ public class TimeUtils {
     }
 
     /**
-     * 取得当前日期所在周的第一天
+     * 取得当前Дата所在周的№一День
      *
      * @return
      */
@@ -197,7 +197,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取本周开始时间
+     * 获取本周Время начала
      *
      * @return
      */
@@ -215,7 +215,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取本周星期一是今年第几周
+     * 获取本周День недели一Да今Год№几周
      *
      * @return
      */
@@ -238,7 +238,7 @@ public class TimeUtils {
         return year * 100 + weekno;
     }
 
-    //获取本月开始时间
+    //获取本МесяцВремя начала
     public static long getMonthBeginTime() {
         long curTime = Time();
         Calendar instance = Calendar.getInstance();
@@ -250,7 +250,7 @@ public class TimeUtils {
         return instance.getTimeInMillis();
     }
 
-    //获取下个月开始时间
+    //获取下个МесяцВремя начала
     public static long getNextMonthBeginTime() {
         long curTime = Time();
         Calendar instance = Calendar.getInstance();
@@ -268,7 +268,7 @@ public class TimeUtils {
         return instance.getTimeInMillis();
     }
 
-    //获得格式化的时间值
+    //获得格式化的Время值
     public static String NowToString() {
         long now = Time();
         Date date = new Date(now);
@@ -283,7 +283,7 @@ public class TimeUtils {
         return simpleDateFormat.format(date);
     }
 
-    //获得格式化的时间值
+    //获得格式化的Время值
     public static String NowTGToString() {
         long now = Time();
         Date date = new Date(now);
@@ -292,7 +292,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获得格式化的时间值
+     * 获得格式化的Время值
      *
      * @param time
      * @return
@@ -310,7 +310,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获得格式化的时间值
+     * 获得格式化的Время值
      *
      * @param time
      * @param format "yyyy-MM-dd HH:mm:ss"
@@ -323,9 +323,9 @@ public class TimeUtils {
     }
 
     /**
-     * netbeans/eclipse等IDE下 运行/调试 关闭时IDE内部调用Process.destroy() <br />
-     * 无法触发到JVM shutdown hook, 导致关闭时无法回存 <br />
-     * 故在IDE环境下添加了system property: ideDebug
+     * netbeans/eclipse等IDE下 运行/调试 Закрыть时IDE内部调用Process.destroy() <br />
+     * 无法触发到JVM shutdown hook, 导致Закрыть时无法回存 <br />
+     * 故在IDE环境下Добавить了system property: ideDebug
      *
      * @return
      */
@@ -345,7 +345,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获得当前机器时间 成YYYYMMDDHH
+     * 获得当前机器Время 成YYYYMMDDHH
      *
      * @return
      */
@@ -360,7 +360,7 @@ public class TimeUtils {
     }
 
     /**
-     * 判断两个时间是否在同一天
+     * 判断两个ВремяДаНет在同一День
      *
      * @param time
      * @param time2
@@ -378,7 +378,7 @@ public class TimeUtils {
     }
 
     /**
-     * 判断两个时间是否在同一周
+     * 判断两个ВремяДаНет在同一周
      *
      * @param time
      * @param time2
@@ -397,7 +397,7 @@ public class TimeUtils {
     }
 
     /**
-     * 判断两个时间是否在同一月
+     * 判断两个ВремяДаНет在同一Месяц
      *
      * @param time
      * @param time2
@@ -415,7 +415,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取某时间距离1970至戳的天数(不准确的，废弃掉)
+     * 获取某Время距离1970至戳的День数(不准确的，废弃掉)
      *
      * @param time
      * @return
@@ -434,9 +434,9 @@ public class TimeUtils {
     }
 
     /**
-     * 获取1970至今的天数 （计数会在在每天指定的小时+1，用来判断每天X点清数据之类的）
+     * 获取1970至今的День数 （计数会在在每День指定的小时+1，用来判断每ДеньX点清Данные之类的）
      *
-     * @param time 传入指定的天数
+     * @param time 传入指定的День数
      * @return
      */
     public static int getCurDayByTime(long time) {
@@ -445,14 +445,14 @@ public class TimeUtils {
         if (zone.getRawOffset() != 0) {
             s = s + zone.getRawOffset() / 1000;
         }
-        s = s / 86400; //86400 = 24 * 60 * 60 (一天时间的秒数)
+        s = s / 86400; //86400 = 24 * 60 * 60 (一ДеньВремя的秒数)
         return (int) s;
     }
 
     /**
-     * 获取1970至今的天数 （计数会在在每天指定的小时+1，用来判断每天X点清数据之类的）
+     * 获取1970至今的День数 （计数会在在每День指定的小时+1，用来判断每ДеньX点清Данные之类的）
      *
-     * @param hour 每天第X个小时+1
+     * @param hour 每День№X个小时+1
      * @return
      */
     public static int getCurDay(int hour) {
@@ -461,12 +461,12 @@ public class TimeUtils {
         if (zone.getRawOffset() != 0) {
             s = s + zone.getRawOffset() / 1000;
         }
-        s = s / 86400; //86400 = 24 * 60 * 60 (一天时间的秒数)
+        s = s / 86400; //86400 = 24 * 60 * 60 (一ДеньВремя的秒数)
         return (int) s;
     }
 
     /**
-     * 指定时间的年份
+     * 指定Время的Год份
      *
      * @param time
      * @return
@@ -478,7 +478,7 @@ public class TimeUtils {
     }
 
     /**
-     * 返回当前的周数
+     * Назад当前的周数
      *
      * @return
      */
@@ -491,7 +491,7 @@ public class TimeUtils {
     }
 
     /**
-     * 指定时间的月份,0-11
+     * 指定Время的Месяц份,0-11
      *
      * @param time
      * @return
@@ -503,7 +503,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取日期(一个月内的第几天)
+     * 获取Дата(一个Месяц内的№几День)
      *
      * @param time
      * @return
@@ -515,7 +515,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取第几周（一年中的第几周）
+     * 获取№几周（一Год中的№几周）
      *
      * @param time
      * @return
@@ -565,7 +565,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取指定时间 是一月内的第几周
+     * 获取指定Время Да一Месяц内的№几周
      *
      * @param time
      * @return
@@ -579,7 +579,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取星期几
+     * 获取День недели几
      *
      * @param time
      * @return
@@ -597,7 +597,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取一年内的第几天
+     * 获取一Год内的№几День
      *
      * @param time
      * @return
@@ -609,7 +609,7 @@ public class TimeUtils {
     }
 
     /**
-     * 字符串转日期("yyyy-MM-dd HH:mm:ss");
+     * 字符串转Дата("yyyy-MM-dd HH:mm:ss");
      *
      * @param date
      * @return
@@ -621,7 +621,7 @@ public class TimeUtils {
     }
 
     /**
-     * 字符串转日期("yyyy-MM-dd HH:mm");
+     * 字符串转Дата("yyyy-MM-dd HH:mm");
      *
      * @param date
      * @return
@@ -633,7 +633,7 @@ public class TimeUtils {
     }
 
     /**
-     * 判断两个时间中间所差天数
+     * 判断两个Время中间所差День数
      *
      * @param time1
      * @param time2
@@ -656,7 +656,7 @@ public class TimeUtils {
     }
 
     /**
-     * 获取1970至今的时间, 1获取秒，2 分钟，3小时，4天数,5周数
+     * 获取1970至今的Время, 1获取秒，2 分钟，3小时，4День数,5周数
      *
      * @param x
      * @param time
@@ -681,7 +681,7 @@ public class TimeUtils {
                 s = s / 86400;
                 break;
             case 5:
-                s = s / 86400 + 3;// 补足天数，星期1到7算一周
+                s = s / 86400 + 3;// 补足День数，День недели1到7算一周
                 s = s / 7;
                 break;
             default:
@@ -691,7 +691,7 @@ public class TimeUtils {
     }
 
     /**
-     * 指定小时与分，秒，计算与当前时间的差值， 不跨天
+     * 指定小时与分，秒，计算与Текущее время的差值， 不跨День
      *
      * @param hour
      * @param min
@@ -711,7 +711,7 @@ public class TimeUtils {
     }
 
     /**
-     * 指定小时与分，秒，返回当天指定的小时分秒的当前时间值
+     * 指定小时与分，秒，Назад当День指定的小时分秒的Текущее время值
      *
      * @param hour
      * @param min
@@ -730,7 +730,7 @@ public class TimeUtils {
     }
 
     /**
-     * 返回离下一个星期几还剩的秒值
+     * Назад离下一个День недели几还剩的秒值
      *
      * @param weekday
      * @param hour
@@ -752,13 +752,13 @@ public class TimeUtils {
             //下一周
             instance1.add(Calendar.DAY_OF_MONTH, 7 - wk + weekday);
         } else {
-            //当天
+            //当День
             int time = getDecNowToTime(hour, min, sec);
             if (time == 0)//等于0 表示下一周去了
             {
                 instance1.add(Calendar.DAY_OF_MONTH, 7 - wk + weekday);
             } else {
-                return time;//不是就返回当前时间
+                return time;//不Да就НазадТекущее время
             }
         }
 
@@ -771,7 +771,7 @@ public class TimeUtils {
     }
 
     /**
-     * 根据时间表达式 返回long
+     * 根据Время表达式 Назадlong
      *
      * @param exp
      * @return
@@ -781,10 +781,10 @@ public class TimeUtils {
     }
 
     /**
-     * 根据表达式计算开始时间，时间以Date格式标识
+     * 根据表达式计算Время начала，Время以Date格式标识
      *
-     * @param exp 时间表达式<br />
-     *            格式：年-月-日-星期-时-分
+     * @param exp Время表达式<br />
+     *            格式：Год-Месяц-日-День недели-时-分
      * @return
      */
     public static long expDate(String exp) {

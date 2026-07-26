@@ -17,7 +17,7 @@ import com.gm.project.monitor.online.domain.UserOnline;
 import com.gm.project.monitor.online.mapper.UserOnlineMapper;
 
 /**
- * 在线用户 服务层处理
+ * В сети用户 服务层处理
  * 
  * @author ruoyi
  */
@@ -34,10 +34,10 @@ public class UserOnlineServiceImpl implements IUserOnlineService
     private EhCacheManager ehCacheManager;
 
     /**
-     * 通过会话序号查询信息
+     * 通过会话№查询Информация
      * 
      * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     @Override
     public UserOnline selectOnlineById(String sessionId)
@@ -46,10 +46,10 @@ public class UserOnlineServiceImpl implements IUserOnlineService
     }
 
     /**
-     * 通过会话序号删除信息
+     * 通过会话№УдалитьИнформация
      * 
      * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     @Override
     public void deleteOnlineById(String sessionId)
@@ -62,10 +62,10 @@ public class UserOnlineServiceImpl implements IUserOnlineService
     }
 
     /**
-     * 通过会话序号删除信息
+     * 通过会话№УдалитьИнформация
      * 
      * @param sessions 会话ID集合
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     @Override
     public void batchDeleteOnline(List<String> sessions)
@@ -81,9 +81,9 @@ public class UserOnlineServiceImpl implements IUserOnlineService
     }
 
     /**
-     * 保存会话信息
+     * Сохранить会话Информация
      * 
-     * @param online 会话信息
+     * @param online 会话Информация
      */
     @Override
     public void saveOnline(UserOnline online)
@@ -122,7 +122,7 @@ public class UserOnlineServiceImpl implements IUserOnlineService
     /**
      * 清理用户缓存
      * 
-     * @param loginName 登录名称
+     * @param loginName Логин
      * @param sessionId 会话ID
      */
     @Override
@@ -140,7 +140,7 @@ public class UserOnlineServiceImpl implements IUserOnlineService
     /**
      * 查询会话集合
      * 
-     * @param online 会话信息
+     * @param online 会话Информация
      */
     @Override
     public List<UserOnline> selectOnlineByExpired(Date expiredDate)

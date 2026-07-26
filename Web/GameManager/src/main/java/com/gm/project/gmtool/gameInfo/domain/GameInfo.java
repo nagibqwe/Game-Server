@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 游戏参数信息对象 game_info
+ * Параметры игры对象 game_info
  * 
  * @author gm
  * @date 2021-11-15
@@ -19,24 +19,24 @@ public class GameInfo extends BaseEntity
     /** 游戏ID */
     private Integer gameId;
 
-    /** 第三方充值密钥 */
-    @Excel(name = "第三方充值密钥")
+    /** №三方Пополнение密钥 */
+    @Excel(name = "№三方Пополнение密钥")
     private String rechargeSecretkey;
 
-    /** 自动开服检查起始服务器ID */
-    @Excel(name = "自动开服检查起始服务器ID")
+    /** 自动开服检查起始ID сервера */
+    @Excel(name = "自动开服检查起始ID сервера")
     private Integer autoFirstServerId;
 
-    /** 自动开服注册人数条件 */
-    @Excel(name = "自动开服注册人数条件")
+    /** 自动开服ЗарегистрироватьсяКоличество条件 */
+    @Excel(name = "自动开服ЗарегистрироватьсяКоличество条件")
     private Integer autoUserCount;
 
     /** 自动开服进度ID */
     @Excel(name = "自动开服进度ID")
     private Integer autoServerId;
 
-    /** 修改时间 */
-    @Excel(name = "修改时间")
+    /** Время изменения */
+    @Excel(name = "Время изменения")
     private Long time;
 
     public void setGameId(Integer gameId)

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.gm.project.stat.stat_recharge_distribute.service.IStatRechargeDistributeService;
 
 /**
- * 充值统计Service业务层处理
+ * Пополнение统计Service业务层处理
  * 
  * @author gm
  * @date 2021-09-13
@@ -25,7 +25,7 @@ public class StatRechargeDistributeServiceImpl implements IStatRechargeDistribut
     @Autowired
     private IRechargeItemService rechargeItemService;
     /**
-     * 充值等级统计相关
+     * ПополнениеУровень统计相关
      * @param startDate
      * @param endDate
      * @param selectServerIds

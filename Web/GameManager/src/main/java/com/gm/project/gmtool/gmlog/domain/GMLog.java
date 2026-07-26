@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * GM后台日志记录对象 t_gm_log
+ * Журнал GM-панели对象 t_gm_log
  * 
  * @author gm
  * @date 2021-09-01
@@ -18,28 +18,28 @@ public class GMLog extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 日志主键 */
+    /** Журнал主键 */
     private Long id;
 
-    /** 操作人员 */
-    @Excel(name = "操作人员")
+    /** Оператор */
+    @Excel(name = "Оператор")
     private String name;
 
-    /** 部门名称 */
-    @Excel(name = "部门名称")
+    /** Название подразделения */
+    @Excel(name = "Название подразделения")
     private String deptName;
 
     /** 主机地址 */
     @Excel(name = "主机地址")
     private String ip;
 
-    /** 日志内容 */
-    @Excel(name = "日志内容")
+    /** ЖурналСодержимое */
+    @Excel(name = "ЖурналСодержимое")
     private String content;
 
-    /** 操作时间 */
+    /** Время операции */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "操作时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "Время операции", width = 30, dateFormat = "yyyy-MM-dd")
     private Date time;
 
     public void setId(Long id)

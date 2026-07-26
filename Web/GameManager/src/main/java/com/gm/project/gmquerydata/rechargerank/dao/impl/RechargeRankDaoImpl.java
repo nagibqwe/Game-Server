@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  充值排行榜
+ *  ПополнениеРейтинг
  *
  */
 @Service
@@ -55,7 +55,7 @@ public class RechargeRankDaoImpl implements IRechargeRankDao {
         int count = dbClientGM.qryTotalCount(prefixSql+ sql+where+suffixSql);
         param.put("count",count);
         where += " ORDER BY totalRecharge DESC";
-        //分页数据
+        //分页Данные
         if(param.containsKey("pageNum")){
             int pageNum = (int)param.get("pageNum");
             int pageSize = (int)param.get("pageSize");
@@ -98,7 +98,7 @@ public class RechargeRankDaoImpl implements IRechargeRankDao {
         int count = dbClientGM.qryTotalCount(prefixSql+ sql+where+suffixSql);
         param.put("count",count);
         where += " ORDER BY totalRecharge DESC";
-        //分页数据
+        //分页Данные
         if(param.containsKey("pageNum")){
             int pageNum = (int)param.get("pageNum");
             int pageSize = (int)param.get("pageSize");

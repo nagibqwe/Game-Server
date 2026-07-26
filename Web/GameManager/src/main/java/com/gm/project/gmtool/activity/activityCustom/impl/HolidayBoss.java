@@ -33,12 +33,12 @@ public class HolidayBoss extends Activity implements IActivityCustom {
      */
     @Override
     public Activity parseCustom(Map<String, String[]> paramMap) {
-        //客户端数据
+        //客户端Данные
         String[] magicId = paramMap.get("magicId");//奖励展示
         String[] boxId = paramMap.get("boxId");//礼包奖励展示
         String[] showItems = paramMap.get("showItems");//奖励展示列表
 
-        //出售商品数据
+        //出售商品Данные
         String[] prices = paramMap.get("price");//单价
         String[] coins = paramMap.get("coin");//出售货币
         String[] limits = paramMap.get("limit");//单日限购
@@ -47,12 +47,12 @@ public class HolidayBoss extends Activity implements IActivityCustom {
         String modelData = ActivityManager.getInstance().getModelData(Integer.parseInt(magicId[0]));
 
         if (prices.length != coins.length ||prices.length!=limits.length||prices.length!=sellItems.length) {
-            throw new RuntimeException("===商品数据错误" );
+            throw new RuntimeException("===商品Данные错误" );
         }
         //BOSS ID列表
         String[] bossLists = paramMap.get("bossList");
         if (bossLists.length<=0 ) {
-            throw new RuntimeException("===数据错误" );
+            throw new RuntimeException("===Данные错误" );
         }
         List<Integer> bossList = new ArrayList<>();
         for (String id:bossLists) {
@@ -69,13 +69,13 @@ public class HolidayBoss extends Activity implements IActivityCustom {
         String[] bossGiftRewards = paramMap.get("bossGiftReward");
 
         if (bossGiftWeights.length != bossGiftRewards.length) {
-            throw new RuntimeException("===boss奖励数据错误" );
+            throw new RuntimeException("===boss奖励Данные错误" );
         }
 
         //礼包ID
         String[] giftIds = paramMap.get("giftId");
         if (giftIds.length<=0 ) {
-            throw new RuntimeException("===数据错误" );
+            throw new RuntimeException("===Данные错误" );
         }
 
         String[] boxRewardCount = paramMap.get("boxRewardCount");
@@ -86,7 +86,7 @@ public class HolidayBoss extends Activity implements IActivityCustom {
         String[] boxGiftRewards = paramMap.get("boxGiftReward");
 
         if (boxGiftWeights.length != boxGiftRewards.length) {
-            throw new RuntimeException("===礼包数据错误" );
+            throw new RuntimeException("===礼包Данные错误" );
         }
 
         HashMap<Integer, Object> goodData = new HashMap<>();
@@ -122,7 +122,7 @@ public class HolidayBoss extends Activity implements IActivityCustom {
         for (int i = 0; i < giftIds.length; i++) {
             int count = Integer.parseInt(boxRewardCount[i]);
             if(count < 0 ){
-                throw new RuntimeException("===数据错误");
+                throw new RuntimeException("===Данные错误");
             }
 
             int start = totalCount;

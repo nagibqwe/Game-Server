@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 循环公告对象 t_cyannounce
+ * Циклическое объявление对象 t_cyannounce
  * 
  * @author gm
  * @date 2021-10-27
@@ -16,55 +16,55 @@ public class CyAnnounce
 {
     private static final long serialVersionUID = 1L;
 
-    /** 公告的编号 */
+    /** 公告的Номер */
     private Integer id;
 
-    /** 公告的平台分组 */
-    @Excel(name = "公告的平台分组")
+    /** 公告的Платформа分组 */
+    @Excel(name = "公告的Платформа分组")
     private String groupName;
 
-    /** 公告的发送的服务器列表 */
-    @Excel(name = "公告的发送的服务器列表")
+    /** 公告的发送的Список серверов */
+    @Excel(name = "公告的发送的Список серверов")
     private String serverIds;
 
     /** 公告的标识 */
     @Excel(name = "公告的标识")
     private String batchTag;
 
-    /** 公告的内容 */
-    @Excel(name = "公告的内容")
+    /** 公告的Содержимое */
+    @Excel(name = "公告的Содержимое")
     private String content;
 
-    /** 公告的创建时间 */
-    @Excel(name = "公告的创建时间")
+    /** 公告的Время создания */
+    @Excel(name = "公告的Время создания")
     private Long createTime;
 
-    /** 公告的创建时间字符格式化 */
-    @Excel(name = "公告的创建时间字符格式化")
+    /** 公告的Время создания字符格式化 */
+    @Excel(name = "公告的Время создания字符格式化")
     private String createDate;
 
-    /** 公告的添加者ID */
-    @Excel(name = "公告的添加者ID")
+    /** 公告的Добавить者ID */
+    @Excel(name = "公告的Добавить者ID")
     private Integer createUserId;
 
-    /** 公告的添加者名字 */
-    @Excel(name = "公告的添加者名字")
+    /** 公告的Добавить者名字 */
+    @Excel(name = "公告的Добавить者名字")
     private String createUserName;
 
-    /** 公告的开始时间 */
-    @Excel(name = "公告的开始时间")
+    /** 公告的Время начала */
+    @Excel(name = "公告的Время начала")
     private Long fromTime;
 
     /** 公告的开始字符格式化 */
     @Excel(name = "公告的开始字符格式化")
     private String fromDate;
 
-    /** 公告的结束时间 */
-    @Excel(name = "公告的结束时间")
+    /** 公告的Время окончания */
+    @Excel(name = "公告的Время окончания")
     private Long toTime;
 
-    /** 公告的结束时间字符格式化 */
-    @Excel(name = "公告的结束时间字符格式化")
+    /** 公告的Время окончания字符格式化 */
+    @Excel(name = "公告的Время окончания字符格式化")
     private String toDate;
 
     /** 公告发送的总次数 */
@@ -75,16 +75,16 @@ public class CyAnnounce
     @Excel(name = "公告的当前已经发送的次数")
     private Long nowTimes;
 
-    /** 公告的下一次发送的时间 */
-    @Excel(name = "公告的下一次发送的时间")
+    /** 公告的下一次发送的Время */
+    @Excel(name = "公告的下一次发送的Время")
     private Long nextTimes;
 
-    /** 公告的下一次发送时间字符格式化 */
-    @Excel(name = "公告的下一次发送时间字符格式化")
+    /** 公告的下一次发送Время字符格式化 */
+    @Excel(name = "公告的下一次发送Время字符格式化")
     private String nextDate;
 
-    /** 公告的当前状态，启用还是禁用 */
-    @Excel(name = "公告的当前状态，启用还是禁用")
+    /** 公告的当前Статус，Включить还Да禁用 */
+    @Excel(name = "公告的当前Статус，Включить还Да禁用")
     private Integer state;
 
     /** 公告发送的频率 */

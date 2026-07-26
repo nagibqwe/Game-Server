@@ -36,7 +36,7 @@ public class HolidayWords extends Activity implements IActivityCustom {
     public Activity parseCustom(Map<String, String[]> paramMap) {
 
 
-        //0.数据准备
+        //0.Данные准备
 
         //掉落副本配置
         String[] dropCloneMap = paramMap.get("dropCloneMap");
@@ -54,7 +54,7 @@ public class HolidayWords extends Activity implements IActivityCustom {
 
         //1.副本奖励池处理
         if (dropCloneMap.length != cloneIdxArray.length ) {
-            throw new RuntimeException("===副本数据错误");
+            throw new RuntimeException("===副本Данные错误");
         }
 
         //1.1副本处理
@@ -65,7 +65,7 @@ public class HolidayWords extends Activity implements IActivityCustom {
             String[] dropRewardItems = paramMap.get("clone_dropRewardItems_"+cloneIdxArray[i]);
             //奖励池处理
             if (dropWeight.length != dropRewardItems.length) {
-                throw new RuntimeException("===副本奖励池数据错误");
+                throw new RuntimeException("===副本奖励池Данные错误");
             }
 
             List<HashMap<String, Object>> pool = new ArrayList<>();
@@ -90,7 +90,7 @@ public class HolidayWords extends Activity implements IActivityCustom {
             //2.1 boss列表
             String[] dropBoss = paramMap.get("bossList_"+bossIdxArray[i]);
             if(dropBoss.length <= 0){
-                throw new RuntimeException("===必须选择boss类型");
+                throw new RuntimeException("===必须选择bossТип");
             }
 
             for (String id:dropBoss) {
@@ -107,7 +107,7 @@ public class HolidayWords extends Activity implements IActivityCustom {
 
             //奖励池处理
             if (dropWeight.length != dropRewardItems.length) {
-                throw new RuntimeException("===Boss奖励池数据错误");
+                throw new RuntimeException("===Boss奖励池Данные错误");
             }
             List<HashMap<String, Object>> pool = new ArrayList<>();
             for (int j = 0; j < dropRewardItems.length; j++) {
@@ -125,7 +125,7 @@ public class HolidayWords extends Activity implements IActivityCustom {
 
         //3.兑换处理
         if (exChangeLimit.length != wordItems.length|| exChangeLimit.length != rewardBox.length) {
-            throw new RuntimeException("===兑换数据错误");
+            throw new RuntimeException("===兑换Данные错误");
         }
         HashMap<Integer, Object> giftDataMap = new HashMap<>();
         for (int i = 0; i < rewardBox.length; i++) {
@@ -136,7 +136,7 @@ public class HolidayWords extends Activity implements IActivityCustom {
             //兑换次数
             data.put("limit", Integer.parseInt(exChangeLimit[i]));
 
-            //是否显示小红点
+            //ДаНетПоказывать小红点
             data.put("isShowRedPoint",Integer.parseInt(isShowRedPoint[i]));
             //收集字体
             String rd = wordItems[i];

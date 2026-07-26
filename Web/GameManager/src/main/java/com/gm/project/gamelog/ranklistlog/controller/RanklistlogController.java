@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 排行榜日志Controller
+ * РейтингЖурналController
  * 
  * @author gm
  * @date 2021-09-08
@@ -46,7 +46,7 @@ public class RanklistlogController extends BaseController
         return prefix + "/ranklistlog";
     }
     /**
-     * 查询排行榜日志列表
+     * 查询РейтингЖурнал列表
      */
     @RequiresPermissions("gamelog:ranklistlog:list")
     @PostMapping("/list")
@@ -54,10 +54,10 @@ public class RanklistlogController extends BaseController
     public TableDataInfo list(Ranklistlog ranklistlog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         startPage();
@@ -65,10 +65,10 @@ public class RanklistlogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出排行榜日志列表
+     * ЭкспортРейтингЖурнал列表
      */
     @RequiresPermissions("gamelog:ranklistlog:export")
-    @Log(title = "排行榜日志", businessType = BusinessType.EXPORT)
+    @Log(title = "РейтингЖурнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Ranklistlog ranklistlog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -77,6 +77,6 @@ public class RanklistlogController extends BaseController
 
         List<Ranklistlog> list = ranklistlogService.selectRanklistlogList(ranklistlog,param);
         ExcelUtil<Ranklistlog> util = new ExcelUtil<Ranklistlog>(Ranklistlog.class);
-        return util.exportExcel(list, "排行榜日志数据");
+        return util.exportExcel(list, "РейтингЖурналДанные");
     }
 }

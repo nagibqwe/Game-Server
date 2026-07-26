@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 原因码Controller
+ * Код причиныController
  * 
  * @author gm
  * @date 2021-12-21
@@ -43,7 +43,7 @@ public class TChangereasonController extends BaseController
     }
 
     /**
-     * 查询原因码列表
+     * 查询Код причины列表
      */
     @RequiresPermissions("gmtool:changereason:list")
     @PostMapping("/list")
@@ -56,21 +56,21 @@ public class TChangereasonController extends BaseController
     }
 
     /**
-     * 导出原因码列表
+     * ЭкспортКод причины列表
      */
     @RequiresPermissions("gmtool:changereason:export")
-    @Log(title = "原因码", businessType = BusinessType.EXPORT)
+    @Log(title = "Код причины", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(TChangereason tChangereason)
     {
         List<TChangereason> list = tChangereasonService.selectTChangereasonList(tChangereason);
         ExcelUtil<TChangereason> util = new ExcelUtil<TChangereason>(TChangereason.class);
-        return util.exportExcel(list, "原因码数据");
+        return util.exportExcel(list, "Код причиныДанные");
     }
 
     /**
-     * 新增原因码
+     * ДобавитьКод причины
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class TChangereasonController extends BaseController
     }
 
     /**
-     * 新增保存原因码
+     * ДобавитьСохранитьКод причины
      */
     @RequiresPermissions("gmtool:changereason:add")
-    @Log(title = "原因码", businessType = BusinessType.INSERT)
+    @Log(title = "Код причины", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(TChangereason tChangereason)
@@ -91,7 +91,7 @@ public class TChangereasonController extends BaseController
     }
 
     /**
-     * 修改原因码
+     * ИзменитьКод причины
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class TChangereasonController extends BaseController
     }
 
     /**
-     * 修改保存原因码
+     * ИзменитьСохранитьКод причины
      */
     @RequiresPermissions("gmtool:changereason:edit")
-    @Log(title = "原因码", businessType = BusinessType.UPDATE)
+    @Log(title = "Код причины", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(TChangereason tChangereason)
@@ -114,10 +114,10 @@ public class TChangereasonController extends BaseController
     }
 
     /**
-     * 删除原因码
+     * УдалитьКод причины
      */
     @RequiresPermissions("gmtool:changereason:remove")
-    @Log(title = "原因码", businessType = BusinessType.DELETE)
+    @Log(title = "Код причины", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

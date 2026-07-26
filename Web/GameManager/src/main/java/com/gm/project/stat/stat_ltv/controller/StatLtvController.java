@@ -37,10 +37,10 @@ public class StatLtvController extends BaseController
     @ResponseBody
     public TableDataInfo list(String selectGroupName, String selectServerIdList,String channelNames,String startDate, String endDate,Boolean isBlack) {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         TableDataInfo tableDataInfo = null;
         //按照用户计算留存

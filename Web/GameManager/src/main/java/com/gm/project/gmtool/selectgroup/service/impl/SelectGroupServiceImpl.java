@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 服务器列Service业务层处理
+ * Сервер列Service业务层处理
  */
 @Service
 public class SelectGroupServiceImpl implements ISelectGroupService {
@@ -36,7 +36,7 @@ public class SelectGroupServiceImpl implements ISelectGroupService {
     }
 
     /**
-     * 通用类型筛选
+     * 通用Тип筛选
      * @param groupName
      * @param ignoreMerge
      * @param serverTypeList

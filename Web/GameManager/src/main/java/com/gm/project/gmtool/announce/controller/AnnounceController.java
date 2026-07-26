@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * 即时公告Controller
+ * Мгновенное объявлениеController
  * 
  * @author gm
  * @date 2021-10-21
@@ -62,7 +62,7 @@ public class AnnounceController extends BaseController
     }
 
     /**
-     * 查询即时公告列表
+     * 查询Мгновенное объявление列表
      */
 //    @RequiresPermissions("gmtool:announce:list")
     @PostMapping("/list")
@@ -76,21 +76,21 @@ public class AnnounceController extends BaseController
     }
 
     /**
-     * 导出即时公告列表
+     * ЭкспортМгновенное объявление列表
      */
     @RequiresPermissions("gmtool:announce:export")
-    @Log(title = "即时公告", businessType = BusinessType.EXPORT)
+    @Log(title = "Мгновенное объявление", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Announce announce)
     {
         List<Announce> list = announceService.selectAnnounceList(announce);
         ExcelUtil<Announce> util = new ExcelUtil<Announce>(Announce.class);
-        return util.exportExcel(list, "即时公告数据");
+        return util.exportExcel(list, "Мгновенное объявлениеДанные");
     }
 
     /**
-     * 新增即时公告
+     * ДобавитьМгновенное объявление
      */
     @GetMapping("/add")
     public String add()
@@ -99,10 +99,10 @@ public class AnnounceController extends BaseController
     }
 
     /**
-     * 新增保存即时公告
+     * ДобавитьСохранитьМгновенное объявление
      */
     @RequiresPermissions("gmtool:announce:add")
-    @Log(title = "即时公告", businessType = BusinessType.INSERT)
+    @Log(title = "Мгновенное объявление", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Announce announce)
@@ -111,7 +111,7 @@ public class AnnounceController extends BaseController
     }
 
     /**
-     * 修改即时公告
+     * ИзменитьМгновенное объявление
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -122,10 +122,10 @@ public class AnnounceController extends BaseController
     }
 
     /**
-     * 修改保存即时公告
+     * ИзменитьСохранитьМгновенное объявление
      */
     @RequiresPermissions("gmtool:announce:edit")
-    @Log(title = "即时公告", businessType = BusinessType.UPDATE)
+    @Log(title = "Мгновенное объявление", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Announce announce)
@@ -134,10 +134,10 @@ public class AnnounceController extends BaseController
     }
 
     /**
-     * 删除即时公告
+     * УдалитьМгновенное объявление
      */
     @RequiresPermissions("gmtool:announce:remove")
-    @Log(title = "即时公告", businessType = BusinessType.DELETE)
+    @Log(title = "Мгновенное объявление", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -145,13 +145,13 @@ public class AnnounceController extends BaseController
         int row = announceService.deleteAnnounceByIds(ids);
         boolean b = row > 0;
         if (row > 0){
-            GMLogUtil.log("删除即时公告，结果：" + b);
+            GMLogUtil.log("УдалитьМгновенное объявление，Результат：" + b);
         }
         return toAjax(row);
     }
 
     /**
-     * 保存即时公告
+     * СохранитьМгновенное объявление
      * @param content
      * @return
      */
@@ -168,13 +168,13 @@ public class AnnounceController extends BaseController
         a.setType(0);
         int row = announceService.insertAnnounce(a);
         if (row > 0) {
-            return AjaxResult.info("保存当前公告成功!").put("ok",true);
+            return AjaxResult.info("Сохранить当前公告Успешно!").put("ok",true);
         }
-        return AjaxResult.info("保存当前公告失败了!").put("ok",false);
+        return AjaxResult.info("Сохранить当前公告Ошибка了!").put("ok",false);
     }
 
     /**
-     * 发布即时公告
+     * 发布Мгновенное объявление
      * @param request
      * @param selectGroupName
      * @param selectServerIdList
@@ -188,7 +188,7 @@ public class AnnounceController extends BaseController
     public AjaxResult addImmediateAnnounce(HttpServletRequest request, String selectGroupName, String[] selectServerIdList, int type, String content, String reason) {
         User user = ShiroUtils.getSysUser();
         if (selectServerIdList == null || selectServerIdList.length <= 0) {
-            return AjaxResult.info("没有选择服务器").put("ok",false);
+            return AjaxResult.info("没有选择Сервер").put("ok",false);
         }
         List<Integer> serverIdList = new ArrayList<>();
         for (String sid : selectServerIdList) {
@@ -202,7 +202,7 @@ public class AnnounceController extends BaseController
             return AjaxResult.info("理由不能为空，请检查！").put("ok",false);
         }
         if (serverIdList.size() < 1) {
-            return AjaxResult.info("没有选择服务器").put("ok",false);
+            return AjaxResult.info("没有选择Сервер").put("ok",false);
         }
 
         List<TServer> serverList =tServerService.selectServerByServerIds(Joiner.on(",").join(serverIdList));
@@ -213,7 +213,7 @@ public class AnnounceController extends BaseController
             if (Boolean.valueOf(ret.get("ok").toString())) {
                 sb.append(server.getServerName()).append(ret.get("msg")).append("\n");
             } else {
-                sb.append(server.getServerName()).append("失败，原因：").append(ret.get("msg")).append("\n");
+                sb.append(server.getServerName()).append("Ошибка，原因：").append(ret.get("msg")).append("\n");
             }
         }
 
@@ -228,8 +228,8 @@ public class AnnounceController extends BaseController
         a.setContent(content);
         a.setReason(reason);
         announceService.insertAnnounce(a);
-        //保存公告内容
-        GMLogUtil.log("添加即时公告\t理由：" + reason + "\t" + JsonUtils.toJSONString(serverIdList) + "\t" + content + "\t结果：" + sb.toString());
+        //Сохранить公告Содержимое
+        GMLogUtil.log("ДобавитьМгновенное объявление\t理由：" + reason + "\t" + JsonUtils.toJSONString(serverIdList) + "\t" + content + "\tРезультат：" + sb.toString());
         return AjaxResult.info(sb.toString()).put("ok",true);
     }
 }

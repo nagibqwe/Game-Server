@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 职业分布Mapper接口
+ * Класс分布Mapper接口
  * 
  * @author gm
  * @date 2021-09-07

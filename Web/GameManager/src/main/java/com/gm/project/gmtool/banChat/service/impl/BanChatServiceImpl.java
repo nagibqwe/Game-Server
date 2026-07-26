@@ -9,7 +9,7 @@ import com.gm.project.gmtool.banChat.service.IBanChatService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 聊天封禁Service业务层处理
+ * 聊День封禁Service业务层处理
  * 
  * @author gm
  * @date 2021-11-20
@@ -21,10 +21,10 @@ public class BanChatServiceImpl implements IBanChatService
     private BanChatMapper banChatMapper;
 
     /**
-     * 查询聊天封禁
+     * 查询聊День封禁
      * 
-     * @param id 聊天封禁ID
-     * @return 聊天封禁
+     * @param id 聊День封禁ID
+     * @return 聊День封禁
      */
     @Override
     public BanChat selectBanChatById(Long id)
@@ -33,10 +33,10 @@ public class BanChatServiceImpl implements IBanChatService
     }
 
     /**
-     * 查询聊天封禁列表
+     * 查询聊День封禁列表
      * 
-     * @param banChat 聊天封禁
-     * @return 聊天封禁
+     * @param banChat 聊День封禁
+     * @return 聊День封禁
      */
     @Override
     public List<BanChat> selectBanChatList(BanChat banChat)
@@ -45,10 +45,10 @@ public class BanChatServiceImpl implements IBanChatService
     }
 
     /**
-     * 新增聊天封禁
+     * Добавить聊День封禁
      * 
-     * @param banChat 聊天封禁
-     * @return 结果
+     * @param banChat 聊День封禁
+     * @return Результат
      */
     @Override
     public int insertBanChat(BanChat banChat)
@@ -57,10 +57,10 @@ public class BanChatServiceImpl implements IBanChatService
     }
 
     /**
-     * 修改聊天封禁
+     * Изменить聊День封禁
      * 
-     * @param banChat 聊天封禁
-     * @return 结果
+     * @param banChat 聊День封禁
+     * @return Результат
      */
     @Override
     public int updateBanChat(BanChat banChat)
@@ -69,10 +69,10 @@ public class BanChatServiceImpl implements IBanChatService
     }
 
     /**
-     * 删除聊天封禁对象
+     * Удалить聊День封禁对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteBanChatByIds(String ids)
@@ -81,10 +81,10 @@ public class BanChatServiceImpl implements IBanChatService
     }
 
     /**
-     * 删除聊天封禁信息
+     * Удалить聊День封禁Информация
      * 
-     * @param id 聊天封禁ID
-     * @return 结果
+     * @param id 聊День封禁ID
+     * @return Результат
      */
     @Override
     public int deleteBanChatById(Long id)

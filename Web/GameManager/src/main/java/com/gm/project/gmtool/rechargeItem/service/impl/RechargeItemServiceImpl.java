@@ -9,7 +9,7 @@ import com.gm.project.gmtool.rechargeItem.service.IRechargeItemService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 充值配置Service业务层处理
+ * Настройки пополненияService业务层处理
  * 
  * @author gm
  * @date 2021-08-25
@@ -21,10 +21,10 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     private RechargeItemMapper rechargeItemMapper;
 
     /**
-     * 查询充值配置
+     * 查询Настройки пополнения
      * 
-     * @param goodsId 充值配置ID
-     * @return 充值配置
+     * @param goodsId Настройки пополненияID
+     * @return Настройки пополнения
      */
     @Override
     public RechargeItem selectRechargeItemById(Integer goodsId)
@@ -33,10 +33,10 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 查询充值配置列表
+     * 查询Настройки пополнения列表
      * 
-     * @param rechargeItem 充值配置
-     * @return 充值配置
+     * @param rechargeItem Настройки пополнения
+     * @return Настройки пополнения
      */
     @Override
     public List<RechargeItem> selectRechargeItemList(RechargeItem rechargeItem)
@@ -45,10 +45,10 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 新增充值配置
+     * ДобавитьНастройки пополнения
      * 
-     * @param rechargeItem 充值配置
-     * @return 结果
+     * @param rechargeItem Настройки пополнения
+     * @return Результат
      */
     @Override
     public int insertRechargeItem(RechargeItem rechargeItem)
@@ -57,10 +57,10 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 修改充值配置
+     * ИзменитьНастройки пополнения
      * 
-     * @param rechargeItem 充值配置
-     * @return 结果
+     * @param rechargeItem Настройки пополнения
+     * @return Результат
      */
     @Override
     public int updateRechargeItem(RechargeItem rechargeItem)
@@ -69,10 +69,10 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 删除充值配置对象
+     * УдалитьНастройки пополнения对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteRechargeItemByIds(String ids)
@@ -81,10 +81,10 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 删除充值配置信息
+     * УдалитьНастройки пополненияИнформация
      * 
-     * @param goodsId 充值配置ID
-     * @return 结果
+     * @param goodsId Настройки пополненияID
+     * @return Результат
      */
     @Override
     public int deleteRechargeItemById(Integer goodsId)
@@ -93,7 +93,7 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 普通充值查询
+     * 普通Пополнение查询
      * @return
      */
     @Override
@@ -102,7 +102,7 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 第三方充值配置查询
+     * №三方Настройки пополнения查询
      * @return
      */
     @Override
@@ -111,7 +111,7 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 删除普通充值
+     * Удалить普通Пополнение
      * @return
      */
     @Override
@@ -120,7 +120,7 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 删除第三方充值
+     * Удалить№三方Пополнение
      * @return
      */
     @Override
@@ -129,7 +129,7 @@ public class RechargeItemServiceImpl implements IRechargeItemService
     }
 
     /**
-     * 清空充值配置数据
+     * 清空Настройки пополненияДанные
      * @param tableName
      */
     @Override

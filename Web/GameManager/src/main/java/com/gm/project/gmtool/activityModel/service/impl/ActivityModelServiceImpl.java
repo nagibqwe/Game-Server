@@ -10,7 +10,7 @@ import com.gm.project.gmtool.activityModel.service.IActivityModelService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 运营活动模型库Service业务层处理
+ * Библиотека моделей событийService业务层处理
  * 
  * @author gm
  * @date 2021-09-14
@@ -22,10 +22,10 @@ public class ActivityModelServiceImpl implements IActivityModelService
     private ActivityModelMapper activityModelMapper;
 
     /**
-     * 查询运营活动模型库
+     * 查询Библиотека моделей событий
      * 
-     * @param id 运营活动模型库ID
-     * @return 运营活动模型库
+     * @param id Библиотека моделей событийID
+     * @return Библиотека моделей событий
      */
     @Override
     public ActivityModel selectModelById(Integer id)
@@ -34,10 +34,10 @@ public class ActivityModelServiceImpl implements IActivityModelService
     }
 
     /**
-     * 查询运营活动模型库列表
+     * 查询Библиотека моделей событий列表
      * 
-     * @param activityModel 运营活动模型库
-     * @return 运营活动模型库
+     * @param activityModel Библиотека моделей событий
+     * @return Библиотека моделей событий
      */
     @Override
     public List<ActivityModel> selectModelList(ActivityModel activityModel)
@@ -46,10 +46,10 @@ public class ActivityModelServiceImpl implements IActivityModelService
     }
 
     /**
-     * 新增运营活动模型库
+     * ДобавитьБиблиотека моделей событий
      * 
-     * @param activityModel 运营活动模型库
-     * @return 结果
+     * @param activityModel Библиотека моделей событий
+     * @return Результат
      */
     @Override
     public int insertModel(ActivityModel activityModel)
@@ -58,10 +58,10 @@ public class ActivityModelServiceImpl implements IActivityModelService
     }
 
     /**
-     * 修改运营活动模型库
+     * ИзменитьБиблиотека моделей событий
      * 
-     * @param activityModel 运营活动模型库
-     * @return 结果
+     * @param activityModel Библиотека моделей событий
+     * @return Результат
      */
     @Override
     public int updateModel(ActivityModel activityModel)
@@ -70,10 +70,10 @@ public class ActivityModelServiceImpl implements IActivityModelService
     }
 
     /**
-     * 删除运营活动模型库对象
+     * УдалитьБиблиотека моделей событий对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteModelByIds(String ids)
@@ -82,10 +82,10 @@ public class ActivityModelServiceImpl implements IActivityModelService
     }
 
     /**
-     * 删除运营活动模型库信息
+     * УдалитьБиблиотека моделей событийИнформация
      * 
-     * @param id 运营活动模型库ID
-     * @return 结果
+     * @param id Библиотека моделей событийID
+     * @return Результат
      */
     @Override
     public int deleteModelById(Integer id)

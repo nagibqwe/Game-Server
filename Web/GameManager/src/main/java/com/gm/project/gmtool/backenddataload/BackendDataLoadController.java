@@ -79,7 +79,7 @@ public class BackendDataLoadController extends BaseController {
     }
 
     /**
-     * 公告数据加载
+     * 公告Данные加载
      * @param request
      * @return
      */
@@ -92,7 +92,7 @@ public class BackendDataLoadController extends BaseController {
     }
 
     /**
-     * 黑名单数据加载
+     * Чёрный списокДанные加载
      * @param request
      * @return
      */
@@ -263,7 +263,7 @@ public class BackendDataLoadController extends BaseController {
     }
 
     /**
-     * 运营活动boss类型重新加载
+     * Тип босса события重新加载
      * @param activityBossTypeFile
      * @return
      */
@@ -329,7 +329,7 @@ public class BackendDataLoadController extends BaseController {
     }
 
     /**
-     * 运营活动节日类型重新加载
+     * Игровые событияТип праздника重新加载
      * @param activityFestivalTypeFile
      * @return
      */
@@ -390,7 +390,7 @@ public class BackendDataLoadController extends BaseController {
     }
 
     /**
-     * 运营活动节日关系加载
+     * Связи праздничных событий加载
      * @param activityFestivalRelationFile
      * @return
      */
@@ -474,7 +474,7 @@ public class BackendDataLoadController extends BaseController {
                     val = cell.getNumericCellValue();
                     if (DateUtil.isCellDateFormatted(cell))
                     {
-                        val = DateUtil.getJavaDate((Double) val); // POI Excel 日期格式转换
+                        val = DateUtil.getJavaDate((Double) val); // POI Excel Дата格式转换
                     }
                     else
                     {
@@ -510,7 +510,7 @@ public class BackendDataLoadController extends BaseController {
         return val;
     }
     /**
-     * 运营活动节日关系加载
+     * Связи праздничных событий加载
      * @return
      */
     @PostMapping("/loadChangeReason")

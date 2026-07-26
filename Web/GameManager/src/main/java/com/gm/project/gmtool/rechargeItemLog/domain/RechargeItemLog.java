@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 充值配置日志对象 t_recharge_item_log
+ * Журнал настроек пополнения对象 t_recharge_item_log
  * 
  * @author gm
  * @date 2021-08-25
@@ -19,28 +19,28 @@ public class RechargeItemLog extends BaseEntity
     /**  */
     private Integer id;
 
-    /** 修改人id */
-    @Excel(name = "修改人id")
+    /** Изменить人id */
+    @Excel(name = "Изменить人id")
     private Integer userId;
 
-    /** 修改人IP */
-    @Excel(name = "修改人IP")
+    /** Изменить人IP */
+    @Excel(name = "Изменить人IP")
     private String ip;
 
-    /** 修改人名 */
-    @Excel(name = "修改人名")
+    /** Изменить人名 */
+    @Excel(name = "Изменить人名")
     private String userName;
 
-    /** 修改时间 */
-    @Excel(name = "修改时间")
+    /** Время изменения */
+    @Excel(name = "Время изменения")
     private Long time;
 
-    /** 操作表名 */
-    @Excel(name = "操作表名")
+    /** Действия表名 */
+    @Excel(name = "Действия表名")
     private String tableName;
 
-    /** 操作内容(详情) */
-    @Excel(name = "操作内容(详情)")
+    /** ДействияСодержимое(Подробнее) */
+    @Excel(name = "ДействияСодержимое(Подробнее)")
     private String content;
 
     public void setId(Integer id)

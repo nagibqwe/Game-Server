@@ -9,7 +9,7 @@ import com.gm.project.gmtool.activeCodebatch.service.ICodeBatchService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 激活码批次号Service业务层处理
+ * Пакет кодов активацииService业务层处理
  * 
  * @author gm
  * @date 2021-09-22
@@ -21,10 +21,10 @@ public class CodeBatchServiceImpl implements ICodeBatchService
     private CodeBatchMapper codeBatchMapper;
 
     /**
-     * 查询激活码批次号
+     * 查询Пакет кодов активации
      * 
-     * @param id 激活码批次号ID
-     * @return 激活码批次号
+     * @param id Пакет кодов активацииID
+     * @return Пакет кодов активации
      */
     @Override
     public CodeBatch selectCodeBatchById(Long id)
@@ -33,10 +33,10 @@ public class CodeBatchServiceImpl implements ICodeBatchService
     }
 
     /**
-     * 查询激活码批次号列表
+     * 查询Пакет кодов активации列表
      * 
-     * @param codeBatch 激活码批次号
-     * @return 激活码批次号
+     * @param codeBatch Пакет кодов активации
+     * @return Пакет кодов активации
      */
     @Override
     public List<CodeBatch> selectCodeBatchList(CodeBatch codeBatch)
@@ -45,10 +45,10 @@ public class CodeBatchServiceImpl implements ICodeBatchService
     }
 
     /**
-     * 新增激活码批次号
+     * ДобавитьПакет кодов активации
      * 
-     * @param codeBatch 激活码批次号
-     * @return 结果
+     * @param codeBatch Пакет кодов активации
+     * @return Результат
      */
     @Override
     public int insertCodeBatch(CodeBatch codeBatch)
@@ -57,10 +57,10 @@ public class CodeBatchServiceImpl implements ICodeBatchService
     }
 
     /**
-     * 修改激活码批次号
+     * ИзменитьПакет кодов активации
      * 
-     * @param codeBatch 激活码批次号
-     * @return 结果
+     * @param codeBatch Пакет кодов активации
+     * @return Результат
      */
     @Override
     public int updateCodeBatch(CodeBatch codeBatch)
@@ -69,10 +69,10 @@ public class CodeBatchServiceImpl implements ICodeBatchService
     }
 
     /**
-     * 删除激活码批次号对象
+     * УдалитьПакет кодов активации对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteCodeBatchByIds(String ids)
@@ -81,10 +81,10 @@ public class CodeBatchServiceImpl implements ICodeBatchService
     }
 
     /**
-     * 删除激活码批次号信息
+     * УдалитьПакет кодов активацииИнформация
      * 
-     * @param id 激活码批次号ID
-     * @return 结果
+     * @param id Пакет кодов активацииID
+     * @return Результат
      */
     @Override
     public int deleteCodeBatchById(Long id)

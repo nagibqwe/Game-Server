@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 运营活动对象 t_activity
+ * Игровые события对象 t_activity
  * 
  * @author gm
  * @date 2021-09-07
@@ -16,108 +16,108 @@ public class Activity extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 活动ID */
-    @Excel(name = "活动ID")
+    /** ID события */
+    @Excel(name = "ID события")
     private Integer id;
 
-    /** 活动类型 */
-    @Excel(name = "活动类型")
+    /** Тип события */
+    @Excel(name = "Тип события")
     private Integer type;
 
-    /** 节日类型 */
-    @Excel(name = "节日类型")
+    /** Тип праздника */
+    @Excel(name = "Тип праздника")
     private Integer subType;
 
-    /** 最小开放等级 */
-    @Excel(name = "最小开放等级")
+    /** 最小开放Уровень */
+    @Excel(name = "最小开放Уровень")
     private Integer minLv;
 
-    /** 最大开放等级 */
-    @Excel(name = "最大开放等级")
+    /** 最大开放Уровень */
+    @Excel(name = "最大开放Уровень")
     private Integer maxLv;
 
-    /** 标签(用于区分展示在哪个活动标签下) */
-    @Excel(name = "标签(用于区分展示在哪个活动标签下)")
+    /** 标签(用于区分展示在哪个Метка события下) */
+    @Excel(name = "标签(用于区分展示在哪个Метка события下)")
     private Integer tag;
 
-    /** 活动排序 */
-    @Excel(name = "活动排序")
+    /** 活动Сортировка */
+    @Excel(name = "活动Сортировка")
     private Integer sort;
 
-    /** 活动名称 */
-    @Excel(name = "活动名称")
+    /** Название события */
+    @Excel(name = "Название события")
     private String name;
 
     /** 活动说明 */
     @Excel(name = "活动说明")
     private String description;
 
-    /** 时间类型 0固定时间（配置时间）1开服时间变量（根据开服时间+时间变量计算） */
-    @Excel(name = "时间类型 0固定时间", readConverterExp = "配=置时间")
+    /** Тип времени 0固定Время（配置Время）1Время открытия сервера变量（根据Время открытия сервера+Время变量计算） */
+    @Excel(name = "Тип времени 0固定Время", readConverterExp = "配=置Время")
     private Integer timeType;
 
-    /** 距离开服多少天 */
-    @Excel(name = "距离开服多少天")
+    /** 距离开服多少День */
+    @Excel(name = "距离开服多少День")
     private Integer openServerOffsetBegin;
 
-    /** 活动天数 */
-    @Excel(name = "活动天数")
+    /** 活动День数 */
+    @Excel(name = "活动День数")
     private Integer openServerOffset;
 
-    /** 活动开始时间 */
-    @Excel(name = "活动开始时间")
+    /** 活动Время начала */
+    @Excel(name = "活动Время начала")
     private String beginTime;
 
-    /** 活动结束时间 */
-    @Excel(name = "活动结束时间")
+    /** 活动Время окончания */
+    @Excel(name = "活动Время окончания")
     private String endTime;
 
-    /** 记录距离开服多少天 */
-    @Excel(name = "记录距离开服多少天")
+    /** 记录距离开服多少День */
+    @Excel(name = "记录距离开服多少День")
     private Integer openServerRecordOffsetBegin;
 
-    /** 活动记录持续天数 */
-    @Excel(name = "活动记录持续天数")
+    /** 活动记录持续День数 */
+    @Excel(name = "活动记录持续День数")
     private Integer openServerRecordOffset;
 
-    /** 开始记录时间 */
-    @Excel(name = "开始记录时间")
+    /** 开始记录Время */
+    @Excel(name = "开始记录Время")
     private String startRecordTime;
 
-    /** 结束记录时间 */
-    @Excel(name = "结束记录时间")
+    /** 结束记录Время */
+    @Excel(name = "结束记录Время")
     private String endRecordTime;
 
-    /** 活动状态，0：未验证(测试、删除)，1：已验证(发布、删除)，2：已发布(删除)，     //已过期(删除)这个通过活动结束时间去判断 */
-    @Excel(name = "活动状态，0：未验证(测试、删除)，1：已验证(发布、删除)，2：已发布(删除)，     //已过期(删除)这个通过活动结束时间去判断")
+    /** Статус события，0：未验证(Тестовый、Удалить)，1：已验证(发布、Удалить)，2：已发布(Удалить)，     //已过期(Удалить)这个通过活动Время окончания去判断 */
+    @Excel(name = "Статус события，0：未验证(Тестовый、Удалить)，1：已验证(发布、Удалить)，2：已发布(Удалить)，     //已过期(Удалить)这个通过活动Время окончания去判断")
     private Integer state;
 
-    /** 活动要发布到的区服列表(List JSON化后的字串[sid1,sid2,..]) */
-    @Excel(name = "活动要发布到的区服列表(List JSON化后的字串[sid1,sid2,..])")
+    /** 活动要发布到的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..]) */
+    @Excel(name = "活动要发布到的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..])")
     private String toSidList;
 
-    /** 活动发布成功的区服列表(List JSON化后的字串[sid1,sid2,..]) */
-    @Excel(name = "活动发布成功的区服列表(List JSON化后的字串[sid1,sid2,..])")
+    /** 活动发布Успешно的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..]) */
+    @Excel(name = "活动发布Успешно的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..])")
     private String okSidList;
 
-    /** 活动是否被删除，0：否，1：是 */
-    @Excel(name = "活动是否被删除，0：否，1：是")
+    /** 活动ДаНет被Удалить，0：Нет，1：Да */
+    @Excel(name = "活动ДаНет被Удалить，0：Нет，1：Да")
     private Integer isDeleted;
 
-    /** 开服自动发布活动标识，0：否，1：是 */
-    @Excel(name = "开服自动发布活动标识，0：否，1：是")
+    /** Автопубликация при открытии活动标识，0：Нет，1：Да */
+    @Excel(name = "Автопубликация при открытии活动标识，0：Нет，1：Да")
     private Integer autoSend;
 
-    /** 是否是新服活动 */
-    @Excel(name = "是否是新服活动")
+    /** ДаНетДаСобытие нового сервера */
+    @Excel(name = "ДаНетДаСобытие нового сервера")
     private Integer isOpenServer;
 
     /** 自定义参数 */
     @Excel(name = "自定义参数")
     private String custom;
 
-    /** 活动是否被覆盖正在进行的活动，0：否，1：是 */
-    @Excel(name = "活动是否被覆盖正在进行的活动，0：否，1：是")
+    /** 活动ДаНет被覆盖正在进行的活动，0：Нет，1：Да */
+    @Excel(name = "活动ДаНет被覆盖正在进行的活动，0：Нет，1：Да")
     private Integer cover;
 
     /** 配置参数，用于GM后台反解析 */

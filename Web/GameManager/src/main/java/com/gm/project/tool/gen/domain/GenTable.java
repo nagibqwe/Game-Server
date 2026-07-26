@@ -17,11 +17,11 @@ public class GenTable extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 编号 */
+    /** Номер */
     private Long tableId;
 
-    /** 表名称 */
-    @NotBlank(message = "表名称不能为空")
+    /** Название таблицы */
+    @NotBlank(message = "Название таблицы不能为空")
     private String tableName;
 
     /** 表描述 */
@@ -34,11 +34,11 @@ public class GenTable extends BaseEntity
     /** 本表关联父表的外键名 */
     private String subTableFkName;
 
-    /** 实体类名称(首字母大写) */
-    @NotBlank(message = "实体类名称不能为空")
+    /** 实体类Название(首字母大写) */
+    @NotBlank(message = "实体类Название不能为空")
     private String className;
 
-    /** 使用的模板（crud单表操作 tree树表操作 sub主子表操作） */
+    /** 使用的模板（crud单表Действия tree树表Действия sub主子表Действия） */
     private String tplCategory;
 
     /** 生成包路径 */
@@ -53,8 +53,8 @@ public class GenTable extends BaseEntity
     @NotBlank(message = "生成业务名不能为空")
     private String businessName;
 
-    /** 生成功能名 */
-    @NotBlank(message = "生成功能名不能为空")
+    /** 生Успешно能名 */
+    @NotBlank(message = "生Успешно能名不能为空")
     private String functionName;
 
     /** 生成作者 */
@@ -67,13 +67,13 @@ public class GenTable extends BaseEntity
     /** 生成路径（不填默认项目路径） */
     private String genPath;
 
-    /** 主键信息 */
+    /** 主键Информация */
     private GenTableColumn pkColumn;
 
-    /** 子表信息 */
+    /** 子表Информация */
     private GenTable subTable;
 
-    /** 表列信息 */
+    /** 表列Информация */
     @Valid
     private List<GenTableColumn> columns;
 
@@ -86,13 +86,13 @@ public class GenTable extends BaseEntity
     /** 树父编码字段 */
     private String treeParentCode;
 
-    /** 树名称字段 */
+    /** 树Название字段 */
     private String treeName;
 
     /** 上级菜单ID字段 */
     private String parentMenuId;
 
-    /** 上级菜单名称字段 */
+    /** 上级菜单Название字段 */
     private String parentMenuName;
 
     public Long getTableId()

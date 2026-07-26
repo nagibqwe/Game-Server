@@ -14,32 +14,32 @@ public interface IUserService
     /**
      * 根据条件分页查询用户列表
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user 用户Информация
+     * @return 用户Информация集合Информация
      */
     public List<User> selectUserList(User user);
 
     /**
      * 根据条件分页查询已分配用户角色列表
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user 用户Информация
+     * @return 用户Информация集合Информация
      */
     public List<User> selectAllocatedList(User user);
 
     /**
      * 根据条件分页查询未分配用户角色列表
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user 用户Информация
+     * @return 用户Информация集合Информация
      */
     public List<User> selectUnallocatedList(User user);
 
     /**
-     * 通过用户名查询用户
+     * 通过Имя пользователя查询用户
      * 
-     * @param userName 用户名
-     * @return 用户对象信息
+     * @param userName Имя пользователя
+     * @return 用户对象Информация
      */
     public User selectUserByLoginName(String userName);
 
@@ -47,7 +47,7 @@ public interface IUserService
      * 通过手机号码查询用户
      * 
      * @param phoneNumber 手机号码
-     * @return 用户对象信息
+     * @return 用户对象Информация
      */
     public User selectUserByPhoneNumber(String phoneNumber);
 
@@ -55,152 +55,152 @@ public interface IUserService
      * 通过邮箱查询用户
      * 
      * @param email 邮箱
-     * @return 用户对象信息
+     * @return 用户对象Информация
      */
     public User selectUserByEmail(String email);
 
     /**
-     * 通过用户ID查询用户
+     * 通过ID пользователя查询用户
      * 
-     * @param userId 用户ID
-     * @return 用户对象信息
+     * @param userId ID пользователя
+     * @return 用户对象Информация
      */
     public User selectUserById(Long userId);
 
     /**
-     * 通过用户ID查询用户和角色关联
+     * 通过ID пользователя查询用户和角色关联
      * 
-     * @param userId 用户ID
+     * @param userId ID пользователя
      * @return 用户和角色关联列表
      */
     public List<UserRole> selectUserRoleByUserId(Long userId);
 
     /**
-     * 通过用户ID删除用户
+     * 通过ID пользователяУдалить用户
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ID пользователя
+     * @return Результат
      */
     public int deleteUserById(Long userId);
 
     /**
-     * 批量删除用户信息
+     * 批量Удалить用户Информация
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      * @throws Exception 异常
      */
     public int deleteUserByIds(String ids);
 
     /**
-     * 保存用户信息
+     * Сохранить用户Информация
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public int insertUser(User user);
 
     /**
-     * 注册用户信息
+     * Зарегистрироваться用户Информация
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public boolean registerUser(User user);
 
     /**
-     * 保存用户信息
+     * Сохранить用户Информация
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public int updateUser(User user);
 
     /**
-     * 修改用户详细信息
+     * Изменить用户详细Информация
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public int updateUserInfo(User user);
 
     /**
      * 用户授权角色
      * 
-     * @param userId 用户ID
+     * @param userId ID пользователя
      * @param roleIds 角色组
      */
     public void insertUserAuth(Long userId, Long[] roleIds);
 
     /**
-     * 修改用户密码信息
+     * Изменить用户ПарольИнформация
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public int resetUserPwd(User user);
 
     /**
-     * 校验用户名称是否唯一
+     * 校验Имя пользователяДаНет唯一
      * 
-     * @param loginName 登录名称
-     * @return 结果
+     * @param loginName Логин
+     * @return Результат
      */
     public String checkLoginNameUnique(String loginName);
 
     /**
-     * 校验手机号码是否唯一
+     * 校验手机号码ДаНет唯一
      *
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public String checkPhoneUnique(User user);
 
     /**
-     * 校验email是否唯一
+     * 校验emailДаНет唯一
      *
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public String checkEmailUnique(User user);
 
     /**
-     * 校验用户是否允许操作
+     * 校验用户ДаНет允许Действия
      * 
-     * @param user 用户信息
+     * @param user 用户Информация
      */
     public void checkUserAllowed(User user);
 
     /**
-     * 根据用户ID查询用户所属角色组
+     * 根据ID пользователя查询用户所属角色组
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ID пользователя
+     * @return Результат
      */
     public String selectUserRoleGroup(Long userId);
 
     /**
-     * 根据用户ID查询用户所属岗位组
+     * 根据ID пользователя查询用户所属岗位组
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ID пользователя
+     * @return Результат
      */
     public String selectUserPostGroup(Long userId);
 
     /**
-     * 导入用户数据
+     * Импорт用户Данные
      * 
-     * @param userList 用户数据列表
-     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-     * @return 结果
+     * @param userList 用户Данные列表
+     * @param isUpdateSupport ДаНет更新支持，如果已存在，则进行更新Данные
+     * @return Результат
      */
     public String importUser(List<User> userList, Boolean isUpdateSupport);
 
     /**
-     * 用户状态修改
+     * Статус пользователяИзменить
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user 用户Информация
+     * @return Результат
      */
     public int changeStatus(User user);
 }

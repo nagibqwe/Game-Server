@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 节日类型对象 t_activity_festival_type
+ * Тип праздника对象 t_activity_festival_type
  * 
  * @author gm
  * @date 2021-09-09

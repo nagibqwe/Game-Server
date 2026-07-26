@@ -31,7 +31,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 充值日志Controller
+ * ПополнениеЖурналController
  * 
  * @author gm
  * @date 2021-09-09
@@ -52,7 +52,7 @@ public class RechargelogController extends BaseController
         return prefix + "/rechargelog";
     }
     /**
-     * 查询充值日志列表
+     * 查询ПополнениеЖурнал列表
      */
     @RequiresPermissions("gamelog:rechargelog:list")
     @PostMapping("/list")
@@ -60,10 +60,10 @@ public class RechargelogController extends BaseController
     public TableDataInfo list(Rechargelog rechargelog,String startDate,String endDate,Integer serverId)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = new HashMap<>();
         param.put("startDate",startDate);
@@ -90,10 +90,10 @@ public class RechargelogController extends BaseController
         return tableDataInfo;
     }
     /**
-     * 导出充值日志列表
+     * ЭкспортПополнениеЖурнал列表
      */
     @RequiresPermissions("gamelog:rechargelog:export")
-    @Log(title = "充值日志", businessType = BusinessType.EXPORT)
+    @Log(title = "ПополнениеЖурнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Rechargelog rechargelog,String startDate,String endDate,Integer serverId)
@@ -115,6 +115,6 @@ public class RechargelogController extends BaseController
         }
         List<Rechargelog> list = rechargelogService.selectRechargelogList(rechargelog,param);
         ExcelUtil<Rechargelog> util = new ExcelUtil<Rechargelog>(Rechargelog.class);
-        return util.exportExcel(list, "充值日志数据");
+        return util.exportExcel(list, "ПополнениеЖурналДанные");
     }
 }

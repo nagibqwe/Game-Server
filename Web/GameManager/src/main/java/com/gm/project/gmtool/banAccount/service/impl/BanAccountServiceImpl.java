@@ -9,7 +9,7 @@ import com.gm.project.gmtool.banAccount.service.IBanAccountService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 账号封禁Service业务层处理
+ * Блокировка аккаунтаService业务层处理
  * 
  * @author gm
  * @date 2021-11-21
@@ -21,10 +21,10 @@ public class BanAccountServiceImpl implements IBanAccountService
     private BanAccountMapper banAccountMapper;
 
     /**
-     * 查询账号封禁
+     * 查询Блокировка аккаунта
      * 
-     * @param id 账号封禁ID
-     * @return 账号封禁
+     * @param id Блокировка аккаунтаID
+     * @return Блокировка аккаунта
      */
     @Override
     public BanAccount selectBanAccountById(Long id)
@@ -33,10 +33,10 @@ public class BanAccountServiceImpl implements IBanAccountService
     }
 
     /**
-     * 查询账号封禁列表
+     * 查询Блокировка аккаунта列表
      * 
-     * @param banAccount 账号封禁
-     * @return 账号封禁
+     * @param banAccount Блокировка аккаунта
+     * @return Блокировка аккаунта
      */
     @Override
     public List<BanAccount> selectBanAccountList(BanAccount banAccount)
@@ -45,10 +45,10 @@ public class BanAccountServiceImpl implements IBanAccountService
     }
 
     /**
-     * 新增账号封禁
+     * ДобавитьБлокировка аккаунта
      * 
-     * @param banAccount 账号封禁
-     * @return 结果
+     * @param banAccount Блокировка аккаунта
+     * @return Результат
      */
     @Override
     public int insertBanAccount(BanAccount banAccount)
@@ -57,10 +57,10 @@ public class BanAccountServiceImpl implements IBanAccountService
     }
 
     /**
-     * 修改账号封禁
+     * ИзменитьБлокировка аккаунта
      * 
-     * @param banAccount 账号封禁
-     * @return 结果
+     * @param banAccount Блокировка аккаунта
+     * @return Результат
      */
     @Override
     public int updateBanAccount(BanAccount banAccount)
@@ -69,10 +69,10 @@ public class BanAccountServiceImpl implements IBanAccountService
     }
 
     /**
-     * 删除账号封禁对象
+     * УдалитьБлокировка аккаунта对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteBanAccountByIds(String ids)
@@ -81,10 +81,10 @@ public class BanAccountServiceImpl implements IBanAccountService
     }
 
     /**
-     * 删除账号封禁信息
+     * УдалитьБлокировка аккаунтаИнформация
      * 
-     * @param id 账号封禁ID
-     * @return 结果
+     * @param id Блокировка аккаунтаID
+     * @return Результат
      */
     @Override
     public int deleteBanAccountById(Long id)

@@ -24,7 +24,7 @@ import java.util.List;
 
 
 /**
- * 更新公告Controller
+ * Объявление об обновленииController
  * 
  * @author gm
  * @date 2021-10-30
@@ -49,7 +49,7 @@ public class UpdateNoticeController extends BaseController
     }
 
     /**
-     * 查询更新公告列表
+     * 查询Объявление об обновлении列表
      */
 //    @RequiresPermissions("gmtool:updateNotice:list")
     @PostMapping("/list")
@@ -62,21 +62,21 @@ public class UpdateNoticeController extends BaseController
     }
 
     /**
-     * 导出更新公告列表
+     * ЭкспортОбъявление об обновлении列表
      */
     @RequiresPermissions("gmtool:updateNotice:export")
-    @Log(title = "更新公告", businessType = BusinessType.EXPORT)
+    @Log(title = "Объявление об обновлении", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(UpdateNotice updateNotice)
     {
         List<UpdateNotice> list = updateNoticeService.selectUpdateNoticeList(updateNotice);
         ExcelUtil<UpdateNotice> util = new ExcelUtil<UpdateNotice>(UpdateNotice.class);
-        return util.exportExcel(list, "更新公告数据");
+        return util.exportExcel(list, "Объявление об обновленииДанные");
     }
 
     /**
-     * 新增更新公告
+     * ДобавитьОбъявление об обновлении
      */
     @GetMapping("/add")
     public String add()
@@ -85,10 +85,10 @@ public class UpdateNoticeController extends BaseController
     }
 
     /**
-     * 新增保存更新公告
+     * ДобавитьСохранитьОбъявление об обновлении
      */
     @RequiresPermissions("gmtool:updateNotice:add")
-    @Log(title = "更新公告", businessType = BusinessType.INSERT)
+    @Log(title = "Объявление об обновлении", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(UpdateNotice updateNotice)
@@ -97,7 +97,7 @@ public class UpdateNoticeController extends BaseController
     }
 
     /**
-     * 修改更新公告
+     * ИзменитьОбъявление об обновлении
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -108,10 +108,10 @@ public class UpdateNoticeController extends BaseController
     }
 
     /**
-     * 修改保存更新公告
+     * ИзменитьСохранитьОбъявление об обновлении
      */
     @RequiresPermissions("gmtool:updateNotice:edit")
-    @Log(title = "更新公告", businessType = BusinessType.UPDATE)
+    @Log(title = "Объявление об обновлении", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(UpdateNotice updateNotice)
@@ -120,10 +120,10 @@ public class UpdateNoticeController extends BaseController
     }
 
     /**
-     * 删除更新公告
+     * УдалитьОбъявление об обновлении
      */
     @RequiresPermissions("gmtool:updateNotice:remove")
-    @Log(title = "更新公告", businessType = BusinessType.DELETE)
+    @Log(title = "Объявление об обновлении", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -132,7 +132,7 @@ public class UpdateNoticeController extends BaseController
     }
 
     /**
-     * 发送更新公告
+     * 发送Объявление об обновлении
      * @param request
      * @param selectServerIdList
      * @param content
@@ -151,14 +151,14 @@ public class UpdateNoticeController extends BaseController
         for (String sid:selectServerIdList) {
             TServer server = tServerService.selectTServerByServerId(Integer.parseInt(sid));
             if (server == null) {
-                return AjaxResult.info("服务器连接信息获取失败,serverId="+sid).put("ok",false);
+                return AjaxResult.info("Не удалось получить данные подключения к серверу,serverId="+sid).put("ok",false);
             }
             AjaxResult resultMap = GameServerRequestUtil.gmSendUpdateNotice(server, content, items, type>0?"1":String.valueOf(type));
             if (Boolean.valueOf(resultMap.get("ok").toString())) {
                 sb.append(server.getServerName()).append(resultMap.get("msg")).append("\n");
                 serverIdStr.append(sid).append(",");
             }else {
-                sb.append(server.getServerName()).append("失败，原因：").append(resultMap.get("msg")).append("\n");
+                sb.append(server.getServerName()).append("Ошибка，原因：").append(resultMap.get("msg")).append("\n");
             }
         }
 
@@ -168,7 +168,7 @@ public class UpdateNoticeController extends BaseController
         bean.setReward(items);
         bean.setType(type);
         updateNoticeService.insertUpdateNotice(bean);
-        GMLogUtil.log("设置更新公告成功,ID="+bean.getId());
+        GMLogUtil.log("设置Объявление об обновленииУспешно,ID="+bean.getId());
         return AjaxResult.info(sb.toString()).put("ok",true);
 
     }

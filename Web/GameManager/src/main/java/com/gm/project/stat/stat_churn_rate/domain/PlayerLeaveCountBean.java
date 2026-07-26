@@ -5,7 +5,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 public class PlayerLeaveCountBean extends BaseEntity {
     private static final long serialVersionUID = 1L;
-    @Excel(name = "时间")
+    @Excel(name = "Время")
     private String date;
     private int roleLoginCount;
     private int roleLostCount;

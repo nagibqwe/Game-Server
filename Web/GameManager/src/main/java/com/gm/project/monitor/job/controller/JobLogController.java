@@ -24,7 +24,7 @@ import com.gm.project.monitor.job.service.IJobLogService;
 import com.gm.project.monitor.job.service.IJobService;
 
 /**
- * 调度日志操作处理
+ * Журнал заданийДействия处理
  * 
  * @author ruoyi
  */
@@ -62,7 +62,7 @@ public class JobLogController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "调度日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Журнал заданий", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:job:export")
     @PostMapping("/export")
     @ResponseBody
@@ -70,10 +70,10 @@ public class JobLogController extends BaseController
     {
         List<JobLog> list = jobLogService.selectJobLogList(jobLog);
         ExcelUtil<JobLog> util = new ExcelUtil<JobLog>(JobLog.class);
-        return util.exportExcel(list, "调度日志");
+        return util.exportExcel(list, "Журнал заданий");
     }
 
-    @Log(title = "调度日志", businessType = BusinessType.DELETE)
+    @Log(title = "Журнал заданий", businessType = BusinessType.DELETE)
     @RequiresPermissions("monitor:job:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -91,7 +91,7 @@ public class JobLogController extends BaseController
         return prefix + "/detail";
     }
 
-    @Log(title = "调度日志", businessType = BusinessType.CLEAN)
+    @Log(title = "Журнал заданий", businessType = BusinessType.CLEAN)
     @RequiresPermissions("monitor:job:remove")
     @PostMapping("/clean")
     @ResponseBody

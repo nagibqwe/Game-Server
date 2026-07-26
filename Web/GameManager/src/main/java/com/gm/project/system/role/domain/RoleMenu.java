@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class RoleMenu
 {
-    /** 角色ID */
+    /** ID персонажа */
     private Long roleId;
     
     /** 菜单ID */

@@ -19,7 +19,7 @@ import java.util.List;
 
 
 /**
- * 游戏参数信息Controller
+ * Параметры игрыController
  * 
  * @author gm
  * @date 2021-11-15
@@ -41,7 +41,7 @@ public class GameInfoController extends BaseController
     }
 
     /**
-     * 查询游戏参数信息列表
+     * 查询Параметры игры列表
      */
     @RequiresPermissions("gmtool:gameInfo:list")
     @PostMapping("/list")
@@ -54,21 +54,21 @@ public class GameInfoController extends BaseController
     }
 
     /**
-     * 导出游戏参数信息列表
+     * ЭкспортПараметры игры列表
      */
     @RequiresPermissions("gmtool:gameInfo:export")
-    @Log(title = "游戏参数信息", businessType = BusinessType.EXPORT)
+    @Log(title = "Параметры игры", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(GameInfo gameInfo)
     {
         List<GameInfo> list = gameInfoService.selectGameInfoList(gameInfo);
         ExcelUtil<GameInfo> util = new ExcelUtil<GameInfo>(GameInfo.class);
-        return util.exportExcel(list, "游戏参数信息数据");
+        return util.exportExcel(list, "Параметры игрыДанные");
     }
 
     /**
-     * 新增游戏参数信息
+     * ДобавитьПараметры игры
      */
     @GetMapping("/add")
     public String add()
@@ -77,20 +77,20 @@ public class GameInfoController extends BaseController
     }
 
     /**
-     * 新增保存游戏参数信息
+     * ДобавитьСохранитьПараметры игры
      */
     @RequiresPermissions("gmtool:gameInfo:add")
-    @Log(title = "游戏参数信息", businessType = BusinessType.INSERT)
+    @Log(title = "Параметры игры", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(GameInfo gameInfo)
     {
         int rows = gameInfoService.insertGameInfo(gameInfo);
         if(rows>0){
-            if(gameInfo.getGameId()>0&&gameInfo.getGameId() == GameInfoManager.getInstance().getGameInfo().getGameId()){//同步游戏信息到APIServer
-                //更新当前GM后台匹配游戏的参数信息
+            if(gameInfo.getGameId()>0&&gameInfo.getGameId() == GameInfoManager.getInstance().getGameInfo().getGameId()){//同步游戏Информация到APIServer
+                //更新当前GM后台匹配游戏的参数Информация
                 GameInfoManager.getInstance().updateGameInfo(gameInfo);
-                //通知APIServer更新游戏的参数信息
+                //通知APIServer更新游戏的参数Информация
                 GameInfoManager.getInstance().noticeUpdateGameInfo(gameInfo);
             }
         }
@@ -98,7 +98,7 @@ public class GameInfoController extends BaseController
     }
 
     /**
-     * 修改游戏参数信息
+     * ИзменитьПараметры игры
      */
     @GetMapping("/edit/{gameId}")
     public String edit(@PathVariable("gameId") Integer gameId, ModelMap mmap)
@@ -109,20 +109,20 @@ public class GameInfoController extends BaseController
     }
 
     /**
-     * 修改保存游戏参数信息
+     * ИзменитьСохранитьПараметры игры
      */
     @RequiresPermissions("gmtool:gameInfo:edit")
-    @Log(title = "游戏参数信息", businessType = BusinessType.UPDATE)
+    @Log(title = "Параметры игры", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(GameInfo gameInfo)
     {
         int rows = gameInfoService.updateGameInfo(gameInfo);
         if(rows>0){
-            if(gameInfo.getGameId()>0&&gameInfo.getGameId() == GameInfoManager.getInstance().getGameInfo().getGameId()){//同步游戏信息到APIServer
-                //更新当前GM后台匹配游戏的参数信息
+            if(gameInfo.getGameId()>0&&gameInfo.getGameId() == GameInfoManager.getInstance().getGameInfo().getGameId()){//同步游戏Информация到APIServer
+                //更新当前GM后台匹配游戏的参数Информация
                 GameInfoManager.getInstance().updateGameInfo(gameInfo);
-                //通知APIServer更新游戏的参数信息
+                //通知APIServer更新游戏的参数Информация
                 GameInfoManager.getInstance().noticeUpdateGameInfo(gameInfo);
             }
         }
@@ -130,10 +130,10 @@ public class GameInfoController extends BaseController
     }
 
     /**
-     * 删除游戏参数信息
+     * УдалитьПараметры игры
      */
     @RequiresPermissions("gmtool:gameInfo:remove")
-    @Log(title = "游戏参数信息", businessType = BusinessType.DELETE)
+    @Log(title = "Параметры игры", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

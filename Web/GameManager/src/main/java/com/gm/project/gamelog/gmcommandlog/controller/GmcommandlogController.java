@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * gm命令日志Controller
+ * gm命令ЖурналController
  * 
  * @author gm
  * @date 2021-09-08
@@ -46,7 +46,7 @@ public class GmcommandlogController extends BaseController
         return prefix + "/gmcommandlog";
     }
     /**
-     * 查询gm命令日志列表
+     * 查询gm命令Журнал列表
      */
     @RequiresPermissions("gamelog:gmcommandlog:list")
     @PostMapping("/list")
@@ -54,10 +54,10 @@ public class GmcommandlogController extends BaseController
     public TableDataInfo list(Gmcommandlog gmcommandlog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         startPage();
@@ -65,10 +65,10 @@ public class GmcommandlogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出gm命令日志列表
+     * Экспортgm命令Журнал列表
      */
     @RequiresPermissions("gamelog:gmcommandlog:export")
-    @Log(title = "gm命令日志", businessType = BusinessType.EXPORT)
+    @Log(title = "gm命令Журнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Gmcommandlog gmcommandlog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class GmcommandlogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Gmcommandlog> list = gmcommandlogService.selectGmcommandlogList(gmcommandlog,param);
         ExcelUtil<Gmcommandlog> util = new ExcelUtil<Gmcommandlog>(Gmcommandlog.class);
-        return util.exportExcel(list, "gm命令日志数据");
+        return util.exportExcel(list, "gm命令ЖурналДанные");
     }
 }

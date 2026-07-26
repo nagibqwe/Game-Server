@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.banAccount.domain.BanAccount;
 
 /**
- * 账号封禁Service接口
+ * Блокировка аккаунтаService接口
  * 
  * @author gm
  * @date 2021-11-21
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.banAccount.domain.BanAccount;
 public interface IBanAccountService 
 {
     /**
-     * 查询账号封禁
+     * 查询Блокировка аккаунта
      * 
-     * @param id 账号封禁ID
-     * @return 账号封禁
+     * @param id Блокировка аккаунтаID
+     * @return Блокировка аккаунта
      */
     public BanAccount selectBanAccountById(Long id);
 
     /**
-     * 查询账号封禁列表
+     * 查询Блокировка аккаунта列表
      * 
-     * @param banAccount 账号封禁
-     * @return 账号封禁集合
+     * @param banAccount Блокировка аккаунта
+     * @return Блокировка аккаунта集合
      */
     public List<BanAccount> selectBanAccountList(BanAccount banAccount);
 
     /**
-     * 新增账号封禁
+     * ДобавитьБлокировка аккаунта
      * 
-     * @param banAccount 账号封禁
-     * @return 结果
+     * @param banAccount Блокировка аккаунта
+     * @return Результат
      */
     public int insertBanAccount(BanAccount banAccount);
 
     /**
-     * 修改账号封禁
+     * ИзменитьБлокировка аккаунта
      * 
-     * @param banAccount 账号封禁
-     * @return 结果
+     * @param banAccount Блокировка аккаунта
+     * @return Результат
      */
     public int updateBanAccount(BanAccount banAccount);
 
     /**
-     * 批量删除账号封禁
+     * 批量УдалитьБлокировка аккаунта
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteBanAccountByIds(String ids);
 
     /**
-     * 删除账号封禁信息
+     * УдалитьБлокировка аккаунтаИнформация
      * 
-     * @param id 账号封禁ID
-     * @return 结果
+     * @param id Блокировка аккаунтаID
+     * @return Результат
      */
     public int deleteBanAccountById(Long id);
 }

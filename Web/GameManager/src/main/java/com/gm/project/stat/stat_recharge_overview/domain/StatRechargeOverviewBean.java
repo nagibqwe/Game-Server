@@ -17,7 +17,7 @@ public class StatRechargeOverviewBean extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
     /**
-     *日期
+     *Дата
      */
     private String date;
     /**
@@ -29,15 +29,15 @@ public class StatRechargeOverviewBean extends BaseEntity
      */
     private Long DAU;
     /**
-     * 当天新增账号
+     * 当ДеньДобавить账号
      */
     private Long newUsers;
     /**
-     * 当天付费账号
+     * 当День付费账号
      */
     private Long rechargeUsers;
     /**
-     * 新增付费账号
+     * Добавить付费账号
      */
     private Long newRechargeUsers;
     /**
@@ -46,7 +46,7 @@ public class StatRechargeOverviewBean extends BaseEntity
     private Long oldRechargeUsers;
 
     /**
-     * 新增玩家付费率
+     * Добавить玩家付费率
      */
     private String newRechargeRate;
     /**

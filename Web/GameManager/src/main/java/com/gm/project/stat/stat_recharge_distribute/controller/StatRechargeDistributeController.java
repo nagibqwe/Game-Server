@@ -16,7 +16,7 @@ import java.util.Map;
 
 
 /**
- * 充值统计Controller
+ * Пополнение统计Controller
  * 
  * @author gm
  * @date 2021-09-13
@@ -31,7 +31,7 @@ public class StatRechargeDistributeController extends BaseController
     private IStatRechargeDistributeService statPayService;
 
     /**
-     * 跳转到充值统计界面
+     * 跳转到Пополнение统计界面
      * @return
      */
     @GetMapping()
@@ -42,7 +42,7 @@ public class StatRechargeDistributeController extends BaseController
 
     /**
      *
-     * 充值档位分布统计
+     * Пополнение档位分布统计
      * @param channelNames
      * @param selectServerIdList
      * @param startDate
@@ -54,10 +54,10 @@ public class StatRechargeDistributeController extends BaseController
     public TableDataInfo payLevelStat(String selectServerIdList,String channelNames, String startDate, String endDate)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
         List<Map<String, Object>> list = this.statPayService.payLevelStat(selectServerIdList,channelNames,startDate,endDate);
@@ -65,7 +65,7 @@ public class StatRechargeDistributeController extends BaseController
     }
 
     /**
-     * 每日充值金额统计
+     * 每日Сумма пополнения统计
      * @param channelNames
      * @param startDate
      * @return
@@ -75,10 +75,10 @@ public class StatRechargeDistributeController extends BaseController
     public TableDataInfo payDaylStat(String selectServerIdList,String channelNames, String startDate)
     {
         if(StringUtils.isEmpty(startDate)){
-            return getDataTableErrorMsg("请选择时间");
+            return getDataTableErrorMsg("请选择Время");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
         List<Map<String, Object>> list = this.statPayService.payDaylStat(selectServerIdList,channelNames,startDate);
@@ -97,10 +97,10 @@ public class StatRechargeDistributeController extends BaseController
     public TableDataInfo payGoodIdslStat(String selectServerIdList,String channelNames, String startDate, String endDate)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
         List<Map<String, Object>> list = this.statPayService.payGoodIdslStat(selectServerIdList,channelNames,startDate,endDate);

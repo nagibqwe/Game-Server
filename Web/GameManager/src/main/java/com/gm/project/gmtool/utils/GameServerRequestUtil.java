@@ -19,9 +19,9 @@ import java.util.Map;
 public class GameServerRequestUtil {
 
     /**
-     * 后台模拟充值
-     * @param roleId        角色id
-     * @param rechargeNum   充值数量
+     * Тестовое пополнение через GM
+     * @param roleId        ID персонажа
+     * @param rechargeNum   Пополнение数量
      */
     public static AjaxResult gmRecharge(TServer server, long roleId, int rechargeNum, int rechargeTotalGold, int rechargeVipExp) {
         Map<String, Object> map = new HashMap<>();
@@ -36,8 +36,8 @@ public class GameServerRequestUtil {
 
     /**
      * 发布公告
-     * @param type      公告类型：0滚动公告，1聊天框
-     * @param content   内容
+     * @param type      公告Тип：0滚动公告，1聊День框
+     * @param content   Содержимое
      */
     public static AjaxResult gmPublishAnnounce(TServer server, int type, String content) {
         Map<String, Object> map = new HashMap<>();
@@ -70,7 +70,7 @@ public class GameServerRequestUtil {
     }
 
 //    /**
-//     * 删除活动
+//     * Удалить活动
 //     */
 //    public static NutMap gmActivityDeleteMess(Server server, int actId) {
 //        Map<String, Object> map = new HashMap<>();
@@ -81,7 +81,7 @@ public class GameServerRequestUtil {
 //    }
 
     /**
-     * 批量删除活动
+     * 批量Удалить活动
      */
     public static AjaxResult gmBatchDeleteActMess(TServer server, List<Integer> actIds, List<Integer> actTypes) {
         Map<String, Object> map = new HashMap<>();
@@ -93,7 +93,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 处理运营活动
+     * 处理Игровые события
      */
     public static AjaxResult activityDeal(TServer server, String params) {
         Map<String, Object> map = new HashMap<>();
@@ -115,7 +115,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 通知游戏刷新禁言信息
+     * 通知游戏Обновить禁言Информация
      */
     public static AjaxResult gmBanChat(TServer server, int timeout) {
         Map<String, Object> map = new HashMap<>();
@@ -125,7 +125,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 添加屏蔽字
+     * Добавить屏蔽字
      */
     public static AjaxResult gmAddShieldWord(TServer server, String shieldType, String shieldWord) {
         Map<String, Object> map = new HashMap<>();
@@ -140,7 +140,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 删除屏蔽字
+     * Удалить屏蔽字
      */
     public static AjaxResult gmDeleteShieldWord(TServer server, int id) {
         Map<String, Object> map = new HashMap<>();
@@ -151,7 +151,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 聊天替换字
+     * 聊День替换字
      */
     public static AjaxResult gmLoadReplaceWord(TServer server) {
         Map<String, Object> map = new HashMap<>();
@@ -161,7 +161,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 聊天黑名单
+     * 聊ДеньЧёрный список
      */
     public static AjaxResult gmLoadChatBlackList(TServer server) {
         Map<String, Object> map = new HashMap<>();
@@ -202,7 +202,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 设置评价开关
+     * 设置Оценки включены
      */
     public static AjaxResult gmSetEvaluate(TServer server, Evaluate evaluate) {
         Map<String, Object> map = new HashMap<>();
@@ -214,7 +214,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 排行榜数据获取
+     * РейтингДанные获取
      */
     public static AjaxResult gmQueryRankList(TServer server, int rankType) {
         Map<String, Object> map = new HashMap<>();
@@ -265,7 +265,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * gm发送邮件
+     * gm发送Письмо
      */
     public static AjaxResult gmSendMail(TServer server, MailData mailData) {
         HashMap<String, Object> map = new HashMap<>();
@@ -279,7 +279,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * gm发送多个服务器全服邮件
+     * gm发送多个СерверПисьмо всем серверам
      */
     public static AjaxResult gmSendAllMail(TServer server, AllMailData mailData, String serverIdList) {
         HashMap<String, Object> map = new HashMap<>();
@@ -296,7 +296,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 查询开服时间
+     * 查询Время открытия сервера
      */
     public static AjaxResult gmQueryOpsTime(TServer server) {
         HashMap<String, Object> map = new HashMap<>();
@@ -306,7 +306,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 设置开服时间
+     * 设置Время открытия сервера
      */
     public static AjaxResult gmSetOpsTime(TServer server, String time) {
         HashMap<String, Object> map = new HashMap<>();
@@ -317,7 +317,7 @@ public class GameServerRequestUtil {
     }
 
 //    /**
-//     * 查询注册限制人数
+//     * 查询Зарегистрироваться限制Количество
 //     */
 //    public static AjaxResult gmQueryRegisterLimitNum(TServer server) {
 //        HashMap<String, Object> map = new HashMap<>();
@@ -327,7 +327,7 @@ public class GameServerRequestUtil {
 //    }
 
     /**
-     * 设置注册限制人数
+     * 设置Зарегистрироваться限制Количество
      */
     public static AjaxResult gmSetRegisterLimitNum(TServer server, int num) {
         HashMap<String, Object> map = new HashMap<>();
@@ -338,7 +338,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 获取商城信息
+     * 获取МагазинИнформация
      */
     public static AjaxResult gmGetShopInfo(TServer server, String id) {
         HashMap<String, Object> map = new HashMap<>();
@@ -349,7 +349,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 设置商品信息
+     * 设置商品Информация
      */
     public static AjaxResult gmSetShopInfo(TServer server, String shopInfo) {
         HashMap<String, Object> map = new HashMap<>();
@@ -359,7 +359,7 @@ public class GameServerRequestUtil {
         return command.execute(server, new ResultNutMapHandler());
     }
     /**
-     * 删除商品信息
+     * Удалить商品Информация
      */
     public static AjaxResult gmDeleteShopInfo(TServer server, String id) {
         HashMap<String, Object> map = new HashMap<>();
@@ -370,7 +370,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 角色转移
+     * Перенос персонажа
      */
     public static AjaxResult gmTranRole(TServer server, String tranRoleId, String tranUserId) {
         HashMap<String, Object> map = new HashMap<>();
@@ -382,7 +382,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 发送更新公告
+     * 发送Объявление об обновлении
      */
     public static AjaxResult gmSendUpdateNotice(TServer server, String content, String items, String resetReceives) {
         Map<String, Object> map = new HashMap<>();
@@ -395,7 +395,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 获取发送充值商城信息
+     * 获取发送ПополнениеМагазинИнформация
      */
     public static AjaxResult gmRefreshRechargeItemInfos(TServer server, String datas, String md5, int timeout) {
         HashMap<String, Object> map = new HashMap<>();
@@ -407,7 +407,7 @@ public class GameServerRequestUtil {
     }
 //
 //    /**
-//     * 设置某一条充值商品信息
+//     * 设置某一条Пополнение商品Информация
 //     */
 //    public static NutMap gmUpdateRechargeInfo(Server server, String rechargeInfo) {
 //        HashMap<String, Object> map = new HashMap<>();
@@ -418,7 +418,7 @@ public class GameServerRequestUtil {
 //    }
 
     /**
-     * 删除某一条充值商城信息
+     * Удалить某一条ПополнениеМагазинИнформация
      */
     public static AjaxResult gmDeleteRechargeInfo(TServer server, String id){
         HashMap<String, Object> map = new HashMap<>();
@@ -429,7 +429,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 总幸运值数据
+     * 总幸运值Данные
      * @param server
      * @param totalLuckyValue
      * @return
@@ -443,7 +443,7 @@ public class GameServerRequestUtil {
     }
 
     /**
-     * 更新服务器的标签库信息
+     * 更新Сервер的标签库Информация
      * @param server
      * @return
      */

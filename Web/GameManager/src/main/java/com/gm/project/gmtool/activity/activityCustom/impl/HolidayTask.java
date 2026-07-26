@@ -29,7 +29,7 @@ public class HolidayTask extends Activity implements IActivityCustom {
      */
     @Override
     public Activity parseCustom(Map<String, String[]> paramMap) {
-        //任务类型
+        //任务Тип
         String[] taskTypes = paramMap.get("taskTypes");
         //进度
         String[] reachs = paramMap.get("reachs");
@@ -39,7 +39,7 @@ public class HolidayTask extends Activity implements IActivityCustom {
         String coinId = paramMap.get("coinId")[0];
 
         if (taskTypes.length != reachs.length || taskTypes.length != rewardData.length) {
-            throw new RuntimeException("===数据错误");
+            throw new RuntimeException("===Данные错误");
         }
 
         HashMap<Integer, Object> taskMap = new HashMap<>();

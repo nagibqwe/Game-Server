@@ -1,19 +1,19 @@
 package com.gm.project.monitor.server.domain;
 
 /**
- * 系统相关信息
+ * 系统相关Информация
  * 
  * @author ruoyi
  */
 public class Sys
 {
     /**
-     * 服务器名称
+     * Название сервера
      */
     private String computerName;
 
     /**
-     * 服务器Ip
+     * СерверIp
      */
     private String computerIp;
 
@@ -23,7 +23,7 @@ public class Sys
     private String userDir;
 
     /**
-     * 操作系统
+     * Операционная система
      */
     private String osName;
 

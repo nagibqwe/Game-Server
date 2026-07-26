@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.rechargeItem.domain.RechargeItem;
 
 /**
- * 充值配置Service接口
+ * Настройки пополненияService接口
  * 
  * @author gm
  * @date 2021-08-25
@@ -12,78 +12,78 @@ import com.gm.project.gmtool.rechargeItem.domain.RechargeItem;
 public interface IRechargeItemService 
 {
     /**
-     * 查询充值配置
+     * 查询Настройки пополнения
      * 
-     * @param goodsId 充值配置ID
-     * @return 充值配置
+     * @param goodsId Настройки пополненияID
+     * @return Настройки пополнения
      */
     public RechargeItem selectRechargeItemById(Integer goodsId);
 
     /**
-     * 查询充值配置列表
+     * 查询Настройки пополнения列表
      * 
-     * @param rechargeItem 充值配置
-     * @return 充值配置集合
+     * @param rechargeItem Настройки пополнения
+     * @return Настройки пополнения集合
      */
     public List<RechargeItem> selectRechargeItemList(RechargeItem rechargeItem);
 
     /**
-     * 新增充值配置
+     * ДобавитьНастройки пополнения
      * 
-     * @param rechargeItem 充值配置
-     * @return 结果
+     * @param rechargeItem Настройки пополнения
+     * @return Результат
      */
     public int insertRechargeItem(RechargeItem rechargeItem);
 
     /**
-     * 修改充值配置
+     * ИзменитьНастройки пополнения
      * 
-     * @param rechargeItem 充值配置
-     * @return 结果
+     * @param rechargeItem Настройки пополнения
+     * @return Результат
      */
     public int updateRechargeItem(RechargeItem rechargeItem);
 
     /**
-     * 批量删除充值配置
+     * 批量УдалитьНастройки пополнения
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteRechargeItemByIds(String ids);
 
     /**
-     * 删除充值配置信息
+     * УдалитьНастройки пополненияИнформация
      * 
-     * @param goodsId 充值配置ID
-     * @return 结果
+     * @param goodsId Настройки пополненияID
+     * @return Результат
      */
     public int deleteRechargeItemById(Integer goodsId);
 
     /**
-     * 普通充值查询
+     * 普通Пополнение查询
      * @return
      */
     public List<RechargeItem> selectRechargeItemBygoodsPayChannel();
 
     /**
-     * 第三方充值配置查询
+     * №三方Настройки пополнения查询
      * @return
      */
     public List<RechargeItem> selectRechargeItemBygoodsPayChannel3();
 
     /**
-     * 删除普通充值
+     * Удалить普通Пополнение
      * @return
      */
     public int deleteRechargeItemBygoodsPayChannel();
     /**
-     * 删除第三方充值
+     * Удалить№三方Пополнение
      * @return
      */
     public int deleteRechargeItemBygoodsPayChannel3();
 
     /**
-     * 清空充值配置数据
+     * 清空Настройки пополненияДанные
      * @param tableName
      */
     public void clearRechargeItem(String tableName);

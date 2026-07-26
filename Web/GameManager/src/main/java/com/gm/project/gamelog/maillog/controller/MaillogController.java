@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 邮件日志Controller
+ * ПисьмоЖурналController
  * 
  * @author gm
  * @date 2021-09-08
@@ -46,7 +46,7 @@ public class MaillogController extends BaseController
         return prefix + "/maillog";
     }
     /**
-     * 查询邮件日志列表
+     * 查询ПисьмоЖурнал列表
      */
     @RequiresPermissions("gamelog:maillog:list")
     @PostMapping("/list")
@@ -54,10 +54,10 @@ public class MaillogController extends BaseController
     public TableDataInfo list(Maillog maillog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         startPage();
@@ -65,10 +65,10 @@ public class MaillogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出邮件日志列表
+     * ЭкспортПисьмоЖурнал列表
      */
     @RequiresPermissions("gamelog:maillog:export")
-    @Log(title = "邮件日志", businessType = BusinessType.EXPORT)
+    @Log(title = "ПисьмоЖурнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Maillog maillog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class MaillogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Maillog> list = maillogService.selectMaillogList(maillog,param);
         ExcelUtil<Maillog> util = new ExcelUtil<Maillog>(Maillog.class);
-        return util.exportExcel(list, "邮件日志数据");
+        return util.exportExcel(list, "ПисьмоЖурналДанные");
     }
 }

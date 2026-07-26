@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ActivityUtil {
 
-    //保底次数配置的信息组成
+    //保底次数配置的Информация组成
     public static HashMap<Integer, Object> getBaoDiDataInfo(HashMap<Integer, Object> lowestData, String[] i_baoDi_min_num, String[] i_baoDi_max_num, String[] i_baoDiReward,String[] i_baoDi_range_count,String[] i_baoDi_range_min,String[] i_baoDi_range_max,String[] i_baoDi_range_pro){
         int count = 0;
         for (int i = 0; i < i_baoDi_min_num.length; i++){

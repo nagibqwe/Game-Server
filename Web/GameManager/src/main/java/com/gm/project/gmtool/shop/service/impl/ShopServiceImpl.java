@@ -9,7 +9,7 @@ import com.gm.project.gmtool.shop.service.IShopService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 商城Service业务层处理
+ * МагазинService业务层处理
  * 
  * @author gm
  * @date 2021-09-23
@@ -21,10 +21,10 @@ public class ShopServiceImpl implements IShopService
     private ShopMapper shopMapper;
 
     /**
-     * 查询商城
+     * 查询Магазин
      * 
-     * @param ID 商城ID
-     * @return 商城
+     * @param ID МагазинID
+     * @return Магазин
      */
     @Override
     public Shop selectShopById(Integer ID)
@@ -33,10 +33,10 @@ public class ShopServiceImpl implements IShopService
     }
 
     /**
-     * 查询商城列表
+     * 查询Магазин列表
      * 
-     * @param shop 商城
-     * @return 商城
+     * @param shop Магазин
+     * @return Магазин
      */
     @Override
     public List<Shop> selectShopList(Shop shop)
@@ -45,10 +45,10 @@ public class ShopServiceImpl implements IShopService
     }
 
     /**
-     * 新增商城
+     * ДобавитьМагазин
      * 
-     * @param shop 商城
-     * @return 结果
+     * @param shop Магазин
+     * @return Результат
      */
     @Override
     public int insertShop(Shop shop)
@@ -57,10 +57,10 @@ public class ShopServiceImpl implements IShopService
     }
 
     /**
-     * 修改商城
+     * ИзменитьМагазин
      * 
-     * @param shop 商城
-     * @return 结果
+     * @param shop Магазин
+     * @return Результат
      */
     @Override
     public int updateShop(Shop shop)
@@ -69,10 +69,10 @@ public class ShopServiceImpl implements IShopService
     }
 
     /**
-     * 删除商城对象
+     * УдалитьМагазин对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteShopByIds(String ids)
@@ -81,10 +81,10 @@ public class ShopServiceImpl implements IShopService
     }
 
     /**
-     * 删除商城信息
+     * УдалитьМагазинИнформация
      * 
-     * @param ID 商城ID
-     * @return 结果
+     * @param ID МагазинID
+     * @return Результат
      */
     @Override
     public int deleteShopById(Integer ID)

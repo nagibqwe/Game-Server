@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 角色转移对象 t_role_transfer
+ * Перенос персонажа对象 t_role_transfer
  * 
  * @author gm
  * @date 2021-11-03
@@ -18,33 +18,33 @@ public class RoleTransfer extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 角色ID */
-    @Excel(name = "角色ID")
+    /** ID персонажа */
+    @Excel(name = "ID персонажа")
     private String roleId;
 
-    /** 原账号ID */
-    @Excel(name = "原账号ID")
+    /** 原ID аккаунта */
+    @Excel(name = "原ID аккаунта")
     private String srcUserId;
 
-    /** 目标账号ID */
-    @Excel(name = "目标账号ID")
+    /** 目标ID аккаунта */
+    @Excel(name = "目标ID аккаунта")
     private String targetUserId;
 
-    /** 服务器ID */
-    @Excel(name = "服务器ID")
+    /** ID сервера */
+    @Excel(name = "ID сервера")
     private Integer serverId;
 
-    /** 操作原因 */
-    @Excel(name = "操作原因")
+    /** Причина операции */
+    @Excel(name = "Причина операции")
     private String reason;
 
-    /** 是否删除，0 ：不删除， 1： 删除 */
-    @Excel(name = "是否删除，0 ：不删除， 1： 删除")
+    /** Удалён，0 ：不Удалить， 1： Удалить */
+    @Excel(name = "Удалён，0 ：不Удалить， 1： Удалить")
     private Integer isDeleted;
 
-    /** 执行时间 */
+    /** Время выполнения */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "执行时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "Время выполнения", width = 30, dateFormat = "yyyy-MM-dd")
     private Date time;
 
     public void setRoleId(String roleId)

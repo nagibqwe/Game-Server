@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 游戏功能列表对象 t_function
+ * Функции игры对象 t_function
  * 
  * @author gm
  * @date 2021-10-26
@@ -28,8 +28,8 @@ public class Function extends BaseEntity
     @Excel(name = "父Id")
     private Integer parentId;
 
-    /** 开启状态 */
-    @Excel(name = "开启状态")
+    /** ВключеноСтатус */
+    @Excel(name = "ВключеноСтатус")
     private Integer openState;
 
     public void setFuncId(Integer funcId)

@@ -14,13 +14,13 @@ import java.util.*;
 public class StatDauServiceImpl implements IStatDauService {
 
     /**
-     * 数据库相关操作
+     * Данные库相关Действия
      */
     @Autowired
     public IStatDauDao statDauDao;
 
     public List<StatDauBean> statDau(String selectGroupName, String selectServerIds, String channelNames, String startDate, String endDate, Boolean isBlack, int level) {
-        //黑名单排除
+        //Чёрный список排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);
@@ -31,7 +31,7 @@ public class StatDauServiceImpl implements IStatDauService {
             }
         }
         List<StatDauBean> dataList = new ArrayList<>();
-        //获取时间列表
+        //获取Время列表
         List<String> dayList = DateUtils.getDateList(startDate,endDate);
         for(int i = 0;i<dayList.size();i++){
             List<Map<String, Object>> dayDAUDataList = statDauDao.getDayDAUDataList("stat_login",channelNames,selectServerIds,blackUsers,dayList.get(i), dayList.get(i),level);

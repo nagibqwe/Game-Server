@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 评价开关对象 t_evaluate
+ * Оценки включены对象 t_evaluate
  * 
  * @author gm
  * @date 2021-11-04
@@ -21,33 +21,33 @@ public class Evaluate extends BaseEntity
     /** 评价ID */
     private Integer id;
 
-    /** 服务器ID */
-    @Excel(name = "服务器ID")
+    /** ID сервера */
+    @Excel(name = "ID сервера")
     private Integer serverId;
 
-    /** 评价类型 */
-    @Excel(name = "评价类型")
+    /** 评价Тип */
+    @Excel(name = "评价Тип")
     private Integer eType;
 
-    /** 开关状态 */
-    @Excel(name = "开关状态")
+    /** 开关Статус */
+    @Excel(name = "开关Статус")
     private Integer state;
 
-    /** 执行时间 */
+    /** Время выполнения */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "执行时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "Время выполнения", width = 30, dateFormat = "yyyy-MM-dd")
     private Date actionTime;
 
     /** 设置原因 */
     @Excel(name = "设置原因")
     private String reason;
 
-    /** 是否删除，0 ：不删除， 1： 删除 */
-    @Excel(name = "是否删除，0 ：不删除， 1： 删除")
+    /** Удалён，0 ：不Удалить， 1： Удалить */
+    @Excel(name = "Удалён，0 ：不Удалить， 1： Удалить")
     private Integer isDelete;
 
-    /** 操作者名字 */
-    @Excel(name = "操作者名字")
+    /** Имя оператора */
+    @Excel(name = "Имя оператора")
     private String actionUser;
 
     public void setId(Integer id)

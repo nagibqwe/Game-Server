@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 全服邮件Controller
+ * Письмо всем серверамController
  * 
  * @author gm
  * @date 2021-08-30
@@ -43,7 +43,7 @@ public class AllMailDataController extends BaseController
     }
 
     /**
-     * 查询全服邮件列表
+     * 查询全服Список писем
      */
 //    @RequiresPermissions("gmtool:allMail:list")
     @PostMapping("/list")
@@ -56,21 +56,21 @@ public class AllMailDataController extends BaseController
     }
 
     /**
-     * 导出全服邮件列表
+     * Экспорт全服Список писем
      */
     @RequiresPermissions("gmtool:allMail:export")
-    @Log(title = "全服邮件", businessType = BusinessType.EXPORT)
+    @Log(title = "Письмо всем серверам", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(AllMailData allMailData)
     {
         List<AllMailData> list = allMailDataService.selectAllMailDataList(allMailData);
         ExcelUtil<AllMailData> util = new ExcelUtil<AllMailData>(AllMailData.class);
-        return util.exportExcel(list, "全服邮件数据");
+        return util.exportExcel(list, "Письмо всем серверамДанные");
     }
 
     /**
-     * 新增全服邮件
+     * ДобавитьПисьмо всем серверам
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class AllMailDataController extends BaseController
     }
 
     /**
-     * 新增保存全服邮件
+     * ДобавитьСохранитьПисьмо всем серверам
      */
     @RequiresPermissions("gmtool:allMail:add")
-    @Log(title = "全服邮件", businessType = BusinessType.INSERT)
+    @Log(title = "Письмо всем серверам", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(AllMailData allMailData)
@@ -91,7 +91,7 @@ public class AllMailDataController extends BaseController
     }
 
     /**
-     * 修改全服邮件
+     * ИзменитьПисьмо всем серверам
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class AllMailDataController extends BaseController
     }
 
     /**
-     * 修改保存全服邮件
+     * ИзменитьСохранитьПисьмо всем серверам
      */
     @RequiresPermissions("gmtool:allMail:edit")
-    @Log(title = "全服邮件", businessType = BusinessType.UPDATE)
+    @Log(title = "Письмо всем серверам", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(AllMailData allMailData)
@@ -114,10 +114,10 @@ public class AllMailDataController extends BaseController
     }
 
     /**
-     * 删除全服邮件
+     * УдалитьПисьмо всем серверам
      */
     @RequiresPermissions("gmtool:allMail:remove")
-    @Log(title = "全服邮件", businessType = BusinessType.DELETE)
+    @Log(title = "Письмо всем серверам", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

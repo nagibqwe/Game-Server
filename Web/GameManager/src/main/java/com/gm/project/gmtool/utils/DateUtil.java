@@ -131,10 +131,10 @@ public class DateUtil {
     }
 
     /**
-     * 得到下一个时间段的开始点
+     * 得到下一个Время段的开始点
      *
      * @param i
-     * @param type 0-无 1-日 2-月 3-年 4-周 5-小时
+     * @param type 0-无 1-日 2-Месяц 3-Год 4-周 5-小时
      * @return
      */
     public static long getNextPeriodTime(long i, int type) {
@@ -431,7 +431,7 @@ public class DateUtil {
     public static int betweenDays(long f, long t) {
 //		Calendar c = Calendar.getInstance();  
 //		c.setTimeInMillis(t);
-//		int td = c.get(Calendar.DAY_OF_YEAR);  //这种写法跨年的时候就悲剧了
+//		int td = c.get(Calendar.DAY_OF_YEAR);  //这种写法跨Год的时候就悲剧了
 //		c.setTimeInMillis(f);
 //		int fd = c.get(Calendar.DAY_OF_YEAR);
         long fstart = DateUtil.getTodayStart(f);
@@ -510,9 +510,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取1970至今的天数 （计数会在在每天指定的小时+1，用来判断每天X点清数据之类的）
+     * 获取1970至今的День数 （计数会在在每День指定的小时+1，用来判断每ДеньX点清Данные之类的）
      *
-     * @param hour 每天第X个小时+1
+     * @param hour 每День№X个小时+1
      * @return
      */
     public static int getCurDay(int hour) {
@@ -521,11 +521,11 @@ public class DateUtil {
         if (zone.getRawOffset() != 0) {
             s = s + zone.getRawOffset() / 1000;
         }
-        s = s / 86400; //86400 = 24 * 60 * 60 (一天时间的秒数)
+        s = s / 86400; //86400 = 24 * 60 * 60 (一ДеньВремя的秒数)
         return (int) s;
     }
     /**
-     * 计算起始天数的差值
+     * 计算起始День数的差值
      *
      * @param start
      * @param end
@@ -537,7 +537,7 @@ public class DateUtil {
     }
 
     /**
-     * 日期路径 即年/月/日 如2018/08/08
+     * Дата路径 即Год/Месяц/日 如2018/08/08
      */
     public static final String datePath()
     {

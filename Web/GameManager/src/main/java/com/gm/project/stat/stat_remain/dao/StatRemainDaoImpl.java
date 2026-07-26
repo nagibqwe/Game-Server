@@ -15,17 +15,17 @@ import java.util.Set;
 
 /**
  *
- * 数据库操作相关
+ * Данные库Действия相关
  * @author ruoyi
  */
 @Service
 public class StatRemainDaoImpl extends BaseDao
 {
     /**
-     * 获取某一个时间段 某部分用户 登录个数
-     * @param serverList 服务器列表
-     * @param userIdRegAddListStr 需要筛选的用户id
-     * @return 返回 日期对应登录用户数 执行的sql
+     * 获取某一个Время段 某部分用户 登录个数
+     * @param serverList Список серверов
+     * @param userIdRegAddListStr 需要筛选的ID пользователя
+     * @return Назад Дата对应登录用户数 执行的sql
      */
 //    public String getUserStatRemainSqlSql(String caclStartDay,String timeLoginBeinDay ,String timeLoginEndDay ,String serverList,String userIdRegAddListStr){
 //        StringBuilder statRemainSql = new StringBuilder("SELECT COUNT(DISTINCT B.userId) AS count,DATE_FORMAT(B.timeLogin,'%Y-%m-%d') AS date FROM stat_role A");
@@ -58,11 +58,11 @@ public class StatRemainDaoImpl extends BaseDao
         return statRemainSql.toString();
     }
     /**
-     * 获取某一个时间段 某部分用户 登录个数
-     * @param caclStartTime 需要计算的某一天
-     * @param serverList 服务器列表
+     * 获取某一个Время段 某部分用户 登录个数
+     * @param caclStartTime 需要计算的某一День
+     * @param serverList Список серверов
 
-     * @return 返回 日期对应登录用户数 执行的sql
+     * @return Назад Дата对应登录用户数 执行的sql
      */
     public String getNewRoleStatRemainSqlSql(String caclStartTime,String timeLoginBeinDay ,String timeLoginEndDay ,String serverList){
         StringBuilder statRemainSql = new StringBuilder("SELECT COUNT(DISTINCT B.roleId) AS count,DATE_FORMAT(B.timeLogin,'%Y-%m-%d') AS date FROM stat_role A");
@@ -70,7 +70,7 @@ public class StatRemainDaoImpl extends BaseDao
         statRemainSql.append(" WHERE A.createTime between '" + caclStartTime + "' and '" + DateUtils.getNewDateForMinute2(caclStartTime,1440) + "' ");
         statRemainSql.append(" AND A.createsid IN ( "+serverList+")");
         statRemainSql.append(" AND B.timeLogin BETWEEN '" + timeLoginBeinDay +"' AND '"+timeLoginEndDay+"' ");
-        //按照时间排序
+        //按照ВремяСортировка
         statRemainSql.append("GROUP BY  date");
         return statRemainSql.toString();
     }
@@ -119,7 +119,7 @@ public class StatRemainDaoImpl extends BaseDao
 
 
     /**
-     * 获取新用户 充值
+     * 获取新用户 Пополнение
      * @param dbClientGM
      * @param caclStartDay
      * @param serverList
@@ -159,7 +159,7 @@ public class StatRemainDaoImpl extends BaseDao
         }
         sql.append(" where createsid IN ( "+serverList+")");
         sql.append(" GROUP BY userId,createTime HAVING createTime!=( SELECT MIN(createTime)");
-        sql.append(" FROM " + table + " WHERE createsid IN ("+ serverList+") and userId=t1.userId)) t2");//@todo汇总数据库 排除其他服务器的影响 （以前单个不影响）
+        sql.append(" FROM " + table + " WHERE createsid IN ("+ serverList+") and userId=t1.userId)) t2");//@todo汇总Данные库 排除其他Сервер的影响 （以前单个不影响）
         sql.append(" WHERE UNIX_TIMESTAMP(t2.createTime) BETWEEN UNIX_TIMESTAMP('" + startDate + " 00:00:00')  AND UNIX_TIMESTAMP('" + endDate + " 23:59:59')");
         sql.append(" AND t2.createsid IN ( "+serverList+")");
         return sql.toString();
@@ -173,10 +173,10 @@ public class StatRemainDaoImpl extends BaseDao
      */
     public Set<String> getOldUserIdRegAddSet(DBClient dbClientGM,String caclStartDay, String serverList){
         String oldUserRegisterSql = this.getUserOldRegisterSql(null,"stat_role",serverList,caclStartDay,caclStartDay);
-        //每日新增用户列表 排除之前登录过的
+        //每日Добавить用户列表 排除之前登录过的
         List<Map<String,Object>>   oldUserAddList = dbClientGM.selectList(oldUserRegisterSql);
 
-        //新增角色id列表
+        //ДобавитьID персонажа列表
         Set<String> oldUserIdRegAddList = new HashSet<>();
         if(oldUserAddList!=null){
             for (Map<String, Object> userRegAddMap : oldUserAddList) {

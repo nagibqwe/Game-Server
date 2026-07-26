@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 道具装备Controller
+ * Предметы и экипировкаController
  * 
  * @author gm
  * @date 2021-08-31
@@ -43,7 +43,7 @@ public class ItemController extends BaseController
     }
 
     /**
-     * 查询道具装备列表
+     * 查询Предметы и экипировка列表
      */
 //    @RequiresPermissions("gmtool:item:list")
     @PostMapping("/list")
@@ -56,21 +56,21 @@ public class ItemController extends BaseController
     }
 
     /**
-     * 导出道具装备列表
+     * ЭкспортПредметы и экипировка列表
      */
     @RequiresPermissions("gmtool:item:export")
-    @Log(title = "道具装备", businessType = BusinessType.EXPORT)
+    @Log(title = "Предметы и экипировка", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Item item)
     {
         List<Item> list = itemService.selectItemList(item);
         ExcelUtil<Item> util = new ExcelUtil<Item>(Item.class);
-        return util.exportExcel(list, "道具装备数据");
+        return util.exportExcel(list, "Предметы и экипировкаДанные");
     }
 
     /**
-     * 新增道具装备
+     * ДобавитьПредметы и экипировка
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class ItemController extends BaseController
     }
 
     /**
-     * 新增保存道具装备
+     * ДобавитьСохранитьПредметы и экипировка
      */
     @RequiresPermissions("gmtool:item:add")
-    @Log(title = "道具装备", businessType = BusinessType.INSERT)
+    @Log(title = "Предметы и экипировка", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Item item)
@@ -91,7 +91,7 @@ public class ItemController extends BaseController
     }
 
     /**
-     * 修改道具装备
+     * ИзменитьПредметы и экипировка
      */
     @GetMapping("/edit/{itemId}")
     public String edit(@PathVariable("itemId") Integer itemId, ModelMap mmap)
@@ -102,10 +102,10 @@ public class ItemController extends BaseController
     }
 
     /**
-     * 修改保存道具装备
+     * ИзменитьСохранитьПредметы и экипировка
      */
     @RequiresPermissions("gmtool:item:edit")
-    @Log(title = "道具装备", businessType = BusinessType.UPDATE)
+    @Log(title = "Предметы и экипировка", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Item item)
@@ -114,10 +114,10 @@ public class ItemController extends BaseController
     }
 
     /**
-     * 删除道具装备
+     * УдалитьПредметы и экипировка
      */
     @RequiresPermissions("gmtool:item:remove")
-    @Log(title = "道具装备", businessType = BusinessType.DELETE)
+    @Log(title = "Предметы и экипировка", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

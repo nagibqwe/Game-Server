@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 职业分布对象 stat_career_distribute
+ * Класс分布对象 stat_career_distribute
  * 
  * @author gm
  * @date 2021-09-07
@@ -16,12 +16,12 @@ public class StatCareerDistribute extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 职业 */
-    @Excel(name = "职业")
+    /** Класс */
+    @Excel(name = "Класс")
     private Integer career;
 
-    /** 人数 */
-    @Excel(name = "人数")
+    /** Количество */
+    @Excel(name = "Количество")
     private Integer rolecount;
 
     public void setCareer(Integer career)

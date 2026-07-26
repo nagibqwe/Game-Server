@@ -3,11 +3,11 @@ package com.gm.project.stat.stat_churn_rate.domain;
 import com.gm.framework.aspectj.lang.annotation.Excel;
 
 public class PlayerLeaveAmountBean {
-    @Excel(name = "累计金额")
+    @Excel(name = "累计Сумма")
     private String key;
     @Excel(name = "账号数")
     private int paylcount;
-    @Excel(name = "流失用户充值总金额")
+    @Excel(name = "流失用户Пополнение总Сумма")
     private int rechargeSum;
 
     public String getKey() {

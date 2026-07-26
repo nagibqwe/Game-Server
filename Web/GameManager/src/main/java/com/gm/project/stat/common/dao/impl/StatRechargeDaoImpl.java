@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 充值相关数据库 通用操作
+ * Пополнение相关Данные库 通用Действия
  */
 @Service
 public class StatRechargeDaoImpl implements IStatRechargeDao {
 
     /**
-     * 得到充值充值数据
+     * 得到ПополнениеПополнениеДанные
      * @param channelNames
      * @param selectServerIds
      * @param blackUserStr

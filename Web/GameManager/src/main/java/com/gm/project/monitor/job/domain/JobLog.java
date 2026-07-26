@@ -7,7 +7,7 @@ import com.gm.framework.aspectj.lang.annotation.Excel;
 import com.gm.framework.web.domain.BaseEntity;
 
 /**
- * 定时任务调度日志表 sys_job_log
+ * Планировщик задачЖурнал заданий表 sys_job_log
  * 
  * @author ruoyi
  */
@@ -16,37 +16,37 @@ public class JobLog extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** ID */
-    @Excel(name = "日志序号")
+    @Excel(name = "Журнал№")
     private Long jobLogId;
 
-    /** 任务名称 */
-    @Excel(name = "任务名称")
+    /** Название задачи */
+    @Excel(name = "Название задачи")
     private String jobName;
 
     /** 任务组名 */
     @Excel(name = "任务组名")
     private String jobGroup;
 
-    /** 调用目标字符串 */
-    @Excel(name = "调用目标字符串")
+    /** Строка вызова */
+    @Excel(name = "Строка вызова")
     private String invokeTarget;
 
-    /** 日志信息 */
-    @Excel(name = "日志信息")
+    /** ЖурналИнформация */
+    @Excel(name = "ЖурналИнформация")
     private String jobMessage;
 
-    /** 执行状态（0正常 1失败） */
-    @Excel(name = "执行状态", readConverterExp = "0=正常,1=失败")
+    /** 执行Статус（0Норма 1Ошибка） */
+    @Excel(name = "执行Статус", readConverterExp = "0=Норма,1=Ошибка")
     private String status;
 
-    /** 异常信息 */
-    @Excel(name = "异常信息")
+    /** 异常Информация */
+    @Excel(name = "异常Информация")
     private String exceptionInfo;
 
-    /** 开始时间 */
+    /** Время начала */
     private Date startTime;
 
-    /** 结束时间 */
+    /** Время окончания */
     private Date endTime;
 
     public Long getJobLogId()

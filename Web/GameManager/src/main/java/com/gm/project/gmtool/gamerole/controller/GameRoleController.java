@@ -31,7 +31,7 @@ import javax.annotation.Resource;
 import java.util.*;
 
 /**
- * 角色快照日志Controller
+ * Журнал снимков персонажейController
  *
  * @author gm
  * @date 2021-09-07
@@ -54,37 +54,37 @@ public class GameRoleController extends BaseController {
     }
 
     /**
-     * 查询角色快照日志列表
+     * 查询Журнал снимков персонажей列表
      */
     @RequiresPermissions("gmtool:gamerole:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(Integer serverId, Integer queryType, String queryParam) {
         if (serverId == null || serverId <= 0) {
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
 
         startPage();
 
         List<RoleState> result = null;
-        //根据不同的条件查询数据
+        //根据不同的条件查询Данные
         switch (queryType){
-            case 1://角色名
+            case 1://Имя персонажа
                 result = gameRoleService.queryByRoleName(serverId, queryParam);
                 break;
-            case 2://平台帐号
+            case 2://Платформа帐号
                 result = gameRoleService.queryByPlatFormAccount(serverId, queryParam);
                 break;
-            case 3://平台帐号ID
+            case 3://Платформа帐号ID
                 result = gameRoleService.queryByPlatFormUid(serverId, queryParam);
                 break;
-            case 4://游戏用户ID
+            case 4://游戏ID пользователя
                 result = gameRoleService.queryByUserId(serverId, queryParam);
                 break;
-            case 5://角色ID(10进制)
+            case 5://ID персонажа(10进制)
                 result = gameRoleService.queryByRoleId(serverId, queryParam, 0);
                 break;
-            case 6://角色ID(36进制)
+            case 6://ID персонажа(36进制)
                 result = gameRoleService.queryByRoleId(serverId, queryParam, 1);
                 break;
             default:
@@ -100,24 +100,24 @@ public class GameRoleController extends BaseController {
     }
 
     /**
-     * 导出角色快照日志列表
+     * ЭкспортЖурнал снимков персонажей列表
      */
     @RequiresPermissions("gmtool:gamerole:export")
-    @Log(title = "角色快照日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Журнал снимков персонажей", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(RoleState roleState, Integer selectServerId) {
 //        List<RoleState> list = roleStateService.selectRoleStateList(roleState, selectServerId);
 //        ExcelUtil<RoleState> util = new ExcelUtil<RoleState>(RoleState.class);
-//        return util.exportExcel(list, "角色快照日志数据");
+//        return util.exportExcel(list, "Журнал снимков персонажейДанные");
         return null;
     }
 
     /**
-     * 检查用户ID是否存在
+     * 检查ID пользователяДаНет存在
      */
     @RequiresPermissions("gmtool:gamerole:checkUserId")
-    @Log(title = "检查用户ID是否存在", businessType = BusinessType.EXPORT)
+    @Log(title = "检查ID пользователяДаНет存在", businessType = BusinessType.EXPORT)
     @PostMapping("/checkUserId")
     @ResponseBody
     public AjaxResult checkUserId(String userId) {
@@ -126,21 +126,21 @@ public class GameRoleController extends BaseController {
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         Map<String, Object> resultMap = loginDao.selectOne(sqlStr);
         if (null != resultMap && resultMap.size() > 0 && resultMap.get("num")!=null && (long)resultMap.get("num")>0){
-            return AjaxResult.success("用户ID存在").put("ok", true);
+            return AjaxResult.success("ID пользователя存在").put("ok", true);
         }
 
-        return AjaxResult.error("用户ID不存在").put("ok", false);
+        return AjaxResult.error("ID пользователя不存在").put("ok", false);
     }
 
     /**
-     * 查询用户登录信息
+     * 查询用户登录Информация
      */
     @RequiresPermissions("gmtool:gamerole:userLogin")
     @PostMapping("/userLogin")
     @ResponseBody
     public TableDataInfo userLogin(String startDate, String endDate) {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
 
         Map<String,Object> param = new HashMap<>();
@@ -156,7 +156,7 @@ public class GameRoleController extends BaseController {
         }
 
 //        startPage();
-        //时间通用 判断
+        //Время通用 判断
         Calendar start = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
         start.setTime(DateUtils.parseDate(startDate));
@@ -170,10 +170,10 @@ public class GameRoleController extends BaseController {
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         Map<String, Object> countMap = loginDao.selectOne(sqlCountStr);
         if (!(null != countMap && countMap.size() > 0 && (long)countMap.get("num")>0)){
-            return getDataTableErrorMsg("没有找到用户数据");
+            return getDataTableErrorMsg("没有找到用户Данные");
         }
 
-        //分页数据
+        //分页Данные
         if(param.containsKey("pageNum")){
             sqlStr+=" limit "+(pageNum-1)*pageSize+","+pageSize;
         }
@@ -187,6 +187,6 @@ public class GameRoleController extends BaseController {
 
             return tableDataInfo;
         }
-        return getDataTableErrorMsg("没有找到用户数据");
+        return getDataTableErrorMsg("没有找到用户Данные");
     }
 }

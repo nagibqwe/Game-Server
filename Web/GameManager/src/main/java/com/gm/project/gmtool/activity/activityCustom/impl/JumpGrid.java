@@ -47,7 +47,7 @@ public class JumpGrid extends Activity implements IActivityCustom {
         String[] bigGiftRewards = paramMap.get("bigGiftReward");
 
         if (bigGiftWeights.length != bigGiftRewards.length) {
-            throw new RuntimeException("===大奖奖励数据错误" );
+            throw new RuntimeException("===大奖奖励Данные错误" );
         }
 
         //个人通关进度
@@ -72,13 +72,13 @@ public class JumpGrid extends Activity implements IActivityCustom {
 
         if (costGoldStr.length <= 0 || costStr.length <= 0 || dailyGainStrs.length <= 0 || gridStrs.length <= 0 ||
                 playerProc.length <= 0 || playerTimes.length <= 0 || serverProc.length <= 0 || serverTimes.length <= 0) {
-            throw new RuntimeException("===数据错误或数据为空");
+            throw new RuntimeException("===Данные错误或Данные为空");
         }
         if (playerProc.length != playerTimes.length) {
-            throw new RuntimeException("===个人进度数据错误");
+            throw new RuntimeException("===个人进度Данные错误");
         }
         if (serverProc.length != serverTimes.length) {
-            throw new RuntimeException("===服务器进度数据错误");
+            throw new RuntimeException("===Сервер进度Данные错误");
         }
 
         List<ItemBean> dailyGains = ItemBean.split(dailyGainStrs[0]);

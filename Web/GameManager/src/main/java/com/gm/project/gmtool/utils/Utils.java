@@ -26,7 +26,7 @@ public class Utils {
         }
         return res;
     }
-    //数字类型判断
+    //数字Тип判断
     private static boolean isMatch(String regex, String orginal){
         if (orginal == null || orginal.trim().equals("")) {
             return false;
@@ -43,7 +43,7 @@ public class Utils {
     public static boolean isNegativeInteger(String orginal) {
         return isMatch("^-[1-9]\\d*", orginal);
     }
-    //整数而言，实际是由0，正整数和负整数组成的
+    //整数而言，实际Да由0，正整数和负整数组成的
     public static boolean isWholeNumber(String orginal) {
         return isMatch("[+-]{0,1}0", orginal) || isPositiveInteger(orginal) || isNegativeInteger(orginal);
     }
@@ -59,7 +59,7 @@ public class Utils {
     public static boolean isDecimal(String orginal){
         return isMatch("[-+]{0,1}\\d+\\.\\d*|[-+]{0,1}\\d*\\.\\d+", orginal);
     }
-    //实数比较简单，要么是整数，要么是小数
+    //实数比较简单，要么Да整数，要么Да小数
     public static boolean isRealNumber(String orginal){
         return isWholeNumber(orginal) || isDecimal(orginal);
     }

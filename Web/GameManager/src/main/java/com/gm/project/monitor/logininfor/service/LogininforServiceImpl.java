@@ -8,7 +8,7 @@ import com.gm.project.monitor.logininfor.domain.Logininfor;
 import com.gm.project.monitor.logininfor.mapper.LogininforMapper;
 
 /**
- * 系统访问日志情况信息 服务层处理
+ * 系统访问Журнал情况Информация 服务层处理
  * 
  * @author ruoyi
  */
@@ -19,9 +19,9 @@ public class LogininforServiceImpl implements ILogininforService
     private LogininforMapper logininforMapper;
 
     /**
-     * 新增系统登录日志
+     * Добавить系统Журнал входов
      * 
-     * @param logininfor 访问日志对象
+     * @param logininfor 访问Журнал对象
      */
     @Override
     public void insertLogininfor(Logininfor logininfor)
@@ -30,9 +30,9 @@ public class LogininforServiceImpl implements ILogininforService
     }
 
     /**
-     * 查询系统登录日志集合
+     * 查询系统Журнал входов集合
      * 
-     * @param logininfor 访问日志对象
+     * @param logininfor 访问Журнал对象
      * @return 登录记录集合
      */
     @Override
@@ -42,9 +42,9 @@ public class LogininforServiceImpl implements ILogininforService
     }
 
     /**
-     * 批量删除系统登录日志
+     * 批量Удалить系统Журнал входов
      * 
-     * @param ids 需要删除的数据
+     * @param ids 需要Удалить的Данные
      * @return
      */
     @Override
@@ -54,7 +54,7 @@ public class LogininforServiceImpl implements ILogininforService
     }
     
     /**
-     * 清空系统登录日志
+     * 清空系统Журнал входов
      */
     @Override
     public void cleanLogininfor()

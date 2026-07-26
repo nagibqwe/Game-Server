@@ -10,7 +10,7 @@ import com.gm.project.gmtool.dbbak.service.IDbbakService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 数据库备份Service业务层处理
+ * Резервные копии БДService业务层处理
  * 
  * @author gm
  * @date 2021-09-13
@@ -22,10 +22,10 @@ public class DbbakServiceImpl implements IDbbakService
     private DbbakMapper dbbakMapper;
 
     /**
-     * 查询数据库备份
+     * 查询Резервные копии БД
      * 
-     * @param id 数据库备份ID
-     * @return 数据库备份
+     * @param id Резервные копии БДID
+     * @return Резервные копии БД
      */
     @Override
     public Dbbak selectDbbakById(Long id)
@@ -39,10 +39,10 @@ public class DbbakServiceImpl implements IDbbakService
     }
 
     /**
-     * 查询数据库备份列表
+     * 查询Список резервных копий БД
      * 
-     * @param dbbak 数据库备份
-     * @return 数据库备份
+     * @param dbbak Резервные копии БД
+     * @return Резервные копии БД
      */
     @Override
     public List<Dbbak> selectDbbakList(Dbbak dbbak)
@@ -51,10 +51,10 @@ public class DbbakServiceImpl implements IDbbakService
     }
 
     /**
-     * 新增数据库备份
+     * ДобавитьРезервные копии БД
      * 
-     * @param dbbak 数据库备份
-     * @return 结果
+     * @param dbbak Резервные копии БД
+     * @return Результат
      */
     @Override
     public int insertDbbak(Dbbak dbbak)
@@ -63,10 +63,10 @@ public class DbbakServiceImpl implements IDbbakService
     }
 
     /**
-     * 修改数据库备份
+     * ИзменитьРезервные копии БД
      * 
-     * @param dbbak 数据库备份
-     * @return 结果
+     * @param dbbak Резервные копии БД
+     * @return Результат
      */
     @Override
     public int updateDbbak(Dbbak dbbak)
@@ -75,10 +75,10 @@ public class DbbakServiceImpl implements IDbbakService
     }
 
     /**
-     * 删除数据库备份对象
+     * УдалитьРезервные копии БД对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteDbbakByIds(String ids)
@@ -92,10 +92,10 @@ public class DbbakServiceImpl implements IDbbakService
     }
 
     /**
-     * 删除数据库备份信息
+     * УдалитьРезервные копии БДИнформация
      * 
-     * @param id 数据库备份ID
-     * @return 结果
+     * @param id Резервные копии БДID
+     * @return Результат
      */
     @Override
     public int deleteDbbakById(Long id)

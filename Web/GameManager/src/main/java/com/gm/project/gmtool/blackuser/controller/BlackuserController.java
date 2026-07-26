@@ -36,7 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 /**
- * 黑名单Controller
+ * Чёрный списокController
  * 
  * @author gm
  * @date 2021-11-04
@@ -60,7 +60,7 @@ public class BlackuserController extends BaseController
     }
 
     /**
-     * 查询黑名单列表
+     * 查询Чёрный список列表
      */
 //    @RequiresPermissions("gmtool:blackuser:list")
     @PostMapping("/list")
@@ -73,21 +73,21 @@ public class BlackuserController extends BaseController
     }
 
     /**
-     * 导出黑名单列表
+     * ЭкспортЧёрный список列表
      */
     @RequiresPermissions("gmtool:blackuser:export")
-    @Log(title = "黑名单", businessType = BusinessType.EXPORT)
+    @Log(title = "Чёрный список", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Blackuser blackuser)
     {
         List<Blackuser> list = blackuserService.selectBlackuserList(blackuser);
         ExcelUtil<Blackuser> util = new ExcelUtil<Blackuser>(Blackuser.class);
-        return util.exportExcel(list, "黑名单数据");
+        return util.exportExcel(list, "Чёрный списокДанные");
     }
 
     /**
-     * 新增黑名单
+     * ДобавитьЧёрный список
      */
     @GetMapping("/add")
     public String add()
@@ -96,10 +96,10 @@ public class BlackuserController extends BaseController
     }
 
     /**
-     * 新增保存黑名单
+     * ДобавитьСохранитьЧёрный список
      */
     @RequiresPermissions("gmtool:blackuser:add")
-    @Log(title = "黑名单", businessType = BusinessType.INSERT)
+    @Log(title = "Чёрный список", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Blackuser blackuser)
@@ -108,7 +108,7 @@ public class BlackuserController extends BaseController
     }
 
     /**
-     * 修改黑名单
+     * ИзменитьЧёрный список
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -119,10 +119,10 @@ public class BlackuserController extends BaseController
     }
 
     /**
-     * 修改保存黑名单
+     * ИзменитьСохранитьЧёрный список
      */
     @RequiresPermissions("gmtool:blackuser:edit")
-    @Log(title = "黑名单", businessType = BusinessType.UPDATE)
+    @Log(title = "Чёрный список", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Blackuser blackuser)
@@ -131,10 +131,10 @@ public class BlackuserController extends BaseController
     }
 
     /**
-     * 删除黑名单
+     * УдалитьЧёрный список
      */
     @RequiresPermissions("gmtool:blackuser:remove")
-    @Log(title = "黑名单", businessType = BusinessType.DELETE)
+    @Log(title = "Чёрный список", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -145,7 +145,7 @@ public class BlackuserController extends BaseController
     }
 
     /**
-     * 黑名单转换
+     * Чёрный список转换
      * @param convertBlackListFile
      * @param serverId
      * @param groupName
@@ -216,15 +216,15 @@ public class BlackuserController extends BaseController
         nameList.removeAll(roleNameList);
         String resultStr;
         if (nameList.size() > 0) {
-            resultStr = "黑名单中存在角色名找不到账号，以下角色名为：" + nameList;
+            resultStr = "Чёрный список中存在Имя персонажа找不到账号，以下Имя персонажа为：" + nameList;
         } else {
-            resultStr = "黑名单导入完成！";
+            resultStr = "Чёрный списокИмпорт完成！";
         }
         return AjaxResult.info(resultStr).put("ok",true);
     }
 
     /**
-     * 导入黑名单
+     * ИмпортЧёрный список
      * @param importBlackListFile
      * @return
      * @throws IOException

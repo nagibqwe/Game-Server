@@ -35,7 +35,7 @@ import com.gm.common.utils.poi.ExcelUtil;
 
 
 /**
- * 商城Controller
+ * МагазинController
  * 
  * @author gm
  * @date 2021-09-23
@@ -60,21 +60,21 @@ public class ShopController extends BaseController
     }
 
     /**
-     * 导出商城列表
+     * ЭкспортМагазин列表
      */
     @RequiresPermissions("gmtool:shop:export")
-    @Log(title = "商城", businessType = BusinessType.EXPORT)
+    @Log(title = "Магазин", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Shop shop)
     {
         List<Shop> list = shopService.selectShopList(shop);
         ExcelUtil<Shop> util = new ExcelUtil<Shop>(Shop.class);
-        return util.exportExcel(list, "商城数据");
+        return util.exportExcel(list, "МагазинДанные");
     }
 
     /**
-     * 新增商城
+     * ДобавитьМагазин
      */
     @GetMapping("/add")
     public String add(String groupName, String serverId, ModelMap mmap)
@@ -85,20 +85,20 @@ public class ShopController extends BaseController
     }
 
     /**
-     * 新增保存商城
+     * ДобавитьСохранитьМагазин
      */
-    @Log(title = "商城", businessType = BusinessType.INSERT)
+    @Log(title = "Магазин", businessType = BusinessType.INSERT)
     @PostMapping("/addShop")
     @ResponseBody
     public AjaxResult addShop(String serverId,ShopInfo info)
     {
         if (StringUtils.isBlank(serverId)) {
-            return AjaxResult.info("未选择服务器").put("ok",false);
+            return AjaxResult.info("未选择Сервер").put("ok",false);
         }
         //发送消息到GameServer
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("服务器连接信息获取失败").put("ok",false);
+            return AjaxResult.info("Не удалось получить данные подключения к серверу").put("ok",false);
         }
         if (info.getId() > 110000 || info.getId() < 100000) {
             return AjaxResult.info("商品id配置错误，范围100000~1100000").put("ok",false);
@@ -120,20 +120,20 @@ public class ShopController extends BaseController
     }
 
     /**
-     * 修改商城
+     * ИзменитьМагазин
      */
     @GetMapping("/editShop")
     public String editShop(String groupName, String serverId, String shopId, ModelMap mmap) throws InvocationTargetException, IllegalAccessException, JsonProcessingException {
         HashMap data = new HashMap();
         if (!"0".equals(shopId)) {
             if (StringUtils.isBlank(serverId)) {
-                logger.error("未获取到服务器id");
+                logger.error("未获取到ID сервера");
                 return "";
             }
             //发送消息到GameServer
             TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
             if (server == null) {
-                logger.error("对应id的服务器不存在：" + serverId);
+                logger.error("对应id的Сервер不存在：" + serverId);
                 return "";
             }
             HashMap result = GameServerRequestUtil.gmGetShopInfo(server, shopId);
@@ -153,21 +153,21 @@ public class ShopController extends BaseController
     }
 
     /**
-     * 修改保存商城
+     * ИзменитьСохранитьМагазин
      */
-    @Log(title = "商城", businessType = BusinessType.UPDATE)
+    @Log(title = "Магазин", businessType = BusinessType.UPDATE)
     @PostMapping("/updateShop")
     @ResponseBody
     public AjaxResult editSave(String serverId,ShopInfo info)
     {
 
         if (StringUtils.isBlank(serverId)) {
-            return AjaxResult.info("未选择服务器").put("ok",false);
+            return AjaxResult.info("未选择Сервер").put("ok",false);
         }
         //发送消息到GameServer
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("服务器连接信息获取失败").put("ok",false);
+            return AjaxResult.info("Не удалось получить данные подключения к серверу").put("ok",false);
         }
         String shopInfo = JsonUtils.toJSONString(info);
         return GameServerRequestUtil.gmSetShopInfo(server, shopInfo);
@@ -175,7 +175,7 @@ public class ShopController extends BaseController
 
 
     /**
-     * 查询商城列表
+     * 查询Магазин列表
      */
     @PostMapping("/list")
     @ResponseBody
@@ -184,12 +184,12 @@ public class ShopController extends BaseController
         int page = pageDomain.getPageNum();
         int rows = pageDomain.getPageSize();
         if (StringUtils.isBlank(serverId)) {
-            return getDataTableErrorMsg("未选择服务器");
+            return getDataTableErrorMsg("未选择Сервер");
         }
         //发送消息到GameServer
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return getDataTableErrorMsg("服务器连接信息获取失败");
+            return getDataTableErrorMsg("Не удалось получить данные подключения к серверу");
         }
         HashMap result = GameServerRequestUtil.gmGetShopInfo(server, "0");
         if (!Boolean.valueOf(result.get("ok").toString())) {
@@ -218,7 +218,7 @@ public class ShopController extends BaseController
     }
 
     /**
-     * 删除商城配置
+     * УдалитьМагазин配置
      * @param serverId
      * @param shopId
      * @return
@@ -227,12 +227,12 @@ public class ShopController extends BaseController
     @ResponseBody
     public Object deleteShop(String serverId, String shopId) {
         if (StringUtils.isBlank(serverId)) {
-            return AjaxResult.info("未选择服务器").put("ok",false);
+            return AjaxResult.info("未选择Сервер").put("ok",false);
         }
         //发送消息到GameServer
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("服务器连接信息获取失败").put("ok",false);
+            return AjaxResult.info("Не удалось получить данные подключения к серверу").put("ok",false);
         }
         return GameServerRequestUtil.gmDeleteShopInfo(server, shopId);
     }

@@ -31,7 +31,7 @@ import java.util.Map;
 
 
 /**
- * 聊天封禁Controller
+ * 聊День封禁Controller
  * 
  * @author gm
  * @date 2021-11-20
@@ -111,9 +111,9 @@ public class BanChatController extends BaseController {
             if (endTime <= 0) {
                 time = -1;
             }
-            log.info("userId:" + userId + ",禁言结束时间：" + banChat.getEndTime());
+            log.info("userId:" + userId + ",禁言Время окончания：" + banChat.getEndTime());
 
-            //检查登录服禁言表
+            //检查Сервер входа禁言表
             String sqlStr = "select count(*) as num from forbidspeeking where `userId`=" + userId + ";";
             DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
             List<Map<String, Object>> resultMap = loginDao.selectList(sqlStr);
@@ -128,7 +128,7 @@ public class BanChatController extends BaseController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            log.info("刷新forbidspeeking禁言表的结果是：" + (exeNum>0));
+            log.info("Обновитьforbidspeeking禁言表的РезультатДа：" + (exeNum>0));
 
             StringBuilder sb = new StringBuilder();
             int[] serverIds = StringUtils.stringArrTointArr(Convert.toStrArray(serverIdStr));
@@ -136,7 +136,7 @@ public class BanChatController extends BaseController {
                 TServer ser = tServerService.selectTServerByServerId(serverId);
                 if (ser == null) {
                     continue;
-//                return AjaxResult.error("选择服务器Id不存在");
+//                return AjaxResult.error("Выбранный ID сервера не существует");
                 }
                 if (ser.getIsHeFu() == 1) {
                     continue;
@@ -144,7 +144,7 @@ public class BanChatController extends BaseController {
 
                 AjaxResult map = GameServerRequestUtil.gmBanChat(ser, 5000);
                 if (Boolean.valueOf(map.get("ok").toString())) {
-                    GMLogUtil.log("禁言成功,serverId:" + serverId + "userId:" + userId);
+                    GMLogUtil.log("禁言Успешно,serverId:" + serverId + "userId:" + userId);
                 }
                 sb.append(map);
             }
@@ -158,11 +158,11 @@ public class BanChatController extends BaseController {
             }
         }
 
-        return AjaxResult.info("聊天禁言完成").put("ok", true);
+        return AjaxResult.info("聊День禁言完成").put("ok", true);
     }
 
     /**
-     * 聊天解封
+     * 聊День解封
      */
     //    @RequiresPermissions("gmtool:unBanChat:unBan")
     @PostMapping("/unBan")
@@ -170,10 +170,10 @@ public class BanChatController extends BaseController {
     public Object unBan(Integer id) {
         BanChat banChat = banChatService.selectBanChatById(id.longValue());
         if (banChat == null) {
-            return AjaxResult.info("禁言信息未找到").put("ok", false);
+            return AjaxResult.info("禁言Информация未找到").put("ok", false);
         }
 
-        //更新登录服表
+        //更新Сервер входа表
         String sqlStr = "update forbidspeeking set `endTime`= 0 where userId=" + banChat.getUserId() + ";";
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         int excNUm = 0;
@@ -182,7 +182,7 @@ public class BanChatController extends BaseController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        log.error("刷新forbidspeeking禁言表的结果是：" + (excNUm > 0));
+        log.error("Обновитьforbidspeeking禁言表的РезультатДа：" + (excNUm > 0));
 
         StringBuilder sb = new StringBuilder();
         int[] serverIds = StringUtils.stringArrTointArr(Convert.toStrArray(banChat.getServerIds()));
@@ -197,7 +197,7 @@ public class BanChatController extends BaseController {
 
             AjaxResult map = GameServerRequestUtil.gmBanChat(ser, 5000);
             if (Boolean.valueOf(map.get("ok").toString())) {
-                GMLogUtil.log("聊天解封成功,serverId:" + serverId + "userId:" + banChat.getUserId());
+                GMLogUtil.log("聊День解封Успешно,serverId:" + serverId + "userId:" + banChat.getUserId());
             }
             sb.append(map);
         }
@@ -205,11 +205,11 @@ public class BanChatController extends BaseController {
         banChat.setState(1);
         banChatService.updateBanChat(banChat);
 
-        return AjaxResult.info("聊天解封完成").put("ok", true);
+        return AjaxResult.info("聊День解封完成").put("ok", true);
     }
 
     /**
-     * 查询聊天封禁列表
+     * 查询聊День封禁列表
      */
     @RequiresPermissions("gmtool:banChat:list")
     @PostMapping("/list")
@@ -223,17 +223,17 @@ public class BanChatController extends BaseController {
     }
 
     /**
-     * 导出聊天封禁列表
+     * Экспорт聊День封禁列表
      */
     @RequiresPermissions("gmtool:banChat:export")
-    @Log(title = "聊天封禁", businessType = BusinessType.EXPORT)
+    @Log(title = "聊День封禁", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BanChat banChat)
     {
         List<BanChat> list = banChatService.selectBanChatList(banChat);
         ExcelUtil<BanChat> util = new ExcelUtil<BanChat>(BanChat.class);
-        return util.exportExcel(list, "聊天封禁数据");
+        return util.exportExcel(list, "聊День封禁Данные");
     }
 
     /**
@@ -250,12 +250,12 @@ public class BanChatController extends BaseController {
 
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return getDataTableErrorMsg("获取服务失败");
+            return getDataTableErrorMsg("Не удалось получить данные сервера");
         }
 
         AjaxResult resultMap = GameServerRequestUtil.gmOrderSendMess(server, "gmGetKeyWords", "",8000);
         if (Boolean.valueOf(resultMap.get("ok").toString())) {
-            GMLogUtil.log("屏蔽字列表获取成功,serverId:" + serverId);
+            GMLogUtil.log("屏蔽字列表获取Успешно,serverId:" + serverId);
 //            return AjaxResult.info(resultMap.get("msg").toString()).put("ok", true);
             HashMap<String, Object> data = (HashMap<String,Object>)resultMap.get("data");
             HashMap<Integer, HashMap<String, Object>> msg = JsonUtils.parseObject(data.get("msg").toString(), new TypeReference<HashMap<Integer, HashMap<String, Object>>>(){});
@@ -263,14 +263,14 @@ public class BanChatController extends BaseController {
             result.addAll(msg.values());
             return getDataTable(result);
         }else{
-            GMLogUtil.log("屏蔽字列表获取失败,serverId:" + serverId);
-            log.error("服务器编号" + serverId + "反馈信息:被屏蔽的关键字列表获取失败！");
-            return getDataTableErrorMsg("列表获取失败");
+            GMLogUtil.log("屏蔽字列表获取Ошибка,serverId:" + serverId);
+            log.error("СерверНомер" + serverId + "反馈Информация:被屏蔽的关键字列表获取Ошибка！");
+            return getDataTableErrorMsg("列表获取Ошибка");
         }
     }
 
     /**
-     * 新增屏蔽字
+     * Добавить屏蔽字
      */
     @GetMapping("/addShieldWord")
     public String addShieldWord()
@@ -279,7 +279,7 @@ public class BanChatController extends BaseController {
     }
 
     /**
-     * 添加屏蔽字
+     * Добавить屏蔽字
      */
 //    @RequiresPermissions("gmtool:banChat:addSheildWord")
     @PostMapping("/addShieldWord")
@@ -292,22 +292,22 @@ public class BanChatController extends BaseController {
 
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("获取服务失败").put("ok", false);
+            return AjaxResult.info("Не удалось получить данные сервера").put("ok", false);
         }
 
         AjaxResult resultMap = GameServerRequestUtil.gmAddShieldWord(server, shieldType, shieldWord);
         if (Boolean.valueOf(resultMap.get("ok").toString())) {
-            GMLogUtil.log("屏蔽字添加成功,serverId:" + serverId);
-//            return AjaxResult.info("屏蔽字添加成功").put("ok", true);
+            GMLogUtil.log("屏蔽字ДобавитьУспешно,serverId:" + serverId);
+//            return AjaxResult.info("屏蔽字ДобавитьУспешно").put("ok", true);
             return toAjax(true);
         }else{
-            GMLogUtil.log("屏蔽字删除失败,serverId:" + serverId);
-            return AjaxResult.info("屏蔽字添加失败").put("ok", false);
+            GMLogUtil.log("屏蔽字УдалитьОшибка,serverId:" + serverId);
+            return AjaxResult.info("屏蔽字ДобавитьОшибка").put("ok", false);
         }
     }
 
     /**
-     * 删除屏蔽字
+     * Удалить屏蔽字
      */
 //    @RequiresPermissions("gmtool:banChat:removeShieldWord")
     @PostMapping("/removeShieldWord")
@@ -320,16 +320,16 @@ public class BanChatController extends BaseController {
 
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("获取服务失败").put("ok", false);
+            return AjaxResult.info("Не удалось получить данные сервера").put("ok", false);
         }
 
         AjaxResult resultMap = GameServerRequestUtil.gmDeleteShieldWord(server, id);
         if (Boolean.valueOf(resultMap.get("ok").toString())) {
-            GMLogUtil.log("屏蔽字删除成功,serverId:" + serverId);
+            GMLogUtil.log("屏蔽字УдалитьУспешно,serverId:" + serverId);
             return toAjax(true);
         }else{
-            GMLogUtil.log("屏蔽字删除失败,serverId:" + serverId);
-            return AjaxResult.info("屏蔽字删除失败").put("ok", false);
+            GMLogUtil.log("屏蔽字УдалитьОшибка,serverId:" + serverId);
+            return AjaxResult.info("屏蔽字УдалитьОшибка").put("ok", false);
         }
     }
 
@@ -344,18 +344,18 @@ public class BanChatController extends BaseController {
         if (StringUtils.isEmpty(serverId)) {
             return getDataTableErrorMsg("param error");
         }
-        //更新登录服表
+        //更新Сервер входа表
         String sqlStr = "SELECT id,serverId,word,`replace` as replaceWord,`type` as replaceType FROM chatword where serverId="+serverId;
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         List<Map<String, Object>> resultMap = loginDao.selectList(sqlStr);
         if(resultMap == null){
-            return getDataTableErrorMsg("获取数据错误");
+            return getDataTableErrorMsg("获取Данные错误");
         }
         return getDataTable(resultMap);
     }
 
     /**
-     * 新增替换字
+     * Добавить替换字
      */
     @GetMapping("/addReplaceWord")
     public String addReplaceWord()
@@ -364,7 +364,7 @@ public class BanChatController extends BaseController {
     }
 
     /**
-     * 添加替换字
+     * Добавить替换字
      */
 //    @RequiresPermissions("gmtool:banChat:addReplaceWord")
     @PostMapping("/addReplaceWord")
@@ -374,7 +374,7 @@ public class BanChatController extends BaseController {
         if (StringUtils.isEmpty(serverId) || StringUtils.isEmpty(word) || StringUtils.isEmpty(replaceWord)) {
             return AjaxResult.info("param error").put("ok", false);
         }
-        //更新登录服聊天替换字表
+        //更新Сервер входа聊День替换字表
         String sqlStr = "select count(*) as num from chatword where `serverId`=" + serverId + " and word='" + word +"';";
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         List<Map<String, Object>> resultMap = loginDao.selectList(sqlStr);
@@ -388,28 +388,28 @@ public class BanChatController extends BaseController {
             exeNum = loginDao.executeUpdate(sqlStr);
         } catch (SQLException e) {
             e.printStackTrace();
-            return AjaxResult.info("更新聊天替换字表失败").put("ok", false);
+            return AjaxResult.info("更新聊День替换字表Ошибка").put("ok", false);
         }
-        log.info("添加聊天替换字表的结果是：" + (exeNum > 0));
+        log.info("Добавить聊День替换字表的РезультатДа：" + (exeNum > 0));
 
-        //通知游戏服更新聊天替换字
+        //通知游戏服更新聊День替换字
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("获取服务失败").put("ok", false);
+            return AjaxResult.info("Не удалось получить данные сервера").put("ok", false);
         }
 
         AjaxResult result = GameServerRequestUtil.gmLoadReplaceWord(server);
         if (Boolean.valueOf(result.get("ok").toString())) {
-            GMLogUtil.log("替换字表刷新成功,serverId:" + serverId);
+            GMLogUtil.log("替换字表ОбновитьУспешно,serverId:" + serverId);
             return toAjax(true);
         }else{
-            GMLogUtil.log("替换字表刷新失败,serverId:" + serverId);
-            return AjaxResult.info("替换字表刷新失败").put("ok", false);
+            GMLogUtil.log("替换字表ОбновитьОшибка,serverId:" + serverId);
+            return AjaxResult.info("替换字表ОбновитьОшибка").put("ok", false);
         }
     }
 
     /**
-     * 删除替换字
+     * Удалить替换字
      */
 //    @RequiresPermissions("gmtool:banChat:removeReplaceWord")
     @PostMapping("/removeReplaceWord")
@@ -420,7 +420,7 @@ public class BanChatController extends BaseController {
             return AjaxResult.info("param error").put("ok", false);
         }
 
-        //更新登录服聊天替换字表
+        //更新Сервер входа聊День替换字表
         String sqlStr = "DELETE from chatword where id=" + id + ";";
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         int exeNum = 0;
@@ -428,27 +428,27 @@ public class BanChatController extends BaseController {
             exeNum = loginDao.executeUpdate(sqlStr);
         } catch (SQLException e) {
             e.printStackTrace();
-            return AjaxResult.info("更新聊天替换字表失败").put("ok", false);
+            return AjaxResult.info("更新聊День替换字表Ошибка").put("ok", false);
         }
-        log.info("删除chatWord替换关键字表的结果是：" + (exeNum > 0));
+        log.info("УдалитьchatWord替换关键字表的РезультатДа：" + (exeNum > 0));
 
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("获取服务失败").put("ok", false);
+            return AjaxResult.info("Не удалось получить данные сервера").put("ok", false);
         }
 
         AjaxResult resultMap = GameServerRequestUtil.gmDeleteShieldWord(server, id);
         if (Boolean.valueOf(resultMap.get("ok").toString())) {
-            GMLogUtil.log("替换字删除成功,serverId:" + serverId);
+            GMLogUtil.log("替换字УдалитьУспешно,serverId:" + serverId);
             return toAjax(true);
         }else{
-            GMLogUtil.log("替换字删除失败,serverId:" + serverId);
-            return AjaxResult.info("替换字删除失败").put("ok", false);
+            GMLogUtil.log("替换字УдалитьОшибка,serverId:" + serverId);
+            return AjaxResult.info("替换字УдалитьОшибка").put("ok", false);
         }
     }
 
     /**
-     * 查询黑名单
+     * 查询Чёрный список
      */
 //    @RequiresPermissions("gmtool:banChat:searchBlackList")
     @PostMapping("/searchBlackList")
@@ -459,18 +459,18 @@ public class BanChatController extends BaseController {
             return getDataTableErrorMsg("param error");
         }
 
-        //查询登录服表
+        //查询Сервер входа表
         String sqlStr = "SELECT userId,serverId FROM chatblacklist where serverId="+serverId;
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         List<Map<String, Object>> resultMap = loginDao.selectList(sqlStr);
         if(resultMap == null){
-            return getDataTableErrorMsg("获取数据错误");
+            return getDataTableErrorMsg("获取Данные错误");
         }
         return getDataTable(resultMap);
     }
 
     /**
-     * 新增黑名单
+     * ДобавитьЧёрный список
      */
     @GetMapping("/addBlackList")
     public String addBlackList()
@@ -479,7 +479,7 @@ public class BanChatController extends BaseController {
     }
 
     /**
-     * 添加黑名单
+     * ДобавитьЧёрный список
      */
 //    @RequiresPermissions("gmtool:banChat:addBlackList")
     @PostMapping("/addBlackList")
@@ -490,13 +490,13 @@ public class BanChatController extends BaseController {
             return AjaxResult.info("param error").put("ok", false);
         }
 
-        //更新登录服聊天替换字表
+        //更新Сервер входа聊День替换字表
         String sqlStr = "select count(*) from chatblacklist where `serverId`=" + serverId + " and userId='" + userId +"';";
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         List<Map<String, Object>> resultMap = loginDao.selectList(sqlStr);
         if (null != resultMap && resultMap.size() > 0 && resultMap.get(0).get("num")!=null && (long)resultMap.get(0).get("num")>0){
 //            sqlStr = "update chatblacklist set `replace`= " + replace + " where serverId = " + serverId + " and word=" + word +";";
-            return AjaxResult.info("添加聊天黑名单已存在").put("ok", false);
+            return AjaxResult.info("Добавить聊ДеньЧёрный список已存在").put("ok", false);
         }else{
             sqlStr = "insert into chatblacklist(userId,serverId) values(" + userId + "," + serverId + ")";
         }
@@ -505,28 +505,28 @@ public class BanChatController extends BaseController {
             exeNum = loginDao.executeUpdate(sqlStr);
         } catch (SQLException e) {
             e.printStackTrace();
-            return AjaxResult.info("添加聊天黑名单失败").put("ok", false);
+            return AjaxResult.info("Добавить聊ДеньЧёрный списокОшибка").put("ok", false);
         }
-        log.info("添加聊天黑名单表的结果是：" + (exeNum > 0));
+        log.info("Добавить聊ДеньЧёрный список表的РезультатДа：" + (exeNum > 0));
 
-        //通知游戏服更新聊天替换字
+        //通知游戏服更新聊День替换字
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("获取服务失败").put("ok", false);
+            return AjaxResult.info("Не удалось получить данные сервера").put("ok", false);
         }
 
         AjaxResult result = GameServerRequestUtil.gmLoadChatBlackList(server);
         if (Boolean.valueOf(result.get("ok").toString())) {
-            GMLogUtil.log("替换字表刷新成功,serverId:" + serverId);
-            return AjaxResult.info("替换字表刷新成功").put("ok", true);
+            GMLogUtil.log("替换字表ОбновитьУспешно,serverId:" + serverId);
+            return AjaxResult.info("替换字表ОбновитьУспешно").put("ok", true);
         }else{
-            GMLogUtil.log("替换字表刷新失败,serverId:" + serverId);
-            return AjaxResult.info("替换字表刷新失败").put("ok", false);
+            GMLogUtil.log("替换字表ОбновитьОшибка,serverId:" + serverId);
+            return AjaxResult.info("替换字表ОбновитьОшибка").put("ok", false);
         }
     }
 
     /**
-     * 删除黑名单
+     * УдалитьЧёрный список
      */
 //    @RequiresPermissions("gmtool:banChat:removeBlackList")
     @PostMapping("/removeBlackList")
@@ -537,7 +537,7 @@ public class BanChatController extends BaseController {
             return AjaxResult.info("param error").put("ok", false);
         }
 
-        //更新登录服聊天替换字表
+        //更新Сервер входа聊День替换字表
         String sqlStr = "DELETE from chatblacklist where userId="+userId+" and serverId=" + serverId + ";";
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         int exeNum = 0;
@@ -545,22 +545,22 @@ public class BanChatController extends BaseController {
             exeNum = loginDao.executeUpdate(sqlStr);
         } catch (SQLException e) {
             e.printStackTrace();
-            return AjaxResult.info("删除聊天黑名单表失败").put("ok", false);
+            return AjaxResult.info("Удалить聊ДеньЧёрный список表Ошибка").put("ok", false);
         }
-        log.info("删除聊天黑名单表的结果是：" + (exeNum > 0));
+        log.info("Удалить聊ДеньЧёрный список表的РезультатДа：" + (exeNum > 0));
 
         TServer server = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
         if (server == null) {
-            return AjaxResult.info("获取服务失败").put("ok", false);
+            return AjaxResult.info("Не удалось получить данные сервера").put("ok", false);
         }
 
         AjaxResult resultMap = GameServerRequestUtil.gmLoadChatBlackList(server);
         if (Boolean.valueOf(resultMap.get("ok").toString())) {
-            GMLogUtil.log("聊天黑名单删除成功,serverId:" + serverId);
-            return AjaxResult.info("聊天黑名单删除成功").put("ok", true);
+            GMLogUtil.log("聊ДеньЧёрный списокУдалитьУспешно,serverId:" + serverId);
+            return AjaxResult.info("聊ДеньЧёрный списокУдалитьУспешно").put("ok", true);
         }else{
-            GMLogUtil.log("聊天黑名单删除失败,serverId:" + serverId);
-            return AjaxResult.info("聊天黑名单删除失败").put("ok", false);
+            GMLogUtil.log("聊ДеньЧёрный списокУдалитьОшибка,serverId:" + serverId);
+            return AjaxResult.info("聊ДеньЧёрный списокУдалитьОшибка").put("ok", false);
         }
     }
 }

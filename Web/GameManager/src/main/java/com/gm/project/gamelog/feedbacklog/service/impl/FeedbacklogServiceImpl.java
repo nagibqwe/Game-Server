@@ -10,7 +10,7 @@ import com.gm.project.gamelog.feedbacklog.service.IFeedbacklogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * 反馈日志Service业务层处理
+ * 反馈ЖурналService业务层处理
  * 
  * @author gm
  * @date 2021-09-10
@@ -21,10 +21,10 @@ public class FeedbacklogServiceImpl implements IFeedbacklogService
 
 
     /**
-     * 查询反馈日志列表
+     * 查询反馈Журнал列表
      * 
-     * @param feedbacklog 反馈日志
-     * @return 反馈日志
+     * @param feedbacklog 反馈Журнал
+     * @return 反馈Журнал
      */
     @Override
     public List<Feedbacklog> selectFeedbacklogList(Feedbacklog feedbacklog,Map<String, Object> param)

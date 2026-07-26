@@ -14,19 +14,19 @@ public class StatDailyDataBean extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 等级 */
-    @Excel(name = "日期")
+    /** Уровень */
+    @Excel(name = "Дата")
     private String day;
     /** dau */
-    @Excel(name = "充值金额")
+    @Excel(name = "Сумма пополнения")
     private Float totalmoney ;
-    @Excel(name = "充值元宝")
+    @Excel(name = "Пополнение слитков")
     private Float totalgold;
 
-    @Excel(name = "充值次数")
+    @Excel(name = "Количество пополнений")
     private String totaltimes;
 
-    @Excel(name = "付费人数")
+    @Excel(name = "付费Количество")
     private String totaluser;
 
     @Excel(name = "活跃付费率")
@@ -35,22 +35,22 @@ public class StatDailyDataBean extends BaseEntity
     @Excel(name = "活跃玩家")
     private String activenum;
 
-    @Excel(name = "新增玩家")
+    @Excel(name = "Добавить玩家")
     private String addnum;
 
 
-    @Excel(name = "新增付费玩家人数")
+    @Excel(name = "Добавить付费玩家Количество")
     private String addRechargeNum;
 
 
-    @Excel(name = "新增付费率")
+    @Excel(name = "Добавить付费率")
     private Float addpayrate;
 
 
     @Excel(name = "活跃设备")
     private String deviceNum;
 
-    @Excel(name = "新增设备")
+    @Excel(name = "Добавить设备")
     private String deviceaddnum;
 
 
@@ -60,9 +60,9 @@ public class StatDailyDataBean extends BaseEntity
     @Excel(name = "arppu")
     private Float arppu;
 
-    @Excel(name = "平均在线")
+    @Excel(name = "平均В сети")
     private Float avgnum;
-    @Excel(name = "最高在线")
+    @Excel(name = "最高В сети")
     private Integer maxnum;
 
     public String getDay() {

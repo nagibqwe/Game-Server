@@ -9,7 +9,7 @@ import com.gm.project.gmtool.roleTransfer.service.IRoleTransferService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 角色转移Service业务层处理
+ * Перенос персонажаService业务层处理
  * 
  * @author gm
  * @date 2021-11-03
@@ -21,10 +21,10 @@ public class RoleTransferServiceImpl implements IRoleTransferService
     private RoleTransferMapper roleTransferMapper;
 
     /**
-     * 查询角色转移
+     * 查询Перенос персонажа
      * 
-     * @param roleId 角色转移ID
-     * @return 角色转移
+     * @param roleId Перенос персонажаID
+     * @return Перенос персонажа
      */
     @Override
     public RoleTransfer selectRoleTransferById(String roleId)
@@ -33,10 +33,10 @@ public class RoleTransferServiceImpl implements IRoleTransferService
     }
 
     /**
-     * 查询角色转移列表
+     * 查询Перенос персонажа列表
      * 
-     * @param roleTransfer 角色转移
-     * @return 角色转移
+     * @param roleTransfer Перенос персонажа
+     * @return Перенос персонажа
      */
     @Override
     public List<RoleTransfer> selectRoleTransferList(RoleTransfer roleTransfer)
@@ -45,10 +45,10 @@ public class RoleTransferServiceImpl implements IRoleTransferService
     }
 
     /**
-     * 新增角色转移
+     * ДобавитьПеренос персонажа
      * 
-     * @param roleTransfer 角色转移
-     * @return 结果
+     * @param roleTransfer Перенос персонажа
+     * @return Результат
      */
     @Override
     public int insertRoleTransfer(RoleTransfer roleTransfer)
@@ -57,10 +57,10 @@ public class RoleTransferServiceImpl implements IRoleTransferService
     }
 
     /**
-     * 修改角色转移
+     * ИзменитьПеренос персонажа
      * 
-     * @param roleTransfer 角色转移
-     * @return 结果
+     * @param roleTransfer Перенос персонажа
+     * @return Результат
      */
     @Override
     public int updateRoleTransfer(RoleTransfer roleTransfer)
@@ -69,10 +69,10 @@ public class RoleTransferServiceImpl implements IRoleTransferService
     }
 
     /**
-     * 删除角色转移对象
+     * УдалитьПеренос персонажа对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteRoleTransferByIds(String ids)
@@ -81,10 +81,10 @@ public class RoleTransferServiceImpl implements IRoleTransferService
     }
 
     /**
-     * 删除角色转移信息
+     * УдалитьПеренос персонажаИнформация
      * 
-     * @param roleId 角色转移ID
-     * @return 结果
+     * @param roleId Перенос персонажаID
+     * @return Результат
      */
     @Override
     public int deleteRoleTransferById(String roleId)

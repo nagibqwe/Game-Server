@@ -47,7 +47,7 @@ import java.util.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
- * 操作类型的Controller
+ * ДействияТип的Controller
  *
  * @author gm
  * @date 2021-09-18
@@ -67,7 +67,7 @@ public class OperationController extends BaseController {
     private ITServerService tServerService;
 
     /**
-     * 激活码相关跳转
+     * Код активации相关跳转
      * @param type
      * @param mmap
      * @return
@@ -88,7 +88,7 @@ public class OperationController extends BaseController {
     }
 
     /**
-     * 查询激活码列表
+     * 查询Код активации列表
      * @param pageSize
      * @param pageNum
      * @return
@@ -137,7 +137,7 @@ public class OperationController extends BaseController {
     }
 
     /**
-     * 根据批次号ID查询激活码列表
+     * 根据Номер пакетаID查询Код активации列表
      * @param pageSize
      * @param pageNum
      * @param searchParam
@@ -166,13 +166,13 @@ public class OperationController extends BaseController {
         List<Map<String, String>> resultCount = new ArrayList<>();
 
         if (com.gm.project.gmtool.utils.StringUtils.isNumber(searchParam)){
-            //根据批号获取平台名
+            //根据批号获取Платформа
             CodeBatch codeBatch = new CodeBatch();
             codeBatch.setBatchId(Integer.parseInt(searchParam));
             List<CodeBatch> codeBatches = codeBatchService.selectCodeBatchList(codeBatch);
             codeBatch = codeBatches.get(0);
             if (codeBatch == null) {
-                return AjaxResult.info("没有找到该批号相关激活码信息").put("ok",false);
+                return AjaxResult.info("没有找到该批号相关Код активацииИнформация").put("ok",false);
             }
             common.append(" where batch=\""+searchParam+"\"");
         }else if (!"".equals(searchParam) && !com.gm.project.gmtool.utils.StringUtils.isNumber(searchParam)){
@@ -187,7 +187,7 @@ public class OperationController extends BaseController {
         resultCount = loginDao.selectList(sqlStr2);
 
         if (result.isEmpty()) {
-            return AjaxResult.info("没有数据").put("ok",false);
+            return AjaxResult.info("没有Данные").put("ok",false);
         }
         result = getNewList(result);
         List<ActiveCode> grids = new ArrayList<>();
@@ -216,7 +216,7 @@ public class OperationController extends BaseController {
     }
 
     /**
-     * 根据激活码查询激活码使用日志列表
+     * 根据Код активации查询Код активации使用Журнал列表
      * @param pageSize
      * @param pageNum
      * @param serverId
@@ -229,17 +229,17 @@ public class OperationController extends BaseController {
     public Object queryActiveCodeByCode(int pageSize,int pageNum,Integer serverId,String activeCode,String roleId) {
         TServer dblog = tServerService.selectTServerByServerId(serverId);
         if (dblog == null) {
-            return AjaxResult.info("请求查询的服务器并不存在").put("ok",false);
+            return AjaxResult.info("请求查询的Сервер并不存在").put("ok",false);
         }
 
         DBClient dbClient = DBServerMgr.getInstance().getLogDBClient(dblog);
         int start = 0;
         start = (pageNum - 1) * pageSize;
         if (null == serverId || serverId < 0){
-            return AjaxResult.info("服务器ID错误").put("ok",false);
+            return AjaxResult.info("ID сервера错误").put("ok",false);
         }
 //        if (!StringUtils.isBlank(activeCode) && activeCode.length() < 6) {
-//            return AjaxResult.info("输入的激活码不正确,长度应大于等于6").put("ok",false);
+//            return AjaxResult.info("输入的Код активации不正确,长度应大于等于6").put("ok",false);
 //        }
 //        if (StringUtils.isBlank(activeCode)){
 //            return AjaxResult.success("").put("ok",true).put("total",0).put("rows",new ArrayList<>());
@@ -270,10 +270,10 @@ public class OperationController extends BaseController {
             result = getNewList(result);
         }
         if (null == result){
-            return AjaxResult.info("数据库查询出错").put("ok",false);
+            return AjaxResult.info("Данные库查询出错").put("ok",false);
         }
         if (result.isEmpty()) {
-            return AjaxResult.info("没有使用激活码相关记录").put("ok",false);
+            return AjaxResult.info("没有使用Код активации相关记录").put("ok",false);
         }
         List<ActiveCodeLog> grids = new ArrayList<>();
         for (Map<String,String> map:result){
@@ -303,10 +303,10 @@ public class OperationController extends BaseController {
                             continue;
                         }
                         Item item0 = ItemManager.getInstance().getItemList().get(Integer.parseInt(item[0]));
-                        itemStr += "[" + item[0] + "]" + (item0 == null ? "[未知]" : item0.getItemName());
+                        itemStr += "[" + item[0] + "]" + (item0 == null ? "[Неизвестно]" : item0.getItemName());
                         if (item.length > 1) {
                             itemStr += "_" + "数量:" + item[1];
-                            itemStr += "_" + "是否绑定:";
+                            itemStr += "_" + "ДаНет绑定:";
                             if (item.length > 2) {
                                 if (item[2].equals("1")) {
                                     itemStr += "绑定";
@@ -327,7 +327,7 @@ public class OperationController extends BaseController {
     }
 
     /**
-     * 禁用激活码
+     * 禁用Код активации
      * @param code
      * @return
      * @throws SQLException
@@ -337,21 +337,21 @@ public class OperationController extends BaseController {
     public Object deleteCode(String code) throws SQLException {
         DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
         if (StringUtils.isBlank(code)) {
-            return AjaxResult.info("激活码错误").put("ok",false);
+            return AjaxResult.info("Код активации错误").put("ok",false);
         }
         String deleteTime = System.currentTimeMillis() / 1000 + "";
         String sqlStr = "update activecode set deleteTime="+deleteTime+" where code=\""+code+"\" and deleteTime = 0";
 
         int count = loginDao.executeUpdate(sqlStr);
         if (count < 0) {
-            return AjaxResult.info("操作失败").put("ok",false);
+            return AjaxResult.info("Ошибка операции").put("ok",false);
         }
-        GMLogUtil.log("禁用激活码:"+code);
-        return AjaxResult.info("操作完成").put("ok",true);
+        GMLogUtil.log("禁用Код активации:"+code);
+        return AjaxResult.info("Действия完成").put("ok",true);
     }
 
     /**
-     * 生成激活码操作
+     * 生成Код активацииДействия
      * @param codeNum
      * @param activeCode
      * @param selectServerIdList
@@ -383,7 +383,7 @@ public class OperationController extends BaseController {
             return;
         }
 
-        // 为“0”表示所有渠道
+        // 为“0”表示所有Канал
         String channel = activeCode.getPlateform_name_big();
         String valide_server_id_list = "[]";
         if (selectServerIdList != null) {
@@ -401,17 +401,17 @@ public class OperationController extends BaseController {
             }
             codes = Collections.singletonList(activeCode.getCode());
         } else {
-            //生成激活码
+            //生成Код активации
             try {
                 batchId = codeBatchService.selectMaxId() + 1;
             }catch (Exception e){
                 batchId = batchId + 1;
             }
-            // 判断是否已经拥有批号
+            // 判断ДаНет已经拥有批号
             if (codeBatchService.selectBatchId(batchId) > 0) {
                 batchId += 1;
             }
-            // 使用set集合去除重复激活码
+            // 使用set集合去除重复Код активации
             Set<String> codeSet = new HashSet<>();
             while (codeSet.size() < codeNum) {
                 codeSet.add(RandomUtil.sg(5).next() + batchId);
@@ -419,10 +419,10 @@ public class OperationController extends BaseController {
             codes = new ArrayList<>(codeSet);
         }
 
-        //激活码存入各自平台的LS库中
+        //Код активации存入各自Платформа的LS库中
         long createTime = System.currentTimeMillis() / 1000;
-        // 分批存入数据库
-        int batchSize = 1000;//每一批上限，因为国内app(rds云数据库)插入有问题，减少成1000
+        // 分批存入Данные库
+        int batchSize = 1000;//每一批上限，因为国内app(rds云Данные库)插入有问题，减少成1000
         String sqlStr = "INSERT INTO activecode (code, activeName, batch, itemList,param,valide_time_begin," +
                 "valide_time_end,plateform_name_big,valide_server_id_list,create_time,deleteTime) " +
                 "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?);";
@@ -430,7 +430,7 @@ public class OperationController extends BaseController {
         Connection connection = null;
         try{
             if (codeNum > batchSize) {
-                int k = 0;// 用于判断插入剩余数据
+                int k = 0;// 用于判断插入剩余Данные
                 connection = loginDao.getConnection();
                 preparedStatement = connection.prepareStatement(sqlStr);
                 for (int i = 0; i < codeNum; i++) {
@@ -451,17 +451,17 @@ public class OperationController extends BaseController {
                     if (i % batchSize == 0) {
                         preparedStatement.executeBatch();
                         if (preparedStatement.getUpdateCount() < 1) {
-                            log.error("数据库操作失败");
+                            log.error("Данные库Ошибка операции");
                         }
-                        preparedStatement.clearBatch();// 清理已操作批次
+                        preparedStatement.clearBatch();// 清理已Действия批次
                         k = i;
                     }
                 }
                 if (k < codeNum - 1) {
-                    // 最后插入不足batchSize条的数据
+                    // 最后插入不足batchSize条的Данные
                     preparedStatement.executeBatch();
                     if (preparedStatement.getUpdateCount() < 1) {
-                        log.error("数据库操作失败");
+                        log.error("Данные库Ошибка операции");
                     }
                 }
             } else {
@@ -483,7 +483,7 @@ public class OperationController extends BaseController {
                 }
                 preparedStatement.executeBatch();
                 if (preparedStatement.getUpdateCount() < 1) {
-                    log.error("数据库操作失败");
+                    log.error("Данные库Ошибка операции");
                 }
             }
         }catch (Exception e){
@@ -502,9 +502,9 @@ public class OperationController extends BaseController {
                     e1.printStackTrace();
                 }
         }
-        log.error("激活码存入登录服数据库成功，平台标识 :" + activeCode.getPlateform_name_big() + ",批次号:" + batchId + ",数量:" + codeNum);
+        log.error("Код активации存入Сервер входаДанные库Успешно，Платформа标识 :" + activeCode.getPlateform_name_big() + ",Номер пакета:" + batchId + ",数量:" + codeNum);
 
-        // 保存批号记录
+        // Сохранить批号记录
         if (batchId != 0) {
             User user = ShiroUtils.getSysUser();
             CodeBatch codeBatch = new CodeBatch();
@@ -515,17 +515,17 @@ public class OperationController extends BaseController {
             codeBatch.setIsUniversal(param);
             int insert = codeBatchService.insertCodeBatch(codeBatch);
             if (insert < 1) {
-                log.error("批次号为" + batchId + "的激活码信息录入GM后台失败！");
+                log.error("Номер пакета为" + batchId + "的Код активацииИнформация录入GM后台Ошибка！");
             } else {
-                log.info("批次号为" + batchId + "的激活码信息录入GM后台成功！");
+                log.info("Номер пакета为" + batchId + "的Код активацииИнформация录入GM后台Успешно！");
             }
-            GMLogUtil.log("生成激活码[平台:" + activeCode.getPlateform_name_big() + "\t批号:" + batchId + "\t数量:" + codeNum + "\t万能码：" + (param == 1) + "]");
+            GMLogUtil.log("生成Код активации[Платформа:" + activeCode.getPlateform_name_big() + "\t批号:" + batchId + "\t数量:" + codeNum + "\t万能码：" + (param == 1) + "]");
         }
 
         try (OutputStream out = response.getOutputStream()) {
             response.reset();
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            String excelName = "激活码";
+            String excelName = "Код активации";
             // 转码防止乱码
             response.addHeader("Content-Disposition", "attachment;filename=" + new String(excelName.getBytes(UTF_8), "ISO8859-1") + ".xlsx");
             genExcel(codes, batchId, out);
@@ -537,8 +537,8 @@ public class OperationController extends BaseController {
 
     private void genExcel(List<String> rows, int batchId, OutputStream out) throws Exception {
         XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("批次号" + "_" + batchId);
-        String[] header = {"激活码"};
+        XSSFSheet sheet = workbook.createSheet("Номер пакета" + "_" + batchId);
+        String[] header = {"Код активации"};
         // 创建表头
         XSSFRow row = sheet.createRow(0);
         XSSFCell cell;
@@ -546,7 +546,7 @@ public class OperationController extends BaseController {
             cell = row.createCell(ci);
             cell.setCellValue(header[ci]);
         }
-        // 创建数据
+        // 创建Данные
         for (int ri = 0; ri < rows.size(); ri++) {
             row = sheet.createRow(ri + 1);
             cell = row.createCell(0);

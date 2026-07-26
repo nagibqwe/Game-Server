@@ -7,9 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * <b>字符串操作的工具类.</b>
+ * <b>字符串Действия的工具类.</b>
  * <p>
- * 此类封装了一些常用的字符串操作.
+ * 此类封装了一些常用的字符串Действия.
  * <p>
  * <b>Sample:</b>
  *
@@ -30,14 +30,14 @@ public class StringUtils {
             };
 
     /**
-     * 判断字符串是否为空.
+     * 判断字符串ДаНет为空.
      * <p>
      * 如果字符串不等于null, 则先去除首尾空格后再进行判定.
-     * 这里只是简单的使用了java.lang.String提供的trim()方法去除半角空格, 如果字符串含有全角空格, 或二者皆有,
+     * 这里只Да简单的使用了java.lang.String提供的trim()方法去除半角空格, 如果字符串含有全角空格, 或二者皆有,
      * 可以使用StringUtil.trim(String)去除首尾空格.
      *
      * @param source 指定的字符串
-     * @return 如果为空则返回true, 反之返回false.
+     * @return 如果为空则Назадtrue, 反之Назадfalse.
      * @see #trim(String)
      */
     public static boolean isEmpty(String source) {
@@ -45,14 +45,14 @@ public class StringUtils {
     }
 
     /**
-     * 判断字符串是否不为空.
+     * 判断字符串ДаНет不为空.
      * <p>
      * 如果字符串不等于null, 则先去除首尾空格后再进行判定.
-     * 这里只是简单的使用了java.lang.String提供的trim()方法去除半角空格, 如果字符串含有全角空格, 或二者皆有,
+     * 这里只Да简单的使用了java.lang.String提供的trim()方法去除半角空格, 如果字符串含有全角空格, 或二者皆有,
      * 可以使用StringUtil.trim(String)去除首尾空格.
      *
      * @param source 指定的字符串
-     * @return 如果不为空则返回true, 反之返回false.
+     * @return 如果不为空则Назадtrue, 反之Назадfalse.
      * @see #trim(String)
      */
     public static boolean isNotEmpty(String source) {
@@ -81,12 +81,12 @@ public class StringUtils {
     }
 
     /**
-     * 判断字符串所包含的内容是否由汉字组成.
+     * 判断字符串所包含的СодержимоеДаНет由汉字组成.
      * <p>
-     * 注意: 此方法并不能准确的"认出"汉字, 它所能"认出"的只是以双字节编码的文字. 例如日文、韩文, 它也会将它们"认作"汉字.
+     * 注意: 此方法并不能准确的"认出"汉字, 它所能"认出"的只Да以双字节编码的文字. 例如日文、韩文, 它也会将它们"认作"汉字.
      *
      * @param source 指定的字符串
-     * @return 如果字符串的所有内容都是双字节编码的文字, 则返回true, 否则返回false.
+     * @return 如果字符串的所有Содержимое都Да双字节编码的文字, 则Назадtrue, Нет则Назадfalse.
      * @throws NullPointerException 如果source为null
      */
     public static boolean isChinese(String source) {
@@ -97,7 +97,7 @@ public class StringUtils {
 
         char[] temp = source.toCharArray();
         for (char c : temp) {
-            // 为了适应不同字符集, 这里将字节数小于2的字符都认为不是汉字, 注: 某些OS下UTF-8编码的汉字会占3个字节.
+            // 为了适应不同字符集, 这里将字节数小于2的字符都认为不Да汉字, 注: 某些OS下UTF-8编码的汉字会占3个字节.
             if (String.valueOf(c).getBytes().length < 2)
                 return false;
         }
@@ -108,7 +108,7 @@ public class StringUtils {
     /**
      * 获取字符串的长度.
      * <p>
-     * 本方法与java.lang.String提供的length()的区别在于: 它以字节数来确定字符串的长度.<br/>
+     * 本方法与java.lang.String提供的length()的区别在于: 它以字节数来ОК字符串的长度.<br/>
      * 例如: 单个英文字母或数字的长度=1，单个汉字的长度>=2(取决于系统字符集编码).
      *
      * @param source 指定的字符串
@@ -132,7 +132,7 @@ public class StringUtils {
     /**
      * 获取字符串的长度.
      * <p>
-     * 本方法与StringUtils.length()一样以字节数来确定字符串的长度, 区别在于: 前者完全以统计字节数来获取长度,
+     * 本方法与StringUtils.length()一样以字节数来ОК字符串的长度, 区别在于: 前者完全以统计字节数来获取长度,
      * 后者将所有非单字节字符以指定的字节数来进行统计, 以屏蔽不同系统字符集的编码差异.<br/>
      * 例如: 单个英文字母或数字的长度=1，单个汉字的长度<b>始终</b>=3 <i>(bytes=3)</i>.
      *
@@ -207,7 +207,7 @@ public class StringUtils {
      * 从指定的索引(beginIndex)开始, 最多截取maxLength个字符.
      *
      * @param source     指定的字符串
-     * @param beginIndex 开始截取的索引编号
+     * @param beginIndex 开始截取的索引Номер
      * @param maxLength  最多截取的字符长度
      * @return 截取后的子字符串
      * @throws NullPointerException            如果source为null
@@ -267,9 +267,9 @@ public class StringUtils {
     /**
      * 从字符串的起始处开始, 最多截取maxBytes个字节, 超出部分以指定的字符串替代.
      * <p>
-     * 注意: 系统的字符集编码将影响字符串的截取结果, 出现这样的情况, 可以调整maxBytes的值, 或者修改系统字符集. 另外,
+     * 注意: 系统的字符集编码将影响字符串的截取Результат, 出现这样的情况, 可以调整maxBytes的值, 或者Изменить系统字符集. 另外,
      * StringUtils.substringByBytes2()提供了另一种实现以规避这个问题.<br/>
-     * 举个例子, 在LINUX上, 某些UTF-8字符集会将汉字以3个字节进行编码, 而不是人们通常认为的2个字节.
+     * 举个例子, 在LINUX上, 某些UTF-8字符集会将汉字以3个字节进行编码, 而不Да人们通常认为的2个字节.
      *
      * @param source     指定的字符串
      * @param maxBytes   最多截取的字节数
@@ -311,7 +311,7 @@ public class StringUtils {
      * 从字符串的起始处开始, 最多截取maxBytes个字节, 超出部分以指定的字符串替代.
      * <p>
      * 出于解决不同字符集对非单字节字符的编码问题(在LINUX上, 某些UTF-8字符集会将汉字以3个字节进行编码,
-     * 而Windows中文系统通常默认是2个字节), 本方法会将所有字节数>2的字符当作双字节处理.
+     * 而Windows中文系统通常默认Да2个字节), 本方法会将所有字节数>2的字符当作双字节处理.
      *
      * @param source     指定的字符串
      * @param maxBytes   最多截取的字节数
@@ -355,11 +355,11 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的起点开始向后检索, 返回key在字符串中第一次出现处的索引之后的字符串.
+     * 从字符串的起点开始向后检索, Назадkey在字符串中№一次出现处的索引之后的字符串.
      *
      * @param source 指定的字符串
      * @param key    关键字
-     * @return key之后的字符串. 如果没有找到则返回null; 如果该索引已是末位则返回空字符串: "".
+     * @return key之后的字符串. 如果没有找到则Назадnull; 如果该索引已Да末位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String indexOfAfter(String source, char key) {
@@ -382,18 +382,18 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的起点开始向后检索, 返回key在源字符串中第一次出现处的索引顺移key.length()之后的字符串.
+     * 从字符串的起点开始向后检索, Назадkey在源字符串中№一次出现处的索引顺移key.length()之后的字符串.
      *
      * @param source 指定的字符串
-     * @param key    关键字, 如果为null或者空字符串: "", 则直接返回null.
-     * @return key之后的字符串. 如果没有找到则返回null; 如果该索引已是末位则返回空字符串: "".
+     * @param key    关键字, 如果为null或者空字符串: "", 则直接Назадnull.
+     * @return key之后的字符串. 如果没有找到则Назадnull; 如果该索引已Да末位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String indexOfAfter(String source, String key) {
         if (null == source)
             throw new NullPointerException("source");
         if (null == key || "".equals(key))
-            // 因为String的indexOf方法在检索空字符串""时, 总是返回起始索引, 所以, key不能为空字符串.
+            // 因为String的indexOf方法在检索空字符串""时, 总ДаНазад起始索引, 所以, key不能为空字符串.
             return null;
 
         String ext = null;
@@ -405,11 +405,11 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的起点开始向后检索, 返回key在源字符串中第一次出现处的索引之前的字符串.
+     * 从字符串的起点开始向后检索, Назадkey在源字符串中№一次出现处的索引之前的字符串.
      *
      * @param source 指定的字符串
      * @param key    关键字
-     * @return key之前的字符串. 如果没有找到则返回null; 如果该索引已是首位则返回空字符串: "".
+     * @return key之前的字符串. 如果没有找到则Назадnull; 如果该索引已Да首位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String indexOfBefore(String source, char key) {
@@ -432,11 +432,11 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的起点开始向后检索, 返回key在源字符串中第一次出现处的索引之前的字符串.
+     * 从字符串的起点开始向后检索, Назадkey在源字符串中№一次出现处的索引之前的字符串.
      *
      * @param source 指定的字符串
-     * @param key    关键字, 如果为null或者空字符串: "", 则直接返回null.
-     * @return key之前的字符串. 如果没有找到则返回null; 如果该索引已是首位则返回空字符串: "".
+     * @param key    关键字, 如果为null或者空字符串: "", 则直接Назадnull.
+     * @return key之前的字符串. 如果没有找到则Назадnull; 如果该索引已Да首位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String indexOfBefore(String source, String key) {
@@ -455,12 +455,12 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的起点开始向后检索, 返回第一次匹配到beginKey和endKey之间的字符串.
+     * 从字符串的起点开始向后检索, Назад№一次匹配到beginKey和endKey之间的字符串.
      *
      * @param source   指定的字符串
      * @param beginKey 起始关键字
      * @param endKey   结束关键字
-     * @return beginKey和endKey之间的字符串, 如果没有找到则返回null.
+     * @return beginKey和endKey之间的字符串, 如果没有找到则Назадnull.
      * @throws NullPointerException 如果source为null
      */
     public static String indexOfInner(String source, String beginKey,
@@ -489,11 +489,11 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的末尾开始向前检索, 返回key在源字符串中第一次出现处的索引之后的字符串.
+     * 从字符串的末尾开始向前检索, Назадkey在源字符串中№一次出现处的索引之后的字符串.
      *
      * @param source 指定的字符串
      * @param key    关键字
-     * @return key之后的字符串. 如果没有找到则返回null; 如果该索引已是末位则返回空字符串: "".
+     * @return key之后的字符串. 如果没有找到则Назадnull; 如果该索引已Да末位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String lastIndexOfAfter(String source, char key) {
@@ -516,11 +516,11 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的末尾开始向前检索, 返回key在源字符串中第一次出现处的索引顺移key.length()之后的字符串.
+     * 从字符串的末尾开始向前检索, Назадkey在源字符串中№一次出现处的索引顺移key.length()之后的字符串.
      *
      * @param source 指定的字符串
-     * @param key    关键字, 如果为null或者空字符串: "", 则直接返回null.
-     * @return key之后的字符串. 如果没有找到则返回null; 如果该索引已是末位则返回空字符串: "".
+     * @param key    关键字, 如果为null或者空字符串: "", 则直接Назадnull.
+     * @return key之后的字符串. 如果没有找到则Назадnull; 如果该索引已Да末位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String lastIndexOfAfter(String source, String key) {
@@ -538,11 +538,11 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的末尾开始向前检索, 返回key在源字符串中第一次出现处的索引之前的字符串.
+     * 从字符串的末尾开始向前检索, Назадkey在源字符串中№一次出现处的索引之前的字符串.
      *
      * @param source 指定的字符串
      * @param key    关键字
-     * @return key之前的字符串. 如果没有找到则返回null; 如果该索引已是首位则返回空字符串: "".
+     * @return key之前的字符串. 如果没有找到则Назадnull; 如果该索引已Да首位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String lastIndexOfBefore(String source, char key) {
@@ -565,11 +565,11 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的末尾开始向前检索, 返回key在源字符串中第一次出现处的索引之前的字符串.
+     * 从字符串的末尾开始向前检索, Назадkey在源字符串中№一次出现处的索引之前的字符串.
      *
      * @param source 指定的字符串
-     * @param key    关键字, 如果为null或者空字符串: "", 则直接返回null.
-     * @return key之前的字符串. 如果没有找到则返回null; 如果该索引已是首位则返回空字符串: "".
+     * @param key    关键字, 如果为null或者空字符串: "", 则直接Назадnull.
+     * @return key之前的字符串. 如果没有找到则Назадnull; 如果该索引已Да首位则Назад空字符串: "".
      * @throws NullPointerException 如果source为null
      */
     public static String lastIndexOfBefore(String source, String key) {
@@ -587,12 +587,12 @@ public class StringUtils {
     }
 
     /**
-     * 从字符串的末尾开始向前检索, 返回第一次匹配到beginKey和endKey之间的字符串.
+     * 从字符串的末尾开始向前检索, Назад№一次匹配到beginKey和endKey之间的字符串.
      *
      * @param source   指定的字符串
      * @param beginKey 起始关键字
      * @param endKey   结束关键字
-     * @return beginKey和endKey之间的字符串, 如果没有找到则返回null.
+     * @return beginKey和endKey之间的字符串, 如果没有找到则Назадnull.
      * @throws NullPointerException 如果source为null
      */
     public static String lastIndexOfInner(String source, String beginKey,
@@ -625,7 +625,7 @@ public class StringUtils {
      * <p>
      * 如果需要将String按分隔符转换为Array, 建议使用java.lang.String提供的split()方法.
      *
-     * @param source    指定的字符串数组, 如果array为空或无可用元素, 直接返回null.
+     * @param source    指定的字符串数组, 如果array为空或无可用元素, 直接Назадnull.
      * @param separator 分隔符, null表示不设置分隔符
      * @return 连接后的String, 格式大致如下:<br/>
      * Array[0] + separator + Array[1] + separator......Array[length]
@@ -650,7 +650,7 @@ public class StringUtils {
     /**
      * 取出java.util.List中的所有元素, 将其连接并创建一个新的String, 其中List的元素以separator分隔.
      *
-     * @param source    指定的字符串列表, 如果list为空或无可用元素, 直接返回null.
+     * @param source    指定的字符串列表, 如果list为空或无可用元素, 直接Назадnull.
      * @param separator 分隔符, null表示不设置分隔符
      * @return 连接后的String格式为: list[0] + separator + list[1] +
      * separator...list[size-1]
@@ -673,17 +673,17 @@ public class StringUtils {
     }
 
     /**
-     * 判断一个字符串中是否包含另一个字符串(大小写敏感).
+     * 判断一个字符串中ДаНет包含另一个字符串(大小写敏感).
      *
      * @param source       指定的字符串
-     * @param containedStr 要匹配的字符串, 如果为null或空字符串: "", 则直接返回false
-     * @return 如果包含返回true, 否则返回false
+     * @param containedStr 要匹配的字符串, 如果为null或空字符串: "", 则直接Назадfalse
+     * @return 如果包含Назадtrue, Нет则Назадfalse
      * @throws NullPointerException 如果source为null
      */
     public static boolean contains(String source, String containedStr) {
         if (null == source)
             throw new NullPointerException("source");
-        // 因为String的indexOf方法在检索空字符串""时, 总是返回起始索引, 所以, containedStr不能为空字符串.
+        // 因为String的indexOf方法在检索空字符串""时, 总ДаНазад起始索引, 所以, containedStr不能为空字符串.
         if (null == containedStr || "".equals(containedStr))
             return false;
 
@@ -691,11 +691,11 @@ public class StringUtils {
     }
 
     /**
-     * 判断一个字符串中是否包含另一个字符串(忽略大小写检查).
+     * 判断一个字符串中ДаНет包含另一个字符串(忽略大小写检查).
      *
      * @param source       指定的字符串
-     * @param containedStr 要匹配的字符串, 如果为null或空字符串: "", 则直接返回false
-     * @return 如果包含返回true, 否则返回false
+     * @param containedStr 要匹配的字符串, 如果为null或空字符串: "", 则直接Назадfalse
+     * @return 如果包含Назадtrue, Нет则Назадfalse
      * @throws NullPointerException 如果source为null
      */
     public static boolean containsIgnoreCase(String source, String containedStr) {
@@ -708,11 +708,11 @@ public class StringUtils {
     }
 
     /**
-     * 判断字符串是否由数字, 或者自定义字符(可选)所组成.
+     * 判断字符串ДаНет由数字, 或者自定义字符(可选)所组成.
      *
      * @param source     指定的字符串
-     * @param defineChar 自定义字符(可选, 如果不传入此参数或者参数无可用值, 则只判断字符串是否由数字组成)
-     * @return 如果字符串的所有内容都是数字或者自定义字符(可选), 则返回true, 否则返回false.
+     * @param defineChar 自定义字符(可选, 如果不传入此参数或者参数无可用值, 则只判断字符串ДаНет由数字组成)
+     * @return 如果字符串的所有Содержимое都Да数字或者自定义字符(可选), 则Назадtrue, Нет则Назадfalse.
      * @throws NullPointerException 如果source为null
      */
     public static boolean isNumber(String source, char... defineChar) {
@@ -728,11 +728,11 @@ public class StringUtils {
     }
 
     /**
-     * 判断字符串是否由字母(包括大小写: a~z, A~Z), 或者自定义字符(可选)所组成.
+     * 判断字符串ДаНет由字母(包括大小写: a~z, A~Z), 或者自定义字符(可选)所组成.
      *
      * @param source     指定的字符串
-     * @param defineChar 自定义字符(可选, 如果不传入此参数或者参数无可用值, 则只判断字符串是否由字母组成)
-     * @return 如果字符串的所有内容都是字母或者自定义字符(可选), 则返回true, 否则返回false.
+     * @param defineChar 自定义字符(可选, 如果不传入此参数或者参数无可用值, 则只判断字符串ДаНет由字母组成)
+     * @return 如果字符串的所有Содержимое都Да字母或者自定义字符(可选), 则Назадtrue, Нет则Назадfalse.
      * @throws NullPointerException 如果source为null
      */
     public static boolean isLetter(String source, char... defineChar) {
@@ -748,11 +748,11 @@ public class StringUtils {
     }
 
     /**
-     * 判断字符串所包含的内容是否由数字, 或者字母(包括大小写: a~z, A~Z), 又或是自定义字符(可选)所组成.
+     * 判断字符串所包含的СодержимоеДаНет由数字, 或者字母(包括大小写: a~z, A~Z), 又或Да自定义字符(可选)所组成.
      *
      * @param source     指定的字符串
-     * @param defineChar 自定义字符(可选, 如果不传入此参数或者参数无可用值, 则只判断字符串是否由数字或字母组成)
-     * @return 如果所有内容都是数字或者字母, 又或是自定义字符(可选), 则返回true, 否则返回false.
+     * @param defineChar 自定义字符(可选, 如果不传入此参数或者参数无可用值, 则只判断字符串ДаНет由数字或字母组成)
+     * @return 如果所有Содержимое都Да数字或者字母, 又或Да自定义字符(可选), 则Назадtrue, Нет则Назадfalse.
      * @throws NullPointerException 如果source为null
      */
     public static boolean isNumberOrLetter(String source, char... defineChar) {
@@ -770,10 +770,10 @@ public class StringUtils {
     /**
      * 将字符串的编码由ISO-8859-1转换为GBK.
      * <p>
-     * 当转换出错时, 直接返回null, 而不抛出异常. 如果需要捕获异常, 请使用transCharacterEncoding().
+     * 当转换出错时, 直接Назадnull, 而不抛出异常. 如果需要捕获异常, 请使用transCharacterEncoding().
      *
      * @param source 指定的字符串
-     * @return 转换后的字符串, 如果出错, 返回null.
+     * @return 转换后的字符串, 如果出错, Назадnull.
      * @throws NullPointerException 如果source为null
      * @see #transCharacterEncoding(String, String)
      */
@@ -839,9 +839,9 @@ public class StringUtils {
     }
 
     /**
-     * 将字符串解析为int类型.
+     * 将字符串解析为intТип.
      * <p>
-     * 如果转换失败, 返回指定的默认值(defaultVal)
+     * 如果转换Ошибка, Назад指定的默认值(defaultVal)
      *
      * @param source     源字符
      * @param defaultVal 默认值
@@ -863,9 +863,9 @@ public class StringUtils {
     }
 
     /**
-     * 将字符串解析为long类型.
+     * 将字符串解析为longТип.
      * <p>
-     * 如果转换失败, 返回指定的默认值(defaultVal)
+     * 如果转换Ошибка, Назад指定的默认值(defaultVal)
      *
      * @param source     源字符
      * @param defaultVal 默认值
@@ -887,9 +887,9 @@ public class StringUtils {
     }
 
     /**
-     * 将字符串解析为float类型.
+     * 将字符串解析为floatТип.
      * <p>
-     * 如果转换失败, 返回指定的默认值(defaultVal)
+     * 如果转换Ошибка, Назад指定的默认值(defaultVal)
      *
      * @param source     源字符
      * @param defaultVal 默认值
@@ -911,9 +911,9 @@ public class StringUtils {
     }
 
     /**
-     * 将字符串解析为double类型.
+     * 将字符串解析为doubleТип.
      * <p>
-     * 如果转换失败, 返回指定的默认值(defaultVal)
+     * 如果转换Ошибка, Назад指定的默认值(defaultVal)
      *
      * @param source     源字符
      * @param defaultVal 默认值
@@ -947,7 +947,7 @@ public class StringUtils {
         // 发现对于某些XML中的空格不能正确剔除, 故先trim一次.
         source = source.trim();
         boolean hasStart = true, hasEnd = true;
-        // System.out.println("显示原始字符串: '" + source + "' \n");
+        // System.out.println("Показывать原始字符串: '" + source + "' \n");
         for (int i = 1; i <= source.length(); i++) {
             if (hasStart && source.length() > 0) {
                 char start = source.charAt(0);
@@ -971,7 +971,7 @@ public class StringUtils {
                 }
             }
 
-            // System.out.println("第" + i + "次迭代后 = '" + source + "'\n");
+            // System.out.println("№" + i + "次迭代后 = '" + source + "'\n");
             if (!hasStart && !hasEnd)
                 break;
         }

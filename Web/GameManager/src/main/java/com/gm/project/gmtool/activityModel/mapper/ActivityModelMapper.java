@@ -5,7 +5,7 @@ import java.util.List;
 import com.gm.project.gmtool.activityModel.domain.ActivityModel;
 
 /**
- * 运营活动模型库Mapper接口
+ * Библиотека моделей событийMapper接口
  * 
  * @author gm
  * @date 2021-09-14
@@ -13,50 +13,50 @@ import com.gm.project.gmtool.activityModel.domain.ActivityModel;
 public interface ActivityModelMapper
 {
     /**
-     * 查询运营活动模型库
+     * 查询Библиотека моделей событий
      * 
-     * @param id 运营活动模型库ID
-     * @return 运营活动模型库
+     * @param id Библиотека моделей событийID
+     * @return Библиотека моделей событий
      */
     public ActivityModel selectModelById(Integer id);
 
     /**
-     * 查询运营活动模型库列表
+     * 查询Библиотека моделей событий列表
      * 
-     * @param activityModel 运营活动模型库
-     * @return 运营活动模型库集合
+     * @param activityModel Библиотека моделей событий
+     * @return Библиотека моделей событий集合
      */
     public List<ActivityModel> selectModelList(ActivityModel activityModel);
 
     /**
-     * 新增运营活动模型库
+     * ДобавитьБиблиотека моделей событий
      * 
-     * @param activityModel 运营活动模型库
-     * @return 结果
+     * @param activityModel Библиотека моделей событий
+     * @return Результат
      */
     public int insertModel(ActivityModel activityModel);
 
     /**
-     * 修改运营活动模型库
+     * ИзменитьБиблиотека моделей событий
      * 
-     * @param activityModel 运营活动模型库
-     * @return 结果
+     * @param activityModel Библиотека моделей событий
+     * @return Результат
      */
     public int updateModel(ActivityModel activityModel);
 
     /**
-     * 删除运营活动模型库
+     * УдалитьБиблиотека моделей событий
      * 
-     * @param id 运营活动模型库ID
-     * @return 结果
+     * @param id Библиотека моделей событийID
+     * @return Результат
      */
     public int deleteModelById(Integer id);
 
     /**
-     * 批量删除运营活动模型库
+     * 批量УдалитьБиблиотека моделей событий
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteModelByIds(String[] ids);
 }

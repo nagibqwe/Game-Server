@@ -15,63 +15,63 @@ public class RechargeRankBean
     private static final long serialVersionUID = 1L;
 
 
-    @Excel(name = "排名")
+    @Excel(name = "Место")
     private Integer rank;
     /** dau */
-    @Excel(name = "用户ID")
+    @Excel(name = "ID пользователя")
     private String userId;
-    @Excel(name = "角色ID")
+    @Excel(name = "ID персонажа")
     private String roleId;
 
-    @Excel(name = "角色名")
+    @Excel(name = "Имя персонажа")
     private String roleName;
 
-    @Excel(name = "等级")
+    @Excel(name = "Уровень")
     private Long level;
 
-    @Excel(name = "职业")
+    @Excel(name = "Класс")
     private Integer career;
 
-    @Excel(name = "总充值元宝")
+    @Excel(name = "总Пополнение слитков")
     private Long rechargeGold ;
 
-    @Excel(name = "剩余元宝")
+    @Excel(name = "Остаток слитков")
     private Long remainGold ;
 
 
-    @Excel(name = "创建时间")
+    @Excel(name = "Время создания")
     private String createTime ;
 
 
-    @Excel(name = "在线时长(秒)")
+    @Excel(name = "Время онлайн (сек.)")
     private Long onlineTime;
 
 
-    @Excel(name = "上次登录时间")
+    @Excel(name = "上次登录Время")
     private String lastLoginTime;
 
     @Excel(name = "所在服")
     private Integer createSid;
 
 
-    @Excel(name = "充值金额(元)")
+    @Excel(name = "Сумма пополнения(元)")
     private Integer totalRecharge;
 
-    @Excel(name = "充值次数")
+    @Excel(name = "Количество пополнений")
     private Integer rechargeCount;
 
 
-    @Excel(name = "单次最大充值(元)")
+    @Excel(name = "单次最大Пополнение(元)")
     private Integer maxRecharge;
 
 
-    @Excel(name = "单次最小充值(元)")
+    @Excel(name = "单次最小Пополнение(元)")
     private Integer minRecharge ;
 
 
-    @Excel(name = "平均充值(元)")
+    @Excel(name = "平均Пополнение(元)")
     private Float avgRecharge;
-    @Excel(name = "最后充值时间")
+    @Excel(name = "最后ПополнениеВремя")
     private String lastRechargeTime;
 
 

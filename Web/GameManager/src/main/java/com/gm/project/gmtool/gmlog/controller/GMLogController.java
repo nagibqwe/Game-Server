@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * GM后台日志记录Controller
+ * Журнал GM-панелиController
  * 
  * @author gm
  * @date 2021-09-01
@@ -43,7 +43,7 @@ public class GMLogController extends BaseController
     }
 
     /**
-     * 查询GM后台日志记录列表
+     * 查询Журнал GM-панели列表
      */
     @RequiresPermissions("gmtool:gmlog:list")
     @PostMapping("/list")
@@ -56,21 +56,21 @@ public class GMLogController extends BaseController
     }
 
     /**
-     * 导出GM后台日志记录列表
+     * ЭкспортЖурнал GM-панели列表
      */
     @RequiresPermissions("gmtool:gmlog:export")
-    @Log(title = "GM后台日志记录", businessType = BusinessType.EXPORT)
+    @Log(title = "Журнал GM-панели", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(GMLog gMLog)
     {
         List<GMLog> list = gMLogService.selectGMLogList(gMLog);
         ExcelUtil<GMLog> util = new ExcelUtil<GMLog>(GMLog.class);
-        return util.exportExcel(list, "GM后台日志记录数据");
+        return util.exportExcel(list, "Журнал GM-панелиДанные");
     }
 
     /**
-     * 新增GM后台日志记录
+     * ДобавитьЖурнал GM-панели
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class GMLogController extends BaseController
     }
 
     /**
-     * 新增保存GM后台日志记录
+     * ДобавитьСохранитьЖурнал GM-панели
      */
     @RequiresPermissions("gmtool:gmlog:add")
-    @Log(title = "GM后台日志记录", businessType = BusinessType.INSERT)
+    @Log(title = "Журнал GM-панели", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(GMLog gMLog)
@@ -91,7 +91,7 @@ public class GMLogController extends BaseController
     }
 
     /**
-     * 修改GM后台日志记录
+     * ИзменитьЖурнал GM-панели
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class GMLogController extends BaseController
     }
 
     /**
-     * 修改保存GM后台日志记录
+     * ИзменитьСохранитьЖурнал GM-панели
      */
     @RequiresPermissions("gmtool:gmlog:edit")
-    @Log(title = "GM后台日志记录", businessType = BusinessType.UPDATE)
+    @Log(title = "Журнал GM-панели", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(GMLog gMLog)
@@ -114,10 +114,10 @@ public class GMLogController extends BaseController
     }
 
     /**
-     * 删除GM后台日志记录
+     * УдалитьЖурнал GM-панели
      */
     @RequiresPermissions("gmtool:gmlog:remove")
-    @Log(title = "GM后台日志记录", businessType = BusinessType.DELETE)
+    @Log(title = "Журнал GM-панели", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

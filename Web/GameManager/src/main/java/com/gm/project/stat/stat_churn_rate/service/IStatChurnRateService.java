@@ -29,7 +29,7 @@ public interface IStatChurnRateService {
                                                        String select_condition, String minPay, String maxPay) throws ParseException;
 
     /**
-     * 流失用户付费金额与次数
+     * 流失用户付费Сумма与次数
      * @param selectGroupName
      * @param selectServerIdList
      * @param channelNames
@@ -46,7 +46,7 @@ public interface IStatChurnRateService {
                                                          String select_condition, String minPay, String maxPay) throws ParseException;
 
     /**
-     * 流失用户等级分布
+     * 流失用户Уровень分布
      * @param selectGroupName
      * @param selectServerIdList
      * @param channelNames

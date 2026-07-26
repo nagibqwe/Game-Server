@@ -13,10 +13,10 @@ public class ShopItemBean extends BaseEntity {
     @Excel(name = "道具id")
     private String itemmodelidShow;
 
-    @Excel(name = "货币类型")
+    @Excel(name = "Тип валюты")
     private Integer moneyType;
 
-    @Excel(name = "货币类型")
+    @Excel(name = "Тип валюты")
     private String moneyTypeShow;
 
     @Excel(name = "购买用户数")

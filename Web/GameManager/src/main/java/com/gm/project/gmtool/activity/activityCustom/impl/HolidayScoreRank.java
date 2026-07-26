@@ -44,11 +44,11 @@ public class HolidayScoreRank extends Activity implements IActivityCustom {
         String[] gold = paramMap.get("gold");
 
         if (starts.length != tails.length ||starts.length!=rankScores.length||starts.length!=rankRewards.length) {
-            throw new RuntimeException("===排名数据错误" );
+            throw new RuntimeException("===МестоДанные错误" );
         }
 
         if (scores.length != rewards.length) {
-            throw new RuntimeException("===积分数据错误" );
+            throw new RuntimeException("===积分Данные错误" );
         }
 
         List<HashMap<String, Object>> rankDataList = new ArrayList<>();

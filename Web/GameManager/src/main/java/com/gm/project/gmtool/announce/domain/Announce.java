@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 即时公告对象 t_announce
+ * Мгновенное объявление对象 t_announce
  * 
  * @author gm
  * @date 2021-10-21
@@ -19,36 +19,36 @@ public class Announce
     /**  */
     private Integer id;
 
-    /** 公告创建时间 */
-    @Excel(name = "公告创建时间")
+    /** 公告Время создания */
+    @Excel(name = "公告Время создания")
     private Long createTime;
 
-    /** 创建时间 */
-    @Excel(name = "创建时间")
+    /** Время создания */
+    @Excel(name = "Время создания")
     private String createDate;
 
-    /** 创建者账号ID */
-    @Excel(name = "创建者账号ID")
+    /** СоздательID аккаунта */
+    @Excel(name = "СоздательID аккаунта")
     private Integer userId;
 
-    /** 创建者 */
-    @Excel(name = "创建者")
+    /** Создатель */
+    @Excel(name = "Создатель")
     private String userName;
 
-    /** 服务器组 */
-    @Excel(name = "服务器组")
+    /** Сервер组 */
+    @Excel(name = "Сервер组")
     private String groupName;
 
-    /** 服务器id */
-    @Excel(name = "服务器id")
+    /** ID сервера */
+    @Excel(name = "ID сервера")
     private String serverIds;
 
-    /** 类型 */
-    @Excel(name = "类型")
+    /** Тип */
+    @Excel(name = "Тип")
     private Integer type;
 
-    /** 内容 */
-    @Excel(name = "内容")
+    /** Содержимое */
+    @Excel(name = "Содержимое")
     private String content;
 
     /** 原因 */

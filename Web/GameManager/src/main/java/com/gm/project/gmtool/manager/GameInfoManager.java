@@ -41,7 +41,7 @@ public class GameInfoManager {
     @PostConstruct
     public void init() {
         loadData();
-        log.info("初始化活动信息...");
+        log.info("初始化活动Информация...");
     }
 
     public void loadData() {

@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 改名日志Controller
+ * 改名ЖурналController
  * 
  * @author gm
  * @date 2021-09-09
@@ -46,7 +46,7 @@ public class ChangerolenamelogController extends BaseController
         return prefix + "/changerolenamelog";
     }
     /**
-     * 查询改名日志列表
+     * 查询改名Журнал列表
      */
     @RequiresPermissions("gamelog:changerolenamelog:list")
     @PostMapping("/list")
@@ -54,10 +54,10 @@ public class ChangerolenamelogController extends BaseController
     public TableDataInfo list(Changerolenamelog changerolenamelog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         startPage();
@@ -65,10 +65,10 @@ public class ChangerolenamelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出改名日志列表
+     * Экспорт改名Журнал列表
      */
     @RequiresPermissions("gamelog:changerolenamelog:export")
-    @Log(title = "改名日志", businessType = BusinessType.EXPORT)
+    @Log(title = "改名Журнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Changerolenamelog changerolenamelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class ChangerolenamelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Changerolenamelog> list = changerolenamelogService.selectChangerolenamelogList(changerolenamelog,param);
         ExcelUtil<Changerolenamelog> util = new ExcelUtil<Changerolenamelog>(Changerolenamelog.class);
-        return util.exportExcel(list, "改名日志数据");
+        return util.exportExcel(list, "改名ЖурналДанные");
     }
 }

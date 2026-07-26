@@ -13,7 +13,7 @@ import com.gm.project.gamelog.guildbaselog.service.IGuildbaselogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * 公会基础信息Service业务层处理
+ * 公会基础ИнформацияService业务层处理
  * 
  * @author gm
  * @date 2021-12-06
@@ -24,10 +24,10 @@ public class GuildbaselogServiceImpl implements IGuildbaselogService
 
 
     /**
-     * 查询公会基础信息列表
+     * 查询公会基础Информация列表
      * 
-     * @param guildbaselog 公会基础信息
-     * @return 公会基础信息
+     * @param guildbaselog 公会基础Информация
+     * @return 公会基础Информация
      */
     @Override
     public List<Guildbaselog> selectGuildbaselogList(Guildbaselog guildbaselog, Map<String, Object> param)
@@ -38,14 +38,14 @@ public class GuildbaselogServiceImpl implements IGuildbaselogService
 
         String guildIdStr = guildbaselog.getGuildId()==null?"":" and guildId="+guildbaselog.getGuildId();
         String sqlStr = "";
-        if(queryType == 0){//公会基础信息
+        if(queryType == 0){//公会基础Информация
             //1：创建公会，7：公会改名
             sqlStr = "select guildId, guildName from "+tableName+" where `type` in (1, 7) " + guildIdStr;
-        }else if(queryType == 1){//公会会员信息
+        }else if(queryType == 1){//公会会员Информация
             sqlStr = "select guildId, guildName, roleId, roleName, 1 as isJoin, `time` from "+tableName+" where type in (1, 3) "+ guildIdStr + " union all " +
                     "select guildId, guildName, roleId, roleName, 0 as isJoin, `time` from "+tableName+" where type = 4 " + guildIdStr + " union all " +
                     "select guildId, guildName, actId, actName, 0 as isJoin, `time` from "+tableName+" where type in (2, 5) "+guildIdStr;
-        }else if(queryType == 2){//公会动态信息
+        }else if(queryType == 2){//公会动态Информация
             sqlStr = "select * from " + tableName + " where 1 = 1 " + guildIdStr + " ORDER BY `time` DESC LIMIT 1000";
         }
 
@@ -58,7 +58,7 @@ public class GuildbaselogServiceImpl implements IGuildbaselogService
 //        int count = dbClient.qryTotalCount(sqlStr);
 //        param.put("count",count);
 
-        //分页数据
+        //分页Данные
 //        if(param.containsKey("pageNum")){
 //            int pageNum = (int)param.get("pageNum");
 //            int pageSize = (int)param.get("pageSize");

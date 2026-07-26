@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 充值日志对象 log_rechargelog
+ * ПополнениеЖурнал对象 log_rechargelog
  * 
  * @author gm
  * @date 2021-09-09
@@ -21,38 +21,38 @@ public class Rechargelog extends BaseEntity
     /**  */
     private Long id;
 
-    /** 订单编号 */
-    @Excel(name = "订单编号")
+    /** ЗаказыНомер */
+    @Excel(name = "ЗаказыНомер")
     private String orderNo;
 
-    /** 用户ID */
-    @Excel(name = "用户ID")
+    /** ID пользователя */
+    @Excel(name = "ID пользователя")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
-    /** 角色ID */
-    @Excel(name = "角色ID")
+    /** ID персонажа */
+    @Excel(name = "ID персонажа")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** 商品ID */
-    @Excel(name = "商品ID")
+    /** ID товара */
+    @Excel(name = "ID товара")
     private Integer goodsId;
 
-    /** 商品类型 */
-    @Excel(name = "商品类型")
+    /** 商品Тип */
+    @Excel(name = "商品Тип")
     private String goodsType;
 
     /** 商品额外参数 */
     @Excel(name = "商品额外参数")
     private String goodsExt;
 
-    /** 金额（分） */
-    @Excel(name = "金额")
+    /** Сумма（分） */
+    @Excel(name = "Сумма")
     private Integer totalFee;
 
-    /** 道具ID */
-    @Excel(name = "道具ID")
+    /** ID предмета */
+    @Excel(name = "ID предмета")
     private Integer itemId;
 
     /** 货币数 */
@@ -63,20 +63,20 @@ public class Rechargelog extends BaseEntity
     @Excel(name = "额外参数")
     private String extParam;
 
-    /** 状态 */
-    @Excel(name = "状态")
+    /** Статус */
+    @Excel(name = "Статус")
     private Integer status;
 
-    /** 状态码 */
-    @Excel(name = "状态码")
+    /** Статус码 */
+    @Excel(name = "Статус码")
     private Integer statusReason;
 
-    /** 角色名 */
-    @Excel(name = "角色名")
+    /** Имя персонажа */
+    @Excel(name = "Имя персонажа")
     private String roleName;
 
-    /** 时间 */
-    @Excel(name = "时间")
+    /** Время */
+    @Excel(name = "Время")
     private Long time;
 
     /**  */

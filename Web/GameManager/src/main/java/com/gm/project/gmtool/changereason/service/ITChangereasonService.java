@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.changereason.domain.TChangereason;
 
 /**
- * 原因码Service接口
+ * Код причиныService接口
  * 
  * @author gm
  * @date 2021-12-21
@@ -14,55 +14,55 @@ public interface ITChangereasonService
 
     public void loadData();
     /**
-     * 查询原因码
+     * 查询Код причины
      * 
-     * @param id 原因码ID
-     * @return 原因码
+     * @param id Код причиныID
+     * @return Код причины
      */
     public TChangereason selectTChangereasonById(Long id);
 
     /**
-     * 查询原因码列表
+     * 查询Код причины列表
      * 
-     * @param tChangereason 原因码
-     * @return 原因码集合
+     * @param tChangereason Код причины
+     * @return Код причины集合
      */
     public List<TChangereason> selectTChangereasonList(TChangereason tChangereason);
 
     /**
-     * 新增原因码
+     * ДобавитьКод причины
      * 
-     * @param tChangereason 原因码
-     * @return 结果
+     * @param tChangereason Код причины
+     * @return Результат
      */
     public int insertTChangereason(TChangereason tChangereason);
 
     /**
-     * 修改原因码
+     * ИзменитьКод причины
      * 
-     * @param tChangereason 原因码
-     * @return 结果
+     * @param tChangereason Код причины
+     * @return Результат
      */
     public int updateTChangereason(TChangereason tChangereason);
 
     /**
-     * 批量删除原因码
+     * 批量УдалитьКод причины
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteTChangereasonByIds(String ids);
 
     /**
-     * 删除原因码信息
+     * УдалитьКод причиныИнформация
      * 
-     * @param id 原因码ID
-     * @return 结果
+     * @param id Код причиныID
+     * @return Результат
      */
     public int deleteTChangereasonById(Long id);
 
     /**
-     * 删除全部
+     * Удалить全部
      * @return
      */
     public int deleteAllTChangereason();

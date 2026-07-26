@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.session.mgt.SimpleSession;
 
 /**
- * 在线用户会话属性
+ * В сети用户会话属性
  * 
  * @author ruoyi
  */
@@ -13,13 +13,13 @@ public class OnlineSession extends SimpleSession
 {
     private static final long serialVersionUID = 1L;
 
-    /** 用户ID */
+    /** ID пользователя */
     private Long userId;
 
-    /** 用户名称 */
+    /** Имя пользователя */
     private String loginName;
 
-    /** 部门名称 */
+    /** Название подразделения */
     private String deptName;
 
     /** 用户头像 */
@@ -28,16 +28,16 @@ public class OnlineSession extends SimpleSession
     /** 登录IP地址 */
     private String host;
 
-    /** 浏览器类型 */
+    /** БраузерТип */
     private String browser;
 
-    /** 操作系统 */
+    /** Операционная система */
     private String os;
 
-    /** 在线状态 */
+    /** В сетиСтатус */
     private OnlineStatus status = OnlineStatus.on_line;
 
-    /** 属性是否改变 优化session数据同步 */
+    /** 属性ДаНет改变 优化sessionДанные同步 */
     private transient boolean attributeChanged = false;
 
     @Override
@@ -166,8 +166,8 @@ public class OnlineSession extends SimpleSession
 
     public static enum OnlineStatus
     {
-        /** 用户状态 */
-        on_line("在线"), off_line("离线");
+        /** Статус пользователя */
+        on_line("В сети"), off_line("离线");
         private final String info;
 
         private OnlineStatus(String info)

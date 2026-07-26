@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.updateNotice.domain.UpdateNotice;
 
 /**
- * 更新公告Mapper接口
+ * Объявление об обновленииMapper接口
  * 
  * @author gm
  * @date 2021-10-30
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.updateNotice.domain.UpdateNotice;
 public interface UpdateNoticeMapper 
 {
     /**
-     * 查询更新公告
+     * 查询Объявление об обновлении
      * 
-     * @param id 更新公告ID
-     * @return 更新公告
+     * @param id Объявление об обновленииID
+     * @return Объявление об обновлении
      */
     public UpdateNotice selectUpdateNoticeById(Integer id);
 
     /**
-     * 查询更新公告列表
+     * 查询Объявление об обновлении列表
      * 
-     * @param updateNotice 更新公告
-     * @return 更新公告集合
+     * @param updateNotice Объявление об обновлении
+     * @return Объявление об обновлении集合
      */
     public List<UpdateNotice> selectUpdateNoticeList(UpdateNotice updateNotice);
 
     /**
-     * 新增更新公告
+     * ДобавитьОбъявление об обновлении
      * 
-     * @param updateNotice 更新公告
-     * @return 结果
+     * @param updateNotice Объявление об обновлении
+     * @return Результат
      */
     public int insertUpdateNotice(UpdateNotice updateNotice);
 
     /**
-     * 修改更新公告
+     * ИзменитьОбъявление об обновлении
      * 
-     * @param updateNotice 更新公告
-     * @return 结果
+     * @param updateNotice Объявление об обновлении
+     * @return Результат
      */
     public int updateUpdateNotice(UpdateNotice updateNotice);
 
     /**
-     * 删除更新公告
+     * УдалитьОбъявление об обновлении
      * 
-     * @param id 更新公告ID
-     * @return 结果
+     * @param id Объявление об обновленииID
+     * @return Результат
      */
     public int deleteUpdateNoticeById(Integer id);
 
     /**
-     * 批量删除更新公告
+     * 批量УдалитьОбъявление об обновлении
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteUpdateNoticeByIds(String[] ids);
 }

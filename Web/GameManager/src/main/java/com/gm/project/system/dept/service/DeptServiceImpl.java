@@ -18,7 +18,7 @@ import com.gm.project.system.dept.mapper.DeptMapper;
 import com.gm.project.system.role.domain.Role;
 
 /**
- * 部门管理 服务实现
+ * Подразделения 服务实现
  * 
  * @author ruoyi
  */
@@ -29,10 +29,10 @@ public class DeptServiceImpl implements IDeptService
     private DeptMapper deptMapper;
 
     /**
-     * 查询部门管理数据
+     * 查询ПодразделенияДанные
      * 
-     * @param dept 部门信息
-     * @return 部门信息集合
+     * @param dept 部门Информация
+     * @return 部门Информация集合
      */
     @Override
     @DataScope(deptAlias = "d")
@@ -42,10 +42,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 查询部门管理树
+     * 查询Подразделения树
      * 
-     * @param dept 部门信息
-     * @return 所有部门信息
+     * @param dept 部门Информация
+     * @return 所有部门Информация
      */
     @Override
     @DataScope(deptAlias = "d")
@@ -57,10 +57,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 查询部门管理树（排除下级）
+     * 查询Подразделения树（排除下级）
      * 
      * @param deptId 部门ID
-     * @return 所有部门信息
+     * @return 所有部门Информация
      */
     @Override
     @DataScope(deptAlias = "d")
@@ -83,10 +83,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 根据角色ID查询部门（数据权限）
+     * 根据ID персонажа查询部门（Данные权限）
      *
      * @param role 角色对象
-     * @return 部门列表（数据权限）
+     * @return 部门列表（Данные权限）
      */
     @Override
     public List<Ztree> roleDeptTreeData(Role role)
@@ -148,10 +148,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 查询部门人数
+     * 查询部门Количество
      * 
      * @param parentId 部门ID
-     * @return 结果
+     * @return Результат
      */
     @Override
     public int selectDeptCount(Long parentId)
@@ -162,10 +162,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 查询部门是否存在用户
+     * 查询部门ДаНет存在用户
      * 
      * @param deptId 部门ID
-     * @return 结果 true 存在 false 不存在
+     * @return Результат true 存在 false 不存在
      */
     @Override
     public boolean checkDeptExistUser(Long deptId)
@@ -175,10 +175,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 删除部门管理信息
+     * УдалитьПодразделенияИнформация
      * 
      * @param deptId 部门ID
-     * @return 结果
+     * @return Результат
      */
     @Override
     public int deleteDeptById(Long deptId)
@@ -187,19 +187,19 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 新增保存部门信息
+     * ДобавитьСохранить部门Информация
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部门Информация
+     * @return Результат
      */
     @Override
     public int insertDept(Dept dept)
     {
         Dept info = deptMapper.selectDeptById(dept.getParentId());
-        // 如果父节点不为"正常"状态,则不允许新增子节点
+        // 如果父节点不为"Норма"Статус,则不允许Добавить子节点
         if (!UserConstants.DEPT_NORMAL.equals(info.getStatus()))
         {
-            throw new BusinessException("部门停用，不允许新增");
+            throw new BusinessException("部门Отключено，不允许Добавить");
         }
         dept.setCreateBy(ShiroUtils.getLoginName());
         dept.setAncestors(info.getAncestors() + "," + dept.getParentId());
@@ -207,10 +207,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 修改保存部门信息
+     * ИзменитьСохранить部门Информация
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部门Информация
+     * @return Результат
      */
     @Override
     @Transactional
@@ -229,14 +229,14 @@ public class DeptServiceImpl implements IDeptService
         int result = deptMapper.updateDept(dept);
         if (UserConstants.DEPT_NORMAL.equals(dept.getStatus()))
         {
-            // 如果该部门是启用状态，则启用该部门的所有上级部门
+            // 如果该部门ДаВключитьСтатус，则Включить该部门的所有上级部门
             updateParentDeptStatus(dept);
         }
         return result;
     }
 
     /**
-     * 修改该部门的父级部门状态
+     * Изменить该部门的父级部门Статус
      * 
      * @param dept 当前部门
      */
@@ -249,9 +249,9 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 修改子元素关系
+     * Изменить子元素关系
      * 
-     * @param deptId 被修改的部门ID
+     * @param deptId 被Изменить的部门ID
      * @param newAncestors 新的父ID集合
      * @param oldAncestors 旧的父ID集合
      */
@@ -269,7 +269,7 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 修改子元素关系
+     * Изменить子元素关系
      * 
      * @param deptId 部门ID
      * @param ancestors 元素列表
@@ -290,10 +290,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 根据部门ID查询信息
+     * 根据部门ID查询Информация
      * 
      * @param deptId 部门ID
-     * @return 部门信息
+     * @return 部门Информация
      */
     @Override
     public Dept selectDeptById(Long deptId)
@@ -302,7 +302,7 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 根据ID查询所有子部门（正常状态）
+     * 根据ID查询所有子部门（НормаСтатус）
      * 
      * @param deptId 部门ID
      * @return 子部门数
@@ -314,10 +314,10 @@ public class DeptServiceImpl implements IDeptService
     }
 
     /**
-     * 校验部门名称是否唯一
+     * 校验Название подразделенияДаНет唯一
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部门Информация
+     * @return Результат
      */
     @Override
     public String checkDeptNameUnique(Dept dept)

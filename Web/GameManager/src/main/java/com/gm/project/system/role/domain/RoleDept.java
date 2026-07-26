@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class RoleDept
 {
-    /** 角色ID */
+    /** ID персонажа */
     private Long roleId;
     
     /** 部门ID */

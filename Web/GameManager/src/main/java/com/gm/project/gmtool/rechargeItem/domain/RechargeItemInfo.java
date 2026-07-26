@@ -3,75 +3,75 @@ package com.gm.project.gmtool.rechargeItem.domain;
 import java.util.TreeMap;
 
 /**
- * 充值商品信息
+ * Пополнение商品Информация
  */
 public class RechargeItemInfo {
 	/**
-	 * 充值ID
+	 * ID пополнения
 	 */
 	private int goods_id;
 	/**
-	 * 游戏内部配置ID
+	 * Внутренний ID конфигурации
 	 */
 	private int goods_system_cfg_id;
 	/**
-	 * 商品名字描述（主要用于BI后台数据）
+	 * 商品名字描述（主要用于BI后台Данные）
 	 */
 	private String goods_name;
 	/**
-	 * 渠道名称
+	 * Название канала
 	 */
 	private String goods_pay_channel;
 	/**
-	 * SDK支付类型
+	 * SDK支付Тип
 	 */
 	private int goods_pay_type;
 	/**
-	 * 充值类型
+	 * Тип пополнения
 	 */
 	private int goods_type;
 	/**
-	 * 充值子类型
+	 * Подтип пополнения
 	 */
 	private int goods_subtype;
 	/**
-	 * 充值次数（当前轮每个挡位对应充值的次数)
+	 * Количество пополнений（当前轮每个挡位对应Пополнение的次数)
 	 */
 	private int goods_limit;
 	/**
-	 * 显示的图标的ID
+	 * ID отображаемой иконки
 	 */
 	private int goods_icon;
 	/**
-	 * 商品图片地址
+	 * URL изображения товара
 	 */
 	private String goodsurl;
 	/**
-	 * 充值档位对应消耗的真实货币
+	 * Пополнение档位对应消耗的真实货币
 	 */
 	private TreeMap<String, TreeMap<String,String>> goods_price = new TreeMap<>();
 	/**
-	 * 充值计费点。运营配置
+	 * Пополнение计费点。运营配置
 	 */
 	private TreeMap<String,String> goods_price_point = new TreeMap<>();
 	/**
-	 * 界面默认显示的货币 例如:THB
+	 * 界面默认Показывать的货币 例如:THB
 	 */
 	private String goods_show_price;
 	/**
-	 * 充值奖励
+	 * Награда за пополнение
 	 */
 	private String goods_reward;
 	/**
-	 * 充值奖励倍数
+	 * Множитель награды
 	 */
 	private String goods_multiple;
 	/**
-	 * 额外奖励
+	 * Дополнительная награда
 	 */
 	private String goods_extra_reward;
 	/**
-	 * 额外奖励次数
+	 * Количество дополнительных наград
 	 */
 	private int goods_extra_reward_limit;
 	/**
@@ -79,11 +79,11 @@ public class RechargeItemInfo {
 	 */
 	private String goods_ext;
 	/**
-	 * 是否计入到游戏累充活动
+	 * ДаНет计入到游戏累充活动
 	 */
 	private int isTotalRecharge;
 	/**
-	 * 是否增加VIP经验
+	 * ДаНет增加VIP经验
 	 */
 	private int totalVipPower;
 

@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * 道具扣除Controller
+ * Списание предметовController
  * 
  * @author gm
  * @date 2021-10-30
@@ -64,7 +64,7 @@ public class DeductItemController extends BaseController
     }
 
     /**
-     * 查询道具扣除列表
+     * 查询Списание предметов列表
      */
 //    @RequiresPermissions("gmtool:deductItem:list")
     @PostMapping("/list")
@@ -79,21 +79,21 @@ public class DeductItemController extends BaseController
     }
 
     /**
-     * 导出道具扣除列表
+     * ЭкспортСписание предметов列表
      */
     @RequiresPermissions("gmtool:deductItem:export")
-    @Log(title = "道具扣除", businessType = BusinessType.EXPORT)
+    @Log(title = "Списание предметов", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(DeductItem deductItem)
     {
         List<DeductItem> list = deductItemService.selectDeductItemList(deductItem);
         ExcelUtil<DeductItem> util = new ExcelUtil<DeductItem>(DeductItem.class);
-        return util.exportExcel(list, "道具扣除数据");
+        return util.exportExcel(list, "Списание предметовДанные");
     }
 
     /**
-     * 新增道具扣除
+     * ДобавитьСписание предметов
      */
     @GetMapping("/add")
     public String add()
@@ -102,10 +102,10 @@ public class DeductItemController extends BaseController
     }
 
     /**
-     * 新增保存道具扣除
+     * ДобавитьСохранитьСписание предметов
      */
     @RequiresPermissions("gmtool:deductItem:add")
-    @Log(title = "道具扣除", businessType = BusinessType.INSERT)
+    @Log(title = "Списание предметов", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(DeductItem deductItem)
@@ -114,7 +114,7 @@ public class DeductItemController extends BaseController
     }
 
     /**
-     * 修改道具扣除
+     * ИзменитьСписание предметов
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -125,10 +125,10 @@ public class DeductItemController extends BaseController
     }
 
     /**
-     * 修改保存道具扣除
+     * ИзменитьСохранитьСписание предметов
      */
     @RequiresPermissions("gmtool:deductItem:edit")
-    @Log(title = "道具扣除", businessType = BusinessType.UPDATE)
+    @Log(title = "Списание предметов", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(DeductItem deductItem)
@@ -137,10 +137,10 @@ public class DeductItemController extends BaseController
     }
 
     /**
-     * 删除道具扣除
+     * УдалитьСписание предметов
      */
     @RequiresPermissions("gmtool:deductItem:remove")
-    @Log(title = "道具扣除", businessType = BusinessType.DELETE)
+    @Log(title = "Списание предметов", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -149,7 +149,7 @@ public class DeductItemController extends BaseController
     }
 
     /**
-     * 根据角色ID扣除道具
+     * 根据ID персонажа扣除道具
      * @param deductItem
      * @param serverId
      * @param request
@@ -163,16 +163,16 @@ public class DeductItemController extends BaseController
 
         TServer server = tServerService.selectTServerByServerId(sid);
         if (server == null) {
-            return AjaxResult.info("服务器DB连接信息获取失败").put("ok",false);
+            return AjaxResult.info("Не удалось получить подключение к БД сервера").put("ok",false);
         }
 
-        //检查角色ID
+        //检查ID персонажа
         List<RoleState> roles = gameRoleService.queryByRoleId(sid, deductItem.getRoleId(), 0);
         if (roles.isEmpty()) {
-            return AjaxResult.info("没有找到此角色ID").put("ok",false);
+            return AjaxResult.info("Персонаж с таким ID не найден").put("ok",false);
         }
         if (roles.get(0).getIsDelete() != 0) {
-            return AjaxResult.info("此角色已删除").put("ok",false);
+            return AjaxResult.info("此角色已Удалить").put("ok",false);
         }
         try {
             deductItem.setDedTime(new Date());
@@ -181,7 +181,7 @@ public class DeductItemController extends BaseController
             //发送消息到GameServer
             TServer tserver = tServerService.selectTServerByServerId(Integer.parseInt(serverId));
             if (tserver == null) {
-                return AjaxResult.info("服务器连接信息获取失败").put("ok",false);
+                return AjaxResult.info("Не удалось получить данные подключения к серверу").put("ok",false);
             }
             AjaxResult resultMap = GameServerRequestUtil.gmDeductItemopt(tserver, deductItem);
             HashMap dataMap = (HashMap) resultMap.get("data");
@@ -190,22 +190,22 @@ public class DeductItemController extends BaseController
             deductItem.setRealCount(realCount);
             String prompt;
             if (Boolean.valueOf(resultMap.get("ok").toString())) {
-                prompt = "操作成功！";
+                prompt = "Операция выполнена！";
                 deductItemService.insertDeductItem(deductItem);
             } else {
-                prompt = "操作失败！";
+                prompt = "Ошибка операции！";
             }
-            log.error("道具扣除：sid=" + serverId + ",roleId=" + deductItem.getRoleId() + ",操作结果:" + resultMap.get("msg").toString());
-            GMLogUtil.log("删除角色(roleIds=" + deductItem.getRoleId() + ")"  + deductItem.getRealCount() + "个道具");
+            log.error("Списание предметов：sid=" + serverId + ",roleId=" + deductItem.getRoleId() + ",ДействияРезультат:" + resultMap.get("msg").toString());
+            GMLogUtil.log("Удалить角色(roleIds=" + deductItem.getRoleId() + ")"  + deductItem.getRealCount() + "个道具");
             return AjaxResult.info(prompt).put("ok",Boolean.valueOf(resultMap.get("ok").toString()));
         } catch (Exception e) {
             log.error(e.getMessage());
-            return AjaxResult.info("扣除失败").put("ok",false);
+            return AjaxResult.info("扣除Ошибка").put("ok",false);
         }
     }
 
     /**
-     * 删除扣除道具记录
+     * Удалить扣除道具记录
      * @param id
      * @return
      */
@@ -216,9 +216,9 @@ public class DeductItemController extends BaseController
         if (deductItem != null) {
             deductItem.setIsDelete(1);
             int num = deductItemService.updateDeductItem(deductItem);
-            GMLogUtil.log("删除扣除道具记录"+deductItem.getId());
-            return AjaxResult.info("删除成功！").put("ok",num == 1);
+            GMLogUtil.log("Удалить扣除道具记录"+deductItem.getId());
+            return AjaxResult.info("УдалитьУспешно！").put("ok",num == 1);
         }
-        return AjaxResult.info("删除失败！").put("ok",false);
+        return AjaxResult.info("УдалитьОшибка！").put("ok",false);
     }
 }

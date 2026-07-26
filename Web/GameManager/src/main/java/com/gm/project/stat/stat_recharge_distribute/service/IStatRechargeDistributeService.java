@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 充值分布Service接口
+ * Пополнение分布Service接口
  * 
  * @author gm
  * @date 2021-09-13
@@ -14,7 +14,7 @@ import java.util.Map;
 public interface IStatRechargeDistributeService
 {
     /**
-     * 充值挡位分布
+     * Пополнение挡位分布
      * @param selectServerIds
      * @param channelNames
      * @param startDate
@@ -24,7 +24,7 @@ public interface IStatRechargeDistributeService
     public List<Map<String, Object>> payLevelStat(String selectServerIds,String channelNames,String startDate, String endDate);
 
     /**
-     * 充值每日时间段分布
+     * Пополнение每日Время段分布
      * @param selectServerIds
      * @param channelNames
      * @param startDate
@@ -33,7 +33,7 @@ public interface IStatRechargeDistributeService
     public List<Map<String, Object>> payDaylStat(String selectServerIds,String channelNames,String startDate);
 
     /**
-     * 充值礼包分布
+     * Пополнение礼包分布
      * @param selectServerIds
      * @param channelNames
      * @param startDate

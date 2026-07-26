@@ -9,7 +9,7 @@ import com.gm.project.gmtool.activityFestivalRelation.service.IActivityFestivalR
 import com.gm.common.utils.text.Convert;
 
 /**
- * 运营活动节日关系Service业务层处理
+ * Связи праздничных событийService业务层处理
  * 
  * @author gm
  * @date 2021-11-08
@@ -21,10 +21,10 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     private ActivityFestivalRelationMapper activityFestivalRelationMapper;
 
     /**
-     * 查询运营活动节日关系
+     * 查询Связи праздничных событий
      * 
-     * @param logicId 运营活动节日关系ID
-     * @return 运营活动节日关系
+     * @param logicId Связи праздничных событийID
+     * @return Связи праздничных событий
      */
     @Override
     public ActivityFestivalRelation selectActivityFestivalRelationById(Integer logicId)
@@ -33,10 +33,10 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     }
 
     /**
-     * 查询运营活动节日关系列表
+     * 查询Связи праздничных событий列表
      * 
-     * @param activityFestivalRelation 运营活动节日关系
-     * @return 运营活动节日关系
+     * @param activityFestivalRelation Связи праздничных событий
+     * @return Связи праздничных событий
      */
     @Override
     public List<ActivityFestivalRelation> selectActivityFestivalRelationList(ActivityFestivalRelation activityFestivalRelation)
@@ -45,10 +45,10 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     }
 
     /**
-     * 新增运营活动节日关系
+     * ДобавитьСвязи праздничных событий
      * 
-     * @param activityFestivalRelation 运营活动节日关系
-     * @return 结果
+     * @param activityFestivalRelation Связи праздничных событий
+     * @return Результат
      */
     @Override
     public int insertActivityFestivalRelation(ActivityFestivalRelation activityFestivalRelation)
@@ -57,10 +57,10 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     }
 
     /**
-     * 修改运营活动节日关系
+     * ИзменитьСвязи праздничных событий
      * 
-     * @param activityFestivalRelation 运营活动节日关系
-     * @return 结果
+     * @param activityFestivalRelation Связи праздничных событий
+     * @return Результат
      */
     @Override
     public int updateActivityFestivalRelation(ActivityFestivalRelation activityFestivalRelation)
@@ -69,10 +69,10 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     }
 
     /**
-     * 删除运营活动节日关系对象
+     * УдалитьСвязи праздничных событий对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteActivityFestivalRelationByIds(String ids)
@@ -81,10 +81,10 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     }
 
     /**
-     * 删除运营活动节日关系信息
+     * УдалитьСвязи праздничных событийИнформация
      * 
-     * @param logicId 运营活动节日关系ID
-     * @return 结果
+     * @param logicId Связи праздничных событийID
+     * @return Результат
      */
     @Override
     public int deleteActivityFestivalRelationById(Integer logicId)
@@ -93,7 +93,7 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     }
 
     /**
-     * 删除全部运营活动节日关系
+     * Удалить全部Связи праздничных событий
      * @return
      */
     @Override
@@ -102,7 +102,7 @@ public class ActivityFestivalRelationServiceImpl implements IActivityFestivalRel
     }
 
     /**
-     * 根据活动type的ID获取节日类型ID列表
+     * 根据活动type的ID获取Тип праздникаID列表
      * @param logicId
      * @return
      */

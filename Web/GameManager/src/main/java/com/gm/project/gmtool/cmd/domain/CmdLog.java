@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 热更服务器操作日志对象 t_cmd_log
+ * Журнал операций горячего обновления对象 t_cmd_log
  * 
  * @author gm
  * @date 2021-07-30
@@ -21,45 +21,45 @@ public class CmdLog
     /** id */
     private Long id;
 
-    /** 操作命令 */
-    @Excel(name = "操作命令")
+    /** Действия命令 */
+    @Excel(name = "Действия命令")
     private String action;
 
     /** 参数 */
     @Excel(name = "参数")
     private String params;
 
-    /** 服务器名 */
-    @Excel(name = "服务器名")
+    /** Название сервера */
+    @Excel(name = "Название сервера")
     private String serverName;
 
-    /** 服务器ID */
-    @Excel(name = "服务器ID")
+    /** ID сервера */
+    @Excel(name = "ID сервера")
     private Integer serverId;
 
-    /** 操作结果 */
-    @Excel(name = "操作结果")
+    /** ДействияРезультат */
+    @Excel(name = "ДействияРезультат")
     private Integer isOk;
 
-    /** 处理结果 */
-    @Excel(name = "处理结果")
+    /** 处理Результат */
+    @Excel(name = "处理Результат")
     private String result;
 
-    /** 操作时间 */
+    /** Время операции */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "操作时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "Время операции", width = 30, dateFormat = "yyyy-MM-dd")
     private Date operDate;
 
     /** 用户 */
     @Excel(name = "用户")
     private String user;
 
-    /** 操作者IP */
-    @Excel(name = "操作者IP")
+    /** IP оператора */
+    @Excel(name = "IP оператора")
     private String ip;
 
-    /** GM命令类型 0:游戏服GM(socket) 1:公共服或登录服GM(http) */
-    @Excel(name = "GM命令类型 0:游戏服GM(socket) 1:公共服或登录服GM(http)")
+    /** GM命令Тип 0:游戏服GM(socket) 1:Общий сервер或Сервер входаGM(http) */
+    @Excel(name = "GM命令Тип 0:游戏服GM(socket) 1:Общий сервер或Сервер входаGM(http)")
     private Integer gmType;
 
     public void setId(Long id)

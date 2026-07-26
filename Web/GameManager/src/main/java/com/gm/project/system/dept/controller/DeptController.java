@@ -24,7 +24,7 @@ import com.gm.project.system.dept.service.IDeptService;
 import com.gm.project.system.role.domain.Role;
 
 /**
- * 部门信息
+ * 部门Информация
  * 
  * @author ruoyi
  */
@@ -54,7 +54,7 @@ public class DeptController extends BaseController
     }
 
     /**
-     * 新增部门
+     * Добавить部门
      */
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") Long parentId, ModelMap mmap)
@@ -68,9 +68,9 @@ public class DeptController extends BaseController
     }
 
     /**
-     * 新增保存部门
+     * ДобавитьСохранить部门
      */
-    @Log(title = "部门管理", businessType = BusinessType.INSERT)
+    @Log(title = "Подразделения", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dept:add")
     @PostMapping("/add")
     @ResponseBody
@@ -78,13 +78,13 @@ public class DeptController extends BaseController
     {
         if (UserConstants.DEPT_NAME_NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept)))
         {
-            return error("新增部门'" + dept.getDeptName() + "'失败，部门名称已存在");
+            return error("Добавить部门'" + dept.getDeptName() + "'Ошибка，Название подразделения已存在");
         }
         return toAjax(deptService.insertDept(dept));
     }
 
     /**
-     * 修改
+     * Изменить
      */
     @GetMapping("/edit/{deptId}")
     public String edit(@PathVariable("deptId") Long deptId, ModelMap mmap)
@@ -99,9 +99,9 @@ public class DeptController extends BaseController
     }
 
     /**
-     * 保存
+     * Сохранить
      */
-    @Log(title = "部门管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Подразделения", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dept:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -109,24 +109,24 @@ public class DeptController extends BaseController
     {
         if (UserConstants.DEPT_NAME_NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept)))
         {
-            return error("修改部门'" + dept.getDeptName() + "'失败，部门名称已存在");
+            return error("Изменить部门'" + dept.getDeptName() + "'Ошибка，Название подразделения已存在");
         }
         else if (dept.getParentId().equals(dept.getDeptId()))
         {
-            return error("修改部门'" + dept.getDeptName() + "'失败，上级部门不能是自己");
+            return error("Изменить部门'" + dept.getDeptName() + "'Ошибка，上级部门不能Да自己");
         }
         else if (StringUtils.equals(UserConstants.DEPT_DISABLE, dept.getStatus())
                 && deptService.selectNormalChildrenDeptById(dept.getDeptId()) > 0)
         {
-            return AjaxResult.error("该部门包含未停用的子部门！");
+            return AjaxResult.error("该部门包含未Отключено的子部门！");
         }
         return toAjax(deptService.updateDept(dept));
     }
 
     /**
-     * 删除
+     * Удалить
      */
-    @Log(title = "部门管理", businessType = BusinessType.DELETE)
+    @Log(title = "Подразделения", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dept:remove")
     @GetMapping("/remove/{deptId}")
     @ResponseBody
@@ -134,17 +134,17 @@ public class DeptController extends BaseController
     {
         if (deptService.selectDeptCount(deptId) > 0)
         {
-            return AjaxResult.warn("存在下级部门,不允许删除");
+            return AjaxResult.warn("存在下级部门,不允许Удалить");
         }
         if (deptService.checkDeptExistUser(deptId))
         {
-            return AjaxResult.warn("部门存在用户,不允许删除");
+            return AjaxResult.warn("部门存在用户,不允许Удалить");
         }
         return toAjax(deptService.deleteDeptById(deptId));
     }
 
     /**
-     * 校验部门名称
+     * 校验Название подразделения
      */
     @PostMapping("/checkDeptNameUnique")
     @ResponseBody
@@ -193,7 +193,7 @@ public class DeptController extends BaseController
     }
 
     /**
-     * 加载角色部门（数据权限）列表树
+     * 加载角色部门（Данные权限）列表树
      */
     @GetMapping("/roleDeptTreeData")
     @ResponseBody

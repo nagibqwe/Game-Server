@@ -20,7 +20,7 @@ import com.gm.project.stat.stat_level_distribute.service.IStatLevelDistributeSer
 
 
 /**
- * 角色等级分布Service业务层处理
+ * Уровень персонажа分布Service业务层处理
  * 
  * @author gm
  * @date 2021-08-06
@@ -30,15 +30,15 @@ public class StatLevelDistributeServiceImpl implements IStatLevelDistributeServi
 {
 
     /**
-     * 数据库相关操作
+     * Данные库相关Действия
      */
     @Autowired
     public IStatLevelDistributeDao statLevelDistributeDao;
     /**
-     * 查询角色等级分布列表
+     * 查询Уровень персонажа分布列表
      * 
-     * @param statLevelDistribute 角色等级分布
-     * @return 角色等级分布
+     * @param statLevelDistribute Уровень персонажа分布
+     * @return Уровень персонажа分布
      */
     @Override
     public List<StatLevelDistribute> selectStatLevelDistributeList(String channelNames,  Integer condition, Integer level,StatLevelDistribute statLevelDistribute,String startDate,String endDate,Integer selectServerId)
@@ -48,13 +48,13 @@ public class StatLevelDistributeServiceImpl implements IStatLevelDistributeServi
             channelNames = "'" + channelNames + "'";
             channelNames = channelNames.replace(",", "','");
         }
-         if(condition == 0){   //离线时候的等级分布
+         if(condition == 0){   //离线时候的Уровень分布
              String tableName = "roleloginlog";
              List<String> goalTables = DBServerMgr.getInstance().getQueryTables(tableName, TableType.Month, startDate, endDate);
              Map<String, List<String>> hefuTableMap = new TreeMap<>(DBServerMgr.getInstance().getHefuTable(selectServerId, tableName,  DateUtils.dateTime(DateUtils.YYYY_MM_DD,startDate),  DateUtils.dateTime(DateUtils.YYYY_MM_DD,endDate)));
              for (String key : hefuTableMap.keySet()) {
                  List<String> tableList = hefuTableMap.get(key);
-                 tableList.retainAll(goalTables);//过滤重复数据表
+                 tableList.retainAll(goalTables);//过滤重复Данные表
                  for (String table : tableList) {
                      DBClient logDBClient = DBServerMgr.getInstance().getLogDBClient(Integer.parseInt(key));
                      if (logDBClient == null) {
@@ -64,7 +64,7 @@ public class StatLevelDistributeServiceImpl implements IStatLevelDistributeServi
                  }
              }
 
-         }else if(condition == 1) {   //离线后加上离线挂机的等级分布
+         }else if(condition == 1) {   //离线后加上离线挂机的Уровень分布
              DBClient logDBClient = DBServerMgr.getInstance().getLogDBClient(selectServerId);
              statLevelDistributeList = this.statLevelDistributeDao.getLevelDistributeListByCondition1Sql(logDBClient,channelNames,selectServerId+"",level+"",startDate,endDate);
          }

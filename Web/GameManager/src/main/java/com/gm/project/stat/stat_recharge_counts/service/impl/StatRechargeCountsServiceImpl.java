@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 /**
- * 付费充值统计 Service业务层处理
+ * 付费Пополнение统计 Service业务层处理
  * 
  * @author gm
  * @date 2021-09-13
@@ -38,7 +38,7 @@ public class StatRechargeCountsServiceImpl implements IStatRechargeCountsService
             channelNames = "'" + channelNames + "'";
             channelNames = channelNames.replace(",", "','");
         }
-        //黑名单排除
+        //Чёрный список排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);
@@ -48,11 +48,11 @@ public class StatRechargeCountsServiceImpl implements IStatRechargeCountsService
                 blackUsers = ListToStringUtil.listToString(blackList);
             }
         }
-        //获取数据
+        //获取Данные
         List<Map<String, Object>> rechargeCountsMapList = this.statRechargeCountsDao.getRechargeCountsDataList("stat_recharge",selectServerIds,channelNames,startDate,endDate,blackUsers);
-        //处理得到的数据
+        //处理得到的Данные
         int[] count = new int[]{1, 2, 5, 10, 20, 30, 31};
-        Map<Integer, Float> rechargeTimesMap = new TreeMap<>();//付费次数与人数的map
+        Map<Integer, Float> rechargeTimesMap = new TreeMap<>();//付费次数与Количество的map
         Map<Integer, Float> rechargeAmountsMap = new TreeMap<>();//付费次数与付费总额的map
         for (int value : count) {
             rechargeTimesMap.put(value, 0f);
@@ -96,7 +96,7 @@ public class StatRechargeCountsServiceImpl implements IStatRechargeCountsService
 
             }
             for (int key1 : rechargeTimesMap.keySet()) {
-               // Map<String, Object> rechargeTimesResMap = new TreeMap<>();//付费次数与人数最终的map
+               // Map<String, Object> rechargeTimesResMap = new TreeMap<>();//付费次数与Количество最终的map
                 RechargeCountsBean rechargeCountsBean = new RechargeCountsBean();
                 String rechargeTimes = getRechargeTimesName(key1);
                 float rechargeRoles = rechargeTimesMap.get(key1);

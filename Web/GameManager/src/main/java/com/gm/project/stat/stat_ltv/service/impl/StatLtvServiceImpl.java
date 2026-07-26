@@ -25,7 +25,7 @@ import java.util.*;
 public class StatLtvServiceImpl
 {
     /**
-     * 数据库相关操作
+     * Данные库相关Действия
      */
     @Autowired
     public StatLtvDaoImpl statLtvDaoImpl;
@@ -38,7 +38,7 @@ public class StatLtvServiceImpl
     public TableDataInfo caclLtv(String selectGroupName, String selectServerIdList,String channelNames,String startDate, String endDate,Boolean isBlack){
 
 
-        //黑名单排除
+        //Чёрный список排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);
@@ -49,19 +49,19 @@ public class StatLtvServiceImpl
             }
         }
 
-        //获取统计服日志
+        //获取统计服Журнал
         DBClient dbClientGM = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.STAT_LOG);
-        //获取时间列表
+        //获取Время列表
         List<String> dateList = DateUtils.getDateList(startDate,endDate);
-        //所有记录 key 天 value 该天留存数据
+        //所有记录 key День value 该День留存Данные
         Map<String, Map<String,Object>> allResult = new HashMap<>();
         //留存列表
         List<Map<String,String>> statLtvList = new ArrayList<>();
         caclLtvCommon(dateList,statLtvList,dbClientGM,selectServerIdList,allResult);
-        //最终发给客户端展示数据
+        //最终发给客户端展示Данные
         List<Map<String,String>> rows = new ArrayList<>();
         Map<String,String> statLtvMap = null;
-        //当前日期
+        //当前Дата
         String currDay =  DateUtils.getDate();
         for(int i = 0;i<statLtvList.size();i++){
             statLtvMap = statLtvList.get(i);
@@ -106,22 +106,22 @@ public class StatLtvServiceImpl
     }
 
     public void caclLtvCommon(List<String> dateList,List<Map<String,String>> statLtvList,DBClient dbClientGM,String serverList,Map<String, Map<String,Object>> allResult){
-        //当前日期
+        //当前Дата
         String currDay =  DateUtils.getDate();
 
         if(dateList!= null && dateList.size() > 0){
             for(int i = 0;i< dateList.size();i++){
-                //当前计算基准的某天
+                //当前计算基准的某День
                 String caclStartDay = dateList.get(i);
-                //相差多少天
+                //相差多少День
                 int diffDay = DateUtils.differentDaysByMillisecond(caclStartDay,currDay);
                 //留存记录
                 Map<String,String> statLtvBeanMap  = new HashMap<>();
                 statLtvList.add(statLtvBeanMap);
-                //日期
+                //Дата
                 statLtvBeanMap.put("caclStartTime",caclStartDay);
                 statLtvBeanMap.put("diffDay",diffDay+"");
-                //需要计算日期 对应某天留存集合
+                //需要计算Дата 对应某День留存集合
                 Map<String,Object> dayResult = new HashMap<>();
                 //登录数量 为0 就不用检查留存了
                 Set<String> userIdRegAddList = this.statRoleStateDao.getUserIdRegAddSet(dbClientGM,caclStartDay,serverList);
@@ -165,7 +165,7 @@ public class StatLtvServiceImpl
                         dayResult.put("ltvRechargeSumList",ltvRechargeSumList);
                     }
                }
-                //将每天的留存数据放入结果集合
+                //将每День的留存Данные放入Результат集合
                 allResult.put(caclStartDay,dayResult);
             }
         }

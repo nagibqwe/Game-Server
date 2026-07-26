@@ -26,13 +26,13 @@ public class StatRechargeOverviewServiceImpl implements IStatRechargeOverviewSer
     private static long oneday = 1000 * 60 * 60 * 24;
     private DecimalFormat df = new DecimalFormat("0.00");
     /**
-     * 查询选择日期内的每日登陆用户总数
+     * 查询选择Дата内的每日登陆用户总数
      * @param startDate
      * @param endDate
      * @return
      */
     public List<Date> getDateList(String startDate,String endDate){
-        //查询选择日期内的每日登陆用户总数
+        //查询选择Дата内的每日登陆用户总数
         Date start = DateUtils.parseDate(startDate);
         Date end = DateUtils.parseDate(endDate);
         List<Date> dateList = new ArrayList<>();
@@ -48,7 +48,7 @@ public class StatRechargeOverviewServiceImpl implements IStatRechargeOverviewSer
     }
 
     /**
-     * 数据库相关操作
+     * Данные库相关Действия
      */
     @Autowired
     public IStatRechargeOverviewDao statRechargeOverviewDao;
@@ -57,7 +57,7 @@ public class StatRechargeOverviewServiceImpl implements IStatRechargeOverviewSer
 
         List<StatRechargeOverviewBean> dataList = new ArrayList<>();
 
-        //黑名单排除
+        //Чёрный список排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);
@@ -70,12 +70,12 @@ public class StatRechargeOverviewServiceImpl implements IStatRechargeOverviewSer
 
         List<Date> dateList = getDateList(startDate,endDate);
 
-        List<Map<String, Object>> loginUsersMap;//当天登录账号
-        List<Map<String, Object>> newUsersMap;//当天新增账号
-        List<Map<String, Object>> rechargeUsersMap;//当天付费账号以及付费总额
-        List<Map<String, Object>> newRechargeUsersMap;//当天新增付费账号
+        List<Map<String, Object>> loginUsersMap;//当День登录账号
+        List<Map<String, Object>> newUsersMap;//当ДеньДобавить账号
+        List<Map<String, Object>> rechargeUsersMap;//当День付费账号以及付费总额
+        List<Map<String, Object>> newRechargeUsersMap;//当ДеньДобавить付费账号
         List<Map<String, Object>> oldRechargeUsersMap;//老玩家付费账号
-        for (Date d : dateList) {// 将数据按天查询
+        for (Date d : dateList) {// 将Данные按День查询
             loginUsersMap = new ArrayList<>();
             newUsersMap = new ArrayList<>();
             rechargeUsersMap = new ArrayList<>();

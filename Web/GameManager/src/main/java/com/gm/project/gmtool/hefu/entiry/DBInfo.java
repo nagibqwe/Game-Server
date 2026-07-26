@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 数据库信息
+ * Данные库Информация
  * @Auther: gouzhongliang
  * @Date: 2021/8/23 14:17
  */

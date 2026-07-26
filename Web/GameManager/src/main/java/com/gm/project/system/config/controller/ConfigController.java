@@ -22,7 +22,7 @@ import com.gm.project.system.config.domain.Config;
 import com.gm.project.system.config.service.IConfigService;
 
 /**
- * 参数配置 信息操作处理
+ * 参数配置 ИнформацияДействия处理
  * 
  * @author ruoyi
  */
@@ -55,7 +55,7 @@ public class ConfigController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "参数管理", businessType = BusinessType.EXPORT)
+    @Log(title = "Параметры", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:config:export")
     @PostMapping("/export")
     @ResponseBody
@@ -63,11 +63,11 @@ public class ConfigController extends BaseController
     {
         List<Config> list = configService.selectConfigList(config);
         ExcelUtil<Config> util = new ExcelUtil<Config>(Config.class);
-        return util.exportExcel(list, "参数数据");
+        return util.exportExcel(list, "参数Данные");
     }
 
     /**
-     * 新增参数配置
+     * Добавить参数配置
      */
     @GetMapping("/add")
     public String add()
@@ -76,23 +76,23 @@ public class ConfigController extends BaseController
     }
 
     /**
-     * 新增保存参数配置
+     * ДобавитьСохранить参数配置
      */
     @RequiresPermissions("system:config:add")
-    @Log(title = "参数管理", businessType = BusinessType.INSERT)
+    @Log(title = "Параметры", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated Config config)
     {
         if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config)))
         {
-            return error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
+            return error("Добавить参数'" + config.getConfigName() + "'Ошибка，参数键名已存在");
         }
         return toAjax(configService.insertConfig(config));
     }
 
     /**
-     * 修改参数配置
+     * Изменить参数配置
      */
     @GetMapping("/edit/{configId}")
     public String edit(@PathVariable("configId") Long configId, ModelMap mmap)
@@ -102,26 +102,26 @@ public class ConfigController extends BaseController
     }
 
     /**
-     * 修改保存参数配置
+     * ИзменитьСохранить参数配置
      */
     @RequiresPermissions("system:config:edit")
-    @Log(title = "参数管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Параметры", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated Config config)
     {
         if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config)))
         {
-            return error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
+            return error("Изменить参数'" + config.getConfigName() + "'Ошибка，参数键名已存在");
         }
         return toAjax(configService.updateConfig(config));
     }
 
     /**
-     * 删除参数配置
+     * Удалить参数配置
      */
     @RequiresPermissions("system:config:remove")
-    @Log(title = "参数管理", businessType = BusinessType.DELETE)
+    @Log(title = "Параметры", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -133,7 +133,7 @@ public class ConfigController extends BaseController
      * 清空缓存
      */
     @RequiresPermissions("system:config:remove")
-    @Log(title = "参数管理", businessType = BusinessType.CLEAN)
+    @Log(title = "Параметры", businessType = BusinessType.CLEAN)
     @GetMapping("/clearCache")
     @ResponseBody
     public AjaxResult clearCache()

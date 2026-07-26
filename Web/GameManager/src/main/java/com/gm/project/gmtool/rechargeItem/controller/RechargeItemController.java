@@ -47,7 +47,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * 充值配置Controller
+ * Настройки пополненияController
  * 
  * @author gm
  * @date 2021-08-25
@@ -75,7 +75,7 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 查询充值配置列表
+     * 查询Настройки пополнения列表
      */
     @PostMapping("/list")
     @ResponseBody
@@ -87,20 +87,20 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 导出充值配置列表
+     * ЭкспортНастройки пополнения列表
      */
-    @Log(title = "充值配置", businessType = BusinessType.EXPORT)
+    @Log(title = "Настройки пополнения", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(RechargeItem rechargeItem)
     {
         List<RechargeItem> list = rechargeItemService.selectRechargeItemList(rechargeItem);
         ExcelUtil<RechargeItem> util = new ExcelUtil<RechargeItem>(RechargeItem.class);
-        return util.exportExcel(list, "充值配置数据");
+        return util.exportExcel(list, "Настройки пополненияДанные");
     }
 
     /**
-     * 新增充值配置
+     * ДобавитьНастройки пополнения
      */
     @GetMapping("/add")
     public String add()
@@ -109,9 +109,9 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 新增保存充值配置
+     * ДобавитьСохранитьНастройки пополнения
      */
-    @Log(title = "充值配置", businessType = BusinessType.INSERT)
+    @Log(title = "Настройки пополнения", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(RechargeItem rechargeItem)
@@ -120,7 +120,7 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 修改充值配置
+     * ИзменитьНастройки пополнения
      */
     @GetMapping("/edit")
     public String edit(Integer goodsId, String tableName,ModelMap mmap)
@@ -132,9 +132,9 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 修改保存充值配置
+     * ИзменитьСохранитьНастройки пополнения
      */
-    @Log(title = "充值配置", businessType = BusinessType.UPDATE)
+    @Log(title = "Настройки пополнения", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(RechargeItem rechargeItem)
@@ -143,9 +143,9 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 删除充值配置
+     * УдалитьНастройки пополнения
      */
-    @Log(title = "充值配置", businessType = BusinessType.DELETE)
+    @Log(title = "Настройки пополнения", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -154,37 +154,37 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 通知游戏服刷新充值商城商品列表
+     * 通知游戏服ОбновитьПополнениеМагазин商品列表
      */
     public Object sendRechargeInfos() {
         return RechargeItemManager.getInstance().sendRechargeInfos();
     }
 
     /**
-     * 通知游戏服更新充值商城某条商品
+     * 通知游戏服更新ПополнениеМагазин某条商品
      */
     @PostMapping( "/updateRechargeItem")
     @ResponseBody
     public String updateRechargeItem(RechargeItem rechargeItem) {
-        //更新GM后台本地数据库数据
+        //更新GM后台本地Данные库Данные
         int count = rechargeItemService.updateRechargeItem(rechargeItem);
         if(count<=0){
-            return "更新GM后台充值商城配置失败";
+            return "更新GM后台ПополнениеМагазин配置Ошибка";
         }
 
         RechargeItemManager.getInstance().getRechargeItemMap().put(rechargeItem.getGoodsId(), rechargeItem);
         RechargeItemManager.getInstance().getRechargeItemInfoMap().put(rechargeItem.getGoodsId(), RechargeItemManager.getInstance().convertRechargeItem(rechargeItem));
 
         StringBuilder sb = new StringBuilder();
-        //通知API服务器更新某一条的充值信息
+        //通知APIСервер更新某一条的ПополнениеИнформация
         String rechargeStr = JsonUtils.toJSONString(RechargeItemManager.getInstance().convertRechargeItem(rechargeItem));
         HashMap<String,String> paramMap = new HashMap<>();
         paramMap.put("rechargeStr", rechargeStr);
         String httpResult = HttpConnectionUtils.post(gameManagerConfig.getAPIServerUrl()+"/rechargeItem/updateRechargeItem", paramMap);
 
-        sb.append("API服务器返回结果：").append(httpResult).append("/n");
+        sb.append("Ответ API-сервера:").append(httpResult).append("/n");
 
-        //通知游戏服更新全部的充值信息
+        //通知游戏服更新全部的ПополнениеИнформация
         List<TServer> servers = selectGroupService.selectServerList("", 1, "0,1");
         List<Integer> serverSuccessList = new ArrayList<>();
         List<Integer> serverFailedList = new ArrayList<>();
@@ -198,45 +198,45 @@ public class RechargeItemController extends BaseController
                 HashMap resultMap = GameServerRequestUtil.gmRefreshRechargeItemInfos(server, allRechargeStr, md5, 15*1000);
                 if (!Boolean.valueOf(resultMap.get("ok").toString())) {
                     serverFailedList.add(serverId);
-                    logger.error(serverId + "服,充值配置[" + rechargeItem.getGoodsId() + "]更新失败！操作结果：" + resultMap.get("data").toString());
+                    logger.error(serverId + "服,Настройки пополнения[" + rechargeItem.getGoodsId() + "]更新Ошибка！ДействияРезультат：" + resultMap.get("data").toString());
                 } else {
                     serverSuccessList.add(serverId);
                 }
             }catch (Exception e){
-                logger.error(serverId + "服充值配置更新失败！error："+e.getMessage());
+                logger.error(serverId + "服Настройки пополнения更新Ошибка！error："+e.getMessage());
                 serverFailedList.add(serverId);
             }
         }
-        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("/n");
-        sb.append("游戏服同步失败列表：").append(serverFailedList).append("/n");
-        GMLogUtil.log("修改充值配置，修改的ID："+rechargeItem.getGoodsId());
+        sb.append("Успешная синхронизация игровых серверов:").append(serverSuccessList).append("/n");
+        sb.append("Ошибки синхронизации игровых серверов:").append(serverFailedList).append("/n");
+        GMLogUtil.log("ИзменитьНастройки пополнения，Изменить的ID："+rechargeItem.getGoodsId());
         return sb.toString();
     }
 
     /**
-     * 通知游戏服删除充值商城某条商品
+     * 通知游戏服УдалитьПополнениеМагазин某条商品
      */
     @PostMapping( "/deleteRechargeItem")
     @ResponseBody
     public Object deleteRechargeItem(String id) {
-        //删除GM后台本地数据库数据
+        //УдалитьGM后台本地Данные库Данные
         int count = rechargeItemService.deleteRechargeItemByIds(id);
         if(count<=0){
-            return AjaxResult.info("删除GM后台充值商城配置失败").put("ok",false);
+            return AjaxResult.info("УдалитьGM后台ПополнениеМагазин配置Ошибка").put("ok",false);
         }
 
         RechargeItemManager.getInstance().getRechargeItemMap().remove(Integer.parseInt(id));
         RechargeItemManager.getInstance().getRechargeItemInfoMap().remove(Integer.parseInt(id));
 
         StringBuilder sb = new StringBuilder();
-        //通知API服务器删除某一条的充值信息
+        //通知APIСерверУдалить某一条的ПополнениеИнформация
         HashMap<String,String> paramMap = new HashMap<>();
         paramMap.put("id", id);
         String httpResult = HttpConnectionUtils.post(gameManagerConfig.getAPIServerUrl()+"/rechargeItem/deleteRechargeItem", paramMap);
 
-        sb.append("API服务器返回结果：").append(httpResult).append("/n");
+        sb.append("Ответ API-сервера:").append(httpResult).append("/n");
 
-        //通知游戏服删除某一条的充值信息
+        //通知游戏服Удалить某一条的ПополнениеИнформация
         List<TServer> servers = selectGroupService.selectServerList("", 1, "0,1");
         List<Integer> serverSuccessList = new ArrayList<>();
         List<Integer> serverFailedList = new ArrayList<>();
@@ -245,17 +245,17 @@ public class RechargeItemController extends BaseController
             HashMap resultMap = GameServerRequestUtil.gmDeleteRechargeInfo(server, id);
             if (!Boolean.valueOf(resultMap.get("ok").toString())) {
                 serverFailedList.add(serverId);
-                logger.error(serverId + "服,充值配置[" + id + "]删除失败！操作结果：" + resultMap.get("data").toString());
+                logger.error(serverId + "服,Настройки пополнения[" + id + "]УдалитьОшибка！ДействияРезультат：" + resultMap.get("data").toString());
             } else {
                 serverSuccessList.add(serverId);
             }
         }
-        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("/n");
-        sb.append("游戏服同步失败列表：").append(serverFailedList).append("/n");
+        sb.append("Успешная синхронизация игровых серверов:").append(serverSuccessList).append("/n");
+        sb.append("Ошибки синхронизации игровых серверов:").append(serverFailedList).append("/n");
         return AjaxResult.info(sb.toString()).put("ok",true);
     }
     /**
-     *普通充值查询
+     *普通Пополнение查询
      * @return
      */
     @PostMapping( "/queryRechargeItem")
@@ -268,7 +268,7 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 第三方充值配置查询
+     * №三方Настройки пополнения查询
      * @return
      */
     @PostMapping( "/queryRechargeItem3")
@@ -342,15 +342,15 @@ public class RechargeItemController extends BaseController
         if (!(rechargeItemParam.getTotalVipPower()==null)){
             rechargeItem.setTotalVipPower(rechargeItemParam.getTotalVipPower());
         }
-        //获取之前旧充值表的MD5码
+        //获取之前旧Пополнение表的MD5码
         String oldMd5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
 
-        //更新数据(数据库和APIServer)
+        //更新Данные(Данные库和APIServer)
         String updateResultStr = updateRechargeItem(rechargeItem);
-        //重新加载内存数据
+        //重新加载内存Данные
         RechargeItemManager.getInstance().load();
 
-        //记录用户操作日志
+        //记录用户Журнал операций
         GMLogUtil.log(rechargeItem.toString());
 
         //MD5码更新
@@ -359,12 +359,12 @@ public class RechargeItemController extends BaseController
         String content = "";
         RechargeItemLog rechargeItemLog = new RechargeItemLog();
         if (null != oldMd5  && !oldMd5.equals(md5)){//md5码不一样则进行了改变
-            if (rechargeTableName.equals("rechargeItem")){//普通充值
+            if (rechargeTableName.equals("rechargeItem")){//普通Пополнение
                 rechargeItemList = rechargeItemService.selectRechargeItemBygoodsPayChannel();
                 content = JsonUtils.toJSONString(rechargeItemList);
                 writeRechargeItemLog(rechargeItemLog,content,rechargeTableName);
 
-            }else {//第三方充值
+            }else {//№三方Пополнение
                 rechargeItemList = rechargeItemService.selectRechargeItemBygoodsPayChannel3();
                 content = JsonUtils.toJSONString(rechargeItemList);
                 writeRechargeItemLog(rechargeItemLog,content,rechargeTableName);
@@ -404,13 +404,13 @@ public class RechargeItemController extends BaseController
                 return AjaxResult.info("not rechargeItem config file").put("ok",false);
             }
 
-            //获取之前旧充值表的MD5码
+            //获取之前旧Пополнение表的MD5码
             String oldMd5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
 
             parseRechargeExcel(items, itemInfoPos, sheet);
 
-            if (items.size()>0) {//普通充值只会替换普通充值档位
-                //先删除数据库中普通充值数据
+            if (items.size()>0) {//普通Пополнение只会替换普通Пополнение档位
+                //先УдалитьДанные库中普通ПополнениеДанные
                 int delCount = rechargeItemService.deleteRechargeItemBygoodsPayChannel();
                 List<RechargeItem> result = new ArrayList<>();
                 for (RechargeItem rechargeItem:items){
@@ -422,7 +422,7 @@ public class RechargeItemController extends BaseController
                     Object resultStr=RechargeItemManager.getInstance().sendRechargeInfos();
                     //MD5码更新
                     String md5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
-                    GMLogUtil.log("导入普通充值配置数据成功，MD5:"+md5);
+                    GMLogUtil.log("Импорт普通Настройки пополненияДанныеУспешно，MD5:"+md5);
                     List<RechargeItem> rechargeItemList = new ArrayList<>();
                     String content = "";
                     RechargeItemLog rechargeItemLog = new RechargeItemLog();
@@ -460,12 +460,12 @@ public class RechargeItemController extends BaseController
             if (!sheet.getSheetName().equalsIgnoreCase("otherRechargeItem")) {
                 return AjaxResult.info("not rechargeItem config file").put("ok",false);
             }
-            //获取之前旧充值表的MD5码
+            //获取之前旧Пополнение表的MD5码
             String oldMd5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
             parseRechargeExcel(items, itemInfoPos, sheet);
 
             if (items.size()>0) {
-                //先删除数据库中第三方充值数据
+                //先УдалитьДанные库中№三方ПополнениеДанные
                 int delCount = rechargeItemService.deleteRechargeItemBygoodsPayChannel3();
 
                 List<RechargeItem> result = new ArrayList<>();
@@ -478,7 +478,7 @@ public class RechargeItemController extends BaseController
                     Object resultStr=RechargeItemManager.getInstance().sendRechargeInfos();
                     //MD5码更新
                     String md5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
-                    GMLogUtil.log("导入第三方充值配置数据成功，MD5:"+md5);
+                    GMLogUtil.log("Импорт№三方Настройки пополненияДанныеУспешно，MD5:"+md5);
                     List<RechargeItem> rechargeItemList = new ArrayList<>();
                     String content = "";
                     RechargeItemLog rechargeItemLog = new RechargeItemLog();
@@ -654,7 +654,7 @@ public class RechargeItemController extends BaseController
             }
         }catch (Exception e){
             logger.error(e.getMessage(),e);
-            throw  new RuntimeException("解析充值Excel出错，出错行数:"+rowCount+",列数:"+columnCount);
+            throw  new RuntimeException("解析ПополнениеExcel出错，出错行数:"+rowCount+",列数:"+columnCount);
         }
     }
     @PostMapping( "/exportRechargeExcel")
@@ -662,7 +662,7 @@ public class RechargeItemController extends BaseController
     public void exportRechargeExcel(int type, HttpServletResponse response){
         String sheetName = "";
         List<RechargeItem> rechargeItemList = new ArrayList<>();
-        if (type == 0){//普通充值表
+        if (type == 0){//普通Пополнение表
             rechargeItemList = rechargeItemService.selectRechargeItemBygoodsPayChannel();
             sheetName="rechargeItem";
         }else {
@@ -676,49 +676,49 @@ public class RechargeItemController extends BaseController
         LinkedList<Map<String, String>> listMap = new LinkedList<>();
         for(RechargeItem rechargeItem:rechargeItemList) {
             Map<String,String> map = new LinkedHashMap<>();
-            map.put("充值档位ID，用于发送给第三方充值使用", String.valueOf(rechargeItem.getGoodsId()));
-            map.put("用于游戏服系统内使用，主要是其他功能调用", String.valueOf(rechargeItem.getGoodsSystemCfgId()));
-            map.put("商品名字描述（主要用于BI后台数据）", rechargeItem.getGoodsName());
-            map.put("渠道名称(不填或留空为游戏内普通充值，否则为第三方渠道充值)", rechargeItem.getGoodsPayChannel());
-            map.put("支付类型(根据第三方SDK传过来的paytype字段在配置表筛选对应的商品数据)", String.valueOf(rechargeItem.getGoodsPayType()));
-            map.put("充值类型\n" +
-                    "1：正常充值 2：每日礼包充值 3：畅游月卡 4：尊享月卡 5：终身卡 6：成长基金 7：神秘商店 8：0元购 9：直购礼包（超值折扣） 10：狂欢周 11：运营活动类（后台配置） 12：天禁令高级令牌 99:第三方档位信息\"", String.valueOf(rechargeItem.getGoodsType()));
-            map.put("只针对Type=1（正常充值）的情况使用，其他类型不能使用\n" +
-                    "1=正常充值\n" +
+            map.put("Пополнение档位ID，用于发送给№三方Пополнение使用", String.valueOf(rechargeItem.getGoodsId()));
+            map.put("用于游戏服系统内使用，主要Да其他功能调用", String.valueOf(rechargeItem.getGoodsSystemCfgId()));
+            map.put("商品名字描述（主要用于BI后台Данные）", rechargeItem.getGoodsName());
+            map.put("Название канала(不填或留空为游戏内普通Пополнение，Нет则为№三方КаналПополнение)", rechargeItem.getGoodsPayChannel());
+            map.put("支付Тип(根据№三方SDK传过来的paytype字段在配置表筛选对应的商品Данные)", String.valueOf(rechargeItem.getGoodsPayType()));
+            map.put("Тип пополнения\n" +
+                    "1：НормаПополнение 2：每日礼包Пополнение 3：畅游Месяц卡 4：尊享Месяц卡 5：终身卡 6：成长基金 7：神秘商店 8：0元购 9：直购礼包（超值折扣） 10：狂欢周 11：Игровые события类（后台配置） 12：День禁令高级令牌 99:№三方档位Информация\"", String.valueOf(rechargeItem.getGoodsType()));
+            map.put("只针对Type=1（НормаПополнение）的情况使用，其他Тип不能使用\n" +
+                    "1=НормаПополнение\n" +
                     "2=新手礼包（一生一次）\n" +
-                    "3=周礼包（一周一刷新）\n" +
-                    "4=日礼包（一日一刷新）", String.valueOf(rechargeItem.getGoodsSubtype()));
-            map.put("充值次数（当前轮每个挡位对应充值的次数）\n" +
+                    "3=周礼包（一周一Обновить）\n" +
+                    "4=日礼包（一日一Обновить）", String.valueOf(rechargeItem.getGoodsSubtype()));
+            map.put("Количество пополнений（当前轮每个挡位对应Пополнение的次数）\n" +
                     "-1=无次数限制", String.valueOf(rechargeItem.getGoodsLimit()));
-            map.put("显示的图标的ID（hide）", String.valueOf(rechargeItem.getGoodsIcon()));
-            map.put("商品图片地址", String.valueOf(rechargeItem.getGoodsurl()));
-            map.put("充值档位对应消耗的真实货币(单位:分)\n" +
+            map.put("ID отображаемой иконки（hide）", String.valueOf(rechargeItem.getGoodsIcon()));
+            map.put("URL изображения товара", String.valueOf(rechargeItem.getGoodsurl()));
+            map.put("Пополнение档位对应消耗的真实货币(单位:分)\n" +
                     "1：android\n" +
                     "2：ios\n" +
                     "（不需要区分大小写）\n" +
                     "THB  泰铢   MYR  马来西亚令吉   SGD  新加坡元   VND  越南盾   EUR  欧元   GBP  英镑   HKD  港币   IDR  印尼盾   KRW  韩元   TWD  新台币   USD  美金   JPY  日元\n" +
                     "CNY人民币\n" +
                     "示例：android_THB,1200_CNY,1200;ios_THB,1200_CNY,120", rechargeItem.getGoodsPrice());
-            map.put("充值平台计费点\n" +
+            map.put("ПополнениеПлатформа计费点\n" +
                     "（需要运营配置）\n" +
-                    "android:tzj_oo6;ios:tzj_oo6（渠道_平台商品ID）", rechargeItem.getGoodsPricePoint());
-            map.put("默认的金额币种（用于运营方读取money字段里需要显示的种类） ", rechargeItem.getGoodsShowPrice());
+                    "android:tzj_oo6;ios:tzj_oo6（Канал_ПлатформаID товара）", rechargeItem.getGoodsPricePoint());
+            map.put("默认的Сумма币种（用于运营方读取money字段里需要Показывать的种类） ", rechargeItem.getGoodsShowPrice());
             map.put("对应奖励\n" +
-                    "物品类型_数量_绑定_职业\n" +
+                    "物品Тип_数量_绑定_Класс\n" +
                     "绑定 0未绑定 1绑定\n" +
                     "也只 0男剑 1女枪 2地藏 3罗刹 9通用", rechargeItem.getGoodsReward());
-            map.put("充值倍数\n" +
-                    "倍数_次数（3_2表示前2次充值都是3倍奖励）\n" +
+            map.put("Пополнение倍数\n" +
+                    "倍数_次数（3_2表示前2次Пополнение都Да3倍奖励）\n" +
                     "-1代表无限次", rechargeItem.getGoodsMultiple());
             map.put("额外赠送\n" +
-                    "物品类型_数量_绑定_职业\n" +
+                    "物品Тип_数量_绑定_Класс\n" +
                     "绑定 0未绑定 1绑定\n" +
                     "也只 0男剑 1女枪 2地藏 3罗刹 9通用", rechargeItem.getGoodsExtraReward());
-            map.put("额外奖励可领取次数\n" +
+            map.put("Дополнительная награда可领取次数\n" +
                     "-1代表无限次", String.valueOf(rechargeItem.getGoodsExtraRewardLimit()));
-            map.put("是否计入到游戏累充活动\n" +
+            map.put("ДаНет计入到游戏累充活动\n" +
                     "为0则代表不计入累充，大于0则代表计入累充的数额", String.valueOf(rechargeItem.getIsTotalRecharge()));
-            map.put("是否增加VIP经验\n" +
+            map.put("ДаНет增加VIP经验\n" +
                     "为0代表不增加VIP经验，大于0代表增加对应的VIP经验", String.valueOf(rechargeItem.getTotalVipPower()));
             listMap.add(map);
         }
@@ -745,7 +745,7 @@ public class RechargeItemController extends BaseController
         workbook.setSheetName(0, sheetName);
 
         int ri = 1, ci = 0;
-        XSSFRow row = sheet.createRow(ri++);//第2行英文表头
+        XSSFRow row = sheet.createRow(ri++);//№2行英文表头
         XSSFCell cell;
         for (String field : list1) {
             cell = row.createCell(ci);
@@ -753,15 +753,15 @@ public class RechargeItemController extends BaseController
             ci++;//增加列
         }
         ri+=2;
-        row = sheet.createRow(ri++);//第5行中文表头
-        ci=0;//从第一列开始
+        row = sheet.createRow(ri++);//№5行中文表头
+        ci=0;//从№一列开始
         for (Map.Entry<String, String> entry : dataList.get(0).entrySet()) {
             cell = row.createCell(ci);
             cell.setCellValue(entry.getKey());
             ci++;
         }
-        //数据
-        for (Map<String, String> dataMap : dataList){//第6行数据开始
+        //Данные
+        for (Map<String, String> dataMap : dataList){//№6行Данные开始
             row = sheet.createRow(ri++);
             ci = 0;
             for (String key : dataMap.keySet()) {
@@ -773,7 +773,7 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 获取goods_type类型为11的充值表数据
+     * 获取goods_typeТип为11的Пополнение表Данные
      * @return
      */
     @PostMapping( "/getRechargeByType")
@@ -786,7 +786,7 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 查询充值配置修改的历史记录
+     * 查询Настройки пополненияИзменить的历史记录
      * @return
      */
     @PostMapping( "/queryRechargeItemLog")
@@ -813,7 +813,7 @@ public class RechargeItemController extends BaseController
          return prefix + "/rechargeItemContent";
     }
     /**
-     * 根据页面传过来的index查询对应的记录详情
+     * 根据页面传过来的index查询对应的记录Подробнее
      * @return
      */
     @PostMapping( "/queryRechargeItemContent")
@@ -840,7 +840,7 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 导出充值配置修改的历史记录
+     * ЭкспортНастройки пополненияИзменить的历史记录
      * @param request
      * @param response
      */
@@ -880,7 +880,7 @@ public class RechargeItemController extends BaseController
     }
 
     /**
-     * 普通充值及第三方充值数据清除
+     * 普通Пополнение及№三方ПополнениеДанные清除
      * @param request
      * @param response
      * @return
@@ -889,7 +889,7 @@ public class RechargeItemController extends BaseController
     @ResponseBody
     public Object clearRechargeItem(HttpServletRequest request, HttpServletResponse response){
         rechargeItemService.clearRechargeItem("t_recharge_item");
-        GMLogUtil.log("普通充值及第三方充值数据清除");
+        GMLogUtil.log("普通Пополнение及№三方ПополнениеДанные清除");
         return AjaxResult.info().put("ok",true);
     }
 }

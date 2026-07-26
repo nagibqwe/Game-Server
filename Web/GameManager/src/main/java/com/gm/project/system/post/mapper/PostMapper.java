@@ -4,17 +4,17 @@ import java.util.List;
 import com.gm.project.system.post.domain.Post;
 
 /**
- * 岗位信息 数据层
+ * 岗位Информация Данные层
  * 
  * @author ruoyi
  */
 public interface PostMapper
 {
     /**
-     * 查询岗位数据集合
+     * 查询岗位Данные集合
      * 
-     * @param post 岗位信息
-     * @return 岗位数据集合
+     * @param post 岗位Информация
+     * @return 岗位Данные集合
      */
     public List<Post> selectPostList(Post post);
 
@@ -26,50 +26,50 @@ public interface PostMapper
     public List<Post> selectPostAll();
 
     /**
-     * 根据用户ID查询岗位
+     * 根据ID пользователя查询岗位
      * 
-     * @param userId 用户ID
+     * @param userId ID пользователя
      * @return 岗位列表
      */
     public List<Post> selectPostsByUserId(Long userId);
 
     /**
-     * 通过岗位ID查询岗位信息
+     * 通过岗位ID查询岗位Информация
      * 
      * @param postId 岗位ID
-     * @return 角色对象信息
+     * @return 角色对象Информация
      */
     public Post selectPostById(Long postId);
 
     /**
-     * 批量删除岗位信息
+     * 批量Удалить岗位Информация
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deletePostByIds(Long[] ids);
 
     /**
-     * 修改岗位信息
+     * Изменить岗位Информация
      * 
-     * @param post 岗位信息
-     * @return 结果
+     * @param post 岗位Информация
+     * @return Результат
      */
     public int updatePost(Post post);
 
     /**
-     * 新增岗位信息
+     * Добавить岗位Информация
      * 
-     * @param post 岗位信息
-     * @return 结果
+     * @param post 岗位Информация
+     * @return Результат
      */
     public int insertPost(Post post);
 
     /**
-     * 校验岗位名称
+     * 校验岗位Название
      * 
-     * @param postName 岗位名称
-     * @return 结果
+     * @param postName 岗位Название
+     * @return Результат
      */
     public Post checkPostNameUnique(String postName);
 
@@ -77,7 +77,7 @@ public interface PostMapper
      * 校验岗位编码
      * 
      * @param postCode 岗位编码
-     * @return 结果
+     * @return Результат
      */
     public Post checkPostCodeUnique(String postCode);
 }

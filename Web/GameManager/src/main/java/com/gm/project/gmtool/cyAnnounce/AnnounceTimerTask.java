@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 /**
- * 循环公告的计时发送处理
+ * Циклическое объявление的计时发送处理
  */
 public class AnnounceTimerTask extends TimerTask{
 
@@ -52,7 +52,7 @@ public class AnnounceTimerTask extends TimerTask{
 				continue;
 			}
 
-			//开始时间没到
+			//Время начала没到
 			if( now < an.getFromTime()) {
 				continue;
 			}
@@ -64,21 +64,21 @@ public class AnnounceTimerTask extends TimerTask{
 				continue;
 			}
 
-			//超过了结束时间
+			//超过了Время окончания
 			if(now > an.getToTime()) {
 				an.setState(3);
 				CyAnnounceManager.getInstance().updateSave(an);
 				continue;
 			}
 
-			//下一次的时间还没到则返回
+			//下一次的Время还没到则Назад
 			if( now < an.getNextTimes()) {
 				continue;
 			}
 
 			String sids = an.getServerIds();
 			String [] ids = sids.split(",");
-			//没有服务器列表也删除
+			//没有Список серверов也Удалить
 			if( ids.length < 1) {
 				CyAnnounceManager.getInstance().remove(an);
 				continue;
@@ -98,9 +98,9 @@ public class AnnounceTimerTask extends TimerTask{
 				AjaxResult ret = GameServerRequestUtil.gmPublishAnnounce(server, an.getType(), an.getContent());
 				StringBuilder sb = new StringBuilder();
 				if(Boolean.valueOf(ret.get("ok").toString())) {
-					sb.append(server.getServerName()).append("接收即时公告刷新成功 ！");
+					sb.append(server.getServerName()).append("接收Мгновенное объявлениеОбновитьУспешно ！");
 				} else {
-					sb.append(server.getServerName()) .append("失败，原因：").append(ret.get("msg"));
+					sb.append(server.getServerName()) .append("Ошибка，原因：").append(ret.get("msg"));
 				}
 				log.info(sb.toString());
 			}
@@ -110,8 +110,8 @@ public class AnnounceTimerTask extends TimerTask{
 				an.setNextDate(format.format(new Date(an.getNextTimes())));
 			}
 			int num = CyAnnounceManager.getInstance().updateSave(an);
-			log.info("公告id：" + an.getId() + "发送次数：" + an.getNowTimes() + "  更新结果：" + num);
-			log.info("循环公告耗时:" +(System.currentTimeMillis() - now)+ "ms");
+			log.info("公告id：" + an.getId() + "发送次数：" + an.getNowTimes() + "  更新Результат：" + num);
+			log.info("Циклическое объявление耗时:" +(System.currentTimeMillis() - now)+ "ms");
 		}
 	}
 }

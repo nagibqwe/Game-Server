@@ -108,7 +108,7 @@ public class role extends BaseTableHandler {
     }
 
     /**
-     * 发送改名卡的邮件
+     * 发送改名卡的Письмо
      * @param psMail
      * @param roleID
      * @throws SQLException
@@ -143,6 +143,6 @@ public class role extends BaseTableHandler {
         psMail.setByte(8, data.getIsAttachReceived());
         psMail.setString(9, JsonUtils.toJSONString(data));
         psMail.addBatch();
-        cnLog.info("发放角色改名邮件 mailId=" + data.getMailId());
+        cnLog.info("发放角色改名Письмо mailId=" + data.getMailId());
     }
 }

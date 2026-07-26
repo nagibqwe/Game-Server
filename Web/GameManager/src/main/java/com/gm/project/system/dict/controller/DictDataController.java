@@ -21,7 +21,7 @@ import com.gm.project.system.dict.domain.DictData;
 import com.gm.project.system.dict.service.IDictDataService;
 
 /**
- * 数据字典信息
+ * Данные字典Информация
  * 
  * @author ruoyi
  */
@@ -51,7 +51,7 @@ public class DictDataController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.EXPORT)
+    @Log(title = "Данные справочника", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -59,11 +59,11 @@ public class DictDataController extends BaseController
     {
         List<DictData> list = dictDataService.selectDictDataList(dictData);
         ExcelUtil<DictData> util = new ExcelUtil<DictData>(DictData.class);
-        return util.exportExcel(list, "字典数据");
+        return util.exportExcel(list, "Данные справочника");
     }
 
     /**
-     * 新增字典类型
+     * ДобавитьТип справочника
      */
     @GetMapping("/add/{dictType}")
     public String add(@PathVariable("dictType") String dictType, ModelMap mmap)
@@ -73,9 +73,9 @@ public class DictDataController extends BaseController
     }
 
     /**
-     * 新增保存字典类型
+     * ДобавитьСохранитьТип справочника
      */
-    @Log(title = "字典数据", businessType = BusinessType.INSERT)
+    @Log(title = "Данные справочника", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -85,7 +85,7 @@ public class DictDataController extends BaseController
     }
 
     /**
-     * 修改字典类型
+     * ИзменитьТип справочника
      */
     @GetMapping("/edit/{dictCode}")
     public String edit(@PathVariable("dictCode") Long dictCode, ModelMap mmap)
@@ -95,9 +95,9 @@ public class DictDataController extends BaseController
     }
 
     /**
-     * 修改保存字典类型
+     * ИзменитьСохранитьТип справочника
      */
-    @Log(title = "字典数据", businessType = BusinessType.UPDATE)
+    @Log(title = "Данные справочника", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -106,7 +106,7 @@ public class DictDataController extends BaseController
         return toAjax(dictDataService.updateDictData(dict));
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.DELETE)
+    @Log(title = "Данные справочника", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody

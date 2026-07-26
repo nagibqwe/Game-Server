@@ -5,7 +5,7 @@
 //import java.util.List;
 //
 ///**
-// * 角色快照日志Mapper接口
+// * Журнал снимков персонажейMapper接口
 // *
 // * @author gm
 // * @date 2021-09-07
@@ -13,50 +13,50 @@
 //public interface RoleStateMapper
 //{
 //    /**
-//     * 查询角色快照日志
+//     * 查询Журнал снимков персонажей
 //     *
-//     * @param roleId 角色快照日志ID
-//     * @return 角色快照日志
+//     * @param roleId Журнал снимков персонажейID
+//     * @return Журнал снимков персонажей
 //     */
 //    public RoleState selectRoleStateById(Long roleId);
 //
 //    /**
-//     * 查询角色快照日志列表
+//     * 查询Журнал снимков персонажей列表
 //     *
-//     * @param roleState 角色快照日志
-//     * @return 角色快照日志集合
+//     * @param roleState Журнал снимков персонажей
+//     * @return Журнал снимков персонажей集合
 //     */
 //    public List<RoleState> selectRoleStateList(RoleState roleState);
 //
 //    /**
-//     * 新增角色快照日志
+//     * ДобавитьЖурнал снимков персонажей
 //     *
-//     * @param roleState 角色快照日志
-//     * @return 结果
+//     * @param roleState Журнал снимков персонажей
+//     * @return Результат
 //     */
 //    public int insertRoleState(RoleState roleState);
 //
 //    /**
-//     * 修改角色快照日志
+//     * ИзменитьЖурнал снимков персонажей
 //     *
-//     * @param roleState 角色快照日志
-//     * @return 结果
+//     * @param roleState Журнал снимков персонажей
+//     * @return Результат
 //     */
 //    public int updateRoleState(RoleState roleState);
 //
 //    /**
-//     * 删除角色快照日志
+//     * УдалитьЖурнал снимков персонажей
 //     *
-//     * @param roleId 角色快照日志ID
-//     * @return 结果
+//     * @param roleId Журнал снимков персонажейID
+//     * @return Результат
 //     */
 //    public int deleteRoleStateById(Long roleId);
 //
 //    /**
-//     * 批量删除角色快照日志
+//     * 批量УдалитьЖурнал снимков персонажей
 //     *
-//     * @param roleIds 需要删除的数据ID
-//     * @return 结果
+//     * @param roleIds 需要Удалить的ДанныеID
+//     * @return Результат
 //     */
 //    public int deleteRoleStateByIds(String[] roleIds);
 //}

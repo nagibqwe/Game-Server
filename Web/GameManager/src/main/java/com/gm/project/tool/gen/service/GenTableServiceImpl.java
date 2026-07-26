@@ -55,10 +55,10 @@ public class GenTableServiceImpl implements IGenTableService
     private GenTableColumnMapper genTableColumnMapper;
 
     /**
-     * 查询业务信息
+     * 查询业务Информация
      * 
      * @param id 业务ID
-     * @return 业务信息
+     * @return 业务Информация
      */
     @Override
     public GenTable selectGenTableById(Long id)
@@ -71,7 +71,7 @@ public class GenTableServiceImpl implements IGenTableService
     /**
      * 查询业务列表
      * 
-     * @param genTable 业务信息
+     * @param genTable 业务Информация
      * @return 业务集合
      */
     @Override
@@ -83,8 +83,8 @@ public class GenTableServiceImpl implements IGenTableService
     /**
      * 查询据库列表
      * 
-     * @param genTable 业务信息
-     * @return 数据库表集合
+     * @param genTable 业务Информация
+     * @return Данные库表集合
      */
     @Override
     public List<GenTable> selectDbTableList(GenTable genTable)
@@ -95,8 +95,8 @@ public class GenTableServiceImpl implements IGenTableService
     /**
      * 查询据库列表
      * 
-     * @param tableNames 表名称组
-     * @return 数据库表集合
+     * @param tableNames Название таблицы组
+     * @return Данные库表集合
      */
     @Override
     public List<GenTable> selectDbTableListByNames(String[] tableNames)
@@ -105,9 +105,9 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 查询所有表信息
+     * 查询所有表Информация
      * 
-     * @return 表信息集合
+     * @return 表Информация集合
      */
     @Override
     public List<GenTable> selectGenTableAll()
@@ -116,10 +116,10 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 修改业务
+     * Изменить业务
      * 
-     * @param genTable 业务信息
-     * @return 结果
+     * @param genTable 业务Информация
+     * @return Результат
      */
     @Override
     @Transactional
@@ -138,10 +138,10 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 删除业务对象
+     * Удалить业务对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     @Transactional
@@ -152,9 +152,9 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 导入表结构
+     * Импорт表结构
      * 
-     * @param tableList 导入表列表
+     * @param tableList Импорт表列表
      */
     @Override
     @Transactional
@@ -170,7 +170,7 @@ public class GenTableServiceImpl implements IGenTableService
                 int row = genTableMapper.insertGenTable(table);
                 if (row > 0)
                 {
-                    // 保存列信息
+                    // Сохранить列Информация
                     List<GenTableColumn> genTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
                     for (GenTableColumn column : genTableColumns)
                     {
@@ -182,25 +182,25 @@ public class GenTableServiceImpl implements IGenTableService
         }
         catch (Exception e)
         {
-            throw new BusinessException("导入失败：" + e.getMessage());
+            throw new BusinessException("ИмпортОшибка：" + e.getMessage());
         }
     }
 
     /**
      * 预览代码
      * 
-     * @param tableId 表编号
-     * @return 预览数据列表
+     * @param tableId 表Номер
+     * @return 预览Данные列表
      */
     @Override
     public Map<String, String> previewCode(Long tableId)
     {
         Map<String, String> dataMap = new LinkedHashMap<>();
-        // 查询表信息
+        // 查询表Информация
         GenTable table = genTableMapper.selectGenTableById(tableId);
-        // 设置主子表信息
+        // 设置主子表Информация
         setSubTable(table);
-        // 设置主键列信息
+        // 设置主键列Информация
         setPkColumn(table);
         VelocityInitializer.initVelocity();
 
@@ -220,10 +220,10 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 生成代码（下载方式）
+     * 生成代码（Скачать方式）
      * 
-     * @param tableName 表名称
-     * @return 数据
+     * @param tableName Название таблицы
+     * @return Данные
      */
     @Override
     public byte[] downloadCode(String tableName)
@@ -238,16 +238,16 @@ public class GenTableServiceImpl implements IGenTableService
     /**
      * 生成代码（自定义路径）
      * 
-     * @param tableName 表名称
+     * @param tableName Название таблицы
      */
     @Override
     public void generatorCode(String tableName)
     {
-        // 查询表信息
+        // 查询表Информация
         GenTable table = genTableMapper.selectGenTableByName(tableName);
-        // 设置主子表信息
+        // 设置主子表Информация
         setSubTable(table);
-        // 设置主键列信息
+        // 设置主键列Информация
         setPkColumn(table);
 
         VelocityInitializer.initVelocity();
@@ -271,16 +271,16 @@ public class GenTableServiceImpl implements IGenTableService
                 }
                 catch (IOException e)
                 {
-                    throw new BusinessException("渲染模板失败，表名：" + table.getTableName());
+                    throw new BusinessException("渲染模板Ошибка，表名：" + table.getTableName());
                 }
             }
         }
     }
     
     /**
-     * 同步数据库
+     * 同步Данные库
      * 
-     * @param tableName 表名称
+     * @param tableName Название таблицы
      */
     @Override
     @Transactional
@@ -293,7 +293,7 @@ public class GenTableServiceImpl implements IGenTableService
         List<GenTableColumn> dbTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
         if (StringUtils.isEmpty(dbTableColumns))
         {
-            throw new BusinessException("同步数据失败，原表结构不存在");
+            throw new BusinessException("同步ДанныеОшибка，原表结构不存在");
         }
         List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
 
@@ -313,10 +313,10 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 批量生成代码（下载方式）
+     * 批量生成代码（Скачать方式）
      * 
      * @param tableNames 表数组
-     * @return 数据
+     * @return Данные
      */
     @Override
     public byte[] downloadCode(String[] tableNames)
@@ -332,15 +332,15 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 查询表信息并生成代码
+     * 查询表Информация并生成代码
      */
     private void generatorCode(String tableName, ZipOutputStream zip)
     {
-        // 查询表信息
+        // 查询表Информация
         GenTable table = genTableMapper.selectGenTableByName(tableName);
-        // 设置主子表信息
+        // 设置主子表Информация
         setSubTable(table);
-        // 设置主键列信息
+        // 设置主键列Информация
         setPkColumn(table);
 
         VelocityInitializer.initVelocity();
@@ -374,7 +374,7 @@ public class GenTableServiceImpl implements IGenTableService
             tpl.merge(context, sw);
             try
             {
-                // 添加到zip
+                // Добавить到zip
                 zip.putNextEntry(new ZipEntry(VelocityUtils.getFileName(template, table)));
                 IOUtils.write(sw.toString(), zip, Constants.UTF8);
                 IOUtils.closeQuietly(sw);
@@ -383,15 +383,15 @@ public class GenTableServiceImpl implements IGenTableService
             }
             catch (IOException e)
             {
-                log.error("渲染模板失败，表名：" + table.getTableName(), e);
+                log.error("渲染模板Ошибка，表名：" + table.getTableName(), e);
             }
         }
     }
 
     /**
-     * 修改保存参数校验
+     * ИзменитьСохранить参数校验
      * 
-     * @param genTable 业务信息
+     * @param genTable 业务Информация
      */
     @Override
     public void validateEdit(GenTable genTable)
@@ -410,7 +410,7 @@ public class GenTableServiceImpl implements IGenTableService
             }
             else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_NAME)))
             {
-                throw new BusinessException("树名称字段不能为空");
+                throw new BusinessException("树Название字段不能为空");
             }
         }
         else if (GenConstants.TPL_SUB.equals(genTable.getTplCategory()))
@@ -427,9 +427,9 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 设置主键列信息
+     * 设置主键列Информация
      * 
-     * @param table 业务表信息
+     * @param table 业务表Информация
      */
     public void setPkColumn(GenTable table)
     {
@@ -463,9 +463,9 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 设置主子表信息
+     * 设置主子表Информация
      * 
-     * @param table 业务表信息
+     * @param table 业务表Информация
      */
     public void setSubTable(GenTable table)
     {
@@ -477,7 +477,7 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 设置代码生成其他选项值
+     * 设置Генератор кода其他选项值
      * 
      * @param genTable 设置后的生成对象
      */
@@ -501,9 +501,9 @@ public class GenTableServiceImpl implements IGenTableService
     }
 
     /**
-     * 获取代码生成地址
+     * 获取Генератор кода地址
      * 
-     * @param table 业务表信息
+     * @param table 业务表Информация
      * @param template 模板文件路径
      * @return 生成地址
      */

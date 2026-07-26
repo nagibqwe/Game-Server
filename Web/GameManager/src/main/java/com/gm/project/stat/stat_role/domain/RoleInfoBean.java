@@ -5,33 +5,33 @@ import com.gm.framework.web.domain.BaseEntity;
 import io.swagger.models.auth.In;
 
 /**
- * 角色信息
+ * 角色Информация
  */
 public class RoleInfoBean extends BaseEntity {
     private static final long serialVersionUID = 1L;
-    @Excel(name = "渠道")
+    @Excel(name = "Канал")
     private String platformName;
-    @Excel(name = "创建区服ID")
+    @Excel(name = "创建ID игрового сервера")
     private String createsid;
     @Excel(name = "账号名")
     private String funcellUUid;
-    @Excel(name = "用户ID")
+    @Excel(name = "ID пользователя")
     private Long userId;
-    @Excel(name = "角色ID")
+    @Excel(name = "ID персонажа")
     private Long roleId;
-    @Excel(name = "角色名称")
+    @Excel(name = "Имя персонажа")
     private String roleName;
-    @Excel(name = "角色等级")
+    @Excel(name = "Уровень персонажа")
     private Integer level;
-    @Excel(name = "在线时长(单位：秒)")
+    @Excel(name = "В сети时长(单位：秒)")
     private Integer onlineTime;
-    @Excel(name = "充值灵玉")
+    @Excel(name = "Пополнение灵玉")
     private Integer rechargeGold;
     @Excel(name = "剩余灵玉")
     private Integer gold;
-    @Excel(name = "角色创建时间")
+    @Excel(name = "角色Время создания")
     private String createTimeStr;
-    @Excel(name = "是否删除")
+    @Excel(name = "Удалён")
     private Integer isDelete;
     public String getPlatformName() {
         return platformName;

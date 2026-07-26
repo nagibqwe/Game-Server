@@ -10,13 +10,13 @@ public class RechargeSecondTimeIntervaBean extends BaseEntity
     /**
      * 付费次数
      */
-    @Excel(name = "间隔天数")
+    @Excel(name = "间隔День数")
     private String intervaDay;
 
     /**
-     * 人数
+     * Количество
      */
-    @Excel(name = "人数")
+    @Excel(name = "Количество")
     private Integer roles;
 
 

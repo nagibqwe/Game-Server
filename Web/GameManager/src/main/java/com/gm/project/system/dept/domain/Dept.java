@@ -23,10 +23,10 @@ public class Dept extends BaseEntity
     /** 祖级列表 */
     private String ancestors;
 
-    /** 部门名称 */
+    /** Название подразделения */
     private String deptName;
 
-    /** 显示顺序 */
+    /** Показывать顺序 */
     private String orderNum;
 
     /** 负责人 */
@@ -38,13 +38,13 @@ public class Dept extends BaseEntity
     /** 邮箱 */
     private String email;
 
-    /** 部门状态:0正常,1停用 */
+    /** 部门Статус:0Норма,1Отключено */
     private String status;
 
-    /** 删除标志（0代表存在 2代表删除） */
+    /** Удалить标志（0代表存在 2代表Удалить） */
     private String delFlag;
 
-    /** 父部门名称 */
+    /** 父Название подразделения */
     private String parentName;
 
     public Long getDeptId()
@@ -77,8 +77,8 @@ public class Dept extends BaseEntity
         this.ancestors = ancestors;
     }
 
-    @NotBlank(message = "部门名称不能为空")
-    @Size(min = 0, max = 30, message = "部门名称长度不能超过30个字符")
+    @NotBlank(message = "Название подразделения不能为空")
+    @Size(min = 0, max = 30, message = "Название подразделения长度不能超过30个字符")
     public String getDeptName()
     {
         return deptName;
@@ -89,7 +89,7 @@ public class Dept extends BaseEntity
         this.deptName = deptName;
     }
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "Порядок отображения обязателен")
     public String getOrderNum()
     {
         return orderNum;

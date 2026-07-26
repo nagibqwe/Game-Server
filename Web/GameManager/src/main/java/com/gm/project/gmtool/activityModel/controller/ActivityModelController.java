@@ -22,7 +22,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 运营活动模型库Controller
+ * Библиотека моделей событийController
  * 
  * @author gm
  * @date 2021-09-14
@@ -44,7 +44,7 @@ public class ActivityModelController extends BaseController
     }
 
     /**
-     * 查询运营活动模型库列表
+     * 查询Библиотека моделей событий列表
      */
 //    @RequiresPermissions("gmtool:activityModel:list")
     @PostMapping("/list")
@@ -57,21 +57,21 @@ public class ActivityModelController extends BaseController
     }
 
     /**
-     * 导出运营活动模型库列表
+     * ЭкспортБиблиотека моделей событий列表
      */
     @RequiresPermissions("gmtool:activityModel:export")
-    @Log(title = "运营活动模型库", businessType = BusinessType.EXPORT)
+    @Log(title = "Библиотека моделей событий", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(ActivityModel activityModel)
     {
         List<ActivityModel> list = modelService.selectModelList(activityModel);
         ExcelUtil<ActivityModel> util = new ExcelUtil<ActivityModel>(ActivityModel.class);
-        return util.exportExcel(list, "运营活动模型库数据");
+        return util.exportExcel(list, "Библиотека моделей событийДанные");
     }
 
     /**
-     * 新增运营活动模型库
+     * ДобавитьБиблиотека моделей событий
      */
     @GetMapping("/add")
     public String add()
@@ -80,10 +80,10 @@ public class ActivityModelController extends BaseController
     }
 
     /**
-     * 新增保存运营活动模型库
+     * ДобавитьСохранитьБиблиотека моделей событий
      */
     @RequiresPermissions("gmtool:activityModel:add")
-    @Log(title = "运营活动模型库", businessType = BusinessType.INSERT)
+    @Log(title = "Библиотека моделей событий", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(ActivityModel activityModel)
@@ -92,7 +92,7 @@ public class ActivityModelController extends BaseController
     }
 
     /**
-     * 修改运营活动模型库
+     * ИзменитьБиблиотека моделей событий
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -103,10 +103,10 @@ public class ActivityModelController extends BaseController
     }
 
     /**
-     * 修改保存运营活动模型库
+     * ИзменитьСохранитьБиблиотека моделей событий
      */
     @RequiresPermissions("gmtool:activityModel:edit")
-    @Log(title = "运营活动模型库", businessType = BusinessType.UPDATE)
+    @Log(title = "Библиотека моделей событий", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(ActivityModel activityModel)
@@ -115,10 +115,10 @@ public class ActivityModelController extends BaseController
     }
 
     /**
-     * 删除运营活动模型库
+     * УдалитьБиблиотека моделей событий
      */
     @RequiresPermissions("gmtool:activityModel:remove")
-    @Log(title = "运营活动模型库", businessType = BusinessType.DELETE)
+    @Log(title = "Библиотека моделей событий", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

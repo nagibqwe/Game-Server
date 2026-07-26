@@ -5,7 +5,7 @@ public enum GMSendErrorType {
     CONNECT(-9999, "socket连接错误"),
     SEND(-999, "socket发送错误"),
     RECEIVE(-99, "socket接收错误"),
-    PARSE(-9, "解析返回值错误");
+    PARSE(-9, "解析Назад值错误");
 
 
     private int code;

@@ -19,7 +19,7 @@ import java.util.List;
 
 
 /**
- * 运营活动处理Controller
+ * Игровые события处理Controller
  *
  * @author gm
  * @date 2021-10-26
@@ -44,7 +44,7 @@ public class ActivityDealController extends BaseController
     }
 
     /**
-     * 查询服务器功能
+     * 查询Сервер功能
      * @param serverId
      * @return
      */
@@ -53,7 +53,7 @@ public class ActivityDealController extends BaseController
     public TableDataInfo searchActivity(Integer serverId, Integer type, Integer subType, Integer isPre){
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return getDataTableErrorMsg("选择服务器Id不存在");
+            return getDataTableErrorMsg("Выбранный ID сервера не существует");
         }
 
         int opType = 0;
@@ -71,19 +71,19 @@ public class ActivityDealController extends BaseController
 
         AjaxResult serverResult = GameServerRequestUtil.activityDeal(server, sb.toString());
         if(serverResult.get("data") == null){
-            return getDataTableErrorMsg("没有查到数据");
+            return getDataTableErrorMsg("没有查到Данные");
         }
         HashMap<String, Object> dataMap = (HashMap<String, Object>)serverResult.get("data");
         if(dataMap.get("data") == null){
-            return getDataTableErrorMsg("没有查到数据");
+            return getDataTableErrorMsg("没有查到Данные");
         }
 
         List<Integer> actIds = (List<Integer>) dataMap.get("data");
         if(actIds.isEmpty()){
-            return getDataTableErrorMsg("没有查到数据");
+            return getDataTableErrorMsg("没有查到Данные");
         }
 
-        //查询的活动信息
+        //查询的活动Информация
         StringBuilder actIdStr = new StringBuilder();
         for (Integer actId : actIds) {
             actIdStr.append(actId).append(",");
@@ -97,7 +97,7 @@ public class ActivityDealController extends BaseController
     }
 
     /**
-     * 删除正在运行的运营活动
+     * Удалить正在运行的Игровые события
      * @param serverId
      * @return
      */
@@ -105,12 +105,12 @@ public class ActivityDealController extends BaseController
     @ResponseBody
     public AjaxResult removeActivity(Integer serverId, Integer actType) {
         if(actType == null || actType <= 0){
-            return AjaxResult.error("活动类型错误："+actType);
+            return AjaxResult.error("Тип события错误："+actType);
         }
 
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return AjaxResult.error("选择服务器Id不存在");
+            return AjaxResult.error("Выбранный ID сервера не существует");
         }
 
         int opType = 1;
@@ -121,15 +121,15 @@ public class ActivityDealController extends BaseController
         AjaxResult serverResult = GameServerRequestUtil.activityDeal(server, sb.toString());
         if(Boolean.valueOf(serverResult.get("ok").toString())){
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.success("删除正在运行的运营活动成功").put("ok", true);
+            return AjaxResult.success("Удалить正在运行的Игровые событияУспешно").put("ok", true);
         }else{
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.error("删除正在运行的运营活动失败").put("ok", false);
+            return AjaxResult.error("Удалить正在运行的Игровые событияОшибка").put("ok", false);
         }
     }
 
     /**
-     * 删除预备队列的运营活动
+     * Удалить预备队列的Игровые события
      * @param serverId
      * @return
      */
@@ -137,16 +137,16 @@ public class ActivityDealController extends BaseController
     @ResponseBody
     public AjaxResult removePreActivity(Integer serverId, Integer actType, Integer actId) {
         if(actType == null || actType <= 0){
-            return AjaxResult.error("活动类型错误："+actType);
+            return AjaxResult.error("Тип события错误："+actType);
         }
 
         if(actId == null || actId <= 0){
-            return AjaxResult.error("活动ID错误："+actId);
+            return AjaxResult.error("ID события错误："+actId);
         }
 
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return AjaxResult.error("选择服务器Id不存在");
+            return AjaxResult.error("Выбранный ID сервера не существует");
         }
 
         int opType = 2;
@@ -156,15 +156,15 @@ public class ActivityDealController extends BaseController
         AjaxResult serverResult = GameServerRequestUtil.activityDeal(server, sb.toString());
         if(Boolean.valueOf(serverResult.get("ok").toString())){
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.success("删除预备队列的运营活动成功").put("ok", true);
+            return AjaxResult.success("Удалить预备队列的Игровые событияУспешно").put("ok", true);
         }else{
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.error("删除预备队列的运营活动失败").put("ok", false);
+            return AjaxResult.error("Удалить预备队列的Игровые событияОшибка").put("ok", false);
         }
     }
 
     /**
-     * 重新加载某个正在运行的运营活动
+     * 重新加载某个正在运行的Игровые события
      * @param serverId
      * @return
      */
@@ -172,12 +172,12 @@ public class ActivityDealController extends BaseController
     @ResponseBody
     public AjaxResult reloadActivity(Integer serverId, Integer actId) {
         if(actId == null || actId <= 0){
-            return AjaxResult.error("活动ID错误："+actId);
+            return AjaxResult.error("ID события错误："+actId);
         }
 
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return AjaxResult.error("选择服务器Id不存在");
+            return AjaxResult.error("Выбранный ID сервера не существует");
         }
 
         int opType = 3;
@@ -187,15 +187,15 @@ public class ActivityDealController extends BaseController
         AjaxResult serverResult = GameServerRequestUtil.activityDeal(server, sb.toString());
         if(Boolean.valueOf(serverResult.get("ok").toString())){
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.success("重新加载某个正在运行的运营活动成功").put("ok", true);
+            return AjaxResult.success("重新加载某个正在运行的Игровые событияУспешно").put("ok", true);
         }else{
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.error("重新加载某个正在运行的运营活动失败").put("ok", false);
+            return AjaxResult.error("重新加载某个正在运行的Игровые событияОшибка").put("ok", false);
         }
     }
 
     /**
-     * 重新加载所有正在运行的运营活动
+     * 重新加载所有正在运行的Игровые события
      * @param serverId
      * @return
      */
@@ -204,7 +204,7 @@ public class ActivityDealController extends BaseController
     public AjaxResult reloadAllActivity(Integer serverId) {
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
-            return AjaxResult.error("选择服务器Id不存在");
+            return AjaxResult.error("Выбранный ID сервера не существует");
         }
 
         int opType = 4;
@@ -214,10 +214,10 @@ public class ActivityDealController extends BaseController
         AjaxResult serverResult = GameServerRequestUtil.activityDeal(server, sb.toString());
         if(Boolean.valueOf(serverResult.get("ok").toString())){
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.success("重新加载所有正在运行的运营活动成功").put("ok", true);
+            return AjaxResult.success("重新加载所有正在运行的Игровые событияУспешно").put("ok", true);
         }else{
             logger.error(serverResult.get("msg").toString());
-            return AjaxResult.error("重新加载所有正在运行的运营活动失败").put("ok", false);
+            return AjaxResult.error("重新加载所有正在运行的Игровые событияОшибка").put("ok", false);
         }
     }
 }

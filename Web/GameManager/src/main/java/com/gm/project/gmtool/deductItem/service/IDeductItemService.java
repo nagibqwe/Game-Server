@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.deductItem.domain.DeductItem;
 
 /**
- * 道具扣除Service接口
+ * Списание предметовService接口
  * 
  * @author gm
  * @date 2021-10-30
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.deductItem.domain.DeductItem;
 public interface IDeductItemService 
 {
     /**
-     * 查询道具扣除
+     * 查询Списание предметов
      * 
-     * @param id 道具扣除ID
-     * @return 道具扣除
+     * @param id Списание предметовID
+     * @return Списание предметов
      */
     public DeductItem selectDeductItemById(Integer id);
 
     /**
-     * 查询道具扣除列表
+     * 查询Списание предметов列表
      * 
-     * @param deductItem 道具扣除
-     * @return 道具扣除集合
+     * @param deductItem Списание предметов
+     * @return Списание предметов集合
      */
     public List<DeductItem> selectDeductItemList(DeductItem deductItem);
 
     /**
-     * 新增道具扣除
+     * ДобавитьСписание предметов
      * 
-     * @param deductItem 道具扣除
-     * @return 结果
+     * @param deductItem Списание предметов
+     * @return Результат
      */
     public int insertDeductItem(DeductItem deductItem);
 
     /**
-     * 修改道具扣除
+     * ИзменитьСписание предметов
      * 
-     * @param deductItem 道具扣除
-     * @return 结果
+     * @param deductItem Списание предметов
+     * @return Результат
      */
     public int updateDeductItem(DeductItem deductItem);
 
     /**
-     * 批量删除道具扣除
+     * 批量УдалитьСписание предметов
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteDeductItemByIds(String ids);
 
     /**
-     * 删除道具扣除信息
+     * УдалитьСписание предметовИнформация
      * 
-     * @param id 道具扣除ID
-     * @return 结果
+     * @param id Списание предметовID
+     * @return Результат
      */
     public int deleteDeductItemById(Integer id);
 }

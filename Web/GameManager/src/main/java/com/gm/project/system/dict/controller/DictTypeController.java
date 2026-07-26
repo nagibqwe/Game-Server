@@ -23,7 +23,7 @@ import com.gm.project.system.dict.domain.DictType;
 import com.gm.project.system.dict.service.IDictTypeService;
 
 /**
- * 数据字典信息
+ * Данные字典Информация
  * 
  * @author ruoyi
  */
@@ -53,7 +53,7 @@ public class DictTypeController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
+    @Log(title = "Тип справочника", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -62,11 +62,11 @@ public class DictTypeController extends BaseController
 
         List<DictType> list = dictTypeService.selectDictTypeList(dictType);
         ExcelUtil<DictType> util = new ExcelUtil<DictType>(DictType.class);
-        return util.exportExcel(list, "字典类型");
+        return util.exportExcel(list, "Тип справочника");
     }
 
     /**
-     * 新增字典类型
+     * ДобавитьТип справочника
      */
     @GetMapping("/add")
     public String add()
@@ -75,9 +75,9 @@ public class DictTypeController extends BaseController
     }
 
     /**
-     * 新增保存字典类型
+     * ДобавитьСохранитьТип справочника
      */
-    @Log(title = "字典类型", businessType = BusinessType.INSERT)
+    @Log(title = "Тип справочника", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -85,13 +85,13 @@ public class DictTypeController extends BaseController
     {
         if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict)))
         {
-            return error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
+            return error("Добавить字典'" + dict.getDictName() + "'Ошибка，Тип справочника已存在");
         }
         return toAjax(dictTypeService.insertDictType(dict));
     }
 
     /**
-     * 修改字典类型
+     * ИзменитьТип справочника
      */
     @GetMapping("/edit/{dictId}")
     public String edit(@PathVariable("dictId") Long dictId, ModelMap mmap)
@@ -101,9 +101,9 @@ public class DictTypeController extends BaseController
     }
 
     /**
-     * 修改保存字典类型
+     * ИзменитьСохранитьТип справочника
      */
-    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
+    @Log(title = "Тип справочника", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -111,12 +111,12 @@ public class DictTypeController extends BaseController
     {
         if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict)))
         {
-            return error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
+            return error("Изменить字典'" + dict.getDictName() + "'Ошибка，Тип справочника已存在");
         }
         return toAjax(dictTypeService.updateDictType(dict));
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "Тип справочника", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -129,7 +129,7 @@ public class DictTypeController extends BaseController
      * 清空缓存
      */
     @RequiresPermissions("system:dict:remove")
-    @Log(title = "字典类型", businessType = BusinessType.CLEAN)
+    @Log(title = "Тип справочника", businessType = BusinessType.CLEAN)
     @GetMapping("/clearCache")
     @ResponseBody
     public AjaxResult clearCache()
@@ -151,7 +151,7 @@ public class DictTypeController extends BaseController
     }
 
     /**
-     * 校验字典类型
+     * 校验Тип справочника
      */
     @PostMapping("/checkDictTypeUnique")
     @ResponseBody

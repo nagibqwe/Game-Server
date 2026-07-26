@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 热更服务器操作日志Controller
+ * Журнал операций горячего обновленияController
  * 
  * @author gm
  * @date 2021-07-30
@@ -43,7 +43,7 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 查询热更服务器操作日志列表
+     * 查询Журнал операций горячего обновления列表
      */
     @PostMapping("/list")
     @ResponseBody
@@ -56,7 +56,7 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 公共服指令页面
+     * Общий сервер指令页面
      * @return
      */
     @RequiresPermissions("gmtool:cmd:psCmd")
@@ -67,7 +67,7 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 查询热更公共服操作日志列表
+     * 查询热更Общий серверЖурнал операций列表
      */
     @PostMapping("/pcList")
     @ResponseBody
@@ -80,7 +80,7 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 设置开服时间页面
+     * 设置Время открытия сервера页面
      * @return
      */
     @RequiresPermissions("gmtool:cmd:opstime")
@@ -91,21 +91,21 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 导出热更服务器操作日志列表
+     * ЭкспортЖурнал операций горячего обновления列表
      */
     @RequiresPermissions("gmtool:cmd:export")
-    @Log(title = "热更服务器操作日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Журнал операций горячего обновления", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(CmdLog cmdLog)
     {
         List<CmdLog> list = cmdLogService.selectCmdLogList(cmdLog);
         ExcelUtil<CmdLog> util = new ExcelUtil<CmdLog>(CmdLog.class);
-        return util.exportExcel(list, "热更服务器操作日志数据");
+        return util.exportExcel(list, "Журнал операций горячего обновленияДанные");
     }
 
     /**
-     * 新增热更服务器操作日志
+     * ДобавитьЖурнал операций горячего обновления
      */
     @GetMapping("/add")
     public String add()
@@ -114,10 +114,10 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 新增保存热更服务器操作日志
+     * ДобавитьСохранитьЖурнал операций горячего обновления
      */
     @RequiresPermissions("gmtool:cmd:add")
-    @Log(title = "热更服务器操作日志", businessType = BusinessType.INSERT)
+    @Log(title = "Журнал операций горячего обновления", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(CmdLog cmdLog)
@@ -126,7 +126,7 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 修改热更服务器操作日志
+     * ИзменитьЖурнал операций горячего обновления
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -137,10 +137,10 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 修改保存热更服务器操作日志
+     * ИзменитьСохранитьЖурнал операций горячего обновления
      */
     @RequiresPermissions("gmtool:cmd:edit")
-    @Log(title = "热更服务器操作日志", businessType = BusinessType.UPDATE)
+    @Log(title = "Журнал операций горячего обновления", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(CmdLog cmdLog)
@@ -149,10 +149,10 @@ public class CmdLogController extends BaseController
     }
 
     /**
-     * 删除热更服务器操作日志
+     * УдалитьЖурнал операций горячего обновления
      */
     @RequiresPermissions("gmtool:cmd:remove")
-    @Log(title = "热更服务器操作日志", businessType = BusinessType.DELETE)
+    @Log(title = "Журнал операций горячего обновления", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

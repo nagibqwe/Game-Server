@@ -10,7 +10,7 @@ import com.gm.project.gamelog.changerolenamelog.service.IChangerolenamelogServic
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * 改名日志Service业务层处理
+ * 改名ЖурналService业务层处理
  * 
  * @author gm
  * @date 2021-09-09
@@ -21,10 +21,10 @@ public class ChangerolenamelogServiceImpl implements IChangerolenamelogService
 
 
     /**
-     * 查询改名日志列表
+     * 查询改名Журнал列表
      * 
-     * @param changerolenamelog 改名日志
-     * @return 改名日志
+     * @param changerolenamelog 改名Журнал
+     * @return 改名Журнал
      */
     @Override
     public List<Changerolenamelog> selectChangerolenamelogList(Changerolenamelog changerolenamelog,Map<String, Object> param)

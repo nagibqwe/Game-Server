@@ -38,7 +38,7 @@ public class LuckyEgg extends Activity implements IActivityCustom {
         String[] dailyLimitCount = paramMap.get("dailyLimitCount");
         String[] i_GiveGift = paramMap.get("i_GiveGift");
 
-        //刷新彩蛋权重 <彩蛋类型, 权重> 1彩蛋 2金蛋 3银蛋
+        //Обновить彩蛋权重 <彩蛋Тип, 权重> 1彩蛋 2金蛋 3银蛋
         String[] i_item_one = paramMap.get("i_item_one");
         String[] i_item_two = paramMap.get("i_item_two");
         String[] i_item_three = paramMap.get("i_item_three");
@@ -47,19 +47,19 @@ public class LuckyEgg extends Activity implements IActivityCustom {
         String[] i_gold_two = paramMap.get("i_gold_two");
         String[] i_gold_three = paramMap.get("i_gold_three");
 
-        //奖池数据配置(彩蛋奖池数据)
+        //奖池Данные配置(彩蛋奖池Данные)
         String[] i_item_weight_one = paramMap.get("i_item_weight_one");
         String[] i_gold_weight_one = paramMap.get("i_gold_weight_one");
         String[] isShow_one = paramMap.get("isShow_one");
         String[] i_reward_one = paramMap.get("i_reward_one");
 
-        //奖池数据配置(金蛋奖池数据)
+        //奖池Данные配置(金蛋奖池Данные)
         String[] i_item_weight_two = paramMap.get("i_item_weight_two");
         String[] i_gold_weight_two = paramMap.get("i_gold_weight_two");
         String[] isShow_two = paramMap.get("isShow_two");
         String[] i_reward_two = paramMap.get("i_reward_two");
 
-        //奖池数据配置(银蛋奖池数据)
+        //奖池Данные配置(银蛋奖池Данные)
         String[] i_item_weight_three = paramMap.get("i_item_weight_three");
         String[] i_gold_weight_three = paramMap.get("i_gold_weight_three");
         String[] isShow_three = paramMap.get("isShow_three");
@@ -83,7 +83,7 @@ public class LuckyEgg extends Activity implements IActivityCustom {
         String[] timesLimit = paramMap.get("timesLimit");
         String[] freeGift = paramMap.get("freeGift");
 
-        //彩蛋刷新配置
+        //彩蛋Обновить配置
         String[] i_refresh_item = paramMap.get("i_refresh_item");
         String[] i_refresh_item_num = paramMap.get("i_refresh_item_num");
         String[] i_refresh_gold_num = paramMap.get("i_refresh_gold_num");
@@ -101,7 +101,7 @@ public class LuckyEgg extends Activity implements IActivityCustom {
         }
 
         HashMap<String, Object> resultMap = new HashMap<>();
-        //彩蛋刷新
+        //彩蛋Обновить
         resultMap.put("refreshItem",Integer.parseInt(i_refresh_item[0]));
         resultMap.put("refreshItemCost",1);
         resultMap.put("refreshGoldCost",Integer.parseInt(i_refresh_gold_num[0]));
@@ -114,14 +114,14 @@ public class LuckyEgg extends Activity implements IActivityCustom {
         resultMap.put("dailyLimitCount",Integer.parseInt(dailyLimitCount[0]));
         resultMap.put("giftData", ItemBean.split(i_GiveGift[0]).get(0));
 
-        //刷新彩蛋权重 <彩蛋类型, 权重> 1彩蛋 2金蛋 3银蛋
+        //Обновить彩蛋权重 <彩蛋Тип, 权重> 1彩蛋 2金蛋 3银蛋
         HashMap<Integer, Object> eggWeightMap = new HashMap<>();
         getEggWeightMap(eggWeightMap,1,i_item_one,i_gold_one);
         getEggWeightMap(eggWeightMap,2,i_item_two,i_gold_two);
         getEggWeightMap(eggWeightMap,3,i_item_three,i_gold_three);
         resultMap.put("eggWeightMap",eggWeightMap);
 
-        //彩蛋奖池信息 <彩蛋类型, 奖励信息>
+        //彩蛋奖池Информация <彩蛋Тип, 奖励Информация>
         HashMap<Integer, Object> rewardPoolMap = new HashMap<>();
         getRewardPoolData(1,rewardPoolMap,i_item_weight_one,i_gold_weight_one,isShow_one,i_reward_one);
         getRewardPoolData(2,rewardPoolMap,i_item_weight_two,i_gold_weight_two,isShow_two,i_reward_two);
@@ -174,7 +174,7 @@ public class LuckyEgg extends Activity implements IActivityCustom {
         return this;
     }
 
-    //保底次数配置的信息组成
+    //保底次数配置的Информация组成
     private HashMap<Integer, Object> getBaoDiDataInfo(HashMap<Integer, Object> lowestMap, String[] i_baoDi_min_num, String[] i_baoDi_max_num, String[] i_baodiReward) {
         for (int i = 0; i < i_baoDi_min_num.length; i++){
             String i_baoDi_min_num_str = i_baoDi_min_num[i];

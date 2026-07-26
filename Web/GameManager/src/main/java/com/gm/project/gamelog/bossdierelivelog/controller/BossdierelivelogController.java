@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 首领死亡复活日志Controller
+ * 首领死亡复活ЖурналController
  * 
  * @author gm
  * @date 2021-09-10
@@ -46,7 +46,7 @@ public class BossdierelivelogController extends BaseController
         return prefix + "/bossdierelivelog";
     }
     /**
-     * 查询首领死亡复活日志列表
+     * 查询首领死亡复活Журнал列表
      */
     @RequiresPermissions("gamelog:bossdierelivelog:list")
     @PostMapping("/list")
@@ -54,10 +54,10 @@ public class BossdierelivelogController extends BaseController
     public TableDataInfo list(Bossdierelivelog bossdierelivelog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         startPage();
@@ -65,10 +65,10 @@ public class BossdierelivelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出首领死亡复活日志列表
+     * Экспорт首领死亡复活Журнал列表
      */
     @RequiresPermissions("gamelog:bossdierelivelog:export")
-    @Log(title = "首领死亡复活日志", businessType = BusinessType.EXPORT)
+    @Log(title = "首领死亡复活Журнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Bossdierelivelog bossdierelivelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class BossdierelivelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Bossdierelivelog> list = bossdierelivelogService.selectBossdierelivelogList(bossdierelivelog,param);
         ExcelUtil<Bossdierelivelog> util = new ExcelUtil<Bossdierelivelog>(Bossdierelivelog.class);
-        return util.exportExcel(list, "首领死亡复活日志数据");
+        return util.exportExcel(list, "首领死亡复活ЖурналДанные");
     }
 }

@@ -24,7 +24,7 @@ import java.util.Map;
 
 
 /**
- * 充值充值 排行榜 Controller
+ * ПополнениеПополнение Рейтинг Controller
  * 
  * @author gm
  * @date 2021-08-06
@@ -44,16 +44,16 @@ public class RechargeRankController extends BaseController
     }
 
     /**
-     * 充值排行榜统计
+     * ПополнениеРейтинг统计
      */
     @PostMapping("/rechargerank")
     @ResponseBody
     public TableDataInfo rechargeRank(String groupName,String selectServerIdList, String channelNames, String startDate, String endDate, Integer type, Boolean isStatTestOrder) throws ParseException {
         if(StringUtils.isEmpty(startDate) || StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
 
 //        startPage();

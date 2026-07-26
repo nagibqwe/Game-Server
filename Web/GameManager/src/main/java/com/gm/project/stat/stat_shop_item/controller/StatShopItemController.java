@@ -17,7 +17,7 @@ import java.util.List;
 
 
 /**
- * 商城购买统计Controller
+ * Магазин购买统计Controller
  * 
  * @author gm
  * @date 2021-05-25
@@ -37,18 +37,18 @@ public class StatShopItemController extends BaseController
         return prefix + "/stat_shop_item";
     }
     /**
-     * 查询商城购买统计列表
-     * 查询商城购买统计列表
+     * 查询Магазин购买统计列表
+     * 查询Магазин购买统计列表
      */
     @PostMapping("/stat_shop_item")
     @ResponseBody
     public TableDataInfo statShopItem(String groupName, Integer serverId, String channelNames, Integer FromSrc, Integer moneyType,String startDate, String endDate, Boolean isBlack)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器");
+            return getDataTableErrorMsg("请选择Сервер");
         }
         List<ShopItemBean> shopItemBeanList =  statShopItemService.statShopItem(groupName, serverId,channelNames,FromSrc,moneyType,startDate,endDate,isBlack);
         return  getDataTable(shopItemBeanList);

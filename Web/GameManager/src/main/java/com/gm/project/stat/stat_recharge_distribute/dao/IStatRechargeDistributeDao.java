@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 充值统计dao
+ * Пополнение统计dao
  * 
  * @author gm
  * @date 2021-08-06
@@ -13,7 +13,7 @@ import java.util.Map;
 public interface IStatRechargeDistributeDao
 {
     /**
-     * 充值等级统计 数据
+     * ПополнениеУровень统计 Данные
      * @param selectServerIds
      * @param channelNames
      * @param startDate
@@ -23,7 +23,7 @@ public interface IStatRechargeDistributeDao
     public List<Map<String, Object>> payLevelStat(String selectServerIds,String channelNames,String startDate, String endDate);
 
     /**
-     * 每天充值统计
+     * 每ДеньПополнение统计
      * @param selectServerIds
      * @param channelNames
      * @param startDate
@@ -42,7 +42,7 @@ public interface IStatRechargeDistributeDao
 
 
     /**
-     * 充值人数
+     * ПополнениеКоличество
      * @param selectServerIds
      * @param channelNames
      * @param startDate

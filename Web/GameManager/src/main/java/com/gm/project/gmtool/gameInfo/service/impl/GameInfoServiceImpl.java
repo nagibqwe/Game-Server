@@ -9,7 +9,7 @@ import com.gm.project.gmtool.gameInfo.service.IGameInfoService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 游戏参数信息Service业务层处理
+ * Параметры игрыService业务层处理
  * 
  * @author gm
  * @date 2021-11-15
@@ -21,10 +21,10 @@ public class GameInfoServiceImpl implements IGameInfoService
     private GameInfoMapper gameInfoMapper;
 
     /**
-     * 查询游戏参数信息
+     * 查询Параметры игры
      * 
-     * @param gameId 游戏参数信息ID
-     * @return 游戏参数信息
+     * @param gameId Параметры игрыID
+     * @return Параметры игры
      */
     @Override
     public GameInfo selectGameInfoById(Integer gameId)
@@ -33,10 +33,10 @@ public class GameInfoServiceImpl implements IGameInfoService
     }
 
     /**
-     * 查询游戏参数信息列表
+     * 查询Параметры игры列表
      * 
-     * @param gameInfo 游戏参数信息
-     * @return 游戏参数信息
+     * @param gameInfo Параметры игры
+     * @return Параметры игры
      */
     @Override
     public List<GameInfo> selectGameInfoList(GameInfo gameInfo)
@@ -45,10 +45,10 @@ public class GameInfoServiceImpl implements IGameInfoService
     }
 
     /**
-     * 新增游戏参数信息
+     * ДобавитьПараметры игры
      * 
-     * @param gameInfo 游戏参数信息
-     * @return 结果
+     * @param gameInfo Параметры игры
+     * @return Результат
      */
     @Override
     public int insertGameInfo(GameInfo gameInfo)
@@ -57,10 +57,10 @@ public class GameInfoServiceImpl implements IGameInfoService
     }
 
     /**
-     * 修改游戏参数信息
+     * ИзменитьПараметры игры
      * 
-     * @param gameInfo 游戏参数信息
-     * @return 结果
+     * @param gameInfo Параметры игры
+     * @return Результат
      */
     @Override
     public int updateGameInfo(GameInfo gameInfo)
@@ -69,10 +69,10 @@ public class GameInfoServiceImpl implements IGameInfoService
     }
 
     /**
-     * 删除游戏参数信息对象
+     * УдалитьПараметры игры对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteGameInfoByIds(String ids)
@@ -81,10 +81,10 @@ public class GameInfoServiceImpl implements IGameInfoService
     }
 
     /**
-     * 删除游戏参数信息信息
+     * УдалитьПараметры игрыИнформация
      * 
-     * @param gameId 游戏参数信息ID
-     * @return 结果
+     * @param gameId Параметры игрыID
+     * @return Результат
      */
     @Override
     public int deleteGameInfoById(Integer gameId)

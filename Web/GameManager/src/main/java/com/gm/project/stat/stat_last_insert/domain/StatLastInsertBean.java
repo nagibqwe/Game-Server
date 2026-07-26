@@ -8,16 +8,16 @@ public class StatLastInsertBean {
     @Excel(name = "id")
     private Long id;
 
-    @Excel(name = "服务器Id")
+    @Excel(name = "СерверId")
     private Integer sid;
 
-    @Excel(name = "表名称")
+    @Excel(name = "Название таблицы")
     private String src_table;
 
-    @Excel(name = "拉取时间")
+    @Excel(name = "拉取Время")
     private Long src_time;
 
-    @Excel(name = "源日志库Id")
+    @Excel(name = "源Журнал库Id")
     private Integer src_id ;
 
     public Long getId() {

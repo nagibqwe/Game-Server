@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 数据库备份对象 t_dbbak
+ * Резервные копии БД对象 t_dbbak
  * 
  * @author gm
  * @date 2021-09-13
@@ -21,23 +21,23 @@ public class Dbbak extends BaseEntity
     /** ID */
     private Long id;
 
-    /** 服务器id */
-    @Excel(name = "服务器id")
+    /** ID сервера */
+    @Excel(name = "ID сервера")
     private Integer serverId;
 
-    /** 类型1游戏库 2日志库 */
-    @Excel(name = "类型1游戏库 2日志库")
+    /** Тип1游戏库 2Журнал库 */
+    @Excel(name = "Тип1游戏库 2Журнал库")
     private Integer type;
 
-    /** 备份文件地址 */
-    @Excel(name = "备份文件地址")
+    /** Путь к резервной копии */
+    @Excel(name = "Путь к резервной копии")
     private String url;
 
-    /** 文件大小 */
-    @Excel(name = "文件大小")
+    /** Размер файла */
+    @Excel(name = "Размер файла")
     private Long size;
 
-    /**备份中 1是 0否*/
+    /**备份中 1Да 0Нет*/
     private Integer baking;
 
     /**1文件存在 0不存在*/

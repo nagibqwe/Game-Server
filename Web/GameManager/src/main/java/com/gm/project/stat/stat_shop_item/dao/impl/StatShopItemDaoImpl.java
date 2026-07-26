@@ -12,7 +12,7 @@ public class StatShopItemDaoImpl implements IStatShopItemDao {
 
     public  List<ShopItemBean> statShopItem(DBClient dbClient,String channelNames, List<String> tableList, int FromSrc, int moneyType, String blackUserStr, int serverId, long stime , long etime){
         StringBuilder sqlStr = new StringBuilder("select itemModelId,moneyType,count(distinct(userId)) as users,count(distinct(roleId)) as roles,sum(realNum) as totalnum ,sum(moneyNum) as totalgold,sum(buyTimes) as totaltimes from (");
-        //聚合查询所以表数据汇总到一起
+        //聚合查询所以表Данные汇总到一起
         StringBuilder shopbuylogSql = new StringBuilder("select itemModelId,moneyType,userId,roleId,realnum,moneynum,buyTimes from ");
         StringBuilder allShopbuylogSql = new StringBuilder("");
         for  (String table : tableList) {

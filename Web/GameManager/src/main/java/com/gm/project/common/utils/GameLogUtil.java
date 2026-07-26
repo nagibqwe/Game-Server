@@ -40,13 +40,13 @@ public class GameLogUtil {
         }
         if(param.containsKey("startDate")){
             if(param.get("startDate")!=null&& !"".equals(param.get("startDate"))){
-                //时间通用 判断
+                //Время通用 判断
                 Calendar start = Calendar.getInstance();
                 //参数
                 String startDate = param.get("startDate").toString();
                 start.setTime(DateUtils.parseDate(startDate));
                 long startTime = start.getTimeInMillis() / 1000;
-                //时间
+                //Время
                 where.append(" and time >=").append(startTime);
             }
 
@@ -65,7 +65,7 @@ public class GameLogUtil {
         where.append(" order by time desc");
         int count = dbClient.qryTotalCount("select count(*) from " + tableName + where.toString());
         param.put("count",count);
-        //分页数据
+        //分页Данные
         if(param.containsKey("pageNum")){
             int pageNum = (int)param.get("pageNum");
             int pageSize = (int)param.get("pageSize");
@@ -78,7 +78,7 @@ public class GameLogUtil {
 
 
     /**
-     * 通用日志查询方法
+     * 通用Журнал查询方法
      *
 
      * @param clazz
@@ -101,7 +101,7 @@ public class GameLogUtil {
         } else {
             tableType = TableType.Month;
         }
-        //时间通用 判断
+        //Время通用 判断
         Calendar start = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
         start.setTime(DateUtils.parseDate(startDate));
@@ -109,7 +109,7 @@ public class GameLogUtil {
         long startTime = start.getTimeInMillis() / 1000;
         long endTime = end.getTimeInMillis() / 1000;
 
-        //时间
+        //Время
         where.append(" and time >=").append(startTime).append(" and time<=").append(endTime);
         where.append(" order by time");
 
@@ -142,7 +142,7 @@ public class GameLogUtil {
                 int count = dbClient.qryTotalCount("select count(*) from " + realTableName + where.toString()); //QueryUtil.getInstance().queryCount(db, countSql, realTable);
                 totalCount += count;
 
-                //如果有日志条数限制，判断是否达到指定条数
+                //如果有Журнал条数限制，判断ДаНет达到指定条数
                 if (isPager && totalCount > Integer.parseInt(param.get("pageSize").toString())) {
                     isFull = true;
                     if (resultList.size() > Integer.parseInt(param.get("pageSize").toString())) {
@@ -156,7 +156,7 @@ public class GameLogUtil {
     }
 
     /**
-     * 查询最终合服后的游戏服日志
+     * 查询最终Объединение серверов后的游戏服Журнал
      * @param clazz
      * @param <T>
      * @return
@@ -167,9 +167,9 @@ public class GameLogUtil {
         StringBuilder where = (StringBuilder)param.get("where") ;
         int selectServerId = (int)param.get("serverId");
 
-        //开始时间 条件限制
+        //Время начала 条件限制
         if (param.containsKey("startDate")) {
-            //时间通用 判断
+            //Время通用 判断
             String startDate = param.get("startDate").toString();
             String endDate = param.get("endDate").toString();
 
@@ -179,7 +179,7 @@ public class GameLogUtil {
             end.setTime(DateUtils.parseDate(endDate));
             long startTime = start.getTimeInMillis() / 1000;
             long endTime = end.getTimeInMillis() / 1000;
-            //时间
+            //Время
             where.append(" and time >=").append(startTime).append(" and time<=").append(endTime);
             where.append(" order by time");
         }
@@ -191,7 +191,7 @@ public class GameLogUtil {
         int count = dbClient.qryTotalCount("select count(*) from " + tableName + where.toString());
         param.put("count",count);
 
-        //分页数据
+        //分页Данные
         if(param.containsKey("pageNum")){
             int pageNum = (int)param.get("pageNum");
             int pageSize = (int)param.get("pageSize");

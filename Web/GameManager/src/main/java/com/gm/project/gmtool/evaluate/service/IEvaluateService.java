@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.evaluate.domain.Evaluate;
 
 /**
- * 评价开关Service接口
+ * Оценки включеныService接口
  * 
  * @author gm
  * @date 2021-11-04
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.evaluate.domain.Evaluate;
 public interface IEvaluateService 
 {
     /**
-     * 查询评价开关
+     * 查询Оценки включены
      * 
-     * @param id 评价开关ID
-     * @return 评价开关
+     * @param id Оценки включеныID
+     * @return Оценки включены
      */
     public Evaluate selectEvaluateById(Integer id);
 
     /**
-     * 查询评价开关列表
+     * 查询Оценки включены列表
      * 
-     * @param evaluate 评价开关
-     * @return 评价开关集合
+     * @param evaluate Оценки включены
+     * @return Оценки включены集合
      */
     public List<Evaluate> selectEvaluateList(Evaluate evaluate);
 
     /**
-     * 新增评价开关
+     * ДобавитьОценки включены
      * 
-     * @param evaluate 评价开关
-     * @return 结果
+     * @param evaluate Оценки включены
+     * @return Результат
      */
     public int insertEvaluate(Evaluate evaluate);
 
     /**
-     * 修改评价开关
+     * ИзменитьОценки включены
      * 
-     * @param evaluate 评价开关
-     * @return 结果
+     * @param evaluate Оценки включены
+     * @return Результат
      */
     public int updateEvaluate(Evaluate evaluate);
 
     /**
-     * 批量删除评价开关
+     * 批量УдалитьОценки включены
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteEvaluateByIds(String ids);
 
     /**
-     * 删除评价开关信息
+     * УдалитьОценки включеныИнформация
      * 
-     * @param id 评价开关ID
-     * @return 结果
+     * @param id Оценки включеныID
+     * @return Результат
      */
     public int deleteEvaluateById(Integer id);
 }

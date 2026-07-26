@@ -33,7 +33,7 @@ import javax.annotation.Resource;
 
 
 /**
- * 公会基础信息Controller
+ * 公会基础ИнформацияController
  * 
  * @author gm
  * @date 2021-12-06
@@ -69,7 +69,7 @@ public class GuildbaselogController extends BaseController
     }
 
     /**
-     * 查询公会基础信息列表
+     * 查询公会基础Информация列表
      */
     @RequiresPermissions("gamelog:guildbaselog:list")
     @PostMapping("/list")
@@ -77,7 +77,7 @@ public class GuildbaselogController extends BaseController
     public TableDataInfo list(Guildbaselog guildbaselog, Integer queryType, Integer serverId)
     {
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
 
         int year = TimeUtils.getYear(TimeUtils.Time());
@@ -104,16 +104,16 @@ public class GuildbaselogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出公会基础信息列表
+     * Экспорт公会基础Информация列表
      */
     @RequiresPermissions("gamelog:guildbaselog:export")
-    @Log(title = "公会基础信息", businessType = BusinessType.EXPORT)
+    @Log(title = "公会基础Информация", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Guildbaselog guildbaselog, Integer queryType, Integer serverId)
     {
         if(serverId == null || serverId == 0){
-            return AjaxResult.error("请选择服务器列表").put("ok", false);
+            return AjaxResult.error("Выберите сервер из списка").put("ok", false);
         }
 
         int year = TimeUtils.getYear(TimeUtils.Time());
@@ -124,6 +124,6 @@ public class GuildbaselogController extends BaseController
         param.put("queryType", queryType);
         List<Guildbaselog> list = guildbaselogService.selectGuildbaselogList(guildbaselog, param);
         ExcelUtil<Guildbaselog> util = new ExcelUtil<Guildbaselog>(Guildbaselog.class);
-        return util.exportExcel(list, "公会基础信息数据");
+        return util.exportExcel(list, "公会基础ИнформацияДанные");
     }
 }

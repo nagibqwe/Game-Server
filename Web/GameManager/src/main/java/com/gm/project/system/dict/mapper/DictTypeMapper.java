@@ -4,80 +4,80 @@ import java.util.List;
 import com.gm.project.system.dict.domain.DictType;
 
 /**
- * 字典表 数据层
+ * 字典表 Данные层
  * 
  * @author ruoyi
  */
 public interface DictTypeMapper
 {
     /**
-     * 根据条件分页查询字典类型
+     * 根据条件分页查询Тип справочника
      * 
-     * @param dictType 字典类型信息
-     * @return 字典类型集合信息
+     * @param dictType Тип справочникаИнформация
+     * @return Тип справочника集合Информация
      */
     public List<DictType> selectDictTypeList(DictType dictType);
 
     /**
-     * 根据所有字典类型
+     * 根据所有Тип справочника
      * 
-     * @return 字典类型集合信息
+     * @return Тип справочника集合Информация
      */
     public List<DictType> selectDictTypeAll();
 
     /**
-     * 根据字典类型ID查询信息
+     * 根据Тип справочникаID查询Информация
      * 
-     * @param dictId 字典类型ID
-     * @return 字典类型
+     * @param dictId Тип справочникаID
+     * @return Тип справочника
      */
     public DictType selectDictTypeById(Long dictId);
 
     /**
-     * 根据字典类型查询信息
+     * 根据Тип справочника查询Информация
      * 
-     * @param dictType 字典类型
-     * @return 字典类型
+     * @param dictType Тип справочника
+     * @return Тип справочника
      */
     public DictType selectDictTypeByType(String dictType);
 
     /**
-     * 通过字典ID删除字典信息
+     * 通过字典IDУдалить字典Информация
      * 
      * @param dictId 字典ID
-     * @return 结果
+     * @return Результат
      */
     public int deleteDictTypeById(Long dictId);
 
     /**
-     * 批量删除字典类型
+     * 批量УдалитьТип справочника
      * 
-     * @param ids 需要删除的数据
-     * @return 结果
+     * @param ids 需要Удалить的Данные
+     * @return Результат
      */
     public int deleteDictTypeByIds(Long[] ids);
 
     /**
-     * 新增字典类型信息
+     * ДобавитьТип справочникаИнформация
      * 
-     * @param dictType 字典类型信息
-     * @return 结果
+     * @param dictType Тип справочникаИнформация
+     * @return Результат
      */
     public int insertDictType(DictType dictType);
 
     /**
-     * 修改字典类型信息
+     * ИзменитьТип справочникаИнформация
      * 
-     * @param dictType 字典类型信息
-     * @return 结果
+     * @param dictType Тип справочникаИнформация
+     * @return Результат
      */
     public int updateDictType(DictType dictType);
 
     /**
-     * 校验字典类型称是否唯一
+     * 校验Тип справочника称ДаНет唯一
      * 
-     * @param dictType 字典类型
-     * @return 结果
+     * @param dictType Тип справочника
+     * @return Результат
      */
     public DictType checkDictTypeUnique(String dictType);
 }

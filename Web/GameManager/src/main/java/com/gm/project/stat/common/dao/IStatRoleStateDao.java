@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface IStatRoleStateDao {
     /**
-     * 得到注册用户列表
+     * 得到Зарегистрироваться用户列表
      * @param channelNames
      * @param serverId
      * @param startDate
@@ -19,7 +19,7 @@ public interface IStatRoleStateDao {
     public Set<String> getUserIdRegAddSet(DBClient dbClientGM, String caclStartDay, String serverList);
 
     /**
-     * 新增设备
+     * Добавить设备
      * @param channelNames
      * @param selectServerIds
      * @param blackUserStr

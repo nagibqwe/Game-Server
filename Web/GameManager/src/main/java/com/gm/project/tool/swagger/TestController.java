@@ -21,11 +21,11 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * swagger 用户测试方法
+ * swagger 用户Тестовый方法
  * 
  * @author ruoyi
  */
-@Api("用户信息管理")
+@Api("用户Информация管理")
 @RestController
 @RequestMapping("/test/user")
 public class TestController extends BaseController
@@ -45,7 +45,7 @@ public class TestController extends BaseController
     }
 
     @ApiOperation("获取用户详细")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiImplicitParam(name = "userId", value = "ID пользователя", required = true, dataType = "int", paramType = "path")
     @GetMapping("/{userId}")
     public AjaxResult getUser(@PathVariable Integer userId)
     {
@@ -55,41 +55,41 @@ public class TestController extends BaseController
         }
         else
         {
-            return error("用户不存在");
+            return error("Пользователь не существует");
         }
     }
 
-    @ApiOperation("新增用户")
-    @ApiImplicitParam(name = "userEntity", value = "新增用户信息", dataType = "UserEntity")
+    @ApiOperation("Добавить用户")
+    @ApiImplicitParam(name = "userEntity", value = "Добавить用户Информация", dataType = "UserEntity")
     @PostMapping("/save")
     public AjaxResult save(UserEntity user)
     {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId()))
         {
-            return error("用户ID不能为空");
+            return error("ID пользователя不能为空");
         }
         return AjaxResult.success(users.put(user.getUserId(), user));
     }
 
     @ApiOperation("更新用户")
-    @ApiImplicitParam(name = "userEntity", value = "新增用户信息", dataType = "UserEntity")
+    @ApiImplicitParam(name = "userEntity", value = "Добавить用户Информация", dataType = "UserEntity")
     @PutMapping("/update")
     public AjaxResult update(UserEntity user)
     {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId()))
         {
-            return error("用户ID不能为空");
+            return error("ID пользователя不能为空");
         }
         if (users.isEmpty() || !users.containsKey(user.getUserId()))
         {
-            return error("用户不存在");
+            return error("Пользователь не существует");
         }
         users.remove(user.getUserId());
         return AjaxResult.success(users.put(user.getUserId(), user));
     }
 
-    @ApiOperation("删除用户信息")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiOperation("Удалить用户Информация")
+    @ApiImplicitParam(name = "userId", value = "ID пользователя", required = true, dataType = "int", paramType = "path")
     @DeleteMapping("/{userId}")
     public AjaxResult delete(@PathVariable Integer userId)
     {
@@ -100,7 +100,7 @@ public class TestController extends BaseController
         }
         else
         {
-            return error("用户不存在");
+            return error("Пользователь не существует");
         }
     }
 }
@@ -108,13 +108,13 @@ public class TestController extends BaseController
 @ApiModel("用户实体")
 class UserEntity
 {
-    @ApiModelProperty("用户ID")
+    @ApiModelProperty("ID пользователя")
     private Integer userId;
 
-    @ApiModelProperty("用户名称")
+    @ApiModelProperty("Имя пользователя")
     private String username;
 
-    @ApiModelProperty("用户密码")
+    @ApiModelProperty("用户Пароль")
     private String password;
 
     @ApiModelProperty("用户手机")

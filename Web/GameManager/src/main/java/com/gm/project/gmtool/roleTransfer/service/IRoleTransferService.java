@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.roleTransfer.domain.RoleTransfer;
 
 /**
- * 角色转移Service接口
+ * Перенос персонажаService接口
  * 
  * @author gm
  * @date 2021-11-03
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.roleTransfer.domain.RoleTransfer;
 public interface IRoleTransferService 
 {
     /**
-     * 查询角色转移
+     * 查询Перенос персонажа
      * 
-     * @param roleId 角色转移ID
-     * @return 角色转移
+     * @param roleId Перенос персонажаID
+     * @return Перенос персонажа
      */
     public RoleTransfer selectRoleTransferById(String roleId);
 
     /**
-     * 查询角色转移列表
+     * 查询Перенос персонажа列表
      * 
-     * @param roleTransfer 角色转移
-     * @return 角色转移集合
+     * @param roleTransfer Перенос персонажа
+     * @return Перенос персонажа集合
      */
     public List<RoleTransfer> selectRoleTransferList(RoleTransfer roleTransfer);
 
     /**
-     * 新增角色转移
+     * ДобавитьПеренос персонажа
      * 
-     * @param roleTransfer 角色转移
-     * @return 结果
+     * @param roleTransfer Перенос персонажа
+     * @return Результат
      */
     public int insertRoleTransfer(RoleTransfer roleTransfer);
 
     /**
-     * 修改角色转移
+     * ИзменитьПеренос персонажа
      * 
-     * @param roleTransfer 角色转移
-     * @return 结果
+     * @param roleTransfer Перенос персонажа
+     * @return Результат
      */
     public int updateRoleTransfer(RoleTransfer roleTransfer);
 
     /**
-     * 批量删除角色转移
+     * 批量УдалитьПеренос персонажа
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteRoleTransferByIds(String ids);
 
     /**
-     * 删除角色转移信息
+     * УдалитьПеренос персонажаИнформация
      * 
-     * @param roleId 角色转移ID
-     * @return 结果
+     * @param roleId Перенос персонажаID
+     * @return Результат
      */
     public int deleteRoleTransferById(String roleId);
 }

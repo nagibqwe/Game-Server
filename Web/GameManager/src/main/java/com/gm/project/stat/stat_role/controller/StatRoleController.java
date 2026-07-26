@@ -19,7 +19,7 @@ import java.util.List;
 
 
 /**
- * 角色信息统计Controller
+ * 角色Информация统计Controller
  * 
  * @author gm
  * @date 2021-05-25
@@ -46,7 +46,7 @@ public class StatRoleController extends BaseController
     public TableDataInfo stat_role(String groupName, Integer serverId, String channelNames, String sortType)
     {
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器");
+            return getDataTableErrorMsg("请选择Сервер");
         }
         PageDomain pageDomain = TableSupport.buildPageRequest();
         Integer pageNum = pageDomain.getPageNum();

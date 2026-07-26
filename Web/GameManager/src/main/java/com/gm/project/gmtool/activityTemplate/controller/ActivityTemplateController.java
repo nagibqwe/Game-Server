@@ -32,7 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 /**
- * 运营活动模板Controller
+ * Шаблоны событийController
  * 
  * @author gm
  * @date 2021-09-07
@@ -54,7 +54,7 @@ public class ActivityTemplateController extends BaseController
     }
 
     /**
-     * 查询运营活动模板列表
+     * 查询Шаблоны событий列表
      */
 //    @RequiresPermissions("gmtool:activityTemplate:list")
     @PostMapping("/list")
@@ -67,26 +67,26 @@ public class ActivityTemplateController extends BaseController
     }
 
     /**
-     * 导出运营活动模板列表
+     * ЭкспортШаблоны событий列表
      */
 //    @RequiresPermissions("gmtool:activityTemplate:export")
-    @Log(title = "运营活动模板", businessType = BusinessType.EXPORT)
+    @Log(title = "Шаблоны событий", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(ActivityTemplate activityTemplate,String ids)
     {
         List<ActivityTemplate> list = new ArrayList<>();
         if ("".equals(ids)){
-            list = activityTemplateService.selectActivityTemplateList(activityTemplate);//根据表单条件选择导出数据
+            list = activityTemplateService.selectActivityTemplateList(activityTemplate);//根据表单条件选择ЭкспортДанные
         }else {
-            list = activityTemplateService.selectActivityTemplateByIds(ids);//根据用户选择的ids进行数据导出
+            list = activityTemplateService.selectActivityTemplateByIds(ids);//根据用户选择的ids进行ДанныеЭкспорт
         }
         ExcelUtil<ActivityTemplate> util = new ExcelUtil<ActivityTemplate>(ActivityTemplate.class);
-        return util.exportExcel(list, "运营活动模板数据");
+        return util.exportExcel(list, "Шаблоны событийДанные");
     }
 
     /**
-     * 新增运营活动模板
+     * ДобавитьШаблоны событий
      */
     @GetMapping("/add")
     public String add()
@@ -95,10 +95,10 @@ public class ActivityTemplateController extends BaseController
     }
 
     /**
-     * 新增保存运营活动模板
+     * ДобавитьСохранитьШаблоны событий
      */
     @RequiresPermissions("gmtool:activityTemplate:add")
-    @Log(title = "运营活动模板", businessType = BusinessType.INSERT)
+    @Log(title = "Шаблоны событий", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(ActivityTemplate activityTemplate)
@@ -107,7 +107,7 @@ public class ActivityTemplateController extends BaseController
     }
 
     /**
-     * 修改运营活动模板
+     * ИзменитьШаблоны событий
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -118,10 +118,10 @@ public class ActivityTemplateController extends BaseController
     }
 
     /**
-     * 修改保存运营活动模板
+     * ИзменитьСохранитьШаблоны событий
      */
     @RequiresPermissions("gmtool:activityTemplate:edit")
-    @Log(title = "运营活动模板", businessType = BusinessType.UPDATE)
+    @Log(title = "Шаблоны событий", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(ActivityTemplate activityTemplate)
@@ -130,21 +130,21 @@ public class ActivityTemplateController extends BaseController
     }
 
     /**
-     * 删除运营活动模板
+     * УдалитьШаблоны событий
      */
 //    @RequiresPermissions("gmtool:activityTemplate:remove")
-    @Log(title = "运营活动模板", businessType = BusinessType.DELETE)
+    @Log(title = "Шаблоны событий", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
     {
         int row = activityTemplateService.deleteActivityTemplateByIds(ids);
-        GMLogUtil.log("删除运营活动模板信息,Id:"+ids);
+        GMLogUtil.log("УдалитьШаблоны событийИнформация,Id:"+ids);
         return toAjax(row);
     }
 
     /**
-     * 导入运营活动模板数据
+     * ИмпортШаблоны событийДанные
      * @param activityTemplateFile
      * @return
      */
@@ -273,9 +273,9 @@ public class ActivityTemplateController extends BaseController
                 template.setType(activityTemplate.getType());
                 List<ActivityTemplate> templates = activityTemplateService.selectActivityTemplateList(template);
                 if (null != templates && templates.size() > 0){
-                    ActivityTemplate actTemplate = templates.get(0);//有数据  有且只有一组数据
+                    ActivityTemplate actTemplate = templates.get(0);//有Данные  有且只有一组Данные
                     activityTemplate.setId(actTemplate.getId());
-                    activityTemplateService.updateActivityTemplate(activityTemplate);//同种type活动有相同模板名的则为更新操作
+                    activityTemplateService.updateActivityTemplate(activityTemplate);//同种type活动有相同模板名的则为更新Действия
                     updateResult.add(activityTemplate);
                     continue;
                 }
@@ -287,18 +287,18 @@ public class ActivityTemplateController extends BaseController
                     activityTemplateService.insertActivityTemplate(activityTemplate);
                     addResult.add(activityTemplate);
                 }
-                StringBuilder promptInfo = new StringBuilder("导入运营活动模板数据: \n");
-                for (ActivityTemplate activityTemplate:activityTemplates){//新增
+                StringBuilder promptInfo = new StringBuilder("ИмпортШаблоны событийДанные: \n");
+                for (ActivityTemplate activityTemplate:activityTemplates){//Добавить
                     promptInfo.append(" 模版名：").append(activityTemplate.getTemplateName())
-                            .append("  活动名：").append(activityTemplate.getName())
-                            .append("，活动类型：").append(JsonUtils.toJSONString(activityTemplate.getType())).append("\n");
+                            .append("  Название события：").append(activityTemplate.getName())
+                            .append("，Тип события：").append(JsonUtils.toJSONString(activityTemplate.getType())).append("\n");
                 }
 
                 for (ActivityTemplate activityTemplate:updateResult){//更新
-                    promptInfo.append(" 更新运营活动模板数据: \n")
+                    promptInfo.append(" 更新Шаблоны событийДанные: \n")
                             .append(" 模版名：").append(activityTemplate.getTemplateName())
-                            .append("  活动名：").append(activityTemplate.getName())
-                            .append("，活动类型：").append(JsonUtils.toJSONString(activityTemplate.getType())).append("\n");
+                            .append("  Название события：").append(activityTemplate.getName())
+                            .append("，Тип события：").append(JsonUtils.toJSONString(activityTemplate.getType())).append("\n");
                 }
                 GMLogUtil.log(String.valueOf(promptInfo));
 

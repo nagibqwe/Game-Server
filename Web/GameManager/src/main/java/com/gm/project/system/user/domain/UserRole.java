@@ -10,10 +10,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class UserRole
 {
-    /** 用户ID */
+    /** ID пользователя */
     private Long userId;
     
-    /** 角色ID */
+    /** ID персонажа */
     private Long roleId;
 
     public Long getUserId()

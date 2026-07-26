@@ -52,7 +52,7 @@ public class HefuManager {
         this.serverService = serverService;
     }
 
-    /**合服任务*/
+    /**Объединение серверов任务*/
     private Map<Long, HefuTask> tasks = new ConcurrentHashMap<>();
     /**备份任务*/
     private Map<String, Object> baks = new ConcurrentHashMap<>();
@@ -60,7 +60,7 @@ public class HefuManager {
     private Map<String, Object> restores = new ConcurrentHashMap<>();
 
     /**
-     * 添加任务
+     * Добавить任务
      * @param task
      */
     public synchronized void addTask(HefuTask task) {
@@ -99,7 +99,7 @@ public class HefuManager {
     }
 
     /**
-     * 数据处理
+     * Данные处理
      * @param task
      * @throws Exception
      */
@@ -121,14 +121,14 @@ public class HefuManager {
             allTables.add(table);
             ITableHandler h = (ITableHandler) c.newInstance();
             if (h == null) {
-                task.writeLog("表:" + table + "处理器创建实例失败!");
+                task.writeLog("表:" + table + "处理器创建实例Ошибка!");
                 continue;
             }
             h.setTask(task);
             handlers.add(h);
         }
         task.writeLog("需要处理的游戏表的数量为:"+handlers.size());
-        //根据优先级排序
+        //根据优先级Сортировка
         handlers.sort(Comparator.comparing(ITableHandler::getPriority));
         //对这些表进行处理
         for (ITableHandler h : handlers) {
@@ -136,14 +136,14 @@ public class HefuManager {
             h.doProcess(null);
         }
 
-        //记录表的信息用于合并后的检查
+        //记录表的Информация用于合并后的检查
         RecordTableInfo(task, allTables);
     }
 
     private void RecordTableInfo(HefuTask task, List<String> tables) throws Exception{
-        //记录各个数据表的数据量，用于合服完成后验证合服结果
-        Map<String, Integer> toTableMap = new HashMap<>(); //目标合服上数据表的数据量，也要在数据处理完再查
-        List<Map<String, Integer>> fromTableMap = new ArrayList<>(); //被合服上数据表的数据量，在其数据处理后再查询记录
+        //记录各个Данные表的Данные量，用于Объединение серверов完成后验证Объединение серверовРезультат
+        Map<String, Integer> toTableMap = new HashMap<>(); //目标Объединение серверов上Данные表的Данные量，也要在Данные处理完再查
+        List<Map<String, Integer>> fromTableMap = new ArrayList<>(); //被Объединение серверов上Данные表的Данные量，在其Данные处理后再查询记录
 
         for (String table : tables) {
             List<List<String>> rs = task.getToServer().getDb().query("select count(*) from "+table, 1);
@@ -163,7 +163,7 @@ public class HefuManager {
             fromTableMap.add(tmp);
         }
 
-        //将toTableMap和fromTableMap数据记录到文件中，数据库合并完成后
+        //将toTableMap和fromTableMapДанные记录到文件中，Данные库合并完成后
         String toTableMapStr = JSON.toJSONString(toTableMap);
         StringBuilder sb = new StringBuilder();
         sb.append(toTableMapStr);
@@ -183,7 +183,7 @@ public class HefuManager {
 
 
     /**
-     * 数据备份
+     * Данные备份
      * @param server
      */
     public void dbbak(HefuServer server, int type, String filedir) {
@@ -193,7 +193,7 @@ public class HefuManager {
         }else if(type == 2){
             db = server.getDblog();
         }else{
-            throw new RuntimeException("类型错误");
+            throw new RuntimeException("Тип错误");
         }
         HefuTask.checkDB(db);
         DBInfo finalDb = db;
@@ -227,7 +227,7 @@ public class HefuManager {
 
                 }
             }catch (Exception e){
-                log.error("备份数据库失败", e);
+                log.error("备份Данные库Ошибка", e);
             }finally {
                 baks.remove(key);
             }
@@ -248,7 +248,7 @@ public class HefuManager {
     }
 
     /**
-     * 数据库还原
+     * Данные库还原
      * @param db
      * @param url
      */

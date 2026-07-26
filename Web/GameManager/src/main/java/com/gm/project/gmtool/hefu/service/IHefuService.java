@@ -7,7 +7,7 @@ import com.gm.project.gmtool.dbbak.domain.Dbbak;
 import com.gm.project.gmtool.hefu.domain.Hefu;
 
 /**
- * 合服Service接口
+ * Объединение серверовService接口
  * 
  * @author gm
  * @date 2021-09-08
@@ -15,69 +15,69 @@ import com.gm.project.gmtool.hefu.domain.Hefu;
 public interface IHefuService 
 {
     /**
-     * 查询合服
+     * 查询Объединение серверов
      * 
-     * @param id 合服ID
-     * @return 合服
+     * @param id Объединение серверовID
+     * @return Объединение серверов
      */
     public Hefu selectHefuById(Long id);
 
     /**
-     * 查询合服列表
+     * 查询Список объединения
      * 
-     * @param hefu 合服
-     * @return 合服集合
+     * @param hefu Объединение серверов
+     * @return Объединение серверов集合
      */
     public List<Hefu> selectHefuList(Hefu hefu);
 
     /**
-     * 新增合服
+     * ДобавитьОбъединение серверов
      * 
-     * @param hefu 合服
-     * @return 结果
+     * @param hefu Объединение серверов
+     * @return Результат
      */
     public int insertHefu(Hefu hefu);
 
     /**
-     * 修改合服
+     * ИзменитьОбъединение серверов
      * 
-     * @param hefu 合服
-     * @return 结果
+     * @param hefu Объединение серверов
+     * @return Результат
      */
     public int updateHefu(Hefu hefu);
 
     /**
-     * 批量删除合服
+     * 批量УдалитьОбъединение серверов
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteHefuByIds(String ids);
 
     /**
-     * 删除合服信息
+     * УдалитьОбъединение серверовИнформация
      * 
-     * @param id 合服ID
-     * @return 结果
+     * @param id Объединение серверовID
+     * @return Результат
      */
     public int deleteHefuById(Long id);
 
     /**
-     * 开始合服
+     * 开始Объединение серверов
      * @param id
      * @return
      */
     public boolean start(Long id);
 
     /**
-     * 停止合服
+     * 停止Объединение серверов
      * @param id
      * @return
      */
     public boolean stop(Long id);
 
     /**
-     * 合服日志
+     * Объединение серверовЖурнал
      * @param id
      * @param index
      * @return
@@ -85,20 +85,20 @@ public interface IHefuService
     Map<String, Object> getLog(Long id, Integer index);
 
     /**
-     * 数据库备份
+     * Резервные копии БД
      * @param id
      * @param type
      */
     void dbbak(Long id, Integer serverId, Integer type);
 
     /**
-     * 数据备份列表
+     * Данные备份列表
      * @param id
      */
     List<Dbbak> bakList(Long id);
 
     /**
-     * 数据库还原
+     * Данные库还原
      * @param id
      * @param serverId
      * @param type
@@ -113,14 +113,14 @@ public interface IHefuService
     boolean check(Long id) throws Exception;
 
     /**
-     * 检测是否有已合并的服务器
+     * 检测ДаНет有已合并的Сервер
      * @param id
      * @return
      */
     Map<Integer, Integer> checkIsHefu(Long id);
 
     /**
-     * 查询日志记录
+     * 查询Журнал记录
      * @param id
      * @return
      */

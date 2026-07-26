@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 运营活动节日关系Controller
+ * Связи праздничных событийController
  * 
  * @author gm
  * @date 2021-11-08
@@ -43,7 +43,7 @@ public class ActivityFestivalRelationController extends BaseController
     }
 
     /**
-     * 查询运营活动节日关系列表
+     * 查询Связи праздничных событий列表
      */
 //    @RequiresPermissions("gmtool:activityFestivalRelation:list")
     @PostMapping("/list")
@@ -56,21 +56,21 @@ public class ActivityFestivalRelationController extends BaseController
     }
 
     /**
-     * 导出运营活动节日关系列表
+     * ЭкспортСвязи праздничных событий列表
      */
     @RequiresPermissions("gmtool:activityFestivalRelation:export")
-    @Log(title = "运营活动节日关系", businessType = BusinessType.EXPORT)
+    @Log(title = "Связи праздничных событий", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(ActivityFestivalRelation activityFestivalRelation)
     {
         List<ActivityFestivalRelation> list = activityFestivalRelationService.selectActivityFestivalRelationList(activityFestivalRelation);
         ExcelUtil<ActivityFestivalRelation> util = new ExcelUtil<ActivityFestivalRelation>(ActivityFestivalRelation.class);
-        return util.exportExcel(list, "运营活动节日关系数据");
+        return util.exportExcel(list, "Связи праздничных событийДанные");
     }
 
     /**
-     * 新增运营活动节日关系
+     * ДобавитьСвязи праздничных событий
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class ActivityFestivalRelationController extends BaseController
     }
 
     /**
-     * 新增保存运营活动节日关系
+     * ДобавитьСохранитьСвязи праздничных событий
      */
     @RequiresPermissions("gmtool:activityFestivalRelation:add")
-    @Log(title = "运营活动节日关系", businessType = BusinessType.INSERT)
+    @Log(title = "Связи праздничных событий", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(ActivityFestivalRelation activityFestivalRelation)
@@ -91,7 +91,7 @@ public class ActivityFestivalRelationController extends BaseController
     }
 
     /**
-     * 修改运营活动节日关系
+     * ИзменитьСвязи праздничных событий
      */
     @GetMapping("/edit/{logicId}")
     public String edit(@PathVariable("logicId") Integer logicId, ModelMap mmap)
@@ -102,10 +102,10 @@ public class ActivityFestivalRelationController extends BaseController
     }
 
     /**
-     * 修改保存运营活动节日关系
+     * ИзменитьСохранитьСвязи праздничных событий
      */
     @RequiresPermissions("gmtool:activityFestivalRelation:edit")
-    @Log(title = "运营活动节日关系", businessType = BusinessType.UPDATE)
+    @Log(title = "Связи праздничных событий", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(ActivityFestivalRelation activityFestivalRelation)
@@ -114,10 +114,10 @@ public class ActivityFestivalRelationController extends BaseController
     }
 
     /**
-     * 删除运营活动节日关系
+     * УдалитьСвязи праздничных событий
      */
     @RequiresPermissions("gmtool:activityFestivalRelation:remove")
-    @Log(title = "运营活动节日关系", businessType = BusinessType.DELETE)
+    @Log(title = "Связи праздничных событий", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

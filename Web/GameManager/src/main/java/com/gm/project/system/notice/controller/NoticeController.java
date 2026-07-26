@@ -19,7 +19,7 @@ import com.gm.project.system.notice.domain.Notice;
 import com.gm.project.system.notice.service.INoticeService;
 
 /**
- * 公告 信息操作处理
+ * 公告 ИнформацияДействия处理
  * 
  * @author ruoyi
  */
@@ -53,7 +53,7 @@ public class NoticeController extends BaseController
     }
 
     /**
-     * 新增公告
+     * Добавить公告
      */
     @GetMapping("/add")
     public String add()
@@ -62,10 +62,10 @@ public class NoticeController extends BaseController
     }
 
     /**
-     * 新增保存公告
+     * ДобавитьСохранить公告
      */
     @RequiresPermissions("system:notice:add")
-    @Log(title = "通知公告", businessType = BusinessType.INSERT)
+    @Log(title = "Уведомления", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Notice notice)
@@ -74,7 +74,7 @@ public class NoticeController extends BaseController
     }
 
     /**
-     * 修改公告
+     * Изменить公告
      */
     @GetMapping("/edit/{noticeId}")
     public String edit(@PathVariable("noticeId") Long noticeId, ModelMap mmap)
@@ -84,10 +84,10 @@ public class NoticeController extends BaseController
     }
 
     /**
-     * 修改保存公告
+     * ИзменитьСохранить公告
      */
     @RequiresPermissions("system:notice:edit")
-    @Log(title = "通知公告", businessType = BusinessType.UPDATE)
+    @Log(title = "Уведомления", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Notice notice)
@@ -96,10 +96,10 @@ public class NoticeController extends BaseController
     }
 
     /**
-     * 删除公告
+     * Удалить公告
      */
     @RequiresPermissions("system:notice:remove")
-    @Log(title = "通知公告", businessType = BusinessType.DELETE)
+    @Log(title = "Уведомления", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

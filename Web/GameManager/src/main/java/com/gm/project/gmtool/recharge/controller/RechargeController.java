@@ -24,7 +24,7 @@ import java.util.List;
 
 
 /**
- * 后台模拟充值Controller
+ * Тестовое пополнение через GMController
  * 
  * @author gm
  * @date 2021-11-28
@@ -52,7 +52,7 @@ public class RechargeController extends BaseController
     }
 
     /**
-     * 查询后台模拟充值列表
+     * 查询Тестовое пополнение через GM列表
      */
     @RequiresPermissions("gmtool:recharge:list")
     @PostMapping("/list")
@@ -65,21 +65,21 @@ public class RechargeController extends BaseController
     }
 
     /**
-     * 导出后台模拟充值列表
+     * ЭкспортТестовое пополнение через GM列表
      */
     @RequiresPermissions("gmtool:recharge:export")
-    @Log(title = "后台模拟充值", businessType = BusinessType.EXPORT)
+    @Log(title = "Тестовое пополнение через GM", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Recharge recharge)
     {
         List<Recharge> list = rechargeService.selectRechargeList(recharge);
         ExcelUtil<Recharge> util = new ExcelUtil<Recharge>(Recharge.class);
-        return util.exportExcel(list, "后台模拟充值数据");
+        return util.exportExcel(list, "Тестовое пополнение через GMДанные");
     }
 
     /**
-     * 新增后台模拟充值
+     * ДобавитьТестовое пополнение через GM
      */
     @GetMapping("/add")
     public String add()
@@ -88,67 +88,67 @@ public class RechargeController extends BaseController
     }
 
     /**
-     * 新增保存后台模拟充值
+     * ДобавитьСохранитьТестовое пополнение через GM
      */
     @RequiresPermissions("gmtool:recharge:add")
-    @Log(title = "后台模拟充值", businessType = BusinessType.INSERT)
+    @Log(title = "Тестовое пополнение через GM", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Recharge recharge)
     {
-        //检查角色是否存在
+        //检查角色ДаНет存在
         List<RoleState> roles = gameRoleService.queryByRoleId(recharge.getToServerId(), recharge.getRoleId(), 0);
         if (roles == null || roles.isEmpty()) {
-            return AjaxResult.info("没有找到该角色信息").put("ok",false);
+            return AjaxResult.info("没有找到该角色Информация").put("ok",false);
         }
 
         return toAjax(rechargeService.insertRecharge(recharge));
     }
 
     /**
-     * 同意此次充值
+     * 同意此次Пополнение
      */
     @RequiresPermissions("gmtool:recharge:verify")
-    @Log(title = "后台模拟充值", businessType = BusinessType.UPDATE)
+    @Log(title = "Тестовое пополнение через GM", businessType = BusinessType.UPDATE)
     @PostMapping( "/agree")
     @ResponseBody
     public AjaxResult agree(Integer id)
     {
         Recharge recharge = rechargeService.selectRechargeById(id.longValue());
         if(recharge == null){
-            return AjaxResult.info("获取充值信息失败").put("ok", false);
+            return AjaxResult.info("获取ПополнениеИнформацияОшибка").put("ok", false);
         }
 
         int serverId = recharge.getToServerId();
         TServer server = tServerService.selectTServerByServerId(recharge.getToServerId());
         if (server == null) {
-            return AjaxResult.info("获取服务失败").put("ok", false);
+            return AjaxResult.info("Не удалось получить данные сервера").put("ok", false);
         }
 
         AjaxResult resultMap = GameServerRequestUtil.gmRecharge(server, Long.parseLong(recharge.getRoleId()), recharge.getRechargeNumber(), recharge.getRechargeTotalGold(), recharge.getRechargeVipExp());
         if (Boolean.valueOf(resultMap.get("ok").toString())) {
-            GMLogUtil.log("审核同意成功,serverId:" + serverId);
+            GMLogUtil.log("审核同意Успешно,serverId:" + serverId);
             recharge.setRechargeState(1);
             rechargeService.updateRecharge(recharge);
             return AjaxResult.success().put("ok", true);
         }else{
-            GMLogUtil.log("审核同意失败,serverId:" + serverId);
-            return AjaxResult.info("审核同意失败").put("ok", false);
+            GMLogUtil.log("审核同意Ошибка,serverId:" + serverId);
+            return AjaxResult.info("审核同意Ошибка").put("ok", false);
         }
     }
 
     /**
-     * 拒绝此次充值
+     * 拒绝此次Пополнение
      */
     @RequiresPermissions("gmtool:recharge:verify")
-    @Log(title = "后台模拟充值", businessType = BusinessType.UPDATE)
+    @Log(title = "Тестовое пополнение через GM", businessType = BusinessType.UPDATE)
     @PostMapping( "/reject")
     @ResponseBody
     public AjaxResult reject(Integer id)
     {
         Recharge recharge = rechargeService.selectRechargeById(id.longValue());
         if(recharge == null){
-            return AjaxResult.info("获取充值信息失败").put("ok", false);
+            return AjaxResult.info("获取ПополнениеИнформацияОшибка").put("ok", false);
         }
 
         recharge.setRechargeState(2);
@@ -157,7 +157,7 @@ public class RechargeController extends BaseController
     }
 
     /**
-     * 修改后台模拟充值
+     * ИзменитьТестовое пополнение через GM
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -168,10 +168,10 @@ public class RechargeController extends BaseController
     }
 
     /**
-     * 修改后台模拟充值
+     * ИзменитьТестовое пополнение через GM
      */
     @RequiresPermissions("gmtool:recharge:edit")
-    @Log(title = "后台模拟充值", businessType = BusinessType.UPDATE)
+    @Log(title = "Тестовое пополнение через GM", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Recharge recharge)
@@ -182,10 +182,10 @@ public class RechargeController extends BaseController
     }
 
     /**
-     * 删除后台模拟充值
+     * УдалитьТестовое пополнение через GM
      */
     @RequiresPermissions("gmtool:recharge:remove")
-    @Log(title = "后台模拟充值", businessType = BusinessType.DELETE)
+    @Log(title = "Тестовое пополнение через GM", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

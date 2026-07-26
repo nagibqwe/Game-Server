@@ -56,7 +56,7 @@ public class Cornucopia extends Activity implements IActivityCustom {
         String[] i_one_reward_limit = paramMap.get("i_one_reward_limit");
         String[] i_day_reward_limit = paramMap.get("i_day_reward_limit");
 
-        //奖品等级权重
+        //НаградаУровень权重
         String[] i_item_big = paramMap.get("i_item_big");
         String[] i_item_one = paramMap.get("i_item_one");
         String[] i_item_two = paramMap.get("i_item_two");
@@ -67,7 +67,7 @@ public class Cornucopia extends Activity implements IActivityCustom {
         String[] i_gold_two = paramMap.get("i_gold_two");
         String[] i_gold_three = paramMap.get("i_gold_three");
 
-        //奖池数据
+        //奖池Данные
         String[] i_item_weight_big = paramMap.get("i_item_weight_big");
         String[] i_gold_weight_big = paramMap.get("i_gold_weight_big");
         String[] i_reward_big = paramMap.get("i_reward_big");
@@ -106,11 +106,11 @@ public class Cornucopia extends Activity implements IActivityCustom {
         String[] i_baoDi_range_pro = paramMap.get("i_baoDi_range_pro");
 
         if (gridStrs.length <= 0) {
-            throw new RuntimeException("===客户端奖励展示数据错误或数据为空");
+            throw new RuntimeException("===客户端奖励展示Данные错误或Данные为空");
         }
 
         if (Integer.parseInt(i_baodi_scope_min[0]) >= Integer.parseInt(i_baodi_scope_max[0])) {
-            throw new RuntimeException("===保底范围数据错误");
+            throw new RuntimeException("===保底范围Данные错误");
         }
 
         List<List<ItemBean>> gridList = new ArrayList<>();
@@ -147,21 +147,21 @@ public class Cornucopia extends Activity implements IActivityCustom {
         resultMap.put("goldOneMaxCount",Integer.parseInt(i_one_reward_limit[0]));
         resultMap.put("goldDailyCount",Integer.parseInt(i_day_reward_limit[0]));
 
-        //奖品等级权重 <奖品等级, 奖品等级权重>
+        //НаградаУровень权重 <НаградаУровень, НаградаУровень权重>
         HashMap<Integer, Object> levelWeightMap = new HashMap<>();
         getLevelWeightMap(0,levelWeightMap,i_item_big,i_gold_big);
         getLevelWeightMap(1,levelWeightMap,i_item_one,i_gold_one);
         getLevelWeightMap(2,levelWeightMap,i_item_two,i_gold_two);
         getLevelWeightMap(3,levelWeightMap,i_item_three,i_gold_three);
 
-        //奖池信息 <奖品等级, 奖励信息>
+        //奖池Информация <НаградаУровень, 奖励Информация>
         HashMap<Integer, Object> rewardPoolMap = new HashMap<>();
         getRewardPoolInfo(0,rewardPoolMap,i_item_weight_big,i_gold_weight_big,i_reward_big);
         getRewardPoolInfo(1,rewardPoolMap,i_item_weight_one,i_gold_weight_one,i_reward_one);
         getRewardPoolInfo(2,rewardPoolMap,i_item_weight_two,i_gold_weight_two,i_reward_two);
         getRewardPoolInfo(3,rewardPoolMap,i_item_weight_three,i_gold_weight_three,i_reward_three);
 
-        //保底奖励   达到保底次数之后随机从的对应的奖品等级的池子中取一个奖品
+        //保底奖励   达到保底次数之后随机从的对应的НаградаУровень的池子中取一个Награда
         HashMap<Integer, Object> lowestData = new HashMap<>();
         ActivityUtil.getBaoDiDataInfo(lowestData,i_baoDi_min_num,i_baoDi_max_num,i_baoDiReward,i_baoDi_range_count,i_baoDi_range_min,i_baoDi_range_max,i_baoDi_range_pro);
 
@@ -212,7 +212,7 @@ public class Cornucopia extends Activity implements IActivityCustom {
         return this;
     }
 
-    //奖池数据配置的奖励信息
+    //奖池Данные配置的奖励Информация
     private HashMap<Integer, Object> getRewardPoolInfo(int level,HashMap<Integer, Object> rewardPoolMap,String[] item_weight,String[] gold_weight,String[] reward){
         List<HashMap<String, Object>> mapList = new ArrayList<>();
         for (int i = 0; i < item_weight.length; i++) {
@@ -233,7 +233,7 @@ public class Cornucopia extends Activity implements IActivityCustom {
         rewardPoolMap.put(level, mapList);
         return rewardPoolMap;
     }
-    //奖品等级权重 <奖品等级, 奖品等级权重>
+    //НаградаУровень权重 <НаградаУровень, НаградаУровень权重>
     private HashMap<Integer, Object> getLevelWeightMap(int level,HashMap<Integer, Object> levelWeightMap,String[] item,String[] gold){
         HashMap<String, Object> levelWeight = new HashMap<>();
         levelWeight.put("itemWeight",Integer.parseInt(item[0]));

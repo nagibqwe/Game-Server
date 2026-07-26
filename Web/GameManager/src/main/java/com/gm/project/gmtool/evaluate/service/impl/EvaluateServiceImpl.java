@@ -9,7 +9,7 @@ import com.gm.project.gmtool.evaluate.service.IEvaluateService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 评价开关Service业务层处理
+ * Оценки включеныService业务层处理
  * 
  * @author gm
  * @date 2021-11-04
@@ -21,10 +21,10 @@ public class EvaluateServiceImpl implements IEvaluateService
     private EvaluateMapper evaluateMapper;
 
     /**
-     * 查询评价开关
+     * 查询Оценки включены
      * 
-     * @param id 评价开关ID
-     * @return 评价开关
+     * @param id Оценки включеныID
+     * @return Оценки включены
      */
     @Override
     public Evaluate selectEvaluateById(Integer id)
@@ -33,10 +33,10 @@ public class EvaluateServiceImpl implements IEvaluateService
     }
 
     /**
-     * 查询评价开关列表
+     * 查询Оценки включены列表
      * 
-     * @param evaluate 评价开关
-     * @return 评价开关
+     * @param evaluate Оценки включены
+     * @return Оценки включены
      */
     @Override
     public List<Evaluate> selectEvaluateList(Evaluate evaluate)
@@ -45,10 +45,10 @@ public class EvaluateServiceImpl implements IEvaluateService
     }
 
     /**
-     * 新增评价开关
+     * ДобавитьОценки включены
      * 
-     * @param evaluate 评价开关
-     * @return 结果
+     * @param evaluate Оценки включены
+     * @return Результат
      */
     @Override
     public int insertEvaluate(Evaluate evaluate)
@@ -57,10 +57,10 @@ public class EvaluateServiceImpl implements IEvaluateService
     }
 
     /**
-     * 修改评价开关
+     * ИзменитьОценки включены
      * 
-     * @param evaluate 评价开关
-     * @return 结果
+     * @param evaluate Оценки включены
+     * @return Результат
      */
     @Override
     public int updateEvaluate(Evaluate evaluate)
@@ -69,10 +69,10 @@ public class EvaluateServiceImpl implements IEvaluateService
     }
 
     /**
-     * 删除评价开关对象
+     * УдалитьОценки включены对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteEvaluateByIds(String ids)
@@ -81,10 +81,10 @@ public class EvaluateServiceImpl implements IEvaluateService
     }
 
     /**
-     * 删除评价开关信息
+     * УдалитьОценки включеныИнформация
      * 
-     * @param id 评价开关ID
-     * @return 结果
+     * @param id Оценки включеныID
+     * @return Результат
      */
     @Override
     public int deleteEvaluateById(Integer id)

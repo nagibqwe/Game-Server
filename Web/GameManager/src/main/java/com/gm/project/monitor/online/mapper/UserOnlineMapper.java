@@ -4,33 +4,33 @@ import java.util.List;
 import com.gm.project.monitor.online.domain.UserOnline;
 
 /**
- * 在线用户 数据层
+ * В сети用户 Данные层
  * 
  * @author ruoyi
  */
 public interface UserOnlineMapper
 {
     /**
-     * 通过会话序号查询信息
+     * 通过会话№查询Информация
      * 
      * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     public UserOnline selectOnlineById(String sessionId);
 
     /**
-     * 通过会话序号删除信息
+     * 通过会话№УдалитьИнформация
      * 
      * @param sessionId 会话ID
-     * @return 在线用户信息
+     * @return В сети用户Информация
      */
     public int deleteOnlineById(String sessionId);
 
     /**
-     * 保存会话信息
+     * Сохранить会话Информация
      * 
-     * @param online 会话信息
-     * @return 结果
+     * @param online 会话Информация
+     * @return Результат
      */
     public int saveOnline(UserOnline online);
 
@@ -45,7 +45,7 @@ public interface UserOnlineMapper
     /**
      * 查询过期会话集合
      * 
-     * @param lastAccessTime 过期时间
+     * @param lastAccessTime 过期Время
      * @return 会话集合
      */
     public List<UserOnline> selectOnlineByExpired(String lastAccessTime);

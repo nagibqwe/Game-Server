@@ -9,7 +9,7 @@ import com.gm.project.gmtool.cmd.service.ICmdLogService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 热更服务器操作日志Service业务层处理
+ * Журнал операций горячего обновленияService业务层处理
  * 
  * @author gm
  * @date 2021-07-30
@@ -21,10 +21,10 @@ public class CmdLogServiceImpl implements ICmdLogService
     private CmdLogMapper cmdLogMapper;
 
     /**
-     * 查询热更服务器操作日志
+     * 查询Журнал операций горячего обновления
      * 
-     * @param id 热更服务器操作日志ID
-     * @return 热更服务器操作日志
+     * @param id Журнал операций горячего обновленияID
+     * @return Журнал операций горячего обновления
      */
     @Override
     public CmdLog selectCmdLogById(Long id)
@@ -33,10 +33,10 @@ public class CmdLogServiceImpl implements ICmdLogService
     }
 
     /**
-     * 查询热更服务器操作日志列表
+     * 查询Журнал операций горячего обновления列表
      * 
-     * @param cmdLog 热更服务器操作日志
-     * @return 热更服务器操作日志
+     * @param cmdLog Журнал операций горячего обновления
+     * @return Журнал операций горячего обновления
      */
     @Override
     public List<CmdLog> selectCmdLogList(CmdLog cmdLog)
@@ -45,10 +45,10 @@ public class CmdLogServiceImpl implements ICmdLogService
     }
 
     /**
-     * 新增热更服务器操作日志
+     * ДобавитьЖурнал операций горячего обновления
      * 
-     * @param cmdLog 热更服务器操作日志
-     * @return 结果
+     * @param cmdLog Журнал операций горячего обновления
+     * @return Результат
      */
     @Override
     public int insertCmdLog(CmdLog cmdLog)
@@ -57,10 +57,10 @@ public class CmdLogServiceImpl implements ICmdLogService
     }
 
     /**
-     * 修改热更服务器操作日志
+     * ИзменитьЖурнал операций горячего обновления
      * 
-     * @param cmdLog 热更服务器操作日志
-     * @return 结果
+     * @param cmdLog Журнал операций горячего обновления
+     * @return Результат
      */
     @Override
     public int updateCmdLog(CmdLog cmdLog)
@@ -69,10 +69,10 @@ public class CmdLogServiceImpl implements ICmdLogService
     }
 
     /**
-     * 删除热更服务器操作日志对象
+     * УдалитьЖурнал операций горячего обновления对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteCmdLogByIds(String ids)
@@ -81,10 +81,10 @@ public class CmdLogServiceImpl implements ICmdLogService
     }
 
     /**
-     * 删除热更服务器操作日志信息
+     * УдалитьЖурнал операций горячего обновленияИнформация
      * 
-     * @param id 热更服务器操作日志ID
-     * @return 结果
+     * @param id Журнал операций горячего обновленияID
+     * @return Результат
      */
     @Override
     public int deleteCmdLogById(Long id)

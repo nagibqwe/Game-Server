@@ -10,7 +10,7 @@ import com.gm.project.system.user.domain.User;
 import java.util.Date;
 
 /**
- * GM后台自定义日志
+ * GM后台自定义Журнал
  */
 public class GMLogUtil {
 
@@ -30,7 +30,7 @@ public class GMLogUtil {
         }
         gmLog.setTime(new Date(System.currentTimeMillis()));
 
-        // 保存数据库
+        // СохранитьДанные库
         AsyncManager.me().execute(AsyncFactory.recordGMLog(gmLog));
     }
 

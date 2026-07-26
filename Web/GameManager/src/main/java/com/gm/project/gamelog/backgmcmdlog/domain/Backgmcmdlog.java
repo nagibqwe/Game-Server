@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 后台指令日志对象 log_backgmcmdlog
+ * 后台指令Журнал对象 log_backgmcmdlog
  * 
  * @author gm
  * @date 2021-09-10
@@ -21,8 +21,8 @@ public class Backgmcmdlog extends BaseEntity
     /**  */
     private Long id;
 
-    /** 时间 */
-    @Excel(name = "时间")
+    /** Время */
+    @Excel(name = "Время")
     private Long time;
 
     /** backUser */

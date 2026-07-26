@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * 循环公告Controller
+ * Циклическое объявлениеController
  * 
  * @author gm
  * @date 2021-10-27
@@ -57,7 +57,7 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 查询循环公告列表(启用列表)
+     * 查询Циклическое объявление列表(Включить列表)
      */
     @PostMapping("/list")
     @ResponseBody
@@ -70,7 +70,7 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 查询循环公告列表(禁用列表)
+     * 查询Циклическое объявление列表(禁用列表)
      */
     @PostMapping("/disableList")
     @ResponseBody
@@ -82,21 +82,21 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 导出循环公告列表
+     * ЭкспортЦиклическое объявление列表
      */
     @RequiresPermissions("gmtool:cyAnnounce:export")
-    @Log(title = "循环公告", businessType = BusinessType.EXPORT)
+    @Log(title = "Циклическое объявление", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(CyAnnounce cyAnnounce)
     {
         List<CyAnnounce> list = cyAnnounceService.selectCyAnnounceList(cyAnnounce);
         ExcelUtil<CyAnnounce> util = new ExcelUtil<CyAnnounce>(CyAnnounce.class);
-        return util.exportExcel(list, "循环公告数据");
+        return util.exportExcel(list, "Циклическое объявлениеДанные");
     }
 
     /**
-     * 新增循环公告
+     * ДобавитьЦиклическое объявление
      */
     @GetMapping("/add")
     public String add()
@@ -105,10 +105,10 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 新增保存循环公告
+     * ДобавитьСохранитьЦиклическое объявление
      */
     @RequiresPermissions("gmtool:cyAnnounce:add")
-    @Log(title = "循环公告", businessType = BusinessType.INSERT)
+    @Log(title = "Циклическое объявление", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(CyAnnounce cyAnnounce)
@@ -117,7 +117,7 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 修改循环公告
+     * ИзменитьЦиклическое объявление
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -128,10 +128,10 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 修改保存循环公告
+     * ИзменитьСохранитьЦиклическое объявление
      */
     @RequiresPermissions("gmtool:cyAnnounce:edit")
-    @Log(title = "循环公告", businessType = BusinessType.UPDATE)
+    @Log(title = "Циклическое объявление", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(CyAnnounce cyAnnounce)
@@ -140,10 +140,10 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 删除循环公告
+     * УдалитьЦиклическое объявление
      */
     @RequiresPermissions("gmtool:cyAnnounce:remove")
-    @Log(title = "循环公告", businessType = BusinessType.DELETE)
+    @Log(title = "Циклическое объявление", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -152,7 +152,7 @@ public class CyAnnounceController extends BaseController
     }
 
     /**
-     * 添加循环公告
+     * ДобавитьЦиклическое объявление
      * @param request
      * @param announce
      * @param selectServerIdList
@@ -166,19 +166,19 @@ public class CyAnnounceController extends BaseController
             return AjaxResult.info("不存在该用户").put("ok",false);
         }
         if (StringUtils.isBlank(selectGroupName) || selectServerIdList == null || selectServerIdList.length < 1) {
-            return AjaxResult.info("没有选择服务器").put("ok",false);
+            return AjaxResult.info("没有选择Сервер").put("ok",false);
         }
 
         if (announce.getTotalTimes() < 0 || announce.getCycleInterval() < 1) {
-            return AjaxResult.info("时间调节参数错误！").put("ok",false);
+            return AjaxResult.info("Время调节参数错误！").put("ok",false);
         }
 
         if (StringUtils.isBlank(announce.getContent()) || announce.getType() <= 0) {
-            return AjaxResult.info("公告的内容不能为空").put("ok",false);
+            return AjaxResult.info("公告的Содержимое不能为空").put("ok",false);
         }
         if (!(Pattern.matches("(\\d{1,4})-(\\d{1,2})-(\\d{1,2}) (\\d{1,2}):(\\d{1,2})", announce.getFromDate())
                 && Pattern.matches("(\\d{1,4})-(\\d{1,2})-(\\d{1,2}) (\\d{1,2}):(\\d{1,2})", announce.getToDate()))) {
-            return AjaxResult.info("时间格式错误！").put("ok",false);
+            return AjaxResult.info("Время格式错误！").put("ok",false);
         }
 
         StringBuilder sb = new StringBuilder();
@@ -213,23 +213,23 @@ public class CyAnnounceController extends BaseController
             if (cb != null) {
                 boolean bn = CyAnnounceManager.getInstance().addCyAnnounce(cb);
                 if (bn) {
-                    //开启一个新的计时器
+                    //Включено一个新的计时器
                     TaskTimerService.getInstance().StartAnnounceTask(cb.getCycleInterval());
                 }
-                GMLogUtil.log("发布即时公告:" + cb.getBatchTag() + "\t" + cb.getContent() + "\t结果：" + cb.getId());
-                return AjaxResult.info("添加新的公告成功!").put("ok",true);
+                GMLogUtil.log("发布Мгновенное объявление:" + cb.getBatchTag() + "\t" + cb.getContent() + "\tРезультат：" + cb.getId());
+                return AjaxResult.info("Добавить新的公告Успешно!").put("ok",true);
             } else {
-                return AjaxResult.info("添加新的公告内容失败了！").put("ok",false);
+                return AjaxResult.info("Добавить新的公告СодержимоеОшибка了！").put("ok",false);
             }
         } catch (ParseException e) {
             log.error(e.getMessage());
         }
 
-        return AjaxResult.info("处理失败！").put("ok",false);
+        return AjaxResult.info("处理Ошибка！").put("ok",false);
     }
 
     /**
-     * 改变循环公告的状态
+     * 改变Циклическое объявление的Статус
      * @param announceId
      * @param state
      * @param request
@@ -254,15 +254,15 @@ public class CyAnnounceController extends BaseController
         boolean b = num > 0;
         User user = ShiroUtils.getSysUser();
         if (user != null) {
-            GMLogUtil.log(String.format("更新公告状态，id: %s, state: %s, 结果 %s：", announceId, state, b));
+            GMLogUtil.log(String.format("Объявление об обновленииСтатус，id: %s, state: %s, Результат %s：", announceId, state, b));
         }
-        return AjaxResult.info("处理成功！").put("ok",b);
+        return AjaxResult.info("处理Успешно！").put("ok",b);
     }
 
 
 
     /**
-     * 删除循环公告
+     * УдалитьЦиклическое объявление
      * @param announceId
      * @param request
      * @return
@@ -275,7 +275,7 @@ public class CyAnnounceController extends BaseController
             return AjaxResult.info("查询的记录不存在！").put("ok",false);
         }
         CyAnnounceManager.getInstance().remove(ca);
-        GMLogUtil.log("删除发送公告\t" + announceId);
-        return AjaxResult.info("处理成功！").put("ok",true);
+        GMLogUtil.log("Удалить发送公告\t" + announceId);
+        return AjaxResult.info("处理Успешно！").put("ok",true);
     }
 }

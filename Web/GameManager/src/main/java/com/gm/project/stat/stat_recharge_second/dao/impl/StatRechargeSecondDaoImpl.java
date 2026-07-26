@@ -49,7 +49,7 @@ public class StatRechargeSecondDaoImpl extends BaseDao implements IStatRechargeS
 
 
     public List<Map<String, Object>> getFirstAndSecondRechargeList(String table, String serverId, String channelNames, String startDate, String endDate, String blackUserStr) {
-        //获取首充和二次充值的列表
+        //获取首充和二次Пополнение的列表
         String sqlStr = "SELECT r1.userId, r1.timesec,r1.totalFee,r1.itemId,r1.goodsId";
         sqlStr += " FROM " + table + " r1";
         sqlStr += " WHERE r1.status=1 AND r1.statusReason AND 2 > ( ";

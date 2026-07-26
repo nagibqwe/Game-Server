@@ -60,7 +60,7 @@ public class KickController extends BaseController
     }
 
     /**
-     * 账号封禁
+     * Блокировка аккаунта
      */
 //    @RequiresPermissions("gmtool:kick:kickRole")
     @PostMapping("/kickRole")
@@ -75,7 +75,7 @@ public class KickController extends BaseController
         try {
             List<RoleState> roles = gameRoleService.queryByRoleId(serverId, roleId, 0);
             if (roles == null || roles.isEmpty()) {
-                return AjaxResult.info("没有找到该账号信息").put("ok",false);
+                return AjaxResult.info("没有找到该账号Информация").put("ok",false);
             }
 
             TServer tserver = tServerService.selectTServerByServerId(serverId);

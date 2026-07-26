@@ -1,7 +1,7 @@
 package com.gm.project.gmtool.activity.domain;
 
 /**
- * 运营活动逻辑类型枚举
+ * Игровые события逻辑Тип枚举
  */
 public class ActivityType {
     /**
@@ -9,7 +9,7 @@ public class ActivityType {
      */
     public static final int GetActive = 1;
     /**
-     * 每日充值
+     * 每日Пополнение
      */
     public static final int DailyRecharge = 2;
     /**
@@ -21,11 +21,11 @@ public class ActivityType {
      */
     public static final int LimitGiftBag = 4;
     /**
-     * 天帝宝库（抽奖）
+     * День帝宝库（抽奖）
      */
     public static final int DrawReward = 5;
     /**
-     * 限时累充,累计充值
+     * 限时累充,累计Пополнение
      */
     public static final int LimitedTotalRecharge = 6;
     /**
@@ -70,17 +70,17 @@ public class ActivityType {
     public static final int ContinuousRecharge = 15;
 
     /**
-     * 16   限时商城
+     * 16   限时Магазин
      */
     public static final int LimitShopActivty = 16;
 
     /**
-     * 17   节日每日小额消费礼包（金元宝购买） 限时礼包
+     * 17   节日每日小额消费礼包（Золотые слитки购买） 限时礼包
      */
     public static final int HolidayDailyGift = 17;
 
     /**
-     * 18   积分排名
+     * 18   积分Место
      */
     public static final int HolidayScoreRank = 18;
 
@@ -145,7 +145,7 @@ public class ActivityType {
     public static final int xianJingTreasureHunt = 30;
 
 
-    //*****************预留运营活动类型*****************
+    //*****************预留Игровые событияТип*****************
     public static final int TempleActivity1 = 901;
 
     public static final int TempleActivity2 = 902;

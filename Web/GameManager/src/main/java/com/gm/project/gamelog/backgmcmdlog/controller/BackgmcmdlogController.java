@@ -27,7 +27,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 后台指令日志Controller
+ * 后台指令ЖурналController
  * 
  * @author gm
  * @date 2021-09-10
@@ -48,7 +48,7 @@ public class BackgmcmdlogController extends BaseController
         return prefix + "/backgmcmdlog";
     }
     /**
-     * 查询后台指令日志列表
+     * 查询后台指令Журнал列表
      */
     @RequiresPermissions("gamelog:backgmcmdlog:list")
     @PostMapping("/list")
@@ -56,10 +56,10 @@ public class BackgmcmdlogController extends BaseController
     public TableDataInfo list(Backgmcmdlog backgmcmdlog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         startPage();
@@ -67,10 +67,10 @@ public class BackgmcmdlogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出后台指令日志列表
+     * Экспорт后台指令Журнал列表
      */
     @RequiresPermissions("gamelog:backgmcmdlog:export")
-    @Log(title = "后台指令日志", businessType = BusinessType.EXPORT)
+    @Log(title = "后台指令Журнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Backgmcmdlog backgmcmdlog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -79,6 +79,6 @@ public class BackgmcmdlogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Backgmcmdlog> list = backgmcmdlogService.selectBackgmcmdlogList(backgmcmdlog,param);
         ExcelUtil<Backgmcmdlog> util = new ExcelUtil<Backgmcmdlog>(Backgmcmdlog.class);
-        return util.exportExcel(list, "后台指令日志数据");
+        return util.exportExcel(list, "后台指令ЖурналДанные");
     }
 }

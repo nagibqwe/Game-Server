@@ -23,7 +23,7 @@ import com.gm.project.monitor.online.domain.UserOnline;
 import com.gm.project.monitor.online.service.IUserOnlineService;
 
 /**
- * 在线用户监控
+ * В сети用户监控
  * 
  * @author ruoyi
  */
@@ -57,7 +57,7 @@ public class UserOnlineController extends BaseController
     }
 
     @RequiresPermissions(value = { "monitor:online:batchForceLogout", "monitor:online:forceLogout" }, logical = Logical.OR)
-    @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @Log(title = "В сети用户", businessType = BusinessType.FORCE)
     @PostMapping("/batchForceLogout")
     @ResponseBody
     public AjaxResult batchForceLogout(String ids)

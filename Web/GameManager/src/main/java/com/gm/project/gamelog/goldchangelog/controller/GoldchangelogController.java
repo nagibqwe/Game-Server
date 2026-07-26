@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 元宝变化日志Controller
+ * 元宝变化ЖурналController
  * 
  * @author gm
  * @date 2021-09-11
@@ -46,7 +46,7 @@ public class GoldchangelogController extends BaseController
         return prefix + "/goldchangelog";
     }
     /**
-     * 查询元宝变化日志列表
+     * 查询元宝变化Журнал列表
      */
     @RequiresPermissions("gamelog:goldchangelog:list")
     @PostMapping("/list")
@@ -54,10 +54,10 @@ public class GoldchangelogController extends BaseController
     public TableDataInfo list(Goldchangelog goldchangelog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         startPage();
@@ -65,10 +65,10 @@ public class GoldchangelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出元宝变化日志列表
+     * Экспорт元宝变化Журнал列表
      */
     @RequiresPermissions("gamelog:goldchangelog:export")
-    @Log(title = "元宝变化日志", businessType = BusinessType.EXPORT)
+    @Log(title = "元宝变化Журнал", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Goldchangelog goldchangelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class GoldchangelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Goldchangelog> list = goldchangelogService.selectGoldchangelogList(goldchangelog,param);
         ExcelUtil<Goldchangelog> util = new ExcelUtil<Goldchangelog>(Goldchangelog.class);
-        return util.exportExcel(list, "元宝变化日志数据");
+        return util.exportExcel(list, "元宝变化ЖурналДанные");
     }
 }

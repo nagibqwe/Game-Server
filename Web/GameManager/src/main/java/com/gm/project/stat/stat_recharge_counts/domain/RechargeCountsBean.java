@@ -13,9 +13,9 @@ public class RechargeCountsBean extends BaseEntity
     @Excel(name = "付费次数")
     private String rechargeTimes;
     /**
-     * 人数
+     * Количество
      */
-    @Excel(name = "人数")
+    @Excel(name = "Количество")
     private Float rechargeRoles;
     /**
      * 付费总额

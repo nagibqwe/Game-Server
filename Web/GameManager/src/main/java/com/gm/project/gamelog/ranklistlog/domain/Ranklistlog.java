@@ -11,7 +11,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 排行榜日志对象 log_ranklistlog
+ * РейтингЖурнал对象 log_ranklistlog
  * 
  * @author gm
  * @date 2021-09-08
@@ -27,12 +27,12 @@ public class Ranklistlog extends BaseEntity
     @Excel(name = "date")
     private String date;
 
-    /** 排行榜类型 */
-    @Excel(name = "排行榜类型")
+    /** РейтингТип */
+    @Excel(name = "РейтингТип")
     private Integer rankKind;
 
-    /** 排名 */
-    @Excel(name = "排名")
+    /** Место */
+    @Excel(name = "Место")
     private Integer rank;
 
     /** 角色Id */
@@ -40,21 +40,21 @@ public class Ranklistlog extends BaseEntity
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** 角色名 */
-    @Excel(name = "角色名")
+    /** Имя персонажа */
+    @Excel(name = "Имя персонажа")
     private String roleName;
 
-    /** 排行数据 */
-    @Excel(name = "排行数据")
+    /** Данные рейтинга */
+    @Excel(name = "Данные рейтинга")
     private String rankData;
 
-    /** 渠道 */
-    @Excel(name = "渠道")
+    /** Канал */
+    @Excel(name = "Канал")
     private String platformName;
 
-    /** 时间 */
+    /** Время */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "时间")
+    @Excel(name = "Время")
     private Long time;
 
 

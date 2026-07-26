@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 节日类型Controller
+ * Тип праздникаController
  * 
  * @author gm
  * @date 2021-09-09
@@ -43,7 +43,7 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * 查询节日类型列表
+     * 查询Тип праздника列表
      */
 //    @RequiresPermissions("gmtool:activityFestivalType:list")
     @PostMapping("/list")
@@ -56,21 +56,21 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * 导出节日类型列表
+     * ЭкспортТип праздника列表
      */
     @RequiresPermissions("gmtool:activityFestivalType:export")
-    @Log(title = "节日类型", businessType = BusinessType.EXPORT)
+    @Log(title = "Тип праздника", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(ActivityFestivalType activityFestivalType)
     {
         List<ActivityFestivalType> list = activityFestivalTypeService.selectActivityFestivalTypeList(activityFestivalType);
         ExcelUtil<ActivityFestivalType> util = new ExcelUtil<ActivityFestivalType>(ActivityFestivalType.class);
-        return util.exportExcel(list, "节日类型数据");
+        return util.exportExcel(list, "Тип праздникаДанные");
     }
 
     /**
-     * 新增节日类型
+     * ДобавитьТип праздника
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * 新增保存节日类型
+     * ДобавитьСохранитьТип праздника
      */
     @RequiresPermissions("gmtool:activityFestivalType:add")
-    @Log(title = "节日类型", businessType = BusinessType.INSERT)
+    @Log(title = "Тип праздника", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(ActivityFestivalType activityFestivalType)
@@ -91,7 +91,7 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * 修改节日类型
+     * ИзменитьТип праздника
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * 修改保存节日类型
+     * ИзменитьСохранитьТип праздника
      */
     @RequiresPermissions("gmtool:activityFestivalType:edit")
-    @Log(title = "节日类型", businessType = BusinessType.UPDATE)
+    @Log(title = "Тип праздника", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(ActivityFestivalType activityFestivalType)
@@ -114,10 +114,10 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * 删除节日类型
+     * УдалитьТип праздника
      */
     @RequiresPermissions("gmtool:activityFestivalType:remove")
-    @Log(title = "节日类型", businessType = BusinessType.DELETE)
+    @Log(title = "Тип праздника", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

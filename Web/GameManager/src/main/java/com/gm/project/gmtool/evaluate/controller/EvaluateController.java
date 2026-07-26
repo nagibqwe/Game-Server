@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * 评价开关Controller
+ * Оценки включеныController
  * 
  * @author gm
  * @date 2021-11-04
@@ -58,7 +58,7 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * 查询评价开关列表
+     * 查询Оценки включены列表
      */
 //    @RequiresPermissions("gmtool:evaluate:list")
     @PostMapping("/list")
@@ -73,21 +73,21 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * 导出评价开关列表
+     * ЭкспортОценки включены列表
      */
     @RequiresPermissions("gmtool:evaluate:export")
-    @Log(title = "评价开关", businessType = BusinessType.EXPORT)
+    @Log(title = "Оценки включены", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Evaluate evaluate)
     {
         List<Evaluate> list = evaluateService.selectEvaluateList(evaluate);
         ExcelUtil<Evaluate> util = new ExcelUtil<Evaluate>(Evaluate.class);
-        return util.exportExcel(list, "评价开关数据");
+        return util.exportExcel(list, "Оценки включеныДанные");
     }
 
     /**
-     * 新增评价开关
+     * ДобавитьОценки включены
      */
     @GetMapping("/add")
     public String add()
@@ -96,10 +96,10 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * 新增保存评价开关
+     * ДобавитьСохранитьОценки включены
      */
     @RequiresPermissions("gmtool:evaluate:add")
-    @Log(title = "评价开关", businessType = BusinessType.INSERT)
+    @Log(title = "Оценки включены", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Evaluate evaluate)
@@ -108,7 +108,7 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * 修改评价开关
+     * ИзменитьОценки включены
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -119,10 +119,10 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * 修改保存评价开关
+     * ИзменитьСохранитьОценки включены
      */
     @RequiresPermissions("gmtool:evaluate:edit")
-    @Log(title = "评价开关", businessType = BusinessType.UPDATE)
+    @Log(title = "Оценки включены", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Evaluate evaluate)
@@ -131,10 +131,10 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * 删除评价开关
+     * УдалитьОценки включены
      */
     @RequiresPermissions("gmtool:evaluate:remove")
-    @Log(title = "评价开关", businessType = BusinessType.DELETE)
+    @Log(title = "Оценки включены", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -156,27 +156,27 @@ public class EvaluateController extends BaseController
             //发送消息到GameServer
             TServer server = tServerService.selectTServerByServerId(evaluate.getServerId());
             if (server == null) {
-                return AjaxResult.info("服务器连接信息获取失败").put("ok",false);
+                return AjaxResult.info("Не удалось получить данные подключения к серверу").put("ok",false);
             }
             AjaxResult resultMap = GameServerRequestUtil.gmSetEvaluate(server, evaluate);
             String prompt;
             if (Boolean.valueOf(resultMap.get("ok").toString())) {
-                prompt = "操作成功！";
+                prompt = "Операция выполнена！";
                 evaluateService.insertEvaluate(evaluate);
             } else {
-                prompt = "操作失败！";
+                prompt = "Ошибка операции！";
             }
-            log.error("评价开关：sid=" + evaluate.getServerId() + ",操作结果:" + resultMap.get("msg").toString());
-            GMLogUtil.log("评价开关"+ evaluate.geteType()+",状态："+evaluate.getState());
+            log.error("Оценки включены：sid=" + evaluate.getServerId() + ",ДействияРезультат:" + resultMap.get("msg").toString());
+            GMLogUtil.log("Оценки включены"+ evaluate.geteType()+",Статус："+evaluate.getState());
             return AjaxResult.info(prompt).put("ok",Boolean.valueOf(resultMap.get("ok").toString()));
         } catch (Exception e) {
             log.error(e.getMessage());
-            return AjaxResult.info("操作失败").put("ok",false);
+            return AjaxResult.info("Ошибка операции").put("ok",false);
         }
     }
 
     /**
-     * 删除操作
+     * УдалитьДействия
      * @param id
      * @return
      */
@@ -187,9 +187,9 @@ public class EvaluateController extends BaseController
         if (evaluate != null) {
             evaluate.setIsDelete(1);
             int num = evaluateService.updateEvaluate(evaluate);
-            GMLogUtil.log("删除设置评价开关记录"+evaluate.getId());
-            return AjaxResult.info("删除成功！").put("ok",num == 1);
+            GMLogUtil.log("Удалить设置Оценки включены记录"+evaluate.getId());
+            return AjaxResult.info("УдалитьУспешно！").put("ok",num == 1);
         }
-        return AjaxResult.info("删除失败！").put("ok",false);
+        return AjaxResult.info("УдалитьОшибка！").put("ok",false);
     }
 }

@@ -91,7 +91,7 @@ public abstract class AbstractQuartzJob implements org.quartz.Job
             jobLog.setStatus(Constants.SUCCESS);
         }
 
-        // 写入数据库当中
+        // 写入Данные库当中
         SpringUtils.getBean(IJobLogService.class).addJobLog(jobLog);
     }
 

@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 货币变化日志Controller
+ * Журнал изменения валютыController
  * 
  * @author gm
  * @date 2021-11-08
@@ -45,7 +45,7 @@ public class CoinchangelogController extends BaseController
         return prefix + "/coinchangelog";
     }
     /**
-     * 查询货币变化日志列表
+     * 查询Журнал изменения валюты列表
      */
     @RequiresPermissions("gamelog:coinchangelog:list")
     @PostMapping("/list")
@@ -53,10 +53,10 @@ public class CoinchangelogController extends BaseController
     public TableDataInfo list(Coinchangelog coinchangelog,String startDate,String endDate,Integer serverId,Integer pageSize)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
 
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
@@ -65,10 +65,10 @@ public class CoinchangelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出货币变化日志列表
+     * ЭкспортЖурнал изменения валюты列表
      */
     @RequiresPermissions("gamelog:coinchangelog:export")
-    @Log(title = "货币变化日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Журнал изменения валюты", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Coinchangelog coinchangelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class CoinchangelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Coinchangelog> list = coinchangelogService.selectCoinchangelogList(coinchangelog,param);
         ExcelUtil<Coinchangelog> util = new ExcelUtil<Coinchangelog>(Coinchangelog.class);
-        return util.exportExcel(list, "货币变化日志数据");
+        return util.exportExcel(list, "Журнал изменения валютыДанные");
     }
 }

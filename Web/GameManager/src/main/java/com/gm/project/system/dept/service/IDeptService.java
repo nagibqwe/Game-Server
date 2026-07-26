@@ -6,38 +6,38 @@ import com.gm.project.system.dept.domain.Dept;
 import com.gm.project.system.role.domain.Role;
 
 /**
- * 部门管理 服务层
+ * Подразделения 服务层
  * 
  * @author ruoyi
  */
 public interface IDeptService
 {
     /**
-     * 查询部门管理数据
+     * 查询ПодразделенияДанные
      * 
-     * @param dept 部门信息
-     * @return 部门信息集合
+     * @param dept 部门Информация
+     * @return 部门Информация集合
      */
     public List<Dept> selectDeptList(Dept dept);
 
     /**
-     * 查询部门管理树
+     * 查询Подразделения树
      * 
-     * @param dept 部门信息
-     * @return 所有部门信息
+     * @param dept 部门Информация
+     * @return 所有部门Информация
      */
     public List<Ztree> selectDeptTree(Dept dept);
 
     /**
-     * 查询部门管理树（排除下级）
+     * 查询Подразделения树（排除下级）
      * 
-     * @param dept 部门信息
-     * @return 所有部门信息
+     * @param dept 部门Информация
+     * @return 所有部门Информация
      */
     public List<Ztree> selectDeptTreeExcludeChild(Dept dept);
 
     /**
-     * 根据角色ID查询菜单
+     * 根据ID персонажа查询菜单
      *
      * @param role 角色对象
      * @return 菜单列表
@@ -45,55 +45,55 @@ public interface IDeptService
     public List<Ztree> roleDeptTreeData(Role role);
 
     /**
-     * 查询部门人数
+     * 查询部门Количество
      * 
      * @param parentId 父部门ID
-     * @return 结果
+     * @return Результат
      */
     public int selectDeptCount(Long parentId);
 
     /**
-     * 查询部门是否存在用户
+     * 查询部门ДаНет存在用户
      * 
      * @param deptId 部门ID
-     * @return 结果 true 存在 false 不存在
+     * @return Результат true 存在 false 不存在
      */
     public boolean checkDeptExistUser(Long deptId);
 
     /**
-     * 删除部门管理信息
+     * УдалитьПодразделенияИнформация
      * 
      * @param deptId 部门ID
-     * @return 结果
+     * @return Результат
      */
     public int deleteDeptById(Long deptId);
 
     /**
-     * 新增保存部门信息
+     * ДобавитьСохранить部门Информация
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部门Информация
+     * @return Результат
      */
     public int insertDept(Dept dept);
 
     /**
-     * 修改保存部门信息
+     * ИзменитьСохранить部门Информация
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部门Информация
+     * @return Результат
      */
     public int updateDept(Dept dept);
 
     /**
-     * 根据部门ID查询信息
+     * 根据部门ID查询Информация
      * 
      * @param deptId 部门ID
-     * @return 部门信息
+     * @return 部门Информация
      */
     public Dept selectDeptById(Long deptId);
 
     /**
-     * 根据ID查询所有子部门（正常状态）
+     * 根据ID查询所有子部门（НормаСтатус）
      * 
      * @param deptId 部门ID
      * @return 子部门数
@@ -101,10 +101,10 @@ public interface IDeptService
     public int selectNormalChildrenDeptById(Long deptId);
 
     /**
-     * 校验部门名称是否唯一
+     * 校验Название подразделенияДаНет唯一
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部门Информация
+     * @return Результат
      */
     public String checkDeptNameUnique(Dept dept);
 }

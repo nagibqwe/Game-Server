@@ -34,7 +34,7 @@ public class AppearanceShow extends Activity implements IActivityCustom {
         String[] toFunctions = paramMap.get("toFunction");
 
         if (shows.length != toFunctions.length) {
-            throw new RuntimeException("===配置外观展示数据错误" );
+            throw new RuntimeException("===配置外观展示Данные错误" );
         }
 
         List<Object> showData = new ArrayList<>();

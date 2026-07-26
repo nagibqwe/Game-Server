@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 /**
- * 充值统计Service业务层处理
+ * Пополнение统计Service业务层处理
  * 
  * @author gm
  * @date 2021-09-13
@@ -27,7 +27,7 @@ public class StatRechargeAccumulateServiceImpl implements IStatRechargeAccumulat
 
 
     /**
-     * 累计充值统计
+     * 累计Пополнение统计
      * @param channelNames
      * @param selectServerIdList
      * @param startDate
@@ -40,7 +40,7 @@ public class StatRechargeAccumulateServiceImpl implements IStatRechargeAccumulat
             channelNames = "'" + channelNames + "'";
             channelNames = channelNames.replace(",", "','");
         }
-        //黑名单排除
+        //Чёрный список排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);

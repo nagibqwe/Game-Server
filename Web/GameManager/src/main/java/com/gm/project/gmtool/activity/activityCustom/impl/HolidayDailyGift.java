@@ -38,7 +38,7 @@ public class HolidayDailyGift extends Activity implements IActivityCustom {
         String[] reward = paramMap.get("rewards");
 
         if (i_day.length > maxLimitDay || reward.length != i_day.length) {
-            throw new RuntimeException("===数据错误");
+            throw new RuntimeException("===Данные错误");
         }
 
         TreeMap<Integer, Object> data = new TreeMap<>();
@@ -53,7 +53,7 @@ public class HolidayDailyGift extends Activity implements IActivityCustom {
             map.put("reward", ItemBean.split(reward[i]));
 
             if (data.containsKey(day)) {
-                throw new RuntimeException(" 重复的天 day=" + day);
+                throw new RuntimeException(" 重复的День day=" + day);
             }
             data.put(day, map);
         }

@@ -17,7 +17,7 @@ import java.util.*;
 public class StatRemainLtvServiceImpl {
 
     /**
-     * 数据库相关操作
+     * Данные库相关Действия
      */
     @Autowired
     public StatRemainDaoImpl statRemainDaoImpl;
@@ -27,29 +27,29 @@ public class StatRemainLtvServiceImpl {
     private StatLtvServiceImpl statLtvServiceImpl;
 
     /**
-     * 留存统计天数
+     * 留存统计День数
      */
     private static final int[] durDays = {1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,43,44,58,59,118,119};
 
     /**
-     * Ltv统计天数
+     * Ltv统计День数
      */
     private static final int[] ltvDays = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,43,44,58,59,118,119};
-    private static final String[] numType = {"平均LTV","当日LTV较前日增长率((今日-昨日)/昨日)","平均LTV增长倍率","当日新增LTV对比首日((今日-昨日)/首日)","当日增长LTV对比前日增长LTV趋势((今日-昨日)/(昨日-前日))",
+    private static final String[] numType = {"平均LTV","当日LTV较前日增长率((今日-昨日)/昨日)","平均LTV增长倍率","当日ДобавитьLTV对比首日((今日-昨日)/首日)","当日增长LTV对比前日增长LTV趋势((今日-昨日)/(昨日-前日))",
             "平均留存率","平均留存衰减趋势(今日/昨日)","平均付费留存","平均付费留存衰减趋势(今日/昨日)"};
 
     public TableDataInfo caclRemainLtv(String startDate, String endDate, String serverList,String remainType,String remainType2){
 
-        //region(留存相关数据)
-        //当前日期
+        //region(留存相关Данные)
+        //当前Дата
         String currDay =  DateUtils.getDate();
-        //所有记录 key 天 value 该天留存数据
+        //所有记录 key День value 该День留存Данные
         Map<String, Map<String,Object>> allStatNewUserRemainResult = new HashMap<>();
         //新用户留存
         List<Map<String,String>> statNewUserRemainList = new ArrayList<>();
         statRemainService.caclRemainCommon(startDate,endDate,serverList,remainType,allStatNewUserRemainResult,statNewUserRemainList,"","","",false);
 
-        //所有记录 key 天 value 该天留存数据
+        //所有记录 key День value 该День留存Данные
         Map<String, Map<String,Object>> allStatUserPayRemainResult = new HashMap<>();
         //付费用户留存
         List<Map<String,String>> statUserPayRemainList = new ArrayList<>();
@@ -57,12 +57,12 @@ public class StatRemainLtvServiceImpl {
         //endregion
 
 
-        //region(LTV相关数据)
-        //获取统计服日志
+        //region(LTV相关Данные)
+        //获取统计服Журнал
         DBClient dbClientGM = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.STAT_LOG);
-        //获取时间列表
+        //获取Время列表
         List<String> dateList = DateUtils.getDateList(startDate,endDate);
-        //所有记录 key 天 value 该天留存数据
+        //所有记录 key День value 该День留存Данные
         Map<String, Map<String,Object>> allStatLtvResult = new HashMap<>();
         //留存列表
         List<Map<String,String>> statLtvList = new ArrayList<>();
@@ -70,12 +70,12 @@ public class StatRemainLtvServiceImpl {
         statLtvServiceImpl.caclLtvCommon(dateList,statLtvList,dbClientGM,serverList,allStatLtvResult);
         //endregion
 
-        //最终发给客户端展示数据
+        //最终发给客户端展示Данные
         List<Map<String,String>> resultRows = new ArrayList<>();
         Map<String,String> avgLtv = getAvgLtv(allStatLtvResult,statLtvList);//平均ltv
         Map<String,String> currentLtvRate = getCurrentLtvRate(avgLtv,numType[1]);//当日LTV较前日增长率((今日-昨日)/昨日)
         Map<String,String> avgLtvIncreaseRate = getAvgLtvIncreaseRate(avgLtv,numType[2]);//平均LTV增长倍率(今日/首日)
-        Map<String,String> currentIncreaseLtv = getCurrentIncreaseLtv(avgLtv,numType[3]);//当日新增LTV对比首日((今日-昨日)/首日)
+        Map<String,String> currentIncreaseLtv = getCurrentIncreaseLtv(avgLtv,numType[3]);//当日ДобавитьLTV对比首日((今日-昨日)/首日)
         Map<String,String> currentIncreaseLtv2 = getCurrentIncreaseLtv2(avgLtv,numType[4]);//当日增长LTV对比前日增长LTV趋势((今日-昨日)/(昨日-前日))
         Map<String,String> avgRemain = getAvgRemain(allStatNewUserRemainResult,statNewUserRemainList,numType[5]);//平均留存率
         Map<String,String> avgRemainTrend = getAvgRemainTrend(avgRemain,numType[6]);//平均留存衰减趋势(今日/昨日)
@@ -104,7 +104,7 @@ public class StatRemainLtvServiceImpl {
      */
     private Map<String,String> getAvgLtv(Map<String, Map<String,Object>> allStatLtvResult,List<Map<String,String>> statLtvList){
         List<Map<String,String>> rows = new ArrayList<>();
-        //当前日期
+        //当前Дата
         String currDay =  DateUtils.getDate();
         Map<String,String> statLtvMap = null;
         for(int i = 0;i<statLtvList.size();i++){
@@ -134,7 +134,7 @@ public class StatRemainLtvServiceImpl {
 //                    }
                 }
             }
-            rows.add(statLtvMap);//ltv统计的原始数据
+            rows.add(statLtvMap);//ltv统计的原始Данные
         }
 
         Map<String,String> ltvMap = new HashMap<>();
@@ -160,9 +160,9 @@ public class StatRemainLtvServiceImpl {
         resultMap.put("numType",numType);
         for (Map.Entry<String,String> entry:avgLtv.entrySet()){
             if (entry.getKey().startsWith("keep")){
-                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前天
+                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前День
                 if (today > 1){
-                    int preDay = today - 1;//前一天
+                    int preDay = today - 1;//前一День
                     if (entry.getValue() != null && avgLtv.get("keep"+preDay) != null){
                         float preDayKeep = Float.parseFloat(avgLtv.get("keep"+preDay));
                         float todayKeep = Float.parseFloat(entry.getValue());
@@ -183,7 +183,7 @@ public class StatRemainLtvServiceImpl {
         resultMap.put("numType",numType);
         for (Map.Entry<String,String> entry:avgLtv.entrySet()){
             if (entry.getKey().startsWith("keep")){
-                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前天
+                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前День
                 if (today > 1){
                     float todayKeep = Float.parseFloat(entry.getValue());
                     float firstDayKeep = Float.parseFloat(avgLtv.get("keep1"));
@@ -199,9 +199,9 @@ public class StatRemainLtvServiceImpl {
         resultMap.put("numType",numType);
         for (Map.Entry<String,String> entry:avgLtv.entrySet()){
             if (entry.getKey().startsWith("keep")){
-                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前天
+                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前День
                 if (today > 1){
-                    int preDay = today - 1;//前一天
+                    int preDay = today - 1;//前一День
                     if (entry.getValue() != null && avgLtv.get("keep"+preDay) != null){
                         float todayKeep = Float.parseFloat(entry.getValue());
                         float preDayKeep = Float.parseFloat(avgLtv.get("keep"+preDay));
@@ -219,10 +219,10 @@ public class StatRemainLtvServiceImpl {
         resultMap.put("numType",numType);
         for (Map.Entry<String,String> entry:avgLtv.entrySet()){
             if (entry.getKey().startsWith("keep")){
-                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前天(今天)
+                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前День(Сегодня)
                 if (today > 2){
-                    int preDay = today - 1;//前一天(昨天)
-                    int pre2Day = preDay - 1;//前两天(前天)
+                    int preDay = today - 1;//前一День(昨День)
+                    int pre2Day = preDay - 1;//前两День(前День)
                     if (entry.getValue() != null && avgLtv.get("keep"+preDay) != null && avgLtv.get("keep"+pre2Day) != null){
                         float todayKeep = Float.parseFloat(entry.getValue());
                         float preDayKeep = Float.parseFloat(avgLtv.get("keep"+preDay));
@@ -246,14 +246,14 @@ public class StatRemainLtvServiceImpl {
      */
     private Map<String,String> getAvgRemain(Map<String, Map<String,Object>> allStatNewUserRemainResult,List<Map<String,String>> statNewUserRemainList,String numType){
         List<Map<String,String>> rows = new ArrayList<>();
-        //当前日期
+        //当前Дата
         String currDay =  DateUtils.getDate();
         Map<String,String> statRemainMap = null;
         for(int i = 0;i<statNewUserRemainList.size();i++){
             statRemainMap = statNewUserRemainList.get(i);
             String caclStartTime = statRemainMap.get("caclStartTime");
             int userRegCount = Integer.parseInt(statRemainMap.get("caclNewCount"));
-            rows.add(statRemainMap);//留存统计的原始数据
+            rows.add(statRemainMap);//留存统计的原始Данные
             Map<String,Object> dayResult = allStatNewUserRemainResult.get(caclStartTime);
             Map<String,Integer> keepLoginList  = (Map<String,Integer>)dayResult.get("keepLoginList");
             if(keepLoginList == null){
@@ -306,7 +306,7 @@ public class StatRemainLtvServiceImpl {
         for (int i = 0; i < rows.size(); i++){
             Map<String,String> row = rows.get(i);
             for (Map.Entry<String,String> entry:row.entrySet()){
-                if (entry.getKey().startsWith("keep")){//只需要取keep的数据
+                if (entry.getKey().startsWith("keep")){//只需要取keep的Данные
                     if (null == Map.get(entry.getKey())){
                         Map.put(entry.getKey(),entry.getValue());
                         preCount = 1;
@@ -339,9 +339,9 @@ public class StatRemainLtvServiceImpl {
         resultMap.put("numType",numType);
         for (Map.Entry<String,String> entry:avgRemain.entrySet()){
             if (entry.getKey().startsWith("keep")){
-                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前天
-                if (today > 2){//留存从第三天开始才有可以计算的数据
-                    int preDay = today - 1;//前一天
+                int today = Integer.parseInt(entry.getKey().split("keep")[1]);//当前День
+                if (today > 2){//留存从№三День开始才有可以计算的Данные
+                    int preDay = today - 1;//前一День
                     if (entry.getValue() != null && avgRemain.get("keep"+preDay) != null){
                         float preDayKeep = Float.parseFloat(avgRemain.get("keep"+preDay).split("%")[0])/100;
                         float todayKeep = Float.parseFloat(entry.getValue().split("%")[0])/100;

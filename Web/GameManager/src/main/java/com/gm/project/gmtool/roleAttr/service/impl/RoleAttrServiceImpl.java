@@ -9,7 +9,7 @@ import com.gm.project.gmtool.roleAttr.service.IRoleAttrService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 修改属性Service业务层处理
+ * Изменить характеристикиService业务层处理
  * 
  * @author gm
  * @date 2021-11-02
@@ -21,10 +21,10 @@ public class RoleAttrServiceImpl implements IRoleAttrService
     private RoleAttrMapper roleAttrMapper;
 
     /**
-     * 查询修改属性
+     * 查询Изменить характеристики
      * 
-     * @param id 修改属性ID
-     * @return 修改属性
+     * @param id Изменить характеристикиID
+     * @return Изменить характеристики
      */
     @Override
     public RoleAttr selectRoleAttrById(Integer id)
@@ -33,10 +33,10 @@ public class RoleAttrServiceImpl implements IRoleAttrService
     }
 
     /**
-     * 查询修改属性列表
+     * 查询Изменить характеристики列表
      * 
-     * @param roleAttr 修改属性
-     * @return 修改属性
+     * @param roleAttr Изменить характеристики
+     * @return Изменить характеристики
      */
     @Override
     public List<RoleAttr> selectRoleAttrList(RoleAttr roleAttr)
@@ -45,10 +45,10 @@ public class RoleAttrServiceImpl implements IRoleAttrService
     }
 
     /**
-     * 新增修改属性
+     * ДобавитьИзменить характеристики
      * 
-     * @param roleAttr 修改属性
-     * @return 结果
+     * @param roleAttr Изменить характеристики
+     * @return Результат
      */
     @Override
     public int insertRoleAttr(RoleAttr roleAttr)
@@ -57,10 +57,10 @@ public class RoleAttrServiceImpl implements IRoleAttrService
     }
 
     /**
-     * 修改修改属性
+     * ИзменитьИзменить характеристики
      * 
-     * @param roleAttr 修改属性
-     * @return 结果
+     * @param roleAttr Изменить характеристики
+     * @return Результат
      */
     @Override
     public int updateRoleAttr(RoleAttr roleAttr)
@@ -69,10 +69,10 @@ public class RoleAttrServiceImpl implements IRoleAttrService
     }
 
     /**
-     * 删除修改属性对象
+     * УдалитьИзменить характеристики对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteRoleAttrByIds(String ids)
@@ -81,10 +81,10 @@ public class RoleAttrServiceImpl implements IRoleAttrService
     }
 
     /**
-     * 删除修改属性信息
+     * УдалитьИзменить характеристикиИнформация
      * 
-     * @param id 修改属性ID
-     * @return 结果
+     * @param id Изменить характеристикиID
+     * @return Результат
      */
     @Override
     public int deleteRoleAttrById(Integer id)

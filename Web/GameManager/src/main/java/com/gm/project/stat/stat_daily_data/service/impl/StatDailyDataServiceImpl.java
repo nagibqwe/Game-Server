@@ -27,7 +27,7 @@ import java.util.*;
 public class StatDailyDataServiceImpl implements IStatDailyDataService {
 
     /**
-     * 数据库相关操作
+     * Данные库相关Действия
      */
     @Autowired
     public IStatDailyDataDao statDailyDataDao;
@@ -54,18 +54,18 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
      */
     public List<StatDailyDataBean> statDailyData(String selectGroupName, String selectServerIdList, String channelNames, String startDate, String endDate, Boolean isBlack){
         /**
-         * 天数对应的 统计数据
+         * День数对应的 统计Данные
          */
         Map<String, Map<String, String>> resultMap = new HashMap<>();
         String mapKey = "day";
         long stime =  StatUtil.getDataTime(startDate,endDate).first;
         long etime =  StatUtil.getDataTime(startDate,endDate).second;
-        //渠道名称
+        //Название канала
         if (!StringUtils.isBlank(channelNames)) {
             channelNames = "'" + channelNames + "'";
             channelNames = channelNames.replace(",", "','");
         }
-        //黑名单排除
+        //Чёрный список排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);
@@ -80,7 +80,7 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
         //激活用户激活
         List<Map<String, Object>>  activeUserList = this.statLoginDao.getActiveUserDataList(channelNames,selectServerIdList,blackUsers,stime,etime,isBlack);
 
-        //新增设备
+        //Добавить设备
         List<Map<String, Object>> newDeviceList = this.statRoleStateDao.getNewDeviceDataList(channelNames,selectServerIdList,blackUsers,startDate + " 00:00:00",endDate + " 23:59:59",isBlack);
         //活跃设备
         List<Map<String, Object>>  activeDeviceList = this.statLoginDao.getActiveDeviceDataList(channelNames,selectServerIdList,blackUsers,stime,etime,isBlack);
@@ -91,20 +91,20 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
         ThreeTuple< List<Map<String, Object>>,List<Map<String, Object>>,List<Map<String, Object>>>  statDailyDataCommon = this.statDailyDataCommon(selectGroupName,selectServerIdList,channelNames,startDate,endDate,blackUsers,isBlack);
 
         List<Map<String, Object>> newUserList = statDailyDataCommon.first;
-        //充值列表
+        //Пополнение列表
         List<Map<String, Object>> rechargeMap =  statDailyDataCommon.second;
-        //新增付费玩家人数   新增付费率=新增付费玩家人数/新增玩家人数
+        //Добавить付费玩家Количество   Добавить付费率=Добавить付费玩家Количество/Добавить玩家Количество
         List<Map<String, Object>> newRechargeUserList = statDailyDataCommon.third;
 
 
 
-        // 在线人数backend
+        // В сетиКоличествоbackend
 //        paraMap.put("startDate", startDate);
 //        paraMap.put("endDate", endDate);
 
 
         List<Map<String, Object>> onlineList = this.statDailyDataDao.getOnlineList(selectServerIdList,startDate,endDate);//  QueryUtil.getInstance().query(dao, sqlStr, table, paraMap);
-        List<String> initKeys = new ArrayList<>();// 初始化没有的数据
+        List<String> initKeys = new ArrayList<>();// 初始化没有的Данные
         initKeys.add("avgnum");
         if (!onlineList.isEmpty()) {
             List<String> addOnlineList = addOnlineResult(resultMap, onlineList, mapKey);
@@ -129,8 +129,8 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
             }
         }
 
-        //统计充值总额和充值人数
-        // 组装查询统计结果
+        //统计Пополнение总额和ПополнениеКоличество
+        // 组装查询统计Результат
         //System.out.println("rechargeMap===="+rechargeMap.toString());
         if (!rechargeMap.isEmpty()) {
             Map<String, List<Map<String, Object>>> dataMap = new TreeMap<>();
@@ -196,7 +196,7 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
         Map<String, Set<Object>> newDeviceNumMap;
 
         Map<String, Set<Object>> newRechargeUserMap;
-        //统计新增玩家、新增设备
+        //统计Добавить玩家、Добавить设备
         if (!newUserList.isEmpty()) {
 
             newUserNumMap = getAssembleMap(newUserList, mapKey, userKey);
@@ -209,7 +209,7 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
             getRMap(resultMap, newDeviceNumMap, "deviceaddnum");
         }
 
-        //统计新增付费玩家人数
+        //统计Добавить付费玩家Количество
         if (!newRechargeUserList.isEmpty()){
             newRechargeUserMap = getAssembleMap(newRechargeUserList,mapKey,userKey);
             getRMap(resultMap, newRechargeUserMap, "addRechargeNum");
@@ -330,8 +330,8 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
         String userKey = "userId";
         List<String> exFields = new ArrayList<>();
         exFields.add(mapKey);
-        List<Map<String, Object>> newUserList = new ArrayList<>();//新增玩家
-        //新注册用户
+        List<Map<String, Object>> newUserList = new ArrayList<>();//Добавить玩家
+        //新Зарегистрироваться用户
         List<Map<String, Object>> userRegisterDataList = this.statRoleStateDao.getUserRegisterDataList(channelNames,selectServerIdList,startDate,endDate);
         Map<String,String> createUsers = new HashMap<>();
         if(userRegisterDataList != null && userRegisterDataList.size()>0){
@@ -359,10 +359,10 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
                 newUserList.add(dayUser);
             }
         }
-        //充值列表
+        //Пополнение列表
         List<Map<String, Object>> rechargeMap =  this.statRechargeDao.getRechargeMapDataList(channelNames,selectServerIdList,blackUsers,stime,etime,isBlack);
-        //新增付费玩家人数   新增付费率=新增付费玩家人数/新增玩家人数
-        List<Map<String, Object>> newRechargeUserList = new ArrayList<>();//新增付费玩家人数
+        //Добавить付费玩家Количество   Добавить付费率=Добавить付费玩家Количество/Добавить玩家Количество
+        List<Map<String, Object>> newRechargeUserList = new ArrayList<>();//Добавить付费玩家Количество
         if (rechargeMap !=null && !rechargeMap.isEmpty()) {
             for (Map<String, Object> rechargeUserMap : rechargeMap) {
                 String rechargeUserId = rechargeUserMap.get("userId").toString();
@@ -388,7 +388,7 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
 
 
 
-    // 组装查询统计结果
+    // 组装查询统计Результат
     public Map<String, Set<Object>> getAssembleMap(List<Map<String, Object>> dataMap, String mapKey, String key) {
         Map<String, Set<Object>> activeNumMap = new HashMap<>();
 
@@ -412,7 +412,7 @@ public class StatDailyDataServiceImpl implements IStatDailyDataService {
 
 
 
-    //统计活跃玩家和活跃设备\新增玩家，新增设备
+    //统计活跃玩家和活跃设备\Добавить玩家，Добавить设备
     private void getRMap(Map<String, Map<String, String>> resultMap, Map<String, Set<Object>> activeNumMap, String activeKey) {
         Map<String, String> rMap;
         for (Map.Entry<String, Set<Object>> entry : activeNumMap.entrySet()) {

@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 商城对象 shop
+ * Магазин对象 shop
  * 
  * @author gm
  * @date 2021-09-23
@@ -19,32 +19,32 @@ public class Shop extends BaseEntity
     /** 商品唯一ID */
     private Integer ID;
 
-    /** 道具ID */
-    @Excel(name = "道具ID")
+    /** ID предмета */
+    @Excel(name = "ID предмета")
     private Integer itemID;
 
-    /** 所属商城 */
-    @Excel(name = "所属商城")
+    /** 所属Магазин */
+    @Excel(name = "所属Магазин")
     private Integer shopID;
 
-    /** 商城标签 */
-    @Excel(name = "商城标签")
+    /** Магазин标签 */
+    @Excel(name = "Магазин标签")
     private String shopType;
 
-    /** 标签ID */
-    @Excel(name = "标签ID")
+    /** ID метки */
+    @Excel(name = "ID метки")
     private Integer labelID;
 
-    /** 需求等级 */
-    @Excel(name = "需求等级")
+    /** 需求Уровень */
+    @Excel(name = "需求Уровень")
     private Integer level;
 
-    /** 职业限制 */
-    @Excel(name = "职业限制")
+    /** Класс限制 */
+    @Excel(name = "Класс限制")
     private Integer occupation;
 
-    /** 限购类型 */
-    @Excel(name = "限购类型")
+    /** 限购Тип */
+    @Excel(name = "限购Тип")
     private Integer limitType;
 
     /** 可购买次数 */
@@ -75,76 +75,76 @@ public class Shop extends BaseEntity
     @Excel(name = "排列优先级")
     private Integer sort;
 
-    /** 上架时间 */
-    @Excel(name = "上架时间")
+    /** Время публикации */
+    @Excel(name = "Время публикации")
     private String upTime;
 
-    /** 下架时间 */
-    @Excel(name = "下架时间")
+    /** Время снятия */
+    @Excel(name = "Время снятия")
     private String downTime;
 
-    /** 是否绑定 */
-    @Excel(name = "是否绑定")
+    /** ДаНет绑定 */
+    @Excel(name = "ДаНет绑定")
     private Integer bind;
 
-    /** 刷新使用货币类型 */
-    @Excel(name = "刷新使用货币类型")
+    /** Обновить使用Тип валюты */
+    @Excel(name = "Обновить使用Тип валюты")
     private Integer refreshCurrency;
 
-    /** 刷新货币消耗数量 */
-    @Excel(name = "刷新货币消耗数量")
+    /** Обновить货币消耗数量 */
+    @Excel(name = "Обновить货币消耗数量")
     private Integer refreshNum;
 
-    /** 是否修神锻体打折 */
-    @Excel(name = "是否修神锻体打折")
+    /** ДаНет修神锻体打折 */
+    @Excel(name = "ДаНет修神锻体打折")
     private Integer isDiscount;
 
     /** 购买需求军衔 */
     @Excel(name = "购买需求军衔")
     private Integer militaryLevel;
 
-    /** 购买需求帮会等级 */
-    @Excel(name = "购买需求帮会等级")
+    /** 购买需求帮会Уровень */
+    @Excel(name = "购买需求帮会Уровень")
     private Integer guildLevel;
 
-    /** 购买需要的仙盟商店的最低等级 */
-    @Excel(name = "购买需要的仙盟商店的最低等级")
+    /** 购买需要的仙盟商店的最低Уровень */
+    @Excel(name = "购买需要的仙盟商店的最低Уровень")
     private Integer guildShopLvlStart;
 
-    /** 购买需要的仙盟商店的最高等级 */
-    @Excel(name = "购买需要的仙盟商店的最高等级")
+    /** 购买需要的仙盟商店的最高Уровень */
+    @Excel(name = "购买需要的仙盟商店的最高Уровень")
     private Integer guildShopLvlEnd;
 
-    /** 购买需求最低世界等级 */
-    @Excel(name = "购买需求最低世界等级")
+    /** 购买需求最低世界Уровень */
+    @Excel(name = "购买需求最低世界Уровень")
     private Integer worldLvlStart;
 
-    /** 购买需求结束世界等级 */
-    @Excel(name = "购买需求结束世界等级")
+    /** 购买需求结束世界Уровень */
+    @Excel(name = "购买需求结束世界Уровень")
     private Integer worldLvlEnd;
 
-    /** 购买需求境界等级 */
-    @Excel(name = "购买需求境界等级")
+    /** 购买需求境界Уровень */
+    @Excel(name = "购买需求境界Уровень")
     private Integer vipLevel;
 
-    /** 商品的道具过期时间,年_月_日_时_分_秒,0则取duration */
-    @Excel(name = "商品的道具过期时间,年_月_日_时_分_秒,0则取duration")
+    /** 商品的道具过期Время,Год_Месяц_日_时_分_秒,0则取duration */
+    @Excel(name = "商品的道具过期Время,Год_Месяц_日_时_分_秒,0则取duration")
     private String overdue;
 
-    /** 持续时间 */
-    @Excel(name = "持续时间")
+    /** 持续Время */
+    @Excel(name = "持续Время")
     private Integer duration;
 
     /** 根据购买次数打折 */
     @Excel(name = "根据购买次数打折")
     private String countdiscount;
 
-    /** 上架时间 */
-    @Excel(name = "上架时间")
+    /** Время публикации */
+    @Excel(name = "Время публикации")
     private Integer openday;
 
-    /** 下架时间 */
-    @Excel(name = "下架时间")
+    /** Время снятия */
+    @Excel(name = "Время снятия")
     private Integer closeday;
 
     public void setID(Integer ID)

@@ -9,7 +9,7 @@ import com.gm.project.gmtool.recharge.service.IRechargeService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 后台模拟充值Service业务层处理
+ * Тестовое пополнение через GMService业务层处理
  * 
  * @author gm
  * @date 2021-11-28
@@ -21,10 +21,10 @@ public class RechargeServiceImpl implements IRechargeService
     private RechargeMapper rechargeMapper;
 
     /**
-     * 查询后台模拟充值
+     * 查询Тестовое пополнение через GM
      * 
-     * @param id 后台模拟充值ID
-     * @return 后台模拟充值
+     * @param id Тестовое пополнение через GMID
+     * @return Тестовое пополнение через GM
      */
     @Override
     public Recharge selectRechargeById(Long id)
@@ -33,10 +33,10 @@ public class RechargeServiceImpl implements IRechargeService
     }
 
     /**
-     * 查询后台模拟充值列表
+     * 查询Тестовое пополнение через GM列表
      * 
-     * @param recharge 后台模拟充值
-     * @return 后台模拟充值
+     * @param recharge Тестовое пополнение через GM
+     * @return Тестовое пополнение через GM
      */
     @Override
     public List<Recharge> selectRechargeList(Recharge recharge)
@@ -45,10 +45,10 @@ public class RechargeServiceImpl implements IRechargeService
     }
 
     /**
-     * 新增后台模拟充值
+     * ДобавитьТестовое пополнение через GM
      * 
-     * @param recharge 后台模拟充值
-     * @return 结果
+     * @param recharge Тестовое пополнение через GM
+     * @return Результат
      */
     @Override
     public int insertRecharge(Recharge recharge)
@@ -57,10 +57,10 @@ public class RechargeServiceImpl implements IRechargeService
     }
 
     /**
-     * 修改后台模拟充值
+     * ИзменитьТестовое пополнение через GM
      * 
-     * @param recharge 后台模拟充值
-     * @return 结果
+     * @param recharge Тестовое пополнение через GM
+     * @return Результат
      */
     @Override
     public int updateRecharge(Recharge recharge)
@@ -69,10 +69,10 @@ public class RechargeServiceImpl implements IRechargeService
     }
 
     /**
-     * 删除后台模拟充值对象
+     * УдалитьТестовое пополнение через GM对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteRechargeByIds(String ids)
@@ -81,10 +81,10 @@ public class RechargeServiceImpl implements IRechargeService
     }
 
     /**
-     * 删除后台模拟充值信息
+     * УдалитьТестовое пополнение через GMИнформация
      * 
-     * @param id 后台模拟充值ID
-     * @return 结果
+     * @param id Тестовое пополнение через GMID
+     * @return Результат
      */
     @Override
     public int deleteRechargeById(Long id)

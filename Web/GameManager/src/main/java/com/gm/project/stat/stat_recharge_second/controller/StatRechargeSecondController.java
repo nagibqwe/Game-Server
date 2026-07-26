@@ -50,10 +50,10 @@ public class StatRechargeSecondController extends BaseController
     @ResponseBody
     public  TableDataInfo statRechargeSecondTimeInterval(String selectGroupName,String selectServerIdList, String channelNames,String startDate, String endDate, Boolean isBlack){
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
        List<RechargeSecondTimeIntervaBean> dataList= this.statRechargeCountsService.statRechargeSecondTimeInterval(selectGroupName,selectServerIdList,channelNames,startDate,endDate,isBlack);
@@ -63,10 +63,10 @@ public class StatRechargeSecondController extends BaseController
     @ResponseBody
     public  TableDataInfo statRechargeSecondItem(String groupName,String selectServerIdList, String channelNames,String startDate, String endDate, boolean isBlack){
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
         List<RechargeSecondItemBean> dataList= this.statRechargeCountsService.statRechargeSecondItem(groupName,selectServerIdList,channelNames,startDate,endDate,isBlack);

@@ -4,25 +4,25 @@ import java.util.List;
 import com.gm.project.system.role.domain.RoleMenu;
 
 /**
- * 角色与菜单关联表 数据层
+ * 角色与菜单关联表 Данные层
  * 
  * @author ruoyi
  */
 public interface RoleMenuMapper
 {
     /**
-     * 通过角色ID删除角色和菜单关联
+     * 通过ID персонажаУдалить角色和菜单关联
      * 
-     * @param roleId 角色ID
-     * @return 结果
+     * @param roleId ID персонажа
+     * @return Результат
      */
     public int deleteRoleMenuByRoleId(Long roleId);
     
     /**
-     * 批量删除角色菜单关联信息
+     * 批量Удалить角色菜单关联Информация
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteRoleMenu(Long[] ids);
     
@@ -30,15 +30,15 @@ public interface RoleMenuMapper
      * 查询菜单使用数量
      * 
      * @param menuId 菜单ID
-     * @return 结果
+     * @return Результат
      */
     public int selectCountRoleMenuByMenuId(Long menuId);
     
     /**
-     * 批量新增角色菜单信息
+     * 批量Добавить角色菜单Информация
      * 
      * @param roleMenuList 角色菜单列表
-     * @return 结果
+     * @return Результат
      */
     public int batchRoleMenu(List<RoleMenu> roleMenuList);
 }

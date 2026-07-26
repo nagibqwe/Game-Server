@@ -11,42 +11,42 @@ import java.util.List;
 public interface INoticeService
 {
     /**
-     * 查询公告信息
+     * 查询公告Информация
      * 
      * @param noticeId 公告ID
-     * @return 公告信息
+     * @return 公告Информация
      */
     public Notice selectNoticeById(Long noticeId);
 
     /**
      * 查询公告列表
      * 
-     * @param notice 公告信息
+     * @param notice 公告Информация
      * @return 公告集合
      */
     public List<Notice> selectNoticeList(Notice notice);
 
     /**
-     * 新增公告
+     * Добавить公告
      * 
-     * @param notice 公告信息
-     * @return 结果
+     * @param notice 公告Информация
+     * @return Результат
      */
     public int insertNotice(Notice notice);
 
     /**
-     * 修改公告
+     * Изменить公告
      * 
-     * @param notice 公告信息
-     * @return 结果
+     * @param notice 公告Информация
+     * @return Результат
      */
     public int updateNotice(Notice notice);
 
     /**
-     * 删除公告信息
+     * Удалить公告Информация
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteNoticeByIds(String ids);
 }

@@ -20,7 +20,7 @@ import com.gm.project.monitor.operlog.domain.OperLog;
 import com.gm.project.monitor.operlog.service.IOperLogService;
 
 /**
- * 操作日志记录
+ * Журнал операций记录
  * 
  * @author ruoyi
  */
@@ -50,7 +50,7 @@ public class OperlogController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "操作日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Журнал операций", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:operlog:export")
     @PostMapping("/export")
     @ResponseBody
@@ -58,7 +58,7 @@ public class OperlogController extends BaseController
     {
         List<OperLog> list = operLogService.selectOperLogList(operLog);
         ExcelUtil<OperLog> util = new ExcelUtil<OperLog>(OperLog.class);
-        return util.exportExcel(list, "操作日志");
+        return util.exportExcel(list, "Журнал операций");
     }
 
     @RequiresPermissions("monitor:operlog:remove")
@@ -77,7 +77,7 @@ public class OperlogController extends BaseController
         return prefix + "/detail";
     }
     
-    @Log(title = "操作日志", businessType = BusinessType.CLEAN)
+    @Log(title = "Журнал операций", businessType = BusinessType.CLEAN)
     @RequiresPermissions("monitor:operlog:remove")
     @PostMapping("/clean")
     @ResponseBody

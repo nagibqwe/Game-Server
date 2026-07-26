@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.shop.domain.Shop;
 
 /**
- * 商城Service接口
+ * МагазинService接口
  * 
  * @author gm
  * @date 2021-09-23
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.shop.domain.Shop;
 public interface IShopService 
 {
     /**
-     * 查询商城
+     * 查询Магазин
      * 
-     * @param ID 商城ID
-     * @return 商城
+     * @param ID МагазинID
+     * @return Магазин
      */
     public Shop selectShopById(Integer ID);
 
     /**
-     * 查询商城列表
+     * 查询Магазин列表
      * 
-     * @param shop 商城
-     * @return 商城集合
+     * @param shop Магазин
+     * @return Магазин集合
      */
     public List<Shop> selectShopList(Shop shop);
 
     /**
-     * 新增商城
+     * ДобавитьМагазин
      * 
-     * @param shop 商城
-     * @return 结果
+     * @param shop Магазин
+     * @return Результат
      */
     public int insertShop(Shop shop);
 
     /**
-     * 修改商城
+     * ИзменитьМагазин
      * 
-     * @param shop 商城
-     * @return 结果
+     * @param shop Магазин
+     * @return Результат
      */
     public int updateShop(Shop shop);
 
     /**
-     * 批量删除商城
+     * 批量УдалитьМагазин
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteShopByIds(String ids);
 
     /**
-     * 删除商城信息
+     * УдалитьМагазинИнформация
      * 
-     * @param ID 商城ID
-     * @return 结果
+     * @param ID МагазинID
+     * @return Результат
      */
     public int deleteShopById(Integer ID);
 }

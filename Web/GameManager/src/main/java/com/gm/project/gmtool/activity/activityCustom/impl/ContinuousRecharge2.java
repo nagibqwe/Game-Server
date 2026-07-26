@@ -33,13 +33,13 @@ public class ContinuousRecharge2 extends Activity implements IActivityCustom {
     public Activity parseCustom(Map<String, String[]> paramMap) {
         String[] i_reachStrs = paramMap.get("i_reach");
         if (i_reachStrs.length <= 0) {
-            throw new RuntimeException("===数据错误");
+            throw new RuntimeException("===Данные错误");
         }
 
         String[] dayCountStrs = paramMap.get("dayCount");
         String[] i_day = paramMap.get("i_day");
         if (i_day.length > maxLimitDay) {
-            throw new RuntimeException("===数据错误,天数超过最大上限值");
+            throw new RuntimeException("===Данные错误,День数超过最大上限值");
         }
         String[] i_fixRewardGroup = paramMap.get("i_fixRewardGroup");
         String[] i_totalRewardGroup = paramMap.get("i_totalRewardGroup");
@@ -53,14 +53,14 @@ public class ContinuousRecharge2 extends Activity implements IActivityCustom {
             }
             int i_reach = Integer.parseInt(i_reachStrs[i]);
             if (i_reach < 0) {
-                throw new RuntimeException("===数据错误");
+                throw new RuntimeException("===Данные错误");
             }else if(i_reach == 0){
                 continue;
             }
 
             int dayCount = Integer.parseInt(dayCountStrs[i]);
             if(dayCount < 0 ){
-                throw new RuntimeException("===数据错误");
+                throw new RuntimeException("===Данные错误");
             }
 
             int start = totalDayCount;
@@ -71,7 +71,7 @@ public class ContinuousRecharge2 extends Activity implements IActivityCustom {
             for (int j = start; j < totalDayCount; j++) {
                 int day = Integer.parseInt(i_day[j]);
                 if (data.containsKey(day)) {
-                    throw new RuntimeException(" 重复的天 day=" + day);
+                    throw new RuntimeException(" 重复的День day=" + day);
                 }
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("day", day);
@@ -83,7 +83,7 @@ public class ContinuousRecharge2 extends Activity implements IActivityCustom {
         }
 
         if(dataMap.isEmpty()){
-            throw new RuntimeException("===数据错误");
+            throw new RuntimeException("===Данные错误");
         }
 
         HashMap<String, Object> resultMap = new HashMap<>();

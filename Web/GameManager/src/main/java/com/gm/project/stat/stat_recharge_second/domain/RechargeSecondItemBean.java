@@ -13,9 +13,9 @@ public class RechargeSecondItemBean {
     private String secondItem;
 
     /**
-     * 人数
+     * Количество
      */
-    @Excel(name = "人数")
+    @Excel(name = "Количество")
     private Integer roles;
 
     public String getSecondItem() {

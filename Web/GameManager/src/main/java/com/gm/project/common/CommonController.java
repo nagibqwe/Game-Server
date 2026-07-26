@@ -33,10 +33,10 @@ public class CommonController
     private ServerConfig serverConfig;
 
     /**
-     * 通用下载请求
+     * 通用Скачать请求
      * 
-     * @param fileName 文件名称
-     * @param delete 是否删除
+     * @param fileName 文件Название
+     * @param delete Удалён
      */
     @GetMapping("common/download")
     public void fileDownload(String fileName, Boolean delete, HttpServletResponse response, HttpServletRequest request)
@@ -45,7 +45,7 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(fileName))
             {
-                throw new Exception(StringUtils.format("文件名称({})非法，不允许下载。 ", fileName));
+                throw new Exception(StringUtils.format("文件Название({})非法，不允许Скачать。 ", fileName));
             }
             String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf("_") + 1);
             String filePath = GameManagerConfig.getDownloadPath() + fileName;
@@ -60,12 +60,12 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("下载文件失败", e);
+            log.error("Скачать文件Ошибка", e);
         }
     }
 
     /**
-     * 通用上传请求
+     * 通用Загрузить请求
      */
     @PostMapping("/common/upload")
     @ResponseBody
@@ -73,9 +73,9 @@ public class CommonController
     {
         try
         {
-            // 上传文件路径
+            // Загрузить文件路径
             String filePath = GameManagerConfig.getUploadPath();
-            // 上传并返回新文件名称
+            // Загрузить并Назад新文件Название
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfig.getUrl() + fileName;
             AjaxResult ajax = AjaxResult.success();
@@ -90,7 +90,7 @@ public class CommonController
     }
 
     /**
-     * 本地资源通用下载
+     * 本地资源通用Скачать
      */
     @GetMapping("/common/download/resource")
     public void resourceDownload(String resource, HttpServletRequest request, HttpServletResponse response)
@@ -100,13 +100,13 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(resource))
             {
-                throw new Exception(StringUtils.format("资源文件({})非法，不允许下载。 ", resource));
+                throw new Exception(StringUtils.format("资源文件({})非法，不允许Скачать。 ", resource));
             }
             // 本地资源路径
             String localPath = GameManagerConfig.getProfile();
-            // 数据库资源地址
+            // Данные库资源地址
             String downloadPath = localPath + StringUtils.substringAfter(resource, Constants.RESOURCE_PREFIX);
-            // 下载名称
+            // СкачатьНазвание
             String downloadName = StringUtils.substringAfterLast(downloadPath, "/");
             response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
             FileUtils.setAttachmentResponseHeader(response, downloadName);
@@ -114,7 +114,7 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("下载文件失败", e);
+            log.error("Скачать文件Ошибка", e);
         }
     }
 }

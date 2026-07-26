@@ -22,7 +22,7 @@ import com.gm.project.system.post.domain.Post;
 import com.gm.project.system.post.service.IPostService;
 
 /**
- * 岗位信息操作处理
+ * 岗位ИнформацияДействия处理
  * 
  * @author ruoyi
  */
@@ -52,7 +52,7 @@ public class PostController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
+    @Log(title = "Должности", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:post:export")
     @PostMapping("/export")
     @ResponseBody
@@ -60,11 +60,11 @@ public class PostController extends BaseController
     {
         List<Post> list = postService.selectPostList(post);
         ExcelUtil<Post> util = new ExcelUtil<Post>(Post.class);
-        return util.exportExcel(list, "岗位数据");
+        return util.exportExcel(list, "岗位Данные");
     }
 
     @RequiresPermissions("system:post:remove")
-    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
+    @Log(title = "Должности", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -80,7 +80,7 @@ public class PostController extends BaseController
     }
 
     /**
-     * 新增岗位
+     * Добавить岗位
      */
     @GetMapping("/add")
     public String add()
@@ -89,27 +89,27 @@ public class PostController extends BaseController
     }
 
     /**
-     * 新增保存岗位
+     * ДобавитьСохранить岗位
      */
     @RequiresPermissions("system:post:add")
-    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
+    @Log(title = "Должности", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated Post post)
     {
         if (UserConstants.POST_NAME_NOT_UNIQUE.equals(postService.checkPostNameUnique(post)))
         {
-            return error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return error("Добавить岗位'" + post.getPostName() + "'Ошибка，岗位Название已存在");
         }
         else if (UserConstants.POST_CODE_NOT_UNIQUE.equals(postService.checkPostCodeUnique(post)))
         {
-            return error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return error("Добавить岗位'" + post.getPostName() + "'Ошибка，岗位编码已存在");
         }
         return toAjax(postService.insertPost(post));
     }
 
     /**
-     * 修改岗位
+     * Изменить岗位
      */
     @GetMapping("/edit/{postId}")
     public String edit(@PathVariable("postId") Long postId, ModelMap mmap)
@@ -119,27 +119,27 @@ public class PostController extends BaseController
     }
 
     /**
-     * 修改保存岗位
+     * ИзменитьСохранить岗位
      */
     @RequiresPermissions("system:post:edit")
-    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
+    @Log(title = "Должности", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated Post post)
     {
         if (UserConstants.POST_NAME_NOT_UNIQUE.equals(postService.checkPostNameUnique(post)))
         {
-            return error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return error("Изменить岗位'" + post.getPostName() + "'Ошибка，岗位Название已存在");
         }
         else if (UserConstants.POST_CODE_NOT_UNIQUE.equals(postService.checkPostCodeUnique(post)))
         {
-            return error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return error("Изменить岗位'" + post.getPostName() + "'Ошибка，岗位编码已存在");
         }
         return toAjax(postService.updatePost(post));
     }
 
     /**
-     * 校验岗位名称
+     * 校验岗位Название
      */
     @PostMapping("/checkPostNameUnique")
     @ResponseBody

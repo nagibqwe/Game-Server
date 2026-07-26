@@ -10,7 +10,7 @@ import com.gm.project.gmtool.allMail.service.IAllMailDataService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 全服邮件Service业务层处理
+ * Письмо всем серверамService业务层处理
  * 
  * @author gm
  * @date 2021-08-30
@@ -22,10 +22,10 @@ public class AllMailDataServiceImpl implements IAllMailDataService
     private AllMailDataMapper allMailDataMapper;
 
     /**
-     * 查询全服邮件
+     * 查询Письмо всем серверам
      * 
-     * @param id 全服邮件ID
-     * @return 全服邮件
+     * @param id Письмо всем серверамID
+     * @return Письмо всем серверам
      */
     @Override
     public AllMailData selectAllMailDataById(Long id)
@@ -34,10 +34,10 @@ public class AllMailDataServiceImpl implements IAllMailDataService
     }
 
     /**
-     * 查询全服邮件列表
+     * 查询全服Список писем
      * 
-     * @param allMailData 全服邮件
-     * @return 全服邮件
+     * @param allMailData Письмо всем серверам
+     * @return Письмо всем серверам
      */
     @Override
     public List<AllMailData> selectAllMailDataList(AllMailData allMailData)
@@ -46,10 +46,10 @@ public class AllMailDataServiceImpl implements IAllMailDataService
     }
 
     /**
-     * 新增全服邮件
+     * ДобавитьПисьмо всем серверам
      * 
-     * @param allMailData 全服邮件
-     * @return 结果
+     * @param allMailData Письмо всем серверам
+     * @return Результат
      */
     @Override
     public int insertAllMailData(AllMailData allMailData)
@@ -58,10 +58,10 @@ public class AllMailDataServiceImpl implements IAllMailDataService
     }
 
     /**
-     * 修改全服邮件
+     * ИзменитьПисьмо всем серверам
      * 
-     * @param allMailData 全服邮件
-     * @return 结果
+     * @param allMailData Письмо всем серверам
+     * @return Результат
      */
     @Override
     public int updateAllMailData(AllMailData allMailData)
@@ -70,10 +70,10 @@ public class AllMailDataServiceImpl implements IAllMailDataService
     }
 
     /**
-     * 删除全服邮件对象
+     * УдалитьПисьмо всем серверам对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteAllMailDataByIds(String ids)
@@ -82,10 +82,10 @@ public class AllMailDataServiceImpl implements IAllMailDataService
     }
 
     /**
-     * 删除全服邮件信息
+     * УдалитьПисьмо всем серверамИнформация
      * 
-     * @param id 全服邮件ID
-     * @return 结果
+     * @param id Письмо всем серверамID
+     * @return Результат
      */
     @Override
     public int deleteAllMailDataById(Long id)

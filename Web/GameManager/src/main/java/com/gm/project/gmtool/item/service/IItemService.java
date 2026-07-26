@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.item.domain.Item;
 
 /**
- * 道具装备Service接口
+ * Предметы и экипировкаService接口
  * 
  * @author gm
  * @date 2021-08-31
@@ -12,55 +12,55 @@ import com.gm.project.gmtool.item.domain.Item;
 public interface IItemService 
 {
     /**
-     * 查询道具装备
+     * 查询Предметы и экипировка
      * 
-     * @param itemId 道具装备ID
-     * @return 道具装备
+     * @param itemId Предметы и экипировкаID
+     * @return Предметы и экипировка
      */
     public Item selectItemById(Integer itemId);
 
     /**
-     * 查询道具装备列表
+     * 查询Предметы и экипировка列表
      * 
-     * @param item 道具装备
-     * @return 道具装备集合
+     * @param item Предметы и экипировка
+     * @return Предметы и экипировка集合
      */
     public List<Item> selectItemList(Item item);
 
     /**
-     * 新增道具装备
+     * ДобавитьПредметы и экипировка
      * 
-     * @param item 道具装备
-     * @return 结果
+     * @param item Предметы и экипировка
+     * @return Результат
      */
     public int insertItem(Item item);
 
     /**
-     * 修改道具装备
+     * ИзменитьПредметы и экипировка
      * 
-     * @param item 道具装备
-     * @return 结果
+     * @param item Предметы и экипировка
+     * @return Результат
      */
     public int updateItem(Item item);
 
     /**
-     * 批量删除道具装备
+     * 批量УдалитьПредметы и экипировка
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteItemByIds(String ids);
 
     /**
-     * 删除道具装备信息
+     * УдалитьПредметы и экипировкаИнформация
      * 
-     * @param itemId 道具装备ID
-     * @return 结果
+     * @param itemId Предметы и экипировкаID
+     * @return Результат
      */
     public int deleteItemById(Integer itemId);
 
     /**
-     * 清空道具装备数据
+     * 清空Предметы и экипировкаДанные
      * @param tableName
      */
     public void clearItem(String tableName);

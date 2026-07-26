@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 角色等级分布Dao接口
+ * Уровень персонажа分布Dao接口
  * 
  * @author gm
  * @date 2021-08-06
@@ -18,7 +18,7 @@ import java.util.Map;
 public interface IStatLevelDistributeDao
 {
     /**
-     * 离线时候的等级分布
+     * 离线时候的Уровень分布
      * @param channelNames
      * @param serverId
      * @param level
@@ -29,7 +29,7 @@ public interface IStatLevelDistributeDao
      List<StatLevelDistribute> getLevelDistributeListByCondition0(DBClient logDBClient,String tableName, String channelNames, String serverId, String level, String startDate, String endDate);
 
     /**
-     * 离线后加上离线挂机的等级分布
+     * 离线后加上离线挂机的Уровень分布
      * @param channelNames
      * @param serverId
      * @param level

@@ -7,19 +7,19 @@ public class RechargeItemLogGrid {
      */
     private int id;
     /**
-     * 修改人名
+     * Изменить人名
      */
     private String userName;
     /**
-     * 修改时间
+     * Время изменения
      */
     private String time;
     /**
-     * 操作表名
+     * Действия表名
      */
     private String tableName;
     /**
-     * 操作内容(详情)
+     * ДействияСодержимое(Подробнее)
      */
     private String content;
 

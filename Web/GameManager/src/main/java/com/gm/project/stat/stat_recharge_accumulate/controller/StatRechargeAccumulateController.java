@@ -16,7 +16,7 @@ import java.util.List;
 
 
 /**
- * 充值累计统计Controller
+ * Пополнение累计统计Controller
  * 
  * @author gm
  * @date 2021-09-13
@@ -29,7 +29,7 @@ public class StatRechargeAccumulateController extends BaseController
     @Autowired
     private IStatRechargeAccumulateService statRechargeAccumulateService;
     /**
-     * 跳转到充值统计界面
+     * 跳转到Пополнение统计界面
      * @return
      */
     @GetMapping("/to_stat_recharge_accumulate")
@@ -38,7 +38,7 @@ public class StatRechargeAccumulateController extends BaseController
         return prefix + "/stat_recharge_accumulate";
     }
     /**
-     * 累计充值统计
+     * 累计Пополнение统计
      * @param channelNames
      * @param selectServerIdList
      * @param startDate
@@ -48,10 +48,10 @@ public class StatRechargeAccumulateController extends BaseController
     @ResponseBody
     public  TableDataInfo statRechargeAccumulate(String selectGroupName, String selectServerIdList,String channelNames,String startDate, String endDate,Boolean isBlack){
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
         List<RechargeAccumulateBean> list = this.statRechargeAccumulateService.statRechargeAccumulate(selectGroupName,selectServerIdList,channelNames,startDate,endDate,isBlack);

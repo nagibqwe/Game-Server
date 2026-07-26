@@ -28,34 +28,34 @@ public interface IActivityLuckyValueService
     public List<ActivityLuckyValue> selectActivityLuckyValueList(ActivityLuckyValue activityLuckyValue);
 
     /**
-     * 新增抽奖幸运值
+     * Добавить抽奖幸运值
      * 
      * @param activityLuckyValue 抽奖幸运值
-     * @return 结果
+     * @return Результат
      */
     public int insertActivityLuckyValue(ActivityLuckyValue activityLuckyValue);
 
     /**
-     * 修改抽奖幸运值
+     * Изменить抽奖幸运值
      * 
      * @param activityLuckyValue 抽奖幸运值
-     * @return 结果
+     * @return Результат
      */
     public int updateActivityLuckyValue(ActivityLuckyValue activityLuckyValue);
 
     /**
-     * 批量删除抽奖幸运值
+     * 批量Удалить抽奖幸运值
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteActivityLuckyValueByIds(String ids);
 
     /**
-     * 删除抽奖幸运值信息
+     * Удалить抽奖幸运值Информация
      * 
      * @param id 抽奖幸运值ID
-     * @return 结果
+     * @return Результат
      */
     public int deleteActivityLuckyValueById(Integer id);
 }

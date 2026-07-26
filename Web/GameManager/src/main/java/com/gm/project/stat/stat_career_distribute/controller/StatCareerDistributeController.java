@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 职业分布Controller
+ * Класс分布Controller
  * 
  * @author gm
  * @date 2021-09-07
@@ -44,7 +44,7 @@ public class StatCareerDistributeController extends BaseController
     }
 
     /**
-     * 查询职业分布列表
+     * 查询Класс分布列表
      */
     @RequiresPermissions("stat:stat_career_distribute:list")
     @PostMapping("/list")
@@ -52,7 +52,7 @@ public class StatCareerDistributeController extends BaseController
     public TableDataInfo list(StatCareerDistribute statCareerDistribute,String channelNames,Integer serverId)
     {
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
 
         startPage();
@@ -61,16 +61,16 @@ public class StatCareerDistributeController extends BaseController
     }
 
     /**
-     * 导出职业分布列表
+     * ЭкспортКласс分布列表
      */
     @RequiresPermissions("stat:stat_career_distribute:export")
-    @Log(title = "职业分布", businessType = BusinessType.EXPORT)
+    @Log(title = "Класс分布", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(StatCareerDistribute statCareerDistribute,String channelNames,Integer serverId)
     {
         List<StatCareerDistribute> list = statCareerDistributeService.selectStatCareerDistributeList(statCareerDistribute,channelNames,serverId);
         ExcelUtil<StatCareerDistribute> util = new ExcelUtil<StatCareerDistribute>(StatCareerDistribute.class);
-        return util.exportExcel(list, "职业分布数据");
+        return util.exportExcel(list, "Класс分布Данные");
     }
 }

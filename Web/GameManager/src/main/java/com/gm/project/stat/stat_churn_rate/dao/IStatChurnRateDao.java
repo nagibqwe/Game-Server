@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface IStatChurnRateDao {
     /**
-     * 获取选择时间内所有登录用户
+     * 获取选择Время内所有登录用户
      * @param dbClient
      * @param channelNames
      * @param table
@@ -19,7 +19,7 @@ public interface IStatChurnRateDao {
     public  List<Map<String, Object>> getAllUserDataList(DBClient dbClient, String channelNames, String table, String startDate, String endDate);
 
     /**
-     * 得到充值数据
+     * 得到ПополнениеДанные
      * @param dbClient
      * @param channelNames
      * @param selectServerIdList

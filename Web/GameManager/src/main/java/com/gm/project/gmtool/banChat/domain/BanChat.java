@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 聊天封禁对象 t_ban_chat
+ * 聊День封禁对象 t_ban_chat
  * 
  * @author gm
  * @date 2021-11-20
@@ -19,32 +19,32 @@ public class BanChat extends BaseEntity
     /**  */
     private Long id;
 
-    /** 聊天禁言的账号 */
-    @Excel(name = "聊天禁言的账号")
+    /** 聊День禁言的账号 */
+    @Excel(name = "聊День禁言的账号")
     private String userId;
 
-    /** 违规类型 1黑色产业 2不良信息 */
-    @Excel(name = "违规类型 1黑色产业 2不良信息")
+    /** 违规Тип 1黑色产业 2不良Информация */
+    @Excel(name = "违规Тип 1黑色产业 2不良Информация")
     private Integer crimeType;
 
-    /** 禁言类型 1:工作室禁言2:全文替换禁言3:关键字替换禁言4:常规禁言5:隐形禁言6:隔离禁言 */
-    @Excel(name = "禁言类型 1:工作室禁言2:全文替换禁言3:关键字替换禁言4:常规禁言5:隐形禁言6:隔离禁言")
+    /** 禁言Тип 1:工作室禁言2:全文替换禁言3:关键字替换禁言4:常规禁言5:隐形禁言6:隔离禁言 */
+    @Excel(name = "禁言Тип 1:工作室禁言2:全文替换禁言3:关键字替换禁言4:常规禁言5:隐形禁言6:隔离禁言")
     private Integer banType;
 
-    /** 封禁结束时间 */
-    @Excel(name = "封禁结束时间")
+    /** Окончание блокировки */
+    @Excel(name = "Окончание блокировки")
     private String endTime;
 
-    /** 操作理由 */
-    @Excel(name = "操作理由")
+    /** Причина */
+    @Excel(name = "Причина")
     private String reason;
 
     /** 发送到游戏服列表 */
     @Excel(name = "发送到游戏服列表")
     private String serverIds;
 
-    /** 状态0:封禁1:解封 */
-    @Excel(name = "状态0:封禁1:解封")
+    /** Статус: 0 — заблокирован, 1 — разблокирован */
+    @Excel(name = "Статус: 0 — заблокирован, 1 — разблокирован")
     private Integer state;
 
     public void setId(Long id)

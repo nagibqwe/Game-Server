@@ -17,7 +17,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 角色等级分布Controller
+ * Уровень персонажа分布Controller
  * 
  * @author gm
  * @date 2021-08-06
@@ -40,7 +40,7 @@ public class StatLevelDistributeController extends BaseController
     }
 
     /**
-     * 查询角色等级分布列表
+     * 查询Уровень персонажа分布列表
      */
     @RequiresPermissions("stat:stat_level_distribute:list")
     @PostMapping("/list")
@@ -48,10 +48,10 @@ public class StatLevelDistributeController extends BaseController
     public TableDataInfo list(StatLevelDistribute statLevelDistribute,String channelNames,  Integer condition, Integer level,String startDate,String endDate,Integer serverId)
     {
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         startPage();
         List<StatLevelDistribute> list =  statLevelDistributeService.selectStatLevelDistributeList(channelNames,condition,level,statLevelDistribute,startDate,endDate,serverId);

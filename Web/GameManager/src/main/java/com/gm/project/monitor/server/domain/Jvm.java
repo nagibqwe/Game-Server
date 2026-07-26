@@ -5,7 +5,7 @@ import com.gm.common.utils.Arith;
 import com.gm.common.utils.DateUtils;
 
 /**
- * JVM相关信息
+ * JVM相关Информация
  * 
  * @author ruoyi
  */
@@ -77,7 +77,7 @@ public class Jvm
     }
 
     /**
-     * 获取JDK名称
+     * 获取JDKНазвание
      */
     public String getName()
     {
@@ -105,7 +105,7 @@ public class Jvm
     }
 
     /**
-     * JDK启动时间
+     * JDK启动Время
      */
     public String getStartTime()
     {
@@ -113,7 +113,7 @@ public class Jvm
     }
 
     /**
-     * JDK运行时间
+     * JDK运行Время
      */
     public String getRunTime()
     {

@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 反馈日志对象 log_feedbacklog
+ * 反馈Журнал对象 log_feedbacklog
  * 
  * @author gm
  * @date 2021-09-10
@@ -21,17 +21,17 @@ public class Feedbacklog extends BaseEntity
     /**  */
     private Long id;
 
-    /** 时间 */
-    @Excel(name = "时间")
+    /** Время */
+    @Excel(name = "Время")
     private Long time;
 
-    /** 角色ID */
-    @Excel(name = "角色ID")
+    /** ID персонажа */
+    @Excel(name = "ID персонажа")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** 角色名 */
-    @Excel(name = "角色名")
+    /** Имя персонажа */
+    @Excel(name = "Имя персонажа")
     private String roleName;
 
     /** sender */

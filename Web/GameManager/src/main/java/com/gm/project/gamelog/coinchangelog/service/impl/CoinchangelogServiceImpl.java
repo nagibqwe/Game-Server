@@ -16,7 +16,7 @@ import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 
 /**
- * 货币变化日志Service业务层处理
+ * Журнал изменения валютыService业务层处理
  *
  * @author gm
  * @date 2021-11-08
@@ -26,10 +26,10 @@ public class CoinchangelogServiceImpl implements ICoinchangelogService {
 
 
     /**
-     * 查询货币变化日志列表
+     * 查询Журнал изменения валюты列表
      *
-     * @param coinchangelog 货币变化日志
-     * @return 货币变化日志
+     * @param coinchangelog Журнал изменения валюты
+     * @return Журнал изменения валюты
      */
     @Override
     public List<Coinchangelog> selectCoinchangelogList(Coinchangelog coinchangelog, Map<String, Object> param) {

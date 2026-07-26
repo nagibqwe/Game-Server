@@ -15,7 +15,7 @@ import com.gm.project.gamelog.goldchangelog.service.IGoldchangelogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * 元宝变化日志Service业务层处理
+ * 元宝变化ЖурналService业务层处理
  * 
  * @author gm
  * @date 2021-09-11
@@ -26,10 +26,10 @@ public class GoldchangelogServiceImpl implements IGoldchangelogService
 
 
     /**
-     * 查询元宝变化日志列表
+     * 查询元宝变化Журнал列表
      * 
-     * @param goldchangelog 元宝变化日志
-     * @return 元宝变化日志
+     * @param goldchangelog 元宝变化Журнал
+     * @return 元宝变化Журнал
      */
     @Override
     public List<Goldchangelog> selectGoldchangelogList(Goldchangelog goldchangelog,Map<String, Object> param)

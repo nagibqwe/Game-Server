@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.function.domain.Function;
 
 /**
- * 游戏功能列表Service接口
+ * Функции игрыService接口
  * 
  * @author gm
  * @date 2021-10-26
@@ -12,55 +12,55 @@ import com.gm.project.gmtool.function.domain.Function;
 public interface IFunctionService 
 {
     /**
-     * 查询游戏功能列表
+     * 查询Функции игры
      * 
-     * @param funcId 游戏功能列表ID
-     * @return 游戏功能列表
+     * @param funcId Функции игрыID
+     * @return Функции игры
      */
     public Function selectFunctionById(Integer funcId);
 
     /**
-     * 查询游戏功能列表列表
+     * 查询Функции игры列表
      * 
-     * @param function 游戏功能列表
-     * @return 游戏功能列表集合
+     * @param function Функции игры
+     * @return Функции игры集合
      */
     public List<Function> selectFunctionList(Function function);
 
     /**
-     * 新增游戏功能列表
+     * ДобавитьФункции игры
      * 
-     * @param function 游戏功能列表
-     * @return 结果
+     * @param function Функции игры
+     * @return Результат
      */
     public int insertFunction(Function function);
 
     /**
-     * 修改游戏功能列表
+     * ИзменитьФункции игры
      * 
-     * @param function 游戏功能列表
-     * @return 结果
+     * @param function Функции игры
+     * @return Результат
      */
     public int updateFunction(Function function);
 
     /**
-     * 批量删除游戏功能列表
+     * 批量УдалитьФункции игры
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteFunctionByIds(String ids);
 
     /**
-     * 删除游戏功能列表信息
+     * УдалитьФункции игрыИнформация
      * 
-     * @param funcId 游戏功能列表ID
-     * @return 结果
+     * @param funcId Функции игрыID
+     * @return Результат
      */
     public int deleteFunctionById(Integer funcId);
 
     /**
-     * 删除全部的游戏功能
+     * Удалить全部的游戏功能
      * @return
      */
     public int deleteAllFunctions();

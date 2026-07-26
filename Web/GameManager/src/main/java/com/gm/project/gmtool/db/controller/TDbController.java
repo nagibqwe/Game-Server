@@ -52,7 +52,7 @@ public class TDbController extends BaseController
     }
 
     /**
-     * 查询日志库列列表
+     * 查询Журнал库列列表
      */
     @RequiresPermissions("gmtool:db:list")
     @PostMapping("/list")
@@ -65,21 +65,21 @@ public class TDbController extends BaseController
     }
 
     /**
-     * 导出日志库列列表
+     * ЭкспортЖурнал库列列表
      */
     @RequiresPermissions("gmtool:db:export")
-    @Log(title = "日志库列", businessType = BusinessType.EXPORT)
+    @Log(title = "Журнал库列", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(TDb tDb)
     {
         List<TDb> list = tDbService.selectTDbList(tDb);
         ExcelUtil<TDb> util = new ExcelUtil<TDb>(TDb.class);
-        return util.exportExcel(list, "日志库列数据");
+        return util.exportExcel(list, "Журнал库列Данные");
     }
 
     /**
-     * 新增日志库列
+     * ДобавитьЖурнал库列
      */
     @GetMapping("/add")
     public String add()
@@ -88,23 +88,23 @@ public class TDbController extends BaseController
     }
 
     /**
-     * 新增保存日志库列
+     * ДобавитьСохранитьЖурнал库列
      */
     @RequiresPermissions("gmtool:db:add")
-    @Log(title = "日志库列", businessType = BusinessType.INSERT)
+    @Log(title = "Журнал库列", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(TDb tDb)
     {
         int row = tDbService.insertTDb(tDb);
         if (row > 0){
-            GMLogUtil.log("增加逻辑服数据库信息，Id:" + tDb.getId());
+            GMLogUtil.log("增加逻辑服Данные库Информация，Id:" + tDb.getId());
         }
         return toAjax(row);
     }
 
     /**
-     * 修改日志库列
+     * ИзменитьЖурнал库列
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -115,27 +115,27 @@ public class TDbController extends BaseController
     }
 
     /**
-     * 修改保存日志库列
+     * ИзменитьСохранитьЖурнал库列
      */
     @RequiresPermissions("gmtool:db:edit")
-    @Log(title = "日志库列", businessType = BusinessType.UPDATE)
+    @Log(title = "Журнал库列", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(TDb tDb)
     {
         int row = tDbService.updateTDb(tDb);
         if (row > 0){
-            GMLogUtil.log("修改逻辑服数据库信息，Id:" + tDb.getId());
+            GMLogUtil.log("Изменить逻辑服Данные库Информация，Id:" + tDb.getId());
             DBServerMgr.getInstance().clearDBClient(null,tDb);
         }
         return toAjax(row);
     }
 
     /**
-     * 删除日志库列
+     * УдалитьЖурнал库列
      */
     @RequiresPermissions("gmtool:db:remove")
-    @Log(title = "日志库列", businessType = BusinessType.DELETE)
+    @Log(title = "Журнал库列", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -146,7 +146,7 @@ public class TDbController extends BaseController
             TDb tDb = tDbService.selectTDbById(Integer.valueOf(id));
             DBServerMgr.getInstance().clearDBClient(null,tDb);
         }
-        GMLogUtil.log("删除逻辑服数据库信息，Id:" + ids);
+        GMLogUtil.log("Удалить逻辑服Данные库Информация，Id:" + ids);
         return toAjax(row);
     }
 
@@ -162,8 +162,8 @@ public class TDbController extends BaseController
             Connection connection = dbClient.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
-            return AjaxResult.error("测试失败!请检查配置或者权限");
+            return AjaxResult.error("ТестовыйОшибка!请检查配置或者权限");
         }
-        return AjaxResult.success("测试成功!");
+        return AjaxResult.success("ТестовыйУспешно!");
     }
 }

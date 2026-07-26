@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.gmlog.domain.GMLog;
 
 /**
- * GM后台日志记录Mapper接口
+ * Журнал GM-панелиMapper接口
  * 
  * @author gm
  * @date 2021-09-01
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.gmlog.domain.GMLog;
 public interface GMLogMapper 
 {
     /**
-     * 查询GM后台日志记录
+     * 查询Журнал GM-панели
      * 
-     * @param id GM后台日志记录ID
-     * @return GM后台日志记录
+     * @param id Журнал GM-панелиID
+     * @return Журнал GM-панели
      */
     public GMLog selectGMLogById(Long id);
 
     /**
-     * 查询GM后台日志记录列表
+     * 查询Журнал GM-панели列表
      * 
-     * @param gMLog GM后台日志记录
-     * @return GM后台日志记录集合
+     * @param gMLog Журнал GM-панели
+     * @return Журнал GM-панели集合
      */
     public List<GMLog> selectGMLogList(GMLog gMLog);
 
     /**
-     * 新增GM后台日志记录
+     * ДобавитьЖурнал GM-панели
      * 
-     * @param gMLog GM后台日志记录
-     * @return 结果
+     * @param gMLog Журнал GM-панели
+     * @return Результат
      */
     public int insertGMLog(GMLog gMLog);
 
     /**
-     * 修改GM后台日志记录
+     * ИзменитьЖурнал GM-панели
      * 
-     * @param gMLog GM后台日志记录
-     * @return 结果
+     * @param gMLog Журнал GM-панели
+     * @return Результат
      */
     public int updateGMLog(GMLog gMLog);
 
     /**
-     * 删除GM后台日志记录
+     * УдалитьЖурнал GM-панели
      * 
-     * @param id GM后台日志记录ID
-     * @return 结果
+     * @param id Журнал GM-панелиID
+     * @return Результат
      */
     public int deleteGMLogById(Long id);
 
     /**
-     * 批量删除GM后台日志记录
+     * 批量УдалитьЖурнал GM-панели
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteGMLogByIds(String[] ids);
 }

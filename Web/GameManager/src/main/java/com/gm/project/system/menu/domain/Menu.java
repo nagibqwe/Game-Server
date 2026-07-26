@@ -19,16 +19,16 @@ public class Menu extends BaseEntity
     /** 菜单ID */
     private Long menuId;
 
-    /** 菜单名称 */
+    /** 菜单Название */
     private String menuName;
 
-    /** 父菜单名称 */
+    /** 父菜单Название */
     private String parentName;
 
     /** 父菜单ID */
     private Long parentId;
 
-    /** 显示顺序 */
+    /** Показывать顺序 */
     private String orderNum;
 
     /** 菜单URL */
@@ -37,13 +37,13 @@ public class Menu extends BaseEntity
     /** 打开方式（menuItem页签 menuBlank新窗口） */
     private String target;
 
-    /** 类型（M目录 C菜单 F按钮） */
+    /** Тип（M目录 C菜单 F按钮） */
     private String menuType;
 
-    /** 菜单状态（0显示 1隐藏） */
+    /** 菜单Статус（0Показывать 1Скрыть） */
     private String visible;
 
-    /** 是否刷新（0刷新 1不刷新） */
+    /** ДаНетОбновить（0Обновить 1不Обновить） */
     private String isRefresh;
 
     /** 权限字符串 */
@@ -65,8 +65,8 @@ public class Menu extends BaseEntity
         this.menuId = menuId;
     }
 
-    @NotBlank(message = "菜单名称不能为空")
-    @Size(min = 0, max = 50, message = "菜单名称长度不能超过50个字符")
+    @NotBlank(message = "菜单Название不能为空")
+    @Size(min = 0, max = 50, message = "菜单Название长度不能超过50个字符")
     public String getMenuName()
     {
         return menuName;
@@ -97,7 +97,7 @@ public class Menu extends BaseEntity
         this.parentId = parentId;
     }
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "Порядок отображения обязателен")
     public String getOrderNum()
     {
         return orderNum;
@@ -129,7 +129,7 @@ public class Menu extends BaseEntity
         this.target = target;
     }
 
-    @NotBlank(message = "菜单类型不能为空")
+    @NotBlank(message = "菜单Тип不能为空")
     public String getMenuType()
     {
         return menuType;

@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author gaozhaoguang
- * @desc 服务器参数,对于冲突数据,默认删除From,特殊的进行特殊处理. 不冲突的话不管
+ * @desc Сервер参数,对于冲突Данные,默认УдалитьFrom,特殊的进行特殊处理. 不冲突的话不管
  * @date Created on 2021/1/18 22:04
  **/
 public class serverparam  extends BaseTableHandler {
@@ -46,7 +46,7 @@ public class serverparam  extends BaseTableHandler {
             processMerge(server);
         }
 
-        //2.处理to数据
+        //2.处理toДанные
         for(String key : toParams.keySet()){
             switch (key){
                 case "ServerRoleNameTest":
@@ -68,20 +68,20 @@ public class serverparam  extends BaseTableHandler {
                 case "QuestionnaireData":
                 case "auctionRoleIDData":
                 case "ServerRevel":{
-                    WriteLog("serverparam:保存参数值到目标库:" + key);
+                    WriteLog("serverparam:Сохранить参数值到目标库:" + key);
                     task.getToServer().getDb().execute("UPDATE serverparam set paramvalue = '" + toParams.get(key) + "' WHERE paramkey = '" + key + "'");
                     break;
                 }
             }
         }
-        //3.处理from的数据库数据清理掉
+        //3.处理from的Данные库Данные清理掉
         task.clearFromData("serverparam");
         WriteLog("serverparam 表处理完毕！");
     }
 
     /**
      * 处理合并的参数
-     * @param server 合并的源数据库
+     * @param server 合并的源Данные库
      */
     private void processMerge(HefuServer server){
         HashMap<String, String> source = fromParams.get(server.getServerId());
@@ -90,23 +90,23 @@ public class serverparam  extends BaseTableHandler {
         for(String key:source.keySet()){
             switch (key){
                 case "WeddingNum": {
-                    //当前服务器结婚的人的数量,这里直接相加
+                    //当前Сервер结婚的人的数量,这里直接相加
                     Integer val = Integer.parseInt(source.get(key));
                     if(target.containsKey(key)) {
                         val +=Integer.parseInt(target.get(key));
                     }
                     target.put(key,String.valueOf(val));
-                    WriteLog("serverparam:服务器结婚的人的数量,这里直接相加:" + key + "=" + val +"========="+sid);
+                    WriteLog("serverparam:Сервер结婚的人的数量,这里直接相加:" + key + "=" + val +"========="+sid);
                     break;
                 }
                 case "QuestionnaireData":
-                    //有奖问卷数据
+                    //有奖问卷Данные
                     try {
                         mergeParam(source,target,key,new TypeReference<ConcurrentHashMap<Long, Long>>(){});
-                        WriteLog("serverparam:有奖问卷数据直接合并!"+ key +"========="+sid);
+                        WriteLog("serverparam:有奖问卷Данные直接合并!"+ key +"========="+sid);
 
                     } catch (Exception e) {
-                        WriteLog("有奖问卷数据错误"+ key +"========="+sid);
+                        WriteLog("有奖问卷Данные错误"+ key +"========="+sid);
                     }
                     break;
                 case "auctionRoleIDData":
@@ -120,13 +120,13 @@ public class serverparam  extends BaseTableHandler {
                     }
                     break;
                 case "ServerRevel":
-                    //开服狂欢充值排行榜
+                    //开服狂欢ПополнениеРейтинг
                     try {
                         mergeParam(source,target,key,new TypeReference<ConcurrentHashMap<Long,Integer>>(){});
-                        WriteLog("serverparam:开服狂欢充值排行榜直接合并!"+ key+"========="+sid);
+                        WriteLog("serverparam:开服狂欢ПополнениеРейтинг直接合并!"+ key+"========="+sid);
 
                     } catch (Exception e) {
-                        WriteLog("开服狂欢充值排行榜处理错误"+ key +"========="+sid);
+                        WriteLog("开服狂欢ПополнениеРейтинг处理错误"+ key +"========="+sid);
                     }
                     break;
             }
@@ -134,7 +134,7 @@ public class serverparam  extends BaseTableHandler {
     }
 
     /**
-     * 合并处理通过Json保存的数据结构
+     * 合并处理通过JsonСохранить的Данные结构
      * @param from
      * @param to
      * @param key

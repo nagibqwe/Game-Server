@@ -6,7 +6,7 @@ import java.util.Map;
 import com.gm.project.gmtool.allMail.domain.AllMailData;
 
 /**
- * 全服邮件Mapper接口
+ * Письмо всем серверамMapper接口
  * 
  * @author gm
  * @date 2021-08-30
@@ -14,69 +14,69 @@ import com.gm.project.gmtool.allMail.domain.AllMailData;
 public interface AllMailDataMapper 
 {
     /**
-     * 查询全服邮件
+     * 查询Письмо всем серверам
      * 
-     * @param id 全服邮件ID
-     * @return 全服邮件
+     * @param id Письмо всем серверамID
+     * @return Письмо всем серверам
      */
     public AllMailData selectAllMailDataById(Long id);
 
     /**
-     * 查询全服邮件列表
+     * 查询全服Список писем
      * 
-     * @param allMailData 全服邮件
-     * @return 全服邮件集合
+     * @param allMailData Письмо всем серверам
+     * @return Письмо всем серверам集合
      */
     public List<AllMailData> selectAllMailDataList(AllMailData allMailData);
 
     /**
-     * 新增全服邮件
+     * ДобавитьПисьмо всем серверам
      * 
-     * @param allMailData 全服邮件
-     * @return 结果
+     * @param allMailData Письмо всем серверам
+     * @return Результат
      */
     public int insertAllMailData(AllMailData allMailData);
 
     /**
-     * 修改全服邮件
+     * ИзменитьПисьмо всем серверам
      * 
-     * @param allMailData 全服邮件
-     * @return 结果
+     * @param allMailData Письмо всем серверам
+     * @return Результат
      */
     public int updateAllMailData(AllMailData allMailData);
 
     /**
-     * 删除全服邮件
+     * УдалитьПисьмо всем серверам
      * 
-     * @param id 全服邮件ID
-     * @return 结果
+     * @param id Письмо всем серверамID
+     * @return Результат
      */
     public int deleteAllMailDataById(Long id);
 
     /**
-     * 批量删除全服邮件
+     * 批量УдалитьПисьмо всем серверам
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     public int deleteAllMailDataByIds(String[] ids);
 
 
     /**
-     * 待处理邮件列表
+     * 待处理Список писем
      * @return
      */
     public List<AllMailData> selectWaitDealMail();
 
     /**
-     * 我的邮件列表
+     * 我的Список писем
      * @param map
      * @return
      */
     public List<AllMailData> selectMineMail(Map map);
 
     /**
-     * 历史邮件列表
+     * 历史Список писем
      * @return
      */
     public List<AllMailData> selectHistoryMail();

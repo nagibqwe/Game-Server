@@ -61,23 +61,23 @@ public class GMSendUtil {
     }
 
     /**
-     * 向某主机发送一些字节内容，并将返回写入输出流
+     * 向某主机发送一些字节Содержимое，并将Назад写入输出流
      *  @param host 主机
      * @param port 端口
-     * @param ins  发送的内容
-     * @param ops  主机返回的输入流
+     * @param ins  发送的Содержимое
+     * @param ops  主机Назад的输入流
      */
     private static void sendIp(String host, int port, byte[] ins, OutputStream ops, int timeout) {
         Socket socket = null;
         try {
             socket = new Socket();
             socket.connect(new InetSocketAddress(host, port), timeout);
-            // 发送关闭命令
+            // 发送Закрыть命令
             OutputStream sOut = socket.getOutputStream();
             write(sOut, ins);
             sOut.flush();
 
-            // 接收服务器的反馈
+            // 接收Сервер的反馈
             if (!socket.isClosed()) {
                 InputStream sReturn = socket.getInputStream();
                 write(ops, sReturn);
@@ -91,24 +91,24 @@ public class GMSendUtil {
     }
 
     /**
-     * 向某主机发送一些字节内容，并将返回写入输出流
+     * 向某主机发送一些字节Содержимое，并将Назад写入输出流
      *
      * @param host 主机
      * @param port 端口
-     * @param ins  发送的内容
-     * @param ops  主机返回的输入流
+     * @param ins  发送的Содержимое
+     * @param ops  主机Назад的输入流
      */
     public static void send(String host, int port, byte[] ins, OutputStream ops, int timeout) {
         Socket socket = null;
         try {
             socket = new Socket();
             socket.connect(InetSocketAddress.createUnresolved(host, port), timeout);
-            // 发送关闭命令
+            // 发送Закрыть命令
             OutputStream sOut = socket.getOutputStream();
             write(sOut, ins);
             sOut.flush();
 
-            // 接收服务器的反馈
+            // 接收Сервер的反馈
             if (!socket.isClosed()) {
                 InputStream sReturn = socket.getInputStream();
                 write(ops, sReturn);
@@ -122,7 +122,7 @@ public class GMSendUtil {
     }
 
     /**
-     * 安全关闭套接层，容忍null
+     * 安全Закрыть套接层，容忍null
      *
      * @param socket 套接层
      */
@@ -151,7 +151,7 @@ public class GMSendUtil {
     /**
      * 将输入流写入一个输出流。块大小为 8192
      * <p>
-     * <b style=color:red>注意</b>，它并不会关闭输入/出流
+     * <b style=color:red>注意</b>，它并不会Закрыть输入/出流
      *
      * @param ops
      *            输出流
@@ -168,7 +168,7 @@ public class GMSendUtil {
     /**
      * 将输入流写入一个输出流。
      * <p>
-     * <b style=color:red>注意</b>，它并不会关闭输入/出流
+     * <b style=color:red>注意</b>，它并不会Закрыть输入/出流
      *
      * @param ops
      *            输出流
@@ -193,9 +193,9 @@ public class GMSendUtil {
             ops.write(buf, 0, len);
         }
         // 啥都没写，强制触发一下写
-        // 这是考虑到 walnut 的输出流实现，比如你写一个空文件
-        // 那么输入流就是空的，但是 walnut 的包裹输出流并不知道你写过了
-        // 它人你就是打开一个输出流，然后再关上，所以自然不会对内容做改动
+        // 这Да考虑到 walnut 的输出流实现，比如你写一个空文件
+        // 那么输入流就Да空的，但Да walnut 的包裹输出流并不知道你写过了
+        // 它人你就Да打开一个输出流，然后再关上，所以自然不会对Содержимое做改动
         // 所以这里触发一个写，它就知道，喔你要写个空喔。
         if (0 == bytesCount) {
             ops.write(buf, 0, 0);
@@ -204,11 +204,11 @@ public class GMSendUtil {
         return bytesCount;
     }
     /**
-     * 关闭一个可关闭对象，可以接受 null。如果成功关闭，返回 true，发生异常 返回 false
+     * Закрыть一个可Закрыть对象，可以接受 null。如果УспешноЗакрыть，Назад true，发生异常 Назад false
      *
      * @param cb
-     *            可关闭对象
-     * @return 是否成功关闭
+     *            可Закрыть对象
+     * @return ДаНетУспешноЗакрыть
      */
     public static boolean safeClose(Closeable cb) {
         if (null != cb)
@@ -223,7 +223,7 @@ public class GMSendUtil {
     /**
      * 将一个字节数组写入一个输出流。
      * <p>
-     * <b style=color:red>注意</b>，它并不会关闭输出流
+     * <b style=color:red>注意</b>，它并不会Закрыть输出流
      *
      * @param ops
      *            输出流

@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 物品变化日志对象 log_itemchangelog
+ * 物品变化Журнал对象 log_itemchangelog
  * 
  * @author gm
  * @date 2021-09-09
@@ -21,57 +21,57 @@ public class Itemchangelog extends BaseEntity
     /**  */
     private Long id;
 
-    /** 时间 */
-    @Excel(name = "时间")
+    /** Время */
+    @Excel(name = "Время")
     private Long time;
 
-    /** 角色ID */
-    @Excel(name = "角色ID")
+    /** ID персонажа */
+    @Excel(name = "ID персонажа")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** 等级 */
-    @Excel(name = "等级")
+    /** Уровень */
+    @Excel(name = "Уровень")
     private Integer roleLevel;
 
-    /** 角色名 */
-    @Excel(name = "角色名")
+    /** Имя персонажа */
+    @Excel(name = "Имя персонажа")
     private String roleName;
 
-    /** 物品ID */
-    @Excel(name = "物品ID")
+    /** ID предмета */
+    @Excel(name = "ID предмета")
     private Long itemId;
 
-    /** 道具ID */
-    @Excel(name = "道具ID")
+    /** ID предмета */
+    @Excel(name = "ID предмета")
     private String modelId;
 
-    /** 变化数量 */
-    @Excel(name = "变化数量")
+    /** Изменение количества */
+    @Excel(name = "Изменение количества")
     private Integer changeNum;
 
-    /** 变化前数量 */
-    @Excel(name = "变化前数量")
+    /** Количество до */
+    @Excel(name = "Количество до")
     private Integer oldNum;
 
-    /** 变化后数量 */
-    @Excel(name = "变化后数量")
+    /** Количество после */
+    @Excel(name = "Количество после")
     private Integer newNum;
 
-    /** 原因码 */
-    @Excel(name = "原因码")
+    /** Код причины */
+    @Excel(name = "Код причины")
     private String reason;
 
-    /** 关联ID */
-    @Excel(name = "关联ID")
+    /** Связанный ID */
+    @Excel(name = "Связанный ID")
     private Long actionId;
 
-    /** 变化类型 */
-    @Excel(name = "变化类型")
+    /** 变化Тип */
+    @Excel(name = "变化Тип")
     private String changeAction;
 
-    /** 消耗货币类型 */
-    @Excel(name = "消耗货币类型")
+    /** 消耗Тип валюты */
+    @Excel(name = "消耗Тип валюты")
     private Integer coinType;
 
     /** costNum */

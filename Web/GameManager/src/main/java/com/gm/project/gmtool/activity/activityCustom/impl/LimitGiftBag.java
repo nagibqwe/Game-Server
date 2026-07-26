@@ -40,7 +40,7 @@ public class LimitGiftBag extends Activity implements IActivityCustom {
 
         if (i_id.length != i_name.length || i_id.length != i_limit.length || i_id.length != i_discount.length
                 || i_id.length != i_coin.length ||i_id.length != i_coin_count.length||i_id.length != i_RewardGroup.length) {
-            throw new RuntimeException("===数据格式错误");
+            throw new RuntimeException("===Данные格式错误");
         }
 
         HashMap<Integer, Object> data = new HashMap<>();
@@ -50,7 +50,7 @@ public class LimitGiftBag extends Activity implements IActivityCustom {
             HashMap<String, Object> map = new HashMap<>();
             map.put("id", id);            //礼包ID
             map.put("price", Integer.parseInt(i_coin_count[i]));         //礼包价格
-            map.put("costCoinType", Integer.parseInt(i_coin[i]));  //礼包出售货币类型
+            map.put("costCoinType", Integer.parseInt(i_coin[i]));  //礼包出售Тип валюты
             map.put("discount", Float.valueOf(i_discount[i]));      //礼包折扣
             map.put("giftName", i_name[i]);      //礼包名字
             map.put("buyNum", Integer.parseInt(i_limit[i]));        //限购

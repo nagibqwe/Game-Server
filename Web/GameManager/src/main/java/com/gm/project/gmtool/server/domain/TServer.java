@@ -12,7 +12,7 @@ import javax.validation.constraints.Min;
 
 
 /**
- * 服务器列对象 t_server
+ * Сервер列对象 t_server
  * 
  * @author gm
  * @date 2021-07-14
@@ -27,100 +27,100 @@ public class TServer extends BaseEntity
     private Long id;
 
     /**
-     * 服务器名称
+     * Название сервера
      */
-    @Excel(name = "服务器名称")
+    @Excel(name = "Название сервера")
     private String serverName;
 
     /**
-     * 服务器ID
+     * ID сервера
      */
-    @Excel(name = "服务器ID")
+    @Excel(name = "ID сервера")
     private Integer serverId;
 
     /**
-     * 平台名
+     * Платформа
      */
     @Excel(name = "分组名")
     private String groupName;
 
     /**
-     * 服务器IP
+     * СерверIP
      */
-    @Excel(name = "服务器IP")
+    @Excel(name = "СерверIP")
     private String serverIP;
 
     /**
-     * 服务器端口
+     * Сервер端口
      */
-    @Excel(name = "服务器端口")
+    @Excel(name = "Сервер端口")
     private Integer serverPort;
 
     /**
-     * 日志库IP
+     * Журнал库IP
      */
-    @Excel(name = "日志库IP")
+    @Excel(name = "Журнал库IP")
     private String dblogIp;
 
     /**
-     * 日志库端口
+     * Журнал库端口
      */
-    @Excel(name = "日志库端口")
+    @Excel(name = "Журнал库端口")
     private Integer dblogPort;
 
     /**
-     * 日志库名称
+     * Журнал库Название
      */
-    @Excel(name = "日志库名称")
+    @Excel(name = "Журнал库Название")
     private String dblogName;
 
     /**
-     * 日志库用户名
+     * Журнал库Имя пользователя
      */
-    @Excel(name = "日志库用户名")
+    @Excel(name = "Журнал库Имя пользователя")
     private String dblogUser;
 
     /**
-     * 日志库密码
+     * Журнал库Пароль
      */
-    @Excel(name = "日志库密码")
+    @Excel(name = "Журнал库Пароль")
     private String dblogPwd;
 
     /**
-     * 是否合服
+     * Объединён
      */
-    @Excel(name = "是否合服")
+    @Excel(name = "Объединён")
     private Integer isHeFu;
 
     /**
-     * 合服时间
+     * Время объединения серверов
      */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "合服时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "Время объединения серверов", width = 30, dateFormat = "yyyy-MM-dd")
     private Date hefuTime;
 
     /**
-     * 合服目标服ID
+     * ID целевого сервера
      */
-    @Excel(name = "合服目标服ID")
+    @Excel(name = "ID целевого сервера")
     private Integer hefuServerID;
 
     /**
-     * 合服列表
+     * Список объединения
      */
-    @Excel(name = "合服列表")
+    @Excel(name = "Список объединения")
     private String serverIdList;
 
     /**
-     * 服务器类型 0:测试服 1:正式服 2:登录服 3:公共服 4:战斗服
+     * Тип сервера 0:Тестовый сервер 1:Основной сервер 2:Сервер входа 3:Общий сервер 4:战斗服
      */
-    @Excel(name = "服务器类型 0:测试服 1:正式服 2:登录服 3:公共服 4:战斗服")
+    @Excel(name = "Тип сервера 0:Тестовый сервер 1:Основной сервер 2:Сервер входа 3:Общий сервер 4:战斗服")
     private Integer serverType;
 
     /**
-     * 是否删除
+     * Удалён
      */
-    @Excel(name = "是否删除")
+    @Excel(name = "Удалён")
     private Integer isDeleted;
 
     /**
@@ -130,21 +130,21 @@ public class TServer extends BaseEntity
     private Integer isShow;
 
     /**
-     * 开服时间
+     * Время открытия сервера
      */
-    @Excel(name = "开服时间")
+    @Excel(name = "Время открытия сервера")
     private String serverOpenTime;
 
     /**
-     * 服务器状态 0:备服状态 1:开服状态
+     * Статус сервера 0:Резервный 1:Открыт
      */
-    @Excel(name = "服务器状态 0:备服状态 1:开服状态")
+    @Excel(name = "Статус сервера 0:Резервный 1:Открыт")
     private Long openState;
 
     /**
-     * 服务器最新心跳时间
+     * Сервер最新心跳Время
      */
-    @Excel(name = "服务器最新心跳时间")
+    @Excel(name = "Сервер最新心跳Время")
     private String heartTime;
 
     public void setId(Long id) {

@@ -31,7 +31,7 @@ import com.gm.project.tool.gen.service.IGenTableColumnService;
 import com.gm.project.tool.gen.service.IGenTableService;
 
 /**
- * 代码生成 操作处理
+ * Генератор кода Действия处理
  * 
  * @author ruoyi
  */
@@ -55,7 +55,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 查询代码生成列表
+     * 查询Генератор кода列表
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/list")
@@ -68,7 +68,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 查询数据库列表
+     * 查询Данные库列表
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/db/list")
@@ -81,7 +81,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 查询数据表字段列表
+     * 查询Данные表字段列表
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/column/list")
@@ -96,7 +96,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 导入表结构
+     * Импорт表结构
      */
     @RequiresPermissions("tool:gen:list")
     @GetMapping("/importTable")
@@ -106,23 +106,23 @@ public class GenController extends BaseController
     }
 
     /**
-     * 导入表结构（保存）
+     * Импорт表结构（Сохранить）
      */
     @RequiresPermissions("tool:gen:list")
-    @Log(title = "代码生成", businessType = BusinessType.IMPORT)
+    @Log(title = "Генератор кода", businessType = BusinessType.IMPORT)
     @PostMapping("/importTable")
     @ResponseBody
     public AjaxResult importTableSave(String tables)
     {
         String[] tableNames = Convert.toStrArray(tables);
-        // 查询表信息
+        // 查询表Информация
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
         genTableService.importGenTable(tableList);
         return AjaxResult.success();
     }
 
     /**
-     * 修改代码生成业务
+     * ИзменитьГенератор кода业务
      */
     @GetMapping("/edit/{tableId}")
     public String edit(@PathVariable("tableId") Long tableId, ModelMap mmap)
@@ -150,10 +150,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 修改保存代码生成业务
+     * ИзменитьСохранитьГенератор кода业务
      */
     @RequiresPermissions("tool:gen:edit")
-    @Log(title = "代码生成", businessType = BusinessType.UPDATE)
+    @Log(title = "Генератор кода", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated GenTable genTable)
@@ -164,7 +164,7 @@ public class GenController extends BaseController
     }
 
     @RequiresPermissions("tool:gen:remove")
-    @Log(title = "代码生成", businessType = BusinessType.DELETE)
+    @Log(title = "Генератор кода", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -186,10 +186,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 生成代码（下载方式）
+     * 生成代码（Скачать方式）
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "Генератор кода", businessType = BusinessType.GENCODE)
     @GetMapping("/download/{tableName}")
     public void download(HttpServletResponse response, @PathVariable("tableName") String tableName) throws IOException
     {
@@ -201,7 +201,7 @@ public class GenController extends BaseController
      * 生成代码（自定义路径）
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "Генератор кода", businessType = BusinessType.GENCODE)
     @GetMapping("/genCode/{tableName}")
     @ResponseBody
     public AjaxResult genCode(@PathVariable("tableName") String tableName)
@@ -211,10 +211,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 同步数据库
+     * 同步Данные库
      */
     @RequiresPermissions("tool:gen:edit")
-    @Log(title = "代码生成", businessType = BusinessType.UPDATE)
+    @Log(title = "Генератор кода", businessType = BusinessType.UPDATE)
     @GetMapping("/synchDb/{tableName}")
     @ResponseBody
     public AjaxResult synchDb(@PathVariable("tableName") String tableName)
@@ -227,7 +227,7 @@ public class GenController extends BaseController
      * 批量生成代码
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "Генератор кода", businessType = BusinessType.GENCODE)
     @GetMapping("/batchGenCode")
     @ResponseBody
     public void batchGenCode(HttpServletResponse response, String tables) throws IOException

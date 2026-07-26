@@ -65,13 +65,13 @@ public class DrawReward extends Activity implements IActivityCustom {
         String[] i_baoDi_range_pro = paramMap.get("i_baoDi_range_pro");
 
         if (p_round.length != p_reward.length) {
-            throw new RuntimeException("===轮次数据错误");
+            throw new RuntimeException("===轮次Данные错误");
         }
         if (g_s_reach.length != g_p_reach.length || g_p_reach.length != g_reward.length) {
-            throw new RuntimeException("===进度数据错误");
+            throw new RuntimeException("===进度Данные错误");
         }
         if (i_weight.length != poolSize || i_big.length != poolSize || i_reward.length != poolSize) {
-            throw new RuntimeException("==奖池数据错误不是36组, 当前" + i_weight.length);
+            throw new RuntimeException("==奖池Данные错误不Да36组, 当前" + i_weight.length);
         }
         HashMap<Integer, Object> rounds = new HashMap<>();
         for (int i = 0; i < p_round.length; i++) {

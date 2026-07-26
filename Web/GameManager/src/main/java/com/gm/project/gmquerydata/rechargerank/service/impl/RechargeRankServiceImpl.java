@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 public class RechargeRankServiceImpl implements IRechargeRankService {
 
     /**
-     * 数据库相关操作
+     * Данные库相关Действия
      */
     @Autowired
     public IRechargeRankDao rechargeRankDao;
@@ -38,7 +38,7 @@ public class RechargeRankServiceImpl implements IRechargeRankService {
      */
     public List<RechargeRankBean> rechargeRank(String groupName, String selectServerIdList, String channelNames, String startDate, String endDate, Integer type, Map<String, Object> param) throws ParseException {
         List<RechargeRankBean> list = new ArrayList<>();
-        //渠道名称
+        //Название канала
         if (!StringUtils.isBlank(channelNames)) {
             channelNames = "'" + channelNames + "'";
             channelNames = channelNames.replace(",", "','");
@@ -57,13 +57,13 @@ public class RechargeRankServiceImpl implements IRechargeRankService {
         if (dataList == null || dataList.size() == 0) {
             return list;
         }
-        //到原来的服务器查询 角色信息
+        //到原来的Сервер查询 角色Информация
         Map<Integer,Set<String>> roleServerMap = new HashMap<>();
         for (int i = 0; i < dataList.size(); i++) {
             Map<String, Object> obj = dataList.get(i);
             int createSid = Integer.parseInt(obj.get("sid").toString());
             Set<String> roleList;
-            //查询角色实时信息
+            //查询角色实时Информация
             if(roleServerMap.containsKey(createSid))
             {
                 roleList = roleServerMap.get(createSid);

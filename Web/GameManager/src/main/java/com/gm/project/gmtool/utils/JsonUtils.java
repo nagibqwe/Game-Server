@@ -25,9 +25,9 @@ public class JsonUtils {
 
     public JsonUtils() {
         this.mapper = new ObjectMapper();
-        //设置为true时，属性名称不带双引号
+        //设置为true时，属性Название不带双引号
 //        mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
-        //反序列化是是否允许属性名称不带双引号
+        //反序列化ДаДаНет允许属性Название不带双引号
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         //允许单引号包裹key, value
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
@@ -35,7 +35,7 @@ public class JsonUtils {
         //null的属性不序列化
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         ///////////////反序列化//////////////////////
-        //当遇到未知属性（没有映射到属性，没有任何setter或者任何可以处理它的handler，是否应该抛出JsonMappingException异常
+        //当遇到Неизвестно属性（没有映射到属性，没有任何setter或者任何可以处理它的handler，ДаНет应该抛出JsonMappingException异常
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 

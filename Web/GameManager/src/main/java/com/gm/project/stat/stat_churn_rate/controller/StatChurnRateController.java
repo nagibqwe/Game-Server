@@ -47,10 +47,10 @@ public class StatChurnRateController extends BaseController
     public TableDataInfo  stat_player_leave_count(String selectGroupName, String selectServerIdList, String channelNames, String startDate, String endDate, Boolean  isblack,
                                                                              String select_condition, String minPay, String maxPay) throws ParseException{
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         List<PlayerLeaveCountBean> playerLeaveCountBeanList = this.statChurnRateService.playerLeaveCount(selectGroupName,selectServerIdList,channelNames,startDate,endDate,isblack,select_condition,minPay,maxPay);
         return  getDataTable(playerLeaveCountBeanList);
@@ -63,26 +63,26 @@ public class StatChurnRateController extends BaseController
     public TableDataInfo  stat_player_leave_amount(String selectGroupName, String selectServerIdList, String channelNames, String startDate, String endDate, Boolean  isblack,
                                                    String select_condition, String minPay, String maxPay) throws ParseException{
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         List<PlayerLeaveAmountBean> playerLeaveCountBeanList = this.statChurnRateService.playerLeaveAmount(selectGroupName,selectServerIdList,channelNames,startDate,endDate,isblack,select_condition,minPay,maxPay);
         return  getDataTable(playerLeaveCountBeanList);
     }
     /**
-     * 用户等级分布流失
+     * 用户Уровень分布流失
      */
     @PostMapping("/stat_player_leave_rank")
     @ResponseBody
     public TableDataInfo  stat_player_leave_rank(String selectGroupName, String selectServerIdList, String channelNames, String startDate, String endDate, Boolean  isblack,
                                                    String select_condition, String minPay, String maxPay) throws ParseException{
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
-            return getDataTableErrorMsg("请选择开始 和 结束时间");
+            return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
-            return getDataTableErrorMsg("请选择服务器列表");
+            return getDataTableErrorMsg("Выберите сервер из списка");
         }
         List<PlayerLeaveRankBean> dataList = this.statChurnRateService.playerLeaveRank(selectGroupName,selectServerIdList,channelNames,startDate,endDate,isblack,select_condition,minPay,maxPay);
         return  getDataTable(dataList);

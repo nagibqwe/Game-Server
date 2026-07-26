@@ -40,14 +40,14 @@ public class MenuServiceImpl implements IMenuService
     /**
      * 根据用户查询菜单
      * 
-     * @param user 用户信息
+     * @param user 用户Информация
      * @return 菜单列表
      */
     @Override
     public List<Menu> selectMenusByUser(User user)
     {
         List<Menu> menus = new LinkedList<Menu>();
-        // 管理员显示所有菜单信息
+        // 管理员Показывать所有菜单Информация
         if (user.isAdmin())
         {
             menus = menuMapper.selectMenuNormalAll();
@@ -62,7 +62,7 @@ public class MenuServiceImpl implements IMenuService
     /**
      * 查询菜单集合
      * 
-     * @return 所有菜单信息
+     * @return 所有菜单Информация
      */
     @Override
     public List<Menu> selectMenuList(Menu menu)
@@ -84,7 +84,7 @@ public class MenuServiceImpl implements IMenuService
     /**
      * 查询菜单集合
      * 
-     * @return 所有菜单信息
+     * @return 所有菜单Информация
      */
     @Override
     public List<Menu> selectMenuAll()
@@ -103,9 +103,9 @@ public class MenuServiceImpl implements IMenuService
     }
 
     /**
-     * 根据用户ID查询权限
+     * 根据ID пользователя查询权限
      * 
-     * @param userId 用户ID
+     * @param userId ID пользователя
      * @return 权限列表
      */
     @Override
@@ -124,7 +124,7 @@ public class MenuServiceImpl implements IMenuService
     }
 
     /**
-     * 根据角色ID查询菜单
+     * 根据ID персонажа查询菜单
      * 
      * @param role 角色对象
      * @return 菜单列表
@@ -196,7 +196,7 @@ public class MenuServiceImpl implements IMenuService
      * 
      * @param menuList 菜单列表
      * @param roleMenuList 角色已存在菜单列表
-     * @param permsFlag 是否需要显示权限标识
+     * @param permsFlag ДаНет需要Показывать权限标识
      * @return 树结构列表
      */
     public List<Ztree> initZtree(List<Menu> menuList, List<String> roleMenuList, boolean permsFlag)
@@ -231,10 +231,10 @@ public class MenuServiceImpl implements IMenuService
     }
 
     /**
-     * 删除菜单管理信息
+     * УдалитьМенюИнформация
      * 
      * @param menuId 菜单ID
-     * @return 结果
+     * @return Результат
      */
     @Override
     public int deleteMenuById(Long menuId)
@@ -243,10 +243,10 @@ public class MenuServiceImpl implements IMenuService
     }
 
     /**
-     * 根据菜单ID查询信息
+     * 根据菜单ID查询Информация
      * 
      * @param menuId 菜单ID
-     * @return 菜单信息
+     * @return 菜单Информация
      */
     @Override
     public Menu selectMenuById(Long menuId)
@@ -258,7 +258,7 @@ public class MenuServiceImpl implements IMenuService
      * 查询子菜单数量
      * 
      * @param parentId 菜单ID
-     * @return 结果
+     * @return Результат
      */
     @Override
     public int selectCountMenuByParentId(Long parentId)
@@ -270,7 +270,7 @@ public class MenuServiceImpl implements IMenuService
      * 查询菜单使用数量
      * 
      * @param menuId 菜单ID
-     * @return 结果
+     * @return Результат
      */
     @Override
     public int selectCountRoleMenuByMenuId(Long menuId)
@@ -279,10 +279,10 @@ public class MenuServiceImpl implements IMenuService
     }
 
     /**
-     * 新增保存菜单信息
+     * ДобавитьСохранить菜单Информация
      * 
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu 菜单Информация
+     * @return Результат
      */
     @Override
     public int insertMenu(Menu menu)
@@ -292,10 +292,10 @@ public class MenuServiceImpl implements IMenuService
     }
 
     /**
-     * 修改保存菜单信息
+     * ИзменитьСохранить菜单Информация
      * 
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu 菜单Информация
+     * @return Результат
      */
     @Override
     public int updateMenu(Menu menu)
@@ -305,10 +305,10 @@ public class MenuServiceImpl implements IMenuService
     }
 
     /**
-     * 校验菜单名称是否唯一
+     * 校验菜单НазваниеДаНет唯一
      * 
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu 菜单Информация
+     * @return Результат
      */
     @Override
     public String checkMenuNameUnique(Menu menu)

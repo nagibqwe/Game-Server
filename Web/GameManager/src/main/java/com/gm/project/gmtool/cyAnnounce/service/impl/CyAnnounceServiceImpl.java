@@ -10,7 +10,7 @@ import com.gm.project.gmtool.cyAnnounce.service.ICyAnnounceService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 循环公告Service业务层处理
+ * Циклическое объявлениеService业务层处理
  * 
  * @author gm
  * @date 2021-10-27
@@ -22,10 +22,10 @@ public class CyAnnounceServiceImpl implements ICyAnnounceService
     private CyAnnounceMapper cyAnnounceMapper;
 
     /**
-     * 查询循环公告
+     * 查询Циклическое объявление
      * 
-     * @param id 循环公告ID
-     * @return 循环公告
+     * @param id Циклическое объявлениеID
+     * @return Циклическое объявление
      */
     @Override
     public CyAnnounce selectCyAnnounceById(Integer id)
@@ -34,10 +34,10 @@ public class CyAnnounceServiceImpl implements ICyAnnounceService
     }
 
     /**
-     * 查询循环公告列表
+     * 查询Циклическое объявление列表
      * 
-     * @param cyAnnounce 循环公告
-     * @return 循环公告
+     * @param cyAnnounce Циклическое объявление
+     * @return Циклическое объявление
      */
     @Override
     public List<CyAnnounce> selectCyAnnounceList(CyAnnounce cyAnnounce)
@@ -46,10 +46,10 @@ public class CyAnnounceServiceImpl implements ICyAnnounceService
     }
 
     /**
-     * 新增循环公告
+     * ДобавитьЦиклическое объявление
      * 
-     * @param cyAnnounce 循环公告
-     * @return 结果
+     * @param cyAnnounce Циклическое объявление
+     * @return Результат
      */
     @Override
     public int insertCyAnnounce(CyAnnounce cyAnnounce)
@@ -58,10 +58,10 @@ public class CyAnnounceServiceImpl implements ICyAnnounceService
     }
 
     /**
-     * 修改循环公告
+     * ИзменитьЦиклическое объявление
      * 
-     * @param cyAnnounce 循环公告
-     * @return 结果
+     * @param cyAnnounce Циклическое объявление
+     * @return Результат
      */
     @Override
     public int updateCyAnnounce(CyAnnounce cyAnnounce)
@@ -70,10 +70,10 @@ public class CyAnnounceServiceImpl implements ICyAnnounceService
     }
 
     /**
-     * 删除循环公告对象
+     * УдалитьЦиклическое объявление对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteCyAnnounceByIds(String ids)
@@ -82,10 +82,10 @@ public class CyAnnounceServiceImpl implements ICyAnnounceService
     }
 
     /**
-     * 删除循环公告信息
+     * УдалитьЦиклическое объявлениеИнформация
      * 
-     * @param id 循环公告ID
-     * @return 结果
+     * @param id Циклическое объявлениеID
+     * @return Результат
      */
     @Override
     public int deleteCyAnnounceById(Integer id)
@@ -94,7 +94,7 @@ public class CyAnnounceServiceImpl implements ICyAnnounceService
     }
 
     /**
-     * 查询循环公告列表(禁用列表)
+     * 查询Циклическое объявление列表(禁用列表)
      * @param cyAnnounce
      * @return
      */

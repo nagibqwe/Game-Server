@@ -9,7 +9,7 @@ import com.gm.project.gmtool.gmlog.service.IGMLogService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * GM后台日志记录Service业务层处理
+ * Журнал GM-панелиService业务层处理
  * 
  * @author gm
  * @date 2021-09-01
@@ -21,10 +21,10 @@ public class GMLogServiceImpl implements IGMLogService
     private GMLogMapper gMLogMapper;
 
     /**
-     * 查询GM后台日志记录
+     * 查询Журнал GM-панели
      * 
-     * @param id GM后台日志记录ID
-     * @return GM后台日志记录
+     * @param id Журнал GM-панелиID
+     * @return Журнал GM-панели
      */
     @Override
     public GMLog selectGMLogById(Long id)
@@ -33,10 +33,10 @@ public class GMLogServiceImpl implements IGMLogService
     }
 
     /**
-     * 查询GM后台日志记录列表
+     * 查询Журнал GM-панели列表
      * 
-     * @param gMLog GM后台日志记录
-     * @return GM后台日志记录
+     * @param gMLog Журнал GM-панели
+     * @return Журнал GM-панели
      */
     @Override
     public List<GMLog> selectGMLogList(GMLog gMLog)
@@ -45,10 +45,10 @@ public class GMLogServiceImpl implements IGMLogService
     }
 
     /**
-     * 新增GM后台日志记录
+     * ДобавитьЖурнал GM-панели
      * 
-     * @param gMLog GM后台日志记录
-     * @return 结果
+     * @param gMLog Журнал GM-панели
+     * @return Результат
      */
     @Override
     public int insertGMLog(GMLog gMLog)
@@ -57,10 +57,10 @@ public class GMLogServiceImpl implements IGMLogService
     }
 
     /**
-     * 修改GM后台日志记录
+     * ИзменитьЖурнал GM-панели
      * 
-     * @param gMLog GM后台日志记录
-     * @return 结果
+     * @param gMLog Журнал GM-панели
+     * @return Результат
      */
     @Override
     public int updateGMLog(GMLog gMLog)
@@ -69,10 +69,10 @@ public class GMLogServiceImpl implements IGMLogService
     }
 
     /**
-     * 删除GM后台日志记录对象
+     * УдалитьЖурнал GM-панели对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteGMLogByIds(String ids)
@@ -81,10 +81,10 @@ public class GMLogServiceImpl implements IGMLogService
     }
 
     /**
-     * 删除GM后台日志记录信息
+     * УдалитьЖурнал GM-панелиИнформация
      * 
-     * @param id GM后台日志记录ID
-     * @return 结果
+     * @param id Журнал GM-панелиID
+     * @return Результат
      */
     @Override
     public int deleteGMLogById(Long id)

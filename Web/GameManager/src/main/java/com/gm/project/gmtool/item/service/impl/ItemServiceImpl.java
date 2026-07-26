@@ -9,7 +9,7 @@ import com.gm.project.gmtool.item.service.IItemService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * 道具装备Service业务层处理
+ * Предметы и экипировкаService业务层处理
  * 
  * @author gm
  * @date 2021-08-31
@@ -21,10 +21,10 @@ public class ItemServiceImpl implements IItemService
     private ItemMapper itemMapper;
 
     /**
-     * 查询道具装备
+     * 查询Предметы и экипировка
      * 
-     * @param itemId 道具装备ID
-     * @return 道具装备
+     * @param itemId Предметы и экипировкаID
+     * @return Предметы и экипировка
      */
     @Override
     public Item selectItemById(Integer itemId)
@@ -33,10 +33,10 @@ public class ItemServiceImpl implements IItemService
     }
 
     /**
-     * 查询道具装备列表
+     * 查询Предметы и экипировка列表
      * 
-     * @param item 道具装备
-     * @return 道具装备
+     * @param item Предметы и экипировка
+     * @return Предметы и экипировка
      */
     @Override
     public List<Item> selectItemList(Item item)
@@ -45,10 +45,10 @@ public class ItemServiceImpl implements IItemService
     }
 
     /**
-     * 新增道具装备
+     * ДобавитьПредметы и экипировка
      * 
-     * @param item 道具装备
-     * @return 结果
+     * @param item Предметы и экипировка
+     * @return Результат
      */
     @Override
     public int insertItem(Item item)
@@ -57,10 +57,10 @@ public class ItemServiceImpl implements IItemService
     }
 
     /**
-     * 修改道具装备
+     * ИзменитьПредметы и экипировка
      * 
-     * @param item 道具装备
-     * @return 结果
+     * @param item Предметы и экипировка
+     * @return Результат
      */
     @Override
     public int updateItem(Item item)
@@ -69,10 +69,10 @@ public class ItemServiceImpl implements IItemService
     }
 
     /**
-     * 删除道具装备对象
+     * УдалитьПредметы и экипировка对象
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 需要Удалить的ДанныеID
+     * @return Результат
      */
     @Override
     public int deleteItemByIds(String ids)
@@ -81,10 +81,10 @@ public class ItemServiceImpl implements IItemService
     }
 
     /**
-     * 删除道具装备信息
+     * УдалитьПредметы и экипировкаИнформация
      * 
-     * @param itemId 道具装备ID
-     * @return 结果
+     * @param itemId Предметы и экипировкаID
+     * @return Результат
      */
     @Override
     public int deleteItemById(Integer itemId)
@@ -93,7 +93,7 @@ public class ItemServiceImpl implements IItemService
     }
 
     /**
-     * 清空道具装备数据
+     * 清空Предметы и экипировкаДанные
      * @param tableName
      */
     @Override
