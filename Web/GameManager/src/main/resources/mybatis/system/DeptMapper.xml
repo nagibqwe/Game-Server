@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="status != null and status != ''">
 			AND status = #{status}
 		</if>
-		<!-- Данные范围过滤 -->
+		<!-- 数据范围过滤 -->
 		${params.dataScope}
 		order by d.parent_id, d.order_num
     </select>

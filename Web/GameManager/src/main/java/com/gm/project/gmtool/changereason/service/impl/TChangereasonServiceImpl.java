@@ -17,7 +17,7 @@ import com.gm.common.utils.text.Convert;
 import javax.annotation.PostConstruct;
 
 /**
- * Код причиныService业务层处理
+ * 原因码Service业务层处理
  * 
  * @author gm
  * @date 2021-12-21
@@ -31,7 +31,7 @@ public class TChangereasonServiceImpl implements ITChangereasonService
     }
     @PostConstruct
     public void init() {
-        //启动时从Данные库加载一次道具物品Информация
+        //启动时从数据库加载一次道具物品信息
         loadData();
     }
     private Map<String, String> changereasonMap = new HashMap<>();
@@ -59,10 +59,10 @@ public class TChangereasonServiceImpl implements ITChangereasonService
     private TChangereasonMapper tChangereasonMapper;
 
     /**
-     * 查询Код причины
+     * 查询原因码
      * 
-     * @param id Код причиныID
-     * @return Код причины
+     * @param id 原因码ID
+     * @return 原因码
      */
     @Override
     public TChangereason selectTChangereasonById(Long id)
@@ -71,10 +71,10 @@ public class TChangereasonServiceImpl implements ITChangereasonService
     }
 
     /**
-     * 查询Код причины列表
+     * 查询原因码列表
      * 
-     * @param tChangereason Код причины
-     * @return Код причины
+     * @param tChangereason 原因码
+     * @return 原因码
      */
     @Override
     public List<TChangereason> selectTChangereasonList(TChangereason tChangereason)
@@ -83,10 +83,10 @@ public class TChangereasonServiceImpl implements ITChangereasonService
     }
 
     /**
-     * ДобавитьКод причины
+     * 新增原因码
      * 
-     * @param tChangereason Код причины
-     * @return Результат
+     * @param tChangereason 原因码
+     * @return 结果
      */
     @Override
     public int insertTChangereason(TChangereason tChangereason)
@@ -95,10 +95,10 @@ public class TChangereasonServiceImpl implements ITChangereasonService
     }
 
     /**
-     * ИзменитьКод причины
+     * 修改原因码
      * 
-     * @param tChangereason Код причины
-     * @return Результат
+     * @param tChangereason 原因码
+     * @return 结果
      */
     @Override
     public int updateTChangereason(TChangereason tChangereason)
@@ -107,10 +107,10 @@ public class TChangereasonServiceImpl implements ITChangereasonService
     }
 
     /**
-     * УдалитьКод причины对象
+     * 删除原因码对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteTChangereasonByIds(String ids)
@@ -119,10 +119,10 @@ public class TChangereasonServiceImpl implements ITChangereasonService
     }
 
     /**
-     * УдалитьКод причиныИнформация
+     * 删除原因码信息
      * 
-     * @param id Код причиныID
-     * @return Результат
+     * @param id 原因码ID
+     * @return 结果
      */
     @Override
     public int deleteTChangereasonById(Long id)

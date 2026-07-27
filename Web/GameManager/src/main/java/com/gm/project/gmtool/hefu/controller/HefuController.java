@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Объединение серверовController
+ * 合服Controller
  * 
  * @author gm
  * @date 2021-09-08
@@ -47,7 +47,7 @@ public class HefuController extends BaseController
     }
 
     /**
-     * 查询Список объединения
+     * 查询合服列表
      */
 //    @RequiresPermissions("gmtool:hefu:list")
     @PostMapping("/list")
@@ -60,10 +60,10 @@ public class HefuController extends BaseController
     }
 
     /**
-     * ЭкспортСписок объединения
+     * 导出合服列表
      */
     @RequiresPermissions("gmtool:hefu:export")
-    @Log(title = "Объединение серверов", businessType = BusinessType.EXPORT)
+    @Log(title = "合服", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Hefu hefu)
@@ -74,7 +74,7 @@ public class HefuController extends BaseController
     }
 
     /**
-     * ДобавитьОбъединение серверов
+     * 新增合服
      */
     @GetMapping("/add")
     public String add()
@@ -83,10 +83,10 @@ public class HefuController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьОбъединение серверов
+     * 新增保存合服
      */
     @RequiresPermissions("gmtool:hefu:add")
-    @Log(title = "Объединение серверов", businessType = BusinessType.INSERT)
+    @Log(title = "合服", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Hefu hefu)
@@ -95,14 +95,14 @@ public class HefuController extends BaseController
         String[] arr = from.split(",|，");
         for(String id : arr){
             if(!NumberUtils.isNumber(id)){
-                return error("源ID сервера不Да数字");
+                return error("源服务器id不是数字");
             }
         }
         return toAjax(hefuService.insertHefu(hefu));
     }
 
     /**
-     * ИзменитьОбъединение серверов
+     * 修改合服
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -113,10 +113,10 @@ public class HefuController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьОбъединение серверов
+     * 修改保存合服
      */
     @RequiresPermissions("gmtool:hefu:edit")
-    @Log(title = "Объединение серверов", businessType = BusinessType.UPDATE)
+    @Log(title = "合服", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Hefu hefu)
@@ -125,10 +125,10 @@ public class HefuController extends BaseController
     }
 
     /**
-     * УдалитьОбъединение серверов
+     * 删除合服
      */
     @RequiresPermissions("gmtool:hefu:remove")
-    @Log(title = "Объединение серверов", businessType = BusinessType.DELETE)
+    @Log(title = "合服", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -142,7 +142,7 @@ public class HefuController extends BaseController
      * @return
      */
     @RequiresPermissions("gmtool:hefu:start")
-    @Log(title = "Объединение серверов配置检测", businessType = BusinessType.OTHER)
+    @Log(title = "合服配置检测", businessType = BusinessType.OTHER)
     @PostMapping( "/check")
     @ResponseBody
     public AjaxResult check(Long id){
@@ -162,12 +162,12 @@ public class HefuController extends BaseController
     }
 
     /**
-     * 开始Объединение серверов
+     * 开始合服
      * @param id
      * @return
      */
     @RequiresPermissions("gmtool:hefu:start")
-    @Log(title = "Объединение серверов开始", businessType = BusinessType.OTHER)
+    @Log(title = "合服开始", businessType = BusinessType.OTHER)
     @PostMapping( "/start")
     @ResponseBody
     public AjaxResult start(Long id){
@@ -180,7 +180,7 @@ public class HefuController extends BaseController
     }
 
     /**
-     * 检测已Объединение серверов的Сервер
+     * 检测已合服的服务器
      * @param id
      * @return
      */
@@ -193,9 +193,9 @@ public class HefuController extends BaseController
             if(ss.size() > 0){
                 String msg = "";
                 for(Map.Entry<Integer, Integer> entry : ss.entrySet()){
-                    msg = msg + "Сервер" + entry.getKey() + "已合并到Сервер" + entry.getValue() + ",";
+                    msg = msg + "服务器" + entry.getKey() + "已合并到服务器" + entry.getValue() + ",";
                 }
-                msg += "ДаНет继续？";
+                msg += "是否继续？";
                 return new AjaxResult(AjaxResult.Type.ERROR, msg);
             }else{
                 return new AjaxResult(AjaxResult.Type.SUCCESS, "");
@@ -206,7 +206,7 @@ public class HefuController extends BaseController
     }
 
     @RequiresPermissions("gmtool:hefu:log")
-    @Log(title = "Объединение серверовЖурнал", businessType = BusinessType.OTHER)
+    @Log(title = "合服日志", businessType = BusinessType.OTHER)
     @PostMapping( "/log")
     @ResponseBody
     public AjaxResult getLog(Long id, Integer index){
@@ -215,7 +215,7 @@ public class HefuController extends BaseController
     }
 
     @RequiresPermissions("gmtool:hefu:start")
-    @Log(title = "Резервные копии БД", businessType = BusinessType.OTHER)
+    @Log(title = "数据库备份", businessType = BusinessType.OTHER)
     @PostMapping( "/dbbak")
     @ResponseBody
     public AjaxResult dbbak(Long id, Integer serverId, Integer type){
@@ -231,7 +231,7 @@ public class HefuController extends BaseController
     }
 
     @RequiresPermissions("gmtool:hefu:start")
-    @Log(title = "Данные库还原", businessType = BusinessType.OTHER)
+    @Log(title = "数据库还原", businessType = BusinessType.OTHER)
     @PostMapping( "/dbrestore")
     @ResponseBody
     public AjaxResult dbrestore(Long id, Integer serverId, Integer type){
@@ -247,12 +247,12 @@ public class HefuController extends BaseController
     }
 
     /**
-     * 停止Объединение серверов
+     * 停止合服
      * @param id
      * @return
      */
     @RequiresPermissions("gmtool:hefu:stop")
-    @Log(title = "停止Объединение серверов", businessType = BusinessType.OTHER)
+    @Log(title = "停止合服", businessType = BusinessType.OTHER)
     @PostMapping( "/stop")
     @ResponseBody
     public AjaxResult stop(Long id){

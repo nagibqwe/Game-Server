@@ -9,7 +9,7 @@ import com.gm.framework.web.controller.BaseController;
 import com.gm.project.monitor.server.domain.Server;
 
 /**
- * Сервер监控
+ * 服务器监控
  * 
  * @author ruoyi
  */

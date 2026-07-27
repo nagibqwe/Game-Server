@@ -40,7 +40,7 @@ public class CollectGoodsExChange extends Activity implements IActivityCustom {
         String[] rewardData = paramMap.get("reward");
 
         if (exChangeTimes.length != exChangePrice.length|| exChangeTimes.length != rewardData.length) {
-            throw new RuntimeException("===兑换Данные错误");
+            throw new RuntimeException("===兑换数据错误");
         }
 
 

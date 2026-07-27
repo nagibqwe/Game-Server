@@ -41,7 +41,7 @@ public class StatRoleStateDaoImpl implements IStatRoleStateDao {
         return mapList;
     }
     /**
-     * 获取ID пользователя列表
+     * 获取用户id列表
      * @param dbClientGM
      * @param caclStartDay
      * @param serverList
@@ -49,7 +49,7 @@ public class StatRoleStateDaoImpl implements IStatRoleStateDao {
      */
     public Set<String> getUserIdRegAddSet(DBClient dbClientGM, String caclStartDay, String serverList){
         // String userRegisterSql = this.getUserRegisterSql(null,"stat_role",serverList,caclStartDay,caclStartDay);
-        //每日Добавить用户列表 排除之前登录过的
+        //每日新增用户列表 排除之前登录过的
         List<Map<String,Object>> userRegAddList = this.getUserRegisterDataList(null,serverList,caclStartDay,caclStartDay);// dbClientGM.selectList(userRegisterSql);
         Set<String> userIdRegAddList = new HashSet<>();
         if(userRegAddList!=null){
@@ -63,7 +63,7 @@ public class StatRoleStateDaoImpl implements IStatRoleStateDao {
 
 
     /**
-     * Добавить设备
+     * 新增设备
      * @param channelNames
      * @param selectServerIds
      * @param blackUserStr
@@ -74,8 +74,8 @@ public class StatRoleStateDaoImpl implements IStatRoleStateDao {
      */
     public List<Map<String, Object>> getNewDeviceDataList( String channelNames, String selectServerIds, String blackUserStr, String startDate, String endDate,boolean isBlack) {
         //活跃设备SQL
-        String table = "stat_role";//rolestate不用判断Объединение серверов
-        //Добавить设备SQL
+        String table = "stat_role";//rolestate不用判断合服
+        //新增设备SQL
         String  sqlDeviceStr = "select t2.machineCode,DATE_FORMAT(t2.createTime, '%Y-%m-%d') as day from (select machineCode,createTime from "+table+" as t1 where createsid in("+selectServerIds+")";
         if (isBlack) {
             sqlDeviceStr += " and userId not in(" + blackUserStr + ")";

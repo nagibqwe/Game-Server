@@ -5,7 +5,7 @@ import com.gm.common.utils.StringUtils;
 import com.gm.framework.web.domain.BaseEntity;
 
 /**
- * Генератор кода业务字段表 gen_table_column
+ * 代码生成业务字段表 gen_table_column
  * 
  * @author ruoyi
  */
@@ -13,59 +13,59 @@ public class GenTableColumn extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Номер */
+    /** 编号 */
     private Long columnId;
 
-    /** 归属表Номер */
+    /** 归属表编号 */
     private Long tableId;
 
-    /** 列Название */
+    /** 列名称 */
     private String columnName;
 
     /** 列描述 */
     private String columnComment;
 
-    /** 列Тип */
+    /** 列类型 */
     private String columnType;
 
-    /** JAVAТип */
+    /** JAVA类型 */
     private String javaType;
 
     /** JAVA字段名 */
     @NotBlank(message = "Java属性不能为空")
     private String javaField;
 
-    /** ДаНет主键（1Да） */
+    /** 是否主键（1是） */
     private String isPk;
 
-    /** ДаНет自增（1Да） */
+    /** 是否自增（1是） */
     private String isIncrement;
 
-    /** ДаНетОбязательное поле（1Да） */
+    /** 是否必填（1是） */
     private String isRequired;
 
-    /** ДаНет为插入字段（1Да） */
+    /** 是否为插入字段（1是） */
     private String isInsert;
 
-    /** ДаНетРедактировать字段（1Да） */
+    /** 是否编辑字段（1是） */
     private String isEdit;
 
-    /** ДаНет列表字段（1Да） */
+    /** 是否列表字段（1是） */
     private String isList;
 
-    /** ДаНет查询字段（1Да） */
+    /** 是否查询字段（1是） */
     private String isQuery;
 
     /** 查询方式（EQ等于、NE不等于、GT大于、LT小于、LIKE模糊、BETWEEN范围） */
     private String queryType;
 
-    /** ПоказыватьТип（input文本框、textarea文本域、select下拉框、checkbox复选框、radio单选框、datetimeДата控件、uploadЗагрузить控件、summernote富文本控件） */
+    /** 显示类型（input文本框、textarea文本域、select下拉框、checkbox复选框、radio单选框、datetime日期控件、upload上传控件、summernote富文本控件） */
     private String htmlType;
 
-    /** Тип справочника */
+    /** 字典类型 */
     private String dictType;
 
-    /** Сортировка */
+    /** 排序 */
     private Integer sort;
 
     public void setColumnId(Long columnId)

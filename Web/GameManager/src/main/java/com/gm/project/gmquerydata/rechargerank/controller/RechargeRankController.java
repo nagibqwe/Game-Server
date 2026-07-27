@@ -24,7 +24,7 @@ import java.util.Map;
 
 
 /**
- * ПополнениеПополнение Рейтинг Controller
+ * 充值充值 排行榜 Controller
  * 
  * @author gm
  * @date 2021-08-06
@@ -44,7 +44,7 @@ public class RechargeRankController extends BaseController
     }
 
     /**
-     * ПополнениеРейтинг统计
+     * 充值排行榜统计
      */
     @PostMapping("/rechargerank")
     @ResponseBody

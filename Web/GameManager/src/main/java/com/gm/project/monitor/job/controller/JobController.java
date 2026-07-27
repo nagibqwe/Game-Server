@@ -25,7 +25,7 @@ import com.gm.project.monitor.job.service.IJobService;
 import com.gm.project.monitor.job.util.CronUtils;
 
 /**
- * 调度任务ИнформацияДействия处理
+ * 调度任务信息操作处理
  * 
  * @author ruoyi
  */
@@ -55,7 +55,7 @@ public class JobController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "Планировщик задач", businessType = BusinessType.EXPORT)
+    @Log(title = "定时任务", businessType = BusinessType.EXPORT)
     @RequiresPermissions("monitor:job:export")
     @PostMapping("/export")
     @ResponseBody
@@ -66,7 +66,7 @@ public class JobController extends BaseController
         return util.exportExcel(list, "Планировщик задач");
     }
 
-    @Log(title = "Планировщик задач", businessType = BusinessType.DELETE)
+    @Log(title = "定时任务", businessType = BusinessType.DELETE)
     @RequiresPermissions("monitor:job:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -86,9 +86,9 @@ public class JobController extends BaseController
     }
 
     /**
-     * 任务调度СтатусИзменить
+     * 任务调度状态修改
      */
-    @Log(title = "Планировщик задач", businessType = BusinessType.UPDATE)
+    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @RequiresPermissions("monitor:job:changeStatus")
     @PostMapping("/changeStatus")
     @ResponseBody
@@ -102,7 +102,7 @@ public class JobController extends BaseController
     /**
      * 任务调度立即执行一次
      */
-    @Log(title = "Планировщик задач", businessType = BusinessType.UPDATE)
+    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @RequiresPermissions("monitor:job:changeStatus")
     @PostMapping("/run")
     @ResponseBody
@@ -113,7 +113,7 @@ public class JobController extends BaseController
     }
 
     /**
-     * Добавить调度
+     * 新增调度
      */
     @GetMapping("/add")
     public String add()
@@ -122,9 +122,9 @@ public class JobController extends BaseController
     }
 
     /**
-     * ДобавитьСохранить调度
+     * 新增保存调度
      */
-    @Log(title = "Планировщик задач", businessType = BusinessType.INSERT)
+    @Log(title = "定时任务", businessType = BusinessType.INSERT)
     @RequiresPermissions("monitor:job:add")
     @PostMapping("/add")
     @ResponseBody
@@ -139,7 +139,7 @@ public class JobController extends BaseController
     }
 
     /**
-     * Изменить调度
+     * 修改调度
      */
     @GetMapping("/edit/{jobId}")
     public String edit(@PathVariable("jobId") Long jobId, ModelMap mmap)
@@ -149,9 +149,9 @@ public class JobController extends BaseController
     }
 
     /**
-     * ИзменитьСохранить调度
+     * 修改保存调度
      */
-    @Log(title = "Планировщик задач", businessType = BusinessType.UPDATE)
+    @Log(title = "定时任务", businessType = BusinessType.UPDATE)
     @RequiresPermissions("monitor:job:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -166,7 +166,7 @@ public class JobController extends BaseController
     }
 
     /**
-     * 校验cron表达式ДаНет有效
+     * 校验cron表达式是否有效
      */
     @PostMapping("/checkCronExpressionIsValid")
     @ResponseBody

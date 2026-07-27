@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Сервер列Controller
+ * 服务器列Controller
  *
  * @author gm
  * @date 2021-07-14
@@ -63,7 +63,7 @@ public class TServerController extends BaseController {
     }
 
     /**
-     * 单个连接的Данные库查询页面
+     * 单个连接的数据库查询页面
      * @return
      */
     @RequiresPermissions("gmtool:server:customSqlPage")
@@ -100,7 +100,7 @@ public class TServerController extends BaseController {
     }
 
     /**
-     * 获取选中的group(没有选中则默认取№一个)
+     * 获取选中的group(没有选中则默认取第一个)
      * @param request
      * @param groupList
      * @param selectGroupName
@@ -134,7 +134,7 @@ public class TServerController extends BaseController {
     }
 
     /**
-     * 查询Список серверов
+     * 查询服务器列列表
      */
     @RequiresPermissions("gmtool:server:list")
     @PostMapping("/list")
@@ -146,20 +146,20 @@ public class TServerController extends BaseController {
     }
 
     /**
-     * ЭкспортСписок серверов
+     * 导出服务器列列表
      */
     @RequiresPermissions("gmtool:server:export")
-    @Log(title = "Список серверов", businessType = BusinessType.EXPORT)
+    @Log(title = "服务器列表", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(TServer tServer) {
         List<TServer> list = tServerService.selectTServerListShow(tServer);
         ExcelUtil<TServer> util = new ExcelUtil<TServer>(TServer.class);
-        return util.exportExcel(list, "Сервер列Данные");
+        return util.exportExcel(list, "服务器列数据");
     }
 
     /**
-     * ДобавитьСписок серверов
+     * 新增服务器列表
      */
     @GetMapping("/add")
     public String add() {
@@ -167,22 +167,22 @@ public class TServerController extends BaseController {
     }
 
     /**
-     * ДобавитьСохранитьСписок серверов
+     * 新增保存服务器列表
      */
     @RequiresPermissions("gmtool:server:add")
-    @Log(title = "Список серверов", businessType = BusinessType.INSERT)
+    @Log(title = "服务器列表", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(TServer tServer) {
         int row = tServerService.insertTServer(tServer);
         if (row > 0){
-            GMLogUtil.log("增加СерверИнформация，Id:" + tServer.getId());
+            GMLogUtil.log("增加服务器信息，Id:" + tServer.getId());
         }
         return toAjax(row);
     }
 
     /**
-     * ИзменитьСписок серверов
+     * 修改服务器列表
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
@@ -192,26 +192,26 @@ public class TServerController extends BaseController {
     }
 
     /**
-     * ИзменитьСохранитьСписок серверов
+     * 修改保存服务器列表
      */
     @RequiresPermissions("gmtool:server:edit")
-    @Log(title = "Список серверов", businessType = BusinessType.UPDATE)
+    @Log(title = "服务器列表", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(TServer tServer) {
         int row = tServerService.updateTServer(tServer);
         if (row > 0){
-            GMLogUtil.log("ИзменитьСерверИнформация，Id:" + tServer.getId());
+            GMLogUtil.log("修改服务器信息，Id:" + tServer.getId());
             DBServerMgr.getInstance().clearDBClient(tServer,null);
         }
         return toAjax(row);
     }
 
     /**
-     * 直接УдалитьСписок серверов
+     * 直接删除服务器列表
      */
     @RequiresPermissions("gmtool:server:remove")
-    @Log(title = "Список серверов", businessType = BusinessType.DELETE)
+    @Log(title = "服务器列表", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
@@ -221,12 +221,12 @@ public class TServerController extends BaseController {
             TServer tServer = tServerService.selectTServerById(Long.valueOf(id));
             DBServerMgr.getInstance().clearDBClient(tServer,null);
         }
-        GMLogUtil.log("УдалитьСерверИнформация，Id:" + ids);
+        GMLogUtil.log("删除服务器信息，Id:" + ids);
         return toAjax(row);
     }
 
     /**
-     * 清理Объединение серверовДанные
+     * 清理合服数据
      */
     @PostMapping("/cleanCombine")
     @ResponseBody
@@ -249,7 +249,7 @@ public class TServerController extends BaseController {
         String srcSerStr = srcDBlog.getServerIdList();
         int destSId = srcSer.getHefuServerID();
 
-        // 检查Журнал库的Изменить记录， 如果有， 则可以清理， 如果没有Да不可以清理的
+        // 检查日志库的修改记录， 如果有， 则可以清理， 如果没有是不可以清理的
         TServer destDBlog = tServerService.selectTServerByServerId(destSId);
         if (destDBlog == null) {
             return AjaxResult.error(MessageUtils.message("server.combine.noDblog"));
@@ -283,7 +283,7 @@ public class TServerController extends BaseController {
     }
 
     /**
-     * ТестовыйСервер连接
+     * 测试服务器连接
      *
      * @return
      */
@@ -302,7 +302,7 @@ public class TServerController extends BaseController {
             long id = Long.parseLong(sid);
             server = tServerService.selectTServerById(id);
             if (null == server) {
-                sb.append("id为"+id+"的Сервер不存在");
+                sb.append("id为"+id+"的服务器不存在");
             }else {
                 switch (server.getServerType()) {
                     case 0:
@@ -334,13 +334,13 @@ public class TServerController extends BaseController {
             }
         }
 
-        sb.append("游戏服连接Список успешных：").append(serverSuccessList).append("\n");
-        sb.append("游戏服连接Ошибка列表：").append(serverFailedList).append("\n");
+        sb.append("游戏服连接成功列表：").append(serverSuccessList).append("\n");
+        sb.append("游戏服连接失败列表：").append(serverFailedList).append("\n");
         return AjaxResult.info(sb.toString()).put("ok",true);
     }
 
     /**
-     * ТестовыйДанные库连接
+     * 测试数据库连接
      * @param id
      * @return
      */
@@ -356,7 +356,7 @@ public class TServerController extends BaseController {
             Connection connection = dbClient.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
-            return AjaxResult.error("ТестовыйОшибка!请检查配置或者权限");
+            return AjaxResult.error("测试失败!请检查配置或者权限");
         }
         return AjaxResult.success("ТестовыйУспешно!");
     }
@@ -369,14 +369,14 @@ public class TServerController extends BaseController {
         tServer.setServerId(serverId);
         List<TServer> servers = tServerService.selectTServerByInput(tServer);
         if (servers.size() > 0) {
-            return AjaxResult.error("ID сервера重复");
+            return AjaxResult.error("服务器ID重复");
         } else {
-            return AjaxResult.success("ID сервера可用");
+            return AjaxResult.success("服务器ID可用");
         }
     }
 
     /**
-     * 改变СерверУдалёнСтатус(Включить/禁用)
+     * 改变服务器是否删除状态(启用/禁用)
      * @param id
      * @param isDeleted
      * @return
@@ -390,7 +390,7 @@ public class TServerController extends BaseController {
         tServer.setIsDeleted(isDeleted);
         int row = tServerService.updateTServer(tServer);
         if (row > 0){
-            GMLogUtil.log("ИзменитьСерверДаНет可用Статус，Id:" + tServer.getId());
+            GMLogUtil.log("修改服务器是否可用状态，Id:" + tServer.getId());
             TServer server = tServerService.selectTServerById(Long.parseLong(String.valueOf(id)));
             DBServerMgr.getInstance().clearDBClient(server,null);
         }
@@ -400,8 +400,8 @@ public class TServerController extends BaseController {
 
 
     /**
-     * 查询游戏Список серверов
-     * @param groupName Платформа分组标识
+     * 查询游戏服务器列表
+     * @param groupName 平台分组标识
      * @return
      */
 
@@ -430,20 +430,20 @@ public class TServerController extends BaseController {
         List<String> fields = new ArrayList<>();
         List<Map<String, Object>> dataMap = new ArrayList<>();
         if (logDBClient == null){
-            AjaxResult.info("Данные库无法获取连接！").put("ok",false);
+            AjaxResult.info("数据库无法获取连接！").put("ok",false);
         }else {
             dataMap = logDBClient.selectList(sqlStr);
             if (null == dataMap){
-                return AjaxResult.info("可能Да网络、sql语句、权限问题造成了错误！").put("ok",false);
+                return AjaxResult.info("可能是网络、sql语句、权限问题造成了错误！").put("ok",false);
             }
             if (dataMap.size() > 0){
                 getFields(fields,dataMap);
             }else {
-                return AjaxResult.info("查询Данные为空！").put("ok",false);
+                return AjaxResult.info("查询数据为空！").put("ok",false);
             }
         }
 
-        return AjaxResult.info("查询Успешно").put("fields",fields).put("ok",true);
+        return AjaxResult.info("查询成功").put("fields",fields).put("ok",true);
     }
 
     /**
@@ -463,13 +463,13 @@ public class TServerController extends BaseController {
         List<String> fields = new ArrayList<>();
         List<Map<String, Object>> dataMap = new ArrayList<>();
         if (logDBClient == null){
-            AjaxResult.info("Данные库无法获取连接！").put("ok",false);
+            AjaxResult.info("数据库无法获取连接！").put("ok",false);
         }else {
             dataMap = logDBClient.selectList(sqlStr);
             if (dataMap.size() > 0){
                 getFields(fields,dataMap);
             }else {
-                AjaxResult.info("查询Данные为空！").put("ok",false);
+                AjaxResult.info("查询数据为空！").put("ok",false);
             }
         }
 

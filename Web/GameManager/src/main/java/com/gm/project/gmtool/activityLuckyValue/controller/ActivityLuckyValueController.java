@@ -56,7 +56,7 @@ public class ActivityLuckyValueController extends BaseController
     }
 
     /**
-     * Экспорт抽奖幸运值列表
+     * 导出抽奖幸运值列表
      */
     @RequiresPermissions("gmtool:activityLuckyValue:export")
     @Log(title = "抽奖幸运值", businessType = BusinessType.EXPORT)
@@ -66,11 +66,11 @@ public class ActivityLuckyValueController extends BaseController
     {
         List<ActivityLuckyValue> list = activityLuckyValueService.selectActivityLuckyValueList(activityLuckyValue);
         ExcelUtil<ActivityLuckyValue> util = new ExcelUtil<ActivityLuckyValue>(ActivityLuckyValue.class);
-        return util.exportExcel(list, "抽奖幸运值Данные");
+        return util.exportExcel(list, "抽奖幸运值数据");
     }
 
     /**
-     * Добавить抽奖幸运值
+     * 新增抽奖幸运值
      */
     @GetMapping("/add")
     public String add()
@@ -79,7 +79,7 @@ public class ActivityLuckyValueController extends BaseController
     }
 
     /**
-     * ДобавитьСохранить抽奖幸运值
+     * 新增保存抽奖幸运值
      */
     @RequiresPermissions("gmtool:activityLuckyValue:add")
     @Log(title = "抽奖幸运值", businessType = BusinessType.INSERT)
@@ -91,7 +91,7 @@ public class ActivityLuckyValueController extends BaseController
     }
 
     /**
-     * Изменить抽奖幸运值
+     * 修改抽奖幸运值
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -102,7 +102,7 @@ public class ActivityLuckyValueController extends BaseController
     }
 
     /**
-     * ИзменитьСохранить抽奖幸运值
+     * 修改保存抽奖幸运值
      */
     @RequiresPermissions("gmtool:activityLuckyValue:edit")
     @Log(title = "抽奖幸运值", businessType = BusinessType.UPDATE)
@@ -114,7 +114,7 @@ public class ActivityLuckyValueController extends BaseController
     }
 
     /**
-     * Удалить抽奖幸运值
+     * 删除抽奖幸运值
      */
     @RequiresPermissions("gmtool:activityLuckyValue:remove")
     @Log(title = "抽奖幸运值", businessType = BusinessType.DELETE)

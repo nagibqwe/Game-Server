@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import com.gm.project.system.menu.domain.Menu;
 
 /**
- * 菜单表 Данные层
+ * 菜单表 数据层
  * 
  * @author ruoyi
  */
@@ -19,40 +19,40 @@ public interface MenuMapper
     public List<Menu> selectMenuAll();
 
     /**
-     * 根据ID пользователя查询菜单
+     * 根据用户ID查询菜单
      * 
-     * @param userId ID пользователя
+     * @param userId 用户ID
      * @return 菜单列表
      */
     public List<Menu> selectMenuAllByUserId(Long userId);
 
     /**
-     * 查询系统НормаПоказывать菜单（不含按钮）
+     * 查询系统正常显示菜单（不含按钮）
      * 
      * @return 菜单列表
      */
     public List<Menu> selectMenuNormalAll();
 
     /**
-     * 根据ID пользователя查询菜单
+     * 根据用户ID查询菜单
      * 
-     * @param userId ID пользователя
+     * @param userId 用户ID
      * @return 菜单列表
      */
     public List<Menu> selectMenusByUserId(Long userId);
 
     /**
-     * 根据ID пользователя查询权限
+     * 根据用户ID查询权限
      * 
-     * @param userId ID пользователя
+     * @param userId 用户ID
      * @return 权限列表
      */
     public List<String> selectPermsByUserId(Long userId);
 
     /**
-     * 根据ID персонажа查询菜单
+     * 根据角色ID查询菜单
      * 
-     * @param roleId ID персонажа
+     * @param roleId 角色ID
      * @return 菜单列表
      */
     public List<String> selectMenuTree(Long roleId);
@@ -60,7 +60,7 @@ public interface MenuMapper
     /**
      * 查询系统菜单列表
      * 
-     * @param menu 菜单Информация
+     * @param menu 菜单信息
      * @return 菜单列表
      */
     public List<Menu> selectMenuList(Menu menu);
@@ -68,24 +68,24 @@ public interface MenuMapper
     /**
      * 查询系统菜单列表
      * 
-     * @param menu 菜单Информация
+     * @param menu 菜单信息
      * @return 菜单列表
      */
     public List<Menu> selectMenuListByUserId(Menu menu);
 
     /**
-     * УдалитьМенюИнформация
+     * 删除菜单管理信息
      * 
      * @param menuId 菜单ID
-     * @return Результат
+     * @return 结果
      */
     public int deleteMenuById(Long menuId);
 
     /**
-     * 根据菜单ID查询Информация
+     * 根据菜单ID查询信息
      * 
      * @param menuId 菜单ID
-     * @return 菜单Информация
+     * @return 菜单信息
      */
     public Menu selectMenuById(Long menuId);
 
@@ -93,32 +93,32 @@ public interface MenuMapper
      * 查询菜单数量
      * 
      * @param parentId 菜单父ID
-     * @return Результат
+     * @return 结果
      */
     public int selectCountMenuByParentId(Long parentId);
 
     /**
-     * Добавить菜单Информация
+     * 新增菜单信息
      * 
-     * @param menu 菜单Информация
-     * @return Результат
+     * @param menu 菜单信息
+     * @return 结果
      */
     public int insertMenu(Menu menu);
 
     /**
-     * Изменить菜单Информация
+     * 修改菜单信息
      * 
-     * @param menu 菜单Информация
-     * @return Результат
+     * @param menu 菜单信息
+     * @return 结果
      */
     public int updateMenu(Menu menu);
 
     /**
-     * 校验菜单НазваниеДаНет唯一
+     * 校验菜单名称是否唯一
      * 
-     * @param menuName 菜单Название
+     * @param menuName 菜单名称
      * @param parentId 父菜单ID
-     * @return Результат
+     * @return 结果
      */
     public Menu checkMenuNameUnique(@Param("menuName") String menuName, @Param("parentId") Long parentId);
 }

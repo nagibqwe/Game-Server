@@ -10,7 +10,7 @@ import com.gm.project.gmtool.mail.service.IMailDataService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Список писемService业务层处理
+ * 邮件列表Service业务层处理
  * 
  * @author gm
  * @date 2021-08-30
@@ -22,10 +22,10 @@ public class MailDataServiceImpl implements IMailDataService
     private MailDataMapper mailDataMapper;
 
     /**
-     * 查询Список писем
+     * 查询邮件列表
      * 
-     * @param id Список писемID
-     * @return Список писем
+     * @param id 邮件列表ID
+     * @return 邮件列表
      */
     @Override
     public MailData selectMailDataById(Long id)
@@ -34,10 +34,10 @@ public class MailDataServiceImpl implements IMailDataService
     }
 
     /**
-     * 查询Список писем列表
+     * 查询邮件列表列表
      * 
-     * @param mailData Список писем
-     * @return Список писем
+     * @param mailData 邮件列表
+     * @return 邮件列表
      */
     @Override
     public List<MailData> selectMailDataList(MailData mailData)
@@ -46,10 +46,10 @@ public class MailDataServiceImpl implements IMailDataService
     }
 
     /**
-     * ДобавитьСписок писем
+     * 新增邮件列表
      * 
-     * @param mailData Список писем
-     * @return Результат
+     * @param mailData 邮件列表
+     * @return 结果
      */
     @Override
     public int insertMailData(MailData mailData)
@@ -58,10 +58,10 @@ public class MailDataServiceImpl implements IMailDataService
     }
 
     /**
-     * ИзменитьСписок писем
+     * 修改邮件列表
      * 
-     * @param mailData Список писем
-     * @return Результат
+     * @param mailData 邮件列表
+     * @return 结果
      */
     @Override
     public int updateMailData(MailData mailData)
@@ -70,10 +70,10 @@ public class MailDataServiceImpl implements IMailDataService
     }
 
     /**
-     * УдалитьСписок писем对象
+     * 删除邮件列表对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteMailDataByIds(String ids)
@@ -82,10 +82,10 @@ public class MailDataServiceImpl implements IMailDataService
     }
 
     /**
-     * УдалитьСписок писемИнформация
+     * 删除邮件列表信息
      * 
-     * @param id Список писемID
-     * @return Результат
+     * @param id 邮件列表ID
+     * @return 结果
      */
     @Override
     public int deleteMailDataById(Long id)

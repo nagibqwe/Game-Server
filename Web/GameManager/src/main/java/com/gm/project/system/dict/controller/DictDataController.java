@@ -21,7 +21,7 @@ import com.gm.project.system.dict.domain.DictData;
 import com.gm.project.system.dict.service.IDictDataService;
 
 /**
- * Данные字典Информация
+ * 数据字典信息
  * 
  * @author ruoyi
  */
@@ -51,7 +51,7 @@ public class DictDataController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "Данные справочника", businessType = BusinessType.EXPORT)
+    @Log(title = "字典数据", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -63,7 +63,7 @@ public class DictDataController extends BaseController
     }
 
     /**
-     * ДобавитьТип справочника
+     * 新增字典类型
      */
     @GetMapping("/add/{dictType}")
     public String add(@PathVariable("dictType") String dictType, ModelMap mmap)
@@ -73,9 +73,9 @@ public class DictDataController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьТип справочника
+     * 新增保存字典类型
      */
-    @Log(title = "Данные справочника", businessType = BusinessType.INSERT)
+    @Log(title = "字典数据", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -85,7 +85,7 @@ public class DictDataController extends BaseController
     }
 
     /**
-     * ИзменитьТип справочника
+     * 修改字典类型
      */
     @GetMapping("/edit/{dictCode}")
     public String edit(@PathVariable("dictCode") Long dictCode, ModelMap mmap)
@@ -95,9 +95,9 @@ public class DictDataController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьТип справочника
+     * 修改保存字典类型
      */
-    @Log(title = "Данные справочника", businessType = BusinessType.UPDATE)
+    @Log(title = "字典数据", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -106,7 +106,7 @@ public class DictDataController extends BaseController
         return toAjax(dictDataService.updateDictData(dict));
     }
 
-    @Log(title = "Данные справочника", businessType = BusinessType.DELETE)
+    @Log(title = "字典数据", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody

@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * DAU Данные查询
+ * DAU 数据查询
  * 每日登陆过游戏的用户数
  */
 @Service
 public class StatDauDaoImpl implements IStatDauDao {
 
     /**
-     * 获取DAU的Данные
+     * 获取DAU的数据
      * @param table
      * @param channelNames
      * @param selectServerIds

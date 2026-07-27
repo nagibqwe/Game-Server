@@ -14,13 +14,13 @@ import java.util.List;
 public class ItemBean {
 
 
-    private int i;//ID предмета
+    private int i;//道具ID
 
     private int n;//数量
 
-    private int b;//ДаНет绑定0，1
+    private int b;//是否绑定0，1
 
-    private int c;//Класс
+    private int c;//职业
 
     public int getI() {
         return i;

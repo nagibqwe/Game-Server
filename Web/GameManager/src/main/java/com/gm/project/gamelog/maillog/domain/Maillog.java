@@ -11,7 +11,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * ПисьмоЖурнал对象 log_maillog
+ * 邮件日志对象 log_maillog
  * 
  * @author gm
  * @date 2021-09-08
@@ -23,14 +23,14 @@ public class Maillog extends BaseEntity
     /**  */
     private Integer id;
 
-    /** ДаНетДа多语言 0 不Да多语言 1Да多语言，需要翻译成本地语种 */
+    /** 是否是多语言 0 不是多语言 1是多语言，需要翻译成本地语种 */
     private Integer messageStringId;
 
     /** 行为ID值 */
     private Long actionId;
 
-    /** Текст письма */
-    @Excel(name = "Текст письма")
+    /** 邮件内容 */
+    @Excel(name = "邮件内容")
     private String mailContend;
 
     /**  */
@@ -52,25 +52,25 @@ public class Maillog extends BaseEntity
         this.time = time;
     }
 
-    /** Письмо收到Время */
+    /** 邮件收到时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "Письмо收到Время", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "邮件收到时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Long receiveTime;
 
-    /** ПисьмоДействияТип */
-    @Excel(name = "ПисьмоДействияТип")
+    /** 邮件操作类型 */
+    @Excel(name = "邮件操作类型")
     private Integer mailAction;
 
     /**  */
     private Integer isAttachReceived;
 
-    /** Вложение */
-    @Excel(name = "Вложение")
+    /** 附件 */
+    @Excel(name = "附件")
     private String attachment;
 
-    /** Время */
+    /** 时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "Время", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Long time;
 
     /**  */
@@ -81,15 +81,15 @@ public class Maillog extends BaseEntity
     @JsonSerialize(using = ToStringSerializer.class)
     private Long receiverId;
 
-    /** ПисьмоТип */
-    @Excel(name = "ПисьмоТип")
+    /** 邮件类型 */
+    @Excel(name = "邮件类型")
     private Integer type;
 
     /**  */
     private Integer receiverSid;
 
-    /** Тема письма */
-    @Excel(name = "Тема письма")
+    /** 邮件标题 */
+    @Excel(name = "邮件标题")
     private String mailTitle;
 
     /** 收件人 */
@@ -99,8 +99,8 @@ public class Maillog extends BaseEntity
     /**  */
     private Integer isRead;
 
-    /** Письмо唯一Id */
-    @Excel(name = "Письмо唯一Id")
+    /** 邮件唯一Id */
+    @Excel(name = "邮件唯一Id")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long mailId;
 

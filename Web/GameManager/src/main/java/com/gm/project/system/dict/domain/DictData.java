@@ -9,7 +9,7 @@ import com.gm.framework.aspectj.lang.annotation.Excel.ColumnType;
 import com.gm.framework.web.domain.BaseEntity;
 
 /**
- * Данные справочника表 sys_dict_data
+ * 字典数据表 sys_dict_data
  * 
  * @author ruoyi
  */
@@ -21,8 +21,8 @@ public class DictData extends BaseEntity
     @Excel(name = "字典编码", cellType = ColumnType.NUMERIC)
     private Long dictCode;
 
-    /** 字典Сортировка */
-    @Excel(name = "字典Сортировка", cellType = ColumnType.NUMERIC)
+    /** 字典排序 */
+    @Excel(name = "字典排序", cellType = ColumnType.NUMERIC)
     private Long dictSort;
 
     /** 字典标签 */
@@ -33,8 +33,8 @@ public class DictData extends BaseEntity
     @Excel(name = "字典键值")
     private String dictValue;
 
-    /** Тип справочника */
-    @Excel(name = "Тип справочника")
+    /** 字典类型 */
+    @Excel(name = "字典类型")
     private String dictType;
 
     /** 样式属性（其他样式扩展） */
@@ -44,12 +44,12 @@ public class DictData extends BaseEntity
     /** 表格字典样式 */
     private String listClass;
 
-    /** ДаНет默认（YДа NНет） */
-    @Excel(name = "ДаНет默认", readConverterExp = "Y=Да,N=Нет")
+    /** 是否默认（Y是 N否） */
+    @Excel(name = "是否默认", readConverterExp = "Y=是,N=否")
     private String isDefault;
 
-    /** Статус（0Норма 1Отключено） */
-    @Excel(name = "Статус", readConverterExp = "0=Норма,1=Отключено")
+    /** 状态（0正常 1停用） */
+    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
     private String status;
 
     public Long getDictCode()
@@ -96,8 +96,8 @@ public class DictData extends BaseEntity
         this.dictValue = dictValue;
     }
 
-    @NotBlank(message = "Тип справочника不能为空")
-    @Size(min = 0, max = 100, message = "Тип справочника长度不能超过100个字符")
+    @NotBlank(message = "字典类型不能为空")
+    @Size(min = 0, max = 100, message = "字典类型长度不能超过100个字符")
     public String getDictType()
     {
         return dictType;

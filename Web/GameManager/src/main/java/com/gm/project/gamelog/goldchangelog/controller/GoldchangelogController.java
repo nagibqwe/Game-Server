@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 元宝变化ЖурналController
+ * 元宝变化日志Controller
  * 
  * @author gm
  * @date 2021-09-11
@@ -46,7 +46,7 @@ public class GoldchangelogController extends BaseController
         return prefix + "/goldchangelog";
     }
     /**
-     * 查询元宝变化Журнал列表
+     * 查询元宝变化日志列表
      */
     @RequiresPermissions("gamelog:goldchangelog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class GoldchangelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * Экспорт元宝变化Журнал列表
+     * 导出元宝变化日志列表
      */
     @RequiresPermissions("gamelog:goldchangelog:export")
-    @Log(title = "元宝变化Журнал", businessType = BusinessType.EXPORT)
+    @Log(title = "元宝变化日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Goldchangelog goldchangelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class GoldchangelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Goldchangelog> list = goldchangelogService.selectGoldchangelogList(goldchangelog,param);
         ExcelUtil<Goldchangelog> util = new ExcelUtil<Goldchangelog>(Goldchangelog.class);
-        return util.exportExcel(list, "元宝变化ЖурналДанные");
+        return util.exportExcel(list, "元宝变化日志数据");
     }
 }

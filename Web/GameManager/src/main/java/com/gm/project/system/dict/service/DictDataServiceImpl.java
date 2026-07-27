@@ -21,10 +21,10 @@ public class DictDataServiceImpl implements IDictDataService
     private DictDataMapper dictDataMapper;
 
     /**
-     * 根据条件分页查询Данные справочника
+     * 根据条件分页查询字典数据
      * 
-     * @param dictData Данные справочникаИнформация
-     * @return Данные справочника集合Информация
+     * @param dictData 字典数据信息
+     * @return 字典数据集合信息
      */
     @Override
     public List<DictData> selectDictDataList(DictData dictData)
@@ -33,9 +33,9 @@ public class DictDataServiceImpl implements IDictDataService
     }
 
     /**
-     * 根据Тип справочника和字典键值查询Данные справочникаИнформация
+     * 根据字典类型和字典键值查询字典数据信息
      * 
-     * @param dictType Тип справочника
+     * @param dictType 字典类型
      * @param dictValue 字典键值
      * @return 字典标签
      */
@@ -46,10 +46,10 @@ public class DictDataServiceImpl implements IDictDataService
     }
 
     /**
-     * 根据Данные справочникаID查询Информация
+     * 根据字典数据ID查询信息
      * 
-     * @param dictCode Данные справочникаID
-     * @return Данные справочника
+     * @param dictCode 字典数据ID
+     * @return 字典数据
      */
     @Override
     public DictData selectDictDataById(Long dictCode)
@@ -58,10 +58,10 @@ public class DictDataServiceImpl implements IDictDataService
     }
 
     /**
-     * 批量УдалитьДанные справочника
+     * 批量删除字典数据
      * 
-     * @param ids 需要Удалить的Данные
-     * @return Результат
+     * @param ids 需要删除的数据
+     * @return 结果
      */
     @Override
     public int deleteDictDataByIds(String ids)
@@ -75,10 +75,10 @@ public class DictDataServiceImpl implements IDictDataService
     }
 
     /**
-     * ДобавитьСохранитьДанные справочникаИнформация
+     * 新增保存字典数据信息
      * 
-     * @param dictData Данные справочникаИнформация
-     * @return Результат
+     * @param dictData 字典数据信息
+     * @return 结果
      */
     @Override
     public int insertDictData(DictData dictData)
@@ -93,10 +93,10 @@ public class DictDataServiceImpl implements IDictDataService
     }
 
     /**
-     * ИзменитьСохранитьДанные справочникаИнформация
+     * 修改保存字典数据信息
      * 
-     * @param dictData Данные справочникаИнформация
-     * @return Результат
+     * @param dictData 字典数据信息
+     * @return 结果
      */
     @Override
     public int updateDictData(DictData dictData)

@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * gm命令Журнал对象 log_gmcommandlog
+ * gm命令日志对象 log_gmcommandlog
  * 
  * @author gm
  * @date 2021-09-08
@@ -21,34 +21,34 @@ public class Gmcommandlog extends BaseEntity
     /**  */
     private Long id;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
-    /** ID пользователя */
-    @Excel(name = "ID пользователя")
+    /** 用户id */
+    @Excel(name = "用户id")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色id */
+    @Excel(name = "角色id")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** Имя персонажа */
-    @Excel(name = "Имя персонажа")
+    /** 角色名称 */
+    @Excel(name = "角色名称")
     private String roleName;
 
-    /** ID сервера */
-    @Excel(name = "ID сервера")
+    /** 服务器id */
+    @Excel(name = "服务器id")
     private Integer sid;
 
-    /** gmУровень */
-    @Excel(name = "gmУровень")
+    /** gm等级 */
+    @Excel(name = "gm等级")
     private Integer gmLevel;
 
-    /** 命令Содержимое */
-    @Excel(name = "命令Содержимое")
+    /** 命令内容 */
+    @Excel(name = "命令内容")
     private String command;
 
     public void setId(Long id)

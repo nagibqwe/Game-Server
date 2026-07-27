@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 公会基础Информация对象 log_guildbaselog
+ * 公会基础信息对象 log_guildbaselog
  * 
  * @author gm
  * @date 2021-12-06
@@ -19,56 +19,56 @@ public class Guildbaselog extends BaseEntity
     /** ID */
     private Long id;
 
-    /** ID гильдии */
-    @Excel(name = "ID гильдии")
+    /** 公会ID */
+    @Excel(name = "公会ID")
     private Long guildId;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     private Long roleId;
 
-    /** Название канала */
-    @Excel(name = "Название канала")
+    /** 渠道名称 */
+    @Excel(name = "渠道名称")
     private String platformName;
 
-    /** Дополнительные параметры */
-    @Excel(name = "Дополнительные параметры")
+    /** 其他参数 */
+    @Excel(name = "其他参数")
     private String param;
 
-    /** ID сервера */
-    @Excel(name = "ID сервера")
+    /** 服务器ID */
+    @Excel(name = "服务器ID")
     private Integer sid;
 
-    /** Название гильдии */
-    @Excel(name = "Название гильдии")
+    /** 公会名称 */
+    @Excel(name = "公会名称")
     private String guildName;
 
-    /** Имя персонажа */
-    @Excel(name = "Имя персонажа")
+    /** 角色名称 */
+    @Excel(name = "角色名称")
     private String roleName;
 
-    /** ID пользователя */
-    @Excel(name = "ID пользователя")
+    /** 用户ID */
+    @Excel(name = "用户ID")
     private Long userId;
 
-    /** Действия唯一Номер */
-    @Excel(name = "Действия唯一Номер")
+    /** 操作唯一编号 */
+    @Excel(name = "操作唯一编号")
     private Long actionId;
 
-    /** 记录Время */
-    @Excel(name = "记录Время")
+    /** 记录时间 */
+    @Excel(name = "记录时间")
     private Long time;
 
-    /** 被ДействияID персонажа */
-    @Excel(name = "被ДействияID персонажа")
+    /** 被操作角色ID */
+    @Excel(name = "被操作角色ID")
     private Long actId;
 
-    /** 被ДействияИмя персонажа */
-    @Excel(name = "被ДействияИмя персонажа")
+    /** 被操作角色名称 */
+    @Excel(name = "被操作角色名称")
     private String actName;
 
-    /** ДействияТип 1:公会创建2:公会解散3:加入公会4:主动退会5:被踢出公会6：公会Информация设置7：公会改名8：开始弹劾会长 9:Отмена弹劾会长 10:弹劾会长Успешно */
-    @Excel(name = "ДействияТип 1:公会创建2:公会解散3:加入公会4:主动退会5:被踢出公会6：公会Информация设置7：公会改名8：开始弹劾会长 9:Отмена弹劾会长 10:弹劾会长Успешно")
+    /** 操作类型 1:公会创建2:公会解散3:加入公会4:主动退会5:被踢出公会6：公会信息设置7：公会改名8：开始弹劾会长 9:取消弹劾会长 10:弹劾会长成功 */
+    @Excel(name = "操作类型 1:公会创建2:公会解散3:加入公会4:主动退会5:被踢出公会6：公会信息设置7：公会改名8：开始弹劾会长 9:取消弹劾会长 10:弹劾会长成功")
     private Integer type;
 
     public void setId(Long id)

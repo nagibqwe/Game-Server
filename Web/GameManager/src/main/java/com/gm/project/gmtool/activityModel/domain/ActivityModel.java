@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Библиотека моделей событий对象 t_activity_model
+ * 运营活动模型库对象 t_activity_model
  * 
  * @author gm
  * @date 2021-09-14
@@ -19,8 +19,8 @@ public class ActivityModel extends BaseEntity
     /** ID */
     private Integer id;
 
-    /** Класс */
-    @Excel(name = "Класс")
+    /** 职业 */
+    @Excel(name = "职业")
     private String career;
 
     /** 模型ID */
@@ -51,12 +51,12 @@ public class ActivityModel extends BaseEntity
     @Excel(name = "对应的位置参数y")
     private String posY;
 
-    /** 模型库的Примечание说明 */
-    @Excel(name = "模型库的Примечание说明")
+    /** 模型库的备注说明 */
+    @Excel(name = "模型库的备注说明")
     private String tips;
 
-    /** 发送给Сервер的模型库Данные */
-    @Excel(name = "发送给Сервер的模型库Данные")
+    /** 发送给服务器的模型库数据 */
+    @Excel(name = "发送给服务器的模型库数据")
     private String modelData;
 
     public void setId(Integer id)

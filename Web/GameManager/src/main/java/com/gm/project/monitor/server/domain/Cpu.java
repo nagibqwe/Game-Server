@@ -3,7 +3,7 @@ package com.gm.project.monitor.server.domain;
 import com.gm.common.utils.Arith;
 
 /**
- * CPU相关Информация
+ * CPU相关信息
  * 
  * @author ruoyi
  */

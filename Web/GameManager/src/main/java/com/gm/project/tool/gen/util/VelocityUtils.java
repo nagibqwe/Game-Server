@@ -26,7 +26,7 @@ public class VelocityUtils
     private static final String DEFAULT_PARENT_MENU_ID = "3";
 
     /**
-     * 设置模板变量Информация
+     * 设置模板变量信息
      * 
      * @return 模板列表
      */
@@ -41,7 +41,7 @@ public class VelocityUtils
         VelocityContext velocityContext = new VelocityContext();
         velocityContext.put("tplCategory", genTable.getTplCategory());
         velocityContext.put("tableName", genTable.getTableName());
-        velocityContext.put("functionName", StringUtils.isNotEmpty(functionName) ? functionName : "【请填写功能Название】");
+        velocityContext.put("functionName", StringUtils.isNotEmpty(functionName) ? functionName : "【请填写功能名称】");
         velocityContext.put("ClassName", genTable.getClassName());
         velocityContext.put("className", StringUtils.uncapitalize(genTable.getClassName()));
         velocityContext.put("moduleName", genTable.getModuleName());
@@ -116,7 +116,7 @@ public class VelocityUtils
     }
 
     /**
-     * 获取模板Информация
+     * 获取模板信息
      * 
      * @return 模板列表
      */
@@ -154,7 +154,7 @@ public class VelocityUtils
      */
     public static String getFileName(String template, GenTable genTable)
     {
-        // 文件Название
+        // 文件名称
         String fileName = "";
         // 包路径
         String packageName = genTable.getPackageName();
@@ -162,7 +162,7 @@ public class VelocityUtils
         String moduleName = genTable.getModuleName();
         // 大写类名
         String className = genTable.getClassName();
-        // 业务Название
+        // 业务名称
         String businessName = genTable.getBusinessName();
 
         String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
@@ -197,7 +197,7 @@ public class VelocityUtils
         {
             fileName = StringUtils.format("{}/{}Mapper.xml", mybatisPath, className);
         }
-        else if (template.contains("list.html.vm")) //Журнал模板
+        else if (template.contains("list.html.vm")) //日志模板
         {
             fileName = StringUtils.format("{}/{}.html", htmlPath, businessName);
         }
@@ -227,8 +227,8 @@ public class VelocityUtils
     /**
      * 获取包前缀
      * 
-     * @param packageName 包Название
-     * @return 包前缀Название
+     * @param packageName 包名称
+     * @return 包前缀名称
      */
     public static String getPackagePrefix(String packageName)
     {
@@ -238,10 +238,10 @@ public class VelocityUtils
     }
 
     /**
-     * 根据列Тип获取Импорт包
+     * 根据列类型获取导入包
      * 
      * @param genTable 业务表对象
-     * @return Назад需要Импорт的包列表
+     * @return 返回需要导入的包列表
      */
     public static HashSet<String> getImportList(GenTable genTable)
     {
@@ -270,9 +270,9 @@ public class VelocityUtils
     /**
      * 获取权限前缀
      * 
-     * @param moduleName 模块Название
-     * @param businessName 业务Название
-     * @return Назад权限前缀
+     * @param moduleName 模块名称
+     * @param businessName 业务名称
+     * @return 返回权限前缀
      */
     public static String getPermissionPrefix(String moduleName, String businessName)
     {
@@ -325,10 +325,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取树Название
+     * 获取树名称
      * 
      * @param options 生成其他选项
-     * @return 树Название
+     * @return 树名称
      */
     public static String getTreeName(JSONObject paramsObj)
     {
@@ -340,10 +340,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取需要在哪一列上面ПоказыватьРазвернуть按钮
+     * 获取需要在哪一列上面显示展开按钮
      * 
      * @param genTable 业务表对象
-     * @return Развернуть按钮列№
+     * @return 展开按钮列序号
      */
     public static int getExpandColumn(GenTable genTable)
     {

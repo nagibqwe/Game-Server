@@ -45,12 +45,12 @@ public class StatGoldPurposeServiceImpl implements IStatGoldPurposeService
            // log.error(e.getMessage(), e);
         }
 
-        //Название канала
+        //渠道名称
         if (!StringUtils.isBlank(channelNames)) {
             channelNames = "'" + channelNames + "'";
             channelNames = channelNames.replace(",", "','");
         }
-        //Чёрный список排除
+        //黑名单排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);
@@ -64,7 +64,7 @@ public class StatGoldPurposeServiceImpl implements IStatGoldPurposeService
         if (goldType == 2) {
             table = "bindgoldchangelog";
         }
-        //获取Время列表
+        //获取时间列表
         List<String> queryTables = DBServerMgr.getInstance().getQueryTables(table, TableType.Month,start,end);
         String[] serverArray = selectServerIds.split(",");
         Map<String, List<String>> hefuTableMap = new HashMap<>();
@@ -76,7 +76,7 @@ public class StatGoldPurposeServiceImpl implements IStatGoldPurposeService
         List<GoldPurposeBean> allDataList = new ArrayList<>();
         for (String sid : hefuTableMap.keySet()) {
             tableList = hefuTableMap.get(sid);
-            tableList.retainAll(queryTables);//过滤重复Данные表
+            tableList.retainAll(queryTables);//过滤重复数据表
             for (String s : tableList) {
 
                 DBClient dBClient = DBServerMgr.getInstance().getLogDBClient(Integer.parseInt(sid));

@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- * Журнал收集记录dao
+ * 日志收集记录dao
  * 
  * @author gm
  * @date 2021-08-06

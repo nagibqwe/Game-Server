@@ -35,7 +35,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Белый списокController
+ * 白名单管理Controller
  * 
  * @author gm
  * @date 2021-11-22
@@ -73,7 +73,7 @@ public class WhiteController extends BaseController
             return AjaxResult.error("param error").put("ok",false);
         }
 
-        //检查白名单ДаНет已经设置
+        //检查白名单是否已经设置
         White white = new White();
         white.setCon(con);
         List<White> whites = whiteService.selectWhiteList(white);
@@ -81,7 +81,7 @@ public class WhiteController extends BaseController
             return AjaxResult.error("该白名单已经设置,无需再设置").put("ok", false);
         }
 
-        //发送到Сервер входа
+        //发送到登录服
         TServer sc = new TServer();
         sc.setServerType(2);
         List<TServer> lsList = tServerService.selectTServerList(sc);
@@ -102,11 +102,11 @@ public class WhiteController extends BaseController
         white.setState(0);
         whiteService.insertWhite(white);
 
-        return AjaxResult.success("Добавить白名单完成").put("ok", true);
+        return AjaxResult.success("添加白名单完成").put("ok", true);
     }
 
     /**
-     * 改变白名单Статус
+     * 改变白名单状态
      */
     //    @RequiresPermissions("gmtool:white:changeWhite")
     @PostMapping("/changeWhite")
@@ -114,10 +114,10 @@ public class WhiteController extends BaseController
     public Object changeWhite(Integer id) {
         White white = whiteService.selectWhiteById(id.longValue());
         if (white == null) {
-            return AjaxResult.error("白名单Информация未找到").put("ok", false);
+            return AjaxResult.error("白名单信息未找到").put("ok", false);
         }
 
-        //发送到Сервер входа
+        //发送到登录服
         TServer sc = new TServer();
         sc.setServerType(2);
         List<TServer> lsList = tServerService.selectTServerList(sc);
@@ -133,7 +133,7 @@ public class WhiteController extends BaseController
             sb.append(res).append("\n");
         }
 
-//        //ДействияСервер входаДанные库Данные
+//        //操作登录服数据库数据
 //        String sqlStr = "select count(*) as num from white where `str`= \"" + white.getCon() + "\";";
 //        DBClient loginDao = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.LOGIN);
 //        List<Map<String, Object>> resultMap = loginDao.selectList(sqlStr);
@@ -149,11 +149,11 @@ public class WhiteController extends BaseController
         white.setState(white.getState()==0?1:0);
         whiteService.updateWhite(white);
 
-        return AjaxResult.success("改变白名单Статус完成").put("ok", true);
+        return AjaxResult.success("改变白名单状态完成").put("ok", true);
     }
 
     /**
-     * 查询Белый список列表
+     * 查询白名单管理列表
      */
     @RequiresPermissions("gmtool:white:list")
     @PostMapping("/list")
@@ -166,10 +166,10 @@ public class WhiteController extends BaseController
     }
 
     /**
-     * ЭкспортБелый список列表
+     * 导出白名单管理列表
      */
     @RequiresPermissions("gmtool:white:export")
-    @Log(title = "Белый список", businessType = BusinessType.EXPORT)
+    @Log(title = "白名单管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(White white)
@@ -180,7 +180,7 @@ public class WhiteController extends BaseController
     }
 
     /**
-     * ДобавитьБелый список
+     * 新增白名单管理
      */
     @GetMapping("/add")
     public String add()
@@ -189,10 +189,10 @@ public class WhiteController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьБелый список
+     * 新增保存白名单管理
      */
     @RequiresPermissions("gmtool:white:add")
-    @Log(title = "Белый список", businessType = BusinessType.INSERT)
+    @Log(title = "白名单管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(White white)
@@ -201,7 +201,7 @@ public class WhiteController extends BaseController
     }
 
     /**
-     * ИзменитьБелый список
+     * 修改白名单管理
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -212,10 +212,10 @@ public class WhiteController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьБелый список
+     * 修改保存白名单管理
      */
     @RequiresPermissions("gmtool:white:edit")
-    @Log(title = "Белый список", businessType = BusinessType.UPDATE)
+    @Log(title = "白名单管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(White white)
@@ -224,10 +224,10 @@ public class WhiteController extends BaseController
     }
 
     /**
-     * УдалитьБелый список
+     * 删除白名单管理
      */
     @RequiresPermissions("gmtool:white:remove")
-    @Log(title = "Белый список", businessType = BusinessType.DELETE)
+    @Log(title = "白名单管理", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

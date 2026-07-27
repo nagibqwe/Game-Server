@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Журнал库列对象 t_db
+ * 日志库列对象 t_db
  * 
  * @author gm
  * @date 2021-09-08
@@ -21,69 +21,69 @@ public class TDb extends BaseEntity
     /** id */
     private Integer id;
 
-    /** Название сервера */
-    @Excel(name = "Название сервера")
+    /** 服务器名称 */
+    @Excel(name = "服务器名称")
     private String serverName;
 
-    /** Тип1:Журнал库 */
-    @Excel(name = "Тип1:Журнал库")
+    /** 类型1:日志库 */
+    @Excel(name = "类型1:日志库")
     private Integer type;
 
-    /** ID сервера */
-    @Excel(name = "ID сервера")
+    /** 服务器ID */
+    @Excel(name = "服务器ID")
     private Integer serverId;
 
-    /** Платформа */
-    @Excel(name = "Платформа")
+    /** 平台名 */
+    @Excel(name = "平台名")
     private String groupName;
 
-    /** IP базы данных */
-    @Excel(name = "IP базы данных")
+    /** 数据库IP */
+    @Excel(name = "数据库IP")
     private String dbIp;
 
-    /** Порт базы данных */
-    @Excel(name = "Порт базы данных")
+    /** 数据库Port */
+    @Excel(name = "数据库Port")
     private Integer dbPort;
 
-    /** Название базы данных */
-    @Excel(name = "Название базы данных")
+    /** 数据库名称 */
+    @Excel(name = "数据库名称")
     private String dbname;
 
-    /** Пользователь базы данных */
-    @Excel(name = "Пользователь базы данных")
+    /** 数据库用户名 */
+    @Excel(name = "数据库用户名")
     private String dbuser;
 
-    /** Пароль базы данных */
-    @Excel(name = "Пароль базы данных")
+    /** 数据库密码 */
+    @Excel(name = "数据库密码")
     private String dbpassword;
 
-    /** Список объединения */
-    @Excel(name = "Список объединения")
+    /** 合服列表 */
+    @Excel(name = "合服列表")
     private String serverIdList;
 
-    /** Объединение серверов标识 */
-    @Excel(name = "Объединение серверов标识")
+    /** 合服标识 */
+    @Excel(name = "合服标识")
     private Integer isHeFu;
 
-    /** ID целевого сервера */
-    @Excel(name = "ID целевого сервера")
+    /** 合服目标服ID */
+    @Excel(name = "合服目标服ID")
     private Integer hefuServerID;
 
-    /** Время объединения серверов */
+    /** 合服时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "Время объединения серверов", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "合服时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date hefuTime;
 
-    /** Тип сервера 0:Тестовый сервер 1:Основной сервер 2:Сервер входа 3:Общий сервер 4:Межсерверный */
-    @Excel(name = "Тип сервера 0:Тестовый сервер 1:Основной сервер 2:Сервер входа 3:Общий сервер 4:Межсерверный")
+    /** 服务器类型 0:测试服 1:正式服 2:登录服 3:公共服 4:跨服 */
+    @Excel(name = "服务器类型 0:测试服 1:正式服 2:登录服 3:公共服 4:跨服")
     private Integer serverType;
 
-    /** Время открытия сервера */
-    @Excel(name = "Время открытия сервера")
+    /** 开服时间 */
+    @Excel(name = "开服时间")
     private String serverOpenTime;
 
-    /** Время обновления */
-    @Excel(name = "Время обновления")
+    /** 更新时间 */
+    @Excel(name = "更新时间")
     private Date updateDate;
 
     public void setId(Integer id)

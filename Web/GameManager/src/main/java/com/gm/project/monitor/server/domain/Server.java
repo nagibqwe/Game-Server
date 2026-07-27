@@ -17,7 +17,7 @@ import oshi.software.os.OperatingSystem;
 import oshi.util.Util;
 
 /**
- * Сервер相关Информация
+ * 服务器相关信息
  * 
  * @author ruoyi
  */
@@ -26,27 +26,27 @@ public class Server
     private static final int OSHI_WAIT_SECOND = 1000;
 
     /**
-     * CPU相关Информация
+     * CPU相关信息
      */
     private Cpu cpu = new Cpu();
 
     /**
-     * 內存相关Информация
+     * 內存相关信息
      */
     private Mem mem = new Mem();
 
     /**
-     * JVM相关Информация
+     * JVM相关信息
      */
     private Jvm jvm = new Jvm();
 
     /**
-     * Сервер相关Информация
+     * 服务器相关信息
      */
     private Sys sys = new Sys();
 
     /**
-     * 磁盘相关Информация
+     * 磁盘相关信息
      */
     private List<SysFile> sysFiles = new LinkedList<SysFile>();
 
@@ -117,11 +117,11 @@ public class Server
     }
 
     /**
-     * 设置CPUИнформация
+     * 设置CPU信息
      */
     private void setCpuInfo(CentralProcessor processor)
     {
-        // CPUИнформация
+        // CPU信息
         long[] prevTicks = processor.getSystemCpuLoadTicks();
         Util.sleep(OSHI_WAIT_SECOND);
         long[] ticks = processor.getSystemCpuLoadTicks();
@@ -143,7 +143,7 @@ public class Server
     }
 
     /**
-     * 设置内存Информация
+     * 设置内存信息
      */
     private void setMemInfo(GlobalMemory memory)
     {
@@ -153,7 +153,7 @@ public class Server
     }
 
     /**
-     * 设置СерверИнформация
+     * 设置服务器信息
      */
     private void setSysInfo()
     {
@@ -179,7 +179,7 @@ public class Server
     }
 
     /**
-     * 设置磁盘Информация
+     * 设置磁盘信息
      */
     private void setSysFiles(OperatingSystem os)
     {

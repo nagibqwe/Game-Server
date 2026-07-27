@@ -9,7 +9,7 @@ import com.gm.project.gmtool.activityBossType.service.IActivityBossTypeService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Тип босса событияService业务层处理
+ * 运营活动boss类型Service业务层处理
  * 
  * @author gm
  * @date 2021-09-14
@@ -21,10 +21,10 @@ public class ActivityBossTypeServiceImpl implements IActivityBossTypeService
     private ActivityBossTypeMapper activityBossTypeMapper;
 
     /**
-     * 查询Тип босса события
+     * 查询运营活动boss类型
      * 
-     * @param id Тип босса событияID
-     * @return Тип босса события
+     * @param id 运营活动boss类型ID
+     * @return 运营活动boss类型
      */
     @Override
     public ActivityBossType selectActivityBossTypeById(Integer id)
@@ -33,10 +33,10 @@ public class ActivityBossTypeServiceImpl implements IActivityBossTypeService
     }
 
     /**
-     * 查询Тип босса события列表
+     * 查询运营活动boss类型列表
      * 
-     * @param activityBossType Тип босса события
-     * @return Тип босса события
+     * @param activityBossType 运营活动boss类型
+     * @return 运营活动boss类型
      */
     @Override
     public List<ActivityBossType> selectActivityBossTypeList(ActivityBossType activityBossType)
@@ -45,10 +45,10 @@ public class ActivityBossTypeServiceImpl implements IActivityBossTypeService
     }
 
     /**
-     * ДобавитьТип босса события
+     * 新增运营活动boss类型
      * 
-     * @param activityBossType Тип босса события
-     * @return Результат
+     * @param activityBossType 运营活动boss类型
+     * @return 结果
      */
     @Override
     public int insertActivityBossType(ActivityBossType activityBossType)
@@ -57,10 +57,10 @@ public class ActivityBossTypeServiceImpl implements IActivityBossTypeService
     }
 
     /**
-     * ИзменитьТип босса события
+     * 修改运营活动boss类型
      * 
-     * @param activityBossType Тип босса события
-     * @return Результат
+     * @param activityBossType 运营活动boss类型
+     * @return 结果
      */
     @Override
     public int updateActivityBossType(ActivityBossType activityBossType)
@@ -69,10 +69,10 @@ public class ActivityBossTypeServiceImpl implements IActivityBossTypeService
     }
 
     /**
-     * УдалитьТип босса события对象
+     * 删除运营活动boss类型对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteActivityBossTypeByIds(String ids)
@@ -81,10 +81,10 @@ public class ActivityBossTypeServiceImpl implements IActivityBossTypeService
     }
 
     /**
-     * УдалитьТип босса событияИнформация
+     * 删除运营活动boss类型信息
      * 
-     * @param id Тип босса событияID
-     * @return Результат
+     * @param id 运营活动boss类型ID
+     * @return 结果
      */
     @Override
     public int deleteActivityBossTypeById(Integer id)
@@ -93,7 +93,7 @@ public class ActivityBossTypeServiceImpl implements IActivityBossTypeService
     }
 
     /**
-     * Удалить全部的Тип босса события
+     * 删除全部的运营活动boss类型
      * @return
      */
     @Override

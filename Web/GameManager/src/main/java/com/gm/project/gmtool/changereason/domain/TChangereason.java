@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Код причины对象 t_changereason
+ * 原因码对象 t_changereason
  * 
  * @author gm
  * @date 2021-12-21
@@ -16,11 +16,11 @@ public class TChangereason extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Код причиныid */
+    /** 原因码id */
     private Long id;
 
-    /** Код причины名字 */
-    @Excel(name = "Код причины名字")
+    /** 原因码名字 */
+    @Excel(name = "原因码名字")
     private String name;
 
     public void setId(Long id)

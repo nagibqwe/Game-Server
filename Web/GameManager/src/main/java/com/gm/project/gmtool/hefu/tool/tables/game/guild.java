@@ -16,7 +16,7 @@ import java.util.*;
 
 /**
  * @author gaozhaoguang
- * @desc 帮会Информация,如果有帮会名字冲突,那么就吧From的工会名字给改掉
+ * @desc 帮会信息,如果有帮会名字冲突,那么就吧From的工会名字给改掉
  * @date Created on 2021/1/18 22:00
  **/
 public class guild extends BaseTableHandler {
@@ -101,7 +101,7 @@ public class guild extends BaseTableHandler {
     }
 
     /**
-     * 发送改名卡的Письмо
+     * 发送改名卡的邮件
      * @param psMail
      * @param roleID
      * @throws SQLException

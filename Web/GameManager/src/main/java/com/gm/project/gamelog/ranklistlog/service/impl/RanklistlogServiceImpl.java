@@ -12,7 +12,7 @@ import com.gm.project.gamelog.ranklistlog.service.IRanklistlogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * РейтингЖурналService业务层处理
+ * 排行榜日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-08
@@ -23,10 +23,10 @@ public class RanklistlogServiceImpl implements IRanklistlogService
 
 
     /**
-     * 查询РейтингЖурнал列表
+     * 查询排行榜日志列表
      * 
-     * @param ranklistlog РейтингЖурнал
-     * @return РейтингЖурнал
+     * @param ranklistlog 排行榜日志
+     * @return 排行榜日志
      */
     @Override
     public List<Ranklistlog> selectRanklistlogList(Ranklistlog ranklistlog,Map<String, Object> param)

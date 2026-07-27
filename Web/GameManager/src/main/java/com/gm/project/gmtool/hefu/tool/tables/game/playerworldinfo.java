@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @author gaozhaoguang
- * @desc 玩家的简要Информация,Изменить该Имя персонажа字之后,直接合并
+ * @desc 玩家的简要信息,修改该角色名字之后,直接合并
  * @date Created on 2021/1/18 21:56
  **/
 public class playerworldinfo extends BaseTableHandler {

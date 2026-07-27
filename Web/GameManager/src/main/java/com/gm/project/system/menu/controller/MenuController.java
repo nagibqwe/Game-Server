@@ -23,7 +23,7 @@ import com.gm.project.system.menu.service.IMenuService;
 import com.gm.project.system.role.domain.Role;
 
 /**
- * 菜单Информация
+ * 菜单信息
  * 
  * @author ruoyi
  */
@@ -53,9 +53,9 @@ public class MenuController extends BaseController
     }
 
     /**
-     * Удалить菜单
+     * 删除菜单
      */
-    @Log(title = "Меню", businessType = BusinessType.DELETE)
+    @Log(title = "菜单管理", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:menu:remove")
     @GetMapping("/remove/{menuId}")
     @ResponseBody
@@ -63,18 +63,18 @@ public class MenuController extends BaseController
     {
         if (menuService.selectCountMenuByParentId(menuId) > 0)
         {
-            return AjaxResult.warn("存在子菜单,不允许Удалить");
+            return AjaxResult.warn("存在子菜单,不允许删除");
         }
         if (menuService.selectCountRoleMenuByMenuId(menuId) > 0)
         {
-            return AjaxResult.warn("菜单已分配,不允许Удалить");
+            return AjaxResult.warn("菜单已分配,不允许删除");
         }
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(menuService.deleteMenuById(menuId));
     }
 
     /**
-     * Добавить
+     * 新增
      */
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") Long parentId, ModelMap mmap)
@@ -95,9 +95,9 @@ public class MenuController extends BaseController
     }
 
     /**
-     * ДобавитьСохранить菜单
+     * 新增保存菜单
      */
-    @Log(title = "Меню", businessType = BusinessType.INSERT)
+    @Log(title = "菜单管理", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:menu:add")
     @PostMapping("/add")
     @ResponseBody
@@ -105,14 +105,14 @@ public class MenuController extends BaseController
     {
         if (UserConstants.MENU_NAME_NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu)))
         {
-            return error("Добавить菜单'" + menu.getMenuName() + "'Ошибка，菜单Название已存在");
+            return error("新增菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
         }
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(menuService.insertMenu(menu));
     }
 
     /**
-     * Изменить菜单
+     * 修改菜单
      */
     @GetMapping("/edit/{menuId}")
     public String edit(@PathVariable("menuId") Long menuId, ModelMap mmap)
@@ -122,9 +122,9 @@ public class MenuController extends BaseController
     }
 
     /**
-     * ИзменитьСохранить菜单
+     * 修改保存菜单
      */
-    @Log(title = "Меню", businessType = BusinessType.UPDATE)
+    @Log(title = "菜单管理", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:menu:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -132,7 +132,7 @@ public class MenuController extends BaseController
     {
         if (UserConstants.MENU_NAME_NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu)))
         {
-            return error("Изменить菜单'" + menu.getMenuName() + "'Ошибка，菜单Название已存在");
+            return error("修改菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
         }
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(menuService.updateMenu(menu));
@@ -148,7 +148,7 @@ public class MenuController extends BaseController
     }
 
     /**
-     * 校验菜单Название
+     * 校验菜单名称
      */
     @PostMapping("/checkMenuNameUnique")
     @ResponseBody

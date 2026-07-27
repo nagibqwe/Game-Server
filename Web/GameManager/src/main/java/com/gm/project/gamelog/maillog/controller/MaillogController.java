@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * ПисьмоЖурналController
+ * 邮件日志Controller
  * 
  * @author gm
  * @date 2021-09-08
@@ -46,7 +46,7 @@ public class MaillogController extends BaseController
         return prefix + "/maillog";
     }
     /**
-     * 查询ПисьмоЖурнал列表
+     * 查询邮件日志列表
      */
     @RequiresPermissions("gamelog:maillog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class MaillogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * ЭкспортПисьмоЖурнал列表
+     * 导出邮件日志列表
      */
     @RequiresPermissions("gamelog:maillog:export")
-    @Log(title = "ПисьмоЖурнал", businessType = BusinessType.EXPORT)
+    @Log(title = "邮件日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Maillog maillog,String startDate,String endDate,Integer serverId,Integer pageSize)

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.gm.project.gamelog.rolestate.domain.RoleState;
 
 /**
- * Журнал снимков персонажейService接口
+ * 角色快照日志Service接口
  * 
  * @author gm
  * @date 2021-09-07
@@ -14,52 +14,52 @@ import com.gm.project.gamelog.rolestate.domain.RoleState;
 public interface IRoleStateService 
 {
 //    /**
-//     * 查询Журнал снимков персонажей
+//     * 查询角色快照日志
 //     *
-//     * @param roleId Журнал снимков персонажейID
-//     * @return Журнал снимков персонажей
+//     * @param roleId 角色快照日志ID
+//     * @return 角色快照日志
 //     */
 //    public RoleState selectRoleStateById(Long roleId);
 
     /**
-     * 查询Журнал снимков персонажей列表
+     * 查询角色快照日志列表
      * 
-     * @param roleState Журнал снимков персонажей
-     * @return Журнал снимков персонажей集合
+     * @param roleState 角色快照日志
+     * @return 角色快照日志集合
      */
     public List<RoleState> selectRoleStateList(RoleState roleState, Map<String, Object> param);
 
     public List<RoleState> selectRoleStateList(Integer serverId, String roleIds);
 
 //    /**
-//     * ДобавитьЖурнал снимков персонажей
+//     * 新增角色快照日志
 //     *
-//     * @param roleState Журнал снимков персонажей
-//     * @return Результат
+//     * @param roleState 角色快照日志
+//     * @return 结果
 //     */
 //    public int insertRoleState(RoleState roleState);
 //
 //    /**
-//     * ИзменитьЖурнал снимков персонажей
+//     * 修改角色快照日志
 //     *
-//     * @param roleState Журнал снимков персонажей
-//     * @return Результат
+//     * @param roleState 角色快照日志
+//     * @return 结果
 //     */
 //    public int updateRoleState(RoleState roleState);
 //
 //    /**
-//     * 批量УдалитьЖурнал снимков персонажей
+//     * 批量删除角色快照日志
 //     *
-//     * @param ids 需要Удалить的ДанныеID
-//     * @return Результат
+//     * @param ids 需要删除的数据ID
+//     * @return 结果
 //     */
 //    public int deleteRoleStateByIds(String ids);
 //
 //    /**
-//     * УдалитьЖурнал снимков персонажейИнформация
+//     * 删除角色快照日志信息
 //     *
-//     * @param roleId Журнал снимков персонажейID
-//     * @return Результат
+//     * @param roleId 角色快照日志ID
+//     * @return 结果
 //     */
 //    public int deleteRoleStateById(Long roleId);
 }

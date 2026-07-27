@@ -4,45 +4,45 @@ import java.util.List;
 import com.gm.project.monitor.operlog.domain.OperLog;
 
 /**
- * Журнал операций 服务层
+ * 操作日志 服务层
  * 
  * @author ruoyi
  */
 public interface IOperLogService
 {
     /**
-     * ДобавитьЖурнал операций
+     * 新增操作日志
      * 
-     * @param operLog Журнал операций对象
+     * @param operLog 操作日志对象
      */
     public void insertOperlog(OperLog operLog);
 
     /**
-     * 查询系统Журнал операций集合
+     * 查询系统操作日志集合
      * 
-     * @param operLog Журнал операций对象
-     * @return Журнал операций集合
+     * @param operLog 操作日志对象
+     * @return 操作日志集合
      */
     public List<OperLog> selectOperLogList(OperLog operLog);
 
     /**
-     * 批量Удалить系统Журнал операций
+     * 批量删除系统操作日志
      * 
-     * @param ids 需要Удалить的Данные
-     * @return Результат
+     * @param ids 需要删除的数据
+     * @return 结果
      */
     public int deleteOperLogByIds(String ids);
 
     /**
-     * 查询Журнал операций详细
+     * 查询操作日志详细
      * 
-     * @param operId ДействияID
-     * @return Журнал операций对象
+     * @param operId 操作ID
+     * @return 操作日志对象
      */
     public OperLog selectOperLogById(Long operId);
     
     /**
-     * 清空Журнал операций
+     * 清空操作日志
      */
     public void cleanOperLog();
 }

@@ -33,12 +33,12 @@ public class FestivalSign extends Activity implements IActivityCustom {
      */
     @Override
     public Activity parseCustom(Map<String, String[]> paramMap){
-        //补签ID предмета
+        //补签道具ID
         String[] buqianid = paramMap.get("buqianid");
         //补签消耗
         String[] buqianCost = paramMap.get("buqianCost");
 
-        //每日签到День数
+        //每日签到天数
         String[] days = paramMap.get("day");
         //每日签到模型ID
         String[] modelIds = paramMap.get("modelId");
@@ -46,7 +46,7 @@ public class FestivalSign extends Activity implements IActivityCustom {
         String[] dayRewards = paramMap.get("dayReward");
 
         if (buqianid.length <= 0 || buqianCost.length <= 0 || days.length <= 0 || modelIds.length <= 0 || dayRewards.length <= 0 ) {
-            throw new RuntimeException("===Данные错误或Данные为空");
+            throw new RuntimeException("===数据错误或数据为空");
         }
 
         int timeType = Integer.parseInt(paramMap.get("timeType")[0]);
@@ -61,15 +61,15 @@ public class FestivalSign extends Activity implements IActivityCustom {
                 e.printStackTrace();
             }
             if (days.length > dayOff ) {
-                throw new RuntimeException("===配置的День数超过活动持续Время");
+                throw new RuntimeException("===配置的天数超过活动持续时间");
             }
         }else if(timeType==1){
             int opsOffset = Integer.parseInt(paramMap.get("openServerOffset")[0]);
             if (days.length > opsOffset ) {
-                throw new RuntimeException("===配置的День数超过活动持续Время");
+                throw new RuntimeException("===配置的天数超过活动持续时间");
             }
         }else{
-            throw new RuntimeException("===Тип времени错误");
+            throw new RuntimeException("===时间类型错误");
         }
 
         //全服宝箱ID
@@ -90,7 +90,7 @@ public class FestivalSign extends Activity implements IActivityCustom {
             HashMap<String, Object> itemMap = new HashMap<>();
             itemMap.put("day", day);
             itemMap.put("modelId", modelData);
-//            //这里处理模型的缩放,位置,旋转的Информация,这里临时写一下,以后通过配置表来读取.
+//            //这里处理模型的缩放,位置,旋转的信息,这里临时写一下,以后通过配置表来读取.
 //            itemMap.put("s", 120);
 //            itemMap.put("x", 0);
 //            itemMap.put("y", 0);

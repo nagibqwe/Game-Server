@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Журнал拉取记录 Service业务层处理
+ *  日志拉取记录 Service业务层处理
  * 
  * @author gm
  * @date 2021-09-13

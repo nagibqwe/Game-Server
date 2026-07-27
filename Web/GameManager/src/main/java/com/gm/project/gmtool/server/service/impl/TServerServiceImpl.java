@@ -11,7 +11,7 @@ import com.gm.project.gmtool.server.service.ITServerService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Сервер列Service业务层处理
+ * 服务器列Service业务层处理
  * 
  * @author gm
  * @date 2021-07-14
@@ -23,10 +23,10 @@ public class TServerServiceImpl implements ITServerService
     private TServerMapper tServerMapper;
 
     /**
-     * 查询Сервер列
+     * 查询服务器列
      * 
-     * @param id Сервер列ID
-     * @return Сервер列
+     * @param id 服务器列ID
+     * @return 服务器列
      */
     @Override
     public TServer selectTServerById(Long id)
@@ -35,7 +35,7 @@ public class TServerServiceImpl implements ITServerService
     }
 
     /**
-     * 查询Список серверов(页面展示用)
+     * 查询服务器列列表(页面展示用)
      * @param tServer
      * @return
      */
@@ -45,10 +45,10 @@ public class TServerServiceImpl implements ITServerService
     }
 
     /**
-     * 查询Список серверов
+     * 查询服务器列列表
      * 
-     * @param tServer Сервер列
-     * @return Сервер列
+     * @param tServer 服务器列
+     * @return 服务器列
      */
     @Override
     public List<TServer> selectTServerList(TServer tServer)
@@ -57,10 +57,10 @@ public class TServerServiceImpl implements ITServerService
     }
 
     /**
-     * ДобавитьСервер列
+     * 新增服务器列
      * 
-     * @param tServer Сервер列
-     * @return Результат
+     * @param tServer 服务器列
+     * @return 结果
      */
     @Override
     public int insertTServer(TServer tServer)
@@ -69,10 +69,10 @@ public class TServerServiceImpl implements ITServerService
     }
 
     /**
-     * ИзменитьСервер列
+     * 修改服务器列
      * 
-     * @param tServer Сервер列
-     * @return Результат
+     * @param tServer 服务器列
+     * @return 结果
      */
     @Override
     public int updateTServer(TServer tServer)
@@ -81,10 +81,10 @@ public class TServerServiceImpl implements ITServerService
     }
 
     /**
-     * УдалитьСервер列对象
+     * 删除服务器列对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteTServerByIds(String ids)
@@ -93,10 +93,10 @@ public class TServerServiceImpl implements ITServerService
     }
 
     /**
-     * УдалитьСервер列Информация
+     * 删除服务器列信息
      * 
-     * @param id Сервер列ID
-     * @return Результат
+     * @param id 服务器列ID
+     * @return 结果
      */
     @Override
     public int deleteTServerById(Long id)

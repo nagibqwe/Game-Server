@@ -9,7 +9,7 @@ import com.gm.project.gmtool.updateNotice.service.IUpdateNoticeService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Объявление об обновленииService业务层处理
+ * 更新公告Service业务层处理
  * 
  * @author gm
  * @date 2021-10-30
@@ -21,10 +21,10 @@ public class UpdateNoticeServiceImpl implements IUpdateNoticeService
     private UpdateNoticeMapper updateNoticeMapper;
 
     /**
-     * 查询Объявление об обновлении
+     * 查询更新公告
      * 
-     * @param id Объявление об обновленииID
-     * @return Объявление об обновлении
+     * @param id 更新公告ID
+     * @return 更新公告
      */
     @Override
     public UpdateNotice selectUpdateNoticeById(Integer id)
@@ -33,10 +33,10 @@ public class UpdateNoticeServiceImpl implements IUpdateNoticeService
     }
 
     /**
-     * 查询Объявление об обновлении列表
+     * 查询更新公告列表
      * 
-     * @param updateNotice Объявление об обновлении
-     * @return Объявление об обновлении
+     * @param updateNotice 更新公告
+     * @return 更新公告
      */
     @Override
     public List<UpdateNotice> selectUpdateNoticeList(UpdateNotice updateNotice)
@@ -45,10 +45,10 @@ public class UpdateNoticeServiceImpl implements IUpdateNoticeService
     }
 
     /**
-     * ДобавитьОбъявление об обновлении
+     * 新增更新公告
      * 
-     * @param updateNotice Объявление об обновлении
-     * @return Результат
+     * @param updateNotice 更新公告
+     * @return 结果
      */
     @Override
     public int insertUpdateNotice(UpdateNotice updateNotice)
@@ -57,10 +57,10 @@ public class UpdateNoticeServiceImpl implements IUpdateNoticeService
     }
 
     /**
-     * ИзменитьОбъявление об обновлении
+     * 修改更新公告
      * 
-     * @param updateNotice Объявление об обновлении
-     * @return Результат
+     * @param updateNotice 更新公告
+     * @return 结果
      */
     @Override
     public int updateUpdateNotice(UpdateNotice updateNotice)
@@ -69,10 +69,10 @@ public class UpdateNoticeServiceImpl implements IUpdateNoticeService
     }
 
     /**
-     * УдалитьОбъявление об обновлении对象
+     * 删除更新公告对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteUpdateNoticeByIds(String ids)
@@ -81,10 +81,10 @@ public class UpdateNoticeServiceImpl implements IUpdateNoticeService
     }
 
     /**
-     * УдалитьОбъявление об обновленииИнформация
+     * 删除更新公告信息
      * 
-     * @param id Объявление об обновленииID
-     * @return Результат
+     * @param id 更新公告ID
+     * @return 结果
      */
     @Override
     public int deleteUpdateNoticeById(Integer id)

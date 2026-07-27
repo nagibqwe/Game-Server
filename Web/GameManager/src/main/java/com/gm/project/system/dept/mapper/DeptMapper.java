@@ -5,95 +5,95 @@ import org.apache.ibatis.annotations.Param;
 import com.gm.project.system.dept.domain.Dept;
 
 /**
- * Подразделения Данные层
+ * 部门管理 数据层
  * 
  * @author ruoyi
  */
 public interface DeptMapper
 {
     /**
-     * 查询部门Количество
+     * 查询部门人数
      * 
-     * @param dept 部门Информация
-     * @return Результат
+     * @param dept 部门信息
+     * @return 结果
      */
     public int selectDeptCount(Dept dept);
 
     /**
-     * 查询部门ДаНет存在用户
+     * 查询部门是否存在用户
      * 
      * @param deptId 部门ID
-     * @return Результат
+     * @return 结果
      */
     public int checkDeptExistUser(Long deptId);
 
     /**
-     * 查询ПодразделенияДанные
+     * 查询部门管理数据
      * 
-     * @param dept 部门Информация
-     * @return 部门Информация集合
+     * @param dept 部门信息
+     * @return 部门信息集合
      */
     public List<Dept> selectDeptList(Dept dept);
 
     /**
-     * УдалитьПодразделенияИнформация
+     * 删除部门管理信息
      * 
      * @param deptId 部门ID
-     * @return Результат
+     * @return 结果
      */
     public int deleteDeptById(Long deptId);
 
     /**
-     * Добавить部门Информация
+     * 新增部门信息
      * 
-     * @param dept 部门Информация
-     * @return Результат
+     * @param dept 部门信息
+     * @return 结果
      */
     public int insertDept(Dept dept);
 
     /**
-     * Изменить部门Информация
+     * 修改部门信息
      * 
-     * @param dept 部门Информация
-     * @return Результат
+     * @param dept 部门信息
+     * @return 结果
      */
     public int updateDept(Dept dept);
 
     /**
-     * Изменить子元素关系
+     * 修改子元素关系
      * 
      * @param depts 子元素
-     * @return Результат
+     * @return 结果
      */
     public int updateDeptChildren(@Param("depts") List<Dept> depts);
 
     /**
-     * 根据部门ID查询Информация
+     * 根据部门ID查询信息
      * 
      * @param deptId 部门ID
-     * @return 部门Информация
+     * @return 部门信息
      */
     public Dept selectDeptById(Long deptId);
 
     /**
-     * 校验Название подразделенияДаНет唯一
+     * 校验部门名称是否唯一
      * 
-     * @param deptName Название подразделения
+     * @param deptName 部门名称
      * @param parentId 父部门ID
-     * @return Результат
+     * @return 结果
      */
     public Dept checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
 
     /**
-     * 根据ID персонажа查询部门
+     * 根据角色ID查询部门
      *
-     * @param roleId ID персонажа
+     * @param roleId 角色ID
      * @return 部门列表
      */
     public List<String> selectRoleDeptTree(Long roleId);
 
     /**
-     * Изменить所在部门的父级部门Статус
+     * 修改所在部门的父级部门状态
      * 
      * @param dept 部门
      */
@@ -108,7 +108,7 @@ public interface DeptMapper
     public List<Dept> selectChildrenDeptById(Long deptId);
 
     /**
-     * 根据ID查询所有子部门（НормаСтатус）
+     * 根据ID查询所有子部门（正常状态）
      * 
      * @param deptId 部门ID
      * @return 子部门数

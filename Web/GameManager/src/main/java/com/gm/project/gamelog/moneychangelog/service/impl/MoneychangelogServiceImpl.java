@@ -10,7 +10,7 @@ import com.gm.project.gamelog.moneychangelog.service.IMoneychangelogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * Журнал изменения валютыService业务层处理
+ * 货币变化日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-09
@@ -21,10 +21,10 @@ public class MoneychangelogServiceImpl implements IMoneychangelogService
 
 
     /**
-     * 查询Журнал изменения валюты列表
+     * 查询货币变化日志列表
      * 
-     * @param moneychangelog Журнал изменения валюты
-     * @return Журнал изменения валюты
+     * @param moneychangelog 货币变化日志
+     * @return 货币变化日志
      */
     @Override
     public List<Moneychangelog> selectMoneychangelogList(Moneychangelog moneychangelog,Map<String, Object> param)

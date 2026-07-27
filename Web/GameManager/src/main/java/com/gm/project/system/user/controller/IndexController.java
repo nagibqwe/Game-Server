@@ -27,7 +27,7 @@ import com.gm.project.system.menu.service.IMenuService;
 import com.gm.project.system.user.domain.User;
 
 /**
- * Главная 业务处理
+ * 首页 业务处理
  * 
  * @author ruoyi
  */
@@ -46,13 +46,13 @@ public class IndexController extends BaseController
     @Autowired
     private GameManagerConfig gameManagerConfig;
 
-    // 系统Главная
+    // 系统首页
     @GetMapping("/index")
     public String index(ModelMap mmap)
     {
-        // 取身份Информация
+        // 取身份信息
         User user = getSysUser();
-        // 根据ID пользователя取出菜单
+        // 根据用户id取出菜单
         List<Menu> menus = menuService.selectMenusByUser(user);
         mmap.put("menus", menus);
         mmap.put("user", user);
@@ -64,9 +64,9 @@ public class IndexController extends BaseController
         mmap.put("isDefaultModifyPwd", initPasswordIsModify(user.getPwdUpdateDate()));
         mmap.put("isPasswordExpired", passwordIsExpiration(user.getPwdUpdateDate()));
 
-        // 菜单导航Показывать风格
+        // 菜单导航显示风格
         String menuStyle = configService.selectConfigByKey("sys.index.menuStyle");
-        // 移动端，默认使左侧导航菜单，Нет则取默认配置
+        // 移动端，默认使左侧导航菜单，否则取默认配置
         String indexStyle = ServletUtils.checkAgentIsMobile(ServletUtils.getRequest().getHeader("User-Agent")) ? "index" : menuStyle;
         
         // 优先Cookie配置导航菜单
@@ -100,17 +100,17 @@ public class IndexController extends BaseController
         User user = getSysUser();
         if (StringUtils.isNull(user))
         {
-            return AjaxResult.error("Сервер超时，请重新登陆");
+            return AjaxResult.error("服务器超时，请重新登陆");
         }
         if (passwordService.matches(user, password))
         {
             ServletUtils.getSession().removeAttribute(ShiroConstants.LOCK_SCREEN);
             return AjaxResult.success();
         }
-        return AjaxResult.error("Пароль不正确，请重新输入。");
+        return AjaxResult.error("密码不正确，请重新输入。");
     }
 
-    // Сменить тему
+    // 切换主题
     @GetMapping("/system/switchSkin")
     public String switchSkin()
     {
@@ -132,14 +132,14 @@ public class IndexController extends BaseController
         return "main";
     }
     
-    // 检查初始ПарольДаНет提醒Изменить
+    // 检查初始密码是否提醒修改
     public boolean initPasswordIsModify(Date pwdUpdateDate)
     {
         Integer initPasswordModify = Convert.toInt(configService.selectConfigByKey("sys.account.initPasswordModify"));
         return initPasswordModify !=null && initPasswordModify == 1 && pwdUpdateDate == null;
     }
     
-    // 检查ПарольДаНет过期
+    // 检查密码是否过期
     public boolean passwordIsExpiration(Date pwdUpdateDate)
     {
         Integer passwordValidateDays = Convert.toInt(configService.selectConfigByKey("sys.account.passwordValidateDays"));
@@ -147,7 +147,7 @@ public class IndexController extends BaseController
         {
             if (StringUtils.isNull(pwdUpdateDate))
             {
-                // 如果从未Изменить过初始Пароль，直接提醒过期
+                // 如果从未修改过初始密码，直接提醒过期
                 return true;
             }
             Date nowDate = DateUtils.getNowDate();

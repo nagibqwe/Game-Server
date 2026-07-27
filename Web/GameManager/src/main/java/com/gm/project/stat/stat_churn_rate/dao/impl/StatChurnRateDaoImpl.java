@@ -13,7 +13,7 @@ import java.util.Map;
 public class StatChurnRateDaoImpl implements IStatChurnRateDao {
 
     /**
-     * 获取选择Время内所有登录用户
+     * 获取选择时间内所有登录用户
      * @param dbClient
      * @param channelNames
      * @param table
@@ -72,7 +72,7 @@ public class StatChurnRateDaoImpl implements IStatChurnRateDao {
         return rechargeDataMap;
     }
     /**
-     * 获取用户累充Сумма
+     * 获取用户累充金额
      */
     public List<Map<String, Object>> getAmountDataList(DBClient dbClient,String table, String channelNames, String vipUserId, int amountSum) {
         StringBuilder str = new StringBuilder();
@@ -124,7 +124,7 @@ public class StatChurnRateDaoImpl implements IStatChurnRateDao {
 
 
     /**
-     * 获取用户Уровень的SQL
+     * 获取用户等级的SQL
      */
     public List<Map<String, Object>> getUserLevelDataList(DBClient dbClient,String serverIdList, String channelNames, String users) {
         StringBuilder str = new StringBuilder();

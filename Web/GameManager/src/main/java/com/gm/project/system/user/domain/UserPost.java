@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class UserPost
 {
-    /** ID пользователя */
+    /** 用户ID */
     private Long userId;
     /** 岗位ID */
     private Long postId;

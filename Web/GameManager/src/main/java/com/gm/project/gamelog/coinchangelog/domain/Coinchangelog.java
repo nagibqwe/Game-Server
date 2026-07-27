@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Журнал изменения валюты对象 log_coinchangelog
+ * 货币变化日志对象 log_coinchangelog
  * 
  * @author gm
  * @date 2021-11-08
@@ -22,54 +22,54 @@ public class Coinchangelog extends BaseEntity
     /**  */
     private Integer sid;
 
-    /** Количество до */
-    @Excel(name = "Количество до")
+    /** 变化前数量 */
+    @Excel(name = "变化前数量")
     private Long beforeNum;
 
     /**  */
     private Long userId;
 
-    /** Имя персонажа */
-    @Excel(name = "Имя персонажа")
+    /** 角色名 */
+    @Excel(name = "角色名")
     private String roleName;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     private Long roleId;
 
-    /** Тип валюты */
-    @Excel(name = "Тип валюты")
+    /** 货币类型 */
+    @Excel(name = "货币类型")
     private String moneyType;
 
-    /** Код причины */
-    @Excel(name = "Код причины")
+    /** 原因码 */
+    @Excel(name = "原因码")
     private String reason;
 
-    /** 玩家Уровень */
-    @Excel(name = "玩家Уровень")
+    /** 玩家等级 */
+    @Excel(name = "玩家等级")
     private Integer roleLevel;
 
     /**  */
     private String platformName;
 
-    /** Количество после */
-    @Excel(name = "Количество после")
+    /** 变化后数量 */
+    @Excel(name = "变化后数量")
     private Long afterNum;
 
-    /** Связанный ID */
-    @Excel(name = "Связанный ID")
+    /** 关联ID */
+    @Excel(name = "关联ID")
     private Long actionId;
 
-    /** Изменение количества */
-    @Excel(name = "Изменение количества")
+    /** 变化数量 */
+    @Excel(name = "变化数量")
     private Long changeNum;
 
-    /** IP входа */
-    @Excel(name = "IP входа")
+    /** 登录ip */
+    @Excel(name = "登录ip")
     private String loginIp;
 
     public void setId(Integer id)

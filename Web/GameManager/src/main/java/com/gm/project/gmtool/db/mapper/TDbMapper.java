@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.db.domain.TDb;
 
 /**
- * Журнал库列Mapper接口
+ * 日志库列Mapper接口
  * 
  * @author gm
  * @date 2021-09-08
@@ -12,58 +12,58 @@ import com.gm.project.gmtool.db.domain.TDb;
 public interface TDbMapper 
 {
     /**
-     * 查询Журнал库列
+     * 查询日志库列
      * 
-     * @param id Журнал库列ID
-     * @return Журнал库列
+     * @param id 日志库列ID
+     * @return 日志库列
      */
     public TDb selectTDbById(Integer id);
 
     /**
-     * 查询Журнал库列
+     * 查询日志库列
      *
-     * @param id Журнал库列ID
-     * @return Журнал库列
+     * @param id 日志库列ID
+     * @return 日志库列
      */
     public TDb selectTDbByServerId(Integer serverId);
 
     /**
-     * 查询Журнал库列列表
+     * 查询日志库列列表
      * 
-     * @param tDb Журнал库列
-     * @return Журнал库列集合
+     * @param tDb 日志库列
+     * @return 日志库列集合
      */
     public List<TDb> selectTDbList(TDb tDb);
 
     /**
-     * ДобавитьЖурнал库列
+     * 新增日志库列
      * 
-     * @param tDb Журнал库列
-     * @return Результат
+     * @param tDb 日志库列
+     * @return 结果
      */
     public int insertTDb(TDb tDb);
 
     /**
-     * ИзменитьЖурнал库列
+     * 修改日志库列
      * 
-     * @param tDb Журнал库列
-     * @return Результат
+     * @param tDb 日志库列
+     * @return 结果
      */
     public int updateTDb(TDb tDb);
 
     /**
-     * УдалитьЖурнал库列
+     * 删除日志库列
      * 
-     * @param id Журнал库列ID
-     * @return Результат
+     * @param id 日志库列ID
+     * @return 结果
      */
     public int deleteTDbById(Integer id);
 
     /**
-     * 批量УдалитьЖурнал库列
+     * 批量删除日志库列
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteTDbByIds(String[] ids);
 }

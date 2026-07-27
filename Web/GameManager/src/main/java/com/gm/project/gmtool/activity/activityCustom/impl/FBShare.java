@@ -35,10 +35,10 @@ public class FBShare extends Activity implements IActivityCustom {
         String[] i_RewardItems = paramMap.get("reward");
 
         if (i_RewardItems.length == 0 ) {
-            throw new RuntimeException("===Данные错误");
+            throw new RuntimeException("===数据错误");
         }
 
-        //奖励【ID предмета_数量_ДаНет绑定_Класс;ID предмета_数量_ДаНет绑定_Класс】
+        //奖励【道具ID_数量_是否绑定_职业;道具ID_数量_是否绑定_职业】
         String i_reward = i_RewardItems[0];
         List<ItemBean> awards = ItemBean.split(i_reward);
 

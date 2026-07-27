@@ -10,7 +10,7 @@ import com.gm.project.gamelog.bossdierelivelog.service.IBossdierelivelogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * 首领死亡复活ЖурналService业务层处理
+ * 首领死亡复活日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-10
@@ -21,10 +21,10 @@ public class BossdierelivelogServiceImpl implements IBossdierelivelogService
 
 
     /**
-     * 查询首领死亡复活Журнал列表
+     * 查询首领死亡复活日志列表
      * 
-     * @param bossdierelivelog 首领死亡复活Журнал
-     * @return 首领死亡复活Журнал
+     * @param bossdierelivelog 首领死亡复活日志
+     * @return 首领死亡复活日志
      */
     @Override
     public List<Bossdierelivelog> selectBossdierelivelogList(Bossdierelivelog bossdierelivelog,Map<String, Object> param)

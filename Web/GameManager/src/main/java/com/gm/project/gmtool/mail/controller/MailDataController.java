@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Список писемController
+ * 邮件列表Controller
  * 
  * @author gm
  * @date 2021-08-30
@@ -54,7 +54,7 @@ public class MailDataController extends BaseController
     private static Logger log = LoggerFactory.getLogger(MailDataController.class);
     private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private final static int allServerMailState = 6;//标识多个Сервер发送Письмо всем серверам的СтатусИнформация
+    private final static int allServerMailState = 6;//标识多个服务器发送全服邮件的状态信息
 
     @Autowired
     private IMailDataService mailDataService;
@@ -73,7 +73,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * 查询Список писем列表
+     * 查询邮件列表列表
      */
 //    @RequiresPermissions("gmtool:mail:list")
     @PostMapping("/list")
@@ -103,7 +103,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * 查询全服Список писем列表
+     * 查询全服邮件列表列表
      */
 //    @RequiresPermissions("gmtool:mail:queryAll")
     @PostMapping("/queryAll")
@@ -133,7 +133,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * 查询未Удалить的Письмо
+     * 查询未删除的邮件
      * @return
      */
     @PostMapping("/queryMailList")
@@ -147,7 +147,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * 超级Письмо发送页面
+     * 超级邮件发送页面
      * @return
      */
     @RequiresPermissions("gmtool:mail:sendsupermail")
@@ -158,7 +158,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * Письмо всем серверам发送页面
+     * 全服邮件发送页面
      * @return
      */
     @RequiresPermissions("gmtool:mail:sendAllMail")
@@ -169,7 +169,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * 查询未Удалить的Письмо всем серверам
+     * 查询未删除的全服邮件
      * @return
      */
     @PostMapping("/queryAllMailList")
@@ -184,10 +184,10 @@ public class MailDataController extends BaseController
 
 
     /**
-     * ЭкспортСписок писем列表
+     * 导出邮件列表列表
      */
     @RequiresPermissions("gmtool:mail:export")
-    @Log(title = "Список писем", businessType = BusinessType.EXPORT)
+    @Log(title = "邮件列表", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(MailData mailData)
@@ -198,7 +198,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * ДобавитьСписок писем
+     * 新增邮件列表
      */
     @GetMapping("/add")
     public String add()
@@ -207,10 +207,10 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьСписок писем
+     * 新增保存邮件列表
      */
     @RequiresPermissions("gmtool:mail:add")
-    @Log(title = "Список писем", businessType = BusinessType.INSERT)
+    @Log(title = "邮件列表", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(MailData mailData)
@@ -219,7 +219,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * ИзменитьСписок писем
+     * 修改邮件列表
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -230,10 +230,10 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьСписок писем
+     * 修改保存邮件列表
      */
     @RequiresPermissions("gmtool:mail:edit")
-    @Log(title = "Список писем", businessType = BusinessType.UPDATE)
+    @Log(title = "邮件列表", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(MailData mailData)
@@ -242,10 +242,10 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * УдалитьСписок писем
+     * 删除邮件列表
      */
     @RequiresPermissions("gmtool:mail:remove")
-    @Log(title = "Список писем", businessType = BusinessType.DELETE)
+    @Log(title = "邮件列表", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -254,7 +254,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * Список писем中的ПисьмоДействия
+     * 邮件列表中的邮件操作
      * @param id
      * @param type
      * @param request
@@ -273,7 +273,7 @@ public class MailDataController extends BaseController
 
         if (type == 1) {
             boolean isOk = sendMail(da);
-            GMLogUtil.log("发送Письмо\tПисьмоID：" + da.getId() + "\t ID сервера：" + da.getServerId() + ",Результат:" + isOk + "\tИнформация：" + da.getSendErrorMess());
+            GMLogUtil.log("发送邮件\t邮件ID：" + da.getId() + "\t 服务器ID：" + da.getServerId() + ",结果:" + isOk + "\t信息：" + da.getSendErrorMess());
             if (!isOk) {
                 return AjaxResult.info(da.getSendErrorMess()).put("ok",false);
             }
@@ -281,7 +281,7 @@ public class MailDataController extends BaseController
 
         if (type == 2) {
             da.setAdminState(4);
-            da.setSendErrorMess(userName + "标记此Письмо不允许发送！");
+            da.setSendErrorMess(userName + "标记此邮件不允许发送！");
             if (mailDataService.updateMailData(da) < 1) {
                 return AjaxResult.info("Не удалось обновить запись письма!").put("ok",false);
             }
@@ -289,24 +289,24 @@ public class MailDataController extends BaseController
 
         if (type == 3) {
             da.setIsDelete(1);
-            da.setSendErrorMess(userName + "Удалить了本Письмо");
+            da.setSendErrorMess(userName + "删除了本邮件");
             int num = mailDataService.updateMailData(da);
-            GMLogUtil.log("УдалитьПисьмо\tПисьмоID：" + da.getId() + ",Результат:" + num + "\tИнформация：" + da.getTitle());
+            GMLogUtil.log("删除邮件\t邮件ID：" + da.getId() + ",结果:" + num + "\t信息：" + da.getTitle());
             if (num < 1) {
                 return AjaxResult.info("Не удалось обновить запись письма!").put("ok",false);
             }
         }
-        return AjaxResult.info("更新ПисьмоУспешно！").put("ok",true);
+        return AjaxResult.info("更新邮件成功！").put("ok",true);
     }
 
     /**
-     * 一键发送所有的未发送的Письмо
+     * 一键发送所有的未发送的邮件
      * @return
      */
     @PostMapping( "/onekeySend")
     @ResponseBody
     public Object onekeySend() {
-        // 检查权限ДаНет足够
+        // 检查权限是否足够
         List<MailData> list = mailDataService.selectMailByState();
         String ctime = format.format(new Date());
         for (MailData da : list) {
@@ -314,20 +314,20 @@ public class MailDataController extends BaseController
             da.setAdminDate(ctime);
             boolean bn = sendMail(da);
             int num = mailDataService.updateMailData(da);
-            GMLogUtil.log("发送Письмо\tПисьмоID：" + da.getId() + "\t " +
-                    "ID сервера：" + da.getServerId() + ",Результат:" + bn + " , 更新记录数=" + num + "\tИнформация：" + da.getSendErrorMess());
+            GMLogUtil.log("发送邮件\t邮件ID：" + da.getId() + "\t " +
+                    "服务器ID：" + da.getServerId() + ",结果:" + bn + " , 更新记录数=" + num + "\t信息：" + da.getSendErrorMess());
         }
-        return AjaxResult.info("一键发送功能处理Успешно!").put("ok",true);
+        return AjaxResult.info("一键发送功能处理成功!").put("ok",true);
     }
-    //向Сервер发送Письмо
+    //向服务器发送邮件
     private boolean sendMail(MailData mailData) {
         if (mailData.getSended() > 0 || mailData.getIsDelete() > 0) {
-            log.error("Письмо(" + mailData.getId() + ")已发送或被Удалить");
+            log.error("邮件(" + mailData.getId() + ")已发送或被删除");
             return false;
         }
 
         if (mailData.getAdminState() > 1) {
-            log.error("Письмо(" + mailData.getId() + ")Статус为" + mailData.getAdminState() + "Не отправлять");
+            log.error("邮件(" + mailData.getId() + ")状态为" + mailData.getAdminState() + "不予发送");
             return false;
         }
 
@@ -351,13 +351,13 @@ public class MailDataController extends BaseController
             mailData.setAdminState(2);
         }
         long et = System.currentTimeMillis();
-        log.error("Письмо(id:" + mailData.getId() + ")发送至(sid:" + sid + ",roleId:" + mailData.getRoleIds() + "),Результат:" + result.get("msg").toString() + ",耗时:" + (et - st));
+        log.error("邮件(id:" + mailData.getId() + ")发送至(sid:" + sid + ",roleId:" + mailData.getRoleIds() + "),结果:" + result.get("msg").toString() + ",耗时:" + (et - st));
         mailDataService.updateMailData(mailData);
         return true;
     }
 
     /**
-     *全服Список писем中的ПисьмоДействия
+     *全服邮件列表中的邮件操作
      * @param id
      * @param type
      * @param request
@@ -376,13 +376,13 @@ public class MailDataController extends BaseController
 
         if (type == 1) {
             StringBuilder sb = sendAllServerMail(da);
-            GMLogUtil.log("发送Письмо всем серверам\tПисьмоID：" + da.getId() + "\t ID сервера列表：" + da.getServerIdList() + ",Результат:" + sb.toString() + "\tИнформация：" + da.getSendErrorMess());
+            GMLogUtil.log("发送全服邮件\t邮件ID：" + da.getId() + "\t 服务器ID列表：" + da.getServerIdList() + ",结果:" + sb.toString() + "\t信息：" + da.getSendErrorMess());
             return AjaxResult.info(sb.toString()).put("ok",false);
         }
 
         if (type == 2) {
             da.setAdminState(4);
-            da.setSendErrorMess(userName + "标记此Письмо不允许发送！");
+            da.setSendErrorMess(userName + "标记此邮件不允许发送！");
             if (allMailDataService.updateAllMailData(da) < 1) {
                 return AjaxResult.info("Не удалось обновить запись письма!").put("ok",false);
             }
@@ -390,18 +390,18 @@ public class MailDataController extends BaseController
 
         if (type == 3) {
             da.setIsDelete(1);
-            da.setSendErrorMess(userName + "Удалить了本Письмо");
+            da.setSendErrorMess(userName + "删除了本邮件");
             int num = allMailDataService.updateAllMailData(da);
-            GMLogUtil.log("УдалитьПисьмо всем серверам\tПисьмоID：" + da.getId() + ",Результат:" + num + "\tИнформация：" + da.getTitle());
+            GMLogUtil.log("删除全服邮件\t邮件ID：" + da.getId() + ",结果:" + num + "\t信息：" + da.getTitle());
             if (num < 1) {
                 return AjaxResult.info("Не удалось обновить запись письма!").put("ok",false);
             }
         }
-        return AjaxResult.info("更新ПисьмоУспешно！").put("ok",true);
+        return AjaxResult.info("更新邮件成功！").put("ok",true);
     }
 
     /**
-     * 向Сервер发送多个Сервер的Письмо всем серверам
+     * 向服务器发送多个服务器的全服邮件
      * @param mailData
      * @return
      */
@@ -409,13 +409,13 @@ public class MailDataController extends BaseController
         StringBuilder sb = new StringBuilder();
         StringBuilder sbSendErrorMess = new StringBuilder();
         if (mailData.getSended() > 0 || mailData.getIsDelete() > 0) {
-            log.error("Письмо(" + mailData.getId() + ")已发送或被Удалить");
-            return sb.append("Письмо(" + mailData.getId() + ")已发送或被Удалить");
+            log.error("邮件(" + mailData.getId() + ")已发送或被删除");
+            return sb.append("邮件(" + mailData.getId() + ")已发送或被删除");
         }
 
         if (mailData.getAdminState() > 1) {
-            log.error("Письмо(" + mailData.getId() + ")Статус为" + mailData.getAdminState() + "Не отправлять");
-            return sb.append("Письмо(" + mailData.getId() + ")Статус为" + mailData.getAdminState() + "Не отправлять");
+            log.error("邮件(" + mailData.getId() + ")状态为" + mailData.getAdminState() + "不予发送");
+            return sb.append("邮件(" + mailData.getId() + ")状态为" + mailData.getAdminState() + "不予发送");
         }
         String serverIdStr = mailData.getServerIdList();
         if (serverIdStr.contains("[")){
@@ -423,12 +423,12 @@ public class MailDataController extends BaseController
         }
         String[] serverIdList = serverIdStr.split(",");
         HashMap result = new HashMap();
-        Set<Integer> sids = new HashSet<>();//存放不重复的Объединение серверов后的ID сервера
+        Set<Integer> sids = new HashSet<>();//存放不重复的合服后的服务器id
         for (String serverId:serverIdList) {
             int sid = DBServerMgr.getInstance().getHeFuId(Integer.parseInt(serverId));
             sids.add(sid);
         }
-        sb.append("Письмо(id:" + mailData.getId()+")");
+        sb.append("邮件(id:" + mailData.getId()+")");
         for (Integer sid:sids){
             TServer server = tServerService.selectTServerByServerId(sid);
             if (server == null) {
@@ -436,33 +436,33 @@ public class MailDataController extends BaseController
                 sbSendErrorMess.append(sid+"不能指定到达具体的游戏服！").append("\n");
 //                mailData.setSendErrorMess(language.get("mail.send.serverNull"));
                 allMailDataService.updateAllMailData(mailData);
-                sb.append("发送至ID сервера:"+sid+",Ошибка未找到serverId="+sid).append("\n");
+                sb.append("发送至服务器id:"+sid+",失败未找到serverId="+sid).append("\n");
                 log.error("t_server中未找到serverId=" + sid);
             }else {
-                result = GameServerRequestUtil.gmSendAllMail(server, mailData, mailData.getServerIdList());//向游戏Сервер发送命令
+                result = GameServerRequestUtil.gmSendAllMail(server, mailData, mailData.getServerIdList());//向游戏服务器发送命令
                 mailData.setSended(1);
                 sbSendErrorMess.append(result.get("msg").toString()).append("\n");
 //                mailData.setSendErrorMess(result.getString("msg"));
                 if (Boolean.valueOf(result.get("ok").toString())) {
                     mailData.setAdminState(allServerMailState);
-                    sbSendErrorMess.append("发送至ID сервера:"+sid+"Успешно").append("\n");
-                    sb.append("发送至ID сервера:"+sid+"Успешно").append("\n");
+                    sbSendErrorMess.append("发送至服务器id:"+sid+"成功").append("\n");
+                    sb.append("发送至服务器id:"+sid+"成功").append("\n");
                 } else {
                     mailData.setAdminState(allServerMailState);
-                    sbSendErrorMess.append("发送至ID сервера:"+sid+"Ошибка").append("\n");
-                    sb.append("发送至ID сервера:"+sid+"Ошибка").append("\n");
+                    sbSendErrorMess.append("发送至服务器id:"+sid+"失败").append("\n");
+                    sb.append("发送至服务器id:"+sid+"失败").append("\n");
                 }
                 mailData.setSendErrorMess(sbSendErrorMess.toString());
-                log.error("Письмо(id:" + mailData.getId() + ")发送至(sid:" + sid + "),Результат:" + result.get("msg").toString() + ")");
+                log.error("邮件(id:" + mailData.getId() + ")发送至(sid:" + sid + "),结果:" + result.get("msg").toString() + ")");
                 allMailDataService.updateAllMailData(mailData);
             }
         }
-        GMLogUtil.log(sb.toString());//记录Журнал
+        GMLogUtil.log(sb.toString());//记录日志
         return sb;
     }
 
     /**
-     * 向Сервер发送多个Сервер的Письмо всем серверам(全服Список писем一键发送的Действия)
+     * 向服务器发送多个服务器的全服邮件(全服邮件列表一键发送的操作)
      * @param request
      * @return
      */
@@ -470,11 +470,11 @@ public class MailDataController extends BaseController
     @ResponseBody
     public Object oneKeySendAll(HttpServletRequest request) {
         String userName = ShiroUtils.getLoginName();
-        // 检查权限ДаНет足够
+        // 检查权限是否足够
         AllMailData allMailData = new AllMailData();
         allMailData.setIsDelete(0);
         allMailData.setAdminState(1);
-        //一键发送待批准的Письмо
+        //一键发送待批准的邮件
         List<AllMailData> list = allMailDataService.selectAllMailDataList(allMailData);
         String ctime = format.format(new Date());
         StringBuilder sb = new StringBuilder();
@@ -484,14 +484,14 @@ public class MailDataController extends BaseController
             da.setAdminDate(ctime);
             sb = sendAllServerMail(da);
             int num = allMailDataService.updateAllMailData(da);
-            GMLogUtil.log("发送Письмо всем серверам\tПисьмоID：" + da.getId() + "\t ID сервера列表：" + da.getServerIdList() + ",Результат:" + sb.toString() + " , 更新记录数=" + num);
+            GMLogUtil.log("发送全服邮件\t邮件ID：" + da.getId() + "\t 服务器ID列表：" + da.getServerIdList() + ",结果:" + sb.toString() + " , 更新记录数=" + num);
             sbAllMail.append(sb.toString());
         }
         return AjaxResult.info(sbAllMail.toString()).put("ok",true);
     }
 
     /**
-     *验证ID персонажа
+     *验证角色ID
      * @param roleIds
      * @param serverId
      * @return
@@ -505,7 +505,7 @@ public class MailDataController extends BaseController
 
         TServer dblog = tServerService.selectTServerByServerId(serverId);
         if (dblog == null) {
-            return AjaxResult.info("请求查询的Сервер并不存在").put("ok",false);
+            return AjaxResult.info("请求查询的服务器并不存在").put("ok",false);
         }
 
         DBClient dbClient = DBServerMgr.getInstance().getLogDBClient(dblog);
@@ -521,13 +521,13 @@ public class MailDataController extends BaseController
             list.remove(String.valueOf(roleId));
         }
         if (list.size() > 0) {
-            return AjaxResult.info(list.toString() + "的ID персонажа在" + serverId + "服中找不到！").put("ok", false);
+            return AjaxResult.info(list.toString() + "的角色ID在" + serverId + "服中找不到！").put("ok", false);
         }
         return AjaxResult.info("输入的角色都有效！").put("ok",true);
     }
 
     /**
-     * Письмо发送ОтправитьДействия
+     * 邮件发送提交操作
      * @param request
      * @param mailData
      * @return
@@ -541,10 +541,10 @@ public class MailDataController extends BaseController
             return AjaxResult.info("Некорректные параметры письма").put("ok",false);
         }
         if (mailData.getServerId() < 1) {
-            return AjaxResult.info("请求查询的Сервер并不存在").put("ok",false);
+            return AjaxResult.info("请求查询的服务器并不存在").put("ok",false);
         }
 
-        //СохранитьПисьмо
+        //保存邮件
         mailData.setCreateDate(format.format(new Date()));
         mailData.setCreateUser(userName);
 //        if (mailData.getItems().trim().length() > 0) {
@@ -553,21 +553,21 @@ public class MailDataController extends BaseController
         int num = mailDataService.insertMailData(mailData);
         MailData da = mailDataService.selectMailDataById(mailData.getId());
         if (num < 1) {
-            return AjaxResult.info("СохранитьДанныеОшибка了，通知运维检查后台连接！");
+            return AjaxResult.info("保存数据失败了，通知运维检查后台连接！");
         }
-        GMLogUtil.log("СохранитьПисьмо\t理由：" + da.getReason() + "\t ID сервера：" + da.getServerId() + ",角色列表：" + da.getRoleIds() + "\t标题：" + da.getTitle());
+        GMLogUtil.log("保存邮件\t理由：" + da.getReason() + "\t 服务器ID：" + da.getServerId() + ",角色列表：" + da.getRoleIds() + "\t标题：" + da.getTitle());
 
-//        // 小于则直接发送Письмо
+//        // 小于则直接发送邮件
 //        if (mailData.getItems().length() < 1) {
 //            boolean bn = sendMail(da);
-//            GMLogUtil.log("发送Письмо\tПисьмоID：" + mailData.getId() + "\t ID сервера：" + da.getServerId() + ",Результат:" + bn + "\tИнформация：" + da.getSendErrorMess());
-//            return AjaxResult.info("发送Успешно").put("ok",true);
+//            GMLogUtil.log("发送邮件\t邮件ID：" + mailData.getId() + "\t 服务器ID：" + da.getServerId() + ",结果:" + bn + "\t信息：" + da.getSendErrorMess());
+//            return AjaxResult.info("发送成功").put("ok",true);
 //        }
-        return AjaxResult.info("СохранитьУспешно！请审核后发送").put("ok",true);
+        return AjaxResult.info("保存成功！请审核后发送").put("ok",true);
     }
 
     /**
-     * Письмо发送粘贴СодержимоеДействия
+     * 邮件发送粘贴内容操作
      * @param id
      * @return
      */
@@ -582,7 +582,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * Письмо всем серверам发送粘贴СодержимоеДействия
+     * 全服邮件发送粘贴内容操作
      * @param id
      * @return
      */
@@ -597,7 +597,7 @@ public class MailDataController extends BaseController
     }
 
     /**
-     * Письмо всем серверам发送点击ОтправитьДействия
+     * 全服邮件发送点击提交操作
      * @param request
      * @param groupName
      * @param serverids
@@ -622,7 +622,7 @@ public class MailDataController extends BaseController
             return AjaxResult.info("Некорректные параметры письма").put("ok",false);
         }
         AllMailData mailData = new AllMailData();
-        //СохранитьПисьмо
+        //保存邮件
         mailData.setCreateDate(format.format(new Date()));
         mailData.setCreateUser(userName);
         mailData.setGroupName(groupName);
@@ -640,16 +640,16 @@ public class MailDataController extends BaseController
         int num = allMailDataService.insertAllMailData(mailData);
         AllMailData da = allMailDataService.selectAllMailDataById(mailData.getId());
         if (num < 1) {
-            return AjaxResult.info("СохранитьДанныеОшибка了，通知运维检查后台连接！");
+            return AjaxResult.info("保存数据失败了，通知运维检查后台连接！");
         }
-        GMLogUtil.log("СохранитьПисьмо всем серверам\t理由：" + da.getReason() + "\t Список серверовID：" + da.getServerIdList() + "\t标题：" + da.getTitle());
+        GMLogUtil.log("保存全服邮件\t理由：" + da.getReason() + "\t 服务器列表ID：" + da.getServerIdList() + "\t标题：" + da.getTitle());
 
-        // 小于则直接发送Письмо
+        // 小于则直接发送邮件
 //        if (mailData.getItems().length() < 1) {
 //            StringBuilder sb = sendAllServerMail(da);
-//            GMLogUtil.log("发送Письмо всем серверам\tПисьмоID：" + mailData.getId() + "\t Список серверовID：" + da.getServerIdList() + ",Результат:" + sb.toString() + "\tИнформация：" + da.getSendErrorMess());
+//            GMLogUtil.log("发送全服邮件\t邮件ID：" + mailData.getId() + "\t 服务器列表ID：" + da.getServerIdList() + ",结果:" + sb.toString() + "\t信息：" + da.getSendErrorMess());
 //            return AjaxResult.info(sb.toString()).put("ok",true);
 //        }
-        return AjaxResult.info("СохранитьУспешно！请审核后发送").put("ok",true);
+        return AjaxResult.info("保存成功！请审核后发送").put("ok",true);
     }
 }

@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 /**
- * Код активации对象 activecode
+ * 激活码对象 activecode
  * 
  * @author gm
  * @date 2021-09-18
@@ -17,81 +17,81 @@ public class ActiveCode
 {
     private static final long serialVersionUID = 1L;
 
-    /** Код активацииID */
+    /** 激活码ID */
     private String id;
 
-    /** Код активации */
-    @Excel(name = "Код активации")
+    /** 激活码 */
+    @Excel(name = "激活码")
     private String code;
 
-    /** Код активацииТип名 */
-    @Excel(name = "Код активацииТип名")
+    /** 激活码类型名 */
+    @Excel(name = "激活码类型名")
     private String activeName;
 
-    /** Номер пакета */
-    @Excel(name = "Номер пакета")
+    /** 批次号 */
+    @Excel(name = "批次号")
     private String batch;
 
-    /** Список предметов */
-    @Excel(name = "Список предметов")
+    /** 物品列表 */
+    @Excel(name = "物品列表")
     private String itemList;
 
     /** 万能码 */
     @Excel(name = "万能码")
     private int param;
 
-    /** 有效Время начала */
+    /** 有效开始时间 */
 
     private String valide_time_begin;
 
-    /** 有效Время окончания */
+    /** 有效结束时间 */
 
     private String valide_time_end;
 
-    /** Канал名 */
-    @Excel(name = "Канал名")
+    /** 渠道名 */
+    @Excel(name = "渠道名")
     private String plateform_name_big;
 
-    /** 有效Игровой сервер */
-    @Excel(name = "有效Игровой сервер")
+    /** 有效区服 */
+    @Excel(name = "有效区服")
     private String valide_server_id_list;
 
     /**
-     * Время создания
+     * 创建时间
      */
-    @Excel(name = "Время создания")
+    @Excel(name = "创建时间")
     private String create_time;
 
-    /** Код активации使用Время */
-    @Excel(name = "Код активации使用Время")
+    /** 激活码使用时间 */
+    @Excel(name = "激活码使用时间")
     private String getTime;
 
-    /** 使用者ID персонажа */
-    @Excel(name = "使用者ID персонажа")
+    /** 使用者角色id */
+    @Excel(name = "使用者角色id")
     private String getPlayerId;
 
-    /** 使用者Имя персонажа */
-    @Excel(name = "使用者Имя персонажа")
+    /** 使用者角色名 */
+    @Excel(name = "使用者角色名")
     private String getPlateformAid;
 
     /** 使用者帐号 */
     @Excel(name = "使用者帐号")
     private String getAccountId;
 
-    /** 使用者Платформа */
-    @Excel(name = "使用者Платформа")
+    /** 使用者平台名 */
+    @Excel(name = "使用者平台名")
     private String getPlateformName;
 
-    /** 使用者Игровой сервер */
-    @Excel(name = "使用者Игровой сервер")
+    /** 使用者区服 */
+    @Excel(name = "使用者区服")
     private String getServerId;
 
-    /** Платформа（小） */
-    @Excel(name = "Платформа", readConverterExp = "小=")
+    /** 平台名（小） */
+    @Excel(name = "平台名", readConverterExp = "小=")
     private String plateformNameSmall;
 
-    /** УдалитьВремя */
-    @Excel(name = "УдалитьВремя")
+    /** 删除时间 */
+    @Excel(name = "删除时间")
     private String deleteTime;
 
     public String getId() {

@@ -21,7 +21,7 @@ public class GenTableColumnServiceImpl implements IGenTableColumnService
 	/**
      * 查询业务字段列表
      * 
-     * @param genTableColumn 业务字段Информация
+     * @param genTableColumn 业务字段信息
      * @return 业务字段集合
      */
 	@Override
@@ -31,10 +31,10 @@ public class GenTableColumnServiceImpl implements IGenTableColumnService
 	}
 	
     /**
-     * Добавить业务字段
+     * 新增业务字段
      * 
-     * @param genTableColumn 业务字段Информация
-     * @return Результат
+     * @param genTableColumn 业务字段信息
+     * @return 结果
      */
 	@Override
 	public int insertGenTableColumn(GenTableColumn genTableColumn)
@@ -43,10 +43,10 @@ public class GenTableColumnServiceImpl implements IGenTableColumnService
 	}
 	
 	/**
-     * Изменить业务字段
+     * 修改业务字段
      * 
-     * @param genTableColumn 业务字段Информация
-     * @return Результат
+     * @param genTableColumn 业务字段信息
+     * @return 结果
      */
 	@Override
 	public int updateGenTableColumn(GenTableColumn genTableColumn)
@@ -55,10 +55,10 @@ public class GenTableColumnServiceImpl implements IGenTableColumnService
 	}
 
 	/**
-     * Удалить业务字段对象
+     * 删除业务字段对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
 	@Override
 	public int deleteGenTableColumnByIds(String ids)

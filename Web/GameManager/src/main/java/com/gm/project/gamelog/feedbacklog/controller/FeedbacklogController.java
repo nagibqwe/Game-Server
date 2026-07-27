@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 反馈ЖурналController
+ * 反馈日志Controller
  * 
  * @author gm
  * @date 2021-09-10
@@ -46,7 +46,7 @@ public class FeedbacklogController extends BaseController
         return prefix + "/feedbacklog";
     }
     /**
-     * 查询反馈Журнал列表
+     * 查询反馈日志列表
      */
     @RequiresPermissions("gamelog:feedbacklog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class FeedbacklogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * Экспорт反馈Журнал列表
+     * 导出反馈日志列表
      */
     @RequiresPermissions("gamelog:feedbacklog:export")
-    @Log(title = "反馈Журнал", businessType = BusinessType.EXPORT)
+    @Log(title = "反馈日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Feedbacklog feedbacklog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class FeedbacklogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Feedbacklog> list = feedbacklogService.selectFeedbacklogList(feedbacklog,param);
         ExcelUtil<Feedbacklog> util = new ExcelUtil<Feedbacklog>(Feedbacklog.class);
-        return util.exportExcel(list, "反馈ЖурналДанные");
+        return util.exportExcel(list, "反馈日志数据");
     }
 }

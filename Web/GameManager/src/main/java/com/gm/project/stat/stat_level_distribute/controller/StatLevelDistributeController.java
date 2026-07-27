@@ -17,7 +17,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Уровень персонажа分布Controller
+ * 角色等级分布Controller
  * 
  * @author gm
  * @date 2021-08-06
@@ -40,7 +40,7 @@ public class StatLevelDistributeController extends BaseController
     }
 
     /**
-     * 查询Уровень персонажа分布列表
+     * 查询角色等级分布列表
      */
     @RequiresPermissions("stat:stat_level_distribute:list")
     @PostMapping("/list")

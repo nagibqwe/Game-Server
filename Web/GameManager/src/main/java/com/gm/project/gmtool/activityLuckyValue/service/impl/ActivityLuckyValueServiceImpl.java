@@ -45,10 +45,10 @@ public class ActivityLuckyValueServiceImpl implements IActivityLuckyValueService
     }
 
     /**
-     * Добавить抽奖幸运值
+     * 新增抽奖幸运值
      * 
      * @param activityLuckyValue 抽奖幸运值
-     * @return Результат
+     * @return 结果
      */
     @Override
     public int insertActivityLuckyValue(ActivityLuckyValue activityLuckyValue)
@@ -57,10 +57,10 @@ public class ActivityLuckyValueServiceImpl implements IActivityLuckyValueService
     }
 
     /**
-     * Изменить抽奖幸运值
+     * 修改抽奖幸运值
      * 
      * @param activityLuckyValue 抽奖幸运值
-     * @return Результат
+     * @return 结果
      */
     @Override
     public int updateActivityLuckyValue(ActivityLuckyValue activityLuckyValue)
@@ -69,10 +69,10 @@ public class ActivityLuckyValueServiceImpl implements IActivityLuckyValueService
     }
 
     /**
-     * Удалить抽奖幸运值对象
+     * 删除抽奖幸运值对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteActivityLuckyValueByIds(String ids)
@@ -81,10 +81,10 @@ public class ActivityLuckyValueServiceImpl implements IActivityLuckyValueService
     }
 
     /**
-     * Удалить抽奖幸运值Информация
+     * 删除抽奖幸运值信息
      * 
      * @param id 抽奖幸运值ID
-     * @return Результат
+     * @return 结果
      */
     @Override
     public int deleteActivityLuckyValueById(Integer id)

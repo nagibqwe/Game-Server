@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * РейтингЖурналController
+ * 排行榜日志Controller
  * 
  * @author gm
  * @date 2021-09-08
@@ -46,7 +46,7 @@ public class RanklistlogController extends BaseController
         return prefix + "/ranklistlog";
     }
     /**
-     * 查询РейтингЖурнал列表
+     * 查询排行榜日志列表
      */
     @RequiresPermissions("gamelog:ranklistlog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class RanklistlogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * ЭкспортРейтингЖурнал列表
+     * 导出排行榜日志列表
      */
     @RequiresPermissions("gamelog:ranklistlog:export")
-    @Log(title = "РейтингЖурнал", businessType = BusinessType.EXPORT)
+    @Log(title = "排行榜日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Ranklistlog ranklistlog,String startDate,String endDate,Integer serverId,Integer pageSize)

@@ -18,7 +18,7 @@ public class DefaultHandler implements ResultHandler<String> {
         try {
             return getResult(result);
         } catch (Exception e) {
-            LOGGER.error("gm 解析Назад值[" + result + "]Ошибка ", e);
+            LOGGER.error("gm 解析返回值[" + result + "]失败 ", e);
             throw new GMSendException(GMSendErrorType.PARSE, e);
         }
     }
@@ -29,7 +29,7 @@ public class DefaultHandler implements ResultHandler<String> {
 
     @Override
     public String hand(TServer server, Exception e) {
-        LOGGER.error("gm 执行Ошибка " + e.toString());
+        LOGGER.error("gm 执行失败 " + e.toString());
         return "-99";
     }
 

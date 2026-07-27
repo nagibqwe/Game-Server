@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Тип босса событияController
+ * 运营活动boss类型Controller
  * 
  * @author gm
  * @date 2021-09-14
@@ -43,7 +43,7 @@ public class ActivityBossTypeController extends BaseController
     }
 
     /**
-     * 查询Тип босса события列表
+     * 查询运营活动boss类型列表
      */
 //    @RequiresPermissions("gmtool:activityBossType:list")
     @PostMapping("/list")
@@ -56,10 +56,10 @@ public class ActivityBossTypeController extends BaseController
     }
 
     /**
-     * ЭкспортТип босса события列表
+     * 导出运营活动boss类型列表
      */
     @RequiresPermissions("gmtool:activityBossType:export")
-    @Log(title = "Тип босса события", businessType = BusinessType.EXPORT)
+    @Log(title = "运营活动boss类型", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(ActivityBossType activityBossType)
@@ -70,7 +70,7 @@ public class ActivityBossTypeController extends BaseController
     }
 
     /**
-     * ДобавитьТип босса события
+     * 新增运营活动boss类型
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class ActivityBossTypeController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьТип босса события
+     * 新增保存运营活动boss类型
      */
     @RequiresPermissions("gmtool:activityBossType:add")
-    @Log(title = "Тип босса события", businessType = BusinessType.INSERT)
+    @Log(title = "运营活动boss类型", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(ActivityBossType activityBossType)
@@ -91,7 +91,7 @@ public class ActivityBossTypeController extends BaseController
     }
 
     /**
-     * ИзменитьТип босса события
+     * 修改运营活动boss类型
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class ActivityBossTypeController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьТип босса события
+     * 修改保存运营活动boss类型
      */
     @RequiresPermissions("gmtool:activityBossType:edit")
-    @Log(title = "Тип босса события", businessType = BusinessType.UPDATE)
+    @Log(title = "运营活动boss类型", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(ActivityBossType activityBossType)
@@ -114,10 +114,10 @@ public class ActivityBossTypeController extends BaseController
     }
 
     /**
-     * УдалитьТип босса события
+     * 删除运营活动boss类型
      */
     @RequiresPermissions("gmtool:activityBossType:remove")
-    @Log(title = "Тип босса события", businessType = BusinessType.DELETE)
+    @Log(title = "运营活动boss类型", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

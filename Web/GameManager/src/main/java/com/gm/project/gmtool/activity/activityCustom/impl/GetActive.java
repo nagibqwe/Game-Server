@@ -38,11 +38,11 @@ public class GetActive extends Activity implements IActivityCustom {
         String[] showRewards = paramMap.get("showReward");
 
         if (coinType.length != coinCv.length) {
-            throw new RuntimeException("===兑换Данные错误" );
+            throw new RuntimeException("===兑换数据错误" );
         }
 
         if (reachs.length != rewards.length || reachs.length != showRewards.length) {
-            throw new RuntimeException("===奖励Данные错误" );
+            throw new RuntimeException("===奖励数据错误" );
         }
 
         HashMap<Integer, Integer> coinRatio = new HashMap<>();
@@ -51,7 +51,7 @@ public class GetActive extends Activity implements IActivityCustom {
             String cc = coinCv[i];
             Integer coin = Integer.parseInt(ct);
             if (coinRatio.containsKey(coin)) {
-                throw new RuntimeException("===重复的Тип валюты" + coin);
+                throw new RuntimeException("===重复的货币类型" + coin);
             }
             coinRatio.put(coin, Integer.parseInt(cc));
         }

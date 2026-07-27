@@ -17,7 +17,7 @@ import java.util.List;
 
 
 /**
- * Магазин购买统计Controller
+ * 商城购买统计Controller
  * 
  * @author gm
  * @date 2021-05-25
@@ -37,8 +37,8 @@ public class StatShopItemController extends BaseController
         return prefix + "/stat_shop_item";
     }
     /**
-     * 查询Магазин购买统计列表
-     * 查询Магазин购买统计列表
+     * 查询商城购买统计列表
+     * 查询商城购买统计列表
      */
     @PostMapping("/stat_shop_item")
     @ResponseBody
@@ -48,7 +48,7 @@ public class StatShopItemController extends BaseController
             return getDataTableErrorMsg("Укажите время начала и окончания");
         }
         if(serverId == null || serverId == 0){
-            return getDataTableErrorMsg("请选择Сервер");
+            return getDataTableErrorMsg("请选择服务器");
         }
         List<ShopItemBean> shopItemBeanList =  statShopItemService.statShopItem(groupName, serverId,channelNames,FromSrc,moneyType,startDate,endDate,isBlack);
         return  getDataTable(shopItemBeanList);

@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.shop.domain.Shop;
 
 /**
- * МагазинMapper接口
+ * 商城Mapper接口
  * 
  * @author gm
  * @date 2021-09-23
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.shop.domain.Shop;
 public interface ShopMapper 
 {
     /**
-     * 查询Магазин
+     * 查询商城
      * 
-     * @param ID МагазинID
-     * @return Магазин
+     * @param ID 商城ID
+     * @return 商城
      */
     public Shop selectShopById(Integer ID);
 
     /**
-     * 查询Магазин列表
+     * 查询商城列表
      * 
-     * @param shop Магазин
-     * @return Магазин集合
+     * @param shop 商城
+     * @return 商城集合
      */
     public List<Shop> selectShopList(Shop shop);
 
     /**
-     * ДобавитьМагазин
+     * 新增商城
      * 
-     * @param shop Магазин
-     * @return Результат
+     * @param shop 商城
+     * @return 结果
      */
     public int insertShop(Shop shop);
 
     /**
-     * ИзменитьМагазин
+     * 修改商城
      * 
-     * @param shop Магазин
-     * @return Результат
+     * @param shop 商城
+     * @return 结果
      */
     public int updateShop(Shop shop);
 
     /**
-     * УдалитьМагазин
+     * 删除商城
      * 
-     * @param ID МагазинID
-     * @return Результат
+     * @param ID 商城ID
+     * @return 结果
      */
     public int deleteShopById(Integer ID);
 
     /**
-     * 批量УдалитьМагазин
+     * 批量删除商城
      * 
-     * @param IDs 需要Удалить的ДанныеID
-     * @return Результат
+     * @param IDs 需要删除的数据ID
+     * @return 结果
      */
     public int deleteShopByIds(String[] IDs);
 }

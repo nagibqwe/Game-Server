@@ -13,32 +13,32 @@ public interface IGenTableColumnService
     /**
      * 查询业务字段列表
      * 
-     * @param genTableColumn 业务字段Информация
+     * @param genTableColumn 业务字段信息
      * @return 业务字段集合
      */
     public List<GenTableColumn> selectGenTableColumnListByTableId(GenTableColumn genTableColumn);
 
     /**
-     * Добавить业务字段
+     * 新增业务字段
      * 
-     * @param genTableColumn 业务字段Информация
-     * @return Результат
+     * @param genTableColumn 业务字段信息
+     * @return 结果
      */
     public int insertGenTableColumn(GenTableColumn genTableColumn);
 
     /**
-     * Изменить业务字段
+     * 修改业务字段
      * 
-     * @param genTableColumn 业务字段Информация
-     * @return Результат
+     * @param genTableColumn 业务字段信息
+     * @return 结果
      */
     public int updateGenTableColumn(GenTableColumn genTableColumn);
 
     /**
-     * Удалить业务字段Информация
+     * 删除业务字段信息
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteGenTableColumnByIds(String ids);
 }

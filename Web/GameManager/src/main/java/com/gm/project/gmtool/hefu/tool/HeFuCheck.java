@@ -35,11 +35,11 @@ public class HeFuCheck {
         log.info(str);
         String[] strArray = str.split("#");
         if (strArray.length < 2) {
-            throw new RuntimeException("Объединение серверов检验 record 中Данные记录错误！");
+            throw new RuntimeException("合服检验 record 中数据记录错误！");
         }
-        Map<String, Integer> toTableMap = JSON.parseObject(strArray[0], HashMap.class); //目标Объединение серверов上Данные表的Данные量
+        Map<String, Integer> toTableMap = JSON.parseObject(strArray[0], HashMap.class); //目标合服上数据表的数据量
         List<Map<String, Integer>> fromList = new ArrayList<>();
-        //被Объединение серверов上Данные表的Данные量
+        //被合服上数据表的数据量
         for(int i = 1;i < strArray.length;i++){
             fromList.add(JSON.parseObject(strArray[i], HashMap.class));
         }
@@ -51,7 +51,7 @@ public class HeFuCheck {
         Statement toLogStat = toLogConn.createStatement();
         ResultSet rs;
 
-        task.writeLog("开始Объединение серверовДанные完整性检验");
+        task.writeLog("开始合服数据完整性检验");
         boolean isOk = true;
         StringBuilder logsb = new StringBuilder();
         StringBuilder sqlSe = new StringBuilder();
@@ -72,7 +72,7 @@ public class HeFuCheck {
                 if (totalNum != realNum) {
                     isOk = false;
                     logsb.setLength(0);
-                    logsb.append(table).append("表Объединение серверовДанные完整性检验Ошибка");
+                    logsb.append(table).append("表合服数据完整性检验失败");
                     for(int i = 0; i < fromList.size(); i++){
                         logsb.append(", fromNum[").append(i).append("]=").append(fromList.get(i).get(table));
                     }
@@ -82,11 +82,11 @@ public class HeFuCheck {
                 }
             }
         }
-        task.writeLog("Объединение серверовДанные完整性检验完毕！");
+        task.writeLog("合服数据完整性检验完毕！");
         if (isOk) {
-            task.writeLog("检验Результат：Объединение серверовУспешно！");
+            task.writeLog("检验结果：合服成功！");
         } else {
-            throw new RuntimeException("检验Результат：Объединение серверовОшибка！");
+            throw new RuntimeException("检验结果：合服失败！");
         }
     }
     

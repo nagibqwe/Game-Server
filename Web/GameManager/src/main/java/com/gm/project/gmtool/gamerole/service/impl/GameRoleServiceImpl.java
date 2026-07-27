@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 游戏角色ИнформацияЖурналService业务层处理
+ * 游戏角色信息日志Service业务层处理
  *
  * @author gm
  * @date 2021-09-07

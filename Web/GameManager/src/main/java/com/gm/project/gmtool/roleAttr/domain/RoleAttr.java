@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Изменить характеристики对象 t_role_attr
+ * 修改属性对象 t_role_attr
  * 
  * @author gm
  * @date 2021-11-02
@@ -21,16 +21,16 @@ public class RoleAttr extends BaseEntity
     /** 属性设置ID */
     private Integer id;
 
-    /** ID сервера */
-    @Excel(name = "ID сервера")
+    /** 服务器ID */
+    @Excel(name = "服务器ID")
     private Integer serverId;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     private String roleId;
 
-    /** 属性Тип */
-    @Excel(name = "属性Тип")
+    /** 属性类型 */
+    @Excel(name = "属性类型")
     private Integer attrType;
 
     /** 设置的属性值 */
@@ -41,21 +41,21 @@ public class RoleAttr extends BaseEntity
     @Excel(name = "真实的属性值")
     private Integer realValue;
 
-    /** Время выполнения */
+    /** 执行时间 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "Время выполнения", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "执行时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date actionTime;
 
     /** 设置原因 */
     @Excel(name = "设置原因")
     private String reason;
 
-    /** Удалён，0 ：不Удалить， 1： Удалить */
-    @Excel(name = "Удалён，0 ：不Удалить， 1： Удалить")
+    /** 是否删除，0 ：不删除， 1： 删除 */
+    @Excel(name = "是否删除，0 ：不删除， 1： 删除")
     private Integer isDelete;
 
-    /** Имя оператора */
-    @Excel(name = "Имя оператора")
+    /** 操作者名字 */
+    @Excel(name = "操作者名字")
     private String actionUser;
 
     public void setId(Integer id)

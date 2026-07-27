@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 元宝变化Журнал对象 log_goldchangelog
+ * 元宝变化日志对象 log_goldchangelog
  * 
  * @author gm
  * @date 2021-09-11
@@ -21,29 +21,29 @@ public class Goldchangelog extends BaseEntity
     /**  */
     private Long id;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
-    /** Связанный ID */
-    @Excel(name = "Связанный ID")
+    /** 关联ID */
+    @Excel(name = "关联ID")
     private Long actionId;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** Имя персонажа */
-    @Excel(name = "Имя персонажа")
+    /** 角色名 */
+    @Excel(name = "角色名")
     private String roleName;
 
-    /** Уровень персонажа */
-    @Excel(name = "Уровень персонажа")
+    /** 角色等级 */
+    @Excel(name = "角色等级")
     private Integer roleLevel;
 
-    /** IP входа */
-    @Excel(name = "IP входа")
+    /** 登录ip */
+    @Excel(name = "登录ip")
     private String loginIp;
 
     /** 变化量 */
@@ -58,8 +58,8 @@ public class Goldchangelog extends BaseEntity
     @Excel(name = "变化后元宝数")
     private Integer afterNum;
 
-    /** Код причины */
-    @Excel(name = "Код причины")
+    /** 原因码 */
+    @Excel(name = "原因码")
     private String reason;
 
     /**  */

@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Журнал снимков персонажейController
+ * 角色快照日志Controller
  *
  * @author gm
  * @date 2021-09-07
@@ -49,7 +49,7 @@ public class RoleStateController extends BaseController {
     }
 
     /**
-     * 查询Журнал снимков персонажей列表
+     * 查询角色快照日志列表
      */
     @RequiresPermissions("gamelog:rolestate:list")
     @PostMapping("/list")
@@ -86,16 +86,16 @@ public class RoleStateController extends BaseController {
     }
 
     /**
-     * ЭкспортЖурнал снимков персонажей列表
+     * 导出角色快照日志列表
      */
     @RequiresPermissions("gamelog:rolestate:export")
-    @Log(title = "Журнал снимков персонажей", businessType = BusinessType.EXPORT)
+    @Log(title = "角色快照日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(RoleState roleState, Integer serverId) {
 
 //        if(serverId == null || serverId == 0){
-//            return getDataTableErrorMsg("Выберите сервер из списка");
+//            return getDataTableErrorMsg("请选择服务器列表");
 //        }
         Map<String,Object> param = new HashMap<>();
         PageDomain pageDomain = TableSupport.buildPageRequest();

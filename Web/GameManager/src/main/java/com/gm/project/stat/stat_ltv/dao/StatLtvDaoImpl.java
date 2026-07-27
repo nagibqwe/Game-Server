@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * Данные库Действия相关
+ * 数据库操作相关
  * @author ruoyi
  */
 @Service
@@ -15,10 +15,10 @@ public class StatLtvDaoImpl extends BaseDao
 
 
     /**
-     * 获取某一个Время段 某部分用户 登录个数
-     * @param serverList Список серверов
-     * @param userIdRegAddListStr 需要筛选的ID пользователя
-     * @return Назад Дата对应登录用户数 执行的sql
+     * 获取某一个时间段 某部分用户 登录个数
+     * @param serverList 服务器列表
+     * @param userIdRegAddListStr 需要筛选的用户id
+     * @return 返回 日期对应登录用户数 执行的sql
      */
     public String getUserStatLtvSql(String caclStartDay,String timeLoginBeinDay ,String timeLoginEndDay ,String serverList,String userIdRegAddListStr){
         StringBuilder sql = new StringBuilder();

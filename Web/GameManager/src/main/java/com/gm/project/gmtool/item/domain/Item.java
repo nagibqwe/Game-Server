@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Предметы и экипировка对象 t_item
+ * 道具装备对象 t_item
  * 
  * @author gm
  * @date 2021-08-31
@@ -24,8 +24,8 @@ public class Item extends BaseEntity
     @Excel(name = "物品名")
     private String itemName;
 
-    /** 物品Тип */
-    @Excel(name = "物品Тип")
+    /** 物品类型 */
+    @Excel(name = "物品类型")
     private Integer itemType;
 
     /** 物品颜色 */

@@ -22,7 +22,7 @@ import java.util.List;
 
 
 /**
- * Функции игрыController
+ * 游戏功能列表Controller
  * 
  * @author gm
  * @date 2021-10-26
@@ -47,7 +47,7 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * 查询Сервер功能
+     * 查询服务器功能
      * @param serverId
      * @return
      */
@@ -62,7 +62,7 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * 设置Сервер功能开关
+     * 设置服务器功能开关
      * @param serverId
      * @param funcSwitch
      * @return
@@ -71,7 +71,7 @@ public class FunctionController extends BaseController
     @ResponseBody
     public AjaxResult sendFunctionSwitch(Integer serverId, String funcSwitch) {
         if(StringUtils.isEmpty(funcSwitch)){
-            return AjaxResult.error("没有ИзменитьДействия");
+            return AjaxResult.error("没有修改操作");
         }
         TServer server = tServerService.selectTServerByServerId(serverId);
         if (null == server){
@@ -81,7 +81,7 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * 查询Функции игры列表
+     * 查询游戏功能列表列表
      */
     @RequiresPermissions("gmtool:function:list")
     @PostMapping("/list")
@@ -94,10 +94,10 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * ЭкспортФункции игры列表
+     * 导出游戏功能列表列表
      */
     @RequiresPermissions("gmtool:function:export")
-    @Log(title = "Функции игры", businessType = BusinessType.EXPORT)
+    @Log(title = "游戏功能列表", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Function function)
@@ -108,7 +108,7 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * ДобавитьФункции игры
+     * 新增游戏功能列表
      */
     @GetMapping("/add")
     public String add()
@@ -117,10 +117,10 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьФункции игры
+     * 新增保存游戏功能列表
      */
     @RequiresPermissions("gmtool:function:add")
-    @Log(title = "Функции игры", businessType = BusinessType.INSERT)
+    @Log(title = "游戏功能列表", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Function function)
@@ -129,7 +129,7 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * ИзменитьФункции игры
+     * 修改游戏功能列表
      */
     @GetMapping("/edit/{funcId}")
     public String edit(@PathVariable("funcId") Integer funcId, ModelMap mmap)
@@ -140,10 +140,10 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьФункции игры
+     * 修改保存游戏功能列表
      */
     @RequiresPermissions("gmtool:function:edit")
-    @Log(title = "Функции игры", businessType = BusinessType.UPDATE)
+    @Log(title = "游戏功能列表", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Function function)
@@ -152,10 +152,10 @@ public class FunctionController extends BaseController
     }
 
     /**
-     * УдалитьФункции игры
+     * 删除游戏功能列表
      */
     @RequiresPermissions("gmtool:function:remove")
-    @Log(title = "Функции игры", businessType = BusinessType.DELETE)
+    @Log(title = "游戏功能列表", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

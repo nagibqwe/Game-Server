@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 首领死亡复活Журнал对象 log_bossdierelivelog
+ * 首领死亡复活日志对象 log_bossdierelivelog
  * 
  * @author gm
  * @date 2021-09-10
@@ -19,12 +19,12 @@ public class Bossdierelivelog extends BaseEntity
     /**  */
     private Long id;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
-    /** Тип */
-    @Excel(name = "Тип")
+    /** 类型 */
+    @Excel(name = "类型")
     private Long type;
 
     /** bossId */

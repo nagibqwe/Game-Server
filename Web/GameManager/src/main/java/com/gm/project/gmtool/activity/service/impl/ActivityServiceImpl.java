@@ -9,7 +9,7 @@ import com.gm.project.gmtool.activity.service.IActivityService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Игровые событияService业务层处理
+ * 运营活动Service业务层处理
  * 
  * @author gm
  * @date 2021-09-07
@@ -21,10 +21,10 @@ public class ActivityServiceImpl implements IActivityService
     private ActivityMapper activityMapper;
 
     /**
-     * 查询Игровые события
+     * 查询运营活动
      * 
-     * @param id Игровые событияID
-     * @return Игровые события
+     * @param id 运营活动ID
+     * @return 运营活动
      */
     @Override
     public Activity selectActivityById(Integer id)
@@ -33,10 +33,10 @@ public class ActivityServiceImpl implements IActivityService
     }
 
     /**
-     * 查询Игровые события列表
+     * 查询运营活动列表
      * 
-     * @param activity Игровые события
-     * @return Игровые события
+     * @param activity 运营活动
+     * @return 运营活动
      */
     @Override
     public List<Activity> selectActivityList(Activity activity)
@@ -50,10 +50,10 @@ public class ActivityServiceImpl implements IActivityService
     }
 
     /**
-     * ДобавитьИгровые события
+     * 新增运营活动
      * 
-     * @param activity Игровые события
-     * @return Результат
+     * @param activity 运营活动
+     * @return 结果
      */
     @Override
     public int insertActivity(Activity activity)
@@ -62,10 +62,10 @@ public class ActivityServiceImpl implements IActivityService
     }
 
     /**
-     * ИзменитьИгровые события
+     * 修改运营活动
      * 
-     * @param activity Игровые события
-     * @return Результат
+     * @param activity 运营活动
+     * @return 结果
      */
     @Override
     public int updateActivity(Activity activity)
@@ -74,10 +74,10 @@ public class ActivityServiceImpl implements IActivityService
     }
 
     /**
-     * УдалитьИгровые события对象
+     * 删除运营活动对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteActivityByIds(String ids)
@@ -86,10 +86,10 @@ public class ActivityServiceImpl implements IActivityService
     }
 
     /**
-     * УдалитьИгровые событияИнформация
+     * 删除运营活动信息
      * 
-     * @param id Игровые событияID
-     * @return Результат
+     * @param id 运营活动ID
+     * @return 结果
      */
     @Override
     public int deleteActivityById(Integer id)

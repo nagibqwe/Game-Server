@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @author gaozhaoguang
- * @desc 玩家的РейтингИнформация,Изменить名字后直接合并
+ * @desc 玩家的排行榜信息,修改名字后直接合并
  * @date Created on 2021/1/18 22:03
  **/
 public class rankplayer extends BaseTableHandler {

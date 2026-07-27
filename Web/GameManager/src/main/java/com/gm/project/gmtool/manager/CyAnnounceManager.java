@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Циклическое объявление管理
+ * 循环公告管理
  */
 @Service
 public class CyAnnounceManager {

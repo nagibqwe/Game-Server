@@ -16,40 +16,40 @@ public class ActivityLuckyValue extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** ID события */
-    @Excel(name = "ID события")
+    /** 活动ID */
+    @Excel(name = "活动ID")
     private Integer id;
 
     /** 总幸运值 */
     @Excel(name = "总幸运值")
     private Integer totalLuckyValue;
 
-    /** Примечание说明 */
-    @Excel(name = "Примечание说明")
+    /** 备注说明 */
+    @Excel(name = "备注说明")
     private String tips;
 
-    /** Статус события，0：未验证(Тестовый、Удалить)，1：已验证(发布、Удалить)，2：已发布(Удалить)，     //已过期(Удалить)这个通过活动Время окончания去判断 */
-    @Excel(name = "Статус события，0：未验证(Тестовый、Удалить)，1：已验证(发布、Удалить)，2：已发布(Удалить)，     //已过期(Удалить)这个通过活动Время окончания去判断")
+    /** 活动状态，0：未验证(测试、删除)，1：已验证(发布、删除)，2：已发布(删除)，     //已过期(删除)这个通过活动结束时间去判断 */
+    @Excel(name = "活动状态，0：未验证(测试、删除)，1：已验证(发布、删除)，2：已发布(删除)，     //已过期(删除)这个通过活动结束时间去判断")
     private Integer state;
 
-    /** 活动发布Платформа(groupName)(List JSON化后的字串[plat1,plat2,..]) */
-    @Excel(name = "活动发布Платформа(groupName)(List JSON化后的字串[plat1,plat2,..])")
+    /** 活动发布平台(groupName)(List JSON化后的字串[plat1,plat2,..]) */
+    @Excel(name = "活动发布平台(groupName)(List JSON化后的字串[plat1,plat2,..])")
     private String platform;
 
-    /** 活动要发布到的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..]) */
-    @Excel(name = "活动要发布到的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..])")
+    /** 活动要发布到的区服列表(List JSON化后的字串[sid1,sid2,..]) */
+    @Excel(name = "活动要发布到的区服列表(List JSON化后的字串[sid1,sid2,..])")
     private String toSidList;
 
-    /** 活动发布Успешно的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..]) */
-    @Excel(name = "活动发布Успешно的Игровой сервер列表(List JSON化后的字串[sid1,sid2,..])")
+    /** 活动发布成功的区服列表(List JSON化后的字串[sid1,sid2,..]) */
+    @Excel(name = "活动发布成功的区服列表(List JSON化后的字串[sid1,sid2,..])")
     private String okSidList;
 
-    /** 活动ДаНет被Удалить，0：Нет，1：Да */
-    @Excel(name = "活动ДаНет被Удалить，0：Нет，1：Да")
+    /** 活动是否被删除，0：否，1：是 */
+    @Excel(name = "活动是否被删除，0：否，1：是")
     private Integer isDeleted;
 
-    /** 活动ДаНет被覆盖正在进行的活动，0：Нет，1：Да */
-    @Excel(name = "活动ДаНет被覆盖正在进行的活动，0：Нет，1：Да")
+    /** 活动是否被覆盖正在进行的活动，0：否，1：是 */
+    @Excel(name = "活动是否被覆盖正在进行的活动，0：否，1：是")
     private Integer cover;
 
     public void setId(Integer id)

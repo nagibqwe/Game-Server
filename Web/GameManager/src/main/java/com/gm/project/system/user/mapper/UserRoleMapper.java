@@ -5,66 +5,66 @@ import org.apache.ibatis.annotations.Param;
 import com.gm.project.system.user.domain.UserRole;
 
 /**
- * 用户与角色关联表 Данные层
+ * 用户与角色关联表 数据层
  * 
  * @author ruoyi
  */
 public interface UserRoleMapper
 {
     /**
-     * 通过ID пользователя查询用户和角色关联
+     * 通过用户ID查询用户和角色关联
      * 
-     * @param userId ID пользователя
+     * @param userId 用户ID
      * @return 用户和角色关联列表
      */
     public List<UserRole> selectUserRoleByUserId(Long userId);
 
     /**
-     * 通过ID пользователяУдалить用户和角色关联
+     * 通过用户ID删除用户和角色关联
      * 
-     * @param userId ID пользователя
-     * @return Результат
+     * @param userId 用户ID
+     * @return 结果
      */
     public int deleteUserRoleByUserId(Long userId);
 
     /**
-     * 批量Удалить用户和角色关联
+     * 批量删除用户和角色关联
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteUserRole(Long[] ids);
 
     /**
-     * 通过ID персонажа查询角色使用数量
+     * 通过角色ID查询角色使用数量
      * 
-     * @param roleId ID персонажа
-     * @return Результат
+     * @param roleId 角色ID
+     * @return 结果
      */
     public int countUserRoleByRoleId(Long roleId);
 
     /**
-     * 批量Добавить用户角色Информация
+     * 批量新增用户角色信息
      * 
      * @param userRoleList 用户角色列表
-     * @return Результат
+     * @return 结果
      */
     public int batchUserRole(List<UserRole> userRoleList);
 
     /**
-     * Удалить用户和角色关联Информация
+     * 删除用户和角色关联信息
      * 
-     * @param userRole 用户和角色关联Информация
-     * @return Результат
+     * @param userRole 用户和角色关联信息
+     * @return 结果
      */
     public int deleteUserRoleInfo(UserRole userRole);
 
     /**
-     * 批量Отмена授权用户角色
+     * 批量取消授权用户角色
      * 
-     * @param roleId ID персонажа
-     * @param userIds 需要Удалить的用户ДанныеID
-     * @return Результат
+     * @param roleId 角色ID
+     * @param userIds 需要删除的用户数据ID
+     * @return 结果
      */
     public int deleteUserRoleInfos(@Param("roleId") Long roleId, @Param("userIds") Long[] userIds);
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.activityTemplate.domain.ActivityTemplate;
 
 /**
- * Шаблоны событийMapper接口
+ * 运营活动模板Mapper接口
  * 
  * @author gm
  * @date 2021-09-07
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.activityTemplate.domain.ActivityTemplate;
 public interface ActivityTemplateMapper 
 {
     /**
-     * 查询Шаблоны событий
+     * 查询运营活动模板
      * 
-     * @param id Шаблоны событийID
-     * @return Шаблоны событий
+     * @param id 运营活动模板ID
+     * @return 运营活动模板
      */
     public ActivityTemplate selectActivityTemplateById(Integer id);
 
     /**
-     * 查询Шаблоны событий列表
+     * 查询运营活动模板列表
      * 
-     * @param activityTemplate Шаблоны событий
-     * @return Шаблоны событий集合
+     * @param activityTemplate 运营活动模板
+     * @return 运营活动模板集合
      */
     public List<ActivityTemplate> selectActivityTemplateList(ActivityTemplate activityTemplate);
 
     /**
-     * ДобавитьШаблоны событий
+     * 新增运营活动模板
      * 
-     * @param activityTemplate Шаблоны событий
-     * @return Результат
+     * @param activityTemplate 运营活动模板
+     * @return 结果
      */
     public int insertActivityTemplate(ActivityTemplate activityTemplate);
 
     /**
-     * ИзменитьШаблоны событий
+     * 修改运营活动模板
      * 
-     * @param activityTemplate Шаблоны событий
-     * @return Результат
+     * @param activityTemplate 运营活动模板
+     * @return 结果
      */
     public int updateActivityTemplate(ActivityTemplate activityTemplate);
 
     /**
-     * УдалитьШаблоны событий
+     * 删除运营活动模板
      * 
-     * @param id Шаблоны событийID
-     * @return Результат
+     * @param id 运营活动模板ID
+     * @return 结果
      */
     public int deleteActivityTemplateById(Integer id);
 
     /**
-     * 批量УдалитьШаблоны событий
+     * 批量删除运营活动模板
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteActivityTemplateByIds(String[] ids);
 

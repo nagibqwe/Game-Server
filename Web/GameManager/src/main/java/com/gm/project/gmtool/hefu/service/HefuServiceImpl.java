@@ -27,7 +27,7 @@ import com.gm.project.gmtool.hefu.domain.Hefu;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Объединение серверовService业务层处理
+ * 合服Service业务层处理
  * 
  * @author gm
  * @date 2021-09-08
@@ -60,10 +60,10 @@ public class HefuServiceImpl implements IHefuService {
     private GameManagerConfig gameManagerConfig;
 
     /**
-     * 查询Объединение серверов
+     * 查询合服
      * 
-     * @param id Объединение серверовID
-     * @return Объединение серверов
+     * @param id 合服ID
+     * @return 合服
      */
     @Override
     public Hefu selectHefuById(Long id)
@@ -72,10 +72,10 @@ public class HefuServiceImpl implements IHefuService {
     }
 
     /**
-     * 查询Список объединения
+     * 查询合服列表
      * 
-     * @param hefu Объединение серверов
-     * @return Объединение серверов
+     * @param hefu 合服
+     * @return 合服
      */
     @Override
     public List<Hefu> selectHefuList(Hefu hefu)
@@ -84,10 +84,10 @@ public class HefuServiceImpl implements IHefuService {
     }
 
     /**
-     * ДобавитьОбъединение серверов
+     * 新增合服
      * 
-     * @param hefu Объединение серверов
-     * @return Результат
+     * @param hefu 合服
+     * @return 结果
      */
     @Override
     public int insertHefu(Hefu hefu)
@@ -102,10 +102,10 @@ public class HefuServiceImpl implements IHefuService {
     }
 
     /**
-     * ИзменитьОбъединение серверов
+     * 修改合服
      * 
-     * @param hefu Объединение серверов
-     * @return Результат
+     * @param hefu 合服
+     * @return 结果
      */
     @Override
     public int updateHefu(Hefu hefu)
@@ -114,10 +114,10 @@ public class HefuServiceImpl implements IHefuService {
     }
 
     /**
-     * УдалитьОбъединение серверов对象
+     * 删除合服对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteHefuByIds(String ids)
@@ -126,10 +126,10 @@ public class HefuServiceImpl implements IHefuService {
     }
 
     /**
-     * УдалитьОбъединение серверовИнформация
+     * 删除合服信息
      * 
-     * @param id Объединение серверовID
-     * @return Результат
+     * @param id 合服ID
+     * @return 结果
      */
     @Override
     public int deleteHefuById(Long id)
@@ -182,7 +182,7 @@ public class HefuServiceImpl implements IHefuService {
         }
         task.setFromServer(servers);
 
-        //载入语言Информация
+        //载入语言信息
         String lang = task.getHefu().getLanguage();
         try {
             Properties prop = new Properties();
@@ -201,8 +201,8 @@ public class HefuServiceImpl implements IHefuService {
             langInfo.setGuildContent(guildContent);
             task.setLangInfo(langInfo);
         } catch (Exception e) {
-            log.error("加载Объединение серверов语言文件Ошибка", e);
-            throw new RuntimeException("加载Объединение серверов语言文件Ошибка");
+            log.error("加载合服语言文件失败", e);
+            throw new RuntimeException("加载合服语言文件失败");
         }
         return task;
     }
@@ -219,7 +219,7 @@ public class HefuServiceImpl implements IHefuService {
     public void dbbak(Long id, Integer serverId, Integer type) {
         HefuTask task = hefuManager.getTask(id);
         if(task != null){
-            throw new RuntimeException("Объединение серверов进行中，不能备份");
+            throw new RuntimeException("合服进行中，不能备份");
         }
         String filedir = configService.selectConfigByKey("hefu.filedir");
         if(filedir.isEmpty()){
@@ -231,9 +231,9 @@ public class HefuServiceImpl implements IHefuService {
         }
         Hefu hefu = selectHefuById(id);
         if(hefu == null){
-            throw new RuntimeException("Объединение серверовДанные不存在");
+            throw new RuntimeException("合服数据不存在");
         }
-        if(serverId != null){//备份单个СерверДанные
+        if(serverId != null){//备份单个服务器数据
             HefuServer server = getHefuServerInfo(serverId);
             bakServer(server, type, filedir);
         }else{
@@ -261,13 +261,13 @@ public class HefuServiceImpl implements IHefuService {
     public void dbrestore(Long id, Integer serverId, Integer type) {
         HefuTask task = hefuManager.getTask(id);
         if(task != null){
-            throw new RuntimeException("Объединение серверов进行中，不能还原");
+            throw new RuntimeException("合服进行中，不能还原");
         }
         Hefu hefu = selectHefuById(id);
         if(hefu == null){
-            throw new RuntimeException("Объединение серверовДанные不存在");
+            throw new RuntimeException("合服数据不存在");
         }
-        if(serverId != null){//Объединение серверов单个СерверДанные
+        if(serverId != null){//合服单个服务器数据
             HefuServer server = getHefuServerInfo(serverId);
             restoreDB(server, type);
         }else{
@@ -284,7 +284,7 @@ public class HefuServiceImpl implements IHefuService {
     public boolean check(Long id) throws Exception{
         Hefu hefu = selectHefuById(id);
         HefuTask task = getHefuTask(hefu);
-        //Данные库检测
+        //数据库检测
         task.checkConfig(task);
 
         return true;
@@ -328,7 +328,7 @@ public class HefuServiceImpl implements IHefuService {
         }else if(type == 2){
             db = server.getDblog();
         }else{
-            throw new RuntimeException("Данные库Тип错误");
+            throw new RuntimeException("数据库类型错误");
         }
         HefuTask.checkDB(db);
         Dbbak param = new Dbbak();
@@ -336,7 +336,7 @@ public class HefuServiceImpl implements IHefuService {
         param.setType(type);
         Dbbak dbbak = dbbakService.selectLatestDbbak(param);
         if(dbbak == null){
-            throw new RuntimeException("没有找到对应的备份Информация");
+            throw new RuntimeException("没有找到对应的备份信息");
         }
         String url = dbbak.getUrl();
         File file = new File(url);
@@ -347,28 +347,28 @@ public class HefuServiceImpl implements IHefuService {
     }
 
     /**
-     * 获取СерверИнформация
+     * 获取服务器信息
      * @param serverId
      * @return
      */
     private HefuServer getHefuServerInfo(Integer serverId) {
         if(serverId == null){
-            throw new RuntimeException("СерверId为空");
+            throw new RuntimeException("服务器Id为空");
         }
-        //Сервер配置
+        //服务器配置
         TServer server = serverService.selectTServerByServerId(serverId);
         if(server == null){
-            throw new RuntimeException("沒有找到СерверИнформация");
+            throw new RuntimeException("沒有找到服务器信息");
         }
         //游戏库配置
         TDb db = dbService.selectTDbByServerId(serverId);
         if(db == null){
-            throw new RuntimeException("沒有找到游戏库Информация");
+            throw new RuntimeException("沒有找到游戏库信息");
         }
-//        //Журнал库配置
+//        //日志库配置
 //        TServer dblog = serverService.selectTServerByServerId(serverId);
 //        if(dblog == null){
-//            throw new RuntimeException("沒有找到Журнал库Информация");
+//            throw new RuntimeException("沒有找到日志库信息");
 //        }
         HefuServer hefuServer = new HefuServer();
         hefuServer.setServerId(serverId);

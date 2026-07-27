@@ -36,7 +36,7 @@ public class ParamUtil {
 
     public static long getLong(HttpServletRequest request, String paraname, long defaultvalue) {
         String value = request.getParameter(paraname);
-        if (StringUtils.isEmpty(value) || Integer.parseInt(value) < 1) //TODO isNumeric 对 long型ДаНет有效
+        if (StringUtils.isEmpty(value) || Integer.parseInt(value) < 1) //TODO isNumeric 对 long型是否有效
             return defaultvalue;
         return Long.valueOf(value);
     }
@@ -190,7 +190,7 @@ public class ParamUtil {
         if (map.containsKey(Integer.valueOf(paraname))) {
             value = (String) map.get(Integer.valueOf(paraname));
         } else {
-            value = "Неизвестно" + paraname;
+            value = "未知" + paraname;
         }
         return value;
     }
@@ -299,10 +299,10 @@ public class ParamUtil {
     }
 
     /**
-     * 判断多个stringТип的参数ДаНет有空指针或者空白字符串
+     * 判断多个string类型的参数是否有空指针或者空白字符串
      *
      * @param values
-     * @return 其中一个为空Назадture Нет则Назадfalse
+     * @return 其中一个为空返回ture 否则返回false
      */
     public static boolean isBlank(String... values) {
         boolean result = false;

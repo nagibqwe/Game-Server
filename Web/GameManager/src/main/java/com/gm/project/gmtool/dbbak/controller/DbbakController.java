@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Резервные копии БДController
+ * 数据库备份Controller
  * 
  * @author gm
  * @date 2021-09-13
@@ -43,7 +43,7 @@ public class DbbakController extends BaseController
     }
 
     /**
-     * 查询Список резервных копий БД
+     * 查询数据库备份列表
      */
     @RequiresPermissions("gmtool:dbbak:list")
     @PostMapping("/list")
@@ -56,10 +56,10 @@ public class DbbakController extends BaseController
     }
 
     /**
-     * ЭкспортСписок резервных копий БД
+     * 导出数据库备份列表
      */
     @RequiresPermissions("gmtool:dbbak:export")
-    @Log(title = "Резервные копии БД", businessType = BusinessType.EXPORT)
+    @Log(title = "数据库备份", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Dbbak dbbak)
@@ -70,7 +70,7 @@ public class DbbakController extends BaseController
     }
 
     /**
-     * ДобавитьРезервные копии БД
+     * 新增数据库备份
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class DbbakController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьРезервные копии БД
+     * 新增保存数据库备份
      */
     @RequiresPermissions("gmtool:dbbak:add")
-    @Log(title = "Резервные копии БД", businessType = BusinessType.INSERT)
+    @Log(title = "数据库备份", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Dbbak dbbak)
@@ -91,7 +91,7 @@ public class DbbakController extends BaseController
     }
 
     /**
-     * ИзменитьРезервные копии БД
+     * 修改数据库备份
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class DbbakController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьРезервные копии БД
+     * 修改保存数据库备份
      */
     @RequiresPermissions("gmtool:dbbak:edit")
-    @Log(title = "Резервные копии БД", businessType = BusinessType.UPDATE)
+    @Log(title = "数据库备份", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Dbbak dbbak)
@@ -114,10 +114,10 @@ public class DbbakController extends BaseController
     }
 
     /**
-     * УдалитьРезервные копии БД
+     * 删除数据库备份
      */
     @RequiresPermissions("gmtool:dbbak:remove")
-    @Log(title = "Резервные копии БД", businessType = BusinessType.DELETE)
+    @Log(title = "数据库备份", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

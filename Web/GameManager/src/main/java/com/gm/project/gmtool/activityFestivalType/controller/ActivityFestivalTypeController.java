@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Тип праздникаController
+ * 节日类型Controller
  * 
  * @author gm
  * @date 2021-09-09
@@ -43,7 +43,7 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * 查询Тип праздника列表
+     * 查询节日类型列表
      */
 //    @RequiresPermissions("gmtool:activityFestivalType:list")
     @PostMapping("/list")
@@ -56,10 +56,10 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * ЭкспортТип праздника列表
+     * 导出节日类型列表
      */
     @RequiresPermissions("gmtool:activityFestivalType:export")
-    @Log(title = "Тип праздника", businessType = BusinessType.EXPORT)
+    @Log(title = "节日类型", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(ActivityFestivalType activityFestivalType)
@@ -70,7 +70,7 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * ДобавитьТип праздника
+     * 新增节日类型
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьТип праздника
+     * 新增保存节日类型
      */
     @RequiresPermissions("gmtool:activityFestivalType:add")
-    @Log(title = "Тип праздника", businessType = BusinessType.INSERT)
+    @Log(title = "节日类型", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(ActivityFestivalType activityFestivalType)
@@ -91,7 +91,7 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * ИзменитьТип праздника
+     * 修改节日类型
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьТип праздника
+     * 修改保存节日类型
      */
     @RequiresPermissions("gmtool:activityFestivalType:edit")
-    @Log(title = "Тип праздника", businessType = BusinessType.UPDATE)
+    @Log(title = "节日类型", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(ActivityFestivalType activityFestivalType)
@@ -114,10 +114,10 @@ public class ActivityFestivalTypeController extends BaseController
     }
 
     /**
-     * УдалитьТип праздника
+     * 删除节日类型
      */
     @RequiresPermissions("gmtool:activityFestivalType:remove")
-    @Log(title = "Тип праздника", businessType = BusinessType.DELETE)
+    @Log(title = "节日类型", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

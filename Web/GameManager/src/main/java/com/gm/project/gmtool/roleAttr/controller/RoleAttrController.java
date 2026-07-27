@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Изменить характеристикиController
+ * 修改属性Controller
  * 
  * @author gm
  * @date 2021-11-02
@@ -64,7 +64,7 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * 查询Изменить характеристики列表
+     * 查询修改属性列表
      */
 //    @RequiresPermissions("gmtool:roleAttr:list")
     @PostMapping("/list")
@@ -79,10 +79,10 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * ЭкспортИзменить характеристики列表
+     * 导出修改属性列表
      */
     @RequiresPermissions("gmtool:roleAttr:export")
-    @Log(title = "Изменить характеристики", businessType = BusinessType.EXPORT)
+    @Log(title = "修改属性", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(RoleAttr roleAttr)
@@ -93,7 +93,7 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * ДобавитьИзменить характеристики
+     * 新增修改属性
      */
     @GetMapping("/add")
     public String add()
@@ -102,10 +102,10 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьИзменить характеристики
+     * 新增保存修改属性
      */
     @RequiresPermissions("gmtool:roleAttr:add")
-    @Log(title = "Изменить характеристики", businessType = BusinessType.INSERT)
+    @Log(title = "修改属性", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(RoleAttr roleAttr)
@@ -114,7 +114,7 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * ИзменитьИзменить характеристики
+     * 修改修改属性
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -125,10 +125,10 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьИзменить характеристики
+     * 修改保存修改属性
      */
     @RequiresPermissions("gmtool:roleAttr:edit")
-    @Log(title = "Изменить характеристики", businessType = BusinessType.UPDATE)
+    @Log(title = "修改属性", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(RoleAttr roleAttr)
@@ -137,10 +137,10 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * УдалитьИзменить характеристики
+     * 删除修改属性
      */
     @RequiresPermissions("gmtool:roleAttr:remove")
-    @Log(title = "Изменить характеристики", businessType = BusinessType.DELETE)
+    @Log(title = "修改属性", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -150,7 +150,7 @@ public class RoleAttrController extends BaseController
 
 
     /**
-     * 设置玩家属性Действия
+     * 设置玩家属性操作
      * @param roleAttr
      * @param serverId
      * @param request
@@ -167,13 +167,13 @@ public class RoleAttrController extends BaseController
             return AjaxResult.info("Не удалось получить подключение к БД сервера").put("ok",false);
         }
 
-        //检查ID персонажа
+        //检查角色ID
         List<RoleState> roles = gameRoleService.queryByRoleId(sid, roleAttr.getRoleId(), 0);
         if (roles.isEmpty()) {
             return AjaxResult.info("Персонаж с таким ID не найден").put("ok",false);
         }
         if (roles.get(0).getIsDelete() != 0) {
-            return AjaxResult.info("此角色已Удалить").put("ok",false);
+            return AjaxResult.info("此角色已删除").put("ok",false);
         }
         try {
             roleAttr.setActionTime(new Date());
@@ -191,13 +191,13 @@ public class RoleAttrController extends BaseController
             roleAttr.setRealValue(realValue);
             String prompt;
             if (Boolean.valueOf(resultMap.get("ok").toString())) {
-                prompt = "Операция выполнена！";
+                prompt = "操作成功！";
                 roleAttrService.insertRoleAttr(roleAttr);
             } else {
-                prompt = "Ошибка операции！";
+                prompt = "操作失败！";
             }
-            log.error("属性设置：sid=" + serverId + ",roleId=" + roleAttr.getRoleId() + ",ДействияРезультат:" + resultMap.get("msg").toString());
-            GMLogUtil.log("设置角色(roleId=" + roleAttr.getRoleId() + ")的Тип"+roleAttr.getAttrType()+"属性为："+ roleAttr.getRealValue());
+            log.error("属性设置：sid=" + serverId + ",roleId=" + roleAttr.getRoleId() + ",操作结果:" + resultMap.get("msg").toString());
+            GMLogUtil.log("设置角色(roleId=" + roleAttr.getRoleId() + ")的类型"+roleAttr.getAttrType()+"属性为："+ roleAttr.getRealValue());
             return AjaxResult.info(prompt).put("ok",Boolean.valueOf(resultMap.get("ok").toString()));
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -206,7 +206,7 @@ public class RoleAttrController extends BaseController
     }
 
     /**
-     * УдалитьДействия
+     * 删除操作
      * @param id
      * @return
      */
@@ -217,7 +217,7 @@ public class RoleAttrController extends BaseController
         if (roleAttr != null) {
             roleAttr.setIsDelete(1);
             int num = roleAttrService.updateRoleAttr(roleAttr);
-            GMLogUtil.log("Удалить设置玩家属性记录"+roleAttr.getId());
+            GMLogUtil.log("删除设置玩家属性记录"+roleAttr.getId());
             return AjaxResult.info("УдалитьУспешно！").put("ok",num == 1);
         }
         return AjaxResult.info("УдалитьОшибка！").put("ok",false);

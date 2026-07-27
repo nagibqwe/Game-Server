@@ -17,7 +17,7 @@ import com.google.code.kaptcha.Producer;
 import com.gm.framework.web.controller.BaseController;
 
 /**
- * 图片Код проверки（支持算术形式）
+ * 图片验证码（支持算术形式）
  * 
  * @author ruoyi
  */
@@ -32,7 +32,7 @@ public class CaptchaController extends BaseController
     private Producer captchaProducerMath;
 
     /**
-     * Код проверки生成
+     * 验证码生成
      */
     @GetMapping(value = "/captchaImage")
     public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response)

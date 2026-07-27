@@ -33,12 +33,12 @@ public class StatShopItemServiceImpl implements IStatShopItemService
     @Autowired
     public IStatShopItemDao statShopItemDao;
     public  List<ShopItemBean> statShopItem(String groupName, Integer selectServerId, String channelNames, Integer FromSrc, Integer moneyType,String startDate, String endDate, Boolean isBlack){
-        //Канал筛选
+        //渠道筛选
         if (!StringUtils.isBlank(channelNames)) {
             channelNames = "'" + channelNames + "'";
             channelNames = channelNames.replace(",", "','");
         }
-        //Чёрный список
+        //黑名单
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(groupName);
@@ -49,16 +49,16 @@ public class StatShopItemServiceImpl implements IStatShopItemService
             }
         }
         String tableName = "shopbuylog";
-        //Время通用 判断
+        //时间通用 判断
         Calendar start = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
         start.setTime(DateUtils.parseDate(startDate));
         end.setTime(DateUtils.parseDate(endDate));
         long startTime = start.getTimeInMillis() / 1000;
         long endTime = end.getTimeInMillis() / 1000;
-        //获取Объединение серверов相关Данные库列表
+        //获取合服相关数据库列表
         List<TServer> tServerList = DBServerMgr.getInstance().checkHeFu(selectServerId, DateUtils.parseDate(startDate),DateUtils.parseDate(endDate));
-        //得到按Дата分表的 列表
+        //得到按日期分表的 列表
         List<String> realTables = DBServerMgr.getInstance().getQueryTables(tableName, TableType.Month ,startDate,endDate);
         Map<String,ShopItemBean> shopItemBeanMap = new HashMap<>();
         for (TServer db : tServerList) {
@@ -74,10 +74,10 @@ public class StatShopItemServiceImpl implements IStatShopItemService
             if(dbClient == null){
                 continue;
             }
-            //查询Данные
+            //查询数据
             List<ShopItemBean> dataList = statShopItemDao.statShopItem(dbClient,channelNames,realTables,FromSrc,moneyType,blackUsers,selectServerId,startTime,endTime);
             if(dataList!=null && dataList.size()>0){
-               //合并多个Данные库的Данные 按照物品id 相同的累加
+               //合并多个数据库的数据 按照物品id 相同的累加
                 for(int i = 0;i<dataList.size();i++){
                     if(shopItemBeanMap.containsKey(dataList.get(i).getItemmodelid()+"_"+dataList.get(i).getMoneyType())){
                         ShopItemBean shopItemBean = shopItemBeanMap.get(dataList.get(i).getItemmodelid()+"_"+dataList.get(i).getMoneyType());

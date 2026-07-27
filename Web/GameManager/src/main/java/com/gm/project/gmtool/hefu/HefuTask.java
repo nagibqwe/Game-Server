@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 一个Объединение серверов任务
+ * 一个合服任务
  * @Auther: gouzhongliang
  * @Date: 2021/9/9 14:05
  */
@@ -35,24 +35,24 @@ public class HefuTask implements Runnable{
     private static Logger log = LoggerFactory.getLogger(HefuTask.class);
 
     private List<String> logs = new ArrayList<>();
-    /*Объединение серверов任务Информация*/
+    /*合服任务信息*/
     private Hefu hefu;
-    /**目标Сервер*/
+    /**目标服务器*/
     private HefuServer toServer;
-    /**源Сервер*/
+    /**源服务器*/
     private List<HefuServer> fromServer;
     /**临时文件目录*/
     private String tempdir;
-    /**ПлатформаДанные更新链接*/
+    /**平台数据更新链接*/
     private String platUpdateUrl;
-    /**语言Информация*/
+    /**语言信息*/
     private LangInfo langInfo;
     /**secret_key*/
     private String secret_key;
 
-    //改变的角色Информация,ID персонажа,[原来的Имя персонажа,新的Имя персонажа]
+    //改变的角色信息,角色ID,[原来的角色名,新的角色名]
     private HashMap<Integer, HashMap<Long,String[]>> roles = new HashMap<>();
-    //改变的帮会Информация,帮会ID,[原来的帮会名,新的帮会名,帮会的帮主ID]
+    //改变的帮会信息,帮会ID,[原来的帮会名,新的帮会名,帮会的帮主ID]
     private HashMap<Integer, HashMap<Long,String[]>> guilds = new HashMap<>();
 
     private HefuManager manager;
@@ -64,20 +64,20 @@ public class HefuTask implements Runnable{
     @Override
     public void run() {
         try {
-            //开始Объединение серверов
+            //开始合服
             hefu.setStatus(1);
             hefu.setStep(0);
             manager.save(hefu);
 
             for(int i=0; i< 100; i++){
-                if(hefu.getStatus() == 2 || hefu.getStatus() == 4){//Успешно或者Отмена
+                if(hefu.getStatus() == 2 || hefu.getStatus() == 4){//成功或者取消
                     break;
                 }
                 startStep();
             }
         } catch (Exception ex) {
             writeLog(ex.getMessage());
-            writeLog("Объединение серверовОшибка，请重试");
+            writeLog("合服失败，请重试");
             log.error(ex.getMessage(), ex);
             hefu.setStatus(3);
         } finally {
@@ -87,7 +87,7 @@ public class HefuTask implements Runnable{
             }catch (Exception e){
                 log.error("", e);
             }
-            //ЗакрытьДанные库连接
+            //关闭数据库连接
             toServer.getDb().close();
             toServer.getDblog().close();
             for(HefuServer s : fromServer){
@@ -114,28 +114,28 @@ public class HefuTask implements Runnable{
                 checkConfig(this);
                 break;
             case 2:
-                //Статус сервера检测
-                writeLog("2.Статус сервера检测 跳过");
+                //服务器状态检测
+                writeLog("2.服务器状态检测 跳过");
 //                for(int i=5;i>0;i--){
-//                    writeLog("请Подтвердить源Сервер，目标Сервер都已经Закрыть" + i);
+//                    writeLog("请确认源服务器，目标服务器都已经关闭" + i);
 //                    Thread.sleep(1000);
 //                }
                 break;
             case 3:
                 break;
             case 4:
-                //Данные处理----------
-                writeLog("4.开始Данные处理");
+                //数据处理----------
+                writeLog("4.开始数据处理");
                 onPrecess();
-                //Отправить事务 --不然会阻塞后面的任务
+                //提交事务 --不然会阻塞后面的任务
                 toServer.getDb().commit();
                 for(HefuServer server : fromServer){
                     server.getDb().commit();
                 }
                 break;
             case 5:
-                //Экспорт源服Данные
-                writeLog("5.开始Экспорт源服Данные");
+                //导出源服数据
+                writeLog("5.开始导出源服数据");
                 File tempdirfile = new File(tempdir);
                 if(!tempdirfile.exists()){
                     tempdirfile.mkdirs();
@@ -145,43 +145,43 @@ public class HefuTask implements Runnable{
                 }
                 break;
             case 6:
-                //把Экспорт的ДанныеИмпорт到目标Данные库
-                writeLog("6.源服ДанныеИмпорт到目标服");
+                //把导出的数据导入到目标数据库
+                writeLog("6.源服数据导入到目标服");
                 importDB(toServer);
                 break;
             case 7:
                 //检查
-                writeLog("7.检查Данные完整性");
+                writeLog("7.检查数据完整性");
                 HeFuCheck.check(this);
                 break;
             case 8:
-                //ИзменитьСписок серверов中，源Сервер指向的ip，端口，支付地址
+                //修改服务器列表中，源服务器指向的ip，端口，支付地址
                 writeLog("8.更新源服对应的地址和端口");
                 updatePlatInfo(platUpdateUrl);
                 break;
             case 9:
-                //GM后台Объединение серверов处理
+                //GM后台合服处理
                 writeLog("9.更新GM后台");
                 backend();
-                writeLog("Объединение серверовУспешно");
+                writeLog("合服成功");
                 hefu.setStatus(2);
                 break;
             default:
                 hefu.setStatus(2);
                 break;
         }
-        //Сохранить进度
+        //保存进度
         hefu.setStep(step);
         hefu.setRecord(JsonUtils.toJSONString(logs));
         manager.save(hefu);
     }
 
     /**
-     * Gm后台Данные处理
+     * Gm后台数据处理
      */
     private void backend() {
         ITServerService service = manager.getServerService();
-        //ИзменитьДанные表
+        //修改数据表
         for(HefuServer server : fromServer){
             TServer s = server.getServer();
             s.setIsHeFu(1);
@@ -204,7 +204,7 @@ public class HefuTask implements Runnable{
             uc.setInstanceFollowRedirects(true); // 不允许重定向
             uc.setRequestMethod(method);
             uc.setConnectTimeout(5000); // 五秒连接超时
-            uc.setReadTimeout(5000); // 5秒Назад超时
+            uc.setReadTimeout(5000); // 5秒返回超时
             uc.connect();
             int code = 405;
             code = uc.getResponseCode();
@@ -219,12 +219,12 @@ public class HefuTask implements Runnable{
     }
 
     /**
-     * ИзменитьПлатформаДанные 源服ip端口Изменить为目标服的ip和端口.//TODO（ПодтвердитьДаНет有支付地址）
+     * 修改平台数据 源服ip端口修改为目标服的ip和端口.//TODO（确认是否有支付地址）
      */
     private void updatePlatInfo(String platUpdateUrl) throws Exception {
 
         String params = "?secret_key=" + secret_key + "&targetId="+ toServer.getServerId() +"&fromIds=";
-        //设置源СерверДанные
+        //设置源服务器数据
         int i = 0;
         for(HefuServer serverInfo : fromServer){
             params += serverInfo.getServerId();
@@ -261,7 +261,7 @@ public class HefuTask implements Runnable{
         }
         Result result = CommandUtil.exeCommand(sb.toString());
         if(!result.isSuccess()){
-            throw new RuntimeException("执行命令Ошибка");
+            throw new RuntimeException("执行命令失败");
         }
         return result.getResult();
     }
@@ -277,7 +277,7 @@ public class HefuTask implements Runnable{
     public void exeImport(DBInfo db, String filename) {
         File file = new File(filename);
         if(!file.exists()){
-            throw new RuntimeException("ИмпортОшибка，文件不存在：" + filename);
+            throw new RuntimeException("导入失败，文件不存在：" + filename);
         }
         StringBuilder sb = new StringBuilder();
         sb.append("mysql -u").append(db.getUsername())
@@ -290,7 +290,7 @@ public class HefuTask implements Runnable{
     }
 
     /**
-     * ЭкспортДанные
+     * 导出数据
      * @param serverInfo
      */
     private void exportDB(HefuServer serverInfo) {
@@ -329,7 +329,7 @@ public class HefuTask implements Runnable{
         sb.append(" > ").append(filename);
         Result result = CommandUtil.exeCommand(sb.toString());
         if(!result.isSuccess()){
-            throw new RuntimeException("命令执行Ошибкаcommand:"+sb.toString());
+            throw new RuntimeException("命令执行失败command:"+sb.toString());
         }
     }
 
@@ -344,7 +344,7 @@ public class HefuTask implements Runnable{
 
     public static void checkConfig(HefuTask task) throws Exception{
         HefuServer toServer = task.getToServer();
-        //检测Данные库ДаНет存在
+        //检测数据库是否存在
         checkDB(toServer.getDb());
         checkDB(toServer.getDblog());
         List<HefuServer> fromServer = task.getFromServer();
@@ -369,7 +369,7 @@ public class HefuTask implements Runnable{
                 return;
             }
         }
-        throw new RuntimeException("Данные库配置错误：" + db.toString());
+        throw new RuntimeException("数据库配置错误：" + db.toString());
     }
 
     /**
@@ -408,7 +408,7 @@ public class HefuTask implements Runnable{
             log.info("exitValue:{}", exitValue);
 
             if(exitValue != 0){
-                throw new Exception("命令执行Ошибка");
+                throw new Exception("命令执行失败");
             }
             return result;
         }catch (Exception e){
@@ -418,7 +418,7 @@ public class HefuTask implements Runnable{
     }
 
     /**
-     * 清除Данные
+     * 清除数据
      * @param name
      * @throws SQLException
      */

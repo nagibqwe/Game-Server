@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Тип босса события对象 t_activity_boss_type
+ * 运营活动boss类型对象 t_activity_boss_type
  * 
  * @author gm
  * @date 2021-09-14
@@ -20,8 +20,8 @@ public class ActivityBossType extends BaseEntity
     @Excel(name = "活动BOSS分类配置ID")
     private Integer id;
 
-    /** 后台Показывать的BOSSТип */
-    @Excel(name = "后台Показывать的BOSSТип")
+    /** 后台显示的BOSS类型 */
+    @Excel(name = "后台显示的BOSS类型")
     private String name;
 
     /** 对应的BOSSID */

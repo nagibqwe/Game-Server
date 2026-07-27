@@ -11,12 +11,12 @@ import java.util.List;
 
 /**
  * @author gaozhaoguang
- * @desc 角色登录Информация,Удалить掉From同样用户的Информация
+ * @desc 角色登录信息,删除掉From同样用户的信息
  * @date Created on 2021/1/18 22:04
  **/
 public class roleloginfo  extends BaseTableHandler {
 
-    //冲突的ID пользователя列表
+    //冲突的用户ID列表
     HashMap<Integer,List<Long>> conflictUsers = new HashMap<>();
 
     @Override
@@ -48,7 +48,7 @@ public class roleloginfo  extends BaseTableHandler {
                     toUserIDs.add(uid);
                 }
             }
-            WriteLog("roleloginfo 发现冲突的ID пользователя数量:" + server.getServerId() +":"+ tmp.size());
+            WriteLog("roleloginfo 发现冲突的用户ID数量:" + server.getServerId() +":"+ tmp.size());
         }
     }
 

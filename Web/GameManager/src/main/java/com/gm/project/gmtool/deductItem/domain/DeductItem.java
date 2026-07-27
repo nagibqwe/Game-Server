@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Списание предметов对象 t_deduct_item
+ * 道具扣除对象 t_deduct_item
  * 
  * @author gm
  * @date 2021-10-30
@@ -18,19 +18,19 @@ public class DeductItem extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Списание предметовID */
+    /** 道具扣除ID */
     private Integer id;
 
     /** 服务ID */
     @Excel(name = "服务ID")
     private Integer serverId;
 
-    /** ID предмета */
-    @Excel(name = "ID предмета")
+    /** 物品ID */
+    @Excel(name = "物品ID")
     private Integer itemId;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     private String roleId;
 
     /** 欲扣除的数量 */
@@ -41,33 +41,33 @@ public class DeductItem extends BaseEntity
     @Excel(name = "真实扣除的数量")
     private Integer realCount;
 
-    /** ДаНет发送Письмо，0 不发送 1 发送 */
-    @Excel(name = "ДаНет发送Письмо，0 不发送 1 发送")
+    /** 是否发送邮件，0 不发送 1 发送 */
+    @Excel(name = "是否发送邮件，0 不发送 1 发送")
     private Integer isMail;
 
-    /** ДаНет绑定 true 绑定，false 不绑定 */
-    @Excel(name = "ДаНет绑定 true 绑定，false 不绑定")
+    /** 是否绑定 true 绑定，false 不绑定 */
+    @Excel(name = "是否绑定 true 绑定，false 不绑定")
     private Integer isBind;
 
-    /** 扣除Время */
+    /** 扣除时间 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "扣除Время", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "扣除时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date dedTime;
 
     /** 扣除原因 */
     @Excel(name = "扣除原因")
     private String reason;
 
-    /** Тема письма */
-    @Excel(name = "Тема письма")
+    /** 邮件标题 */
+    @Excel(name = "邮件标题")
     private String mailTitle;
 
-    /** Тема письма */
-    @Excel(name = "Тема письма")
+    /** 邮件标题 */
+    @Excel(name = "邮件标题")
     private String mailContent;
 
-    /** Удалён，0 ：不Удалить， 1： Удалить */
-    @Excel(name = "Удалён，0 ：不Удалить， 1： Удалить")
+    /** 是否删除，0 ：不删除， 1： 删除 */
+    @Excel(name = "是否删除，0 ：不删除， 1： 删除")
     private Integer isDelete;
 
     /** 发起者名字 */

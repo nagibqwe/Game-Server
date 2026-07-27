@@ -22,7 +22,7 @@ public class TaskTimerService {
     }
 
     /**
-     * 项目启动时就开始执行Циклическое объявление的发送
+     * 项目启动时就开始执行循环公告的发送
      */
     @PostConstruct
     public void init(){

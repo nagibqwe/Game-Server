@@ -35,7 +35,7 @@ import java.util.List;
 
 
 /**
- * Блокировка аккаунтаController
+ * 账号封禁Controller
  * 
  * @author gm
  * @date 2021-11-21
@@ -48,17 +48,17 @@ public class BanAccountController extends BaseController
 
     private static final Logger log = LoggerFactory.getLogger(BanAccountController.class);
 
-    //ID аккаунта платформы
+    //平台账号ID
     private static final int BanType1 = 1;
     //IP
     private static final int BanType2 = 2;
-    //唯一Код устройства
+    //唯一机器码
     private static final int BanType3 = 3;
     //IMEI
     private static final int BanType4 = 4;
     //MAC
     private static final int BanType5 = 5;
-    //根据ID персонажа查封号条件
+    //根据角色ID查封号条件
     private static final int BanType6 = 6;
 
     @Autowired
@@ -91,7 +91,7 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * Блокировка аккаунта
+     * 账号封禁
      */
 //    @RequiresPermissions("gmtool:banAccount:ban")
     @PostMapping("/ban")
@@ -125,7 +125,7 @@ public class BanAccountController extends BaseController
             }
         }
         if (roles == null || roles.isEmpty()) {
-            return AjaxResult.info("没有找到该账号Информация").put("ok",false);
+            return AjaxResult.info("没有找到该账号信息").put("ok",false);
         }
 
         //通知游戏服踢下线
@@ -143,7 +143,7 @@ public class BanAccountController extends BaseController
         }
 
         for (String condition:conditions.values()) {
-            //发送封禁Информация到Сервер входа
+            //发送封禁信息到登录服
             TServer sc = new TServer();
             sc.setServerType(2);
             List<TServer> lsList = tServerService.selectTServerList(sc);
@@ -192,7 +192,7 @@ public class BanAccountController extends BaseController
             return AjaxResult.info("封禁账号未找到").put("ok", false);
         }
 
-        //发送解封Информация到Сервер входа
+        //发送解封信息到登录服
         TServer sc = new TServer();
         sc.setServerType(2);
         List<TServer> lsList = tServerService.selectTServerList(sc);
@@ -215,7 +215,7 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * 查询Блокировка аккаунта列表
+     * 查询账号封禁列表
      */
     @RequiresPermissions("gmtool:banAccount:list")
     @PostMapping("/list")
@@ -229,10 +229,10 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * ЭкспортБлокировка аккаунта列表
+     * 导出账号封禁列表
      */
     @RequiresPermissions("gmtool:banAccount:export")
-    @Log(title = "Блокировка аккаунта", businessType = BusinessType.EXPORT)
+    @Log(title = "账号封禁", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BanAccount banAccount)
@@ -243,7 +243,7 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * ДобавитьБлокировка аккаунта
+     * 新增账号封禁
      */
     @GetMapping("/add")
     public String add()
@@ -252,10 +252,10 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьБлокировка аккаунта
+     * 新增保存账号封禁
      */
     @RequiresPermissions("gmtool:banAccount:add")
-    @Log(title = "Блокировка аккаунта", businessType = BusinessType.INSERT)
+    @Log(title = "账号封禁", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(BanAccount banAccount)
@@ -264,7 +264,7 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * ИзменитьБлокировка аккаунта
+     * 修改账号封禁
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
@@ -275,10 +275,10 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьБлокировка аккаунта
+     * 修改保存账号封禁
      */
     @RequiresPermissions("gmtool:banAccount:edit")
-    @Log(title = "Блокировка аккаунта", businessType = BusinessType.UPDATE)
+    @Log(title = "账号封禁", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(BanAccount banAccount)
@@ -287,10 +287,10 @@ public class BanAccountController extends BaseController
     }
 
     /**
-     * УдалитьБлокировка аккаунта
+     * 删除账号封禁
      */
     @RequiresPermissions("gmtool:banAccount:remove")
-    @Log(title = "Блокировка аккаунта", businessType = BusinessType.DELETE)
+    @Log(title = "账号封禁", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

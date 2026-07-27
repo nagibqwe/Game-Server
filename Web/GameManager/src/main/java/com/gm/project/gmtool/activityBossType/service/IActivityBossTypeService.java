@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.activityBossType.domain.ActivityBossType;
 
 /**
- * Тип босса событияService接口
+ * 运营活动boss类型Service接口
  * 
  * @author gm
  * @date 2021-09-14
@@ -12,55 +12,55 @@ import com.gm.project.gmtool.activityBossType.domain.ActivityBossType;
 public interface IActivityBossTypeService 
 {
     /**
-     * 查询Тип босса события
+     * 查询运营活动boss类型
      * 
-     * @param id Тип босса событияID
-     * @return Тип босса события
+     * @param id 运营活动boss类型ID
+     * @return 运营活动boss类型
      */
     public ActivityBossType selectActivityBossTypeById(Integer id);
 
     /**
-     * 查询Тип босса события列表
+     * 查询运营活动boss类型列表
      * 
-     * @param activityBossType Тип босса события
-     * @return Тип босса события集合
+     * @param activityBossType 运营活动boss类型
+     * @return 运营活动boss类型集合
      */
     public List<ActivityBossType> selectActivityBossTypeList(ActivityBossType activityBossType);
 
     /**
-     * ДобавитьТип босса события
+     * 新增运营活动boss类型
      * 
-     * @param activityBossType Тип босса события
-     * @return Результат
+     * @param activityBossType 运营活动boss类型
+     * @return 结果
      */
     public int insertActivityBossType(ActivityBossType activityBossType);
 
     /**
-     * ИзменитьТип босса события
+     * 修改运营活动boss类型
      * 
-     * @param activityBossType Тип босса события
-     * @return Результат
+     * @param activityBossType 运营活动boss类型
+     * @return 结果
      */
     public int updateActivityBossType(ActivityBossType activityBossType);
 
     /**
-     * 批量УдалитьТип босса события
+     * 批量删除运营活动boss类型
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteActivityBossTypeByIds(String ids);
 
     /**
-     * УдалитьТип босса событияИнформация
+     * 删除运营活动boss类型信息
      * 
-     * @param id Тип босса событияID
-     * @return Результат
+     * @param id 运营活动boss类型ID
+     * @return 结果
      */
     public int deleteActivityBossTypeById(Integer id);
 
     /**
-     * Удалить全部的Тип босса события
+     * 删除全部的运营活动boss类型
      * @return
      */
     public int deleteAllActBossType();

@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Настройки пополнения对象 t_recharge_item
+ * 充值配置对象 t_recharge_item
  * 
  * @author gm
  * @date 2021-08-25
@@ -16,80 +16,80 @@ public class RechargeItem extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** ID пополнения */
-    @Excel(name = "ID пополнения")
+    /** 充值ID */
+    @Excel(name = "充值ID")
     private Integer goodsId;
 
-    /** Внутренний ID конфигурации */
-    @Excel(name = "Внутренний ID конфигурации")
+    /** 游戏内部配置ID */
+    @Excel(name = "游戏内部配置ID")
     private Integer goodsSystemCfgId;
 
-    /** 商品名字描述（主要用于BI后台Данные） */
-    @Excel(name = "商品名字描述", readConverterExp = "主=要用于BI后台Данные")
+    /** 商品名字描述（主要用于BI后台数据） */
+    @Excel(name = "商品名字描述", readConverterExp = "主=要用于BI后台数据")
     private String goodsName;
 
-    /** Название канала */
-    @Excel(name = "Название канала")
+    /** 渠道名称 */
+    @Excel(name = "渠道名称")
     private String goodsPayChannel;
 
-    /** Платёжный канал（№三方支付） */
-    @Excel(name = "Платёжный канал", readConverterExp = "№=三方支付")
+    /** 支付渠道（第三方支付） */
+    @Excel(name = "支付渠道", readConverterExp = "第=三方支付")
     private Integer goodsPayType;
 
-    /** Тип пополнения */
-    @Excel(name = "Тип пополнения")
+    /** 充值类型 */
+    @Excel(name = "充值类型")
     private Integer goodsType;
 
-    /** Подтип пополнения */
-    @Excel(name = "Подтип пополнения")
+    /** 充值子类型 */
+    @Excel(name = "充值子类型")
     private Integer goodsSubtype;
 
-    /** Количество пополнений（当前轮每个挡位对应Пополнение的次数) */
-    @Excel(name = "Количество пополнений", readConverterExp = "Количество пополнений（当前轮每个挡位对应Пополнение的次数)")
+    /** 充值次数（当前轮每个挡位对应充值的次数) */
+    @Excel(name = "充值次数", readConverterExp = "充值次数（当前轮每个挡位对应充值的次数)")
     private Integer goodsLimit;
 
-    /** ID отображаемой иконки */
-    @Excel(name = "ID отображаемой иконки")
+    /** 显示的图标的ID */
+    @Excel(name = "显示的图标的ID")
     private Integer goodsIcon;
 
-    /** URL изображения товара */
-    @Excel(name = "URL изображения товара")
+    /** 商品图片地址 */
+    @Excel(name = "商品图片地址")
     private String goodsurl;
 
-    /** Пополнение档位对应消耗的真实货币 */
-    @Excel(name = "Пополнение档位对应消耗的真实货币")
+    /** 充值档位对应消耗的真实货币 */
+    @Excel(name = "充值档位对应消耗的真实货币")
     private String goodsPrice;
 
-    /** Пополнение计费点 */
-    @Excel(name = "Пополнение计费点")
+    /** 充值计费点 */
+    @Excel(name = "充值计费点")
     private String goodsPricePoint;
 
-    /** 界面默认Показывать的货币 例如:THB */
-    @Excel(name = "界面默认Показывать的货币 例如:THB")
+    /** 界面默认显示的货币 例如:THB */
+    @Excel(name = "界面默认显示的货币 例如:THB")
     private String goodsShowPrice;
 
-    /** Награда за пополнение */
-    @Excel(name = "Награда за пополнение")
+    /** 充值奖励 */
+    @Excel(name = "充值奖励")
     private String goodsReward;
 
-    /** Множитель награды */
-    @Excel(name = "Множитель награды")
+    /** 充值奖励倍数 */
+    @Excel(name = "充值奖励倍数")
     private String goodsMultiple;
 
-    /** Дополнительная награда */
-    @Excel(name = "Дополнительная награда")
+    /** 额外奖励 */
+    @Excel(name = "额外奖励")
     private String goodsExtraReward;
 
-    /** Количество дополнительных наград */
-    @Excel(name = "Количество дополнительных наград")
+    /** 额外奖励次数 */
+    @Excel(name = "额外奖励次数")
     private Integer goodsExtraRewardLimit;
 
-    /** ДаНет计入到游戏累充活动 */
-    @Excel(name = "ДаНет计入到游戏累充活动")
+    /** 是否计入到游戏累充活动 */
+    @Excel(name = "是否计入到游戏累充活动")
     private Integer isTotalRecharge;
 
-    /** ДаНет增加VIP经验 */
-    @Excel(name = "ДаНет增加VIP经验")
+    /** 是否增加VIP经验 */
+    @Excel(name = "是否增加VIP经验")
     private Integer totalVipPower;
 
     public void setGoodsId(Integer goodsId)

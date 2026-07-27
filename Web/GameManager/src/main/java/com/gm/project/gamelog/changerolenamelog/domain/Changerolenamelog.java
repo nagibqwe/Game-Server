@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 改名Журнал对象 log_changerolenamelog
+ * 改名日志对象 log_changerolenamelog
  * 
  * @author gm
  * @date 2021-09-09
@@ -21,38 +21,38 @@ public class Changerolenamelog extends BaseEntity
     /**  */
     private Long id;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long playerId;
 
-    /** ID аккаунта */
-    @Excel(name = "ID аккаунта")
+    /** 账号ID */
+    @Excel(name = "账号ID")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
-    /** Игровой сервер */
-    @Excel(name = "Игровой сервер")
+    /** 区服 */
+    @Excel(name = "区服")
     private Long sid;
 
-    /** 改名前Имя персонажа */
-    @Excel(name = "改名前Имя персонажа")
+    /** 改名前角色名 */
+    @Excel(name = "改名前角色名")
     private String oldName;
 
-    /** 改名后Имя персонажа */
-    @Excel(name = "改名后Имя персонажа")
+    /** 改名后角色名 */
+    @Excel(name = "改名后角色名")
     private String newName;
 
-    /** ID предмета */
-    @Excel(name = "ID предмета")
+    /** 道具ID */
+    @Excel(name = "道具ID")
     private Long modelId;
 
-    /** Название платформы */
-    @Excel(name = "Название платформы")
+    /** 平台名字 */
+    @Excel(name = "平台名字")
     private String platformName;
 
     public void setId(Long id)

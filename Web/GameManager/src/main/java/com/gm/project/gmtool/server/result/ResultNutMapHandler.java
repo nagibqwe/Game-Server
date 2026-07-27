@@ -17,7 +17,7 @@ public class ResultNutMapHandler implements ResultHandler<AjaxResult>  {
 	@Override
 	public AjaxResult hand(TServer server, String result) {
 		if (StringUtils.isBlank(result.trim())) {
-			result = "Сервер"+server.getServerId()+"连接Ошибка";
+			result = "服务器"+server.getServerId()+"连接失败";
 			return AjaxResult.info(result).put("ok",false);
 		}
 		try {
@@ -33,7 +33,7 @@ public class ResultNutMapHandler implements ResultHandler<AjaxResult>  {
 
 	@Override
 	public AjaxResult hand(TServer server, Exception e) {
-		log.error("ID сервера:"+server.getId()+"gm 执行Ошибка {"+e.toString()+"}");
+		log.error("服务器ID:"+server.getId()+"gm 执行失败 {"+e.toString()+"}");
 		return AjaxResult.error(server.getServerIP() + ":" + server.getServerPort() + " connect time out!");
 	}
 }

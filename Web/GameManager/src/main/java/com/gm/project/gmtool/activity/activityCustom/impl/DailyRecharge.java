@@ -39,7 +39,7 @@ public class DailyRecharge extends Activity implements IActivityCustom {
         String[] i_totalRewardGroup = paramMap.get("i_totalRewardGroup");
 
         if (i_day.length > maxLimitDay || i_reach.length != i_day.length || i_fixRewardGroup.length != i_day.length) {
-            throw new RuntimeException("===Данные错误");
+            throw new RuntimeException("===数据错误");
         }
 
         HashMap<Integer, Object> data = new HashMap<>();
@@ -55,7 +55,7 @@ public class DailyRecharge extends Activity implements IActivityCustom {
             map.put("totalRewardDatas", ItemBean.split(i_totalRewardGroup == null ? null : i_totalRewardGroup[i]));
 
             if (data.containsKey(day)) {
-                throw new RuntimeException(" 重复的День day=" + day);
+                throw new RuntimeException(" 重复的天 day=" + day);
             }
             data.put(day, map);
         }

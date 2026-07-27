@@ -111,7 +111,7 @@ public class ActivityConfigController extends BaseController {
     }
 
     /**
-     * Изменить/Добавить幸运值配置
+     * 修改/添加幸运值配置
      * @param idCopy
      * @param totalLuckyValue
      * @param tips
@@ -123,20 +123,20 @@ public class ActivityConfigController extends BaseController {
         ActivityLuckyValue luckyValue = new ActivityLuckyValue();
         luckyValue.setTotalLuckyValue(totalLuckyValue);
         luckyValue.setTips(tips);
-        luckyValue.setState(0);//设置Статус
+        luckyValue.setState(0);//设置状态
         if (idCopy > 0){
-            //Изменить
+            //修改
             luckyValue.setId(idCopy);
             int num = activityLuckyValueService.updateActivityLuckyValue(luckyValue);
             if (num <1 ){
-                GMLogUtil.log("ID события:" + idCopy + "Не удалось обновить базу данных");
+                GMLogUtil.log("活动ID:" + idCopy + "数据库更新失败");
                 return AjaxResult.info("Не удалось обновить базу данных").put("ok",false);
             }
         }else {
-            //Добавить
+            //添加
             int updateNum = activityLuckyValueService.insertActivityLuckyValue(luckyValue);
             if (updateNum < 1) {
-                GMLogUtil.log("Не удалось добавить запись в базу данных");
+                GMLogUtil.log("数据库添加失败");
                 return AjaxResult.info("Не удалось добавить запись в базу данных").put("ok",false);
             }
         }
@@ -160,10 +160,10 @@ public class ActivityConfigController extends BaseController {
             return AjaxResult.info("").put("ok",false);
         }
         if (StringUtils.isEmpty(groupName) || StringUtils.isEmpty(serverids)) {
-            return AjaxResult.info("发送到СерверДанные错误!").put("ok",false);
+            return AjaxResult.info("发送到服务器数据错误!").put("ok",false);
         }
-        List<Integer> okServerIdList = new ArrayList<>();//Список успешных
-        List<Integer> failServerIdList = new ArrayList<>();//Ошибка列表
+        List<Integer> okServerIdList = new ArrayList<>();//成功列表
+        List<Integer> failServerIdList = new ArrayList<>();//失败列表
         ActivityLuckyValue luckyValue = activityLuckyValueService.selectActivityLuckyValueById(id);
         luckyValue.setPlatform(groupName);
         luckyValue.setState(3);
@@ -176,10 +176,10 @@ public class ActivityConfigController extends BaseController {
 //        String[] serverIdArr = serverIdStr.split(",");
         HashMap result = new HashMap();
         List<Integer> serverIdList = JsonUtils.parseArray("[" + serverIdStr + "]", Integer.class);
-        luckyValue.setToSidList(serverIdList.toString());//设置活动要发布到的Игровой сервер列表
+        luckyValue.setToSidList(serverIdList.toString());//设置活动要发布到的区服列表
         for (Integer sid:serverIdList){
             TServer server = tServerService.selectTServerByServerId(sid);
-            result = GameServerRequestUtil.gmPublishLuckyValue(server, totalLuckyValue);//向游戏Сервер发送命令
+            result = GameServerRequestUtil.gmPublishLuckyValue(server, totalLuckyValue);//向游戏服务器发送命令
             if (Boolean.valueOf(result.get("ok").toString())) {
                 okServerIdList.add(sid);
             } else {
@@ -189,12 +189,12 @@ public class ActivityConfigController extends BaseController {
         luckyValue.setOkSidList(okServerIdList.toString());
         luckyValue.setCover(cover);
         activityLuckyValueService.updateActivityLuckyValue(luckyValue);
-        GMLogUtil.log("活动id:"+id+"要发布到的Игровой сервер列表:" + serverIdList.toString()+",Успешно的Игровой сервер列表："+okServerIdList.toString()+",Ошибка的Игровой сервер列表："+failServerIdList.toString());
-        return AjaxResult.info("活动id:"+id+"要发布到的Игровой сервер列表:" + serverIdList.toString()+",Успешно的Игровой сервер列表："+okServerIdList.toString()+",Ошибка的Игровой сервер列表："+failServerIdList.toString()).put("ok",true);
+        GMLogUtil.log("活动id:"+id+"要发布到的区服列表:" + serverIdList.toString()+",成功的区服列表："+okServerIdList.toString()+",失败的区服列表："+failServerIdList.toString());
+        return AjaxResult.info("活动id:"+id+"要发布到的区服列表:" + serverIdList.toString()+",成功的区服列表："+okServerIdList.toString()+",失败的区服列表："+failServerIdList.toString()).put("ok",true);
     }
 
     /**
-     * Удалить抽奖幸运值配置
+     * 删除抽奖幸运值配置
      * @param id
      * @return
      */
@@ -206,12 +206,12 @@ public class ActivityConfigController extends BaseController {
 //        boolean b = num > 0;
         luckyValue.setIsDeleted(1);
         boolean b = activityLuckyValueService.updateActivityLuckyValue(luckyValue) > 0;
-        GMLogUtil.log("Удалить抽奖幸运值活动id:" + id+",Результат：" + b);
+        GMLogUtil.log("删除抽奖幸运值活动id:" + id+",结果：" + b);
         return AjaxResult.info("").put("ok",b);
     }
 
     /**
-     * Добавить/Изменить模型库
+     * 添加/修改模型库
      * @param activityModel
      * @param request
      * @return
@@ -223,27 +223,27 @@ public class ActivityConfigController extends BaseController {
         String[] idCopys = paramMap.get("idCopy");
         int idCopy = Integer.parseInt(idCopys[0]);
         if (idCopy > 0){
-            //Изменить
+            //修改
             activityModel.setId(idCopy);
             addModelData(idCopy, activityModel);
             int num = modelService.updateModel(activityModel);
             if (num <1 ){
-                GMLogUtil.log("ID:" + idCopy + "Не удалось обновить базу данных");
+                GMLogUtil.log("ID:" + idCopy + "数据库更新失败");
                 return AjaxResult.info("Не удалось обновить базу данных").put("ok",false);
             }
         }else {
-            //Добавить
+            //添加
             int addNum = modelService.insertModel(activityModel);
             addModelData(activityModel.getId(), activityModel);
             modelService.updateModel(activityModel);
             if (addNum < 1) {
-                GMLogUtil.log("Не удалось добавить запись в базу данных");
+                GMLogUtil.log("数据库添加失败");
                 return AjaxResult.info("Не удалось добавить запись в базу данных").put("ok",false);
             }
         }
         return AjaxResult.info("").put("ok",true);
     }
-    //设置ModelData(需要发送给Сервер的Данные)
+    //设置ModelData(需要发送给服务器的数据)
     private void addModelData(int id, ActivityModel activityModel) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("id",id);
@@ -275,7 +275,7 @@ public class ActivityConfigController extends BaseController {
     }
 
     /**
-     * Удалить模型
+     * 删除模型
      * @param id
      * @return
      */
@@ -284,13 +284,13 @@ public class ActivityConfigController extends BaseController {
     public Object deleteModel(int id) {
         ActivityModel activityModel = modelService.selectModelById(id);
         boolean b = modelService.deleteModelById(id) > 0;
-        GMLogUtil.log("Удалить模型库配置id:" + id+",模型库Примечание:"+ activityModel.getTips()+",Результат：" + b);
+        GMLogUtil.log("删除模型库配置id:" + id+",模型库备注:"+ activityModel.getTips()+",结果：" + b);
         return AjaxResult.info("").put("ok",b);
     }
 
 
     /**
-     * 获取全部Игровые события标签
+     * 获取全部运营活动标签
      * @return
      */
     @PostMapping( "/getAllTag")
@@ -336,7 +336,7 @@ public class ActivityConfigController extends BaseController {
     }
 
     /**
-     * Добавить标签配置
+     * 新增标签配置
      * @param tagGrid
      * @return
      * @throws SQLException
@@ -352,12 +352,12 @@ public class ActivityConfigController extends BaseController {
         if (b){
             result = sendServerUpdate();
         }
-        GMLogUtil.log("Добавить标签库配置id:" + tagGrid.getId()+",Результат：" + result);
+        GMLogUtil.log("添加标签库配置id:" + tagGrid.getId()+",结果：" + result);
         return AjaxResult.info(result).put("ok",b);
     }
 
     /**
-     * Изменить标签配置
+     * 修改标签配置
      * @param tagGrid
      * @return
      * @throws SQLException
@@ -373,11 +373,11 @@ public class ActivityConfigController extends BaseController {
         if (b){
             result = sendServerUpdate();
         }
-        GMLogUtil.log("Изменить标签库配置id:" + tagGrid.getId()+",Результат：" + result);
+        GMLogUtil.log("修改标签库配置id:" + tagGrid.getId()+",结果：" + result);
         return AjaxResult.info(result).put("ok",b);
     }
 
-    //标签库有改动之后通知Сервер更新
+    //标签库有改动之后通知服务器更新
     private String sendServerUpdate(){
         StringBuilder sb = new StringBuilder();
         TServer serverSearch = new TServer();
@@ -395,22 +395,22 @@ public class ActivityConfigController extends BaseController {
                 HashMap resultMap = GameServerRequestUtil.gmUpdateTagInfo(server);
                 if (!Boolean.valueOf(resultMap.get("ok").toString())) {
                     serverFailedList.add(serverId);
-                    logger.error(serverId + "服,标签库配置ОбновитьОшибка！msg:"+resultMap.get("msg"));
+                    logger.error(serverId + "服,标签库配置刷新失败！msg:"+resultMap.get("msg"));
                 } else {
                     serverSuccessList.add(serverId);
                 }
             }catch (Exception e){
-                logger.error(serverId + "服标签库配置同步Ошибка！error："+e.getMessage());
+                logger.error(serverId + "服标签库配置同步失败！error："+e.getMessage());
                 serverFailedList.add(serverId);
             }
         }
-        sb.append("Успешная синхронизация игровых серверов:").append(serverSuccessList).append("\n");
-        sb.append("Ошибки синхронизации игровых серверов:").append(serverFailedList).append("\n");
+        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("\n");
+        sb.append("游戏服同步失败列表：").append(serverFailedList).append("\n");
         return sb.toString();
     }
 
     /**
-     * Удалить标签库
+     * 删除标签库
      * @param id
      * @return
      * @throws SQLException
@@ -426,12 +426,12 @@ public class ActivityConfigController extends BaseController {
         if (b){
             result = sendServerUpdate();
         }
-        GMLogUtil.log("Удалить标签库配置id:" + id+",Результат：" + result);
+        GMLogUtil.log("删除标签库配置id:" + id+",结果：" + result);
         return AjaxResult.info(result).put("ok",b);
     }
 
     /**
-     * 获取所有模型库Тип
+     * 获取所有模型库类型
      * @return
      */
     @PostMapping( "/getAllModel")

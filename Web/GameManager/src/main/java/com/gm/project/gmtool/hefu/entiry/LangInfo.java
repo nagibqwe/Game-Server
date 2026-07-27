@@ -11,11 +11,11 @@ public class LangInfo {
     private String sender;
     /**角色-标题*/
     private String roleTitle;
-    /**角色-Содержимое*/
+    /**角色-内容*/
     private String roleContent;
     /**仙盟-标题*/
     private String guildTitle;
-    /**仙盟-Содержимое*/
+    /**仙盟-内容*/
     private String guildContent;
 
     public String getLang() {

@@ -8,7 +8,7 @@ import com.gm.project.gamelog.chatlog.domain.Chatlog;
 import com.gm.project.gamelog.chatlog.service.IChatlogService;
 
 /**
- * 聊ДеньЖурналService业务层处理
+ * 聊天日志Service业务层处理
  * 
  * @author gm
  * @date 2021-06-08
@@ -17,10 +17,10 @@ import com.gm.project.gamelog.chatlog.service.IChatlogService;
 public class ChatlogServiceImpl implements IChatlogService 
 {
     /**
-     * 查询聊ДеньЖурнал列表
+     * 查询聊天日志列表
      * 
-     * @param chatlog 聊ДеньЖурнал
-     * @return 聊ДеньЖурнал
+     * @param chatlog 聊天日志
+     * @return 聊天日志
      */
     @Override
     public List<Chatlog> selectChatlogList(Chatlog chatlog,Map<String, Object> param)

@@ -9,7 +9,7 @@ import com.gm.project.gmtool.deductItem.service.IDeductItemService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Списание предметовService业务层处理
+ * 道具扣除Service业务层处理
  * 
  * @author gm
  * @date 2021-10-30
@@ -21,10 +21,10 @@ public class DeductItemServiceImpl implements IDeductItemService
     private DeductItemMapper deductItemMapper;
 
     /**
-     * 查询Списание предметов
+     * 查询道具扣除
      * 
-     * @param id Списание предметовID
-     * @return Списание предметов
+     * @param id 道具扣除ID
+     * @return 道具扣除
      */
     @Override
     public DeductItem selectDeductItemById(Integer id)
@@ -33,10 +33,10 @@ public class DeductItemServiceImpl implements IDeductItemService
     }
 
     /**
-     * 查询Списание предметов列表
+     * 查询道具扣除列表
      * 
-     * @param deductItem Списание предметов
-     * @return Списание предметов
+     * @param deductItem 道具扣除
+     * @return 道具扣除
      */
     @Override
     public List<DeductItem> selectDeductItemList(DeductItem deductItem)
@@ -45,10 +45,10 @@ public class DeductItemServiceImpl implements IDeductItemService
     }
 
     /**
-     * ДобавитьСписание предметов
+     * 新增道具扣除
      * 
-     * @param deductItem Списание предметов
-     * @return Результат
+     * @param deductItem 道具扣除
+     * @return 结果
      */
     @Override
     public int insertDeductItem(DeductItem deductItem)
@@ -57,10 +57,10 @@ public class DeductItemServiceImpl implements IDeductItemService
     }
 
     /**
-     * ИзменитьСписание предметов
+     * 修改道具扣除
      * 
-     * @param deductItem Списание предметов
-     * @return Результат
+     * @param deductItem 道具扣除
+     * @return 结果
      */
     @Override
     public int updateDeductItem(DeductItem deductItem)
@@ -69,10 +69,10 @@ public class DeductItemServiceImpl implements IDeductItemService
     }
 
     /**
-     * УдалитьСписание предметов对象
+     * 删除道具扣除对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteDeductItemByIds(String ids)
@@ -81,10 +81,10 @@ public class DeductItemServiceImpl implements IDeductItemService
     }
 
     /**
-     * УдалитьСписание предметовИнформация
+     * 删除道具扣除信息
      * 
-     * @param id Списание предметовID
-     * @return Результат
+     * @param id 道具扣除ID
+     * @return 结果
      */
     @Override
     public int deleteDeductItemById(Integer id)

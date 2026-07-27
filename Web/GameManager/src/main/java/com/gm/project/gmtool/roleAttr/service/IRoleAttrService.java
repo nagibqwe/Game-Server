@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.roleAttr.domain.RoleAttr;
 
 /**
- * Изменить характеристикиService接口
+ * 修改属性Service接口
  * 
  * @author gm
  * @date 2021-11-02
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.roleAttr.domain.RoleAttr;
 public interface IRoleAttrService 
 {
     /**
-     * 查询Изменить характеристики
+     * 查询修改属性
      * 
-     * @param id Изменить характеристикиID
-     * @return Изменить характеристики
+     * @param id 修改属性ID
+     * @return 修改属性
      */
     public RoleAttr selectRoleAttrById(Integer id);
 
     /**
-     * 查询Изменить характеристики列表
+     * 查询修改属性列表
      * 
-     * @param roleAttr Изменить характеристики
-     * @return Изменить характеристики集合
+     * @param roleAttr 修改属性
+     * @return 修改属性集合
      */
     public List<RoleAttr> selectRoleAttrList(RoleAttr roleAttr);
 
     /**
-     * ДобавитьИзменить характеристики
+     * 新增修改属性
      * 
-     * @param roleAttr Изменить характеристики
-     * @return Результат
+     * @param roleAttr 修改属性
+     * @return 结果
      */
     public int insertRoleAttr(RoleAttr roleAttr);
 
     /**
-     * ИзменитьИзменить характеристики
+     * 修改修改属性
      * 
-     * @param roleAttr Изменить характеристики
-     * @return Результат
+     * @param roleAttr 修改属性
+     * @return 结果
      */
     public int updateRoleAttr(RoleAttr roleAttr);
 
     /**
-     * 批量УдалитьИзменить характеристики
+     * 批量删除修改属性
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteRoleAttrByIds(String ids);
 
     /**
-     * УдалитьИзменить характеристикиИнформация
+     * 删除修改属性信息
      * 
-     * @param id Изменить характеристикиID
-     * @return Результат
+     * @param id 修改属性ID
+     * @return 结果
      */
     public int deleteRoleAttrById(Integer id);
 }

@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Блокировка аккаунта对象 t_ban_account
+ * 账号封禁对象 t_ban_account
  * 
  * @author gm
  * @date 2021-11-21
@@ -23,16 +23,16 @@ public class BanAccount extends BaseEntity
     @Excel(name = "封号的条件")
     private String con;
 
-    /** Окончание блокировки */
-    @Excel(name = "Окончание блокировки")
+    /** 封禁结束时间 */
+    @Excel(name = "封禁结束时间")
     private String endTime;
 
-    /** Статус: 0 — заблокирован, 1 — разблокирован */
-    @Excel(name = "Статус: 0 — заблокирован, 1 — разблокирован")
+    /** 状态0:封禁1:解封 */
+    @Excel(name = "状态0:封禁1:解封")
     private Integer state;
 
-    /** Причина */
-    @Excel(name = "Причина")
+    /** 操作理由 */
+    @Excel(name = "操作理由")
     private String reason;
 
     public void setId(Long id)

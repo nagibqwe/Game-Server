@@ -29,7 +29,7 @@ import com.gm.project.system.user.domain.User;
 import com.gm.project.system.user.service.IUserService;
 
 /**
- * 用户Информация
+ * 用户信息
  * 
  * @author ruoyi
  */
@@ -65,7 +65,7 @@ public class UserController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "Пользователи", businessType = BusinessType.EXPORT)
+    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:user:export")
     @PostMapping("/export")
     @ResponseBody
@@ -73,10 +73,10 @@ public class UserController extends BaseController
     {
         List<User> list = userService.selectUserList(user);
         ExcelUtil<User> util = new ExcelUtil<User>(User.class);
-        return util.exportExcel(list, "用户Данные");
+        return util.exportExcel(list, "用户数据");
     }
 
-    @Log(title = "Пользователи", businessType = BusinessType.IMPORT)
+    @Log(title = "用户管理", businessType = BusinessType.IMPORT)
     @RequiresPermissions("system:user:import")
     @PostMapping("/importData")
     @ResponseBody
@@ -94,11 +94,11 @@ public class UserController extends BaseController
     public AjaxResult importTemplate()
     {
         ExcelUtil<User> util = new ExcelUtil<User>(User.class);
-        return util.importTemplateExcel("用户Данные");
+        return util.importTemplateExcel("用户数据");
     }
 
     /**
-     * Добавить用户
+     * 新增用户
      */
     @GetMapping("/add")
     public String add(ModelMap mmap)
@@ -109,33 +109,33 @@ public class UserController extends BaseController
     }
 
     /**
-     * ДобавитьСохранить用户
+     * 新增保存用户
      */
     @RequiresPermissions("system:user:add")
-    @Log(title = "Пользователи", businessType = BusinessType.INSERT)
+    @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated User user)
     {
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(userService.checkLoginNameUnique(user.getLoginName())))
         {
-            return error("Добавить用户'" + user.getLoginName() + "'Ошибка，登录账号已存在");
+            return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
         }
         else if (StringUtils.isNotEmpty(user.getPhonenumber())
                 && UserConstants.USER_PHONE_NOT_UNIQUE.equals(userService.checkPhoneUnique(user)))
         {
-            return error("Добавить用户'" + user.getLoginName() + "'Ошибка，手机号码已存在");
+            return error("新增用户'" + user.getLoginName() + "'失败，手机号码已存在");
         }
         else if (StringUtils.isNotEmpty(user.getEmail())
                 && UserConstants.USER_EMAIL_NOT_UNIQUE.equals(userService.checkEmailUnique(user)))
         {
-            return error("Добавить用户'" + user.getLoginName() + "'Ошибка，邮箱账号已存在");
+            return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
         return toAjax(userService.insertUser(user));
     }
 
     /**
-     * Изменить用户
+     * 修改用户
      */
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") Long userId, ModelMap mmap)
@@ -148,10 +148,10 @@ public class UserController extends BaseController
     }
 
     /**
-     * ИзменитьСохранить用户
+     * 修改保存用户
      */
     @RequiresPermissions("system:user:edit")
-    @Log(title = "Пользователи", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated User user)
@@ -160,12 +160,12 @@ public class UserController extends BaseController
         if (StringUtils.isNotEmpty(user.getPhonenumber())
                 && UserConstants.USER_PHONE_NOT_UNIQUE.equals(userService.checkPhoneUnique(user)))
         {
-            return error("Изменить用户'" + user.getLoginName() + "'Ошибка，手机号码已存在");
+            return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
         }
         else if (StringUtils.isNotEmpty(user.getEmail())
                 && UserConstants.USER_EMAIL_NOT_UNIQUE.equals(userService.checkEmailUnique(user)))
         {
-            return error("Изменить用户'" + user.getLoginName() + "'Ошибка，邮箱账号已存在");
+            return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
         return toAjax(userService.updateUser(user));
     }
@@ -179,7 +179,7 @@ public class UserController extends BaseController
     }
 
     @RequiresPermissions("system:user:resetPwd")
-    @Log(title = "Сбросить пароль", businessType = BusinessType.UPDATE)
+    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwdSave(User user)
@@ -214,7 +214,7 @@ public class UserController extends BaseController
      * 用户授权角色
      */
     @RequiresPermissions("system:user:add")
-    @Log(title = "Пользователи", businessType = BusinessType.GRANT)
+    @Log(title = "用户管理", businessType = BusinessType.GRANT)
     @PostMapping("/authRole/insertAuthRole")
     @ResponseBody
     public AjaxResult insertAuthRole(Long userId, Long[] roleIds)
@@ -224,7 +224,7 @@ public class UserController extends BaseController
     }
 
     @RequiresPermissions("system:user:remove")
-    @Log(title = "Пользователи", businessType = BusinessType.DELETE)
+    @Log(title = "用户管理", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -233,7 +233,7 @@ public class UserController extends BaseController
     }
 
     /**
-     * 校验Имя пользователя
+     * 校验用户名
      */
     @PostMapping("/checkLoginNameUnique")
     @ResponseBody
@@ -263,9 +263,9 @@ public class UserController extends BaseController
     }
 
     /**
-     * Статус пользователяИзменить
+     * 用户状态修改
      */
-    @Log(title = "Пользователи", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:user:edit")
     @PostMapping("/changeStatus")
     @ResponseBody

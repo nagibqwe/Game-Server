@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Связи праздничных событий对象 t_activity_festival_relation
+ * 运营活动节日关系对象 t_activity_festival_relation
  * 
  * @author gm
  * @date 2021-11-08
@@ -16,8 +16,8 @@ public class ActivityFestivalRelation extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Игровые событияtype的ID */
-    @Excel(name = "Игровые событияtype的ID")
+    /** 运营活动type的ID */
+    @Excel(name = "运营活动type的ID")
     private Integer logicId;
 
     /** 节日ID */

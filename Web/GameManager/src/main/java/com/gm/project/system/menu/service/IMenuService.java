@@ -17,9 +17,9 @@ import com.gm.project.system.user.domain.User;
 public interface IMenuService
 {
     /**
-     * 根据ID пользователя查询菜单
+     * 根据用户ID查询菜单
      * 
-     * @param user 用户Информация
+     * @param user 用户信息
      * @return 菜单列表
      */
     public List<Menu> selectMenusByUser(User user);
@@ -27,7 +27,7 @@ public interface IMenuService
     /**
      * 查询系统菜单列表
      * 
-     * @param menu 菜单Информация
+     * @param menu 菜单信息
      * @return 菜单列表
      */
     public List<Menu> selectMenuList(Menu menu);
@@ -35,20 +35,20 @@ public interface IMenuService
     /**
      * 查询菜单集合
      * 
-     * @return 所有菜单Информация
+     * @return 所有菜单信息
      */
     public List<Menu> selectMenuAll();
 
     /**
-     * 根据ID пользователя查询权限
+     * 根据用户ID查询权限
      * 
-     * @param userId ID пользователя
+     * @param userId 用户ID
      * @return 权限列表
      */
     public Set<String> selectPermsByUserId(Long userId);
 
     /**
-     * 根据ID персонажа查询菜单
+     * 根据角色ID查询菜单
      * 
      * @param role 角色对象
      * @return 菜单列表
@@ -56,7 +56,7 @@ public interface IMenuService
     public List<Ztree> roleMenuTreeData(Role role);
 
     /**
-     * 查询所有菜单Информация
+     * 查询所有菜单信息
      * 
      * @return 菜单列表
      */
@@ -70,18 +70,18 @@ public interface IMenuService
     public Map<String, String> selectPermsAll();
 
     /**
-     * УдалитьМенюИнформация
+     * 删除菜单管理信息
      * 
      * @param menuId 菜单ID
-     * @return Результат
+     * @return 结果
      */
     public int deleteMenuById(Long menuId);
 
     /**
-     * 根据菜单ID查询Информация
+     * 根据菜单ID查询信息
      * 
      * @param menuId 菜单ID
-     * @return 菜单Информация
+     * @return 菜单信息
      */
     public Menu selectMenuById(Long menuId);
 
@@ -89,7 +89,7 @@ public interface IMenuService
      * 查询菜单数量
      * 
      * @param parentId 菜单父ID
-     * @return Результат
+     * @return 结果
      */
     public int selectCountMenuByParentId(Long parentId);
 
@@ -97,31 +97,31 @@ public interface IMenuService
      * 查询菜单使用数量
      * 
      * @param menuId 菜单ID
-     * @return Результат
+     * @return 结果
      */
     public int selectCountRoleMenuByMenuId(Long menuId);
 
     /**
-     * ДобавитьСохранить菜单Информация
+     * 新增保存菜单信息
      * 
-     * @param menu 菜单Информация
-     * @return Результат
+     * @param menu 菜单信息
+     * @return 结果
      */
     public int insertMenu(Menu menu);
 
     /**
-     * ИзменитьСохранить菜单Информация
+     * 修改保存菜单信息
      * 
-     * @param menu 菜单Информация
-     * @return Результат
+     * @param menu 菜单信息
+     * @return 结果
      */
     public int updateMenu(Menu menu);
 
     /**
-     * 校验菜单НазваниеДаНет唯一
+     * 校验菜单名称是否唯一
      * 
-     * @param menu 菜单Информация
-     * @return Результат
+     * @param menu 菜单信息
+     * @return 结果
      */
     public String checkMenuNameUnique(Menu menu);
 }

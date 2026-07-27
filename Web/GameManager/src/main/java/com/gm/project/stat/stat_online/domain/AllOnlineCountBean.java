@@ -5,13 +5,13 @@ import com.gm.framework.web.domain.BaseEntity;
 
 public class AllOnlineCountBean extends BaseEntity {
     private static final long serialVersionUID = 1L;
-    @Excel(name = "ID игрового сервера")
+    @Excel(name = "区服ID")
     private Integer serverId;
-    @Excel(name = "Игровой серверНазвание")
+    @Excel(name = "区服名称")
     private String serverName;
-    @Excel(name = "Время")
+    @Excel(name = "时间")
     private Long time;
-    @Excel(name = "В сетиКоличество")
+    @Excel(name = "在线人数")
     private Integer num;
 
     public Integer getServerId() {

@@ -17,7 +17,7 @@ public interface IStatGoldPurposeDao
 {
 
     /**
-     * 付费次数统计 获取Данные
+     * 付费次数统计 获取数据
      * @param table
      * @param serverId
      * @param channelNames

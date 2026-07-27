@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.blackuser.domain.Blackuser;
 
 /**
- * Чёрный списокMapper接口
+ * 黑名单Mapper接口
  * 
  * @author gm
  * @date 2021-11-04
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.blackuser.domain.Blackuser;
 public interface BlackuserMapper 
 {
     /**
-     * 查询Чёрный список
+     * 查询黑名单
      * 
-     * @param id Чёрный списокID
-     * @return Чёрный список
+     * @param id 黑名单ID
+     * @return 黑名单
      */
     public Blackuser selectBlackuserById(Integer id);
 
     /**
-     * 查询Чёрный список列表
+     * 查询黑名单列表
      * 
-     * @param blackuser Чёрный список
-     * @return Чёрный список集合
+     * @param blackuser 黑名单
+     * @return 黑名单集合
      */
     public List<Blackuser> selectBlackuserList(Blackuser blackuser);
 
     /**
-     * ДобавитьЧёрный список
+     * 新增黑名单
      * 
-     * @param blackuser Чёрный список
-     * @return Результат
+     * @param blackuser 黑名单
+     * @return 结果
      */
     public int insertBlackuser(Blackuser blackuser);
 
     /**
-     * ИзменитьЧёрный список
+     * 修改黑名单
      * 
-     * @param blackuser Чёрный список
-     * @return Результат
+     * @param blackuser 黑名单
+     * @return 结果
      */
     public int updateBlackuser(Blackuser blackuser);
 
     /**
-     * УдалитьЧёрный список
+     * 删除黑名单
      * 
-     * @param id Чёрный списокID
-     * @return Результат
+     * @param id 黑名单ID
+     * @return 结果
      */
     public int deleteBlackuserById(Integer id);
 
     /**
-     * 批量УдалитьЧёрный список
+     * 批量删除黑名单
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteBlackuserByIds(String[] ids);
 }

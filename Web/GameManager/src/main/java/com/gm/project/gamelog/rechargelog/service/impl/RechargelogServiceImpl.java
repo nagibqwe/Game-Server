@@ -13,7 +13,7 @@ import com.gm.project.gamelog.rechargelog.service.IRechargelogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * ПополнениеЖурналService业务层处理
+ * 充值日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-09
@@ -24,10 +24,10 @@ public class RechargelogServiceImpl implements IRechargelogService
 
 
     /**
-     * 查询ПополнениеЖурнал列表
+     * 查询充值日志列表
      * 
-     * @param rechargelog ПополнениеЖурнал
-     * @return ПополнениеЖурнал
+     * @param rechargelog 充值日志
+     * @return 充值日志
      */
     @Override
     public List<Rechargelog> selectRechargelogList(Rechargelog rechargelog, Map<String, Object> param)

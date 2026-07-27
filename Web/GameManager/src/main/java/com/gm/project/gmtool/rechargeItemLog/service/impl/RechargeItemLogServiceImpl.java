@@ -9,7 +9,7 @@ import com.gm.project.gmtool.rechargeItemLog.service.IRechargeItemLogService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Журнал настроек пополненияService业务层处理
+ * 充值配置日志Service业务层处理
  * 
  * @author gm
  * @date 2021-08-25
@@ -21,10 +21,10 @@ public class RechargeItemLogServiceImpl implements IRechargeItemLogService
     private RechargeItemLogMapper rechargeItemLogMapper;
 
     /**
-     * 查询Журнал настроек пополнения
+     * 查询充值配置日志
      * 
-     * @param id Журнал настроек пополненияID
-     * @return Журнал настроек пополнения
+     * @param id 充值配置日志ID
+     * @return 充值配置日志
      */
     @Override
     public RechargeItemLog selectRechargeItemLogById(Integer id)
@@ -33,10 +33,10 @@ public class RechargeItemLogServiceImpl implements IRechargeItemLogService
     }
 
     /**
-     * 查询Журнал настроек пополнения列表
+     * 查询充值配置日志列表
      * 
-     * @param rechargeItemLog Журнал настроек пополнения
-     * @return Журнал настроек пополнения
+     * @param rechargeItemLog 充值配置日志
+     * @return 充值配置日志
      */
     @Override
     public List<RechargeItemLog> selectRechargeItemLogList(RechargeItemLog rechargeItemLog)
@@ -45,10 +45,10 @@ public class RechargeItemLogServiceImpl implements IRechargeItemLogService
     }
 
     /**
-     * ДобавитьЖурнал настроек пополнения
+     * 新增充值配置日志
      * 
-     * @param rechargeItemLog Журнал настроек пополнения
-     * @return Результат
+     * @param rechargeItemLog 充值配置日志
+     * @return 结果
      */
     @Override
     public int insertRechargeItemLog(RechargeItemLog rechargeItemLog)
@@ -57,10 +57,10 @@ public class RechargeItemLogServiceImpl implements IRechargeItemLogService
     }
 
     /**
-     * ИзменитьЖурнал настроек пополнения
+     * 修改充值配置日志
      * 
-     * @param rechargeItemLog Журнал настроек пополнения
-     * @return Результат
+     * @param rechargeItemLog 充值配置日志
+     * @return 结果
      */
     @Override
     public int updateRechargeItemLog(RechargeItemLog rechargeItemLog)
@@ -69,10 +69,10 @@ public class RechargeItemLogServiceImpl implements IRechargeItemLogService
     }
 
     /**
-     * УдалитьЖурнал настроек пополнения对象
+     * 删除充值配置日志对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteRechargeItemLogByIds(String ids)
@@ -81,10 +81,10 @@ public class RechargeItemLogServiceImpl implements IRechargeItemLogService
     }
 
     /**
-     * УдалитьЖурнал настроек пополненияИнформация
+     * 删除充值配置日志信息
      * 
-     * @param id Журнал настроек пополненияID
-     * @return Результат
+     * @param id 充值配置日志ID
+     * @return 结果
      */
     @Override
     public int deleteRechargeItemLogById(Integer id)

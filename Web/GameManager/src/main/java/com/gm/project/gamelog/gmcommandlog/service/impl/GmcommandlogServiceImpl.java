@@ -10,7 +10,7 @@ import com.gm.project.gamelog.gmcommandlog.service.IGmcommandlogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * gm命令ЖурналService业务层处理
+ * gm命令日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-08
@@ -21,10 +21,10 @@ public class GmcommandlogServiceImpl implements IGmcommandlogService
 
 
     /**
-     * 查询gm命令Журнал列表
+     * 查询gm命令日志列表
      * 
-     * @param gmcommandlog gm命令Журнал
-     * @return gm命令Журнал
+     * @param gmcommandlog gm命令日志
+     * @return gm命令日志
      */
     @Override
     public List<Gmcommandlog> selectGmcommandlogList(Gmcommandlog gmcommandlog,Map<String, Object> param)

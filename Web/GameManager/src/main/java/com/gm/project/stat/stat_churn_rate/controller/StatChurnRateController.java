@@ -72,7 +72,7 @@ public class StatChurnRateController extends BaseController
         return  getDataTable(playerLeaveCountBeanList);
     }
     /**
-     * 用户Уровень分布流失
+     * 用户等级分布流失
      */
     @PostMapping("/stat_player_leave_rank")
     @ResponseBody

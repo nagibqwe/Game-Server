@@ -14,7 +14,7 @@ import com.gm.project.gamelog.itemchangelog.service.IItemchangelogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * 物品变化ЖурналService业务层处理
+ * 物品变化日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-09
@@ -25,10 +25,10 @@ public class ItemchangelogServiceImpl implements IItemchangelogService
 
 
     /**
-     * 查询物品变化Журнал列表
+     * 查询物品变化日志列表
      * 
-     * @param itemchangelog 物品变化Журнал
-     * @return 物品变化Журнал
+     * @param itemchangelog 物品变化日志
+     * @return 物品变化日志
      */
     @Override
     public List<Itemchangelog> selectItemchangelogList(Itemchangelog itemchangelog,Map<String, Object> param)

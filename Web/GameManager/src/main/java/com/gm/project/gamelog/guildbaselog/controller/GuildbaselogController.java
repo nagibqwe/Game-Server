@@ -33,7 +33,7 @@ import javax.annotation.Resource;
 
 
 /**
- * 公会基础ИнформацияController
+ * 公会基础信息Controller
  * 
  * @author gm
  * @date 2021-12-06
@@ -69,7 +69,7 @@ public class GuildbaselogController extends BaseController
     }
 
     /**
-     * 查询公会基础Информация列表
+     * 查询公会基础信息列表
      */
     @RequiresPermissions("gamelog:guildbaselog:list")
     @PostMapping("/list")
@@ -104,10 +104,10 @@ public class GuildbaselogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * Экспорт公会基础Информация列表
+     * 导出公会基础信息列表
      */
     @RequiresPermissions("gamelog:guildbaselog:export")
-    @Log(title = "公会基础Информация", businessType = BusinessType.EXPORT)
+    @Log(title = "公会基础信息", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Guildbaselog guildbaselog, Integer queryType, Integer serverId)
@@ -124,6 +124,6 @@ public class GuildbaselogController extends BaseController
         param.put("queryType", queryType);
         List<Guildbaselog> list = guildbaselogService.selectGuildbaselogList(guildbaselog, param);
         ExcelUtil<Guildbaselog> util = new ExcelUtil<Guildbaselog>(Guildbaselog.class);
-        return util.exportExcel(list, "公会基础ИнформацияДанные");
+        return util.exportExcel(list, "公会基础信息数据");
     }
 }

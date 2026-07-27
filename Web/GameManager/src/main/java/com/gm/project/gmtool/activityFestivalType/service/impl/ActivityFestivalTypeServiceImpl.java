@@ -9,7 +9,7 @@ import com.gm.project.gmtool.activityFestivalType.service.IActivityFestivalTypeS
 import com.gm.common.utils.text.Convert;
 
 /**
- * Тип праздникаService业务层处理
+ * 节日类型Service业务层处理
  * 
  * @author gm
  * @date 2021-09-09
@@ -21,10 +21,10 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     private ActivityFestivalTypeMapper activityFestivalTypeMapper;
 
     /**
-     * 查询Тип праздника
+     * 查询节日类型
      * 
-     * @param id Тип праздникаID
-     * @return Тип праздника
+     * @param id 节日类型ID
+     * @return 节日类型
      */
     @Override
     public ActivityFestivalType selectActivityFestivalTypeById(Integer id)
@@ -33,10 +33,10 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     }
 
     /**
-     * 查询Тип праздника列表
+     * 查询节日类型列表
      * 
-     * @param activityFestivalType Тип праздника
-     * @return Тип праздника
+     * @param activityFestivalType 节日类型
+     * @return 节日类型
      */
     @Override
     public List<ActivityFestivalType> selectActivityFestivalTypeList(ActivityFestivalType activityFestivalType)
@@ -45,10 +45,10 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     }
 
     /**
-     * ДобавитьТип праздника
+     * 新增节日类型
      * 
-     * @param activityFestivalType Тип праздника
-     * @return Результат
+     * @param activityFestivalType 节日类型
+     * @return 结果
      */
     @Override
     public int insertActivityFestivalType(ActivityFestivalType activityFestivalType)
@@ -57,10 +57,10 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     }
 
     /**
-     * ИзменитьТип праздника
+     * 修改节日类型
      * 
-     * @param activityFestivalType Тип праздника
-     * @return Результат
+     * @param activityFestivalType 节日类型
+     * @return 结果
      */
     @Override
     public int updateActivityFestivalType(ActivityFestivalType activityFestivalType)
@@ -69,10 +69,10 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     }
 
     /**
-     * УдалитьТип праздника对象
+     * 删除节日类型对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteActivityFestivalTypeByIds(String ids)
@@ -81,10 +81,10 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     }
 
     /**
-     * УдалитьТип праздникаИнформация
+     * 删除节日类型信息
      * 
-     * @param id Тип праздникаID
-     * @return Результат
+     * @param id 节日类型ID
+     * @return 结果
      */
     @Override
     public int deleteActivityFestivalTypeById(Integer id)
@@ -93,7 +93,7 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     }
 
     /**
-     * Удалить全部Тип праздника
+     * 删除全部节日类型
      * @return
      */
     @Override
@@ -102,7 +102,7 @@ public class ActivityFestivalTypeServiceImpl implements IActivityFestivalTypeSer
     }
 
     /**
-     * 根据节日ID列表查询Тип праздникаИнформация
+     * 根据节日ID列表查询节日类型信息
      * @param ids
      * @return
      */

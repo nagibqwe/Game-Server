@@ -30,7 +30,7 @@ public class BaseDao {
         }
         sql.append(" where createsid IN ( "+serverList+")");
         sql.append(" GROUP BY userId,createTime HAVING createTime=( SELECT MIN(createTime)");
-        sql.append(" FROM " + table + " WHERE createsid IN ("+ serverList+") and userId=t1.userId)) t2");//@todo汇总Данные库 排除其他Сервер的影响 （以前单个不影响）
+        sql.append(" FROM " + table + " WHERE createsid IN ("+ serverList+") and userId=t1.userId)) t2");//@todo汇总数据库 排除其他服务器的影响 （以前单个不影响）
         sql.append(" WHERE UNIX_TIMESTAMP(t2.createTime) BETWEEN UNIX_TIMESTAMP('" + startDate + " 00:00:00')  AND UNIX_TIMESTAMP('" + endDate + " 23:59:59')");
         sql.append(" AND t2.createsid IN ( "+serverList+")");
         return sql.toString();

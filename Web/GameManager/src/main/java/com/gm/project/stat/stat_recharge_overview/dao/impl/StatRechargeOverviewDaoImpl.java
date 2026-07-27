@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * DAU Данные查询
+ * DAU 数据查询
  * 每日登陆过游戏的用户数
  */
 @Service
@@ -18,7 +18,7 @@ public class StatRechargeOverviewDaoImpl implements IStatRechargeOverviewDao {
 
 
     /*
-     * 获取当День登录过的账号(DAU)
+     * 获取当天登录过的账号(DAU)
      */
     public List<Map<String, Object>> getLoginUsersDataList(String table, String serverId, String channelNames, String start, String end, String blackUserStr) {
         String sqlStr = " SELECT userId";
@@ -42,7 +42,7 @@ public class StatRechargeOverviewDaoImpl implements IStatRechargeOverviewDao {
     }
 
     /*
-     * 获取当День付费Количество、付费总额
+     * 获取当天付费人数、付费总额
      */
     public List<Map<String, Object>> getRechargeUsersDataList(String table, String serverId, String channelNames, String start, String end, String blackUserStr) {
         String sqlStr = " SELECT userId,sum(totalFee) as amount";
@@ -66,7 +66,7 @@ public class StatRechargeOverviewDaoImpl implements IStatRechargeOverviewDao {
     }
 
     /*
-     * 获取当ДеньДобавить账号
+     * 获取当天新增账号
      */
     public List<Map<String, Object>> getNewUsersDataList(String table, String serverId, String channelNames, String start, String end, String blackUserStr) {
         String sqlStr = " SELECT r.userId";
@@ -89,7 +89,7 @@ public class StatRechargeOverviewDaoImpl implements IStatRechargeOverviewDao {
     }
 
     /*
-     * 获取当ДеньДобавить付费账号
+     * 获取当天新增付费账号
      */
     public List<Map<String, Object>> getNewRechargeUsersDataList(String table, String serverId, String channelNames, String start, String end, String blackUserStr) {
         String sqlStr = " SELECT t.userId FROM (SELECT userId, DATE_FORMAT(FROM_UNIXTIME(time), '%Y-%m-%d') dateTime";

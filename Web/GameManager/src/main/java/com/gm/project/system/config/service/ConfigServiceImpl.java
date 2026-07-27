@@ -42,10 +42,10 @@ public class ConfigServiceImpl implements IConfigService
     }
 
     /**
-     * 查询参数配置Информация
+     * 查询参数配置信息
      * 
      * @param configId 参数配置ID
-     * @return 参数配置Информация
+     * @return 参数配置信息
      */
     @Override
     public Config selectConfigById(Long configId)
@@ -56,9 +56,9 @@ public class ConfigServiceImpl implements IConfigService
     }
 
     /**
-     * 根据键名查询参数配置Информация
+     * 根据键名查询参数配置信息
      * 
-     * @param configKey 参数Название
+     * @param configKey 参数名称
      * @return 参数键值
      */
     @Override
@@ -83,7 +83,7 @@ public class ConfigServiceImpl implements IConfigService
     /**
      * 查询参数配置列表
      * 
-     * @param config 参数配置Информация
+     * @param config 参数配置信息
      * @return 参数配置集合
      */
     @Override
@@ -93,10 +93,10 @@ public class ConfigServiceImpl implements IConfigService
     }
 
     /**
-     * Добавить参数配置
+     * 新增参数配置
      * 
-     * @param config 参数配置Информация
-     * @return Результат
+     * @param config 参数配置信息
+     * @return 结果
      */
     @Override
     public int insertConfig(Config config)
@@ -111,10 +111,10 @@ public class ConfigServiceImpl implements IConfigService
     }
 
     /**
-     * Изменить参数配置
+     * 修改参数配置
      * 
-     * @param config 参数配置Информация
-     * @return Результат
+     * @param config 参数配置信息
+     * @return 结果
      */
     @Override
     public int updateConfig(Config config)
@@ -129,10 +129,10 @@ public class ConfigServiceImpl implements IConfigService
     }
 
     /**
-     * 批量Удалить参数配置对象
+     * 批量删除参数配置对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteConfigByIds(String ids)
@@ -143,7 +143,7 @@ public class ConfigServiceImpl implements IConfigService
             Config config = selectConfigById(configId);
             if (StringUtils.equals(UserConstants.YES, config.getConfigType()))
             {
-                throw new BusinessException(String.format("内置参数【%1$s】不能Удалить ", config.getConfigKey()));
+                throw new BusinessException(String.format("内置参数【%1$s】不能删除 ", config.getConfigKey()));
             }
         }
         int count = configMapper.deleteConfigByIds(Convert.toStrArray(ids));
@@ -156,7 +156,7 @@ public class ConfigServiceImpl implements IConfigService
     }
 
     /**
-     * 清空缓存Данные
+     * 清空缓存数据
      */
     @Override
     public void clearCache()
@@ -165,10 +165,10 @@ public class ConfigServiceImpl implements IConfigService
     }
 
     /**
-     * 校验参数键名ДаНет唯一
+     * 校验参数键名是否唯一
      * 
-     * @param config 参数配置Информация
-     * @return Результат
+     * @param config 参数配置信息
+     * @return 结果
      */
     @Override
     public String checkConfigKeyUnique(Config config)

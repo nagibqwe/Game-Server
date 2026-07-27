@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * 聊ДеньЖурнал对象 log_chatlog
+ * 聊天日志对象 log_chatlog
  * 
  * @author gm
  * @date 2021-06-08
@@ -18,54 +18,54 @@ public class Chatlog extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Платформа称 */
-    @Excel(name = "Платформа称")
+    /** 平台名称 */
+    @Excel(name = "平台名称")
     private String platformName;
 
     /** id */
     private Integer id;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** ID пользователя */
-    @Excel(name = "ID пользователя")
+    /** 用户id */
+    @Excel(name = "用户id")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
-    /** Имя персонажа */
-    @Excel(name = "Имя персонажа")
+    /** 角色名 */
+    @Excel(name = "角色名")
     private String roleName;
 
     /** ip */
     @Excel(name = "ip")
     private String ip;
 
-    /** 聊ДеньСодержимое */
-    @Excel(name = "聊ДеньСодержимое")
+    /** 聊天内容 */
+    @Excel(name = "聊天内容")
     private String content;
 
-    /** Уровень */
-    @Excel(name = "Уровень")
+    /** 等级 */
+    @Excel(name = "等级")
     private Integer level;
 
-    /** 接收ID персонажа */
-    @Excel(name = "接收ID персонажа")
+    /** 接收角色ID */
+    @Excel(name = "接收角色ID")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long receRoleId;
 
-    /** 聊ДеньТип */
-    @Excel(name = "聊ДеньТип")
+    /** 聊天类型 */
+    @Excel(name = "聊天类型")
     private Integer channel;
 
-    /** ID сервера */
-    @Excel(name = "ID сервера")
+    /** 服务器id */
+    @Excel(name = "服务器id")
     private Integer sid;
 
     public void setPlatformName(String platformName)

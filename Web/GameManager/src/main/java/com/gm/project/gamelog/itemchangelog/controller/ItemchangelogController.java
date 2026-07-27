@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 物品变化ЖурналController
+ * 物品变化日志Controller
  * 
  * @author gm
  * @date 2021-09-09
@@ -46,7 +46,7 @@ public class ItemchangelogController extends BaseController
         return prefix + "/itemchangelog";
     }
     /**
-     * 查询物品变化Журнал列表
+     * 查询物品变化日志列表
      */
     @RequiresPermissions("gamelog:itemchangelog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class ItemchangelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * Экспорт物品变化Журнал列表
+     * 导出物品变化日志列表
      */
     @RequiresPermissions("gamelog:itemchangelog:export")
-    @Log(title = "物品变化Журнал", businessType = BusinessType.EXPORT)
+    @Log(title = "物品变化日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Itemchangelog itemchangelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class ItemchangelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Itemchangelog> list = itemchangelogService.selectItemchangelogList(itemchangelog,param);
         ExcelUtil<Itemchangelog> util = new ExcelUtil<Itemchangelog>(Itemchangelog.class);
-        return util.exportExcel(list, "物品变化ЖурналДанные");
+        return util.exportExcel(list, "物品变化日志数据");
     }
 }

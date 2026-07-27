@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Код активацииЖурнал对象 activecodelog
+ * 激活码日志对象 activecodelog
  * 
  * @author gm
  * @date 2021-09-18
@@ -19,36 +19,36 @@ public class ActiveCodeLog
     /** id */
     private Long id;
 
-    /** Код активации */
-    @Excel(name = "Код активации")
+    /** 激活码 */
+    @Excel(name = "激活码")
     private String activeCode;
 
-    /** Платформа */
-    @Excel(name = "Платформа")
+    /** 平台名 */
+    @Excel(name = "平台名")
     private String platformName;
 
-    /** Игровой сервер */
-    @Excel(name = "Игровой сервер")
+    /** 区服 */
+    @Excel(name = "区服")
     private String sid;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     private String roleid;
 
-    /** ID аккаунта */
-    @Excel(name = "ID аккаунта")
+    /** 账号ID */
+    @Excel(name = "账号ID")
     private String userId;
 
-    /** Список предметов */
-    @Excel(name = "Список предметов")
+    /** 物品列表 */
+    @Excel(name = "物品列表")
     private String itemList;
 
     /** 唯一标识 */
     @Excel(name = "唯一标识")
     private String actionId;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
     public void setId(Long id)

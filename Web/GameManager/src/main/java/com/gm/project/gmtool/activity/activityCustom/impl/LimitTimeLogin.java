@@ -38,11 +38,11 @@ public class LimitTimeLogin extends Activity implements IActivityCustom {
         String[] i_day = paramMap.get("i_day");
         String[] i_RewardGroup = paramMap.get("i_RewardGroup");
         String[] i_BuyRewardGroup = paramMap.get("i_BuyRewardGroup");
-        String[] buyMoneyType = paramMap.get("coinType"); //购买Тип валюты
+        String[] buyMoneyType = paramMap.get("coinType"); //购买货币类型
         String[] buyMoneyNum = paramMap.get("coinCount"); //购买货币数量
 
         if (i_day.length > limitDay || i_RewardGroup.length != i_day.length || i_BuyRewardGroup.length != i_day.length) {
-            throw new RuntimeException("===Данные错误");
+            throw new RuntimeException("===数据错误");
         }
 
         HashMap<Integer, List<ItemBean>> nHashMap = new HashMap<>();
@@ -73,7 +73,7 @@ public class LimitTimeLogin extends Activity implements IActivityCustom {
         }
 
         HashMap<String, Object> hm = new HashMap();
-        hm.put("normalAwardList", normalAward);  //普通奖励【ID предмета_数量_ДаНет绑定_Класс;ID предмета_数量_ДаНет绑定_Класс】
+        hm.put("normalAwardList", normalAward);  //普通奖励【道具ID_数量_是否绑定_职业;道具ID_数量_是否绑定_职业】
         hm.put("buyAwardList", buyAward);    //购买奖励
         hm.put("buyMoneyType", Integer.parseInt(buyMoneyType[0]));  //购买的货币ID
         hm.put("buyMoneyNum", Integer.parseInt(buyMoneyNum[0]));  //购买的货币num

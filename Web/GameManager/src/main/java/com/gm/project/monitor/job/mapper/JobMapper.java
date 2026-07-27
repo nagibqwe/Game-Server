@@ -4,17 +4,17 @@ import java.util.List;
 import com.gm.project.monitor.job.domain.Job;
 
 /**
- * 调度任务Информация Данные层
+ * 调度任务信息 数据层
  * 
  * @author ruoyi
  */
 public interface JobMapper
 {
     /**
-     * 查询调度任务Журнал集合
+     * 查询调度任务日志集合
      * 
-     * @param job 调度Информация
-     * @return Журнал операций集合
+     * @param job 调度信息
+     * @return 操作日志集合
      */
     public List<Job> selectJobList(Job job);
 
@@ -26,42 +26,42 @@ public interface JobMapper
     public List<Job> selectJobAll();
 
     /**
-     * 通过调度ID查询调度任务Информация
+     * 通过调度ID查询调度任务信息
      * 
      * @param jobId 调度ID
-     * @return 角色对象Информация
+     * @return 角色对象信息
      */
     public Job selectJobById(Long jobId);
 
     /**
-     * 通过调度IDУдалить调度任务Информация
+     * 通过调度ID删除调度任务信息
      * 
      * @param jobId 调度ID
-     * @return Результат
+     * @return 结果
      */
     public int deleteJobById(Long jobId);
 
     /**
-     * 批量Удалить调度任务Информация
+     * 批量删除调度任务信息
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteJobByIds(Long[] ids);
 
     /**
-     * Изменить调度任务Информация
+     * 修改调度任务信息
      * 
-     * @param job 调度任务Информация
-     * @return Результат
+     * @param job 调度任务信息
+     * @return 结果
      */
     public int updateJob(Job job);
 
     /**
-     * Добавить调度任务Информация
+     * 新增调度任务信息
      * 
-     * @param job 调度任务Информация
-     * @return Результат
+     * @param job 调度任务信息
+     * @return 结果
      */
     public int insertJob(Job job);
 }

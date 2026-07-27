@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.dbbak.domain.Dbbak;
 
 /**
- * Резервные копии БДService接口
+ * 数据库备份Service接口
  * 
  * @author gm
  * @date 2021-09-13
@@ -12,52 +12,52 @@ import com.gm.project.gmtool.dbbak.domain.Dbbak;
 public interface IDbbakService 
 {
     /**
-     * 查询Резервные копии БД
+     * 查询数据库备份
      * 
-     * @param id Резервные копии БДID
-     * @return Резервные копии БД
+     * @param id 数据库备份ID
+     * @return 数据库备份
      */
     public Dbbak selectDbbakById(Long id);
 
     public Dbbak selectLatestDbbak(Dbbak dbbak);
 
     /**
-     * 查询Список резервных копий БД
+     * 查询数据库备份列表
      * 
-     * @param dbbak Резервные копии БД
-     * @return Резервные копии БД集合
+     * @param dbbak 数据库备份
+     * @return 数据库备份集合
      */
     public List<Dbbak> selectDbbakList(Dbbak dbbak);
 
     /**
-     * ДобавитьРезервные копии БД
+     * 新增数据库备份
      * 
-     * @param dbbak Резервные копии БД
-     * @return Результат
+     * @param dbbak 数据库备份
+     * @return 结果
      */
     public int insertDbbak(Dbbak dbbak);
 
     /**
-     * ИзменитьРезервные копии БД
+     * 修改数据库备份
      * 
-     * @param dbbak Резервные копии БД
-     * @return Результат
+     * @param dbbak 数据库备份
+     * @return 结果
      */
     public int updateDbbak(Dbbak dbbak);
 
     /**
-     * 批量УдалитьРезервные копии БД
+     * 批量删除数据库备份
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteDbbakByIds(String ids);
 
     /**
-     * УдалитьРезервные копии БДИнформация
+     * 删除数据库备份信息
      * 
-     * @param id Резервные копии БДID
-     * @return Результат
+     * @param id 数据库备份ID
+     * @return 结果
      */
     public int deleteDbbakById(Long id);
 }

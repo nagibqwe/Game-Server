@@ -228,7 +228,7 @@ public class HttpConnectionUtils {
 
 
     /**
-     * formupload方式ОтправитьДанные
+     * formupload方式提交数据
      *
      * @param urlPath
      * @param textMap
@@ -238,7 +238,7 @@ public class HttpConnectionUtils {
 //    public static String formUpload(String urlPath, Map<String, String> textMap, Map<String, String> fileMap) {
 //        String res = "";
 //        HttpURLConnection conn = null;
-//        String BOUNDARY = "----lwm12345boundary"; //boundary就Даrequest头和Загрузить文件Содержимое的分隔符
+//        String BOUNDARY = "----lwm12345boundary"; //boundary就是request头和上传文件内容的分隔符
 //        try {
 //            URL url = new URL(urlPath);
 //            conn = (HttpURLConnection) url.openConnection();
@@ -308,7 +308,7 @@ public class HttpConnectionUtils {
 //            out.flush();
 //            out.close();
 //
-//            // 读取НазадДанные
+//            // 读取返回数据
 //            StringBuffer strBuf = new StringBuffer();
 //            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 //            String line = null;
@@ -330,7 +330,7 @@ public class HttpConnectionUtils {
 //    }
 
     /**
-     * 发送Скачать文件请求
+     * 发送下载文件请求
      *
      * @param urlPath
      * @param downloadDir
@@ -345,14 +345,14 @@ public class HttpConnectionUtils {
             URLConnection urlConnection = url.openConnection();
             // http的连接类
             HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
-            // 设定请求的方法，默认ДаGET
+            // 设定请求的方法，默认是GET
             httpURLConnection.setRequestMethod("POST");
             // 设置字符编码
             httpURLConnection.setRequestProperty("Charset", "UTF-8");
             // 打开到此 URL 引用的资源的通信链接（如果尚未建立这样的连接）。
             httpURLConnection.connect();
 
-            // Размер файла
+            // 文件大小
             int fileLength = httpURLConnection.getContentLength();
 
             // 文件名
@@ -377,8 +377,8 @@ public class HttpConnectionUtils {
             while ((size = bin.read(buf)) != -1) {
                 len += size;
                 out.write(buf, 0, size);
-                // 打印Скачать百分比
-                // System.out.println("Скачать了-------> " + len * 100 / fileLength +
+                // 打印下载百分比
+                // System.out.println("下载了-------> " + len * 100 / fileLength +
                 // "%\n");
             }
             bin.close();
@@ -392,7 +392,7 @@ public class HttpConnectionUtils {
     }
 
     /**
-     * formupload方式Отправить转发文件流
+     * formupload方式提交转发文件流
      *
      * @param urlPath
      * @param textMap
@@ -402,7 +402,7 @@ public class HttpConnectionUtils {
 //    public static String formUpload2(String urlPath, Map<String, String> textMap, Map<String, InputStream> fileMap) {
 //        String res = "";
 //        HttpURLConnection conn = null;
-//        String BOUNDARY = "----lwm12345boundary"; //boundary就Даrequest头和Загрузить文件Содержимое的分隔符
+//        String BOUNDARY = "----lwm12345boundary"; //boundary就是request头和上传文件内容的分隔符
 //        try {
 //            URL url = new URL(urlPath);
 //            conn = (HttpURLConnection) url.openConnection();
@@ -468,7 +468,7 @@ public class HttpConnectionUtils {
 //            out.flush();
 //            out.close();
 //
-//            // 读取НазадДанные
+//            // 读取返回数据
 //            StringBuffer strBuf = new StringBuffer();
 //            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 //            String line = null;

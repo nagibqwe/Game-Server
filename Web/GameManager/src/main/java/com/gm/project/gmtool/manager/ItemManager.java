@@ -38,7 +38,7 @@ public class ItemManager {
 
     @PostConstruct
     public void init() {
-        //启动时从Данные库加载一次道具物品Информация
+        //启动时从数据库加载一次道具物品信息
         loadData();
     }
 
@@ -56,7 +56,7 @@ public class ItemManager {
     }
 
 //    /**
-//     * 根据id获取对应Название说明
+//     * 根据id获取对应名称说明
 //     */
 //    public String getStr(String id, String nameType) {
 //        String nameStr = nameMap.get(nameType + "_" + id);
@@ -80,7 +80,7 @@ public class ItemManager {
                 return item.getItemName() + "[" + itemId + "]";
             }
         }
-        return "Неизвестно物品[" + itemId + "]";
+        return "未知物品[" + itemId + "]";
     }
 
     public boolean checkItems(String items) {

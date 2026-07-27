@@ -12,7 +12,7 @@ import java.util.List;
 
 
 /**
- * Объединение серверов对象 sys_hefu
+ * 合服对象 sys_hefu
  * 
  * @author gm
  * @date 2021-09-08
@@ -24,16 +24,16 @@ public class Hefu extends BaseEntity
     /** ID */
     private Long id;
 
-    /** 源Сервер */
-    @Excel(name = "源Сервер")
+    /** 源服务器 */
+    @Excel(name = "源服务器")
     private String fromServer;
 
-    /** 目标Сервер */
-    @Excel(name = "目标Сервер")
+    /** 目标服务器 */
+    @Excel(name = "目标服务器")
     private Integer toServer;
 
-    /** Объединение серверовСтатус0新建1Объединение серверов中2Успешно3Ошибка */
-    @Excel(name = "Объединение серверовСтатус0新建1Объединение серверов中2Успешно3Ошибка4Отмена")
+    /** 合服状态0新建1合服中2成功3失败 */
+    @Excel(name = "合服状态0新建1合服中2成功3失败4取消")
     private Integer status;
 
     /** cn:国内，tw:台湾，kor:韩国，yn:越南，thai:泰国，ros:新马,en:英语 */
@@ -44,7 +44,7 @@ public class Hefu extends BaseEntity
     @Excel(name = "当前进度")
     private Integer step;
 
-    /**记录Информация*/
+    /**记录信息*/
     private String record;
 
     public void setId(Long id)

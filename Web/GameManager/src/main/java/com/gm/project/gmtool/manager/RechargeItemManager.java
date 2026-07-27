@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 /**
- * ПополнениеМагазин商品管理
+ * 充值商城商品管理
  */
 @Service
 public class RechargeItemManager {
@@ -66,7 +66,7 @@ public class RechargeItemManager {
     }
     @PostConstruct
     public void init() {
-        //启动时从Данные库加载一次Настройки пополненияИнформация
+        //启动时从数据库加载一次充值配置信息
         load();
     }
 
@@ -83,12 +83,12 @@ public class RechargeItemManager {
     public Object sendRechargeInfos() {
         TreeMap<Integer, RechargeItemInfo> rechargeItemInfoMap = RechargeItemManager.getInstance().getRechargeItemInfoMap();
         if(rechargeItemInfoMap.isEmpty()){
-            logger.error("ПополнениеДанные为空");
-            return AjaxResult.info("Данные获取Ошибка").put("ok",false);
+            logger.error("充值数据为空");
+            return AjaxResult.info("数据获取失败").put("ok",false);
         }
 
         StringBuilder sb = new StringBuilder();
-        //通知APIСервер更新某一条的ПополнениеИнформация
+        //通知API服务器更新某一条的充值信息
         String rechargeStr = RechargeItemManager.getInstance().getRechargeStr(rechargeItemInfoMap);
         String md5 = MD5Util.MD5(rechargeStr);
 
@@ -98,9 +98,9 @@ public class RechargeItemManager {
 //        logger.info("==============md5:"+md5);
         String httpResult = HttpConnectionUtils.post(gameManagerConfig.getAPIServerUrl()+"/rechargeItem/refreshRechargeInfos", paramMap);
 
-        sb.append("Ответ API-сервера:").append(httpResult).append("\n");
+        sb.append("API服务器返回结果：").append(httpResult).append("\n");
 
-        //通知游戏服更新某一条的ПополнениеИнформация
+        //通知游戏服更新某一条的充值信息
         List<TServer> servers = selectGroupService.selectServerList("", 1, "0,1");
         List<Integer> serverSuccessList = new ArrayList<>();
         List<Integer> serverFailedList = new ArrayList<>();
@@ -110,17 +110,17 @@ public class RechargeItemManager {
                 HashMap resultMap = GameServerRequestUtil.gmRefreshRechargeItemInfos(server, rechargeStr, md5, 15*1000);
                 if (!Boolean.valueOf(resultMap.get("ok").toString())) {
                     serverFailedList.add(serverId);
-                    logger.error(serverId + "服,Настройки пополненияОбновитьОшибка！ДействияРезультат：" + resultMap.get("data").toString());
+                    logger.error(serverId + "服,充值配置刷新失败！操作结果：" + resultMap.get("data").toString());
                 } else {
                     serverSuccessList.add(serverId);
                 }
             }catch (Exception e){
-                logger.error(serverId + "服Настройки пополнения同步Ошибка！error："+e.getMessage());
+                logger.error(serverId + "服充值配置同步失败！error："+e.getMessage());
                 serverFailedList.add(serverId);
             }
         }
-        sb.append("Успешная синхронизация игровых серверов:").append(serverSuccessList).append("\n");
-        sb.append("Ошибки синхронизации игровых серверов:").append(serverFailedList).append("\n");
+        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("\n");
+        sb.append("游戏服同步失败列表：").append(serverFailedList).append("\n");
         return AjaxResult.info(sb.toString()).put("ok",true);
     }
 
@@ -171,7 +171,7 @@ public class RechargeItemManager {
                 }
             }
         }catch (Exception e){
-            logger.error("Настройки пополнения解析错误，ID:"+rechargeItem.getGoodsId(),e);
+            logger.error("充值配置解析错误，ID:"+rechargeItem.getGoodsId(),e);
             return rechargeItemInfo;
         }
 

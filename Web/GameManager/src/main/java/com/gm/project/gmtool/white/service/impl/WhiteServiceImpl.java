@@ -9,7 +9,7 @@ import com.gm.project.gmtool.white.service.IWhiteService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Белый списокService业务层处理
+ * 白名单管理Service业务层处理
  * 
  * @author gm
  * @date 2021-11-22
@@ -21,10 +21,10 @@ public class WhiteServiceImpl implements IWhiteService
     private WhiteMapper whiteMapper;
 
     /**
-     * 查询Белый список
+     * 查询白名单管理
      * 
-     * @param id Белый списокID
-     * @return Белый список
+     * @param id 白名单管理ID
+     * @return 白名单管理
      */
     @Override
     public White selectWhiteById(Long id)
@@ -33,10 +33,10 @@ public class WhiteServiceImpl implements IWhiteService
     }
 
     /**
-     * 查询Белый список列表
+     * 查询白名单管理列表
      * 
-     * @param white Белый список
-     * @return Белый список
+     * @param white 白名单管理
+     * @return 白名单管理
      */
     @Override
     public List<White> selectWhiteList(White white)
@@ -45,10 +45,10 @@ public class WhiteServiceImpl implements IWhiteService
     }
 
     /**
-     * ДобавитьБелый список
+     * 新增白名单管理
      * 
-     * @param white Белый список
-     * @return Результат
+     * @param white 白名单管理
+     * @return 结果
      */
     @Override
     public int insertWhite(White white)
@@ -57,10 +57,10 @@ public class WhiteServiceImpl implements IWhiteService
     }
 
     /**
-     * ИзменитьБелый список
+     * 修改白名单管理
      * 
-     * @param white Белый список
-     * @return Результат
+     * @param white 白名单管理
+     * @return 结果
      */
     @Override
     public int updateWhite(White white)
@@ -69,10 +69,10 @@ public class WhiteServiceImpl implements IWhiteService
     }
 
     /**
-     * УдалитьБелый список对象
+     * 删除白名单管理对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteWhiteByIds(String ids)
@@ -81,10 +81,10 @@ public class WhiteServiceImpl implements IWhiteService
     }
 
     /**
-     * УдалитьБелый списокИнформация
+     * 删除白名单管理信息
      * 
-     * @param id Белый списокID
-     * @return Результат
+     * @param id 白名单管理ID
+     * @return 结果
      */
     @Override
     public int deleteWhiteById(Long id)

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 /**
- * 后台指令Журнал对象 log_backgmcmdlog
+ * 后台指令日志对象 log_backgmcmdlog
  * 
  * @author gm
  * @date 2021-09-10
@@ -17,19 +17,19 @@ public class RankingListBean extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /**  */
-    @Excel(name = "Место")
+    @Excel(name = "排名")
     private String rank;
 
-    /** Время */
-    @Excel(name = "ID персонажа")
+    /** 时间 */
+    @Excel(name = "角色ID")
     private String roleId;
 
     /** backUser */
-    @Excel(name = "Имя персонажа")
+    @Excel(name = "角色名")
     private String roleName;
 
     /** cmd */
-    @Excel(name = "Данные рейтинга")
+    @Excel(name = "排行数据")
     private String rankData;
 
 

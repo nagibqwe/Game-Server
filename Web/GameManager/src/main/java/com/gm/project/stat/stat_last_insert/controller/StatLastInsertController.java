@@ -18,7 +18,7 @@ import java.util.List;
 
 
 /**
- * Журнал收集记录Controller
+ * 日志收集记录Controller
  * 
  * @author gm
  * @date 2021-09-13
@@ -50,9 +50,9 @@ public class StatLastInsertController extends BaseController
     }
 
     /**
-     * Удалить
+     * 删除
      */
-    @Log(title = "Журнал拉取记录复位", businessType = BusinessType.DELETE)
+    @Log(title = "日志拉取记录复位", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

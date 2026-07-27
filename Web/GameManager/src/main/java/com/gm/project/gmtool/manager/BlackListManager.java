@@ -38,7 +38,7 @@ public class BlackListManager {
 
     @PostConstruct
     public void init() {
-        //启动时从Данные库加载一次Чёрный список配置Информация
+        //启动时从数据库加载一次黑名单配置信息
         loadData();
     }
 
@@ -51,11 +51,11 @@ public class BlackListManager {
             map.put("platform", blackuser.getPlatform());
             dataList.add(map);
         }
-        log.info("Чёрный списокИнформация加载完毕,共" + dataList.size() + "条记录");
+        log.info("黑名单信息加载完毕,共" + dataList.size() + "条记录");
     }
 
     /**
-     * 通过Платформа得到Чёрный список
+     * 通过平台名得到黑名单
      */
     public List<Map<String, Object>> getBlackList(String platformName) {
         List<Map<String, Object>> blackList = new ArrayList<>();
@@ -69,7 +69,7 @@ public class BlackListManager {
     }
 
     /**
-     * 通过Платформа得到Чёрный список
+     * 通过平台名得到黑名单
      */
     public List<Object> getBlackListUsers(String platformName) {
         List<Object> blackList = new ArrayList<>();

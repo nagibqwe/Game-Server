@@ -24,7 +24,7 @@ import java.util.*;
 
 
 /**
- * РейтингController
+ * 排行榜Controller
  * 
  * @author gm
  * @date 2021-09-10
@@ -45,7 +45,7 @@ public class RankingListController extends BaseController
         return prefix + "/rankinglist";
     }
     /**
-     * 查询后台指令Журнал列表
+     * 查询后台指令日志列表
      */
     @RequiresPermissions("gmquerydata:rankinglist:list")
     @PostMapping("/list")
@@ -61,7 +61,7 @@ public class RankingListController extends BaseController
         AjaxResult ajaxResult = GameServerRequestUtil.gmQueryRankList(server,rankType);
         if(!ajaxResult.getBoolean("ok"))
         {
-            return getDataTableErrorMsg(serverId+"-->Рейтинг获取Ошибка！");
+            return getDataTableErrorMsg(serverId+"-->排行榜获取失败！");
         }
         HashMap<String,Object> data = (HashMap<String,Object> )ajaxResult.get("data");
         if(data.containsKey("data")){
@@ -81,7 +81,7 @@ public class RankingListController extends BaseController
                 }else if (entry.getKey().equals("roleName")){
                     grid.setRoleName(String.valueOf(entry.getValue()));
                 }else if (entry.getKey().equals("rankData")){
-                    //УровеньРейтинг特殊处理
+                    //等级排行榜特殊处理
                     if(rankType == 101){
                         int level =  Integer.parseInt(String.valueOf(entry.getValue()));
                         if(level>360){

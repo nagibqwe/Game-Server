@@ -6,7 +6,7 @@ import com.gm.project.gmtool.server.domain.TServer;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * Игровые событияMapper接口
+ * 运营活动Mapper接口
  * 
  * @author gm
  * @date 2021-09-07
@@ -14,52 +14,52 @@ import org.apache.ibatis.annotations.Param;
 public interface ActivityMapper 
 {
     /**
-     * 查询Игровые события
+     * 查询运营活动
      * 
-     * @param id Игровые событияID
-     * @return Игровые события
+     * @param id 运营活动ID
+     * @return 运营活动
      */
     public Activity selectActivityById(Integer id);
 
     /**
-     * 查询Игровые события列表
+     * 查询运营活动列表
      * 
-     * @param activity Игровые события
-     * @return Игровые события集合
+     * @param activity 运营活动
+     * @return 运营活动集合
      */
     public List<Activity> selectActivityList(Activity activity);
 
     public List<Activity> selectActivityByActIds(@Param("actIds") String actIds);
 
     /**
-     * ДобавитьИгровые события
+     * 新增运营活动
      * 
-     * @param activity Игровые события
-     * @return Результат
+     * @param activity 运营活动
+     * @return 结果
      */
     public int insertActivity(Activity activity);
 
     /**
-     * ИзменитьИгровые события
+     * 修改运营活动
      * 
-     * @param activity Игровые события
-     * @return Результат
+     * @param activity 运营活动
+     * @return 结果
      */
     public int updateActivity(Activity activity);
 
     /**
-     * УдалитьИгровые события
+     * 删除运营活动
      * 
-     * @param id Игровые событияID
-     * @return Результат
+     * @param id 运营活动ID
+     * @return 结果
      */
     public int deleteActivityById(Integer id);
 
     /**
-     * 批量УдалитьИгровые события
+     * 批量删除运营活动
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteActivityByIds(String[] ids);
 }

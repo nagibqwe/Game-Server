@@ -16,8 +16,8 @@ public class StatDauBean extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Уровень */
-    @Excel(name = "Дата")
+    /** 等级 */
+    @Excel(name = "日期")
     private String day;
 
     /** dau */

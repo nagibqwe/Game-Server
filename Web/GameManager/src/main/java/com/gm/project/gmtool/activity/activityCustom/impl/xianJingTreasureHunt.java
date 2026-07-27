@@ -103,7 +103,7 @@ public class xianJingTreasureHunt extends Activity implements IActivityCustom {
             XJTBLotteryPoolBean.put("XJTBTreasureChestRewardBeanList",XJTBTreasureChestRewardBeanList);
             XJTBLotteryPoolBeanList.add(XJTBLotteryPoolBean);
         }
-        //兑换Магазин
+        //兑换商城
         List<HashMap<String,Object>> shopList = new ArrayList<>();
         String[] goodsId = paramMap.get("goodsId");
         String[] needScore = paramMap.get("needScore");
@@ -132,7 +132,7 @@ public class xianJingTreasureHunt extends Activity implements IActivityCustom {
         String[] oneLuckyValue = paramMap.get("oneLuckyValue");
         String[] luckyAwardGift = paramMap.get("luckyAwardGift");
 
-        //最终Результат(СерверДанные)
+        //最终结果(服务器数据)
         HashMap<String, Object> resultMap = new HashMap<>();
         resultMap.put("lotteryKeyItemId",Integer.parseInt(lotteryKeyItemId[0]));
         resultMap.put("oneCostGemCoin",Integer.parseInt(oneCostGemCoin[0]));
@@ -145,7 +145,7 @@ public class xianJingTreasureHunt extends Activity implements IActivityCustom {
         resultMap.put("luckyAwardList", ItemBean.split(luckyAwardGift[0]));
         resultMap.put("luckyValue", Integer.parseInt(oneLuckyValue[0]));
 
-        //客户端Данные
+        //客户端数据
         HashMap<String, Object> resultClientMap = new HashMap<>();
         resultClientMap.put("lotteryKeyItemId",Integer.parseInt(lotteryKeyItemId[0]));
         resultClientMap.put("oneCostGemCoin",Integer.parseInt(oneCostGemCoin[0]));

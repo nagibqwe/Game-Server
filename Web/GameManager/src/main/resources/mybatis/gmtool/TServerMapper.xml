@@ -166,7 +166,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-    <!-- Сервер分组 begin-->
+    <!-- 服务器分组 begin-->
     <select id="selectServerGroup" resultType="java.lang.String">
         select DISTINCT groupName from t_server
     </select>
@@ -180,7 +180,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
         order by serverId
     </select>
-    <!-- Сервер分组 end-->
+    <!-- 服务器分组 end-->
     <select id="selectServerByServerIds" parameterType="String" resultMap="TServerResult">
         select * from t_server where serverId in
         <foreach item="serverId" collection="array" open="(" separator="," close=")">

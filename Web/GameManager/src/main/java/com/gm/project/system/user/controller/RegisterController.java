@@ -13,7 +13,7 @@ import com.gm.project.system.config.service.IConfigService;
 import com.gm.project.system.user.domain.User;
 
 /**
- * Зарегистрироваться验证
+ * 注册验证
  * 
  * @author ruoyi
  */
@@ -38,7 +38,7 @@ public class RegisterController extends BaseController
     {
         if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser"))))
         {
-            return error("当前系统没有ВключеноЗарегистрироваться功能！");
+            return error("当前系统没有开启注册功能！");
         }
         String msg = registerService.register(user);
         return StringUtils.isEmpty(msg) ? success() : error(msg);

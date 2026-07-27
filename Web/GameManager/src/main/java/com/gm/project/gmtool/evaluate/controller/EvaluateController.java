@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Оценки включеныController
+ * 评价开关Controller
  * 
  * @author gm
  * @date 2021-11-04
@@ -58,7 +58,7 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * 查询Оценки включены列表
+     * 查询评价开关列表
      */
 //    @RequiresPermissions("gmtool:evaluate:list")
     @PostMapping("/list")
@@ -73,10 +73,10 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * ЭкспортОценки включены列表
+     * 导出评价开关列表
      */
     @RequiresPermissions("gmtool:evaluate:export")
-    @Log(title = "Оценки включены", businessType = BusinessType.EXPORT)
+    @Log(title = "评价开关", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Evaluate evaluate)
@@ -87,7 +87,7 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * ДобавитьОценки включены
+     * 新增评价开关
      */
     @GetMapping("/add")
     public String add()
@@ -96,10 +96,10 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьОценки включены
+     * 新增保存评价开关
      */
     @RequiresPermissions("gmtool:evaluate:add")
-    @Log(title = "Оценки включены", businessType = BusinessType.INSERT)
+    @Log(title = "评价开关", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Evaluate evaluate)
@@ -108,7 +108,7 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * ИзменитьОценки включены
+     * 修改评价开关
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -119,10 +119,10 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьОценки включены
+     * 修改保存评价开关
      */
     @RequiresPermissions("gmtool:evaluate:edit")
-    @Log(title = "Оценки включены", businessType = BusinessType.UPDATE)
+    @Log(title = "评价开关", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Evaluate evaluate)
@@ -131,10 +131,10 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * УдалитьОценки включены
+     * 删除评价开关
      */
     @RequiresPermissions("gmtool:evaluate:remove")
-    @Log(title = "Оценки включены", businessType = BusinessType.DELETE)
+    @Log(title = "评价开关", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -161,13 +161,13 @@ public class EvaluateController extends BaseController
             AjaxResult resultMap = GameServerRequestUtil.gmSetEvaluate(server, evaluate);
             String prompt;
             if (Boolean.valueOf(resultMap.get("ok").toString())) {
-                prompt = "Операция выполнена！";
+                prompt = "操作成功！";
                 evaluateService.insertEvaluate(evaluate);
             } else {
-                prompt = "Ошибка операции！";
+                prompt = "操作失败！";
             }
             log.error("Оценки включены：sid=" + evaluate.getServerId() + ",ДействияРезультат:" + resultMap.get("msg").toString());
-            GMLogUtil.log("Оценки включены"+ evaluate.geteType()+",Статус："+evaluate.getState());
+            GMLogUtil.log("评价开关"+ evaluate.geteType()+",状态："+evaluate.getState());
             return AjaxResult.info(prompt).put("ok",Boolean.valueOf(resultMap.get("ok").toString()));
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -176,7 +176,7 @@ public class EvaluateController extends BaseController
     }
 
     /**
-     * УдалитьДействия
+     * 删除操作
      * @param id
      * @return
      */
@@ -187,7 +187,7 @@ public class EvaluateController extends BaseController
         if (evaluate != null) {
             evaluate.setIsDelete(1);
             int num = evaluateService.updateEvaluate(evaluate);
-            GMLogUtil.log("Удалить设置Оценки включены记录"+evaluate.getId());
+            GMLogUtil.log("删除设置评价开关记录"+evaluate.getId());
             return AjaxResult.info("УдалитьУспешно！").put("ok",num == 1);
         }
         return AjaxResult.info("УдалитьОшибка！").put("ok",false);

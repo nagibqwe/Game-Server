@@ -9,7 +9,7 @@ import com.gm.project.gmtool.function.service.IFunctionService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Функции игрыService业务层处理
+ * 游戏功能列表Service业务层处理
  * 
  * @author gm
  * @date 2021-10-26
@@ -21,10 +21,10 @@ public class FunctionServiceImpl implements IFunctionService
     private FunctionMapper functionMapper;
 
     /**
-     * 查询Функции игры
+     * 查询游戏功能列表
      * 
-     * @param funcId Функции игрыID
-     * @return Функции игры
+     * @param funcId 游戏功能列表ID
+     * @return 游戏功能列表
      */
     @Override
     public Function selectFunctionById(Integer funcId)
@@ -33,10 +33,10 @@ public class FunctionServiceImpl implements IFunctionService
     }
 
     /**
-     * 查询Функции игры列表
+     * 查询游戏功能列表列表
      * 
-     * @param function Функции игры
-     * @return Функции игры
+     * @param function 游戏功能列表
+     * @return 游戏功能列表
      */
     @Override
     public List<Function> selectFunctionList(Function function)
@@ -45,10 +45,10 @@ public class FunctionServiceImpl implements IFunctionService
     }
 
     /**
-     * ДобавитьФункции игры
+     * 新增游戏功能列表
      * 
-     * @param function Функции игры
-     * @return Результат
+     * @param function 游戏功能列表
+     * @return 结果
      */
     @Override
     public int insertFunction(Function function)
@@ -57,10 +57,10 @@ public class FunctionServiceImpl implements IFunctionService
     }
 
     /**
-     * ИзменитьФункции игры
+     * 修改游戏功能列表
      * 
-     * @param function Функции игры
-     * @return Результат
+     * @param function 游戏功能列表
+     * @return 结果
      */
     @Override
     public int updateFunction(Function function)
@@ -69,10 +69,10 @@ public class FunctionServiceImpl implements IFunctionService
     }
 
     /**
-     * УдалитьФункции игры对象
+     * 删除游戏功能列表对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteFunctionByIds(String ids)
@@ -81,10 +81,10 @@ public class FunctionServiceImpl implements IFunctionService
     }
 
     /**
-     * УдалитьФункции игрыИнформация
+     * 删除游戏功能列表信息
      * 
-     * @param funcId Функции игрыID
-     * @return Результат
+     * @param funcId 游戏功能列表ID
+     * @return 结果
      */
     @Override
     public int deleteFunctionById(Integer funcId)

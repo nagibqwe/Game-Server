@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 /**
- * Уровень персонажа分布对象 stat_level_distribute
+ * 角色等级分布对象 stat_level_distribute
  * 
  * @author gm
  * @date 2021-08-06
@@ -29,7 +29,7 @@ public class StatLevelDistributeDaoImpl extends BaseDao implements IStatLevelDis
 {
     private static final long serialVersionUID = 1L;
     /**
-     * 离线时候的Уровень分布
+     * 离线时候的等级分布
      * @param channelNames
      * @param serverId
      * @param level
@@ -65,7 +65,7 @@ public class StatLevelDistributeDaoImpl extends BaseDao implements IStatLevelDis
     }
 
     /**
-     * 离线后加上离线挂机的Уровень分布
+     * 离线后加上离线挂机的等级分布
      * @param channelNames
      * @param serverId
      * @param level

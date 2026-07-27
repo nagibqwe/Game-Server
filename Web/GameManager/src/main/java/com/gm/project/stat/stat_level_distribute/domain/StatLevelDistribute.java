@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Уровень персонажа分布对象 stat_level_distribute
+ * 角色等级分布对象 stat_level_distribute
  * 
  * @author gm
  * @date 2021-08-06
@@ -16,12 +16,12 @@ public class StatLevelDistribute extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Уровень */
-    @Excel(name = "Уровень")
+    /** 等级 */
+    @Excel(name = "等级")
     private Integer level;
 
-    /** Количество */
-    @Excel(name = "Количество")
+    /** 人数 */
+    @Excel(name = "人数")
     private Integer rolecount;
 
     public void setLevel(Integer level)

@@ -42,7 +42,7 @@ public class ServerGroupController extends BaseController {
     }
 
     /**
-     * 向Общий сервер获取Межсерверный分组Информация
+     * 向公共服获取跨服分组信息
      * @param request
      * @param publicServerId
      * @return
@@ -52,7 +52,7 @@ public class ServerGroupController extends BaseController {
     @ResponseBody
     public Object getServerGroup(HttpServletRequest request, int publicServerId) throws UnsupportedEncodingException {
         if (publicServerId <= 0){
-            return AjaxResult.error("Общий серверID有误");
+            return AjaxResult.error("公共服ID有误");
         }
 //        Object o = getData();
 //        return o;
@@ -78,10 +78,10 @@ public class ServerGroupController extends BaseController {
                 serverGroupGrid.setGroupId(groupId);
                 List<String> serverIds = entry.getValue();
 
-                String area = getArea(serverIds.get(0));//发过来的Данные全部Да一个地区的
+                String area = getArea(serverIds.get(0));//发过来的数据全部是一个地区的
                 serverGroupGrid.setArea(area);
                 int count = 0;
-                for (String serverIdStr:serverIds){//Сервер约定发过来Данные至少包含一个serverId
+                for (String serverIdStr:serverIds){//服务器约定发过来数据至少包含一个serverId
                     int pserverId = getServerId(serverIdStr);
                     String serverName = getServerName(pserverId);
                     count++;
@@ -124,7 +124,7 @@ public class ServerGroupController extends BaseController {
         return AjaxResult.success().put("ok",true).put("total",serverGroupGrids.size()).put("rows",serverGroupGrids);
     }
 
-    //自测Данные
+    //自测数据
     public Object getData(){
         List<ServerGroupGrid> serverGroupGrids = new ArrayList<>();
         ServerGroupGrid groupGrid = new ServerGroupGrid(1,10000,"cn",20003,"杨蓝飞",20004,"陈龙川",20005,"周梦雨",20006,"张三",20007,"李四",20008,"王五",20009,"嘿嘿",0,"");
@@ -137,7 +137,7 @@ public class ServerGroupController extends BaseController {
     }
 
     /**
-     * 向Общий сервер发送命令
+     * 向公共服发送命令
      * @param request
      * @param serverId
      * @param action
@@ -149,7 +149,7 @@ public class ServerGroupController extends BaseController {
             return AjaxResult.info("命令错误").put("ok",false);
         }
         if (serverId <= 0) {
-            return AjaxResult.info("СерверId有误").put("ok",false);
+            return AjaxResult.info("服务器Id有误").put("ok",false);
         }
         HashMap<String,String> paramMap = new HashMap<>();
         paramMap.put("secret_key", gameManagerConfig.getRequestServerKey());
@@ -169,9 +169,9 @@ public class ServerGroupController extends BaseController {
         result.append(re);
         if (StringUtils.isBlank(re)) {
             isOk = false;
-            result.append("请求Данные为空!");
+            result.append("请求数据为空!");
         }
-        GMLogUtil.log("执行GM命令,Результат:" + result);
+        GMLogUtil.log("执行GM命令,结果:" + result);
         Object object = new Object();
         if (!"".equals(params)){
             object = AjaxResult.info(result.toString()).put("ok",isOk);
@@ -181,7 +181,7 @@ public class ServerGroupController extends BaseController {
         return object;
     }
     /**
-     * 获取ID сервера
+     * 获取服务器ID
      * @param severIdStr
      * @return
      */
@@ -203,7 +203,7 @@ public class ServerGroupController extends BaseController {
     }
 
     /**
-     * 获取Название сервера
+     * 获取服务器名
      * @param serverId
      * @return
      */
@@ -219,7 +219,7 @@ public class ServerGroupController extends BaseController {
     }
 
     /**
-     * 设置Межсерверный分组
+     * 设置跨服分组
      * @param request
      * @param serverGroupList
      * @return
@@ -247,12 +247,12 @@ public class ServerGroupController extends BaseController {
 //        dataMap.put("serverGroup",bIgGroupMap);
         String serverGroup = JsonUtils.toJSONString(bIgGroupMap);
         Object result = sendPS(request, publicServerId, "setServerGroupList",serverGroup);
-        GMLogUtil.log("执行GM命令setServerGroupList,Результат:" + result.toString());
+        GMLogUtil.log("执行GM命令setServerGroupList,结果:" + result.toString());
         return result;
     }
 
     /**
-     * 组装Сервер需要的格式  地区_ID сервера
+     * 组装服务器需要的格式  地区_服务器ID
      * @param serverGroupGrid
      * @return
      */

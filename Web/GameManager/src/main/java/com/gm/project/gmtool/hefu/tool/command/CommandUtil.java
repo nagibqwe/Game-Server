@@ -52,7 +52,7 @@ public class CommandUtil {
             log.info("exitValue:{}", exitValue);
 
             if(exitValue != 0){
-                log.info("命令执行Ошибка");
+                log.info("命令执行失败");
                 success = false;
             }
         }catch (Exception e){

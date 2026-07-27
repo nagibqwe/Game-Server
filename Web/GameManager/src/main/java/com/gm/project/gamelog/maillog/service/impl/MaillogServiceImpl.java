@@ -17,7 +17,7 @@ import com.gm.project.gamelog.maillog.service.IMaillogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * ПисьмоЖурналService业务层处理
+ * 邮件日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-08
@@ -28,10 +28,10 @@ public class MaillogServiceImpl implements IMaillogService
 
 
     /**
-     * 查询ПисьмоЖурнал列表
+     * 查询邮件日志列表
      * 
-     * @param maillog ПисьмоЖурнал
-     * @return ПисьмоЖурнал
+     * @param maillog 邮件日志
+     * @return 邮件日志
      */
     @Override
     public List<Maillog> selectMaillogList(Maillog maillog,Map<String, Object> param)

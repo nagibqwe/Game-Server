@@ -12,7 +12,7 @@ import java.util.List;
 public class StatOnlineDaoImpl implements IStatOnlineDao {
 
     /**
-     * 所有Сервер统计
+     * 所有服务器统计
      * @param dbClient
      * @return
      */

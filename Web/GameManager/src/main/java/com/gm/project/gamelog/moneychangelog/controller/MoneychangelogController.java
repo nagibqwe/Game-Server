@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Журнал изменения валютыController
+ * 货币变化日志Controller
  * 
  * @author gm
  * @date 2021-09-09
@@ -46,7 +46,7 @@ public class MoneychangelogController extends BaseController
         return prefix + "/moneychangelog";
     }
     /**
-     * 查询Журнал изменения валюты列表
+     * 查询货币变化日志列表
      */
     @RequiresPermissions("gamelog:moneychangelog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class MoneychangelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * ЭкспортЖурнал изменения валюты列表
+     * 导出货币变化日志列表
      */
     @RequiresPermissions("gamelog:moneychangelog:export")
-    @Log(title = "Журнал изменения валюты", businessType = BusinessType.EXPORT)
+    @Log(title = "货币变化日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Moneychangelog moneychangelog,String startDate,String endDate,Integer serverId,Integer pageSize)

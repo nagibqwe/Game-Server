@@ -4,17 +4,17 @@ import java.util.List;
 import com.gm.project.system.user.domain.UserPost;
 
 /**
- * 用户与岗位关联表 Данные层
+ * 用户与岗位关联表 数据层
  * 
  * @author ruoyi
  */
 public interface UserPostMapper
 {
     /**
-     * 通过ID пользователяУдалить用户和岗位关联
+     * 通过用户ID删除用户和岗位关联
      * 
-     * @param userId ID пользователя
-     * @return Результат
+     * @param userId 用户ID
+     * @return 结果
      */
     public int deleteUserPostByUserId(Long userId);
     
@@ -22,23 +22,23 @@ public interface UserPostMapper
      * 通过岗位ID查询岗位使用数量
      * 
      * @param postId 岗位ID
-     * @return Результат
+     * @return 结果
      */
     public int countUserPostById(Long postId);
     
     /**
-     * 批量Удалить用户和岗位关联
+     * 批量删除用户和岗位关联
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteUserPost(Long[] ids);
 
     /**
-     * 批量Добавить用户岗位Информация
+     * 批量新增用户岗位信息
      * 
      * @param userPostList 用户角色列表
-     * @return Результат
+     * @return 结果
      */
     public int batchUserPost(List<UserPost> userPostList);
 }

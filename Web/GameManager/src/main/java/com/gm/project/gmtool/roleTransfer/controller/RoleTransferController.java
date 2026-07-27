@@ -27,7 +27,7 @@ import java.util.List;
 
 
 /**
- * Перенос персонажаController
+ * 角色转移Controller
  * 
  * @author gm
  * @date 2021-11-03
@@ -53,7 +53,7 @@ public class RoleTransferController extends BaseController
     }
 
     /**
-     * 查询Перенос персонажа列表
+     * 查询角色转移列表
      */
 //    @RequiresPermissions("gmtool:roleTransfer:list")
     @PostMapping("/list")
@@ -68,10 +68,10 @@ public class RoleTransferController extends BaseController
     }
 
     /**
-     * ЭкспортПеренос персонажа列表
+     * 导出角色转移列表
      */
     @RequiresPermissions("gmtool:roleTransfer:export")
-    @Log(title = "Перенос персонажа", businessType = BusinessType.EXPORT)
+    @Log(title = "角色转移", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(RoleTransfer roleTransfer)
@@ -82,7 +82,7 @@ public class RoleTransferController extends BaseController
     }
 
     /**
-     * ДобавитьПеренос персонажа
+     * 新增角色转移
      */
     @GetMapping("/add")
     public String add()
@@ -91,10 +91,10 @@ public class RoleTransferController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьПеренос персонажа
+     * 新增保存角色转移
      */
     @RequiresPermissions("gmtool:roleTransfer:add")
-    @Log(title = "Перенос персонажа", businessType = BusinessType.INSERT)
+    @Log(title = "角色转移", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(RoleTransfer roleTransfer)
@@ -103,7 +103,7 @@ public class RoleTransferController extends BaseController
     }
 
     /**
-     * ИзменитьПеренос персонажа
+     * 修改角色转移
      */
     @GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") String roleId, ModelMap mmap)
@@ -114,10 +114,10 @@ public class RoleTransferController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьПеренос персонажа
+     * 修改保存角色转移
      */
     @RequiresPermissions("gmtool:roleTransfer:edit")
-    @Log(title = "Перенос персонажа", businessType = BusinessType.UPDATE)
+    @Log(title = "角色转移", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(RoleTransfer roleTransfer)
@@ -126,10 +126,10 @@ public class RoleTransferController extends BaseController
     }
 
     /**
-     * УдалитьПеренос персонажа
+     * 删除角色转移
      */
     @RequiresPermissions("gmtool:roleTransfer:remove")
-    @Log(title = "Перенос персонажа", businessType = BusinessType.DELETE)
+    @Log(title = "角色转移", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -139,7 +139,7 @@ public class RoleTransferController extends BaseController
 
 
     /**
-     * Перенос персонажаДействия
+     * 角色转移操作
      * @param serverId
      * @param roleId
      * @param userId
@@ -151,11 +151,11 @@ public class RoleTransferController extends BaseController
     @ResponseBody
     public AjaxResult transfer(int serverId, String roleId, String userId, String reason, HttpServletRequest request) {
         if (serverId <= 0) {
-            return AjaxResult.info("Игровой сервер错误").put("ok",false);
+            return AjaxResult.info("区服错误").put("ok",false);
         }
 
         if (StringUtils.isBlank(roleId)) {
-            return AjaxResult.info("ID персонажа为空").put("ok",false);
+            return AjaxResult.info("角色ID为空").put("ok",false);
         }
 
         if (StringUtils.isBlank(userId)) {
@@ -171,13 +171,13 @@ public class RoleTransferController extends BaseController
             return AjaxResult.info("Не удалось получить подключение к БД сервера").put("ok",false);
         }
 
-        //检查ID персонажа
+        //检查角色ID
         List<RoleState> roles = gameRoleService.queryByRoleId(serverId, roleId, 0);
         if (roles.isEmpty()) {
             return AjaxResult.info("Персонаж с таким ID не найден").put("ok",false);
         }
         if (roles.get(0).getIsDelete() != 0) {
-            return AjaxResult.info("此角色已Удалить").put("ok",false);
+            return AjaxResult.info("此角色已删除").put("ok",false);
         }
 
         //发送消息到GameServer
@@ -197,7 +197,7 @@ public class RoleTransferController extends BaseController
             roleTransfer.setIsDeleted(0);
             roleTransfer.setTime(new Date());
             roleTransferService.insertRoleTransfer(roleTransfer);
-            GMLogUtil.log("Перенос персонажаУспешно,serverId:" + serverId + "roleId:" + roleId + ">>>userId:" + userId + ",原因:" + reason);
+            GMLogUtil.log("角色转移成功,serverId:" + serverId + "roleId:" + roleId + ">>>userId:" + userId + ",原因:" + reason);
         }
         return result;
     }

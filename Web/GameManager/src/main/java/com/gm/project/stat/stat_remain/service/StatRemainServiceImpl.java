@@ -31,7 +31,7 @@ import java.util.*;
 public class StatRemainServiceImpl
 {
     /**
-     * Данные库相关Действия
+     * 数据库相关操作
      */
     @Autowired
     public StatRemainDaoImpl statRemainDaoImpl;
@@ -47,21 +47,21 @@ public class StatRemainServiceImpl
     @Autowired
     public IStatRechargeDao statRechargeDao;
     /**
-     * 留存统计День数
+     * 留存统计天数
      */
     private static final int[] durDays = {1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,44,59,119};
 
     /**
      * 计算留存统计
-     * @param startDate Время начала
-     * @param endDate Время окончания
-     * @param selectServerIdList Список серверов
-     * @param remainType 留存Тип
+     * @param startDate 开始时间
+     * @param endDate 结束时间
+     * @param selectServerIdList 服务器列表
+     * @param remainType 留存类型
      * @return
      */
     public TableDataInfo caclRemain(String selectGroupName,String selectServerIdList, String channelNames,String startDate, String endDate, Boolean isBlack,String remainType){
 
-        //Чёрный список排除
+        //黑名单排除
         String blackUsers = "";
         if (isBlack!=null && isBlack) {
             List<Object> blackList = BlackListManager.getInstance().getBlackListUsers(selectGroupName);
@@ -72,9 +72,9 @@ public class StatRemainServiceImpl
             }
         }
 
-        //当前Дата
+        //当前日期
         String currDay =  DateUtils.getDate();
-        //所有记录 key День value 该День留存Данные
+        //所有记录 key 天 value 该天留存数据
         Map<String, Map<String,Object>> allResult = new HashMap<>();
         //留存列表
         List<Map<String,String>> statRemainList = new ArrayList<>();
@@ -82,7 +82,7 @@ public class StatRemainServiceImpl
         this.caclRemainCommon(startDate,endDate,selectServerIdList,remainType,allResult,statRemainList,selectGroupName,channelNames, blackUsers,isBlack);
 
 
-        //最终发给客户端展示Данные
+        //最终发给客户端展示数据
         List<Map<String,String>> rows = new ArrayList<>();
         Map<String,String> statRemainMap = null;
         for(int i = 0;i<statRemainList.size();i++){
@@ -123,7 +123,7 @@ public class StatRemainServiceImpl
                         }
                     }
                 }
-                //当前День留存
+                //当前天留存
                 statRemainMap.put("currDayKeep",caclKeepRateView( keepLoginList,currDay,userRegCount));
             }
         }
@@ -135,13 +135,13 @@ public class StatRemainServiceImpl
 
 
     public void  caclRemainCommon(String startTime, String endTime, String serverList,String remainType,Map<String, Map<String,Object>> allResult, List<Map<String,String>> statRemainList,String groupName,String channelNames,  String blackUsers,Boolean isBlack){
-        //获取每日Данные 总览
+        //获取每日数据 总览
        // TwoTuple<Map<String, Set<Object>>,Map<String, Set<Object>>> statDailyData = this.statDailyDataService.statDailyDataCommon(null,serverList,null,startTime,endTime,null,false);
         ThreeTuple< List<Map<String, Object>>,List<Map<String, Object>>,List<Map<String, Object>>>  statDailyDataCommon = this.statDailyDataService.statDailyDataCommon(groupName,serverList,channelNames,startTime,endTime,blackUsers,isBlack);
         List<Map<String, Object>> newUserList = statDailyDataCommon.first;
-        //Пополнение列表
+        //充值列表
         List<Map<String, Object>> rechargeMap =  statDailyDataCommon.second;
-        //Добавить付费玩家Количество   Добавить付费率=Добавить付费玩家Количество/Добавить玩家Количество
+        //新增付费玩家人数   新增付费率=新增付费玩家人数/新增玩家人数
         List<Map<String, Object>> newRechargeUserList = statDailyDataCommon.third;
         String mapKey = "day";
         String userKey = "userId";
@@ -149,31 +149,31 @@ public class StatRemainServiceImpl
         Map<String, Set<Object>> newUserNumMap = this.statDailyDataService.getAssembleMap(newUserList, mapKey, userKey);
 
 
-        //获取统计服Журнал
+        //获取统计服日志
         DBClient dbClientGM = DBServerMgr.getInstance().getDBClient(DBServerMgr.DBServer.STAT_LOG);
-        //获取Время列表
+        //获取时间列表
         List<String> dateList = DateUtils.getDateList(startTime,endTime);
-        //当前Дата
+        //当前日期
         String currDay =  DateUtils.getDate();
         if(dateList!= null && dateList.size() > 0){
             for(int i = 0;i< dateList.size();i++){
-                //当前计算基准的某День
+                //当前计算基准的某天
                 String caclStartDay = dateList.get(i);
-                //相差多少День
+                //相差多少天
                 int diffDay = DateUtils.differentDaysByMillisecond(caclStartDay,currDay);
                 //留存记录
                 Map<String,String> statRemain  = new HashMap<>();
                 statRemainList.add(statRemain);
-                //Дата
+                //日期
                 statRemain.put("caclStartTime",caclStartDay);
                 statRemain.put("diffDay",diffDay+"");
-                //需要计算Дата 对应某День留存集合
+                //需要计算日期 对应某天留存集合
                 Map<String,Object> dayResult = new HashMap<>();
                 //登录数量 为0 就不用检查留存了
                 int caclNewCount = 0;
-                //查询留存当День 到 当День120День之间的 所有角色数量
+                //查询留存当天 到 当天120天之间的 所有角色数量
                 String statRemainSql= "";
-                //查询当День
+                //查询当天
                 String currDayStatRemainSql = "";
                 if("new_user_remain".equals(remainType)){ //新账号
                     //计算相关去重账号等逻辑
@@ -192,8 +192,8 @@ public class StatRemainServiceImpl
                     caclNewCount = oldUserIdRegAddList.size();
                     statRemainSql= statRemainDaoImpl.getUserStatRemainSqlSql(caclStartDay,caclStartDay,DateUtils.getNewDateForMinute2(caclStartDay,119*1440),serverList,StringUtils.join(oldUserIdRegAddList,","));
                     currDayStatRemainSql= statRemainDaoImpl.getUserStatRemainSqlSql(caclStartDay,currDay,DateUtils.getNewDateForMinute2(currDay,1440),serverList,StringUtils.join(oldUserIdRegAddList,","));
-                }else if("new_user_pay_remain".equals(remainType)){ //付费Добавить用户
-                    //得到新Зарегистрироваться的ID пользователя
+                }else if("new_user_pay_remain".equals(remainType)){ //付费新增用户
+                    //得到新注册的用户id
 //                    Set<Object> userIdRegAddList = statDailyData.second.get(caclStartDay); //this.statRoleStateDao.getUserIdRegAddSet(dbClientGM,caclStartDay,serverList);
 //                    Set<String> payNewUserIdRegAddList = null;
 //                    String payUserIdRegAddListStr = "";
@@ -217,13 +217,13 @@ public class StatRemainServiceImpl
                 //基准数量大于0 才去计算之后留存
                 if(caclNewCount > 0){
                     Map<String,Integer> keepLoginList = new HashMap<>();
-                    //执行Результат集
+                    //执行结果集
                     this.keepLoginList(dbClientGM,keepLoginList,statRemainSql);
-                    //计算当День
+                    //计算当天
                     this.keepLoginList(dbClientGM,keepLoginList,currDayStatRemainSql);
                     dayResult.put("keepLoginList",keepLoginList);
                 }
-                //将每День的留存Данные放入Результат集合
+                //将每天的留存数据放入结果集合
                 allResult.put(caclStartDay,dayResult);
             }
         }
@@ -232,7 +232,7 @@ public class StatRemainServiceImpl
 
 
     /**
-     *  计算留存Показывать
+     *  计算留存显示
      * @param keepLoginList
      * @param keepDay
      * @param userRegCount
@@ -249,7 +249,7 @@ public class StatRemainServiceImpl
         return keepLoginList.get(keepDay)+ "("+String.format("%.2f", keepRate*100)+ "%)";
     }
     /**
-     * 计算某День的 登录个数列表
+     * 计算某天的 登录个数列表
      * @param dbClientGM
      * @param keepLoginList
      * @param statRemainSql

@@ -47,10 +47,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 根据条件分页查询Тип справочника
+     * 根据条件分页查询字典类型
      * 
-     * @param dictType Тип справочникаИнформация
-     * @return Тип справочника集合Информация
+     * @param dictType 字典类型信息
+     * @return 字典类型集合信息
      */
     @Override
     public List<DictType> selectDictTypeList(DictType dictType)
@@ -59,9 +59,9 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 根据所有Тип справочника
+     * 根据所有字典类型
      * 
-     * @return Тип справочника集合Информация
+     * @return 字典类型集合信息
      */
     @Override
     public List<DictType> selectDictTypeAll()
@@ -70,10 +70,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 根据Тип справочника查询Данные справочника
+     * 根据字典类型查询字典数据
      * 
-     * @param dictType Тип справочника
-     * @return Данные справочника集合Информация
+     * @param dictType 字典类型
+     * @return 字典数据集合信息
      */
     @Override
     public List<DictData> selectDictDataByType(String dictType)
@@ -93,10 +93,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 根据Тип справочникаID查询Информация
+     * 根据字典类型ID查询信息
      * 
-     * @param dictId Тип справочникаID
-     * @return Тип справочника
+     * @param dictId 字典类型ID
+     * @return 字典类型
      */
     @Override
     public DictType selectDictTypeById(Long dictId)
@@ -105,10 +105,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 根据Тип справочника查询Информация
+     * 根据字典类型查询信息
      * 
-     * @param dictType Тип справочника
-     * @return Тип справочника
+     * @param dictType 字典类型
+     * @return 字典类型
      */
     @Override
     public DictType selectDictTypeByType(String dictType)
@@ -117,10 +117,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 批量УдалитьТип справочника
+     * 批量删除字典类型
      * 
-     * @param ids 需要Удалить的Данные
-     * @return Результат
+     * @param ids 需要删除的数据
+     * @return 结果
      */
     @Override
     public int deleteDictTypeByIds(String ids)
@@ -131,7 +131,7 @@ public class DictTypeServiceImpl implements IDictTypeService
             DictType dictType = selectDictTypeById(dictId);
             if (dictDataMapper.countDictDataByType(dictType.getDictType()) > 0)
             {
-                throw new BusinessException(String.format("%1$s已分配,不能Удалить", dictType.getDictName()));
+                throw new BusinessException(String.format("%1$s已分配,不能删除", dictType.getDictName()));
             }
         }
         int count = dictTypeMapper.deleteDictTypeByIds(dictIds);
@@ -143,7 +143,7 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 清空缓存Данные
+     * 清空缓存数据
      */
     @Override
     public void clearCache()
@@ -152,10 +152,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * ДобавитьСохранитьТип справочникаИнформация
+     * 新增保存字典类型信息
      * 
-     * @param dictType Тип справочникаИнформация
-     * @return Результат
+     * @param dictType 字典类型信息
+     * @return 结果
      */
     @Override
     public int insertDictType(DictType dictType)
@@ -170,10 +170,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * ИзменитьСохранитьТип справочникаИнформация
+     * 修改保存字典类型信息
      * 
-     * @param dictType Тип справочникаИнформация
-     * @return Результат
+     * @param dictType 字典类型信息
+     * @return 结果
      */
     @Override
     @Transactional
@@ -191,10 +191,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 校验Тип справочника称ДаНет唯一
+     * 校验字典类型称是否唯一
      * 
-     * @param dict Тип справочника
-     * @return Результат
+     * @param dict 字典类型
+     * @return 结果
      */
     @Override
     public String checkDictTypeUnique(DictType dict)
@@ -209,10 +209,10 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
-     * 查询Тип справочника树
+     * 查询字典类型树
      * 
-     * @param dictType Тип справочника
-     * @return 所有Тип справочника
+     * @param dictType 字典类型
+     * @return 所有字典类型
      */
     @Override
     public List<Ztree> selectDictTree(DictType dictType)

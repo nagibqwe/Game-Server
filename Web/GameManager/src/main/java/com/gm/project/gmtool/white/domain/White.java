@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Белый список对象 t_white
+ * 白名单管理对象 t_white
  * 
  * @author gm
  * @date 2021-11-22
@@ -23,8 +23,8 @@ public class White extends BaseEntity
     @Excel(name = "白名单条件")
     private String con;
 
-    /** Статус:0=生效1=失效 */
-    @Excel(name = "Статус:0=生效1=失效")
+    /** 状态:0=生效1=失效 */
+    @Excel(name = "状态:0=生效1=失效")
     private Integer state;
 
     public void setId(Long id)

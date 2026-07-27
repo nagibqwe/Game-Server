@@ -10,7 +10,7 @@ import com.gm.project.gmtool.activityTemplate.service.IActivityTemplateService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Шаблоны событийService业务层处理
+ * 运营活动模板Service业务层处理
  * 
  * @author gm
  * @date 2021-09-07
@@ -22,10 +22,10 @@ public class ActivityTemplateServiceImpl implements IActivityTemplateService
     private ActivityTemplateMapper activityTemplateMapper;
 
     /**
-     * 查询Шаблоны событий
+     * 查询运营活动模板
      * 
-     * @param id Шаблоны событийID
-     * @return Шаблоны событий
+     * @param id 运营活动模板ID
+     * @return 运营活动模板
      */
     @Override
     public ActivityTemplate selectActivityTemplateById(Integer id)
@@ -34,10 +34,10 @@ public class ActivityTemplateServiceImpl implements IActivityTemplateService
     }
 
     /**
-     * 查询Шаблоны событий列表
+     * 查询运营活动模板列表
      * 
-     * @param activityTemplate Шаблоны событий
-     * @return Шаблоны событий
+     * @param activityTemplate 运营活动模板
+     * @return 运营活动模板
      */
     @Override
     public List<ActivityTemplate> selectActivityTemplateList(ActivityTemplate activityTemplate)
@@ -46,10 +46,10 @@ public class ActivityTemplateServiceImpl implements IActivityTemplateService
     }
 
     /**
-     * ДобавитьШаблоны событий
+     * 新增运营活动模板
      * 
-     * @param activityTemplate Шаблоны событий
-     * @return Результат
+     * @param activityTemplate 运营活动模板
+     * @return 结果
      */
     @Override
     public int insertActivityTemplate(ActivityTemplate activityTemplate)
@@ -59,10 +59,10 @@ public class ActivityTemplateServiceImpl implements IActivityTemplateService
     }
 
     /**
-     * ИзменитьШаблоны событий
+     * 修改运营活动模板
      * 
-     * @param activityTemplate Шаблоны событий
-     * @return Результат
+     * @param activityTemplate 运营活动模板
+     * @return 结果
      */
     @Override
     public int updateActivityTemplate(ActivityTemplate activityTemplate)
@@ -71,10 +71,10 @@ public class ActivityTemplateServiceImpl implements IActivityTemplateService
     }
 
     /**
-     * УдалитьШаблоны событий对象
+     * 删除运营活动模板对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteActivityTemplateByIds(String ids)
@@ -83,10 +83,10 @@ public class ActivityTemplateServiceImpl implements IActivityTemplateService
     }
 
     /**
-     * УдалитьШаблоны событийИнформация
+     * 删除运营活动模板信息
      * 
-     * @param id Шаблоны событийID
-     * @return Результат
+     * @param id 运营活动模板ID
+     * @return 结果
      */
     @Override
     public int deleteActivityTemplateById(Integer id)

@@ -16,7 +16,7 @@ import java.util.List;
 
 
 /**
- * Пополнение累计统计Controller
+ * 充值累计统计Controller
  * 
  * @author gm
  * @date 2021-09-13
@@ -29,7 +29,7 @@ public class StatRechargeAccumulateController extends BaseController
     @Autowired
     private IStatRechargeAccumulateService statRechargeAccumulateService;
     /**
-     * 跳转到Пополнение统计界面
+     * 跳转到充值统计界面
      * @return
      */
     @GetMapping("/to_stat_recharge_accumulate")
@@ -38,7 +38,7 @@ public class StatRechargeAccumulateController extends BaseController
         return prefix + "/stat_recharge_accumulate";
     }
     /**
-     * 累计Пополнение统计
+     * 累计充值统计
      * @param channelNames
      * @param selectServerIdList
      * @param startDate

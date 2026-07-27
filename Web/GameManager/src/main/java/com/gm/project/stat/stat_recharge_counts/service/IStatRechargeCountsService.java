@@ -7,7 +7,7 @@ import com.gm.project.stat.stat_recharge_counts.domain.RechargeCountsBean;
 import java.util.List;
 
 /**
- * 付费Пополнение统计Service接口
+ * 付费充值统计Service接口
  * 
  * @author gm
  * @date 2021-09-13

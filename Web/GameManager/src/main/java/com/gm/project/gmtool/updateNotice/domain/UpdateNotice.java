@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Объявление об обновлении对象 t_update_notice
+ * 更新公告对象 t_update_notice
  * 
  * @author gm
  * @date 2021-10-30
@@ -19,20 +19,20 @@ public class UpdateNotice extends BaseEntity
     /** ID */
     private Integer id;
 
-    /** ID сервера */
-    @Excel(name = "ID сервера")
+    /** 服务器ID */
+    @Excel(name = "服务器ID")
     private String serverIds;
 
-    /** 公告Содержимое */
-    @Excel(name = "公告Содержимое")
+    /** 公告内容 */
+    @Excel(name = "公告内容")
     private String content;
 
     /** 公告奖励 */
     @Excel(name = "公告奖励")
     private String reward;
 
-    /** ДействияТип，0 ：只Объявление об обновлении， 1： Сбросить奖励 */
-    @Excel(name = "ДействияТип，0 ：只Объявление об обновлении， 1： Сбросить奖励")
+    /** 操作类型，0 ：只更新公告， 1： 重置奖励 */
+    @Excel(name = "操作类型，0 ：只更新公告， 1： 重置奖励")
     private Integer type;
 
     public void setId(Integer id)

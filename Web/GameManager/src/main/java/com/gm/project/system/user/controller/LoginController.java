@@ -26,7 +26,7 @@ public class LoginController extends BaseController
     @GetMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response)
     {
-        // 如果ДаAjax请求，НазадJson字符串。
+        // 如果是Ajax请求，返回Json字符串。
         if (ServletUtils.isAjaxRequest(request))
         {
             return ServletUtils.renderString(response, "{\"code\":\"1\",\"msg\":\"未登录或登录超时。请重新登录\"}");
@@ -48,7 +48,7 @@ public class LoginController extends BaseController
         }
         catch (AuthenticationException e)
         {
-            String msg = "用户或Пароль错误";
+            String msg = "用户或密码错误";
             if (StringUtils.isNotEmpty(e.getMessage()))
             {
                 msg = e.getMessage();

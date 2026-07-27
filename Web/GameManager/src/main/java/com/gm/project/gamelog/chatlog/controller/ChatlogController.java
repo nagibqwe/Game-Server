@@ -33,7 +33,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 聊ДеньЖурналController
+ * 聊天日志Controller
  * 
  * @author gm
  * @date 2021-06-08
@@ -54,7 +54,7 @@ public class ChatlogController extends BaseController
         return prefix + "/chatlog";
     }
     /**
-     * 查询聊ДеньЖурнал列表
+     * 查询聊天日志列表
      */
     @RequiresPermissions("gamelog:chatlog:list")
     @PostMapping("/list")
@@ -79,7 +79,7 @@ public class ChatlogController extends BaseController
         return prefix + "/chatlog_monitor";
     }
     /**
-     * 查询聊ДеньЖурнал列表
+     * 查询聊天日志列表
      */
     @PostMapping("/tableNameList")
     @ResponseBody
@@ -110,7 +110,7 @@ public class ChatlogController extends BaseController
     }
 
     /**
-     * 查询聊ДеньЖурнал列表
+     * 查询聊天日志列表
      */
     @PostMapping("/chatlog_monitor")
     @ResponseBody
@@ -144,10 +144,10 @@ public class ChatlogController extends BaseController
         return tableDataInfo;
     }
     /**
-     * Экспорт聊ДеньЖурнал列表
+     * 导出聊天日志列表
      */
     @RequiresPermissions("gamelog:chatlog:export")
-    @Log(title = "聊ДеньЖурнал", businessType = BusinessType.EXPORT)
+    @Log(title = "聊天日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Chatlog chatlog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -155,7 +155,7 @@ public class ChatlogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Chatlog> list = chatlogService.selectChatlogList(chatlog,param);
         ExcelUtil<Chatlog> util = new ExcelUtil<Chatlog>(Chatlog.class);
-        return util.exportExcel(list, "聊ДеньЖурналДанные");
+        return util.exportExcel(list, "聊天日志数据");
     }
 
     /**

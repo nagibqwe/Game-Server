@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 import com.gm.project.monitor.online.domain.OnlineSession.OnlineStatus;
 
 /**
- * 当前В сети会话 sys_user_online
+ * 当前在线会话 sys_user_online
  * 
  * @author ruoyi
  */
@@ -18,10 +18,10 @@ public class UserOnline extends BaseEntity
     /** 用户会话id */
     private String sessionId;
 
-    /** Название подразделения */
+    /** 部门名称 */
     private String deptName;
 
-    /** Логин */
+    /** 登录名称 */
     private String loginName;
 
     /** 登录IP地址 */
@@ -30,22 +30,22 @@ public class UserOnline extends BaseEntity
     /** 登录地址 */
     private String loginLocation;
 
-    /** БраузерТип */
+    /** 浏览器类型 */
     private String browser;
 
-    /** Операционная система */
+    /** 操作系统 */
     private String os;
 
-    /** sessionВремя создания */
+    /** session创建时间 */
     private Date startTimestamp;
 
-    /** session最后访问Время */
+    /** session最后访问时间 */
     private Date lastAccessTime;
 
-    /** 超时Время，单位为分钟 */
+    /** 超时时间，单位为分钟 */
     private Long expireTime;
 
-    /** В сетиСтатус */
+    /** 在线状态 */
     private OnlineStatus status = OnlineStatus.on_line;
 
     /** 备份的当前用户会话 */

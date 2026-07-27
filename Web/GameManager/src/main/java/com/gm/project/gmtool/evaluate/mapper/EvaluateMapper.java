@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.evaluate.domain.Evaluate;
 
 /**
- * Оценки включеныMapper接口
+ * 评价开关Mapper接口
  * 
  * @author gm
  * @date 2021-11-04
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.evaluate.domain.Evaluate;
 public interface EvaluateMapper 
 {
     /**
-     * 查询Оценки включены
+     * 查询评价开关
      * 
-     * @param id Оценки включеныID
-     * @return Оценки включены
+     * @param id 评价开关ID
+     * @return 评价开关
      */
     public Evaluate selectEvaluateById(Integer id);
 
     /**
-     * 查询Оценки включены列表
+     * 查询评价开关列表
      * 
-     * @param evaluate Оценки включены
-     * @return Оценки включены集合
+     * @param evaluate 评价开关
+     * @return 评价开关集合
      */
     public List<Evaluate> selectEvaluateList(Evaluate evaluate);
 
     /**
-     * ДобавитьОценки включены
+     * 新增评价开关
      * 
-     * @param evaluate Оценки включены
-     * @return Результат
+     * @param evaluate 评价开关
+     * @return 结果
      */
     public int insertEvaluate(Evaluate evaluate);
 
     /**
-     * ИзменитьОценки включены
+     * 修改评价开关
      * 
-     * @param evaluate Оценки включены
-     * @return Результат
+     * @param evaluate 评价开关
+     * @return 结果
      */
     public int updateEvaluate(Evaluate evaluate);
 
     /**
-     * УдалитьОценки включены
+     * 删除评价开关
      * 
-     * @param id Оценки включеныID
-     * @return Результат
+     * @param id 评价开关ID
+     * @return 结果
      */
     public int deleteEvaluateById(Integer id);
 
     /**
-     * 批量УдалитьОценки включены
+     * 批量删除评价开关
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteEvaluateByIds(String[] ids);
 }

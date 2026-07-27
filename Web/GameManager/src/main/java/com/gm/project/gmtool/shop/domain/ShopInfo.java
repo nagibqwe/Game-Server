@@ -7,33 +7,33 @@ public class ShopInfo {
 
     private Integer id;                 //商品唯一ID
 
-    private Integer itemid;             //ID предмета
+    private Integer itemid;             //道具ID
 
-    private Integer shopid;             //Магазинid，1元宝/2兑换/3福地积分/4仙盟贡献
+    private Integer shopid;             //商城id，1元宝/2兑换/3福地积分/4仙盟贡献
 
-    private Integer labelid;            //Магазин标签
+    private Integer labelid;            //商城标签
 
-    private Integer level;              //购买需求Уровень
+    private Integer level;              //购买需求等级
 
     private Integer militarylevel = 0;      //购买需求军衔
 
-    private Integer guildlevel;         //购买需求帮会Уровень
+    private Integer guildlevel;         //购买需求帮会等级
 
-    private Integer guildshoplvlstart;  //购买需求仙盟商店起始Уровень
+    private Integer guildshoplvlstart;  //购买需求仙盟商店起始等级
 
-    private Integer guildshoplvlend;    //购买需求仙盟商店结束Уровень
+    private Integer guildshoplvlend;    //购买需求仙盟商店结束等级
 
-    private Integer worldlvlstart;      //购买需求最低世界Уровень
+    private Integer worldlvlstart;      //购买需求最低世界等级
 
-    private Integer worldlvlend;        //购买需求结束世界Уровень
+    private Integer worldlvlend;        //购买需求结束世界等级
 
-    private Integer isdiscount;         //开通修神锻体后ДаНет打折
+    private Integer isdiscount;         //开通修神锻体后是否打折
 
-    private Integer viplevel;           //购买需求境界Уровень
+    private Integer viplevel;           //购买需求境界等级
 
-    private Integer occupation;         //Класс персонажа限制，-1无限制/0玄剑/1День英/2地藏/3罗刹
+    private Integer occupation;         //角色职业限制，-1无限制/0玄剑/1天英/2地藏/3罗刹
 
-    private Integer limittype;          //限购Тип，0不限购/1日限够/2周限购/3Месяц限购/4Год限购/5终身限购
+    private Integer limittype;          //限购类型，0不限购/1日限够/2周限购/3月限购/4年限购/5终身限购
 
     private Integer buynum;             //可购买次数
 
@@ -45,25 +45,25 @@ public class ShopInfo {
 
     private Integer discount;           //打折数
 
-    private Integer promotion;          //促销标签，0无/1打折/2Рекомендуемый/3新品/4热卖
+    private Integer promotion;          //促销标签，0无/1打折/2推荐/3新品/4热卖
 
     private Integer sort;               //排列优先级
 
-    private String uptime;              //Время публикации
+    private String uptime;              //上架时间
 
-    private String downtime;            //Время снятия
+    private String downtime;            //下架时间
 
-    private String overdue = "";             //过期Дата
+    private String overdue = "";             //过期日期
 
-    private Integer duration = 0;           //持续Время
+    private Integer duration = 0;           //持续时间
 
-    private Integer bind;               //ДаНет绑定
+    private Integer bind;               //是否绑定
 
-    private Integer refreshcurrency;    //Обновить使用Тип валюты，-1为不能Обновить
+    private Integer refreshcurrency;    //刷新使用货币类型，-1为不能刷新
 
-    private Integer refreshnum;         //Обновить货币消耗数量
+    private Integer refreshnum;         //刷新货币消耗数量
 
-    private String shoptype;            //Магазин标签
+    private String shoptype;            //商城标签
 
     public Integer getId() {
         return id;

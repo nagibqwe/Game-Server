@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.white.domain.White;
 
 /**
- * Белый списокMapper接口
+ * 白名单管理Mapper接口
  * 
  * @author gm
  * @date 2021-11-22
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.white.domain.White;
 public interface WhiteMapper 
 {
     /**
-     * 查询Белый список
+     * 查询白名单管理
      * 
-     * @param id Белый списокID
-     * @return Белый список
+     * @param id 白名单管理ID
+     * @return 白名单管理
      */
     public White selectWhiteById(Long id);
 
     /**
-     * 查询Белый список列表
+     * 查询白名单管理列表
      * 
-     * @param white Белый список
-     * @return Белый список集合
+     * @param white 白名单管理
+     * @return 白名单管理集合
      */
     public List<White> selectWhiteList(White white);
 
     /**
-     * ДобавитьБелый список
+     * 新增白名单管理
      * 
-     * @param white Белый список
-     * @return Результат
+     * @param white 白名单管理
+     * @return 结果
      */
     public int insertWhite(White white);
 
     /**
-     * ИзменитьБелый список
+     * 修改白名单管理
      * 
-     * @param white Белый список
-     * @return Результат
+     * @param white 白名单管理
+     * @return 结果
      */
     public int updateWhite(White white);
 
     /**
-     * УдалитьБелый список
+     * 删除白名单管理
      * 
-     * @param id Белый списокID
-     * @return Результат
+     * @param id 白名单管理ID
+     * @return 结果
      */
     public int deleteWhiteById(Long id);
 
     /**
-     * 批量УдалитьБелый список
+     * 批量删除白名单管理
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteWhiteByIds(String[] ids);
 }

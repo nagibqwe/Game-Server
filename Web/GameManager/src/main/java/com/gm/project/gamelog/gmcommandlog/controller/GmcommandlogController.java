@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * gm命令ЖурналController
+ * gm命令日志Controller
  * 
  * @author gm
  * @date 2021-09-08
@@ -46,7 +46,7 @@ public class GmcommandlogController extends BaseController
         return prefix + "/gmcommandlog";
     }
     /**
-     * 查询gm命令Журнал列表
+     * 查询gm命令日志列表
      */
     @RequiresPermissions("gamelog:gmcommandlog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class GmcommandlogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * Экспортgm命令Журнал列表
+     * 导出gm命令日志列表
      */
     @RequiresPermissions("gamelog:gmcommandlog:export")
-    @Log(title = "gm命令Журнал", businessType = BusinessType.EXPORT)
+    @Log(title = "gm命令日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Gmcommandlog gmcommandlog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class GmcommandlogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Gmcommandlog> list = gmcommandlogService.selectGmcommandlogList(gmcommandlog,param);
         ExcelUtil<Gmcommandlog> util = new ExcelUtil<Gmcommandlog>(Gmcommandlog.class);
-        return util.exportExcel(list, "gm命令ЖурналДанные");
+        return util.exportExcel(list, "gm命令日志数据");
     }
 }

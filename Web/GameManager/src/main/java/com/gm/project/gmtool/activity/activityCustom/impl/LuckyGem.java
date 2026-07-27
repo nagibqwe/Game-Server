@@ -57,7 +57,7 @@ public class LuckyGem extends Activity implements IActivityCustom {
         }
 
         HashMap<String,Object> resultMap = new HashMap<>();
-        //Сервер参数
+        //服务器参数
         resultMap.put("rate", rate);
         resultMap.put("weight", weight);
         resultMap.put("gear", gearList);

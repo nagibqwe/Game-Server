@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.rechargeItemLog.domain.RechargeItemLog;
 
 /**
- * Журнал настроек пополненияMapper接口
+ * 充值配置日志Mapper接口
  * 
  * @author gm
  * @date 2021-08-25
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.rechargeItemLog.domain.RechargeItemLog;
 public interface RechargeItemLogMapper 
 {
     /**
-     * 查询Журнал настроек пополнения
+     * 查询充值配置日志
      * 
-     * @param id Журнал настроек пополненияID
-     * @return Журнал настроек пополнения
+     * @param id 充值配置日志ID
+     * @return 充值配置日志
      */
     public RechargeItemLog selectRechargeItemLogById(Integer id);
 
     /**
-     * 查询Журнал настроек пополнения列表
+     * 查询充值配置日志列表
      * 
-     * @param rechargeItemLog Журнал настроек пополнения
-     * @return Журнал настроек пополнения集合
+     * @param rechargeItemLog 充值配置日志
+     * @return 充值配置日志集合
      */
     public List<RechargeItemLog> selectRechargeItemLogList(RechargeItemLog rechargeItemLog);
 
     /**
-     * ДобавитьЖурнал настроек пополнения
+     * 新增充值配置日志
      * 
-     * @param rechargeItemLog Журнал настроек пополнения
-     * @return Результат
+     * @param rechargeItemLog 充值配置日志
+     * @return 结果
      */
     public int insertRechargeItemLog(RechargeItemLog rechargeItemLog);
 
     /**
-     * ИзменитьЖурнал настроек пополнения
+     * 修改充值配置日志
      * 
-     * @param rechargeItemLog Журнал настроек пополнения
-     * @return Результат
+     * @param rechargeItemLog 充值配置日志
+     * @return 结果
      */
     public int updateRechargeItemLog(RechargeItemLog rechargeItemLog);
 
     /**
-     * УдалитьЖурнал настроек пополнения
+     * 删除充值配置日志
      * 
-     * @param id Журнал настроек пополненияID
-     * @return Результат
+     * @param id 充值配置日志ID
+     * @return 结果
      */
     public int deleteRechargeItemLogById(Integer id);
 
     /**
-     * 批量УдалитьЖурнал настроек пополнения
+     * 批量删除充值配置日志
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteRechargeItemLogByIds(String[] ids);
 

@@ -18,7 +18,7 @@ import com.gm.project.gamelog.rolestate.service.IRoleStateService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Журнал снимков персонажейService业务层处理
+ * 角色快照日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-07
@@ -30,10 +30,10 @@ public class RoleStateServiceImpl implements IRoleStateService
 //    private RoleStateMapper roleStateMapper;
 
 //    /**
-//     * 查询Журнал снимков персонажей
+//     * 查询角色快照日志
 //     *
-//     * @param roleId Журнал снимков персонажейID
-//     * @return Журнал снимков персонажей
+//     * @param roleId 角色快照日志ID
+//     * @return 角色快照日志
 //     */
 //    @Override
 //    public RoleState selectRoleStateById(Long roleId)
@@ -42,10 +42,10 @@ public class RoleStateServiceImpl implements IRoleStateService
 //    }
 
     /**
-     * 查询Журнал снимков персонажей列表
+     * 查询角色快照日志列表
      * 
-     * @param roleState Журнал снимков персонажей
-     * @return Журнал снимков персонажей
+     * @param roleState 角色快照日志
+     * @return 角色快照日志
      */
     @Override
     public List<RoleState> selectRoleStateList(RoleState roleState, Map<String,Object> param)
@@ -67,10 +67,10 @@ public class RoleStateServiceImpl implements IRoleStateService
     }
 
     /**
-     * 查询Журнал снимков персонажей列表
+     * 查询角色快照日志列表
      *
-     * @param roleIds ID персонажа集
-     * @return Журнал снимков персонажей
+     * @param roleIds 角色ID集
+     * @return 角色快照日志
      */
     @Override
     public List<RoleState> selectRoleStateList(Integer serverId, String roleIds)
@@ -84,10 +84,10 @@ public class RoleStateServiceImpl implements IRoleStateService
     }
 
 //    /**
-//     * ДобавитьЖурнал снимков персонажей
+//     * 新增角色快照日志
 //     *
-//     * @param roleState Журнал снимков персонажей
-//     * @return Результат
+//     * @param roleState 角色快照日志
+//     * @return 结果
 //     */
 //    @Override
 //    public int insertRoleState(RoleState roleState)
@@ -97,10 +97,10 @@ public class RoleStateServiceImpl implements IRoleStateService
 //    }
 //
 //    /**
-//     * ИзменитьЖурнал снимков персонажей
+//     * 修改角色快照日志
 //     *
-//     * @param roleState Журнал снимков персонажей
-//     * @return Результат
+//     * @param roleState 角色快照日志
+//     * @return 结果
 //     */
 //    @Override
 //    public int updateRoleState(RoleState roleState)
@@ -109,10 +109,10 @@ public class RoleStateServiceImpl implements IRoleStateService
 //    }
 //
 //    /**
-//     * УдалитьЖурнал снимков персонажей对象
+//     * 删除角色快照日志对象
 //     *
-//     * @param ids 需要Удалить的ДанныеID
-//     * @return Результат
+//     * @param ids 需要删除的数据ID
+//     * @return 结果
 //     */
 //    @Override
 //    public int deleteRoleStateByIds(String ids)
@@ -121,10 +121,10 @@ public class RoleStateServiceImpl implements IRoleStateService
 //    }
 //
 //    /**
-//     * УдалитьЖурнал снимков персонажейИнформация
+//     * 删除角色快照日志信息
 //     *
-//     * @param roleId Журнал снимков персонажейID
-//     * @return Результат
+//     * @param roleId 角色快照日志ID
+//     * @return 结果
 //     */
 //    @Override
 //    public int deleteRoleStateById(Long roleId)

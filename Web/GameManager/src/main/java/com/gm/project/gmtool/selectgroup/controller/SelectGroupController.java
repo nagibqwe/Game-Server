@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Сервер组Controller
+ * 服务器组Controller
  */
 @Controller
 @RequestMapping("/gmtool/selectgroup")
@@ -25,7 +25,7 @@ public class SelectGroupController extends BaseController {
 	private ISelectGroupService selectGroupService;
 
 	/**
-	 * 查询Платформа分组标识
+	 * 查询平台分组标识
 	 * @return
 	 */
 	@PostMapping("/selectServerGroup")
@@ -36,9 +36,9 @@ public class SelectGroupController extends BaseController {
 	}
 
 	/**
-	 * 查询游戏Список серверов 包含Основной сервер和Тестовый сервер
-	 * @param groupName Платформа分组标识
-	 * @param ignoreMerge 忽略Объединение серверов 0不忽略Объединение серверов， 1忽略Объединение серверов
+	 * 查询游戏服务器列表 包含正式服和测试服
+	 * @param groupName 平台分组标识
+	 * @param ignoreMerge 忽略合服 0不忽略合服， 1忽略合服
 	 * @return
 	 */
 	@PostMapping("/gameServer")
@@ -49,8 +49,8 @@ public class SelectGroupController extends BaseController {
 	}
 
 	/**
-	 * 查询游戏Список серверов 包含Основной сервер、Тестовый сервер和战斗服
-	 * @param groupName Платформа分组标识
+	 * 查询游戏服务器列表 包含正式服、测试服和战斗服
+	 * @param groupName 平台分组标识
 	 * @return
 	 */
 	@PostMapping("/gameAndFightServer")
@@ -61,7 +61,7 @@ public class SelectGroupController extends BaseController {
 	}
 
 	/**
-	 * 查询游戏服Журнал库列表 包含Основной сервер和Тестовый сервер
+	 * 查询游戏服日志库列表 包含正式服和测试服
 	 */
 	@PostMapping("/selectServerList")
 	@ResponseBody
@@ -71,8 +71,8 @@ public class SelectGroupController extends BaseController {
 	}
 
 	/**
-	 * 查询游戏Список серверов
-	 * @param groupName Платформа分组标识
+	 * 查询游戏服务器列表
+	 * @param groupName 平台分组标识
 	 * @return
 	 */
 	@PostMapping("/gameServerByServerType")
@@ -83,7 +83,7 @@ public class SelectGroupController extends BaseController {
 	}
 
 	/**
-	 * 查询Сервер входа列表
+	 * 查询登录服列表
 	 */
 	@PostMapping("/loginServer")
 	@ResponseBody
@@ -93,7 +93,7 @@ public class SelectGroupController extends BaseController {
 	}
 
 	/**
-	 * 查询Общий сервер列表
+	 * 查询公共服列表
 	 */
 	@PostMapping("/publicServer")
 	@ResponseBody

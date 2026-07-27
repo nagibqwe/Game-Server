@@ -7,23 +7,23 @@ public class RechargeAccumulateBean extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** Уровень */
-    @Excel(name = "Дата")
+    /** 等级 */
+    @Excel(name = "日期")
     private int amount;
     /**
-     * 累充Сумма
+     * 累充金额
      */
-    @Excel(name = "累充Сумма")
+    @Excel(name = "累充金额")
     private String accumulateAmount;
     /**
-     * Количество
+     * 人数
      */
-    @Excel(name = "Количество")
+    @Excel(name = "人数")
     private int roleNum;
     /**
-     * Сумма пополнения
+     * 充值金额
      */
-    @Excel(name = "Сумма пополнения")
+    @Excel(name = "充值金额")
     private float rechargeAmount;
 
 

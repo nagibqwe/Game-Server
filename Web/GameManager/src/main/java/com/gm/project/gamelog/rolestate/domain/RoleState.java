@@ -9,7 +9,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Журнал снимков персонажей对象 rolestate
+ * 角色快照日志对象 rolestate
  * 
  * @author gm
  * @date 2021-09-07
@@ -18,78 +18,78 @@ public class RoleState
 {
     private static final long serialVersionUID = 1L;
 
-    /** ID персонажа值 */
-    @Excel(name = "ID персонажа值")
+    /** 角色ID值 */
+    @Excel(name = "角色ID值")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long roleId;
 
-    /** ID аккаунта值 */
-    @Excel(name = "ID аккаунта值")
+    /** 账号ID值 */
+    @Excel(name = "账号ID值")
     @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
-    /** Имя персонажа */
-    @Excel(name = "Имя персонажа")
+    /** 角色名 */
+    @Excel(name = "角色名")
     private String roleName;
 
-    /** Код устройства */
-    @Excel(name = "Код устройства")
+    /** 机器码 */
+    @Excel(name = "机器码")
     private String machineCode;
 
-    /** КаналID */
-    @Excel(name = "КаналID")
+    /** 渠道ID */
+    @Excel(name = "渠道ID")
     private String platUserId;
 
-    /** ОС клиента */
-    @Excel(name = "ОС клиента")
+    /** 客户端系统 */
+    @Excel(name = "客户端系统")
     private String clientOS;
 
-    /** Уровень */
-    @Excel(name = "Уровень")
+    /** 等级 */
+    @Excel(name = "等级")
     private Long level;
 
-    /** Пол */
-    @Excel(name = "Пол")
+    /** 性别 */
+    @Excel(name = "性别")
     private Integer sex;
 
-    /** Класс персонажа */
-    @Excel(name = "Класс персонажа")
+    /** 角色职业 */
+    @Excel(name = "角色职业")
     private Integer career;
 
-    /** 角色Время создания */
-    @Excel(name = "角色Время создания")
+    /** 角色创建时间 */
+    @Excel(name = "角色创建时间")
     private String createTime;
 
-    /** В сети时长 */
-    @Excel(name = "В сети时长")
+    /** 在线时长 */
+    @Excel(name = "在线时长")
     private Long onlineTime;
 
-    /** ID сервера создания */
-    @Excel(name = "ID сервера создания")
+    /** 创建服ID */
+    @Excel(name = "创建服ID")
     private Long createsid;
 
     /** 攻击力 */
     @Excel(name = "攻击力")
     private Long attack;
 
-    /** 更新的最新Время值 */
-    @Excel(name = "更新的最新Время值")
+    /** 更新的最新时间值 */
+    @Excel(name = "更新的最新时间值")
     private String lastupdatetime;
 
     /** 更新的最新秒值 */
     @Excel(name = "更新的最新秒值")
     private Long ts;
 
-    /** Ячеек инвентаря */
-    @Excel(name = "Ячеек инвентаря")
+    /** 背包格子数量 */
+    @Excel(name = "背包格子数量")
     private Long bagcellsnum;
 
     /** 当前登录IP */
     @Excel(name = "当前登录IP")
     private String ip;
 
-    /** Монеты */
-    @Excel(name = "Монеты")
+    /** 铜币 */
+    @Excel(name = "铜币")
     private Long money;
 
     /** 元宝 */
@@ -100,28 +100,28 @@ public class RoleState
     @Excel(name = "体力")
     private Long iron;
 
-    /** Удалён */
-    @Excel(name = "Удалён")
+    /** 是否删除 */
+    @Excel(name = "是否删除")
     private Long isDelete;
 
-    /** 总Пополнение获得元宝数 */
-    @Excel(name = "总Пополнение获得元宝数")
+    /** 总充值获得元宝数 */
+    @Excel(name = "总充值获得元宝数")
     private Long rechargeGold;
 
     /** funcell生成的UUid */
     @Excel(name = "funcell生成的UUid")
     private String funcellUUid;
 
-    /** Канал */
-    @Excel(name = "Канал")
+    /** 渠道 */
+    @Excel(name = "渠道")
     private String platformName;
 
-    /** 坐骑Уровень */
-    @Excel(name = "坐骑Уровень")
+    /** 坐骑等级 */
+    @Excel(name = "坐骑等级")
     private Long horseLayer;
 
-    /** 坐骑Уровень */
-    @Excel(name = "坐骑Уровень")
+    /** 坐骑等级 */
+    @Excel(name = "坐骑等级")
     private Long horseIllusionLevel;
 
     /** 所有坐骑Id集 */
@@ -148,16 +148,16 @@ public class RoleState
     @Excel(name = "穿戴装备总星级")
     private Long equipAllStar;
 
-    /** 玩家的Месяц卡结束День数 */
-    @Excel(name = "玩家的Месяц卡结束День数")
+    /** 玩家的月卡结束天数 */
+    @Excel(name = "玩家的月卡结束天数")
     private Long moonCardDay;
 
-    /** 角色ДаНет有充过值 */
-    @Excel(name = "角色ДаНет有充过值")
+    /** 角色是否有充过值 */
+    @Excel(name = "角色是否有充过值")
     private Long isRecharge;
 
-    /** Последний вход */
-    @Excel(name = "Последний вход")
+    /** 最后一次登录时间 */
+    @Excel(name = "最后一次登录时间")
     private Long lastLoginTime;
 
     /** 时装身体ID */
@@ -168,16 +168,16 @@ public class RoleState
     @Excel(name = "时装武器ID")
     private Long fashionWeaponId;
 
-    /** ДаНет激活终身卡 */
-    @Excel(name = "ДаНет激活终身卡")
+    /** 是否激活终身卡 */
+    @Excel(name = "是否激活终身卡")
     private Long lifeCard;
 
-    /** 清理Уровень */
-    @Excel(name = "清理Уровень")
+    /** 清理等级 */
+    @Excel(name = "清理等级")
     private Long clearlevel;
 
-    /** ID аккаунта платформы */
-    @Excel(name = "ID аккаунта платформы")
+    /** 平台账号ID */
+    @Excel(name = "平台账号ID")
     private String cpUserId;
 
     public void setRoleId(Long roleId)

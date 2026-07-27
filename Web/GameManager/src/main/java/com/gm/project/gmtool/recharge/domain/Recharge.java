@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Тестовое пополнение через GM对象 t_recharge
+ * 后台模拟充值对象 t_recharge
  * 
  * @author gm
  * @date 2021-11-28
@@ -19,32 +19,32 @@ public class Recharge extends BaseEntity
     /** ID */
     private Long id;
 
-    /** ID персонажа */
-    @Excel(name = "ID персонажа")
+    /** 角色ID */
+    @Excel(name = "角色ID")
     private String roleId;
 
-    /** ПополнениеЗаказыСумма(单位分) */
-    @Excel(name = "ПополнениеЗаказыСумма(单位分)")
+    /** 充值订单金额(单位分) */
+    @Excel(name = "充值订单金额(单位分)")
     private Integer rechargeNumber;
 
-    /** Пополнение累积数量 */
-    @Excel(name = "Пополнение累积数量")
+    /** 充值累积数量 */
+    @Excel(name = "充值累积数量")
     private Integer rechargeTotalGold;
 
-    /** ПополнениеVIP经验 */
-    @Excel(name = "ПополнениеVIP经验")
+    /** 充值VIP经验 */
+    @Excel(name = "充值VIP经验")
     private Integer rechargeVipExp;
 
-    /** ПополнениеСтатус,0为待审核,1为通过,2为Ошибка */
-    @Excel(name = "ПополнениеСтатус,0为待审核,1为通过,2为Ошибка")
+    /** 充值状态,0为待审核,1为通过,2为失败 */
+    @Excel(name = "充值状态,0为待审核,1为通过,2为失败")
     private Integer rechargeState;
 
-    /** Причина операции */
-    @Excel(name = "Причина операции")
+    /** 操作原因 */
+    @Excel(name = "操作原因")
     private String reason;
 
-    /** ДействияID сервера */
-    @Excel(name = "ДействияID сервера")
+    /** 操作服务器ID */
+    @Excel(name = "操作服务器ID")
     private Integer toServerId;
 
     public void setId(Long id)

@@ -30,16 +30,16 @@ public class GroupBuy extends Activity implements IActivityCustom {
     @Override
     public Activity parseCustom(Map<String, String[]> paramMap) {
 
-        String[] career0 = paramMap.get("career0");             //Класс对应的ID предмета
-        String[] career1 = paramMap.get("career1");             //Класс对应的ID предмета
-        String[] career2 = paramMap.get("career2");             //Класс对应的ID предмета
-        String[] career3 = paramMap.get("career3");             //Класс对应的ID предмета
+        String[] career0 = paramMap.get("career0");             //职业对应的道具ID
+        String[] career1 = paramMap.get("career1");             //职业对应的道具ID
+        String[] career2 = paramMap.get("career2");             //职业对应的道具ID
+        String[] career3 = paramMap.get("career3");             //职业对应的道具ID
         String[] itemNum = paramMap.get("targetItemNum");       //团购道具数量
         String[] costCoinType = paramMap.get("costCoinType");   //团购货币
         String[] oriPrice = paramMap.get("oriPrice");           //团购原价
-        String[] buy_player = paramMap.get("buy_player");   //团购折扣Данные  Количество <折扣，价格>
-        String[] buy_discount = paramMap.get("buy_discount");   //团购折扣Данные  Количество <折扣，价格>
-        String[] buy_price = paramMap.get("buy_price");   //团购折扣Данные  Количество <折扣，价格>
+        String[] buy_player = paramMap.get("buy_player");   //团购折扣数据  人数 <折扣，价格>
+        String[] buy_discount = paramMap.get("buy_discount");   //团购折扣数据  人数 <折扣，价格>
+        String[] buy_price = paramMap.get("buy_price");   //团购折扣数据  人数 <折扣，价格>
 
         HashMap<Integer, Object> items = new HashMap<>();
         items.put(0, Integer.parseInt(career0[0]));

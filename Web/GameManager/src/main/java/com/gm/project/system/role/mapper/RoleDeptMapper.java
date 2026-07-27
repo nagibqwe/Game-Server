@@ -4,25 +4,25 @@ import java.util.List;
 import com.gm.project.system.role.domain.RoleDept;
 
 /**
- * 角色与部门关联表 Данные层
+ * 角色与部门关联表 数据层
  * 
  * @author ruoyi
  */
 public interface RoleDeptMapper
 {
     /**
-     * 通过ID персонажаУдалить角色和部门关联
+     * 通过角色ID删除角色和部门关联
      * 
-     * @param roleId ID персонажа
-     * @return Результат
+     * @param roleId 角色ID
+     * @return 结果
      */
     public int deleteRoleDeptByRoleId(Long roleId);
 
     /**
-     * 批量Удалить角色部门关联Информация
+     * 批量删除角色部门关联信息
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteRoleDept(Long[] ids);
 
@@ -30,15 +30,15 @@ public interface RoleDeptMapper
      * 查询部门使用数量
      * 
      * @param deptId 部门ID
-     * @return Результат
+     * @return 结果
      */
     public int selectCountRoleDeptByDeptId(Long deptId);
 
     /**
-     * 批量Добавить角色部门Информация
+     * 批量新增角色部门信息
      * 
      * @param roleDeptList 角色部门列表
-     * @return Результат
+     * @return 结果
      */
     public int batchRoleDept(List<RoleDept> roleDeptList);
 }

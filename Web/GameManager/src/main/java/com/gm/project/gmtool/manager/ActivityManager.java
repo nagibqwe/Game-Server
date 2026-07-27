@@ -42,8 +42,8 @@ public class ActivityManager {
     @Autowired
     private IActivityModelService modelService;
 
-    public static final int INIT = 0;       //已Отправить
-    public static final int TESTED = 1;     //已Тестовый
+    public static final int INIT = 0;       //已提交
+    public static final int TESTED = 1;     //已测试
     public static final int VALID = 2;     //已验证
     public static final int PULISHED = 3;   //已发布
 
@@ -55,12 +55,12 @@ public class ActivityManager {
 
     @PostConstruct
     public void init() {
-        log.info("初始化活动Информация...");
+        log.info("初始化活动信息...");
     }
 
     /**
-     * Добавить活动，可能Добавить多个实体bean
-     * 分档次的活动，每一档映射为Данные库中一个实体bean
+     * 添加活动，可能添加多个实体bean
+     * 分档次的活动，每一档映射为数据库中一个实体bean
      */
     public boolean addActivity(Activity activity, Map<String, String[]> paramMap) {
         if (!checkActivity(activity)) {
@@ -81,8 +81,8 @@ public class ActivityManager {
     }
 
     /**
-     * Добавить活动，可能Добавить多个实体bean
-     * 分档次的活动，每一档映射为Данные库中一个实体bean
+     * 添加活动，可能添加多个实体bean
+     * 分档次的活动，每一档映射为数据库中一个实体bean
      */
     public boolean addActivityTemplate(ActivityTemplate activityTemplate, Map<String, String[]> paramMap) {
 //        Activity activity = makeActivity(activityTemplate);
@@ -93,7 +93,7 @@ public class ActivityManager {
 //            return false;
 //        }
 
-        //记录自定义模板Данные
+        //记录自定义模板数据
         activityTemplate.setCustom(JsonUtils.toJSONString(paramMap));
 
         return addTemplate(activityTemplate);
@@ -134,7 +134,7 @@ public class ActivityManager {
     }
 
     /**
-     * Добавить活动模板
+     * 添加活动模板
      */
     public boolean addTemplate(ActivityTemplate activity) {
         ActivityTemplate temp = new ActivityTemplate();
@@ -170,7 +170,7 @@ public class ActivityManager {
     }
 
     /**
-     * 根据Отправить的表单活动，得到活动bean
+     * 根据提交的表单活动，得到活动bean
      */
     public List<Activity> getActivityBeans(Activity activity, Map<String, String[]> paramMap) {
         List<Activity> activities = new ArrayList<>();
@@ -271,13 +271,13 @@ public class ActivityManager {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            throw new RuntimeException(",Тип события：" + activity.getType() + ",Тип праздника：" + activity.getSubType() + "\n-------------------------------------------详细错误：" + Utils.getStackTrace(e));
+            throw new RuntimeException(",活动类型：" + activity.getType() + ",节日类型：" + activity.getSubType() + "\n-------------------------------------------详细错误：" + Utils.getStackTrace(e));
         }
         return activities;
     }
 
     /**
-     * 根据Данные库活动bean得到具体活动info
+     * 根据数据库活动bean得到具体活动info
      */
     public Activity getActivityInfo(Activity activity) {
         switch (activity.getType()) {
@@ -298,7 +298,7 @@ public class ActivityManager {
     }
 
     /**
-     * 根据ID获取对应模型库Данные
+     * 根据ID获取对应模型库数据
      * @param id
      * @return
      */

@@ -8,7 +8,7 @@ import com.gm.framework.aspectj.lang.annotation.Excel.ColumnType;
 import com.gm.framework.web.domain.BaseEntity;
 
 /**
- * Тип справочника表 sys_dict_type
+ * 字典类型表 sys_dict_type
  * 
  * @author ruoyi
  */
@@ -20,16 +20,16 @@ public class DictType extends BaseEntity
     @Excel(name = "字典主键", cellType = ColumnType.NUMERIC)
     private Long dictId;
 
-    /** 字典Название */
-    @Excel(name = "字典Название")
+    /** 字典名称 */
+    @Excel(name = "字典名称")
     private String dictName;
 
-    /** Тип справочника */
-    @Excel(name = "Тип справочника")
+    /** 字典类型 */
+    @Excel(name = "字典类型")
     private String dictType;
 
-    /** Статус（0Норма 1Отключено） */
-    @Excel(name = "Статус", readConverterExp = "0=Норма,1=Отключено")
+    /** 状态（0正常 1停用） */
+    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
     private String status;
 
     public Long getDictId()
@@ -42,8 +42,8 @@ public class DictType extends BaseEntity
         this.dictId = dictId;
     }
 
-    @NotBlank(message = "字典Название不能为空")
-    @Size(min = 0, max = 100, message = "Тип справочникаНазвание长度不能超过100个字符")
+    @NotBlank(message = "字典名称不能为空")
+    @Size(min = 0, max = 100, message = "字典类型名称长度不能超过100个字符")
     public String getDictName()
     {
         return dictName;
@@ -54,8 +54,8 @@ public class DictType extends BaseEntity
         this.dictName = dictName;
     }
 
-    @NotBlank(message = "Тип справочника不能为空")
-    @Size(min = 0, max = 100, message = "Тип справочникаТип长度不能超过100个字符")
+    @NotBlank(message = "字典类型不能为空")
+    @Size(min = 0, max = 100, message = "字典类型类型长度不能超过100个字符")
     public String getDictType()
     {
         return dictType;

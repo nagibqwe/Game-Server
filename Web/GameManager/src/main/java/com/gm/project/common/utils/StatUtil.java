@@ -16,20 +16,20 @@ public class StatUtil {
 
 
     /**
-     * 计算起始День数的差值
+     * 计算起始天数的差值
      */
     private static int dValue(Date start, Date end) {
         long diff = end.getTime() - start.getTime();
         return (int) (diff / (1000 * 60 * 60 * 24));
     }
     /**
-     * 查询选择Дата内的每日登陆用户总数
+     * 查询选择日期内的每日登陆用户总数
      * @param startDate
      * @param endDate
      * @return
      */
 //    public static List<Date> getDateList(String startDate, String endDate){
-//        //查询选择Дата内的每日登陆用户总数
+//        //查询选择日期内的每日登陆用户总数
 //        Date start = DateUtils.parseDate(startDate);
 //        Date end = DateUtils.parseDate(endDate);
 //        List<Date> dateList = new ArrayList<>();
@@ -99,7 +99,7 @@ public class StatUtil {
     }
 
     /**
-     * 判断参数ДаНет为true
+     * 判断参数是否为true
      * @param param
      * @param key
      * @return

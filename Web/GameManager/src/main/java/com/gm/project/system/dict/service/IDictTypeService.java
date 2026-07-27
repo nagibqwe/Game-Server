@@ -13,87 +13,87 @@ import com.gm.project.system.dict.domain.DictType;
 public interface IDictTypeService
 {
     /**
-     * 根据条件分页查询Тип справочника
+     * 根据条件分页查询字典类型
      * 
-     * @param dictType Тип справочникаИнформация
-     * @return Тип справочника集合Информация
+     * @param dictType 字典类型信息
+     * @return 字典类型集合信息
      */
     public List<DictType> selectDictTypeList(DictType dictType);
 
     /**
-     * 根据所有Тип справочника
+     * 根据所有字典类型
      * 
-     * @return Тип справочника集合Информация
+     * @return 字典类型集合信息
      */
     public List<DictType> selectDictTypeAll();
 
     /**
-     * 根据Тип справочника查询Данные справочника
+     * 根据字典类型查询字典数据
      * 
-     * @param dictType Тип справочника
-     * @return Данные справочника集合Информация
+     * @param dictType 字典类型
+     * @return 字典数据集合信息
      */
     public List<DictData> selectDictDataByType(String dictType);
 
     /**
-     * 根据Тип справочникаID查询Информация
+     * 根据字典类型ID查询信息
      * 
-     * @param dictId Тип справочникаID
-     * @return Тип справочника
+     * @param dictId 字典类型ID
+     * @return 字典类型
      */
     public DictType selectDictTypeById(Long dictId);
 
     /**
-     * 根据Тип справочника查询Информация
+     * 根据字典类型查询信息
      * 
-     * @param dictType Тип справочника
-     * @return Тип справочника
+     * @param dictType 字典类型
+     * @return 字典类型
      */
     public DictType selectDictTypeByType(String dictType);
 
     /**
-     * 批量УдалитьТип справочника
+     * 批量删除字典类型
      * 
-     * @param ids 需要Удалить的Данные
-     * @return Результат
+     * @param ids 需要删除的数据
+     * @return 结果
      * @throws Exception 异常
      */
     public int deleteDictTypeByIds(String ids);
 
     /**
-     * 清空缓存Данные
+     * 清空缓存数据
      */
     public void clearCache();
 
     /**
-     * ДобавитьСохранитьТип справочникаИнформация
+     * 新增保存字典类型信息
      * 
-     * @param dictType Тип справочникаИнформация
-     * @return Результат
+     * @param dictType 字典类型信息
+     * @return 结果
      */
     public int insertDictType(DictType dictType);
 
     /**
-     * ИзменитьСохранитьТип справочникаИнформация
+     * 修改保存字典类型信息
      * 
-     * @param dictType Тип справочникаИнформация
-     * @return Результат
+     * @param dictType 字典类型信息
+     * @return 结果
      */
     public int updateDictType(DictType dictType);
 
     /**
-     * 校验Тип справочника称ДаНет唯一
+     * 校验字典类型称是否唯一
      * 
-     * @param dictType Тип справочника
-     * @return Результат
+     * @param dictType 字典类型
+     * @return 结果
      */
     public String checkDictTypeUnique(DictType dictType);
 
     /**
-     * 查询Тип справочника树
+     * 查询字典类型树
      * 
-     * @param dictType Тип справочника
-     * @return 所有Тип справочника
+     * @param dictType 字典类型
+     * @return 所有字典类型
      */
     public List<Ztree> selectDictTree(DictType dictType);
 }

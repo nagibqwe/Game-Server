@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Шаблоны событий对象 t_activity_template
+ * 运营活动模板对象 t_activity_template
  * 
  * @author gm
  * @date 2021-09-07
@@ -20,83 +20,83 @@ public class ActivityTemplate
 //    @Excel(name = "id")
     private Integer id;
 
-    /** 模版Название */
+    /** 模版名称 */
     @Excel(name = "templateName")
     private String templateName;
 
-    /** 活动模板Время создания */
+    /** 活动模板创建时间 */
     @Excel(name = "createTime")
     private String createTime;
 
-    /** Тип события */
+    /** 活动类型 */
     @Excel(name = "type")
     private Integer type;
 
-    /** 活动子Тип */
+    /** 活动子类型 */
     @Excel(name = "subType")
     private Integer subType;
 
-    /** 最小开放Уровень */
+    /** 最小开放等级 */
     @Excel(name = "minLv")
     private Integer minLv;
 
-    /** 最大开放Уровень */
+    /** 最大开放等级 */
     @Excel(name = "maxLv")
     private Integer maxLv;
 
-    /** 标签(用于区分展示在哪个Метка события下) */
+    /** 标签(用于区分展示在哪个活动标签下) */
     @Excel(name = "tag")
     private Integer tag;
 
-    /** 活动Сортировка */
+    /** 活动排序 */
     @Excel(name = "sort")
     private Integer sort;
 
-    /** Название события */
+    /** 活动名称 */
     @Excel(name = "name")
     private String name;
 
-    /** Тип времени 0固定Время（配置Время） 1Время открытия сервера变量（根据Время открытия сервера+Время变量计算） */
+    /** 时间类型 0固定时间（配置时间） 1开服时间变量（根据开服时间+时间变量计算） */
     @Excel(name = "timeType")
     private Integer timeType;
 
-    /** 距离开服多少День */
+    /** 距离开服多少天 */
     @Excel(name = "openServerOffsetBegin")
     private Integer openServerOffsetBegin;
 
-    /** 活动День数 */
+    /** 活动天数 */
     @Excel(name = "openServerOffset")
     private Integer openServerOffset;
 
-    /** 活动Время начала */
+    /** 活动开始时间 */
     @Excel(name = "beginTime")
     private String beginTime;
 
-    /** 活动Время окончания */
+    /** 活动结束时间 */
     @Excel(name = "endTime")
     private String endTime;
 
-    /** 记录距离开服多少День */
+    /** 记录距离开服多少天 */
     @Excel(name = "openServerRecordOffsetBegin")
     private Integer openServerRecordOffsetBegin;
 
-    /** 活动记录持续День数 */
+    /** 活动记录持续天数 */
     @Excel(name = "openServerRecordOffset")
     private Integer openServerRecordOffset;
 
-    /** 开始记录Время */
+    /** 开始记录时间 */
     @Excel(name = "startRecordTime")
     private String startRecordTime;
 
-    /** 结束记录Время */
+    /** 结束记录时间 */
     @Excel(name = "endRecordTime")
     private String endRecordTime;
 
-    /** Автопубликация при открытии活动标识，0：Нет，1：Да */
+    /** 开服自动发布活动标识，0：否，1：是 */
     @Excel(name = "autoSend")
     private Integer autoSend;
 
-    /** ДаНетДаСобытие нового сервера */
+    /** 是否是新服活动 */
     @Excel(name = "isOpenServer")
     private Integer isOpenServer;
 

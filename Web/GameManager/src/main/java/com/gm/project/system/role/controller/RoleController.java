@@ -26,7 +26,7 @@ import com.gm.project.system.user.domain.UserRole;
 import com.gm.project.system.user.service.IUserService;
 
 /**
- * 角色Информация
+ * 角色信息
  * 
  * @author ruoyi
  */
@@ -59,7 +59,7 @@ public class RoleController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "Управление персонажами", businessType = BusinessType.EXPORT)
+    @Log(title = "角色管理", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:role:export")
     @PostMapping("/export")
     @ResponseBody
@@ -67,11 +67,11 @@ public class RoleController extends BaseController
     {
         List<Role> list = roleService.selectRoleList(role);
         ExcelUtil<Role> util = new ExcelUtil<Role>(Role.class);
-        return util.exportExcel(list, "角色Данные");
+        return util.exportExcel(list, "角色数据");
     }
 
     /**
-     * Добавить角色
+     * 新增角色
      */
     @GetMapping("/add")
     public String add()
@@ -80,21 +80,21 @@ public class RoleController extends BaseController
     }
 
     /**
-     * ДобавитьСохранить角色
+     * 新增保存角色
      */
     @RequiresPermissions("system:role:add")
-    @Log(title = "Управление персонажами", businessType = BusinessType.INSERT)
+    @Log(title = "角色管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated Role role)
     {
         if (UserConstants.ROLE_NAME_NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role)))
         {
-            return error("Добавить角色'" + role.getRoleName() + "'Ошибка，Имя персонажа已存在");
+            return error("新增角色'" + role.getRoleName() + "'失败，角色名称已存在");
         }
         else if (UserConstants.ROLE_KEY_NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role)))
         {
-            return error("Добавить角色'" + role.getRoleName() + "'Ошибка，角色权限已存在");
+            return error("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
         }
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(roleService.insertRole(role));
@@ -102,7 +102,7 @@ public class RoleController extends BaseController
     }
 
     /**
-     * Изменить角色
+     * 修改角色
      */
     @GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") Long roleId, ModelMap mmap)
@@ -112,10 +112,10 @@ public class RoleController extends BaseController
     }
 
     /**
-     * ИзменитьСохранить角色
+     * 修改保存角色
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "Управление персонажами", businessType = BusinessType.UPDATE)
+    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated Role role)
@@ -123,18 +123,18 @@ public class RoleController extends BaseController
         roleService.checkRoleAllowed(role);
         if (UserConstants.ROLE_NAME_NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role)))
         {
-            return error("Изменить角色'" + role.getRoleName() + "'Ошибка，Имя персонажа已存在");
+            return error("修改角色'" + role.getRoleName() + "'失败，角色名称已存在");
         }
         else if (UserConstants.ROLE_KEY_NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role)))
         {
-            return error("Изменить角色'" + role.getRoleName() + "'Ошибка，角色权限已存在");
+            return error("修改角色'" + role.getRoleName() + "'失败，角色权限已存在");
         }
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(roleService.updateRole(role));
     }
 
     /**
-     * 角色分配Данные权限
+     * 角色分配数据权限
      */
     @GetMapping("/authDataScope/{roleId}")
     public String authDataScope(@PathVariable("roleId") Long roleId, ModelMap mmap)
@@ -144,10 +144,10 @@ public class RoleController extends BaseController
     }
 
     /**
-     * Сохранить角色分配Данные权限
+     * 保存角色分配数据权限
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "Управление персонажами", businessType = BusinessType.UPDATE)
+    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("/authDataScope")
     @ResponseBody
     public AjaxResult authDataScopeSave(Role role)
@@ -162,7 +162,7 @@ public class RoleController extends BaseController
     }
 
     @RequiresPermissions("system:role:remove")
-    @Log(title = "Управление персонажами", businessType = BusinessType.DELETE)
+    @Log(title = "角色管理", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -171,7 +171,7 @@ public class RoleController extends BaseController
     }
 
     /**
-     * 校验Имя персонажа
+     * 校验角色名称
      */
     @PostMapping("/checkRoleNameUnique")
     @ResponseBody
@@ -200,9 +200,9 @@ public class RoleController extends BaseController
     }
 
     /**
-     * 角色СтатусИзменить
+     * 角色状态修改
      */
-    @Log(title = "Управление персонажами", businessType = BusinessType.UPDATE)
+    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:role:edit")
     @PostMapping("/changeStatus")
     @ResponseBody
@@ -237,9 +237,9 @@ public class RoleController extends BaseController
     }
 
     /**
-     * Отмена授权
+     * 取消授权
      */
-    @Log(title = "Управление персонажами", businessType = BusinessType.GRANT)
+    @Log(title = "角色管理", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/cancel")
     @ResponseBody
     public AjaxResult cancelAuthUser(UserRole userRole)
@@ -248,9 +248,9 @@ public class RoleController extends BaseController
     }
 
     /**
-     * 批量Отмена授权
+     * 批量取消授权
      */
-    @Log(title = "Управление персонажами", businessType = BusinessType.GRANT)
+    @Log(title = "角色管理", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/cancelAll")
     @ResponseBody
     public AjaxResult cancelAuthUserAll(Long roleId, String userIds)
@@ -284,7 +284,7 @@ public class RoleController extends BaseController
     /**
      * 批量选择用户授权
      */
-    @Log(title = "Управление персонажами", businessType = BusinessType.GRANT)
+    @Log(title = "角色管理", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/selectAll")
     @ResponseBody
     public AjaxResult selectAuthUserAll(Long roleId, String userIds)

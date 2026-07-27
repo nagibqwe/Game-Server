@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  日常统计 Данные查询
+ *  日常统计 数据查询
  * 每日登陆过游戏的用户数
  */
 @Service

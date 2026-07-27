@@ -4,57 +4,57 @@ import com.gm.project.system.config.domain.Config;
 import java.util.List;
 
 /**
- * 参数配置 Данные层
+ * 参数配置 数据层
  * 
  * @author ruoyi
  */
 public interface ConfigMapper
 {
     /**
-     * 查询参数配置Информация
+     * 查询参数配置信息
      * 
-     * @param config 参数配置Информация
-     * @return 参数配置Информация
+     * @param config 参数配置信息
+     * @return 参数配置信息
      */
     public Config selectConfig(Config config);
 
     /**
      * 查询参数配置列表
      * 
-     * @param config 参数配置Информация
+     * @param config 参数配置信息
      * @return 参数配置集合
      */
     public List<Config> selectConfigList(Config config);
 
     /**
-     * 根据键名查询参数配置Информация
+     * 根据键名查询参数配置信息
      * 
      * @param configKey 参数键名
-     * @return 参数配置Информация
+     * @return 参数配置信息
      */
     public Config checkConfigKeyUnique(String configKey);
 
     /**
-     * Добавить参数配置
+     * 新增参数配置
      * 
-     * @param config 参数配置Информация
-     * @return Результат
+     * @param config 参数配置信息
+     * @return 结果
      */
     public int insertConfig(Config config);
 
     /**
-     * Изменить参数配置
+     * 修改参数配置
      * 
-     * @param config 参数配置Информация
-     * @return Результат
+     * @param config 参数配置信息
+     * @return 结果
      */
     public int updateConfig(Config config);
 
     /**
-     * 批量Удалить参数配置
+     * 批量删除参数配置
      * 
-     * @param configIds 需要Удалить的ДанныеID
-     * @return Результат
+     * @param configIds 需要删除的数据ID
+     * @return 结果
      */
     public int deleteConfigByIds(String[] configIds);
 }

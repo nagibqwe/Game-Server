@@ -13,13 +13,13 @@ public class GoldPurposeBean {
     @Excel(name = "消耗途径")
     private String reason;
 
-    @Excel(name = "消耗Количество（帐号）")
+    @Excel(name = "消耗人数（帐号）")
     private Integer users;
 
     @Excel(name = "消耗数量")
     private Integer totalConsume;
 
-    @Excel(name = "所属Сервер")
+    @Excel(name = "所属服务器")
     private Integer sid ;
 
     public String getReason() {

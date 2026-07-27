@@ -10,7 +10,7 @@ import com.gm.project.gmtool.db.service.ITDbService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Журнал库列Service业务层处理
+ * 日志库列Service业务层处理
  * 
  * @author gm
  * @date 2021-09-08
@@ -22,10 +22,10 @@ public class TDbServiceImpl implements ITDbService
     private TDbMapper tDbMapper;
 
     /**
-     * 查询Журнал库列
+     * 查询日志库列
      * 
-     * @param id Журнал库列ID
-     * @return Журнал库列
+     * @param id 日志库列ID
+     * @return 日志库列
      */
     @Override
     public TDb selectTDbById(Integer id)
@@ -34,10 +34,10 @@ public class TDbServiceImpl implements ITDbService
     }
 
     /**
-     * 查询Журнал库列
+     * 查询日志库列
      *
-     * @param serverId ID сервера
-     * @return Журнал库列
+     * @param serverId 服务器id
+     * @return 日志库列
      */
     @Override
     public TDb selectTDbByServerId(Integer serverId)
@@ -46,10 +46,10 @@ public class TDbServiceImpl implements ITDbService
     }
 
     /**
-     * 查询Журнал库列列表
+     * 查询日志库列列表
      * 
-     * @param tDb Журнал库列
-     * @return Журнал库列
+     * @param tDb 日志库列
+     * @return 日志库列
      */
     @Override
     public List<TDb> selectTDbList(TDb tDb)
@@ -58,10 +58,10 @@ public class TDbServiceImpl implements ITDbService
     }
 
     /**
-     * ДобавитьЖурнал库列
+     * 新增日志库列
      * 
-     * @param tDb Журнал库列
-     * @return Результат
+     * @param tDb 日志库列
+     * @return 结果
      */
     @Override
     public int insertTDb(TDb tDb)
@@ -71,10 +71,10 @@ public class TDbServiceImpl implements ITDbService
     }
 
     /**
-     * ИзменитьЖурнал库列
+     * 修改日志库列
      * 
-     * @param tDb Журнал库列
-     * @return Результат
+     * @param tDb 日志库列
+     * @return 结果
      */
     @Override
     public int updateTDb(TDb tDb)
@@ -84,10 +84,10 @@ public class TDbServiceImpl implements ITDbService
     }
 
     /**
-     * УдалитьЖурнал库列对象
+     * 删除日志库列对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteTDbByIds(String ids)
@@ -96,10 +96,10 @@ public class TDbServiceImpl implements ITDbService
     }
 
     /**
-     * УдалитьЖурнал库列Информация
+     * 删除日志库列信息
      * 
-     * @param id Журнал库列ID
-     * @return Результат
+     * @param id 日志库列ID
+     * @return 结果
      */
     @Override
     public int deleteTDbById(Integer id)

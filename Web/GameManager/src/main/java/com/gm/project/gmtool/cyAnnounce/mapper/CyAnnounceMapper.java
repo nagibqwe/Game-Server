@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.cyAnnounce.domain.CyAnnounce;
 
 /**
- * Циклическое объявлениеMapper接口
+ * 循环公告Mapper接口
  * 
  * @author gm
  * @date 2021-10-27
@@ -12,55 +12,55 @@ import com.gm.project.gmtool.cyAnnounce.domain.CyAnnounce;
 public interface CyAnnounceMapper 
 {
     /**
-     * 查询Циклическое объявление
+     * 查询循环公告
      * 
-     * @param id Циклическое объявлениеID
-     * @return Циклическое объявление
+     * @param id 循环公告ID
+     * @return 循环公告
      */
     public CyAnnounce selectCyAnnounceById(Integer id);
 
     /**
-     * 查询Циклическое объявление列表(Включить列表)
+     * 查询循环公告列表(启用列表)
      * 
-     * @param cyAnnounce Циклическое объявление
-     * @return Циклическое объявление集合
+     * @param cyAnnounce 循环公告
+     * @return 循环公告集合
      */
     public List<CyAnnounce> selectCyAnnounceList(CyAnnounce cyAnnounce);
 
     /**
-     * ДобавитьЦиклическое объявление
+     * 新增循环公告
      * 
-     * @param cyAnnounce Циклическое объявление
-     * @return Результат
+     * @param cyAnnounce 循环公告
+     * @return 结果
      */
     public int insertCyAnnounce(CyAnnounce cyAnnounce);
 
     /**
-     * ИзменитьЦиклическое объявление
+     * 修改循环公告
      * 
-     * @param cyAnnounce Циклическое объявление
-     * @return Результат
+     * @param cyAnnounce 循环公告
+     * @return 结果
      */
     public int updateCyAnnounce(CyAnnounce cyAnnounce);
 
     /**
-     * УдалитьЦиклическое объявление
+     * 删除循环公告
      * 
-     * @param id Циклическое объявлениеID
-     * @return Результат
+     * @param id 循环公告ID
+     * @return 结果
      */
     public int deleteCyAnnounceById(Integer id);
 
     /**
-     * 批量УдалитьЦиклическое объявление
+     * 批量删除循环公告
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteCyAnnounceByIds(String[] ids);
 
     /**
-     * 查询Циклическое объявление列表(禁用列表)
+     * 查询循环公告列表(禁用列表)
      * @param cyAnnounce
      * @return
      */

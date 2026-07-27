@@ -9,7 +9,7 @@ import com.gm.project.stat.stat_career_distribute.domain.StatCareerDistribute;
 import com.gm.project.stat.stat_career_distribute.service.IStatCareerDistributeService;
 
 /**
- * Класс分布Service业务层处理
+ * 职业分布Service业务层处理
  * 
  * @author gm
  * @date 2021-09-07
@@ -21,10 +21,10 @@ public class StatCareerDistributeServiceImpl implements IStatCareerDistributeSer
     private IStatCareerDistributeDao statCareerDistributeDao;
 
     /**
-     * 查询Класс分布列表
+     * 查询职业分布列表
      * 
-     * @param statCareerDistribute Класс分布
-     * @return Класс分布
+     * @param statCareerDistribute 职业分布
+     * @return 职业分布
      */
     @Override
     public List<StatCareerDistribute> selectStatCareerDistributeList(StatCareerDistribute statCareerDistribute,String channelNames,Integer selectServerId)

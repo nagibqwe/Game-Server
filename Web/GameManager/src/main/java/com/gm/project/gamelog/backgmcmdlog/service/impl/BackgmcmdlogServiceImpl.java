@@ -10,7 +10,7 @@ import com.gm.project.gamelog.backgmcmdlog.service.IBackgmcmdlogService;
 import com.gm.common.utils.text.Convert;
 import com.gm.project.common.utils.GameLogUtil;
 /**
- * 后台指令ЖурналService业务层处理
+ * 后台指令日志Service业务层处理
  * 
  * @author gm
  * @date 2021-09-10
@@ -21,10 +21,10 @@ public class BackgmcmdlogServiceImpl implements IBackgmcmdlogService
 
 
     /**
-     * 查询后台指令Журнал列表
+     * 查询后台指令日志列表
      * 
-     * @param backgmcmdlog 后台指令Журнал
-     * @return 后台指令Журнал
+     * @param backgmcmdlog 后台指令日志
+     * @return 后台指令日志
      */
     @Override
     public List<Backgmcmdlog> selectBackgmcmdlogList(Backgmcmdlog backgmcmdlog,Map<String, Object> param)

@@ -25,7 +25,7 @@ import com.gm.project.system.user.domain.User;
 import com.gm.project.system.user.service.IUserService;
 
 /**
- * 个人Информация 业务处理
+ * 个人信息 业务处理
  * 
  * @author ruoyi
  */
@@ -44,7 +44,7 @@ public class ProfileController extends BaseController
     private PasswordService passwordService;
 
     /**
-     * 个人Информация
+     * 个人信息
      */
     @GetMapping()
     public String profile(ModelMap mmap)
@@ -76,7 +76,7 @@ public class ProfileController extends BaseController
         return prefix + "/resetPwd";
     }
 
-    @Log(title = "Сбросить пароль", businessType = BusinessType.UPDATE)
+    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwd(String oldPassword, String newPassword)
@@ -84,11 +84,11 @@ public class ProfileController extends BaseController
         User user = getSysUser();
         if (!passwordService.matches(user, oldPassword))
         {
-            return error("ИзменитьПарольОшибка，旧Пароль错误");
+            return error("修改密码失败，旧密码错误");
         }
         if (passwordService.matches(user, newPassword))
         {
-            return error("新Пароль不能与旧Пароль相同");
+            return error("新密码不能与旧密码相同");
         }
         user.setPassword(newPassword);
         user.setPwdUpdateDate(DateUtils.getNowDate());
@@ -97,11 +97,11 @@ public class ProfileController extends BaseController
             setSysUser(userService.selectUserById(user.getUserId()));
             return success();
         }
-        return error("ИзменитьПароль异常，请联系管理员");
+        return error("修改密码异常，请联系管理员");
     }
 
     /**
-     * Изменить用户
+     * 修改用户
      */
     @GetMapping("/edit")
     public String edit(ModelMap mmap)
@@ -112,7 +112,7 @@ public class ProfileController extends BaseController
     }
 
     /**
-     * Изменить头像
+     * 修改头像
      */
     @GetMapping("/avatar")
     public String avatar(ModelMap mmap)
@@ -123,9 +123,9 @@ public class ProfileController extends BaseController
     }
 
     /**
-     * Изменить用户
+     * 修改用户
      */
-    @Log(title = "个人Информация", businessType = BusinessType.UPDATE)
+    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
     @PostMapping("/update")
     @ResponseBody
     public AjaxResult update(User user)
@@ -138,12 +138,12 @@ public class ProfileController extends BaseController
         if (StringUtils.isNotEmpty(user.getPhonenumber())
                 && UserConstants.USER_PHONE_NOT_UNIQUE.equals(userService.checkPhoneUnique(currentUser)))
         {
-            return error("Изменить用户'" + currentUser.getLoginName() + "'Ошибка，手机号码已存在");
+            return error("修改用户'" + currentUser.getLoginName() + "'失败，手机号码已存在");
         }
         else if (StringUtils.isNotEmpty(user.getEmail())
                 && UserConstants.USER_EMAIL_NOT_UNIQUE.equals(userService.checkEmailUnique(currentUser)))
         {
-            return error("Изменить用户'" + currentUser.getLoginName() + "'Ошибка，邮箱账号已存在");
+            return error("修改用户'" + currentUser.getLoginName() + "'失败，邮箱账号已存在");
         }
         if (userService.updateUserInfo(currentUser) > 0)
         {
@@ -154,9 +154,9 @@ public class ProfileController extends BaseController
     }
 
     /**
-     * Сохранить头像
+     * 保存头像
      */
-    @Log(title = "个人Информация", businessType = BusinessType.UPDATE)
+    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
     @PostMapping("/updateAvatar")
     @ResponseBody
     public AjaxResult updateAvatar(@RequestParam("avatarfile") MultipartFile file)
@@ -178,7 +178,7 @@ public class ProfileController extends BaseController
         }
         catch (Exception e)
         {
-            log.error("Изменить头像Ошибка！", e);
+            log.error("修改头像失败！", e);
             return error(e.getMessage());
         }
     }

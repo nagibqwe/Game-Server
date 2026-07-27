@@ -13,7 +13,7 @@ import java.util.Map;
 
 
 /**
- * Пополнение统计dao
+ * 充值统计dao
  * 
  * @author gm
  * @date 2021-08-06
@@ -25,7 +25,7 @@ public class StatRechargeAccumulateDaoImpl extends BaseDao implements IStatRecha
     private static final long serialVersionUID = 1L;
 
     /**
-     * 获取累计ПополнениеДанные
+     * 获取累计充值数据
      * @param selectServerIds
      * @param channelNames
      * @param startDate

@@ -15,7 +15,7 @@ import com.gm.common.exception.job.TaskException.Code;
 import com.gm.project.monitor.job.domain.Job;
 
 /**
- * Планировщик задач工具类
+ * 定时任务工具类
  * 
  * @author ruoyi
  *
@@ -51,12 +51,12 @@ public class ScheduleUtils
     }
 
     /**
-     * 创建Планировщик задач
+     * 创建定时任务
      */
     public static void createScheduleJob(Scheduler scheduler, Job job) throws SchedulerException, TaskException
     {
         Class<? extends org.quartz.Job> jobClass = getQuartzJobClass(job);
-        // 构建jobИнформация
+        // 构建job信息
         Long jobId = job.getJobId();
         String jobGroup = job.getJobGroup();
         JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(getJobKey(jobId, jobGroup)).build();
@@ -72,10 +72,10 @@ public class ScheduleUtils
         // 放入参数，运行时的方法可以获取
         jobDetail.getJobDataMap().put(ScheduleConstants.TASK_PROPERTIES, job);
 
-        // 判断ДаНет存在
+        // 判断是否存在
         if (scheduler.checkExists(getJobKey(jobId, jobGroup)))
         {
-            // 防止创建时存在Данные问题 先移除，然后在执行创建Действия
+            // 防止创建时存在数据问题 先移除，然后在执行创建操作
             scheduler.deleteJob(getJobKey(jobId, jobGroup));
         }
 
@@ -89,7 +89,7 @@ public class ScheduleUtils
     }
 
     /**
-     * 设置Планировщик задач策略
+     * 设置定时任务策略
      */
     public static CronScheduleBuilder handleCronScheduleMisfirePolicy(Job job, CronScheduleBuilder cb)
             throws TaskException

@@ -31,7 +31,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * ПополнениеЖурналController
+ * 充值日志Controller
  * 
  * @author gm
  * @date 2021-09-09
@@ -52,7 +52,7 @@ public class RechargelogController extends BaseController
         return prefix + "/rechargelog";
     }
     /**
-     * 查询ПополнениеЖурнал列表
+     * 查询充值日志列表
      */
     @RequiresPermissions("gamelog:rechargelog:list")
     @PostMapping("/list")
@@ -90,10 +90,10 @@ public class RechargelogController extends BaseController
         return tableDataInfo;
     }
     /**
-     * ЭкспортПополнениеЖурнал列表
+     * 导出充值日志列表
      */
     @RequiresPermissions("gamelog:rechargelog:export")
-    @Log(title = "ПополнениеЖурнал", businessType = BusinessType.EXPORT)
+    @Log(title = "充值日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Rechargelog rechargelog,String startDate,String endDate,Integer serverId)

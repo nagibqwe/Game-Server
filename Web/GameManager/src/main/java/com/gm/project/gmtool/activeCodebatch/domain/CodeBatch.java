@@ -7,7 +7,7 @@ import com.gm.framework.web.domain.BaseEntity;
 
 
 /**
- * Пакет кодов активации对象 t_code_batch
+ * 激活码批次号对象 t_code_batch
  * 
  * @author gm
  * @date 2021-09-22
@@ -19,24 +19,24 @@ public class CodeBatch extends BaseEntity
     /** id */
     private Integer id;
 
-    /** Номер пакета */
-    @Excel(name = "Номер пакета")
+    /** 批次号 */
+    @Excel(name = "批次号")
     private Integer batchId;
 
-    /** ID аккаунта */
-    @Excel(name = "ID аккаунта")
+    /** 账号ID */
+    @Excel(name = "账号ID")
     private Long userId;
 
-    /** Время */
-    @Excel(name = "Время")
+    /** 时间 */
+    @Excel(name = "时间")
     private Long time;
 
-    /** Платформа */
-    @Excel(name = "Платформа")
+    /** 平台名 */
+    @Excel(name = "平台名")
     private String platform;
 
-    /** ДаНет为万能码 */
-    @Excel(name = "ДаНет为万能码")
+    /** 是否为万能码 */
+    @Excel(name = "是否为万能码")
     private Integer isUniversal;
 
     public void setId(Integer id)

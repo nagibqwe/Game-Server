@@ -66,11 +66,11 @@ public class FestivalWish extends Activity implements IActivityCustom {
         String[] i_baoDi_range_pro = paramMap.get("i_baoDi_range_pro");
 
         if (scores.length != baoDiRewards.length) {
-            throw new RuntimeException("===Данные错误");
+            throw new RuntimeException("===数据错误");
         }
 
         if (goldWeights.length != keyWeights.length || isBigs.length != keyWeights.length || rewardDatas.length != keyWeights.length || isShows.length != keyWeights.length) {
-            throw new RuntimeException("==Данные错误,当前" + keyWeights.length);
+            throw new RuntimeException("==数据错误,当前" + keyWeights.length);
         }
 
         List<HashMap<String, Object>> lowestRewards = new ArrayList<>();

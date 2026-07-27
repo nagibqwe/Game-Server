@@ -21,7 +21,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * Журнал настроек пополненияController
+ * 充值配置日志Controller
  * 
  * @author gm
  * @date 2021-08-25
@@ -43,7 +43,7 @@ public class RechargeItemLogController extends BaseController
     }
 
     /**
-     * 查询Журнал настроек пополнения列表
+     * 查询充值配置日志列表
      */
 //    @RequiresPermissions("gmtool:rechargeItemLog:list")
     @PostMapping("/list")
@@ -56,10 +56,10 @@ public class RechargeItemLogController extends BaseController
     }
 
     /**
-     * ЭкспортЖурнал настроек пополнения列表
+     * 导出充值配置日志列表
      */
     @RequiresPermissions("gmtool:rechargeItemLog:export")
-    @Log(title = "Журнал настроек пополнения", businessType = BusinessType.EXPORT)
+    @Log(title = "充值配置日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(RechargeItemLog rechargeItemLog)
@@ -70,7 +70,7 @@ public class RechargeItemLogController extends BaseController
     }
 
     /**
-     * ДобавитьЖурнал настроек пополнения
+     * 新增充值配置日志
      */
     @GetMapping("/add")
     public String add()
@@ -79,10 +79,10 @@ public class RechargeItemLogController extends BaseController
     }
 
     /**
-     * ДобавитьСохранитьЖурнал настроек пополнения
+     * 新增保存充值配置日志
      */
     @RequiresPermissions("gmtool:rechargeItemLog:add")
-    @Log(title = "Журнал настроек пополнения", businessType = BusinessType.INSERT)
+    @Log(title = "充值配置日志", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(RechargeItemLog rechargeItemLog)
@@ -91,7 +91,7 @@ public class RechargeItemLogController extends BaseController
     }
 
     /**
-     * ИзменитьЖурнал настроек пополнения
+     * 修改充值配置日志
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -102,10 +102,10 @@ public class RechargeItemLogController extends BaseController
     }
 
     /**
-     * ИзменитьСохранитьЖурнал настроек пополнения
+     * 修改保存充值配置日志
      */
     @RequiresPermissions("gmtool:rechargeItemLog:edit")
-    @Log(title = "Журнал настроек пополнения", businessType = BusinessType.UPDATE)
+    @Log(title = "充值配置日志", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(RechargeItemLog rechargeItemLog)
@@ -114,10 +114,10 @@ public class RechargeItemLogController extends BaseController
     }
 
     /**
-     * УдалитьЖурнал настроек пополнения
+     * 删除充值配置日志
      */
     @RequiresPermissions("gmtool:rechargeItemLog:remove")
-    @Log(title = "Журнал настроек пополнения", businessType = BusinessType.DELETE)
+    @Log(title = "充值配置日志", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)

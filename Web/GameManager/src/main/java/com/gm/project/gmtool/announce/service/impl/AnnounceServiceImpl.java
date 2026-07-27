@@ -10,7 +10,7 @@ import com.gm.project.gmtool.announce.service.IAnnounceService;
 import com.gm.common.utils.text.Convert;
 
 /**
- * Мгновенное объявлениеService业务层处理
+ * 即时公告Service业务层处理
  * 
  * @author gm
  * @date 2021-10-21
@@ -22,10 +22,10 @@ public class AnnounceServiceImpl implements IAnnounceService
     private AnnounceMapper announceMapper;
 
     /**
-     * 查询Мгновенное объявление
+     * 查询即时公告
      * 
-     * @param id Мгновенное объявлениеID
-     * @return Мгновенное объявление
+     * @param id 即时公告ID
+     * @return 即时公告
      */
     @Override
     public Announce selectAnnounceById(Integer id)
@@ -34,10 +34,10 @@ public class AnnounceServiceImpl implements IAnnounceService
     }
 
     /**
-     * 查询Мгновенное объявление列表
+     * 查询即时公告列表
      * 
-     * @param announce Мгновенное объявление
-     * @return Мгновенное объявление
+     * @param announce 即时公告
+     * @return 即时公告
      */
     @Override
     public List<Announce> selectAnnounceList(Announce announce)
@@ -46,10 +46,10 @@ public class AnnounceServiceImpl implements IAnnounceService
     }
 
     /**
-     * ДобавитьМгновенное объявление
+     * 新增即时公告
      * 
-     * @param announce Мгновенное объявление
-     * @return Результат
+     * @param announce 即时公告
+     * @return 结果
      */
     @Override
     public int insertAnnounce(Announce announce)
@@ -59,10 +59,10 @@ public class AnnounceServiceImpl implements IAnnounceService
     }
 
     /**
-     * ИзменитьМгновенное объявление
+     * 修改即时公告
      * 
-     * @param announce Мгновенное объявление
-     * @return Результат
+     * @param announce 即时公告
+     * @return 结果
      */
     @Override
     public int updateAnnounce(Announce announce)
@@ -71,10 +71,10 @@ public class AnnounceServiceImpl implements IAnnounceService
     }
 
     /**
-     * УдалитьМгновенное объявление对象
+     * 删除即时公告对象
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     @Override
     public int deleteAnnounceByIds(String ids)
@@ -83,10 +83,10 @@ public class AnnounceServiceImpl implements IAnnounceService
     }
 
     /**
-     * УдалитьМгновенное объявлениеИнформация
+     * 删除即时公告信息
      * 
-     * @param id Мгновенное объявлениеID
-     * @return Результат
+     * @param id 即时公告ID
+     * @return 结果
      */
     @Override
     public int deleteAnnounceById(Integer id)

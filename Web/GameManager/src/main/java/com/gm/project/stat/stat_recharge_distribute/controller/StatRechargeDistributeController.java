@@ -16,7 +16,7 @@ import java.util.Map;
 
 
 /**
- * Пополнение统计Controller
+ * 充值统计Controller
  * 
  * @author gm
  * @date 2021-09-13
@@ -31,7 +31,7 @@ public class StatRechargeDistributeController extends BaseController
     private IStatRechargeDistributeService statPayService;
 
     /**
-     * 跳转到Пополнение统计界面
+     * 跳转到充值统计界面
      * @return
      */
     @GetMapping()
@@ -42,7 +42,7 @@ public class StatRechargeDistributeController extends BaseController
 
     /**
      *
-     * Пополнение档位分布统计
+     * 充值档位分布统计
      * @param channelNames
      * @param selectServerIdList
      * @param startDate
@@ -65,7 +65,7 @@ public class StatRechargeDistributeController extends BaseController
     }
 
     /**
-     * 每日Сумма пополнения统计
+     * 每日充值金额统计
      * @param channelNames
      * @param startDate
      * @return
@@ -75,7 +75,7 @@ public class StatRechargeDistributeController extends BaseController
     public TableDataInfo payDaylStat(String selectServerIdList,String channelNames, String startDate)
     {
         if(StringUtils.isEmpty(startDate)){
-            return getDataTableErrorMsg("请选择Время");
+            return getDataTableErrorMsg("请选择时间");
         }
         if(StringUtils.isEmpty(selectServerIdList)){
             return getDataTableErrorMsg("Выберите сервер из списка");

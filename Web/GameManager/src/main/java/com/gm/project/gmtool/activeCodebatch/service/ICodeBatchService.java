@@ -4,7 +4,7 @@ import java.util.List;
 import com.gm.project.gmtool.activeCodebatch.domain.CodeBatch;
 
 /**
- * Пакет кодов активацииService接口
+ * 激活码批次号Service接口
  * 
  * @author gm
  * @date 2021-09-22
@@ -12,50 +12,50 @@ import com.gm.project.gmtool.activeCodebatch.domain.CodeBatch;
 public interface ICodeBatchService 
 {
     /**
-     * 查询Пакет кодов активации
+     * 查询激活码批次号
      * 
-     * @param id Пакет кодов активацииID
-     * @return Пакет кодов активации
+     * @param id 激活码批次号ID
+     * @return 激活码批次号
      */
     public CodeBatch selectCodeBatchById(Long id);
 
     /**
-     * 查询Пакет кодов активации列表
+     * 查询激活码批次号列表
      * 
-     * @param codeBatch Пакет кодов активации
-     * @return Пакет кодов активации集合
+     * @param codeBatch 激活码批次号
+     * @return 激活码批次号集合
      */
     public List<CodeBatch> selectCodeBatchList(CodeBatch codeBatch);
 
     /**
-     * ДобавитьПакет кодов активации
+     * 新增激活码批次号
      * 
-     * @param codeBatch Пакет кодов активации
-     * @return Результат
+     * @param codeBatch 激活码批次号
+     * @return 结果
      */
     public int insertCodeBatch(CodeBatch codeBatch);
 
     /**
-     * ИзменитьПакет кодов активации
+     * 修改激活码批次号
      * 
-     * @param codeBatch Пакет кодов активации
-     * @return Результат
+     * @param codeBatch 激活码批次号
+     * @return 结果
      */
     public int updateCodeBatch(CodeBatch codeBatch);
 
     /**
-     * 批量УдалитьПакет кодов активации
+     * 批量删除激活码批次号
      * 
-     * @param ids 需要Удалить的ДанныеID
-     * @return Результат
+     * @param ids 需要删除的数据ID
+     * @return 结果
      */
     public int deleteCodeBatchByIds(String ids);
 
     /**
-     * УдалитьПакет кодов активацииИнформация
+     * 删除激活码批次号信息
      * 
-     * @param id Пакет кодов активацииID
-     * @return Результат
+     * @param id 激活码批次号ID
+     * @return 结果
      */
     public int deleteCodeBatchById(Long id);
 
