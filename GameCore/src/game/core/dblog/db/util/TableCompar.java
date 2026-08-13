@@ -196,7 +196,7 @@ public class TableCompar
                 }
                 else
                 {
-                    throw new Exception(tableName + " " + sourceinfo.toString() + " to " + columnInfo + "列类型不匹配  无法自动变更");
+                    throw new Exception("Тип столбца " + tableName + " " + sourceinfo.toString() + " в " + columnInfo + " не совпадает. Автоматическое изменение невозможно.");
                 }
             }
         }

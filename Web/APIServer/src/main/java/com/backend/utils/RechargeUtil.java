@@ -43,7 +43,7 @@ public class RechargeUtil {
 //        String newSign = MD5Util.MD5(signStr);
         boolean result = newSign.toLowerCase().equals(sign.toLowerCase());
         if(!result){
-            logger.error("md5校验失败,前面:"+sign+",newSign:"+newSign+",待签名字符串:"+signStr);
+            logger.error("Ошибка проверки MD5: sign=" + sign + ", newSign=" + newSign + ", строка для подписи=" + signStr);
         }
         return result;
     }

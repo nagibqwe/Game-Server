@@ -17,6 +17,6 @@ public class GameManagerApplication
     {
         // System.setProperty("spring.devtools.restart.enabled", "false");
         SpringApplication.run(GameManagerApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  GM启动成功   ლ(´ڡ`ლ)ﾞ  \n");
+        System.out.println("(♥◠‿◠)ﾉﾞ  GM запущен успешно  ლ(´ڡ`ლ)ﾞ  \n");
     }
 }

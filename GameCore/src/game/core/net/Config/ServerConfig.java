@@ -35,7 +35,7 @@ public class ServerConfig {
     private static String logdrivers = "com.mysql.cj.jdbc.Driver";
     private static String logurl = "jdbc:mysql://localhost:3306/tzj_game_log?autoReconnect=true&characterEncoding=UTF-8";
     private static String loguser = "root";
-    private static String logpassword = "root";
+    private static String logpassword = "4512kek4512";
     private static String logvalidationquery = "select 1";
     private static String openTime = "2015-01-01 00:00:00";
     private static String privateKey = "r9h$t!1*63^2rjet6hdj2";

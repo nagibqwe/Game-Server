@@ -1,6 +1,16 @@
-2026-07-27 02:05:39.957 ERROR [nioEventLoopGroup-3-6][ClientHandlerAdapter.java:68] - /179.43.186.223:51380 ClientHandlerAdapter 远程关闭了！
-2026-07-27 02:05:42.953 INFO [nioEventLoopGroup-3-6][ClientHandlerAdapter.java:58] - /179.43.186.223:51380　连接关闭！
-2026-07-27 02:09:27.350 ERROR [nioEventLoopGroup-3-7][ClientHandlerAdapter.java:68] - /179.43.186.223:55428 ClientHandlerAdapter 远程关闭了！
-2026-07-27 02:09:30.348 INFO [nioEventLoopGroup-3-7][ClientHandlerAdapter.java:58] - /179.43.186.223:55428　连接关闭！
-2026-07-27 02:13:16.074 ERROR [nioEventLoopGroup-3-8][ClientHandlerAdapter.java:68] - /179.43.186.223:53442 ClientHandlerAdapter 远程关闭了！
-2026-07-27 02:13:19.073 INFO [nioEventLoopGroup-3-8][ClientHandlerAdapter.java:58] - /179.43.186.223:53442　连接关闭！
+2026-08-13 20:57:25.646 INFO [Thread-2][LogService.java:87] - 初始化日志数据库服务
+2026-08-13 20:57:25.671 INFO [Thread-2][LogService.java:120] - 启动日志数据库连接池完毕jdbc:mysql://127.0.0.1:3306/tzj_login_log?autoReconnect=true&nullCatalogMeansCurrent=true
+2026-08-13 20:57:26.718 INFO [Thread-2][LogService.java:173] - 检测查表loguser202608
+2026-08-13 20:57:26.741 INFO [Thread-2][LogService.java:272] - loguser202608检查结束
+2026-08-13 20:57:26.743 INFO [Thread-2][LogService.java:173] - 检测查表loguserdobean
+2026-08-13 20:57:26.760 INFO [Thread-2][LogService.java:272] - loguserdobean检查结束
+2026-08-13 20:57:26.761 INFO [Thread-2][LogService.java:125] - 启动日志线程池完毕
+2026-08-13 20:57:26.761 INFO [Thread-2][LogService.java:129] - 初始化日志数据库服务结束
+2026-08-13 20:57:26.780 INFO [Thread-2][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/AgentServer/agentserver/AgentServer.jar:bin]
+2026-08-13 20:57:26.785 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：1 脚本名：common.LoginUrl
+2026-08-13 20:57:26.787 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：3 脚本名：common.biqq.BiQQScript
+2026-08-13 20:57:26.788 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：2 脚本名：common.ipfind.IPFinderScript
+2026-08-13 20:57:27.485 INFO [Thread-2][IPFinderScript.java:122] - Начинается загрузка файла ip2region.bytes... ...
+2026-08-13 20:57:27.654 INFO [Thread-2][IPFinderScript.java:151] - Загрузка файла ip2region.bytes завершена, количество записей: 162899
+2026-08-13 20:57:28.100 INFO [nioEventLoopGroup-4-1][SocketServer.java:61] - HTTP-сервис входа监听3001成功！
+2026-08-13 20:57:28.100 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - agentserver监听3002成功！

@@ -34,7 +34,7 @@ public class VersionUpdateUtil
                 long useTime = TimeUtils.Time() - beginTime;
                 if (useTime > 3000)
                 {
-                    log.error("压缩玩家数据所用时间:" + useTime);
+                    log.error("Время, затраченное на сжатие данных игрока: " + useTime);
                 }
                 return str;
             }
@@ -60,7 +60,7 @@ public class VersionUpdateUtil
             long useTime = TimeUtils.Time() - beginTime;
             if (useTime > 3000)
             {
-                log.error("解压缩玩家数据所用时间:" + useTime);
+                log.error("Время, затраченное на распаковку данных игрока: " + useTime);
             }
             return str;
         }

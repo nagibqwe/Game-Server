@@ -45,7 +45,7 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(fileName))
             {
-                throw new Exception(StringUtils.format("文件名称({})非法，不允许下载。 ", fileName));
+                throw new Exception(StringUtils.format("Недопустимое имя файла ({}). Скачивание запрещено.", fileName));
             }
             String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf("_") + 1);
             String filePath = ProjectConfig.getDownloadPath() + fileName;
@@ -60,7 +60,7 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("下载文件失败", e);
+            log.error("Ошибка при скачивании файла", e);
         }
     }
 
@@ -100,7 +100,7 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(resource))
             {
-                throw new Exception(StringUtils.format("资源文件({})非法，不允许下载。 ", resource));
+                throw new Exception(StringUtils.format("Недопустимый ресурс ({}). Скачивание запрещено.", resource));
             }
             // 本地资源路径
             String localPath = ProjectConfig.getProfile();
@@ -114,7 +114,7 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("下载文件失败", e);
+           log.error("Ошибка при скачивании файла", e);
         }
     }
 }

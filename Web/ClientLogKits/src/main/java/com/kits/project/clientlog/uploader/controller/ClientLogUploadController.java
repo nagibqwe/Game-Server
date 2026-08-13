@@ -101,7 +101,7 @@ public class ClientLogUploadController {
         }
         catch (Exception e)
         {
-            logger.error("上传日志失败",e);
+            logger.error("Ошибка загрузки логов",e);
             return AjaxResult.error(e.getMessage());
         }
     }

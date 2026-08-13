@@ -60,7 +60,7 @@ public class LogUtil {
         boolean isPager = param.containsKey("pageSize") && !Strings.isBlank(param.get("pageSize").toString());
         try {
             if (!param.containsKey("serverId")) {
-                log.error("服务器id参数错误");
+                log.error("Ошибка в параметре ID сервера");
             }
             Object startDate = param.getOrDefault("startDate", "1970-01-01 00:00:00");
             Object endDate = param.getOrDefault("endDate", sdfhms.format(new Date()));

@@ -57,7 +57,7 @@ public class QueryModule {
         try {
             playerId = roleId.matches("[0-9]+") ? Long.parseLong(roleId): Long.parseLong(roleId, 36);
         } catch (Exception e) {
-            return Toolkit.outResult(false, "输入查询参数错误");
+            return Toolkit.outResult(false, "Ошибка в параметрах запроса");
         }
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         String roleSqlStr = "SELECT * FROM $table WHERE roleId = @roleId";
@@ -66,7 +66,7 @@ public class QueryModule {
             roles = queryRoleState(dblog, roleSqlStr, "roleId", playerId);
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.outResult(false, "连接数据库失败");
+            return Toolkit.outResult(false, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
             return Toolkit.outResult(false, msg.get("jsp.role.norole"));
@@ -138,8 +138,8 @@ public class QueryModule {
         }
         Server server = dao.fetch(Server.class, Cnd.where("serverId", "=", serverId));
         if(server == null){
-            logger.error("没有找到服务器信息,serverId="+serverId);
-            return Toolkit.outResult(false, "没有找到服务器信息,serverId="+serverId);
+            logger.error("Информация о сервере не найдена, serverId=" + serverId);
+            return Toolkit.outResult(false, "Информация о сервере не найдена, serverId=" + serverId);
         }
 
         Map<String, Object> map = new HashMap<>();

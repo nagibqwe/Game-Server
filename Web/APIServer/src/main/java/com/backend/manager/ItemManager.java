@@ -91,7 +91,7 @@ public class ItemManager {
                 return item.getItemName() + "[" + itemId + "]";
             }
         }
-        return "未知物品[" + itemId + "]";
+        return "Неизвестный предмет [" + itemId + "]";
     }
 
     public boolean checkItems(String items) {

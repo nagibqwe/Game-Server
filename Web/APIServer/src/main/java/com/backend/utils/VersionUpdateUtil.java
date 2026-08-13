@@ -29,7 +29,7 @@ public class VersionUpdateUtil {
                 String str = versionUpdateKey() + CodedUtil.encodeBase64(ZipUtil.compress(saveString));
                 long useTime = System.currentTimeMillis() - beginTime;
                 if (useTime > 3000) {
-                    log.error("压缩数据所用时间:" + useTime);
+                    log.error("Время, затраченное на сжатие данных:" + useTime);
                 }
                 return str;
             } catch (IOException ex) {
@@ -48,7 +48,7 @@ public class VersionUpdateUtil {
             String str = ZipUtil.uncompress(CodedUtil.decodeBase64(parseString));
             long useTime = System.currentTimeMillis() - beginTime;
             if (useTime > 3000) {
-                log.error("解压缩数据所用时间:" + useTime);
+                log.error("Время, затраченное на распаковку данных:" + useTime);
             }
             return str;
         } else {

@@ -1,4 +1,4 @@
-package game.core.disruptor;
+	package game.core.disruptor;
 
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.WorkHandler;
@@ -50,12 +50,12 @@ public class SMessageHandler implements WorkHandler<SMessageEvent>, EventHandler
             Channel channel = session.channel();
             if (channel == null)
             {
-                logger.info("断开连接了，  msgid=" + msg.getId() + "！2");
+                logger.info("Соединение разорвано, msgId=" + msg.getId() + "!");
                 return;
             }
             if (channel.unsafe() == null)
             {
-                logger.info("session=" + channel + "已经断开连接了， 不能发送信息了msgid=" + msg.getId() + "！");
+                logger.info("Сессия " + channel + " уже разорвана, отправка сообщения невозможна. msgId=" + msg.getId() + "!");
                 return;
             }
 
@@ -64,8 +64,8 @@ public class SMessageHandler implements WorkHandler<SMessageEvent>, EventHandler
                 long netsize = channel.unsafe().outboundBuffer().totalPendingWriteBytes();
                 if (netsize > MAX_BUFFSIZE_SENDBUFF)
                 {
-                    logger.error("session=" + channel + ", 发送队列缓存满了！");
-                    SessionUtils.closeSession(session, "等待发送的数据太多了（" + netsize + ")");
+                    logger.error("Сессия " + channel + ", очередь отправки переполнена!");
+                    SessionUtils.closeSession(session, "Слишком много данных ожидает отправки (" + netsize + ")");
                     return;
                 }
             }

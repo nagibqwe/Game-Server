@@ -241,7 +241,7 @@ public class Toolkit {
                 }
             }
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e.getMessage() + "-该编码不支持:" + DEFAULT_CHARSET);
+            throw new RuntimeException(e.getMessage() + "-Данная кодировка не поддерживается:" + DEFAULT_CHARSET);
         }
         key = null;
         keys = null;

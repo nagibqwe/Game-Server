@@ -24,7 +24,7 @@ public class ResultNutMapHandler implements ResultHandler<NutMap>  {
 	@Override
 	public NutMap hand(Server server,String result) {
 		if (Strings.isBlank(result.trim())) {
-			result = "服务器连接失败";
+			result = "Ошибка подключения к серверу";
 			return Toolkit.outResult(false, result);
 		}
 		try {
@@ -40,7 +40,7 @@ public class ResultNutMapHandler implements ResultHandler<NutMap>  {
 
 	@Override
 	public NutMap hand(Server server, Exception e) {
-		log.error("gm 执行失败 {"+e.toString()+"}");
+		log.error("Ошибка выполнения GM {" + e.toString() + "}");
 		return Toolkit.outResult(false, server.getServerIP() + ":" + server.getServerPort()	+ " connect time out!");
 	}
 

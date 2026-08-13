@@ -43,7 +43,7 @@ public abstract class CommandProcessor
      */
     public int getCurQueueSize(){
         if(executor == null){
-            logger.error("获取队列数量的时候executor为null", new Throwable());
+            logger.error("Ошибка при получении размера очереди: executor равен null", new Throwable());
             return 0;
         }
         return executor.getQueue().size();

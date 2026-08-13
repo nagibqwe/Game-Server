@@ -85,7 +85,7 @@ public class ErrorLogModule {
         String md5 = Lang.md5(sb).toLowerCase();
 
         if (!md5.equalsIgnoreCase(elog.getSign())) {
-            return Toolkit.outResult(false, "参数错误！");
+            return Toolkit.outResult(false, "Ошибка параметра!");
         }
 
         long createTime = System.currentTimeMillis();
@@ -112,7 +112,7 @@ public class ErrorLogModule {
         } else {
             dao.insert(elog);
         }
-        return Toolkit.outResult(true, "操作成功 ");
+        return Toolkit.outResult(true, "Операция выполнена успешно ");
     }
 
     @At
@@ -121,13 +121,13 @@ public class ErrorLogModule {
         ErrorLog errorLog = dao.fetch(ErrorLog.class, id);
 
         if (errorLog == null) {
-            return Toolkit.outResult(false, "找不到记录！");
+            return Toolkit.outResult(false, "Запись не найдена！");
         }
 
         Cnd cnd = Cnd.where("content", "=", errorLog.getContent());
         int num = dao.update(ErrorLog.class, Chain.make("state", 1), cnd);
 
-        return Toolkit.outResult(true, "更新了" + num + "条");
+        return Toolkit.outResult(true, "Обновлено " + num + " записей");
     }
 
 }

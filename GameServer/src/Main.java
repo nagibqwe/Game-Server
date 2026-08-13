@@ -34,7 +34,7 @@ public class Main {
         System.setProperty("bi4399Protocol", ServerConfig.getBi4399Config().getBi4399Protocol());
 
         String property = System.getProperty("user.dir");
-        System.out.println("程序启动主目录：" + property);
+        System.out.println("Главный каталог：" + property);
         StringBuilder pathBuilder = new StringBuilder(property + File.separator + "config" + File.separator);
         if (isIDEEnvironment()) {
             pathBuilder.append("log4j2_debug.xml");

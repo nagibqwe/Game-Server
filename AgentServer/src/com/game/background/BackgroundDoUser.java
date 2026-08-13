@@ -39,18 +39,18 @@ public class BackgroundDoUser {
             Map<String, List<String>> pMap = qsd.parameters();
             List<String> param = qsd.parameters().get("secret_key");
             if (!param.get(0).equals(ServerConfig.getPrivateKey())) {
-                logger.error("后台删除账号失败 私密key错误");
+                logger.error("Ошибка удаления аккаунта через бэкенд: неверный секретный ключ");
                 return "failed";
             }
             String userId = pMap.get("userId").get(0);
             if (userId == null) {
-                logger.error("后台删除账号失败 传入账号id或者账号名为空");
+                logger.error("Ошибка удаления аккаунта через бэкенд: ID аккаунта или имя пустое");
                 return "failed";
             }
             deleteuser(Long.parseLong(userId));
             return "ok";
         } catch (Exception numberFormatException) {
-            logger.error("后台删除账号失败 参数错误", numberFormatException);
+            logger.error("Ошибка удаления аккаунта через бэкенд: неверный параметр", numberFormatException);
             return "failed";
         }
     }
@@ -62,19 +62,19 @@ public class BackgroundDoUser {
             Map<String, List<String>> pMap = qsd.parameters();
             List<String> param = qsd.parameters().get("secret_key");
             if (!param.get(0).equals(ServerConfig.getPrivateKey())) {
-                logger.error("后台恢复账号失败 私密key错误");
+                logger.error("Ошибка восстановления аккаунта через бэкенд: неверный секретный ключ");
                 return "failed";
             }
             String userId = pMap.get("userId").get(0);
             String userName = pMap.get("userName").get(0);
             if (userId == null || userName == null) {
-                logger.error("后台恢复账号失败 传入账号id或者账号名为空");
+                logger.error("Ошибка восстановления аккаунта через бэкенд: ID аккаунта или имя пустое");
                 return "failed";
             }
             recoveruser(Long.parseLong(userId), userName);
             return "ok";
         } catch (Exception numberFormatException) {
-            logger.error("后台恢复账号失败 参数错误", numberFormatException);
+            logger.error("Ошибка восстановления аккаунта через бэкенд: неверный параметр", numberFormatException);
             return "failed";
         }
     }
@@ -86,13 +86,13 @@ public class BackgroundDoUser {
             Map<String, List<String>> pMap = qsd.parameters();
             List<String> param = qsd.parameters().get("secret_key");
             if (!param.get(0).equals(ServerConfig.getPrivateKey())) {
-                logger.error("后台屏蔽账号失败 私密key错误");
+                logger.error("Ошибка блокировки аккаунта через бэкенд: неверный секретный ключ");
                 return "failed";
             }
             String forbidStr = pMap.get("forbidStr").get(0);
             String forbiddenTime = pMap.get("forbiddenTime").get(0);
             if (forbidStr == null || forbiddenTime == null) {
-                logger.error("后台屏蔽账号失败 传入forbidStr为空");
+                logger.error("Ошибка блокировки аккаунта через бэкенд: параметр forbidStr пуст");
                 return "failed";
             }
             if (LoginVerify.getInstance().getForbids().containsKey(forbidStr)) {
@@ -103,7 +103,7 @@ public class BackgroundDoUser {
                 ForbidDao dao = new ForbidDao();
                 dao.delete(forbidStr);
                 dao.insert(bean);
-                logger.error("后台屏蔽账号失败 传入forbidStr:" + forbidStr + "已存在");
+                logger.error("Ошибка блокировки аккаунта через бэкенд: forbidStr: " + forbidStr + " уже существует");
                 return "ok";
             }
             ForbidBean bean = new ForbidBean();
@@ -112,10 +112,10 @@ public class BackgroundDoUser {
             LoginVerify.getInstance().getForbids().put(forbidStr, bean);
             ForbidDao dao = new ForbidDao();
             dao.insert(bean);
-            logger.error("后台屏蔽账号 传入forbidStr:" + forbidStr + "成功， 封号的结束日期是：" + TimeUtils.format2string(bean.getTime() * 1000L));
+            logger.error("Блокировка аккаунта через бэкенд: forbidStr: " + forbidStr + " успешно, дата окончания блокировки: " + TimeUtils.format2string(bean.getTime() * 1000L));
             return "ok";
         } catch (Exception e) {
-            logger.error("后台屏蔽账号失败 参数错误", e);
+            logger.error("Ошибка блокировки аккаунта через бэкенд: неверный параметр", e);
             return "failed";
         }
     }
@@ -127,12 +127,12 @@ public class BackgroundDoUser {
             Map<String, List<String>> pMap = qsd.parameters();
             List<String> param = qsd.parameters().get("secret_key");
             if (!param.get(0).equals(ServerConfig.getPrivateKey())) {
-                logger.error("后台取消屏蔽失败 私密key错误");
+                logger.error("Ошибка снятия блокировки через бэкенд: неверный секретный ключ");
                 return "failed";
             }
             String forbidStr = pMap.get("forbidStr").get(0);
             if (forbidStr == null) {
-                logger.error("后台取消屏蔽失败 传入forbidStr为空");
+                logger.error("Ошибка снятия блокировки через бэкенд: параметр forbidStr пуст");
                 return "failed";
             }
             LoginVerify.getInstance().getForbids().remove(forbidStr);
@@ -140,7 +140,7 @@ public class BackgroundDoUser {
             dao.delete(forbidStr);
             return "ok";
         } catch (Exception e) {
-            logger.error("后台取消屏蔽失败 参数错误", e);
+            logger.error("Ошибка снятия блокировки через бэкенд: неверный параметр", e);
             return "failed";
         }
     }
@@ -152,12 +152,12 @@ public class BackgroundDoUser {
             Map<String, List<String>> pMap = qsd.parameters();
             List<String> param = qsd.parameters().get("secret_key");
             if (!param.get(0).equals(ServerConfig.getPrivateKey())) {
-                logger.error("后台设置白名单账号失败 私密key错误");
+                logger.error("Ошибка добавления аккаунта в белый список через бэкенд: неверный секретный ключ");
                 return "failed";
             }
             String whiteStr = pMap.get("whiteStr").get(0);
             if (whiteStr == null) {
-                logger.error("后台设置白名单账号失败 传入whiteStr为空");
+                logger.error("Ошибка добавления аккаунта в белый список через бэкенд: параметр whiteStr пуст");
                 return "falied";
             }
             //如果已经有了则返回
@@ -170,7 +170,7 @@ public class BackgroundDoUser {
             LoginVerify.getInstance().getWhites().add(whiteStr);
 
         } catch (Exception e) {
-            logger.error("后台设置白名单账号失败 传入参数错误", e);
+            logger.error("Ошибка добавления аккаунта в белый список через бэкенд: неверный параметр", e);
             return "falied";
         }
         return "ok";
@@ -183,12 +183,12 @@ public class BackgroundDoUser {
             Map<String, List<String>> pMap = qsd.parameters();
             List<String> param = qsd.parameters().get("secret_key");
             if (!param.get(0).equals(ServerConfig.getPrivateKey())) {
-                logger.error("后台取消白名单账号失败 私密key错误");
+                logger.error("Ошибка удаления аккаунта из белого списка через бэкенд: неверный секретный ключ");
                 return "failed";
             }
             String whiteStr = pMap.get("whiteStr").get(0);
             if (whiteStr == null) {
-                logger.error("后台取消白名单账号失败 传入whiteStr为空");
+                logger.error("Ошибка удаления аккаунта из белого списка через бэкенд: параметр whiteStr пуст");
                 return "falied";
             }
             WhiteDao whitedao = new WhiteDao();
@@ -196,7 +196,7 @@ public class BackgroundDoUser {
             LoginVerify.getInstance().getWhites().remove(whiteStr);
 
         } catch (Exception e) {
-            logger.error("后台取消白名单账号失败 传入参数错误", e);
+            logger.error("Ошибка удаления аккаунта из белого списка через бэкенд: неверный параметр", e);
             return "falied";
         }
         return "ok";

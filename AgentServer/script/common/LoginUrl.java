@@ -154,42 +154,42 @@ public class LoginUrl implements IScript, ILoginScript {
             //账号被屏蔽了
             if (LoginVerify.getInstance().isForbiden(messInfo.getPlatformUid())) {
                 verifyfailed(iosession, verifyFailed_Forbided);
-                logger.error("账号:" + messInfo.getPlatformUid() + "被屏蔽了");
+                logger.error("Аккаунт: " + messInfo.getPlatformUid() + " заблокирован");
                 return;
             }
 
             //机器码
             if (messInfo.getMachineCode().isEmpty()) {
                 verifyfailed(iosession, verifyFailed_ForbidedMacCode);
-                logger.error("账号:" + messInfo.getPlatformUid() + " 机器唯一码为空");
+                logger.error("Аккаунт: " + messInfo.getPlatformUid() + " — уникальный код устройства пуст");
                 return;
             }
 
             //机器码
             if (!messInfo.getMachineCode().isEmpty() && LoginVerify.getInstance().isForbiden(messInfo.getMachineCode())) {
                 verifyfailed(iosession, verifyFailed_ForbidedMacCode);
-                logger.error("账号:" + messInfo.getPlatformUid() + " 机器唯一码被屏蔽了；machineCode:" + messInfo.getMachineCode());
+                logger.error("Аккаунт: " + messInfo.getPlatformUid() + " — уникальный код устройства заблокирован; machineCode: " + messInfo.getMachineCode());
                 return;
             }
 
             //mac
             if (LoginVerify.getInstance().isForbiden(messInfo.getMac())) {
                 verifyfailed(iosession, verifyFailed_ForbidedMac);
-                logger.error("账号:" + messInfo.getPlatformUid() + " 机器mac被屏蔽了；machineCode:" + messInfo.getMac());
+                logger.error("Аккаунт: " + messInfo.getPlatformUid() + " — MAC-адрес заблокирован; mac: " + messInfo.getMac());
                 return;
             }
 
             //IMEI
             if (LoginVerify.getInstance().isForbiden(messInfo.getImei())) {
                 verifyfailed(iosession, verifyFailed_ForbidedIMEI);
-                logger.error("账号:" + messInfo.getPlatformUid() + " 机器imei被屏蔽了；imei:" + messInfo.getImei());
+                logger.error("Аккаунт: " + messInfo.getPlatformUid() + " — IMEI заблокирован; imei: " + messInfo.getImei());
                 return;
             }
 
-            logger.info("第三方渠道的设备ID:" + messInfo.getCpdid());
+            logger.info("ID устройства стороннего канала: " + messInfo.getCpdid());
             if (LoginVerify.getInstance().isForbiden(messInfo.getCpdid())) {
                 verifyfailed(iosession, verifyFailed_ForbidedIMEI);
-                logger.error("账号:" + messInfo.getPlatformUid() + " 机器deviceId被屏蔽了；deviceId:" + messInfo.getCpdid());
+                logger.error("Аккаунт: " + messInfo.getPlatformUid() + " — deviceId заблокирован; deviceId: " + messInfo.getCpdid());
                 return;
             }
 
@@ -201,7 +201,7 @@ public class LoginUrl implements IScript, ILoginScript {
                 ip = remoteAddress.getAddress().getHostAddress();
                 if (LoginVerify.getInstance().isForbiden(ip)) {
                     verifyfailed(iosession, verifyFailed_ForbidedIP);
-                    logger.error("账号:" + messInfo.getPlatformUid() + " ip被屏蔽了；ip:" + ip);
+                    logger.error("Аккаунт: " + messInfo.getPlatformUid() + " — IP-адрес заблокирован; ip: " + ip);
                     return;
                 }
             }
@@ -216,7 +216,7 @@ public class LoginUrl implements IScript, ILoginScript {
 
             LoginDataBean loginData = UserCacheManager.getInstance().get(userName);
             if (loginData == null) {
-                logger.info("脚本开始验证 funcell账号:" + messInfo.getPlatformUid() + " 缓存中未读取到userId，从数据库读取游戏userId。。。");
+                logger.info("Начинается проверка скрипта для аккаунта FunCell: " + messInfo.getPlatformUid() + ". userId не найден в кеше, выполняется чтение из базы данных...");
                 UserloginDao userDao = new UserloginDao();
                 UserloginBean user = userDao.selectByUserName(userName);
                 if (user == null) {
@@ -232,10 +232,10 @@ public class LoginUrl implements IScript, ILoginScript {
                     user.setLastLoginIp(ip);
                     if (userDao.insert(user) != 1) {
                         verifyfailed(iosession, verifyFailed);
-                        logger.error("账号:" + messInfo.getPlatformUid() + " 登录失败，写入数据库失败，检查数据库连接");
+                        logger.error("Аккаунт: " + messInfo.getPlatformUid() + " — ошибка входа. Не удалось записать в базу данных. Проверьте соединение с БД.");
                         return;
                     }
-                    logger.info("脚本开始验证账号:" + messInfo.getPlatformUid() + " 新生成userId" + user.getUserId());
+                    logger.info("Начинается проверка скрипта для аккаунта: " + messInfo.getPlatformUid() + ". Создан новый userId: " + user.getUserId());
                     //注册日志
                     addQQRegisterLog(user.getUserId(), ip);
                 }
@@ -245,7 +245,7 @@ public class LoginUrl implements IScript, ILoginScript {
             }
             loginData.setLastLoginIp(ip);
             verifysuccess(iosession, messInfo, loginData, platform, isWhite,region);
-            logger.info("funcell账号:" + messInfo.getPlatformUid() + " userId：" + loginData.getUserId() + " 登录验证成功");
+            logger.info("Аккаунт FunCell: " + messInfo.getPlatformUid() + ", userId: " + loginData.getUserId() + " — вход выполнен успешно");
 
             writeLog(loginData, ip, machineCode, mac, imei);
 
@@ -256,7 +256,7 @@ public class LoginUrl implements IScript, ILoginScript {
             }
             long endTime = System.currentTimeMillis();
             if (endTime - beginTime > 300) {
-                logger.error("登录验证时间过长 账号:" + messInfo.getPlatformUid() + " 验证时间：" + (endTime - beginTime));
+                logger.error("Время проверки входа превышено. Аккаунт: " + messInfo.getPlatformUid() + ", время проверки: " + (endTime - beginTime));
             }
         } catch (Exception e) {
             logger.error(e, e);

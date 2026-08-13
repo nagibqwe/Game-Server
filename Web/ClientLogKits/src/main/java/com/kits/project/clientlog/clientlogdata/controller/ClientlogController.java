@@ -87,20 +87,20 @@ public class ClientlogController extends BaseController
      * 导出客户端日志列表
      */
     @RequiresPermissions("clientlog:clientlogdata:export")
-    @Log(title = "客户端日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Клиентские логи", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Clientlog clientlog)
     {
         List<Clientlog> list = clientlogService.selectClientlogList(clientlog);
         ExcelUtil<Clientlog> util = new ExcelUtil<Clientlog>(Clientlog.class);
-        return util.exportExcel(list, "客户端日志数据");
+        return util.exportExcel(list, "Данные клиентских логов");
     }
     /**
      * 删除客户端日志
      */
     @RequiresPermissions("clientlog:clientlogdata:remove")
-    @Log(title = "客户端日志", businessType = BusinessType.DELETE)
+    @Log(title = "Клиентские логи", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -119,8 +119,8 @@ public class ClientlogController extends BaseController
         //0.从请求中获取参数信息
         String strID = request.getParameter("id");
         if(strID == null || strID == ""){
-            logger.error("请求下载没有获得对应的参数信息.");
-            showAlert("没有序号参数,下载日志文件失败!",response);
+            logger.error("В запросе на скачивание отсутствуют необходимые параметры.");
+            showAlert("Отсутствует параметр последовательности, не удалось скачать файл логов!", response);
         }
         strID = strID.trim();
 
@@ -137,7 +137,7 @@ public class ClientlogController extends BaseController
             if(file.exists()){
                 //2.1 如果存在,就对比md5.当md5不相同,就说明要重新生成zip文件,否则直接下载
                 String md5 = LogFileUtils.getMD5(file);
-                logger.info("比对MD5:"+model.getFilemd5()+":::"+md5);
+                logger.info("Сравнение MD5: " + model.getFilemd5() + " ::: " + md5);
                 if(model.getFilemd5().equals(md5)){
                     needGenZip = true;
                     file.delete();
@@ -149,7 +149,7 @@ public class ClientlogController extends BaseController
 
             //3.生成zip文件
             if (needGenZip){
-                logger.info("需要重新生成zip文件:"+id);
+                logger.info("Требуется пересоздать zip-файл: " + id);
                 //3.1 压缩指定目录
                 LogFileUtils.mkParentDirs(file);
                 LogFileZipUtils.zipDir(dir,zipFile);
@@ -163,8 +163,8 @@ public class ClientlogController extends BaseController
             //4.把文件推向远端
             LogFileDownloadUtils.download(file.getAbsolutePath(),response);
         }catch (Exception e){
-            logger.error("下载日志文件失败.参数:" + strID, e);
-            showAlert("下载日志文件失败!"+e.getMessage(),response);
+            logger.error("Не удалось скачать файл логов. Параметры: " + strID, e);
+            showAlert("Не удалось скачать файл логов! " + e.getMessage(), response);
         }
     }
 
@@ -180,7 +180,7 @@ public class ClientlogController extends BaseController
             response.getWriter().print("<html><body><script type='text/javascript'>alert('" + msg + "');history.back();</script></body></html>");
             response.getWriter().close();
         }catch (Exception ex){
-            logger.error("showAlert异常." + msg,ex);
+            logger.error("Ошибка в showAlert: " + msg, ex);
         }
     }
 

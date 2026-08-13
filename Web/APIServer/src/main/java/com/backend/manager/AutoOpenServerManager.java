@@ -47,7 +47,7 @@ public class AutoOpenServerManager {
     }
 
     public Object checkServerOpen() {
-        logger.error("检查服务器开放状态");
+        logger.error("Проверка статуса доступности сервера");
         StringBuilder sb = new StringBuilder();
         //通知游戏服更新某一条的充值信息
         Cnd cnd = Cnd.where("isDeleted", "=", 0).and("isHeFu", "=", 0).
@@ -89,13 +89,13 @@ public class AutoOpenServerManager {
 
                         if (count >= openUserCount) {
                             force = 1;
-                            logger.error(serverId + "服满足强制开服条件,前一个服" + preServerId + "注册人数：" + count);
+                            logger.error("Сервер " + serverId + " соответствует условиям принудительного открытия. Регистраций на предыдущем сервере " + preServerId + ": " + count);
                         }
                     }else{
-                        logger.error(serverId + "服强制开服检查失败，前一个服" + preServerId + "的信息未找到");
+                        logger.error("Ошибка при проверке принудительного открытия для сервера " + serverId + ": информация о предыдущем сервере " + preServerId + " не найдена");
                     }
                 } catch (Exception e) {
-                    logger.error(preServerId + "服强制开服检查时查询数据错误，error：" + e.getMessage() + "\n");
+                    logger.error("Ошибка запроса данных при проверке принудительного открытия для сервера " + preServerId + ", ошибка: " + e.getMessage() + "\n");
 //                    continue;
                 }
             }
@@ -106,7 +106,7 @@ public class AutoOpenServerManager {
                     continue;
                 }
             } catch (ParseException e) {
-                logger.error("时间解析错误,serverId=" + server.getServerId() + ",serverOpenTime=" + server.getServerOpenTime());
+                logger.error("Ошибка парсинга времени, serverId=" + server.getServerId() + ", serverOpenTime=" + server.getServerOpenTime());
                 continue;
             }
 
@@ -114,7 +114,7 @@ public class AutoOpenServerManager {
                 NutMap resultMap = GameServerRequestUtil.gmOpenServer(server, force, 30*1000);
                 if (!resultMap.getBoolean("ok")) {
                     serverFailedList.add(serverId);
-                    logger.error(serverId + "服,更新开服状态失败,错误结果:"+resultMap.get("data"));
+                    logger.error("Сервер " + serverId + ", ошибка обновления статуса открытия, результат: " + resultMap.get("data"));
                 } else {
                     server.setOpenState(1);
                     if (!server.getServerOpenTime().equals(resultMap.getString("data"))) {
@@ -123,7 +123,7 @@ public class AutoOpenServerManager {
                     int uCount = dao.update(server);
                     if (uCount > 0) {
                         serverSuccessList.add(serverId);
-                        logger.error(serverId + "服,更新开服状态成功\n");
+                        logger.error("Сервер " + serverId + ", статус открытия обновлён успешно\n");
                         ServerListManager.getInstance().updateServer(server);
 
                         //更新处理的服务器进度
@@ -136,7 +136,7 @@ public class AutoOpenServerManager {
                         HashMap<String,String> paramMap = new HashMap<>();
                         paramMap.put("serverId", String.valueOf(serverId));
                         String httpResult = HttpConnectionUtils.post(ServerKeyUtil.getKey("GMUrl") + "/gmtool/activity/sendOpenServerActivity", paramMap);
-                        logger.error("通知GM后台发布开服活动结果：" + httpResult);
+                        logger.error("Результат уведомления GM-бэкенда о запуске активности открытия: " + httpResult);
 
 //                        if (openUserCount > 0) {
 //                            break;
@@ -144,12 +144,12 @@ public class AutoOpenServerManager {
                     }
                 }
             } catch (Exception e) {
-                logger.error(serverId + "服更新开服状态失败，error：" + e.getMessage() + "\n");
+                logger.error("Сервер " + serverId + ", ошибка обновления статуса открытия, ошибка: " + e.getMessage() + "\n");
                 serverFailedList.add(serverId);
             }
         }
-        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("\n");
-        sb.append("游戏服同步失败列表：").append(serverFailedList).append("\n");
+        sb.append("Список успешно синхронизированных игровых серверов: ").append(serverSuccessList).append("\n");
+        sb.append("Список серверов с ошибкой синхронизации: ").append(serverFailedList).append("\n");
         return Toolkit.outResult(true, sb.toString());
     }
 

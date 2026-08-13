@@ -44,7 +44,7 @@ public class LoginVerify {
 
     public static void verify(ChannelHandlerContext iosession, LoginMessage.ReqLogin messInfo) {
 
-        logger.info("渠道账号:" + messInfo.getPlatformUid() + " 渠道：" + messInfo.getPlatformName() + " 开始验证。。。");
+        logger.info("Аккаунт канала: " + messInfo.getPlatformUid() + " Канал: " + messInfo.getPlatformName() + " Начинается проверка...");
         deal().check(iosession, messInfo);
     }
 
@@ -53,7 +53,7 @@ public class LoginVerify {
         if (is instanceof ILoginScript) {
             return (ILoginScript) is;
         } else {
-            logger.info("渠道账号:没有找到执行的脚本处理！");
+            logger.info("Аккаунт канала: не найден скрипт для выполнения!");
             return null;
         }
     }

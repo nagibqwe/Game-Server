@@ -58,7 +58,7 @@ class httpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         if (msg.uri().length() > 0) {
             dispatcherRequest(ctx, msg);
         } else {
-            log.error(ctx + "错误的请求HTTP：" + msg);
+            log.error(ctx + " Неверный HTTP-запрос: " + msg);
             ctx.close();
         }
     }
@@ -67,7 +67,7 @@ class httpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         QueryStringDecoder qsd = new QueryStringDecoder(httpRequest.uri());
         switch (qsd.path().toLowerCase()) {
             case "/test":
-                writeResponse(session.channel(), httpRequest, "连接成功");
+                writeResponse(session.channel(), httpRequest, "Соединение установлено");
             case "/changelogindata":
                 LoginDataUpdate.changeLoginData(httpRequest);
                 writeResponse(session.channel(), httpRequest, "ok");

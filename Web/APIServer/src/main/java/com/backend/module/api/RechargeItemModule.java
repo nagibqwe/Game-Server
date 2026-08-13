@@ -40,20 +40,20 @@ public class RechargeItemModule {
     public Object refreshRechargeInfos(String rechargeStr) {
         //解析配置
         if(rechargeStr==null||rechargeStr.equals("")){
-            return Toolkit.outResult(false, "解析刷新的数据为空");
+            return Toolkit.outResult(false, "Данные для обновления пусты");
         }
 
         TreeMap<Integer, RechargeItemInfo> rechargeInfoMap = JsonUtils.parseObject(rechargeStr, new TypeReference<TreeMap<Integer, RechargeItemInfo>>(){});
         if (rechargeInfoMap ==null || rechargeInfoMap.isEmpty()){
-            return Toolkit.outResult(false, "刷新的数据为空");
+            return Toolkit.outResult(false, "Данные для обновления пусты");
         }
 
         RechargeItemManager.getInstance().getRechargeItemInfoMap().clear();
         RechargeItemManager.getInstance().getRechargeItemInfoMap().putAll(rechargeInfoMap);
 //        logger.info("refreshRechargeInfos==============rechargeStr:"+rechargeStr);
 //        logger.info("refreshRechargeInfos==============md5:"+MD5Util.MD5(rechargeStr));
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "充值配置数据同步成功，MD5:"+ MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr()));
-        return Toolkit.outResult(true, "API服务器刷新配置成功,商品数量："+rechargeInfoMap.size());
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "Синхронизация конфигурации пополнения выполнена успешно, MD5: " + MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr()));
+        return Toolkit.outResult(true, "API-сервер: конфигурация обновлена успешно, количество товаров: " + rechargeInfoMap.size());
     }
 
     /**
@@ -64,22 +64,22 @@ public class RechargeItemModule {
     public Object updateRechargeItem(String rechargeStr) {
         RechargeItemInfo rechargeItemInfo = JsonUtils.toJavaObject(rechargeStr, RechargeItemInfo.class);
         if(rechargeItemInfo == null){
-            return Toolkit.outResult(false, "更新的数据为空");
+            return Toolkit.outResult(false, "Данные для обновления пусты");
         }
 
         RechargeItemManager.getInstance().getRechargeItemInfoMap().put(rechargeItemInfo.getGoods_id(), rechargeItemInfo);
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "充值配置数据修改成功，ID:"+ rechargeItemInfo.getGoods_id());
-        return Toolkit.outResult(true, "API服务器更新配置成功，ID："+rechargeItemInfo.getGoods_id());
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "Конфигурация пополнения обновлена успешно, ID: " + rechargeItemInfo.getGoods_id());
+        return Toolkit.outResult(true, "API-сервер: конфигурация обновлена успешно, ID: " + rechargeItemInfo.getGoods_id());
     }
 
     @At
     @POST
     public Object deleteRechargeItem(String id) {
         if(!RechargeItemManager.getInstance().getRechargeItemInfoMap().containsKey(Integer.parseInt(id))){
-            return Toolkit.outResult(false, "没有找到的相关配置");
+            return Toolkit.outResult(false, "Конфигурация не найдена");
         }
 
         RechargeItemManager.getInstance().getRechargeItemInfoMap().remove(Integer.parseInt(id));
-        return Toolkit.outResult(true, "API服务器删除配置成功，ID："+id);
+        return Toolkit.outResult(true, "API-сервер: конфигурация удалена успешно, ID: " + id);
     }
 }

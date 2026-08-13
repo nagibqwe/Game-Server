@@ -34,13 +34,13 @@ public class LoginDataUpdate {
         String platformName = rMap.get("platformName").get(0);
         if (userId == null || sign == null || accessToken == null || machineCode == null || time == null
                 || !LoginVerifySignCal.calSign(userId, accessToken, machineCode, time,platformName).equals(sign)) {
-            logger.error("改变logindata数据失败 参数错误." + qsd.toString());
+            logger.error("Ошибка изменения данных входа: неверный параметр. " + qsd.toString());
             return;
         }
 
         LoginDataBean user = UserCacheManager.getInstance().getByUserId(Long.parseLong(userId));
         if (user == null) {
-            logger.error("改变logindata数据失败 账号不存在.userId:" + userId);
+            logger.error("Ошибка изменения данных входа: аккаунт не найден. userId: " + userId);
             return;
         }
 

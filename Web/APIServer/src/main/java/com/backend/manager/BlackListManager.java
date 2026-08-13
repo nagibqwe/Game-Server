@@ -67,7 +67,7 @@ public class BlackListManager {
             return dataList;
         });
         dao.execute(sql);
-        log.info("黑名单信息加载完毕,共" + dataList.size() + "条记录");
+        log.info("Загрузка чёрного списка завершена, всего записей: " + dataList.size());
     }
 
     /**

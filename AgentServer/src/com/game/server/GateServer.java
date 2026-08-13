@@ -64,7 +64,7 @@ public class GateServer extends SocketServer {
 //
 
     private GateServer() {
-        this("登录验证服务器", 8000);
+        this("Сервер проверки входа", 8000);
 //        initLogSystem();
         //初始当前时间系统
         TimeUtils.setServerBeginTime(System.currentTimeMillis());
@@ -82,7 +82,7 @@ public class GateServer extends SocketServer {
             LogService.getInstance();
 
             if (IDConfigUtil.platfromID < 1) {
-                logger.error("当前没有配置 lsID, 请在server-config.xml中配置此两个值");
+                logger.error("В данный момент не настроен lsId. Пожалуйста, укажите его в файле server-config.xml.");
                 System.exit(0);
             }
             port = ServerConfig.getServerPort();
@@ -99,7 +99,7 @@ public class GateServer extends SocketServer {
             //定时任务线程池
             ThreadPoolManager.getInstance().init(1);
         } catch (Exception ex) {
-            logger.error("当前没有配置 lsID, 请在server-config.xml中配置此两个值", ex);
+            logger.error("В данный момент не настроен lsId. Пожалуйста, укажите его в файле server-config.xml.", ex);
             System.exit(1);
         }
     }

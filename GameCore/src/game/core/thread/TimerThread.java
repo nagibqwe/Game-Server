@@ -53,7 +53,7 @@ public class TimerThread extends Timer
                     if (event.willRemove())
                     {
                         it.remove();
-                        LOG.info("移除计时事件：" + event.getClass().getSimpleName() + " (" + event.getExecuter() + ")");
+                        LOG.info("Удаление таймерного события: " + event.getClass().getSimpleName() + " (" + event.getExecuter() + ")");
                         continue;
                     }
 
@@ -75,7 +75,7 @@ public class TimerThread extends Timer
                 long offset = System.currentTimeMillis() - ost;
                 if (offset > 10)
                 {
-                    LOG.error("TIMER事件的时间花费：" + offset + "数量：" + events.size());
+                    LOG.error("Затраченное время на таймерные события: " + offset + ", количество: " + events.size());
                 }
             }
         };
@@ -102,7 +102,7 @@ public class TimerThread extends Timer
             return;
         event.setExecuter(executor);
         events.add(event);
-        LOG.debug("添加计时事件：" + event.getClass().getSimpleName() + " (" + event.getExecuter() + ")" + " , 数量：" + events.size());
+        LOG.debug("Добавление таймерного события: " + event.getClass().getSimpleName() + " (" + event.getExecuter() + ")" + ", количество: " + events.size());
 
     }
 
@@ -116,6 +116,6 @@ public class TimerThread extends Timer
         if (null == event)
             return;
         events.remove(event);
-        LOG.debug("移除计时事件：" + event.getClass().getSimpleName() + " (" + event.getExecuter() + ")" + " , 数量：" + events.size());
+        LOG.debug("Удаление таймерного события: " + event.getClass().getSimpleName() + " (" + event.getExecuter() + ")" + ", количество: " + events.size());
     }
 }

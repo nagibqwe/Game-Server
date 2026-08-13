@@ -19,7 +19,7 @@ public class DefaultHandler implements ResultHandler<String> {
         try {
             return getResult(result);
         } catch (Exception e) {
-            LOGGER.error("gm 解析返回值[" + result + "]失败 ", e);
+            LOGGER.error("Ошибка парсинга ответа GM [" + result + "]", e);
             throw new GMSendException(GMSendErrorType.PARSE, e);
         }
     }
@@ -30,7 +30,7 @@ public class DefaultHandler implements ResultHandler<String> {
 
     @Override
     public String hand(Server server, Exception e) {
-        LOGGER.error("gm 执行失败 " + e.toString());
+        LOGGER.error("Ошибка выполнения GM: " + e.toString());
         return "-99";
     }
 

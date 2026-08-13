@@ -22,7 +22,7 @@ public class LogFileDownloadUtils {
 
         if (!com.kits.common.utils.file.FileUtils.checkAllowDownload(absolutePath))
         {
-            throw new Exception(StringUtils.format("文件名称({})非法，不允许下载。 ", absolutePath));
+            throw new Exception(StringUtils.format("Недопустимое имя файла ({}). Скачивание запрещено.", absolutePath));
         }
         response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
         com.kits.common.utils.file.FileUtils.setAttachmentResponseHeader(response, absolutePath);

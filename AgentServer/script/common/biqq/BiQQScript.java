@@ -111,7 +111,7 @@ public class BiQQScript implements IBiQQScript {
                                 int retry = data.getTitle().retryTimes();
                                 retry++;
                                 if(retry > 5){
-                                    log.warn("BiQQ 数据上报重试{}次失败，取消重试,data:{}", retry, jsonData);
+                                    log.warn("BiQQ: повторная отправка данных не удалась после {} попыток. Повтор отменён. Данные: {}", retry, jsonData);
                                     return;
                                 }
                                 data.getTitle().setRetry_times(retry);

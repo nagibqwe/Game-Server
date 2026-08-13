@@ -81,7 +81,7 @@ public class ServerModule {
         if (updateServer == null) {
             Server no = dao.insert(server);
             if (no != null) {
-                BackendLogUtil.getInstance().log(request, "增加服务器信息，serverId:" + server.getServerId());
+                BackendLogUtil.getInstance().log(request, "Добавление информации о сервере, serverId: " + server.getServerId());
                 ServerListManager.getInstance().updateServer(server);
                 return Toolkit.outResult(true, msg.get("server.insert.success") + no.getId());
             }
@@ -96,7 +96,7 @@ public class ServerModule {
 
             int no = dao.update(updateServer);
             if (no > 0) {
-                BackendLogUtil.getInstance().log(request, "修改服务器信息，serverId:" + server.getServerId());
+                BackendLogUtil.getInstance().log(request, "Редактирование информации о сервере, serverId: " + server.getServerId());
                 ServerListManager.getInstance().updateServer(updateServer);
                 return Toolkit.outResult(true, msg.get("db.update.success"));
             }
@@ -132,7 +132,7 @@ public class ServerModule {
         }
 
         if (server.getIsDeleted() != 0) {
-            return Toolkit.outResult(false, "服务器未启用");
+            return Toolkit.outResult(false, "Сервер не активен");
         }
 
         if (server.getHefuServerID() < 1) {
@@ -267,7 +267,7 @@ public class ServerModule {
         int no = dao.delete(Server.class, id);
         if (no > 0) {
             ServerListManager.getInstance().updateServer(server);
-            BackendLogUtil.getInstance().log(request, "删除服务器信息，serverId:" + id);
+            BackendLogUtil.getInstance().log(request, "Удаление информации о сервере, serverId: " + id);
             return new NutMap().setv("ok", true);
         }
         return Toolkit.outResult(false, msg.get("dblog.delete.tishi1") + id + msg.get("dblog.delete.tishi2"));
@@ -295,7 +295,7 @@ public class ServerModule {
                     return Toolkit.outResult(true, res.getContent());
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return Toolkit.outResult(false, "连接失败");
+                    return Toolkit.outResult(false, "Ошибка подключения");
                 }
         }
         return Toolkit.outResult(false, "");

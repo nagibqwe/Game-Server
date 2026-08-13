@@ -80,7 +80,7 @@ public class IPFinderScript implements IScript, IIPFinderScript {
                 return info;
             }
         }
-        logger.info("没有找到IP地址:" + sidx + ":::" + eidx + "::" + findcount + "::" + n + "::" + ip);
+        logger.info("IP-адрес не найден: " + sidx + ":::" + eidx + "::" + findcount + "::" + n + "::" + ip);
         return null;
     }
     /**
@@ -119,7 +119,7 @@ public class IPFinderScript implements IScript, IIPFinderScript {
         //格式:Long,Long,Int,String(int,byte[]),String(int,byte[])
         String path = "config/ip2region.bytes";
         File file = new File(path);
-        logger.info("开始加载ip2region.bytes文件... ...");
+        logger.info("Начинается загрузка файла ip2region.bytes... ...");
         try {
             BinaryReader bos = new BinaryReader(new FileInputStream(file));
             /////////////////////////////读取基本信息/////////////////////
@@ -148,7 +148,7 @@ public class IPFinderScript implements IScript, IIPFinderScript {
                     logger.info("::"+ri.getId()+"::"+ri.getSipValue()+"::"+ri.getEipValue()+"::"+ri.getCountry()+"::"+ri.getState());
                 }*/
             }
-            logger.info("加载ip2region.bytes文件完成,数据数量:"+dataList.size());
+            logger.info("Загрузка файла ip2region.bytes завершена, количество записей: " + dataList.size());
             bos.close();
 
             /*
@@ -165,7 +165,7 @@ public class IPFinderScript implements IScript, IIPFinderScript {
 
         } catch (IOException e) {
             logger.error(e, e);
-            logger.error("加载ip2region文件失败!"+path);
+            logger.error("Ошибка загрузки файла ip2region: " + path);
             System.exit(1);
         }
     }

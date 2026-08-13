@@ -84,7 +84,7 @@ public class LogService
     private final static AtomicLong lostCount = new AtomicLong();
 
     private LogService() {
-        logger.info("初始化日志数据库服务");
+        logger.info("Инициализация сервиса базы данных логов");
         try {
 //            ds = new ComboPooledDataSource();
 //            ds.setDriverClass(DbServerConfig.getLogDrivers());
@@ -117,16 +117,16 @@ public class LogService
             ds.setRemoveAbandonedTimeout(1800);//30分中的连接不用则关闭
             ds.setLogAbandoned(true);//记录删除日志
 
-            logger.info("启动日志数据库连接池完毕" + ServerConfig.getLogUrl());
+            logger.info("Запуск пула соединений с базой данных логов завершён: " + ServerConfig.getLogUrl());
             sleep(200);//停留一下，确定日志连接池连接成功 
             checkTable();
             dbexecutor = new ThreadPoolExecutor(10, dbthreads, 0l, TimeUnit.MILLISECONDS, dbqueue);
             fileexecutor = new ThreadPoolExecutor(5, filethreads, 0l, TimeUnit.MILLISECONDS, filequeue);
-            logger.info("启动日志线程池完毕");
+            logger.info("Запуск пула потоков для логов завершён");
         } catch (Exception ex) {
             logger.error(ex, ex);
         }
-        logger.info("初始化日志数据库服务结束");
+        logger.info("Инициализация сервиса базы данных логов завершена");
     }
 
     public final void checkTable() {
@@ -170,7 +170,7 @@ public class LogService
                         .buildTableName(currentTimeMillis)
                         .toLowerCase(Locale.ROOT);
 
-                logger.info("检测查表" + buildTableName);
+                logger.info("Проверка таблицы: " + buildTableName);
 
                 /*
                  * Создаём минимальную таблицу, если её ещё нет.
@@ -185,7 +185,7 @@ public class LogService
                             + "DEFAULT CHARACTER SET utf8mb4 "
                             + "COLLATE utf8mb4_unicode_ci";
 
-                    logger.info("创建日志表：" + createSql);
+                    logger.info("Создание таблицы логов: " + createSql);
 
                     try (Statement statement = connection.createStatement()) {
                         statement.executeUpdate(createSql);
@@ -261,7 +261,7 @@ for (MetaData md : metaDataSet) {
                 if (!comparator.isEmpty()) {
                     try (Statement statement = connection.createStatement()) {
                         for (String sql : comparator) {
-                            logger.info("检查到变更" + sql);
+                            logger.info("Обнаружено изменение: " + sql);
                             statement.addBatch(sql);
                         }
 
@@ -269,7 +269,7 @@ for (MetaData md : metaDataSet) {
                     }
                 }
 
-                logger.info(buildTableName + "检查结束");
+                logger.info("Проверка таблицы " + buildTableName + " завершена");
 
             } catch (Exception e) {
                 logger.error(cls.getName() + "," + e, e);
@@ -322,10 +322,10 @@ for (MetaData md : metaDataSet) {
         {
             //队列太长 丢掉
             lostcount = lostCount.getAndIncrement();
-            logger.error("自启动开始共有" + lostcount + "条日志丢失");
+            logger.error("С момента запуска потеряно " + lostcount + " записей логов");
             if (lostcount != 0 && lostcount % 1000 == 0)
             {
-                logger.info("executor(BaseLogBean) - lostlogcount" + lostcount);
+                logger.info("executor(BaseLogBean) - потеряно логов: " + lostcount);
             }
         }
 
@@ -356,17 +356,17 @@ for (MetaData md : metaDataSet) {
      */
     public void shutdown()
     {
-        logger.info("正在关闭日志系统");
+        logger.info("Выполняется закрытие системы логирования");
         List<Runnable> fileshutdownNow = fileexecutor.shutdownNow();
         List<Runnable> dbshutdownNow = dbexecutor.shutdownNow();
         if (fileshutdownNow.size() > 0)
         {
-            logger.info("正在保存剩余日志队列中的数据,长度" + fileshutdownNow.size());
+            logger.info("Сохранение оставшихся записей в очереди файловых логов, длина очереди: " + fileshutdownNow.size());
             for (int i = 0; i < fileshutdownNow.size(); i++)
             {
                 Runnable runnable = fileshutdownNow.get(i);
                 runnable.run();
-                logger.info("保存文件日志队列第" + fileshutdownNow.size() + "条完成");
+                logger.info("Сохранение записи файлового лога №" + (i + 1) + " из " + fileshutdownNow.size() + " завершено");
             }
         }
         if (dbshutdownNow.size() > 0)
@@ -375,12 +375,12 @@ for (MetaData md : metaDataSet) {
             {
                 Runnable task = dbshutdownNow.get(i);
                 task.run();
-                logger.info("保存数据库日志队列第" + dbshutdownNow.size() + "条完成");
+                logger.info("Сохранение записи лога в БД №" + (i + 1) + " из " + dbshutdownNow.size() + " завершено");
             }
         }
 
         ds.close();
-        logger.info("日志服务己关闭");
+        logger.info("Служба логирования закрыта");
     }
 
     public void test() {

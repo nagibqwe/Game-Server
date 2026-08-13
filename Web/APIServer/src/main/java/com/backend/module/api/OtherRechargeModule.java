@@ -52,7 +52,7 @@ public class OtherRechargeModule {
     public Object getRechargeItemList(HttpServletRequest request) {
         TreeMap<Integer, RechargeItemInfo> allRechargeItemMap = RechargeItemManager.getInstance().getRechargeItemInfoMap();
         if (allRechargeItemMap == null && allRechargeItemMap.size() == 0) {
-            this.outResultFailure(11, "配置不存在");
+           this.outResultFailure(11, "Конфигурация не найдена");
         }
         String rechargeItemLogByGoodIdMapMd5 = RechargeItemManager.getInstance().getRechargeStr(allRechargeItemMap);
 //        TreeMap<String, Object> jsonObj = new TreeMap<>();
@@ -106,8 +106,8 @@ public class OtherRechargeModule {
         //支付类型:1:点卡渠道,2:非点卡渠道
         int pay_type = 0;
         if (payTypeStr == null || payTypeStr.equals("")) {
-            logger.error("支付类型错误，pay_type=" + payTypeStr);
-            return this.outResultFailure(1, "支付类型错误，pay_type=" + payTypeStr);
+            logger.error("Ошибка типа оплаты, pay_type=" + payTypeStr);
+            return this.outResultFailure(1, "Ошибка типа оплаты, pay_type=" + payTypeStr);
         } else {
             pay_type = Integer.parseInt(payTypeStr);
         }
@@ -116,36 +116,36 @@ public class OtherRechargeModule {
         String sign = request.getParameter("sign");
 
         if (StringUtils.isEmpty(server_id)) {
-            logger.error("服务器id为空 查询失败");
-            return this.outResultFailure(7, "服务器id为空 查询失败");
+            logger.error("ID сервера пуст, запрос не выполнен");
+            return this.outResultFailure(7, "ID сервера пуст, запрос не выполнен");
         }
 
         if (StringUtils.isEmpty(sign)) {
-            logger.error("校验码为空");
-            return this.outResultFailure(8, "校验码为空");
+            logger.error("Контрольная сумма пуста");
+            return this.outResultFailure(8, "Контрольная сумма пуста");
         }
 
         String newSignString = RechargeUtil.buildMd5String("server_id", server_id, "role_id", role_id, "goods_md5", goods_md5, "pay_type", payTypeStr, "pay_channel", pay_channel);
         if (!RechargeUtil.isSignOK(newSignString, sign)) {
-            logger.error("md5校验失败");
-            return this.outResultFailure(9, "md5校验失败");
+            logger.error("Ошибка проверки MD5");
+            return this.outResultFailure(9, "Ошибка проверки MD5");
         }
 
         int serverId = Integer.parseInt(server_id);
         int finalServerId = QueryUtil.getInstance().getHeFuId(serverId);
         Server dblog = QueryUtil.getInstance().getFinalHeFuDB(serverId);
         if (dblog == null) {
-            return this.outResultFailure(12, "server not found");
+            return this.outResultFailure(12, "Сервер не найден");
         }
         if (StringUtils.isEmpty(role_id)) {
-            logger.error("角色id为空 查询失败");
-            return this.outResultFailure(11, "角色id为空 查询失败");
+            logger.error("ID персонажа пуст, запрос не выполнен");
+            return this.outResultFailure(11, "ID персонажа пуст, запрос не выполнен");
         }
         long playerId;
         try {
             playerId = role_id.matches("[0-9]+") ? Long.parseLong(role_id) : Long.parseLong(role_id, 36);
         } catch (Exception e) {
-            return this.outResultFailure(11, "输入查询参数错误");
+            return this.outResultFailure(11, "Ошибка в параметре запроса");
         }
 
         String roleSqlStr = "SELECT * FROM $table WHERE roleId = @roleId";
@@ -154,16 +154,16 @@ public class OtherRechargeModule {
             roles = queryRoleState(dblog, roleSqlStr, "roleId", playerId);
         } catch (Exception e) {
             e.printStackTrace();
-            return this.outResultFailure(11, "连接数据库失败");
+            return this.outResultFailure(11, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
-            return this.outResultFailure(11, "无角色");
+            return this.outResultFailure(11, "Персонаж не найден");
         }
 
         TreeMap<Integer, RechargeItemInfo> rechargemMap = RechargeItemManager.getInstance().getRechargeItemInfoMap();
         if (rechargemMap.isEmpty()) {
-            logger.error("充值配置不存在");
-            return this.outResultFailure(11, "充值配置不存在");
+            logger.error("Конфигурация пополнения отсутствует");
+            return this.outResultFailure(11, "Конфигурация пополнения отсутствует");
         }
 
         //判断md5是否修改
@@ -180,14 +180,14 @@ public class OtherRechargeModule {
         try {
             Server server = dao.fetch(Server.class, Cnd.where("serverId", "=", finalServerId));
             if (server == null) {
-                logger.error(serverId + "服获取连接失败！");
-                return this.outResultFailure(11, "服获取连接失败！");
+                logger.error("Сервер " + serverId + " не найден!");
+                return this.outResultFailure(11, "Сервер не найден!");
             }
             //向游戏服请求角色可购买商品列表（游戏服只会返回玩家达到可购买条件的充值商品，包括次数上限也会检查）
             NutMap httpResultMap = GameServerRequestUtil.gmGetRoleRechargeItem(server, playerId, "0");
             if (!httpResultMap.getBoolean("ok")) {
-                logger.error(serverId + "服,获取角色可购买商品失败！操作结果：" + httpResultMap.get("data").toString());
-                return this.outResultFailure(11, "无法从游戏服获取角色可购买商品");
+                logger.error("Сервер " + serverId + ": ошибка получения доступных товаров! Результат: " + httpResultMap.get("data").toString());
+                return this.outResultFailure(11, "Не удалось получить доступные товары с игрового сервера");
             }
             serverRechargeMap = JsonUtils.parseObject(httpResultMap.get("data").toString(), new TypeReference<HashMap<Integer, HashMap<Integer, Integer>>>() {
             });
@@ -197,7 +197,7 @@ public class OtherRechargeModule {
                 //不在APIServer充值缓存中
                 RechargeItemInfo rii = rechargemMap.get(rechargeItemId);
                 if (rii == null) {
-                    logger.error("APIServer缓存中不存在充值ID:" + rechargeItemId);
+                    logger.error("APIServer: в кеше отсутствует ID пополнения: " + rechargeItemId);
                     continue;
                 }
 
@@ -215,8 +215,8 @@ public class OtherRechargeModule {
                 resultMap.put(rechargeItemId, rechargemMap.get(rechargeItemId));
             }
         } catch (Exception e) {
-            logger.error(serverId + "服获取角色可购买商品失败！" , e);
-            return this.outResultFailure(11, "无法从游戏服获取角色可购买商品");
+            logger.error("Сервер " + serverId + ": ошибка получения доступных товаров!", e);
+            return this.outResultFailure(11, "Не удалось получить доступные товары с игрового сервера");
         }
 
         //购买日志
@@ -263,34 +263,34 @@ public class OtherRechargeModule {
         String sign = request.getParameter("sign");
         String newSignString = RechargeUtil.buildMd5String("server_id", server_id, "role_id", role_id, "goods_id", goods_id);
         if (!RechargeUtil.isSignOK(newSignString, sign)) {
-            logger.error("md5校验失败");
-            return this.outResultFailure(9, "md5校验失败");
+            logger.error("Ошибка проверки MD5");
+            return this.outResultFailure(9, "Ошибка проверки MD5");
         }
 
         if (StringUtils.isEmpty(server_id)) {
-            logger.error("服务器id为空 查询失败");
-            return this.outResultFailure(11, "服务器id为空 查询失败");
+            logger.error("ID сервера пуст, запрос не выполнен");
+            return this.outResultFailure(11, "ID сервера пуст, запрос не выполнен");
         }
         int serverId = Integer.parseInt(server_id);
         Server dblog = QueryUtil.getInstance().getFinalHeFuDB(serverId);
         if (dblog == null) {
-            logger.error("server not found");
-            return this.outResultFailure(12, "server not found");
+            logger.error("Сервер не найден");
+            return this.outResultFailure(12, "Сервер не найден");
         }
         if (StringUtils.isEmpty(role_id)) {
-            logger.error("角色id为空 查询失败");
-            return this.outResultFailure(13, "角色id为空 查询失败");
+            logger.error("ID персонажа пуст, запрос не выполнен");
+            return this.outResultFailure(13, "ID персонажа пуст, запрос не выполнен");
         }
         if (StringUtils.isEmpty(goods_id)) {
-            logger.error("商品id为空 查询失败");
-            return this.outResultFailure(14, "商品id为空 查询失败");
+            logger.error("ID товара пуст, запрос не выполнен");
+            return this.outResultFailure(14, "ID товара пуст, запрос не выполнен");
         }
         long playerId;
         try {
             playerId = role_id.matches("[0-9]+") ? Long.parseLong(role_id) : Long.parseLong(role_id, 36);
         } catch (Exception e) {
-            logger.error("输入查询参数错误");
-            return this.outResultFailure(15, "输入查询参数错误");
+            logger.error("Ошибка в параметре запроса");
+            return this.outResultFailure(15, "Ошибка в параметре запроса");
         }
 //        String version = request.getParameter("version");
 //        if(StringUtils.isEmpty(version)){
@@ -303,29 +303,29 @@ public class OtherRechargeModule {
             roles = queryRoleState(dblog, roleSqlStr, "roleId", playerId);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("连接数据库失败");
-            return this.outResultFailure(16, "连接数据库失败");
+            logger.error("Ошибка подключения к базе данных");
+            return this.outResultFailure(16, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
-            logger.error("无角色");
-            return this.outResultFailure(17, "无角色");
+            logger.error("Персонаж не найден");
+            return this.outResultFailure(17, "Персонаж не найден");
         }
         Map<Integer, RechargeItemInfo> allRechargeItemMap = RechargeItemManager.getInstance().getRechargeItemInfoMap();
         if (allRechargeItemMap == null || allRechargeItemMap.size() == 0) {
-            logger.error("充值配置不存在");
-            return this.outResultFailure(18, "充值配置不存在");
+            logger.error("Конфигурация пополнения отсутствует");
+            return this.outResultFailure(18, "Конфигурация пополнения отсутствует");
         }
         int goodsId = Integer.parseInt(goods_id);
         if (!allRechargeItemMap.containsKey(goodsId)) {
-            logger.error("充值id不存在");
-            return this.outResultFailure(18, "充值id不存在");
+            logger.error("ID пополнения не найден");
+            return this.outResultFailure(18, "ID пополнения не найден");
         }
         //当前商品配置
         RechargeItemInfo rechargeItem = allRechargeItemMap.get(goodsId);
         //不在APIServer充值缓存中
         if (rechargeItem == null) {
-            logger.error("APIServer缓存中不存在充值ID:" + goodsId);
-            return this.outResultFailure(18, "APIServer缓存中不存在充值ID:" + goodsId);
+            logger.error("APIServer: в кеше отсутствует ID пополнения: " + goodsId);
+            return this.outResultFailure(18, "APIServer: в кеше отсутствует ID пополнения: " + goodsId);
         }
         //所有购买日志集合 (按照商品id 分类)
 //        Map<Integer, List<Map<String, Object>>> rechargeItemLogByGoodIdMap = this.getRechargeItemLogByGoodIdMap(dblog, playerId);
@@ -335,19 +335,19 @@ public class OtherRechargeModule {
             int finalServerId = QueryUtil.getInstance().getHeFuId(serverId);
             Server server = dao.fetch(Server.class, Cnd.where("serverId", "=", finalServerId));
             if (server == null) {
-                logger.error(serverId + "服获取连接失败！");
-                return this.outResultFailure(11, "服获取连接失败！");
+                logger.error("Сервер " + serverId + " не найден!");
+                return this.outResultFailure(11, "Сервер не найден!");
             }
             //向游戏服请求角色可购买商品列表（游戏服只会返回玩家达到可购买条件的充值商品，包括次数上限也会检查）
             NutMap httpResultMap = GameServerRequestUtil.gmGetRoleRechargeItem(server, playerId, goods_id);
             if (!httpResultMap.getBoolean("ok")) {
-                logger.error(serverId + "服,检查是否可购买失败！操作结果：" + httpResultMap.get("data").toString());
-                return this.outResultFailure(11, "无法从游戏服检查是否可购买");
+                logger.error("Сервер " + serverId + ": ошибка проверки возможности покупки! Результат: " + httpResultMap.get("data").toString());
+                return this.outResultFailure(11, "Не удалось проверить возможность покупки на игровом сервере");
             }
             canBuy = true;
         } catch (Exception e) {
-            logger.error(serverId + "服检查是否可购买失败！error：" + e.getMessage());
-            return this.outResultFailure(11, "无法从游戏服检查是否可购买");
+            logger.error("Сервер " + serverId + ": ошибка проверки возможности покупки! Ошибка: " + e.getMessage());
+            return this.outResultFailure(11, "Не удалось проверить возможность покупки на игровом сервере");
         }
 
         //获取物品购买次数
@@ -530,7 +530,7 @@ public class OtherRechargeModule {
         commonData.put("success", true);
         commonData.put("result_code", 200);
         commonData.put("data", data);
-        commonData.put("msg", "成功");
+        commonData.put("msg", "Успешно");
         commonData.put("time", DateUtil.getDate(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss"));
         String md5Sign = RechargeUtil.buildMd5String(commonData);
         String md5 = MD5Util.MD5(md5Sign).toLowerCase();

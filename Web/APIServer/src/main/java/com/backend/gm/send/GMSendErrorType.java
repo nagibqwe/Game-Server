@@ -2,10 +2,10 @@ package com.backend.gm.send;
 
 public enum GMSendErrorType {
 
-    CONNECT(-9999, "socket连接错误"),
-    SEND(-999, "socket发送错误"),
-    RECEIVE(-99, "socket接收错误"),
-    PARSE(-9, "解析返回值错误");
+    CONNECT(-9999, "Ошибка подключения сокета"),
+    SEND(-999, "Ошибка отправки через сокет"),
+    RECEIVE(-99, "Ошибка получения через сокет"),
+    PARSE(-9, "Ошибка парсинга ответа");
 
 
     private int code;

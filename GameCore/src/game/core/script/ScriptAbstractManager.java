@@ -132,7 +132,7 @@ public abstract class ScriptAbstractManager {
                                 }
                                 scripts.put(scriptBean.getId(), scriptBean);
                                 checkScripts.put(className, scriptBean);
-                                logger.error("热更新加载 脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName());
+                                logger.error("Горячая перезагрузка: скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName());
                             }
                             continue;
                         }
@@ -147,13 +147,13 @@ public abstract class ScriptAbstractManager {
                             if(scriptBean.getScript() instanceof IRunScript){
                                 runScripts.add((IRunScript) scriptBean.getScript());
                             }
-                            logger.info("热更新reload 脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName());
+                            logger.info("Горячая перезагрузка: скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName());
                         }
                     }
                 }
                 runScripts.stream().forEach(a->{
                     a.reload();
-                    logger.info("脚本id：" + a.getId() + " 脚本名：" + a.getClass().getSimpleName() +" execute reload()");
+                    logger.info("Скрипт ID: " + a.getId() + ", имя: " + a.getClass().getSimpleName() + " — выполнен перезагрузка (reload())");
                 });
             }
 
@@ -176,7 +176,7 @@ public abstract class ScriptAbstractManager {
 
         IScript script = scriptBean.getScript();
         if (script == null) {
-            logger.error("脚本ID：" + scriptId + ", 没有找到具体的实现类，请注意！");
+            logger.error("Скрипт ID: " + scriptId + ", реализующий класс не найден. Обратите внимание!");
         }
         return script;
     }
@@ -196,7 +196,7 @@ public abstract class ScriptAbstractManager {
         }
         IScript script = scriptBean.getScript();
         if (script == null) {
-            logger.error("脚本ID：" + scriptId + ", 没有找到具体的实现类，请注意！");
+            logger.error("Скрипт ID: " + scriptId + ", реализующий класс не найден. Обратите внимание!");
         }
         return script.call(args);
     }
@@ -236,14 +236,14 @@ public abstract class ScriptAbstractManager {
     public final synchronized boolean reload(int scriptId) throws FileNotFoundException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         ScriptBean scriptBean = scripts.get(scriptId);
         if (scriptBean == null) {
-            logger.info("脚本id：" + scriptId + " 脚本刷新失败，脚本不存在");
+            logger.info("Скрипт ID: " + scriptId + " — перезагрузка не удалась, скрипт не существует");
             return false;
         }
         if (makeScript(scriptBean)) {
-            logger.info("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName() + " 脚本刷新成功");
+            logger.info("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName() + " — перезагрузка успешна");
             return true;
         }
-        logger.info("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName() + " 脚本刷新失败，生成scriptBean失败");
+        logger.info("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName() + " — перезагрузка не удалась, ошибка создания ScriptBean");
         return false;
     }
 
@@ -261,17 +261,17 @@ public abstract class ScriptAbstractManager {
     public final synchronized boolean loadNew(int scriptId, String className) throws FileNotFoundException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         ScriptBean scriptBean = scripts.get(scriptId);
         if (scriptBean != null) {
-            logger.info("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName() + " 加载新脚本失败，脚本已存在");
+            logger.info("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName() + " — загрузка нового скрипта не удалась, скрипт уже существует");
             return false;
         }
         scriptBean = new ScriptBean();
         scriptBean.setName(className);
         if (makeScript(scriptBean)) {
-            logger.info("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName() + " 脚本新增成功");
+            logger.info("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName() + " — новый скрипт успешно добавлен");
             scripts.put(scriptId, scriptBean);
             return true;
         }
-        logger.info("脚本id：" + scriptId + " 脚本名：" + className + " 加载新脚本失败，生成scriptBean失败");
+        logger.info("Скрипт ID: " + scriptId + ", имя: " + className + " — загрузка нового скрипта не удалась, ошибка создания ScriptBean");
         return false;
     }
 
@@ -294,7 +294,7 @@ public abstract class ScriptAbstractManager {
             if(res && scriptBean.getScript() instanceof IRunScript){
                 IRunScript script =  ((IRunScript) scriptBean.getScript());
                 script.reload();
-                logger.info("脚本id：" + script.getId() + " 脚本名：" + script.getClass().getSimpleName() +" execute reload()");
+                logger.info("Скрипт ID: " + script.getId() + ", имя: " + script.getClass().getSimpleName() + " — выполнен перезагрузка (reload())");
             }
             return res;
         } catch (Exception e) {
@@ -317,7 +317,7 @@ public abstract class ScriptAbstractManager {
      */
     private boolean makeScript(ScriptBean scriptBean, File f, boolean isNeedLog) {
         try {
-            logger.info("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName() + ";fullJavaFilePath:" + f.getAbsolutePath() + " begin makeScript");
+            logger.info("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName() + "; полный путь: " + f.getAbsolutePath() + " — начало makeScript");
             if (f.isFile() && f.canRead()) {
                 Class<?> clazz;
                 try (InputStream inStream = new FileInputStream(f)) {
@@ -384,24 +384,24 @@ public abstract class ScriptAbstractManager {
                         if(scriptBean.getScript() instanceof IRunScript){
                             runScripts.add((IRunScript) scriptBean.getScript());
                         }
-                        logger.info("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName() + " init reload success");
+                        logger.info("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName() + " — инициализация и перезагрузка успешны");
                     }else{
-                        logger.error("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName() + " init reload failed");
+                        logger.error("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName() + " — инициализация и перезагрузка не удалась");
                         System.exit(-1);
                     }
                 }
             }
             if (scripts.containsKey(scriptBean.getId())) {
-                logger.error("脚本id：" + scriptBean.getId() + "重复；脚本名1：" + scriptBean.getName() + ";脚本id2：" + scripts.get(scriptBean.getId()).getName());
+                logger.error("Скрипт ID: " + scriptBean.getId() + " дублируется; имя1: " + scriptBean.getName() + "; имя2: " + scripts.get(scriptBean.getId()).getName());
                 System.exit(-1);
             }
 
             scripts.put(scriptBean.getId(), scriptBean);
-            logger.info("脚本id：" + scriptBean.getId() + " 脚本名：" + scriptBean.getName());
+            logger.info("Скрипт ID: " + scriptBean.getId() + ", имя: " + scriptBean.getName());
         }
         runScripts.stream().forEach(a->{
             a.reload();
-            logger.info("脚本id：" + a.getId() + " 脚本名：" + a.getClass().getSimpleName() +" execute reload()");
+            logger.info("Скрипт ID: " + a.getId() + ", имя: " + a.getClass().getSimpleName() + " — выполнен перезагрузка (reload())");
         });
     }
 

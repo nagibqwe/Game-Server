@@ -35,7 +35,7 @@ public class RMessageWorkHandler implements WorkHandler<MessageEvent>, EventHand
             if (dic != null) {
                 msg.action();
             } else {
-                logger.error("找不到处理此协议的消息ID:" + msg.getId());
+                logger.error("Не найден обработчик для ID сообщения: " + msg.getId());
             }
         } catch (Exception e) {
             logger.error(e, e);

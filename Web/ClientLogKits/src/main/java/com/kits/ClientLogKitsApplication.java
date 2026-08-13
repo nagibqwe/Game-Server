@@ -16,6 +16,6 @@ public class ClientLogKitsApplication
     {
         // System.setProperty("spring.devtools.restart.enabled", "false");
         SpringApplication.run(ClientLogKitsApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  客户端日志工具启动成功   ლ(´ڡ`ლ)ﾞ  ");
+        System.out.println("(♥◠‿◠)ﾉﾞ Инструмент логирования клиента запущен успешно ლ(´ڡ`ლ)ﾞ");
     }
 }

@@ -14,9 +14,9 @@
 
     <openTime openTime="2023-05-12 00:00:00"/>
 
-    <heartHttp host="http://157.22.200.3:8080/APIServer/serverstate/checkstate?"/>
+    <heartHttp host="http://94.250.249.128:8080/APIServer/serverstate/checkstate?"/>
 
-    <errorlog http="http://157.22.200.3:8080/APIServer"/>
+    <errorlog http="http://94.250.249.128:8080/APIServer"/>
 
     <login-data verifyUrl="http://tzj-xpt.iwgame.cc/usr/vtk.do"/>
 
@@ -29,7 +29,7 @@
     <!--是否审核服-->
     <isShenHe isShenHe="0"/>
 
-    <public publicIp="157.22.200.3" publicPort="9200"/>
+    <public publicIp="94.250.249.128" publicPort="9200"/>
 
     <serverInfo serverName="gameserver" port="9101" serverId="1001" platfrom="cn" lsId="1"/><!--TET-->
 
@@ -39,7 +39,7 @@
     <serverOrderUrl serverOrderUrl="http://tzj-xpt.iwgame.cc/pay/gid.do"/>
 	
     <!--充值发货回调地址IP-->
-    <rechargeNotifyUrl rechargeNotifyUrl="http://157.22.200.3:8989/"/>
+    <rechargeNotifyUrl rechargeNotifyUrl="http://94.250.249.128:8989/"/>
 
     <!--充值端口-->
     <recharge rechargePort="8190"/>
@@ -73,5 +73,5 @@
     <isrebate isrebate = "0" />
 
     <!--本服游戏服IP，不配置就程序自动获取 -->
-    <gameServerIp gameServerIp="157.22.200.3"/>
+    <gameServerIp gameServerIp="94.250.249.128"/>
 </server>

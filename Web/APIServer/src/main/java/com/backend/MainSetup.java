@@ -56,7 +56,7 @@ public class MainSetup implements Setup{
         int interval = ServerKeyUtil.getKey("AutoOpenInterval").equals("")?5:Integer.parseInt(ServerKeyUtil.getKey("AutoOpenInterval"));
         taskTimer.startAutoOpenServerTask(interval);
 
-        log.error("--------------------APIServer启动完成！--------------------");
+        log.error("--------------------APIServer запущен！--------------------");
 	}
 
     @Override

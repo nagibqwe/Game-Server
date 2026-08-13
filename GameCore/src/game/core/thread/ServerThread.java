@@ -43,8 +43,8 @@ public class ServerThread extends Thread
         this.threadName = threadName;
         this.timer = timerThread;
         this.setUncaughtExceptionHandler((t, e) -> {
-            log.error(t.getName() + "不知道的异常进程异常挂掉" + e, e);
-            ScriptManager.getInstance().error(t.getName() + "  serverThread error 不知道的异常进程异常挂掉了！", Arrays.toString(e.getStackTrace()));
+            log.error(t.getName() + " — неизвестное исключение, поток аварийно завершён " + e, e);
+            ScriptManager.getInstance().error(t.getName() + "  serverThread error: неизвестное исключение, поток аварийно завершён!", Arrays.toString(e.getStackTrace()));
             stop = true;
             command_queue.clear();
         });
@@ -88,8 +88,8 @@ public class ServerThread extends Thread
                         }
                     }
                 } catch (Exception e) {
-                    log.error("线程在处理消息是出异常" + command.getClass().getSimpleName() + e, e);
-                    ScriptManager.getInstance().error("  serverThread 线程在处理消息是出异常！" + command.getClass().getSimpleName(), Arrays.toString(e.getStackTrace()));
+                    log.error("Ошибка при обработке сообщения в потоке: " + command.getClass().getSimpleName() + e, e);
+                    ScriptManager.getInstance().error(" serverThread: ошибка при обработке сообщения в потоке! " + command.getClass().getSimpleName(), Arrays.toString(e.getStackTrace()));
                 }
             }
         }

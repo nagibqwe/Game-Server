@@ -53,7 +53,7 @@ public class CrossManager {
     private Dao dao;
 
     public void init(Dao dao) {
-        log.info("初始化跨服相关信息————————————————————————————————");
+        log.info("Инициализация информации о кросс-сервере ————————————————————————————————");
         this.dao = dao;
         reloadAll();
     }
@@ -84,7 +84,7 @@ public class CrossManager {
             }
             map.put(groupName, serverList);
         }
-        log.info("t_server" + "表中serverType=" + serverType + "的信息加载完成,共" + map.size() + "条数据");
+        log.info("Загрузка данных из таблицы t_server с serverType=" + serverType + " завершена, всего записей: " + map.size());
 }
 
     private void loadDB(int serverType, Map<String, List<Server>> map) {
@@ -101,7 +101,7 @@ public class CrossManager {
                 dblogMap.put(dblog.getServerId(), dblog);
             }
         }
-        log.info("t_dblog" + "表中serverType=" + serverType + "的信息加载完成,共" + map.size() + "条数据");
+        log.info("Загрузка данных из таблицы t_dblog с serverType=" + serverType + " завершена, всего записей: " + map.size());
     }
 
     private List<String> getGroupInfo(String table, int serverType) {

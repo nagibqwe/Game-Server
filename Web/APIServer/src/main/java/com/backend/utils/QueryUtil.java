@@ -76,7 +76,7 @@ public class QueryUtil {
 
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            log.error("在t_dblog表中未找到serverId=" + serverId);
+            log.error("В таблице t_dblog не найден serverId:" + serverId);
             return null;
         }
 
@@ -96,7 +96,7 @@ public class QueryUtil {
         List<Server> dbList = new ArrayList<>();
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            log.error("未找到serverId=" + serverId + "的server");
+            log.error("Сервер с serverId=" + serverId + " не найден");
             return dbList;
         }
 
@@ -106,7 +106,7 @@ public class QueryUtil {
         String ids = idSet.toString().replaceAll("[\\[\\] ]", "");
         List<Server> list = getHeFuDBLogList(ids);
         if (list.isEmpty()) {
-            log.error("未找到ids=" + ids + "的dblog");
+            log.error("Не найдена dblog-запись с ids=" + ids);
             return dbList;
         }
         dbList.addAll(list);
@@ -147,14 +147,14 @@ public class QueryUtil {
             server = CrossManager.getInstance().getDB(serverId);
         }
         if (server == null) {
-            log.error("未找到serverId=" + serverId + "的server");
+            log.error("Сервер с serverId=" + serverId + " не найден");
             return dbList;
         }
 
         checkHeFuServer(server, dbList, sTime, eTime);
 
         if (dbList.isEmpty()) {
-            log.error("未找到合服的dblog");
+            log.error("Не найдена dblog-запись для объединённого сервера");
             return dbList;
         }
         return dbList;

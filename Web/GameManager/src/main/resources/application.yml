@@ -17,11 +17,11 @@ gm:
   # gameID
   gameID: 1001
   # APIServer连接地址
-  APIServerUrl: http://157.22.200.3:8080/APIServer
+  APIServerUrl: http://94.250.249.128:8080/APIServer
   #合服-文件保存位置
   hefudir: /data/game/gm/hefudir
   #合服-更新服务器配置
-  platUpdateUrl: http://157.22.200.3:8080/PlatformKits/serverListConfig/server/refreshServer
+  platUpdateUrl: http://94.250.249.128:8080/PlatformKits/serverListConfig/server/refreshServer
 
 # 开发环境配置
 server:

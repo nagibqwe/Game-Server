@@ -55,7 +55,7 @@ public class ClientHandlerAdapter extends SimpleChannelInboundHandler<RMessage> 
         if (ctxCache.contains(ctx)) {
             ctxCache.remove(ctx);
         }
-        log.info(ctx.channel().remoteAddress() + "　连接关闭！");
+        log.info(ctx.channel().remoteAddress() + " Соединение закрыто!");
     }
 
     private static final Logger log = LogManager.getLogger(ClientHandlerAdapter.class);
@@ -63,9 +63,9 @@ public class ClientHandlerAdapter extends SimpleChannelInboundHandler<RMessage> 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         if (cause instanceof ReadTimeoutException) {
-            log.error(ctx.channel().remoteAddress() + "　远程连接30秒验证超时，关闭了！");
+            log.error(ctx.channel().remoteAddress() + " Время ожидания проверки удалённого соединения истекло (30 секунд), соединение закрыто!");
         } else {
-            log.error(ctx.channel().remoteAddress() + " ClientHandlerAdapter 远程关闭了！");
+            log.error(ctx.channel().remoteAddress() + " Удалённое соединение закрыто ClientHandlerAdapter!");
         }
 //        if (ctxCache.contains(ctx)) {
         //           ctxCache.remove(ctx);

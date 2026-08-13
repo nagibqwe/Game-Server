@@ -26,7 +26,7 @@ public class GameHttpServer {
      */
     public int accept(int port) {
         if (httpserver == null) {
-            httpserver = new SocketServer("登录HTTP服务", port);
+            httpserver = new SocketServer("HTTP-сервис входа", port);
         }
 
         httpserver.start(new HttpChannelImpl());

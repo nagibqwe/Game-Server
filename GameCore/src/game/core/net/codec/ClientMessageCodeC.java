@@ -97,7 +97,7 @@ public class ClientMessageCodeC extends ByteToMessageCodec<SMessage>
         int length = in.readInt();
         if (length < 1)
         {
-            log.error("当前Session 发上来的数据异常！ " + ctx + "发送了一个空包， 需要踢下线处理吗？");
+            log.error("Обнаружена аномалия в данных от сессии: " + ctx + " отправил пустой пакет. Требуется ли принудительное отключение?");
             return;
         }
 //            log.error(" buf read len =" + ableRead + "  packet len =" + length + ", get len =" + len + " readable" + in.readableBytes());
@@ -129,7 +129,7 @@ public class ClientMessageCodeC extends ByteToMessageCodec<SMessage>
 
         if (totalCode != upCode)
         {
-            String str = String.format("当前Session 发上来的数据异常！ totalCode =%d != %d", totalCode, upCode);
+            String str = String.format("Обнаружена аномалия в данных от сессии! totalCode = %d != %d", totalCode, upCode);
             log.error(str);
             //断开网络连接
 //            ctx.channel().unsafe().closeForcibly();
@@ -167,7 +167,7 @@ public class ClientMessageCodeC extends ByteToMessageCodec<SMessage>
             // 如果客户端在1秒之内发送了超过MAX_COUNT条消息, 则认为客户端在恶意刷包, 断开其连接
             log.error(ctx.channel() + " --> sendmsg:" + count + "-->close-->buffer:"
                     + ")");
-            SessionUtils.closeSession(ctx, "客户端发送的消息次数太频繁(" + count + ")" + " msgId:" + msgId);
+            SessionUtils.closeSession(ctx, "Клиент слишком часто отправляет сообщения (" + count + ")" + " msgId:" + msgId);
             return;
         }
         else
@@ -184,12 +184,12 @@ public class ClientMessageCodeC extends ByteToMessageCodec<SMessage>
                 // 是否可以忽略的消息
                 if (!ignoreMessage.contains(msgId))
                 {
-                    log.error(ctx.channel() + "时间戳出错: message id = " + msgId + ", lastTimes = " + lastTimes + ", curTimes = " + curTimes);
+                    log.error(ctx.channel() + " Ошибка временной метки: message id = " + msgId + ", lastTimes = " + lastTimes + ", curTimes = " + curTimes);
                     return;
                 }
                 else
                 {
-                    log.info(ctx.channel() + "未丢弃的过期包： message id = " + msgId + ", lastTimes = " + lastTimes + ", curTimes = " + curTimes);
+                    log.info(ctx.channel() + " Неотброшенный устаревший пакет: message id = " + msgId + ", lastTimes = " + lastTimes + ", curTimes = " + curTimes);
                 }
             }
         }
@@ -207,20 +207,20 @@ public class ClientMessageCodeC extends ByteToMessageCodec<SMessage>
             // 是否可以忽略的消息
             if (!ignoreMessage.contains(msgId))
             {
-                log.error(ctx + "包序列出错: message id = " + msgId + ", order = " + orderId + ", preOrder = " + preOrder);
-                SessionUtils.closeSession(ctx, "包序列出错");
+                log.error(ctx + " Ошибка порядка пакетов: message id = " + msgId + ", order = " + orderId + ", preOrder = " + preOrder);
+                SessionUtils.closeSession(ctx, "Ошибка порядка пакетов");
                 return;
             }
             else
             {
-                log.info(ctx + "未丢弃的错误序列包：message id = " + msgId + ", order = " + orderId + ", preOrder = " + preOrder);
+                log.info(ctx + " Неотброшенный пакет с ошибкой порядка: message id = " + msgId + ", order = " + orderId + ", preOrder = " + preOrder);
             }
         }
 
         //重新将序号加上处理
         if (orderId != preOrder)
         {
-            log.info(ctx + "出现的错误序列包：message id = " + msgId + ", order = " + orderId + ", preOrder = " + preOrder);
+            log.info(ctx + " Обнаружен пакет с ошибкой порядка: message id = " + msgId + ", order = " + orderId + ", preOrder = " + preOrder);
             preOrder = orderId;
         }
 

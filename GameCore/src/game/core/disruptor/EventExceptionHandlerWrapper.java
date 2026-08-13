@@ -23,20 +23,20 @@ public class EventExceptionHandlerWrapper<T> implements ExceptionHandler<T>
     @Override
     public void handleEventException(Throwable thrwbl, long l, T t)
     {
-        log.error("处理队列时失败了， l = " + l + " t=" + t.getClass().getSimpleName(), thrwbl);
+        log.error("Ошибка при обработке очереди: l = " + l + ", t = " + t.getClass().getSimpleName(), thrwbl);
         ScriptManager.getInstance().error(" l = " + l + " t=" + t.getClass().getSimpleName(), thrwbl.getMessage());
     }
 
     @Override
     public void handleOnStartException(Throwable thrwbl)
     {
-        log.error("队列时申请开始时失败了", thrwbl);
+        log.error("Ошибка при инициализации очереди", thrwbl);
     }
 
     @Override
     public void handleOnShutdownException(Throwable thrwbl)
     {
-        log.error("队列时结束时失败了", thrwbl);
+        log.error("Ошибка при завершении работы очереди", thrwbl);
     }
 
 }

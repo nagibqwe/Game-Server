@@ -59,7 +59,7 @@ public class ServerListManager {
     private Dao dao;
 
     public void init(Dao dao) {
-        log.info("初始化服务器相关信息————————————————————————————————");
+        log.info("Инициализация информации о сервере ————————————————————————————————");
         this.dao = dao;
         load();
     }
@@ -73,7 +73,7 @@ public class ServerListManager {
         List<Server> list = dao.query(Server.class, Cnd.where("serverType", "<", "2")
                 .and("isDeleted", "=", 0));
         if (list.isEmpty()) {
-            log.error("游戏服务器相关信息加载失败！请检查GM后台数据库中的t_server表!");
+            log.error("Ошибка загрузки информации об игровых серверах! Проверьте таблицу t_server в базе данных GM-бэкенда!");
             return;
         }
         List<Server> noHefuServerList;
@@ -106,20 +106,20 @@ public class ServerListManager {
             }
 
         }
-        log.info("所有游戏服务器连接信息加载完成,共" + allServerMap.size() + "条数据");
-        log.info("平台相关测试游戏服务器连接信息加载完成,共" + testServerListMap.size() + "条数据");
-        log.info("平台相关正式游戏服务器连接信息加载完成,共" + officialServerListMap.size() + "条数据");
+        log.info("Загрузка информации о подключениях всех игровых серверов завершена, всего записей: " + allServerMap.size());
+        log.info("Загрузка информации о подключениях тестовых игровых серверов (платформа) завершена, всего записей: " + testServerListMap.size());
+        log.info("Загрузка информации о подключениях официальных игровых серверов (платформа) завершена, всего записей: " + officialServerListMap.size());
 
         List<Server> fightList = dao.query(Server.class, Cnd.where("serverType", "=", 4)
                 .and("isDeleted", "=", 0));
         if (fightList.isEmpty()) {
-            log.error("战斗服务器相关信息加载失败！请检查GM后台数据库中的t_server表!");
+            log.error("Ошибка загрузки информации о боевых серверах! Проверьте таблицу t_server в базе данных GM-бэкенда!");
             return;
         }
         for (Server server : fightList) {
             allServerMap.put(server.getServerId(), server);
         }
-        log.info("所有游戏服务器（包括战斗服）连接信息加载完成,共" + allServerMap.size() + "条数据");
+        log.info("Загрузка информации о подключениях всех игровых серверов (включая боевые) завершена, всего записей: " + allServerMap.size());
     }
 
     public Server getServer(int key) {

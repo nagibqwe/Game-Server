@@ -19,7 +19,7 @@ public class BackGroundReLoadScripts {
         QueryStringDecoder qsd = new QueryStringDecoder(httpRequest.uri());
         List<String> param = qsd.parameters().get("secret_key");
         if (!param.get(0).equals(ServerConfig.getPrivateKey())) {
-            logger.error("后台刷新脚本失败 私密key错误");
+            logger.error("Ошибка перезагрузки скриптов через бэкенд: неверный секретный ключ");
             return "failed";
         }
         Map<Integer, String> scriptNames = new ConcurrentHashMap<>();

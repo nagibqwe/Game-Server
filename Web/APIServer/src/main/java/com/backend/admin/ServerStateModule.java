@@ -46,11 +46,11 @@ public class ServerStateModule {
         int online = ParamUtil.getInt(request, "online", 0);
 
         if (cmd.length() < 1) {
-            Toolkit.outResult(false, "没有任务的指令");
+           Toolkit.outResult(false, "Нет команд для выполнения");
         }
 
         if (serverId < 1) {
-            return Toolkit.outResult(false, "没有指定相关的服务器ID");
+            return Toolkit.outResult(false, "Не указан идентификатор сервера");
         }
 
         String serverIp = request.getHeader(StaticField.USER_REAL_IP);
@@ -117,7 +117,7 @@ public class ServerStateModule {
             dao.update(serverState);
         }
 
-        return Toolkit.outResult(true, "处理结果完成");
+        return Toolkit.outResult(true, "Обработка завершена");
     }
 
     private void insertServerNum(long now, int serverId, int online) {

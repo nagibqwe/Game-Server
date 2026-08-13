@@ -42,7 +42,7 @@ public class IPFinderManager {
         if (is instanceof IIPFinderScript) {
             return (IIPFinderScript) is;
         } else {
-            logger.info("渠道账号:没有找到执行的脚本处理！");
+            logger.info("Аккаунт канала: не найден скрипт для выполнения!");
             return null;
         }
     }

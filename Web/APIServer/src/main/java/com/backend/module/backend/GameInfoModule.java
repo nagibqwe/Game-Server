@@ -39,10 +39,10 @@ public class GameInfoModule {
         GameInfo gameInfo = dao.fetch(GameInfo.class, cnd);
         if(gameInfo!=null){
             GameInfoManager.getInstance().setGameInfo(gameInfo);
-            logger.error("更新游戏信息成功");
+            logger.error("Информация об игре обновлена успешно");
         }
 
-        return Toolkit.outResult(true, "更新游戏信息成功");
+        return Toolkit.outResult(true, "Информация об игре обновлена успешно");
     }
 
     @At

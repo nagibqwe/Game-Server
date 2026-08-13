@@ -71,7 +71,7 @@ public class ActivityManageScript implements IActivityManageScript {
         try{
             as.onReqActivityDeal(player, dataStr, actCfg);
         }catch (Exception e){
-            log.error(e+",请求操作运营活动时异常",e);
+            log.error(e+",Ошибка при выполнении операции с активностью",e);
         }
     }
 

@@ -73,11 +73,11 @@ public class BackendServer extends BaseServer
             {
                 if (future.isSuccess())
                 {
-                    log.info(serverName + "监听" + port + "成功！");
+                    log.info(serverName + " успешно запущен на порту " + port + "!");
                 }
                 else
                 {
-                    log.error(serverName + "监听" + port + "失败！退出");
+                    log.error(serverName + " не удалось запустить на порту " + port + "! Выход");
                     System.exit(1);
                 }
             }
@@ -88,7 +88,7 @@ public class BackendServer extends BaseServer
         }
         catch (InterruptedException ex)
         {
-            log.error(serverName + "监听" + port + "失败！退出");
+            log.error(serverName + " не удалось запустить на порту " + port + "! Выход");
             System.exit(1);
         }
     }
@@ -98,7 +98,7 @@ public class BackendServer extends BaseServer
     {
         if (isListen)
         {
-            log.error(serverName + "释放监听数组！");
+            log.error(serverName + " освобождение порта!");
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }

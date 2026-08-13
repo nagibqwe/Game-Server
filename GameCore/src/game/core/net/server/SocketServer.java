@@ -58,9 +58,9 @@ public class SocketServer extends BaseServer {
         isListen = true;
         f.addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                log.info(server_name + "监听" + port + "成功！");
+                log.info(server_name + " успешно запущен на порту " + port + "!");
             } else {
-                log.error(server_name + "监听" + port + "失败！退出");
+                log.error(server_name + " не удалось запустить на порту " + port + "! Выход");
                 System.exit(1);
             }
         });
@@ -69,7 +69,7 @@ public class SocketServer extends BaseServer {
         try {
             f.channel().closeFuture().sync();
         } catch (InterruptedException ex) {
-            log.error(server_name + "监听" + port + "失败！退出");
+            log.error(server_name + " не удалось запустить на порту " + port + "! Выход");
             System.exit(1);
         }
     }
@@ -77,7 +77,7 @@ public class SocketServer extends BaseServer {
     @Override
     public void stop() {
         if (isListen) {
-            log.error(server_name + "释放监听数组！");
+            log.error(server_name + " освобождение порта!");
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }
