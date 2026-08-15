@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('Список объединения')" />
+    <th:block th:include="include :: header('Список объединения серверов')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -11,39 +11,39 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>源服务器：</label>
+                                <label>Исходные серверы:</label>
                                 <input type="text" name="fromServer"/>
                             </li>
                             <li>
-                                <label>目标服务器：</label>
+                                <label>Целевой сервер:</label>
                                 <input type="text" name="toServer"/>
                             </li>
                             <li>
-                                <label>Объединение серверовСтатус</label>
+                                <label>Статус объединения:</label>
                                 <select name="status">
-                                    <option value="">所有</option>
-                                    <option value="0">新建</option>
-                                    <option value="1">合服中</option>
+                                    <option value="">Все</option>
+                                    <option value="0">Новое</option>
+                                    <option value="1">В процессе</option>
                                     <option value="2">Успешно</option>
                                     <option value="3">Ошибка</option>
                                 </select>
                             </li>
                             <li>
-                                <label>语言</label>
+                                <label>Язык:</label>
                                 <select name="language">
-                                    <option value="">所有</option>
-                                    <option value="cn">国内</option>
-                                    <option value="tw">台湾</option>
-                                    <option value="kor">韩国</option>
-                                    <option value="yn">越南</option>
-                                    <option value="thai">泰国</option>
-                                    <option value="ros">新马</option>
-                                    <option value="en">英语</option>
+                                    <option value="">Все</option>
+                                    <option value="cn">Китай</option>
+                                    <option value="tw">Тайвань</option>
+                                    <option value="kor">Корея</option>
+                                    <option value="yn">Вьетнам</option>
+                                    <option value="thai">Таиланд</option>
+                                    <option value="ros">Сингапур/Малайзия</option>
+                                    <option value="en">Английский</option>
                                 </select>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                             </li>
                         </ul>
                     </div>
@@ -55,7 +55,7 @@
                     <i class="fa fa-plus"></i> Добавить
                 </a>
                 <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:hefu:edit">
-                    <i class="fa fa-edit"></i> Изменить
+                    <i class="fa fa-edit"></i> Редактировать
                 </a>
                 <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:hefu:remove">
                     <i class="fa fa-remove"></i> Удалить
@@ -93,21 +93,21 @@
                 },
                 {
                     field: 'fromServer',
-                    title: '源服务器'
+                    title: 'Исходные серверы'
                 },
                 {
                     field: 'toServer',
-                    title: '目标服务器'
+                    title: 'Целевой сервер'
                 },
                 {
                     field: 'status',
-                    title: '合服状态0新建1合服中2成功3失败',
+                    title: 'Статус: 0 — новое, 1 — в процессе, 2 — успешно, 3 — ошибка',
                     formatter: function(value, row, index) {
                         var v = "";
                         if(value == 0){
-                            v = "新建";
+                            v = "Новое";
                         }else if(value == 1){
-                            v = "合服中";
+                            v = "В процессе";
                         }else if(value == 2){
                             v = "Успешно";
                         }else if(value == 3){
@@ -120,12 +120,12 @@
                     field: 'log',
                     title: 'Журнал',
                     formatter: function(value, row, index) {
-                        return '<a href="javascript:void(0)" onclick="showLog(' + row.id + ')">ПросмотрЖурнал</a>';
+                        return '<a href="javascript:void(0)" onclick="showLog(' + row.id + ')">Просмотр журнала</a>';
                     }
                 },
                 {
                     field: 'language',
-                    title: 'cn:国内，tw:台湾，kor:韩国，yn:越南，thai:泰国，ros:新马,en:英语'
+                    title: 'Язык: cn — Китай, tw — Тайвань, kor — Корея, yn — Вьетнам, thai — Таиланд, ros — Сингапур/Малайзия, en — Английский'
                 },
                     {
                         field: 'createTime',
@@ -136,10 +136,10 @@
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="check(\'' + row.id + '\')"><i class="fa"></i>配置检测</a> ');
-                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="bakAndRestore(\'' + row.id + '\')"><i class="fa"></i>备份与还原</a> ');
-                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="start(\'' + row.id + '\')"><i class="fa fa-hourglass-start"></i>开始</a> ');
-                        // actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="stop(\'' + row.id + '\')"><i class="fa fa-stop"></i>停止</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="check(\'' + row.id + '\')"><i class="fa"></i>Проверка конфигурации</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="bakAndRestore(\'' + row.id + '\')"><i class="fa"></i>Резервирование и восстановление</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + startFlag + '" href="javascript:void(0)" onclick="start(\'' + row.id + '\')"><i class="fa fa-hourglass-start"></i>Начать</a> ');
+                        // actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="stop(\'' + row.id + '\')"><i class="fa fa-stop"></i>Остановить</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>Удалить</a>');
                         return actions.join('');
                     }
@@ -164,7 +164,7 @@
         }
 
         function start(id){
-            $.modal.confirm("服务器是否已关闭？点击确认开始合服",function(){
+            $.modal.confirm("Серверы отключены? Нажмите \"Подтвердить\" для начала объединения",function(){
                 var checkIsHefu = prefix + "/checkIsHefu";
                 $.post(checkIsHefu,{id:id},function (data,status){
                     if(status =='success'){
@@ -208,19 +208,19 @@
         //     $.post(reloadCacheUrl,function (data,status){
         //         if(status =='success'){
         //             if(data.code == 0){
-        //                 $.modal.alertSuccess('操作成功');
+        //                 $.modal.alertSuccess('Операция выполнена');
         //             }else{
         //                 $.modal.alertError(data.msg);
         //             }
         //         }else{
-        //             $.modal.alertError('操作失败');
+        //             $.modal.alertError('Ошибка операции');
         //         }
         //     });
         // }
 
         function bakAndRestore(id){
             var bakAndRestoreUrl = prefix + "/bakAndRestore/" + id;
-            $.modal.open("备份与还原", bakAndRestoreUrl);
+            $.modal.open("Резервирование и восстановление", bakAndRestoreUrl);
         }
     </script>
 </body>

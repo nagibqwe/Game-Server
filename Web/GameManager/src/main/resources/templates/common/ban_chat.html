@@ -1,24 +1,24 @@
 <form id="banChatForm" class="form-horizontal m-t" method="post">
     <div class="form-group">
-        <label class="col-sm-3 control-label is-required" for="crimeType">违规类型:</label>
+        <label class="col-sm-3 control-label is-required" for="crimeType">Тип нарушения:</label>
         <div class="col-sm-8">
             <select class="form-control" id="crimeType" >
-                <option value="1">黑色产业(工作室、拉人和广告等)</option>
-                <option value="2">不良信息(黄赌毒等违规信息)</option>
+                <option value="1">Нелегальная деятельность (фермерство, спам и реклама и т.д.)</option>
+                <option value="2">Запрещённая информация (порнография, наркотики, азартные игры и т.д.)</option>
             </select>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-sm-3 control-label is-required" for="banType">禁言类型:</label>
+        <label class="col-sm-3 control-label is-required" for="banType">Тип блокировки:</label>
         <div class="col-sm-8">
             <select class="form-control" id="banType" >
-                <option value="1">工作室禁言</option>
-                <option value="2">全文替换禁言</option>
-                <option value="3">关键字替换禁言</option>
-                <option value="4">常规禁言</option>
-                <option value="5">隐形禁言</option>
-                <option value="6">隔离禁言</option>
+                <option value="1">Блокировка фермеров</option>
+                <option value="2">Блокировка с заменой текста</option>
+                <option value="3">Блокировка по ключевым словам</option>
+                <option value="4">Обычная блокировка</option>
+                <option value="5">Скрытая блокировка</option>
+                <option value="6">Изоляционная блокировка</option>
             </select>
         </div>
     </div>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form-group">
-        <label class="col-sm-3 control-label is-required" for="endTime">禁言时间(秒):</label>
+        <label class="col-sm-3 control-label is-required" for="endTime">Время блокировки (сек):</label>
         <div class="col-sm-8">
             <input class="form-control" id="endTime" type="text" name="endTime" placeholder="3600" required/>
         </div>
@@ -56,10 +56,10 @@ var prefix = ctx + "gmtool/banChat";
 //     $("#tableDiv").hide();
 // });
 
-//账号封禁
+// Блокировка чата для пользователя
 function banChat(successCallbak) {
     if (!$("#banChatForm").validate().form()) {
-        $.modal.msgError("Ошибка проверки");
+        $.modal.msgError("Ошибка валидации");
         return;
     }
     var selectServerStr = $("#selectServerIdHide").val();

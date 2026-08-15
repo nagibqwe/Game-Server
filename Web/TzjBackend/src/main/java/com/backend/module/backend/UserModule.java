@@ -59,7 +59,7 @@ public class UserModule {
         String whileIpStr = ServerKeyUtil.GetIP();
         List<String> loginIpList = Arrays.asList(whileIpStr.split(";"));
         if (!Strings.isBlank(whileIpStr) && !loginIpList.contains(loginIp)) {
-            BackendLogUtil.getInstance().log(request, "用户" + username + "登录失败,ip不允许访问");
+            BackendLogUtil.getInstance().log(request, "Пользователь " + username + " — ошибка входа, IP-адрес запрещён");
             return Toolkit.outResult(false, msg.get("user.useripillegal"));
         }
         User user = dao.fetch(User.class, Cnd.where("name", "=", username));
@@ -75,7 +75,7 @@ public class UserModule {
             session.setAttribute("USER", user);
             int result = dao.update(user);
             if (result < 1) {
-                log.error("用户" + user.getName() + "更新登录信息失败");
+                log.error("Ошибка обновления информации о входе для пользователя " + user.getName());
             }
 //            BlackIP blackIp = new BlackIP();
 //            blackIp.setIp(loginIp);
@@ -87,21 +87,21 @@ public class UserModule {
             return Toolkit.outResult(false, msg.get("user.userorpwdnull"));
         }
         if (user == null) {
-            BackendLogUtil.getInstance().log(request, "用户" + username + "登录失败,没有找到该用户");
+            BackendLogUtil.getInstance().log(request, "Пользователь " + username + " — ошибка входа, пользователь не найден");
             loginCounts = loginCounts + 1;
             session.setAttribute("loginCounts", loginCounts);
             return Toolkit.outResult(false, msg.get("user.usernoexist"));
         }
         if (user.getIsDeleted() == 1) {
-            BackendLogUtil.getInstance().log(request, "用户" + username + "登录失败,用户被禁用");
+            BackendLogUtil.getInstance().log(request, "Пользователь " + username + " — ошибка входа, пользователь заблокирован");
             return Toolkit.outResult(false, msg.get("user.userisdeleted"));
         }
 //        if (!Strings.isBlank(loginIp) && blackIpStr.contains(loginIp)) {
-//            BackendLogUtil.getInstance().log(request, "用户" + username + "登录失败,IP为" + loginIp + "被禁用");
+//            BackendLogUtil.getInstance().log(request, "Пользователь " + username + " — ошибка входа, IP " + loginIp + " запрещён");
 //            return Toolkit.outResult(false, msg.get("user.ipforbid"));
 //        }
         if (!PasswordUtil.toHex(password, user.getSalt()).equals(user.getPassword())) {
-            BackendLogUtil.getInstance().log(request, "用户" + username + "登录失败,密码错误");
+            BackendLogUtil.getInstance().log(request, "Пользователь " + username + " — ошибка входа, неверный пароль");
             loginCounts = loginCounts + 1;
             session.setAttribute("loginCounts", loginCounts);
             return Toolkit.outResult(false, msg.get("user.pwderror"));
@@ -115,13 +115,13 @@ public class UserModule {
         session.setAttribute("USER", user);
         int result = dao.update(user);
         if (result < 1) {
-            log.error("用户" + user.getName() + "更新登录信息失败");
+            log.error("Ошибка обновления информации о входе для пользователя " + user.getName());
         }
         Mvcs.setLocalizationKey(user.getLanguage());
         List<Integer> userMenus = getUserMenu(user.getId());
         session.setMaxInactiveInterval(24 * 60 * 60);
         session.setAttribute("USERMENUS", userMenus);
-        BackendLogUtil.getInstance().log(request, "用户登录成功:" + username);
+        BackendLogUtil.getInstance().log(request, "Пользователь " + username + " успешно вошёл в систему");
         return Toolkit.outResult(true);
     }
 
@@ -151,7 +151,7 @@ public class UserModule {
         addUserInfo.setCreateTime(new Date());
         addUserInfo.setUpdateTime(new Date());
         addUserInfo = dao.insert(addUserInfo);
-        BackendLogUtil.getInstance().log(request, "添加用户");
+        BackendLogUtil.getInstance().log(request, "Добавление пользователя");
         return Toolkit.outResult(true, addUserInfo);
     }
 
@@ -165,13 +165,13 @@ public class UserModule {
         String salt = R.sg(5).next();
         updateUserInfo.setSalt(salt);
         updateUserInfo.setPassword(PasswordUtil.toHex(updateUserInfo.getPassword(), salt));
-        updateUserInfo.setName(null);// 不允许更新用户名
-        updateUserInfo.setCreateTime(null);//也不允许更新创建时间
-        updateUserInfo.setUpdateTime(new Date());// 设置正确的更新时间
+        updateUserInfo.setName(null); // Имя пользователя нельзя обновлять
+        updateUserInfo.setCreateTime(null); // Время создания тоже нельзя обновлять
+        updateUserInfo.setUpdateTime(new Date()); // Установка правильного времени обновления
         updateUserInfo.setIp(null);
         updateUserInfo.setLanguage(null);
-        dao.updateIgnoreNull(updateUserInfo);// 真正更新的其实只有password和salt
-        BackendLogUtil.getInstance().log(request, "修改用户密码");
+        dao.updateIgnoreNull(updateUserInfo); // Фактически обновляются только password и salt
+        BackendLogUtil.getInstance().log(request, "Изменение пароля пользователя");
         return Toolkit.outResult(true, msg.get("user.pwdupdatesuccess"));
     }
 
@@ -181,7 +181,7 @@ public class UserModule {
         user.setId(id);
         user.setIsDeleted(isDeleted);
         dao.update(user, "isDeleted");
-        BackendLogUtil.getInstance().log(request, "删除用户");
+        BackendLogUtil.getInstance().log(request, "Удаление пользователя");
         return Toolkit.outResult(true);
     }
 
@@ -191,7 +191,7 @@ public class UserModule {
         QueryResult qr = new QueryResult();
         List<User> userList = dao.query(User.class, cnd, pager);
         List<String> roleNameList = new ArrayList<>();
-        //得到每个用户拥有的角色
+        // Получение ролей для каждого пользователя
         for (User user : userList) {
             String getRoleSql = "";
             getRoleSql += "SELECT TR.ROLENAME FROM T_ROLE TR,T_USER_ROLE TUR ";
@@ -235,7 +235,7 @@ public class UserModule {
         user.setSalt(salt);
         user.setPassword(PasswordUtil.toHex(password, salt));
         dao.update(user);
-        BackendLogUtil.getInstance().log(request, "用户修改密码");
+        BackendLogUtil.getInstance().log(request, "Пользователь изменил пароль");
         return Toolkit.outResult(true, msg.get("user.pwdupdatesuccess"));
     }
 
@@ -253,7 +253,7 @@ public class UserModule {
         }
         if (create) {
             if (Strings.isBlank(user.getLanguage())) {
-                return "请选择语言";
+                return "Выберите язык";
             }
         }
         String password = user.getPassword().trim();
@@ -298,7 +298,7 @@ public class UserModule {
     @At
     @Ok(">>:/")
     public void logout(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "用户注销");
+        BackendLogUtil.getInstance().log(request, "Пользователь вышел из системы");
         request.getSession().invalidate();
     }
 
@@ -314,10 +314,10 @@ public class UserModule {
             request.getSession().setAttribute("USER", user);
             int result = dao.update(user);
             if (result < 1) {
-                log.error("用户" + user.getName() + "更新登录信息失败");
+                log.error("Ошибка обновления информации о входе для пользователя " + user.getName());
             }
             request.getSession().setAttribute("USER", user);
-            BackendLogUtil.getInstance().log(request, "用户切换语言：" + user.getLanguage() + ">>>" + lang);
+            BackendLogUtil.getInstance().log(request, "Пользователь переключил язык: " + user.getLanguage() + " >>> " + lang);
         }
     }
 
@@ -326,5 +326,4 @@ public class UserModule {
     @Ok(">>:/noauthority.jsp")
     public void noauthority() {
     }
-
 }

@@ -55,30 +55,29 @@ public class MenuModule {
     @At
     public Object add(@Param("..") Menu menu, HttpServletRequest request) {
         if (Strings.isBlank(menu.getMenuName())) {
-            return Toolkit.outResult(false, "菜单名不能为空");
+            return Toolkit.outResult(false, "Название меню не может быть пустым");
         }
         menu = dao.insert(menu);
-        BackendLogUtil.getInstance().log(request, "添加菜单" + menu.getMenuId());
+        BackendLogUtil.getInstance().log(request, "Добавление меню " + menu.getMenuId());
         return Toolkit.outResult(true, menu);
     }
 
     @At
     public Object update(@Param("..") Menu menu, HttpServletRequest request) {
         dao.updateIgnoreNull(menu);
-        BackendLogUtil.getInstance().log(request, "修改菜单" + menu.getMenuId());
+        BackendLogUtil.getInstance().log(request, "Изменение меню " + menu.getMenuId());
         return Toolkit.outResult(true);
     }
 
     @At
     public Object delete(int menuId, HttpServletRequest request) {
         dao.delete(Menu.class, menuId);
-        BackendLogUtil.getInstance().log(request, "删除菜单" + menuId);
+        BackendLogUtil.getInstance().log(request, "Удаление меню " + menuId);
         return Toolkit.outResult(true);
-
     }
 
     @At
-    public Object query(String menuName,@Param("..") Pager pager) {
+    public Object query(String menuName, @Param("..") Pager pager) {
         Map<String, String> langMap = Mvcs.getMessages(Mvcs.getReq());
         Cnd cnd = Cnd.NEW();
 //        if (!Strings.isBlank(menuName)) {
@@ -139,5 +138,4 @@ public class MenuModule {
             return Toolkit.outResult(true, menus);
         }
     }
-
 }

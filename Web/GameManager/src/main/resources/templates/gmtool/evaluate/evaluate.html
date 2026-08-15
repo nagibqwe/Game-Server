@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('评价开关列表')" />
+    <th:block th:include="include :: header('Управление оценками')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -10,23 +10,23 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Оценки включены</h5>
+                    <h5>Управление оценками</h5>
                 </div>
                 <div class="ibox-content">
                     <form id="evaluateForm" class="form-horizontal m-t" method="post">
 
                         <div class="form-group">
                             <div th:replace="common/select_server_single.html"></div>
-                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                             <input type="hidden" id="requestUrl" value="gameServer">
                             <input type="hidden" id="ignoreMerge" value="1">
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label is-required" for="select_eType">评价类型:</label>
+                            <label class="col-sm-2 control-label is-required" for="select_eType">Тип оценки:</label>
                             <div class="col-sm-2">
                                 <select id="select_eType" name="eType" class="selectClass">
-                                    <option value="1">点赞</option>
-                                    <option value="2">分享</option>
+                                    <option value="1">Лайк</option>
+                                    <option value="2">Поделиться</option>
                                 </select>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                             <div class="col-sm-3">
                                 <label class="radio inline" style="margin-left: 20px">
                                     <input value="0" name="state" type="radio"/>
-                                    Закрыть
+                                    Выключено
                                 </label>
                                 <label class="radio inline" style="margin-left: 30px">
                                     <input value="1" name="state" type="radio"/>
@@ -46,13 +46,13 @@
                         <div class="form-group">
                             <label for="reason" class="col-sm-2 control-label is-required">Причина:</label>
                             <div class="col-sm-2">
-                                <input id="reason" type="text" name="reason" class="form-control" value="用于游戏测试" required/>
+                                <input id="reason" type="text" name="reason" class="form-control" value="Для тестирования игры" required/>
                             </div>
                         </div>
                         <div class="form-group" style="margin-left: 4px">
                             <label class="col-sm-2 control-label"></label>
                             <button type="button" class="btn btn-primary" onclick="setEvaluateState()">
-                                执行操作
+                                Выполнить
                             </button>
                         </div>
 
@@ -82,11 +82,11 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "Оценки включены",
+                modalName: "Управление оценками",
                 columns: [
                 {
                     field: 'id',
-                    title: 'Номер'
+                    title: 'ID'
                 },
                 {
                     title: 'Платформа',
@@ -100,12 +100,12 @@
                 },
                 {
                     field: 'eType',
-                    title: '评价类型',
+                    title: 'Тип оценки',
                     formatter:function (value, row, index) {
                         if (value == 1){
-                            return "点赞";
+                            return "Лайк";
                         }else if (value == 2){
-                            return "分享";
+                            return "Поделиться";
                         }else {
                             return "Неизвестно";
                         }
@@ -116,9 +116,9 @@
                     title: 'Статус',
                     formatter:function (value, row, index) {
                         if (value == 0){
-                            return "false";
+                            return "Выключено";
                         }else {
-                            return "true";
+                            return "Включено";
                         }
                     }
                 },
@@ -128,7 +128,7 @@
                 },
                 {
                     field: 'actionUser',
-                    title: 'Имя оператора'
+                    title: 'Оператор'
                 },
                 {
                     title: 'Действия',
@@ -143,11 +143,11 @@
             $.table.init(options);
         });
 
-        //提交操作
+        // Отправка операции
         function setEvaluateState() {
             var select_server = $("#select_server").val();
             if (!$('#evaluateForm').validate().form()) {
-                $.modal.msgError("Ошибка проверки");
+                $.modal.msgError("Ошибка валидации");
                 return;
             }
             $.ajax({
@@ -168,7 +168,7 @@
             });
         }
 
-        //删除操作
+        // Удаление записи
         function delEvaluate(id) {
             var select_server = $("#select_server").val();
             $.ajax({

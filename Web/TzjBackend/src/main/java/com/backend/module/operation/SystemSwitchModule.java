@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 游戏功能开关
+ * Переключатели игровых функций
  */
 @IocBean
 @At("/systemSwitch")
@@ -50,12 +50,12 @@ public class SystemSwitchModule {
 
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            log.error("服务器获取失败！sid=" + serverId);
-            return Toolkit.outResult(false, "获取服务失败");
+            log.error("Ошибка получения сервера! sid=" + serverId);
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap resultMap = GameServerRequestUtil.gmGetFuncOpenList(server);
         if (!resultMap.getBoolean("ok")) {
-            log.error("服务器编号" + serverId + "反馈信息:功能列表获取失败！");
+            log.error("Сервер " + serverId + " — ошибка получения списка функций!");
             return Toolkit.outResult(false, resultMap.get("msg").toString());
         }
         List<Function> listMap = new ArrayList<>();
@@ -83,18 +83,14 @@ public class SystemSwitchModule {
     public Object switchIs(String serverId, String funcSwitch) {
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            log.error("服务器获取失败！sid=" + serverId);
-            return Toolkit.outResult(false, "获取服务失败");
+            log.error("Ошибка получения сервера! sid=" + serverId);
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap resultMap = GameServerRequestUtil.gmSwitchFunction(server, funcSwitch);
         if (!resultMap.getBoolean("ok")) {
-            log.error("功能开关操作失败！");
-            return Toolkit.outResult(false, "服务器处理失败或未作处理！");
+            log.error("Ошибка операции переключения функций!");
+            return Toolkit.outResult(false, "Сервер не обработал запрос или произошла ошибка!");
         }
-        return Toolkit.outResult(true, "处理成功！");
+        return Toolkit.outResult(true, "Операция выполнена успешно!");
     }
 }
-
-
-
-

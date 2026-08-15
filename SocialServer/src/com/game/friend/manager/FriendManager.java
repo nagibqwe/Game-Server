@@ -55,7 +55,7 @@ public class FriendManager {
         if (is instanceof IFriendScript) {
             return (IFriendScript) is;
         } else {
-            log.error("没有实现好友脚本");
+            log.error("Не реализован скрипт друзей");
             return null;
         }
     }

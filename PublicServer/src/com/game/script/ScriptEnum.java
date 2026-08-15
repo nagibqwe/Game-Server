@@ -6,39 +6,39 @@
 package com.game.script;
 
 /**
- * 脚本逻辑ID值
+ * Идентификаторы логики скриптов
  *
  * @author soko <xuchangming@haowan123.com>
  */
 public class ScriptEnum {
 
-    public static final int ServerStart = 101;//服务器启动脚本及服务器帧循环逻辑
-    public static final int GSManagerScript = 102;//服务器列表管理类
-    public static final int HttpBackScript = 103;//http后台刷新处理函数
-    public static final int ErrorLogReport = 50;//错误日志报告脚本
-    public static final int FightManagerScript = 105;//战场管理器
-    public static final int ZoneManagerScript = 106;//跨服的副本逻辑
-    public static final int GMScript = 108;
-    public static final int ZoneDealHandlerScript = 110;//跨服进入协议的处理
-    public static final int DevilFudScript = 111;   //魔王缝隙
-    public static final int FudScript = 112;   //跨服福地功能
-    public static final int PeakScript = 113;   //跨服巅峰竞技场
-    public static final int ActivityScript = 114;//跨服活动副本
-    public static final int SoulAnimalForestManagerScript = 115;//魂兽森林的脚本ID
-    public static final int ServerMatchManagerScript = 117;//服务器分组相关
-    public static final int DailyActiveScript = 118;//每日活动
-    public static final int WorldAnswerScript = 119;//跨服答题
-    public static final int NineDaysFocusedScript = 120;//九天争锋
-    public static final int GodDevilWarScript = 121;//神魔战场
-    public static final int EightDiagramsScript = 122;//8挂阵
-    public static final int AlienScript = 123;// 混沌虚空Boss副本
-    public static final int BravePeakScript = 124;//勇者之巅
-    public static final int WorldBonfireBaseScript = 125;//世界篝火
-    public static final int QuestionnaireScript = 126;//有奖问答
-    public static final int UniverseWarScript = 127;//太虚战场
-    public static final int CrossRankScript = 128;//跨服排行榜
-    public static final int CrossHorseBossScript = 129;//坐骑跨服Boss
-    public static final int CouplefightScript = 130;//仙侣对决
+    public static final int ServerStart = 101;          // Скрипт запуска сервера и логика кадрового цикла
+    public static final int GSManagerScript = 102;      // Управление списком серверов
+    public static final int HttpBackScript = 103;       // Функция обработки HTTP-бэкенда
+    public static final int ErrorLogReport = 50;        // Скрипт отчёта об ошибках в логах
+    public static final int FightManagerScript = 105;   // Менеджер полей битвы
+    public static final int ZoneManagerScript = 106;    // Логика кросс-серверных подземелий
+    public static final int GMScript = 108;             // GM-скрипт
+    public static final int ZoneDealHandlerScript = 110;// Обработка протоколов входа в кросс-сервер
+    public static final int DevilFudScript = 111;       // Разлом демона
+    public static final int FudScript = 112;            // Кросс-серверная благодатная земля
+    public static final int PeakScript = 113;           // Кросс-серверная арена «Вершина»
+    public static final int ActivityScript = 114;       // Кросс-серверное подземелье активности
+    public static final int SoulAnimalForestManagerScript = 115; // Скрипт для Леса духов-зверей
+    public static final int ServerMatchManagerScript = 117;      // Группировка серверов
+    public static final int DailyActiveScript = 118;    // Ежедневные активности
+    public static final int WorldAnswerScript = 119;    // Кросс-серверная викторина
+    public static final int NineDaysFocusedScript = 120;// Девять дней противостояния
+    public static final int GodDevilWarScript = 121;    // Поле битвы Богов и Демонов
+    public static final int EightDiagramsScript = 122;  // Формация Восьми Триграмм
+    public static final int AlienScript = 123;          // Босс Хаоса Пустоты (подземелье)
+    public static final int BravePeakScript = 124;      // Вершина героев
+    public static final int WorldBonfireBaseScript = 125; // Мировой костёр
+    public static final int QuestionnaireScript = 126;  // Викторина с наградами
+    public static final int UniverseWarScript = 127;    // Поле битвы Великой Пустоты
+    public static final int CrossRankScript = 128;      // Кросс-серверный рейтинг
+    public static final int CrossHorseBossScript = 129; // Кросс-серверный босс скакунов
+    public static final int CouplefightScript = 130;    // Поединок бессмертных пар
 
 
 }

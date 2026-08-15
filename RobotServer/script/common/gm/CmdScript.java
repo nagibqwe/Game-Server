@@ -91,13 +91,13 @@ public class CmdScript implements IGMScript {
                 case "#universe":
                     reqReqUniverseWarPanel(strCommand);
                     break;
-                case "#testxianjiaxunbao"://仙甲寻宝 传寻宝次数：1,10,50
+                case "#testxianjiaxunbao":// Поиск сокровищ «Божественный доспех» — передать количество попыток: 1, 10, 50
                     reqReqTreasureHuntXijia(strCommand);
                     break;
-                case "#testlevelgift"://福利等级礼包 传等级：240,280,320
+                case "#testlevelgift":// Подарок за уровень — передать уровень: 240, 280, 320
                     reqReqReceiveLevelGift(strCommand);
                     break;
-                case "#testpeakmatch": //巅峰竞技匹配
+                case "#testpeakmatch": // Арена «Вершина» — поиск соперника
                     reqReqEnterPeakMatch(strCommand);
                     break;
                 case "#loginserver":
@@ -194,7 +194,7 @@ public class CmdScript implements IGMScript {
     }
 
     private void qc(String[] command) {
-        StringBuilder recv = new StringBuilder("接收队列信息\n");
+        StringBuilder recv = new StringBuilder("Информация о входящей очереди\n");
         // recvExcutor
         //recv.append(String.format("当前Excutor队列:%s\n", Client.getRecvExcutor().toString()));
         OrderedQueuePool<Long, AbstractWork> pool = Client.getRecvExcutor().getPool();
@@ -203,7 +203,7 @@ public class CmdScript implements IGMScript {
         log.error(s);
         System.out.println(s);
         // SendExcutor
-        recv = new StringBuilder("发送队列信息\n");
+        recv = new StringBuilder("Информация об исходящей очереди\n");
         //recv.append(String.format("当前Excutor队列:%s\n", RobotServer.getSendExcutor().toString()));
         pool = RobotServer.getSendExcutor().getPool();
         recv.append(makeContent(pool));
@@ -215,7 +215,7 @@ public class CmdScript implements IGMScript {
     private void cleandebugid(String[] command) {
         RobotServer.getInstance().debugSessionId = 0;
         RobotServer.getInstance().debugRoleId = 0;
-        System.out.println("debugsessionid 置 0");
+        System.out.println("debugsessionid сброшен на 0");
     }
 
     private void ot(String[] command){
@@ -226,7 +226,7 @@ public class CmdScript implements IGMScript {
             return;
         }
         long dt = TimeUtils.Time() - p.getLastHeartSendTime();
-        System.out.println("当前超时时间:" + dt);
+        System.out.println("Текущее время ожидания: " + dt);
     }
 
     /**
@@ -284,22 +284,22 @@ public class CmdScript implements IGMScript {
     }
 
     private void qs(String[] command) {
-        StringBuilder recv = new StringBuilder("接收队列信息\n");
+        StringBuilder recv = new StringBuilder("Информация о входящей очереди\n");
         // recvExcutor
-        recv.append(String.format("当前Excutor队列:%s\n", Client.getRecvExcutor().toString()));
+        recv.append(String.format("Текущая очередь Executor: %s\n", Client.getRecvExcutor().toString()));
         int[] queuesize = Client.getRecvExcutor().getQueueSize(-1);
         for (int c : queuesize) {
-            recv.append(String.format("队列数量:%d\n", c));
+            recv.append(String.format("Размер очереди: %d\n", c));
         }
         String s = recv.toString();
         log.error(s);
         System.out.println(s);
         // SendExcutor
-        recv = new StringBuilder("发送队列信息\n");
-        recv.append(String.format("当前Excutor队列:%s\n", RobotServer.getSendExcutor().toString()));
+        recv = new StringBuilder("Информация об исходящей очереди\n");
+        recv.append(String.format("Текущая очередь Executor: %s\n", RobotServer.getSendExcutor().toString()));
         queuesize = RobotServer.getSendExcutor().getQueueSize(-1);
         for (int c : queuesize) {
-            recv.append(String.format("队列数量:%d\n", c));
+            recv.append(String.format("Размер очереди: %d\n", c));
         }
         s = recv.toString();
         log.error(s);
@@ -321,27 +321,27 @@ public class CmdScript implements IGMScript {
             cmd = command[2];
         }
         if (roleid == -1) {
-            System.out.println("所有人执行一次");
+            System.out.println("Выполнить для всех игроков");
             for (Player p : Manager.playerManager.getPlayers().values()) {
                 p.chatGM(cmd);
             }
         } else {
             Player p = Manager.playerManager.deal().getPlayerByRoleId(roleid);
             if (p == null) {
-                System.out.println("找不到执行者");
+                System.out.println("Игрок не найден");
                 return;
             }
             p.chatGM(cmd);
         }
 
-        System.out.println("执行结束");
+        System.out.println("Выполнение завершено");
     }
 
     //@PropertySet.Property("关闭除debugrole以外所有的网络连接")
     private void allq(String[] command) {
         Manager.registerManager.deal().allQuitGame(RobotServer.getInstance().debugRoleId);
-        log.error("关闭除debugrole以外所有的网络连接");
-        System.out.println("关闭除debugrole以外所有的网络连接");
+        log.error("Закрытие всех сетевых соединений, кроме debugrole");
+        System.out.println("Закрытие всех сетевых соединений, кроме debugrole");
     }
 
     //改变机器人当前状态
@@ -529,7 +529,7 @@ public class CmdScript implements IGMScript {
             }
             rUserId++;
         }
-        log.info("实际登陆游戏人数："+(rUserId-beginId));
+        log.info("Фактическое количество вошедших в игру игроков: " + (rUserId - beginId));
     }
 
     private Player roleBeanToPlayer(roleBean role) throws Exception{
@@ -592,7 +592,7 @@ public class CmdScript implements IGMScript {
                 int id = Integer.parseInt(Thread.currentThread().getName());
                 l.id = id;
                 l.start(Config.getLoginServerIp(),Config.getLoginServerPort());
-                System.out.println(Thread.currentThread().getName() + "启动时间是" + System.currentTimeMillis());
+                System.out.println(Thread.currentThread().getName() + " — время запуска: " + System.currentTimeMillis());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -688,7 +688,7 @@ public class CmdScript implements IGMScript {
         for (Player entry : Manager.playerManager.getPlayers().values()) {
             if (beginId == -1 || (entry.getrUserId() >= beginId && entry.getrUserId() <= endId)) {
                 entry.sendMsg(game.message.PeakMessage.ReqEnterPeakMatch.MsgID.eMsgID_VALUE,msg.build().toByteArray());
-                log.info(entry.getrUserId() + "：发送巅峰竞技匹配");
+                log.info(entry.getrUserId() + ": отправка запроса на поиск соперника в арене «Вершина»");
             }
         }
     }

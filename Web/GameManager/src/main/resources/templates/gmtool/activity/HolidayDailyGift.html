@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('节日礼包')" />
+    <th:block th:include="include :: header('Праздничные наборы')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -23,17 +23,17 @@
             var rewardAddBtn = 'showRewardModel' + count_01;
             count_01 += 1;
             html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">'+
-                '<label class="input-group-addon">天数:</label>'+
+                '<label class="input-group-addon">День:</label>'+
                 '<input type="text" class="form-control" id="i_day" name="i_day" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">'+
                 '<label class="input-group-addon">Тип валюты:</label>'+
-                // '<input type="text" class="form-control" id="currencyType" name="currencyType" placeholder="例：1 （单位分）" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">'+
+                // '<input type="text" class="form-control" id="currencyType" name="currencyType" placeholder="Пример: 1 (в центах)" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;">'+
                 '<select id="currencyType" name="currencyType" onchange="func()" class="form-control heightSet" style="min-width:40px;width: 88px; color: goldenrod">' +
                 '<option style="color: goldenrod" value="1">Золотые слитки</option>' +
                 '<option style="color: silver" value="12">Серебряные слитки</option>' +
                 '</select>' +
-                '<label class="input-group-addon">价格:</label>'+
+                '<label class="input-group-addon">Цена:</label>'+
                 '<input type="text" class="form-control" id="price" name="price"  style="max-width:auto;">'+
-                '<label class="input-group-addon">限购次数:</label>'+
+                '<label class="input-group-addon">Лимит покупок:</label>'+
                 '<input type="text" class="form-control" id="limitTimes" name="limitTimes"  style="max-width:auto;">'+
                 '<label class="input-group-addon">Группа наград:</label>'+
                 '<span class="input-group-btn" >' +
@@ -50,7 +50,7 @@
             obj.insertAdjacentHTML('beforeBegin',html);
             addHeightSet();
         }
-        //删除配置
+        // Удаление конфигурации
         function delExChangeConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -67,9 +67,9 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>节日礼包<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Праздничные наборы<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="每天可购买一次的礼包"></span></h3>
+                              data-content="Набор, который можно купить один раз в день"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -78,10 +78,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>每日充值配置</legend>
+                            <legend>Конфигурация ежедневных наборов</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup">
-                                    <label class="input-group-addon">配置列表:</label>
+                                    <label class="input-group-addon">Список конфигураций:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" id="cfgCount" value="0">
                                 </div>

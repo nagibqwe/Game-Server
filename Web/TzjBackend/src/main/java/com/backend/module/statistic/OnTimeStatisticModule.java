@@ -39,7 +39,7 @@ public class OnTimeStatisticModule {
     @At("/")
     @Ok("jsp:jsp.statistic.onlineTime")
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "进入在线时长统计页面");
+        BackendLogUtil.getInstance().log(request, "Запрос на загрузку страницы статистики времени пребывания игроков онлайн");
         request.setAttribute("nowDate", sdf.format(new Date()));
     }
 
@@ -109,17 +109,17 @@ public class OnTimeStatisticModule {
     private String TimeCastInfo(int time) {
         switch (time) {
             case 0:
-                return "小于5分钟（≤5分钟）";
+                return "Менее 5 минут";
             case 5 * 60:
-                return "5分钟~30分钟（>5分钟,≤30分钟）";
+                return "5–30 минут";
             case 30 * 60:
-                return "30分钟~1小时（>30分钟,≤1小时）";
+                return "30–60 минут";
             case 60 * 60:
-                return "1小时~2小时（>1小时,≤2小时）";
+                return "1–2 часа";
             case 120 * 60:
-                return "2小时~3小时 （>2小时,≤3小时）";
+                return "2–3 часа";
             case 180 * 60:
-                return "3小时以上 （>3小时）";
+                return "Более 3 часов";
             default:
                 return "";
         }

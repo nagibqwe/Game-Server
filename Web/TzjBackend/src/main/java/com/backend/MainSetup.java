@@ -65,7 +65,7 @@ public class MainSetup implements Setup{
         }
 
 
-        log.error("--------------------TzjBackend启动完成！--------------------");
+        log.error("-------------------- TzjBackend успешно стартовал! --------------------");
 	}
 
     @Override

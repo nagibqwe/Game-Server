@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('修改属性列表')" />
+    <th:block th:include="include :: header('Пользовательский SQL-запрос')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: datetimepicker-css" />
 </head>
@@ -11,26 +11,26 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>自定义sql语句查询</h5>
+                    <h5>Пользовательский SQL-запрос</h5>
                 </div>
                 <div class="ibox-content">
                     <form id="customSqlForm" class="form-horizontal m-t" method="post">
 
                         <div class="form-group">
                             <div th:replace="common/select_server_single.html"></div>
-                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                             <input type="hidden" id="requestUrl" value="selectServerList">
                             <input type="hidden" id="ignoreMerge" value="0">
                             <input type="hidden" id="serverTypeList" value="0,1">
                             <button type="button" class="btn btn-primary" onclick="search()">
-                                查询
+                                Выполнить
                             </button>
                             <button type="button" class="btn btn-primary" onclick="exportExcel()">
-                                ЭкспортExcel
+                                Экспорт в Excel
                             </button>
                         </div>
                         <div class="form-group">
-                            <label for="sqlStr" class="col-sm-2 control-label is-required">要查询的SQL语句:</label>
+                            <label for="sqlStr" class="col-sm-2 control-label is-required">Текст SQL-запроса:</label>
                             <div class="col-sm-8">
                                 <textarea id="sqlStr" type="text" name="sqlStr" class="form-control" rows="6" required></textarea>
                             </div>
@@ -56,7 +56,7 @@
     function createTable(fields) {
         var options = {
             url: prefix + "/customSql",
-            modalName: "自定义sql查询",
+            modalName: "Пользовательский SQL-запрос",
             columns: []
         };
         pushFields(options,fields);
@@ -74,10 +74,10 @@
     }
 
 
-    //点击查询
+    // Выполнение запроса
     function search() {
         if (!$('#customSqlForm').validate().form()) {
-            $.modal.msgError("Ошибка проверки");
+            $.modal.msgError("Ошибка валидации");
             return;
         }
         $.table.destroy();
@@ -100,11 +100,11 @@
     }
 
     /**
-     * 导出当前显示的table数据
+     * Экспорт данных из текущей таблицы
      */
     function exportExcel() {
         $(".select-table").each(function () {
-            var table = $(this).find("table").eq(1);//生成后的表格有3个table
+            var table = $(this).find("table").eq(1);// После генерации создаётся 3 таблицы
             var tableId = $(table).prop("id");
             console.log("tableId:"+tableId);
             $("#"+tableId).tableExport({type: 'excel', escape: 'false'});

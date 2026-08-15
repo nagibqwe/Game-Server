@@ -44,7 +44,7 @@ public class DbLogListManager {
     private Dao dao;
 
     public void init(Dao dao) {
-        log.info("初始化服务器日志库信息...");
+        log.info("Инициализация информации о серверных лог-базах данных...");
         this.dao = dao;
         reloadAll();
     }
@@ -71,7 +71,7 @@ public class DbLogListManager {
             dblogList.put(dblog.getServerId(), dblog);
             serverDBMap.get(dblog.getGroupName()).add(dblog);
         }
-        log.info("游戏服dblog信息加载完成,共" + serverDBMap.size() + "条数据");
+        log.info("Загрузка информации о лог-базах игровых серверов завершена, всего записей: " + serverDBMap.size());
     }
 
     public Set<String> getPlatformDBNames() {

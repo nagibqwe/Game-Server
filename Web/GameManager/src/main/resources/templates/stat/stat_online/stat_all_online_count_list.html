@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('在线信息查询')" />
+    <th:block th:include="include :: header('Информация об онлайн')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -38,7 +38,7 @@
         $(function() {
             var options = {
                 url: prefix + "/stat_all_online_count_list",
-                modalName: "在线信息查询",
+                modalName: "Информация об онлайн",
                 pagination: false,
                 firstLoad:false,
                 showExport:true,
@@ -51,7 +51,7 @@
                 },
                 {
                     field: 'serverName',
-                    title: 'Игровой серверНазвание'
+                    title: 'Название игрового сервера'
                 },
                 {
                     field: 'time',
@@ -59,7 +59,7 @@
                 },
                 {
                     field: 'num',
-                    title: 'В сетиКоличество'
+                    title: 'Количество онлайн'
                 }]
             };
             $.table.init(options);

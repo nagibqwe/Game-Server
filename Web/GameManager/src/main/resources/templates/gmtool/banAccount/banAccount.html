@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('账号封禁列表')" />
+    <th:block th:include="include :: header('Список блокировок аккаунтов')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
         <div class="row">
-            <!--角色信息查询-->
+            <!-- Поиск информации о персонаже -->
             <div class="col-sm-12 search-collapse">
                 <div th:replace="common/query_game_role.html"></div>
             </div>
@@ -20,21 +20,21 @@
                     <div class="ibox-content">
                         <form id="banAccountForm" class="form-horizontal m-t" method="post">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label is-required" for="banType">条件类型:</label>
+                                <label class="col-sm-2 control-label is-required" for="banType">Тип условия:</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" id="banType" >
                                         <option value="1">ID аккаунта платформы</option>
-                                        <option value="2">IP</option>
-                                        <option value="3">唯一机器码</option>
+                                        <option value="2">IP-адрес</option>
+                                        <option value="3">Уникальный код устройства</option>
                                         <option value="4">IMEI</option>
-                                        <option value="5">MAC</option>
-<!--                                        <option value="6">角色ID</option>-->
+                                        <option value="5">MAC-адрес</option>
+<!--                                        <option value="6">ID персонажа</option>-->
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label is-required" for="con">封号条件:</label>
+                                <label class="col-sm-2 control-label is-required" for="con">Условие блокировки:</label>
                                 <div class="col-sm-3">
                                     <input class="form-control" id="con" type="text" name="con" required/>
                                 </div>
@@ -80,10 +80,10 @@
             $("#tableDiv").hide();
         });
 
-        //账号封禁
+        // Блокировка аккаунта
         function banAccount() {
             if (!$('#banAccountForm').validate().form()) {
-                $.modal.msgError("Ошибка проверки");
+                $.modal.msgError("Ошибка валидации");
                 return;
             }
 

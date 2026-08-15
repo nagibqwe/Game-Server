@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('循环公告列表')" />
+    <th:block th:include="include :: header('Список циклических объявлений')" />
 </head>
 <body class="gray-bg">
      <div class="container-fluid">
          <div class="container-fluid" style="margin-top: 10px">
-             <a id="mail1" class="label label-info" onclick="toggleTable(enableListDiv)">启用列表</a>
+             <a id="mail1" class="label label-info" onclick="toggleTable(enableListDiv)">Активные</a>
              <div class="btn-group-sm" id="toolbar1" role="group">
                  <a class="btn btn-success" onclick="$.operate.add()">
                      <i class="fa fa-plus"></i> Добавить
@@ -19,7 +19,7 @@
              </div>
          </div>
          <div class="container-fluid" style="margin-top: 10px">
-             <a id="mail3" class="label label-info" onclick="toggleTable(disableListDiv)">禁用列表</a>
+             <a id="mail3" class="label label-info" onclick="toggleTable(disableListDiv)">Отключённые</a>
              <div id="disableListDiv" class="col-sm-12 select-table table-striped"
                   style="word-break:break-all; word-wrap:break-all;">
                  <table id="disableList"></table>
@@ -52,7 +52,7 @@
                 columns: [
                     {
                         field: 'id',
-                        title: 'id',
+                        title: 'ID',
                         visible: false
                     },
                     {
@@ -63,7 +63,7 @@
                     },
                     {
                         field: 'content',
-                        title: '公告的内容'
+                        title: 'Содержимое объявления'
                     },
                     {
                         field: 'createDate',
@@ -75,46 +75,46 @@
                     },
                     {
                         field: 'serverIds',
-                        title: '发送的服务器'
+                        title: 'Серверы отправки'
                     },
                     {
                         field: 'fromDate',
-                        title: '开始日期'
+                        title: 'Дата начала'
                     },
                     {
                         field: 'toDate',
-                        title: '结束日期'
+                        title: 'Дата окончания'
                     },
                     {
                         field: 'totalTimes',
-                        title: '总次数'
+                        title: 'Всего показов'
                     },
                     {
                         field: 'nowTimes',
-                        title: '当前次数'
+                        title: 'Текущее количество'
                     },
                     {
                         field: 'cycleInterval',
-                        title: '时间频率(分)'
+                        title: 'Интервал (мин)'
                     },
                     {
                         field: 'nextDate',
-                        title: '下次满足时间'
+                        title: 'Следующее время показа'
                     },
                     {
                         field: 'state',
                         title: 'Статус',
                         formatter:function (value, row, index) {
                             if (value == 0){
-                                return "Включить";
+                                return "Активно";
                             }else if (value == 1){
                                 return "Отключено";
                             }else if (value == 2){
-                                return "已过期";
+                                return "Просрочено";
                             }else if (value == 3){
-                                return "已结束";
+                                return "Завершено";
                             }else if (value == 4){
-                                return "已删除";
+                                return "Удалено";
                             } else {
                                 return "Неизвестно";
                             }
@@ -126,9 +126,9 @@
                         formatter: function(value, row, index) {
                             var actions = [];
                             if (row.state == 1){
-                                actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="updateState(\'' + row.id + '\',0)"><i class="fa fa-edit"></i>Включить</a> ');
+                                actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="updateState(\'' + row.id + '\',0)"><i class="fa fa-edit"></i>Активировать</a> ');
                             }else if (row.state == 0){
-                                actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="updateState(\'' + row.id + '\',1)"><i class="fa fa-edit"></i>Отключено</a> ');
+                                actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="updateState(\'' + row.id + '\',1)"><i class="fa fa-edit"></i>Отключить</a> ');
                             }else if (row.state < 4){
                                 actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="deleteCyAnnounce(\'' + row.id + '\')"><i class="fa fa-remove"></i>Удалить</a> ');
                             }
@@ -139,9 +139,9 @@
             $.table.init(options);
         }
 
-        //更新循环公告的状态
+        // Обновление статуса циклического объявления
         function updateState(id, value) {
-            $.modal.confirm("确定要操作此公告吗？",function(){
+            $.modal.confirm("Подтвердить выполнение операции с объявлением?", function(){
                 $.post(prefix + "/jYCyAnnounce",
                     {announceId: id, state: value},
                     function (data) {
@@ -156,9 +156,9 @@
             });
         }
 
-        //删除循环公告
+        // Удаление циклического объявления
         function deleteCyAnnounce(id) {
-            $.modal.confirm("确定要删除吗？",function(){
+            $.modal.confirm("Подтвердить удаление?", function(){
                 $.post(prefix + "/deleteCyAnnounce",
                     {announceId: id},
                     function (data) {

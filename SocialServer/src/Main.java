@@ -31,7 +31,7 @@ public class Main {
                         String str = br.readLine();
                         System.out.println(str);
                         if (str.equalsIgnoreCase("quit")) {
-                            System.out.println("输入了QUIT 命令，需要退出！");
+                            System.out.println("Введена команда QUIT, инициирую закрытие!");
                             System.exit(1);
                             return;
                         }

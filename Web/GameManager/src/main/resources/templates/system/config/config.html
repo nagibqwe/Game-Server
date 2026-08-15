@@ -1,64 +1,64 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('参数列表')" />
+    <th:block th:include="include :: header('Список параметров')" />
 </head>
 <body class="gray-bg">
-     <div class="container-div">
-		<div class="row">
-			<div class="col-sm-12 search-collapse">
-				<form id="config-form">
-					<div class="select-list">
-						<ul>
-							<li>
-								参数名称：<input type="text" name="configName"/>
-							</li>
-							<li>
-								参数键名：<input type="text" name="configKey"/>
-							</li>
-							<li>
-								系统内置：<select name="configType" th:with="type=${@dict.getType('sys_yes_no')}">
-									<option value="">所有</option>
-									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
-								</select>
-							</li>
-							<li class="select-time">
-								<label>Время создания： </label>
-								<input type="text" class="time-input" id="startTime" placeholder="Время начала" name="params[beginTime]"/>
-								<span>-</span>
-								<input type="text" class="time-input" id="endTime" placeholder="Время окончания" name="params[endTime]"/>
-							</li>
-							<li>
-								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
-							</li>
-						</ul>
-					</div>
-				</form>
-			</div>
-			
-	        <div class="btn-group-sm" id="toolbar" role="group">
-		        <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:config:add">
-		            <i class="fa fa-plus"></i> Добавить
-		        </a>
-		        <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:config:edit">
-		            <i class="fa fa-edit"></i> Изменить
-		        </a>
-		        <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:config:remove">
-		            <i class="fa fa-remove"></i> Удалить
-		        </a>
-		        <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:config:export">
-		            <i class="fa fa-download"></i> Экспорт
-		        </a>
-		        <a class="btn btn-danger" onclick="clearCache()" shiro:hasPermission="system:config:remove">
-		            <i class="fa fa-refresh"></i> 清理缓存
-		        </a>
-	        </div>
-	        <div class="col-sm-12 select-table table-striped">
-	            <table id="bootstrap-table"></table>
-	        </div>
-	    </div>
-	</div>
+    <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="config-form">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                Название параметра: <input type="text" name="configName"/>
+                            </li>
+                            <li>
+                                Ключ параметра: <input type="text" name="configKey"/>
+                            </li>
+                            <li>
+                                Системный параметр: <select name="configType" th:with="type=${@dict.getType('sys_yes_no')}">
+                                    <option value="">Все</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
+                            </li>
+                            <li class="select-time">
+                                <label>Время создания:</label>
+                                <input type="text" class="time-input" id="startTime" placeholder="Начало" name="params[beginTime]"/>
+                                <span>-</span>
+                                <input type="text" class="time-input" id="endTime" placeholder="Окончание" name="params[endTime]"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:config:add">
+                    <i class="fa fa-plus"></i> Добавить
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:config:edit">
+                    <i class="fa fa-edit"></i> Редактировать
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:config:remove">
+                    <i class="fa fa-remove"></i> Удалить
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:config:export">
+                    <i class="fa fa-download"></i> Экспорт
+                </a>
+                <a class="btn btn-danger" onclick="clearCache()" shiro:hasPermission="system:config:remove">
+                    <i class="fa fa-refresh"></i> Очистить кэш
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:config:edit')}]];
@@ -74,39 +74,39 @@
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
                 sortName: "configId",
-		        sortOrder: "asc",
-                modalName: "参数",
+                sortOrder: "asc",
+                modalName: "Параметры",
                 columns: [{
                     checkbox: true
                 },
                 {
                     field: 'configId',
-                    title: '参数主键'
+                    title: 'ID параметра'
                 },
                 {
                     field: 'configName',
-                    title: '参数名称',
+                    title: 'Название параметра',
                     formatter: function(value, row, index) {
-                    	return $.table.tooltip(value);
+                        return $.table.tooltip(value);
                     }
                 },
                 {
                     field: 'configKey',
-                    title: '参数键名',
+                    title: 'Ключ параметра',
                     formatter: function(value, row, index) {
-                    	return $.table.tooltip(value);
+                        return $.table.tooltip(value);
                     }
                 },
                 {
                     field: 'configValue',
-                    title: '参数键值'
+                    title: 'Значение параметра'
                 },
                 {
                     field: 'configType',
-                    title: '系统内置',
+                    title: 'Системный параметр',
                     align: 'center',
                     formatter: function(value, row, index) {
-                    	return $.table.selectDictLabel(datas, value);
+                        return $.table.selectDictLabel(datas, value);
                     }
                 },
                 {
@@ -114,7 +114,7 @@
                     title: 'Примечание',
                     align: 'center',
                     formatter: function(value, row, index) {
-                    	return $.table.tooltip(value, 10, "open");
+                        return $.table.tooltip(value, 10, "open");
                     }
                 },
                 {
@@ -134,8 +134,8 @@
             };
             $.table.init(options);
         });
-        
-        /** 清理参数缓存 */
+
+        /** Очистка кэша параметров */
         function clearCache() {
             $.operate.get(prefix + "/clearCache");
         }

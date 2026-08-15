@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('热更公共服操作日志列表')" />
+    <th:block th:include="include :: header('Журнал операций горячего обновления на публичном сервере')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -11,33 +11,33 @@
             <form id="formId1">
                 <div class="form-group">
                     <div th:replace="common/select_server_byGroup.html"></div>
-                    <!--此处作为服务器请求分组地址映射设置地方-->
+                    <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                     <input type="hidden" id="selectRequestUrl" value="publicServer">
                     <input type="hidden" id="selectIgnoreMerge" value="0">
                 </div>
                 <div class="select-list">
                     <ul>
                         <li>
-                            <label for="chooseAction">命令类型：</label>
+                            <label for="chooseAction">Тип команды:</label>
                             <select id="chooseAction" onchange="changeAction()" >
-                                <option value="test" selected="selected">测试连接</option>
-                                <option value="script">加载脚本</option>
-                                <option value="cgm">gm命令</option>
-                                <option value="">自定义命令</option>
+                                <option value="test" selected="selected">Тест соединения</option>
+                                <option value="script">Загрузить скрипт</option>
+                                <option value="cgm">GM-команда</option>
+                                <option value="">Пользовательская команда</option>
                             </select>
                         </li>
                         <li>
-                            <label for="cmdAction">命令：</label>
-                            <input type="text" id="cmdAction" name="action" placeholder="命令，例如:script"/>
+                            <label for="cmdAction">Команда:</label>
+                            <input type="text" id="cmdAction" name="action" placeholder="Команда, например: script"/>
                         </li>
 
-                        <input type="button" class="btn btn-info" value="添加参数" onclick="addParam()">
+                        <input type="button" class="btn btn-info" value="Добавить параметр" onclick="addParam()">
 
                         <br/><br/>
                         <div id="pDiv"></div>
                         <br/>
                         <li>
-                            <a class="btn btn-primary btn-rounded btn-sm" onclick="sendCommand()"><i class="fa fa-adjust"></i>&nbsp;执行命令</a>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="sendCommand()"><i class="fa fa-adjust"></i>&nbsp;Выполнить</a>
                         </li>
                     </ul>
                 </div>
@@ -48,24 +48,24 @@
                 <div class="select-list">
                     <ul>
                         <li>
-                            <label>操作命令：</label>
+                            <label>Выполняемая команда:</label>
                             <input type="text" name="action"/>
                         </li>
                         <li>
-                            <label>参数：</label>
+                            <label>Параметры:</label>
                             <input type="text" name="params"/>
                         </li>
                         <li>
-                            <label>Название сервера：</label>
+                            <label>Название сервера:</label>
                             <input type="text" name="serverName"/>
                         </li>
                         <li>
-                            <label>ID сервера：</label>
+                            <label>ID сервера:</label>
                             <input type="text" name="serverId"/>
                         </li>
                         <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search('formId2')"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                         </li>
                     </ul>
                 </div>
@@ -94,11 +94,11 @@
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
             exportUrl: prefix + "/export",
-            modalName: "热更公共服操作日志",
+            modalName: "Журнал операций горячего обновления на публичном сервере",
             columns: [
                 {
                     field: 'id',
-                    title: 'id',
+                    title: 'ID',
                     visible: true
                 },
                 {
@@ -110,15 +110,15 @@
                 },
                 {
                     field: 'action',
-                    title: '执行命令'
+                    title: 'Выполняемая команда'
                 },
                 {
                     field: 'params',
-                    title: '执行参数'
+                    title: 'Параметры выполнения'
                 },
                 {
                     field: 'isOk',
-                    title: 'ДействияРезультат',
+                    title: 'Результат выполнения',
                     formatter:function (value) {
                         if (value == 0){
                             return false;
@@ -129,11 +129,11 @@
                 },
                 {
                     field: 'result',
-                    title: '结果描述'
+                    title: 'Описание результата'
                 },
                 {
                     field: 'user',
-                    title: '用户'
+                    title: 'Пользователь'
                 },
                 {
                     field: 'ip',
@@ -151,7 +151,7 @@
         changeAction();
     });
 
-    //切换命令类型
+    // Переключение типа команды
     function changeAction() {
         var chActVal = $("#chooseAction").val();
         $("#cmdAction").val(chActVal);
@@ -166,14 +166,14 @@
         $("[name='pValue']").val("");
     }
 
-    //添加参数
+    // Добавление параметра
     function addParam() {
         var pDiv = $("#pDiv");
         var div = $("<div>").attr("name", "params");
-        div.append("<label>参数名：</label>");
-        div.append("<input type='text' class='input' name='pName' placeholder='参数名'>");
-        div.append("<label>参数值：</label>");
-        div.append("<input type='text' class='input' name='pValue' placeholder='参数值'>");
+        div.append("<label>Имя параметра:</label>");
+        div.append("<input type='text' class='input' name='pName' placeholder='Имя параметра'>");
+        div.append("<label>Значение параметра:</label>");
+        div.append("<input type='text' class='input' name='pValue' placeholder='Значение параметра'>");
         div.append("<input type='button' onclick='delParam(this)' class='btn btn-danger' value='Удалить'>");
         div.append("<br/>");
         pDiv.append(div);
@@ -183,12 +183,12 @@
         }
     }
 
-    //删除参数
+    // Удаление параметра
     function delParam(o) {
         $(o).parent().remove();
     }
 
-    //执行命令
+    // Выполнение команды
     function sendCommand() {
         var selectServerStr = $("#selectServerIdHide").val();
         if (selectServerStr == '' || null == selectServerStr){

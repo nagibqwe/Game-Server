@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('改名日志列表')" />
+    <th:block th:include="include :: header('Журнал смены имени')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -13,7 +13,7 @@
                     <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
                         <ul>
                             <li>
-                                <label>ID персонажа：</label>
+                                <label>ID персонажа:</label>
                                 <input type="text" name="playerId"/>
                             </li>
 
@@ -44,7 +44,7 @@
             var options = {
                 url: prefix + "/list",
                 exportUrl: prefix + "/export",
-                modalName: "改名日志",
+                modalName: "Журнал смены имени",
                 pagination: false,
                 firstLoad:false,
                 height:$(document).height() - 160,
@@ -73,11 +73,11 @@
                 },
                 {
                     field: 'oldName',
-                    title: '改名前角色名'
+                    title: 'Имя до смены'
                 },
                 {
                     field: 'newName',
-                    title: '改名后角色名'
+                    title: 'Имя после смены'
                 },
                 {
                     field: 'modelId',

@@ -192,7 +192,7 @@ public class RandomUtils {
                 }
             }
         } catch (Exception e) {
-            logger.error("计算机率错误" + probs.toString(), e);
+            logger.error("Ошибка вычисления вероятности: " + probs.toString(), e);
         }
         return -1;
     }

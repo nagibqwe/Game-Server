@@ -45,28 +45,28 @@ public class DataStatisticModule {
         request.setAttribute("nowDate", sdf.format(new Date()));
         switch (statType) {
             case 1:
-                BackendLogUtil.getInstance().log(request, "进入服务器日常数据页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу ежедневных данных сервера");
                 return "/WEB-INF/jsp/statistic/dailydata.jsp";
             case 2:
-                BackendLogUtil.getInstance().log(request, "进入商城元宝道具销售统计页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу статистики продаж предметов в магазине за монеты");
                 return "/WEB-INF/jsp/statistic/shopitem.jsp";
             case 3:
-                BackendLogUtil.getInstance().log(request, "进入货币产出统计页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу статистики производства валюты");
                 return "/WEB-INF/jsp/statistic/money.jsp";
             case 4:
-                BackendLogUtil.getInstance().log(request, "进入坐骑幻化统计页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу статистики иллюзий скакунов");
                 return "/WEB-INF/jsp/statistic/horseillusion.jsp";
             case 5:
-                BackendLogUtil.getInstance().log(request, "进入骑兵升级统计页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу статистики улучшения драконов");
                 return "/WEB-INF/jsp/statistic/dragoon.jsp";
             case 6:
-                BackendLogUtil.getInstance().log(request, "进入披风升级统计页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу статистики улучшения плащей");
                 return "/WEB-INF/jsp/statistic/cloak.jsp";
             case 7:
-                BackendLogUtil.getInstance().log(request, "进入宠物升级统计页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу статистики улучшения питомцев");
                 return "/WEB-INF/jsp/statistic/pet.jsp";
             case 8:
-                BackendLogUtil.getInstance().log(request, "进入用户流失统计页面");
+                BackendLogUtil.getInstance().log(request, "Переход на страницу статистики оттока игроков");
                 return "/WEB-INF/jsp/statistic/playerLeave.jsp";
             default:
                 return "/404.jsp";
@@ -314,7 +314,7 @@ public class DataStatisticModule {
                 List<Map<String, String>> deviceDataMap = QueryUtil.getInstance().query(dblog, sqlDeviceStr, table, paraMap);// 单服的记录
                 newDeviceList.addAll(deviceDataMap);
             } else {
-                log.error("没有找到serverId：" + serverId + "(最终合服serverId:" + finalServerId + ")对应的t_dblog配置");
+                log.error("Не удалось найти запись в t_dblog для serverId = " + serverId + " (итоговый serverId после объединения: " + finalServerId + ")");
             }
 
             // 在线人数backend
@@ -441,7 +441,7 @@ public class DataStatisticModule {
         }
         // 根据key排序
         Map<String, Map<String, String>> sortMap = new TreeMap<>(resultMap);
-        log.error("日常数据查询结果：" + sortMap);
+        log.error("Результат ежедневного запроса данных: " + sortMap);
         return Toolkit.outResult(true, sortMap).setv("type", serverId);
 
     }

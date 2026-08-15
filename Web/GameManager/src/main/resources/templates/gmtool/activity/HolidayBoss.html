@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('首领狂欢')" />
+    <th:block th:include="include :: header('Праздник боссов')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -21,7 +21,7 @@
     </script>
     <script>
         /**
-         * 加载活动boss信息
+         * Загрузка информации о боссах
          */
         function loadActivityBossType(isAsync) {
             $.ajax({
@@ -31,7 +31,7 @@
                 async: isAsync,
                 success: function (data) {
                     if (!data.ok) {
-                        $.modal.alertError("load failed");
+                        $.modal.alertError("Ошибка загрузки данных о боссах");
                         return;
                     }
                     $("#bossCfg").empty();
@@ -44,7 +44,7 @@
                 }
             });
         }
-        //加载所有模型库
+        // Загрузка всех моделей из библиотеки
         function loadModel() {
             $.ajax({
                 url: ctx + "gmtool/activityConfig/getAllModel",
@@ -52,7 +52,7 @@
                 dataType: "json",
                 success: function (data) {
                     if (!data.ok) {
-                        $.modal.alertError("Model load failed");
+                        $.modal.alertError("Ошибка загрузки моделей");
                         return;
                     }
                     $("#magicId").empty();
@@ -70,16 +70,16 @@
             var rewardAddBtn = 'showRewardModel' + count_01;
             count_01 += 1;
             var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">单价:</label>' +
+                '<label class="input-group-addon">Цена:</label>' +
                 '<input type="text" class="form-control" name="price" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">出售货币:</label>' +
+                '<label class="input-group-addon">Валюта продажи:</label>' +
                 '<input type="text" class="form-control" name="coin" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">单日限购:</label>' +
+                '<label class="input-group-addon">Дневной лимит покупок:</label>' +
                 '<input type="text" class="form-control" name="limit" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">出售道具:</label>'+
+                '<label class="input-group-addon">Предмет продажи:</label>'+
                 // '<input type="text" class="form-control" id="item" name="item" style="max-width:auto;">'+
                 '<span class="input-group-btn" >' +
-                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="出售道具" id="' + rewardAddBtn +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Предмет продажи" id="' + rewardAddBtn +
                 '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
                 '<span class="glyphicon glyphicon-plus"></span></button>' +
                 '<div class="hide"><input id="' + rewardInput + '" name="item"/></div>' +
@@ -91,7 +91,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除配置
+        // Удаление конфигурации
         function delExChangeConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -103,7 +103,7 @@
             var rewardAddBtn = 'showRewardModel2' + count_02;
             count_02 += 1;
             var html = '<div name="cfg2" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">奖励权重:</label>' +
+                '<label class="input-group-addon">Вес награды:</label>' +
                 '<input type="text" class="form-control" name="bossGiftWeight" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<label class="input-group-addon">Группа наград:</label>'+
                 // '<input type="text" class="form-control" name="bossGiftReward"  style="max-width:auto;">'+
@@ -121,7 +121,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除配置
+        // Удаление конфигурации
         function delConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -132,7 +132,7 @@
             console.log("cfgCount3:"+count);
             $("#cfgCount3").val(Number(count)+1);
             var html = '<div name="cfg3" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">礼包ID:</label>' +
+                '<label class="input-group-addon">ID набора:</label>' +
                 '<input type="text" class="form-control" name="giftId" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<input type="hidden" name="boxRewardCount" value="0">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="boxjiangliGrpBtn'+count+'" ' +
@@ -155,7 +155,7 @@
             var rewardAddBtn = 'showRewardModel3' + count_03;
             count_03 += 1;
             var html = '<div name="cfg" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">礼包权重:</label>' +
+                '<label class="input-group-addon">Вес набора:</label>' +
                 '<input type="text" class="form-control" id="'+boxGiftWeight+'" name="boxGiftWeight" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<label class="input-group-addon">Группа наград:</label>'+
                 '<span class="input-group-btn" >' +
@@ -219,10 +219,10 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>首领狂欢<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Праздник боссов<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="【客户端配置】<br/>
-                                需要配合模型展示进行使用，如需新增则要联系研发人员进行添加"></span></h3>
+                              data-content="【Клиентская конфигурация】<br/>
+                                Требуется интеграция с отображением моделей. Для добавления новых необходимо обратиться к разработчикам"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -231,22 +231,22 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>客户端配置</legend>
+                            <legend>Клиентская конфигурация</legend>
                             <fieldset>
                                 <div class="input-group" id="clientGroup">
-                                    <label class="input-group-addon">奖励展示:</label>
+                                    <label class="input-group-addon">Отображение наград:</label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <select id="magicId" name="magicId" onchange="" class="form-control heightSet">
 
                                         </select>
                                     </div>
-                                    <!--<label class="input-group-addon">奖励展示:</label>-->
+                                    <!--<label class="input-group-addon">Отображение наград:</label>-->
                                     <!--<input type="text" class="form-control" id="magicId" name="magicId" style="">-->
-                                    <label class="input-group-addon">礼包奖励展示:</label>
+                                    <label class="input-group-addon">Отображение наборов:</label>
                                     <input type="text" class="form-control" id="boxId" name="boxId" style="">
-                                    <label class="input-group-addon">奖励展示列表:</label>
+                                    <label class="input-group-addon">Список отображаемых наград:</label>
                                     <span class="input-group-btn">
-                            <button class="btn btn-info" type="button" data-toggle="tooltip" title="奖励展示列表" id="addShowItemsBtn"
+                            <button class="btn btn-info" type="button" data-toggle="tooltip" title="Список отображаемых наград" id="addShowItemsBtn"
                                     onclick="showAddItemUI('showItems','addShowItemsBtn')"><span class="glyphicon glyphicon-plus"></span></button>
                         </span>
                                     <input type="text" class="form-control hide" id="showItems" name="showItems" style="">
@@ -258,10 +258,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>限购商品配置</legend>
+                            <legend>Конфигурация лимитированных товаров</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup">
-                                    <label class="input-group-addon">限购商品配置:</label>
+                                    <label class="input-group-addon">Конфигурация лимитированных товаров:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn"
                                             onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" id="cfgCount1" value="0">
@@ -273,11 +273,11 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>BOSS类型配置</legend>
+                            <legend>Конфигурация типов BOSS</legend>
                             <fieldset>
                                 <div class="input-group" id="otherCfg">
                                     <div class="input-group" id="bossCfg" style="width:100%;padding:0 0 1px 0;">
-                                        <!--<label class="input-group-addon">BOSS配置:</label>-->
+                                        <!--<label class="input-group-addon">Конфигурация BOSS:</label>-->
                                         <!--<input type="checkbox" class="form-control" name="bossList" style="">-->
                                     </div>
                                 </div>
@@ -286,10 +286,10 @@
 
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>BOSS奖励</legend>
+                            <legend>Награды за BOSS</legend>
                             <fieldset>
                                 <div class="input-group" id="bossjiangli">
-                                    <label class="input-group-addon">BOSS奖励配置:</label>
+                                    <label class="input-group-addon">Конфигурация наград за BOSS:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="bossjiangliBtn"
                                             onclick="bossjiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>
@@ -302,10 +302,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>礼包奖励</legend>
+                            <legend>Награды за наборы</legend>
                             <fieldset>
                                 <div class="input-group" id="giftjiangli">
-                                    <label class="input-group-addon">礼包奖励配置:</label>
+                                    <label class="input-group-addon">Конфигурация наград за наборы:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="giftjiangliBtn"
                                             onclick="giftjiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>

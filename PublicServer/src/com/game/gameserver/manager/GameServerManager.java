@@ -87,7 +87,7 @@ public class GameServerManager {
 
         for (int id : info.getSids()) {
             serverCache.put(makeKey(info.getPlatName(), id), info);
-            log.info(info.getPlatName() + " _ " + id + " 注册的游戏服ID： " + info.getServerId() + " ip:" + info.getServerIp());
+            log.info(info.getPlatName() + " _ " + id + " — ID зарегистрированного игрового сервера: " + info.getServerId() + ", ip: " + info.getServerIp());
         }
 
         List<ServerInfo> list;
@@ -112,41 +112,41 @@ public class GameServerManager {
     public synchronized boolean removeServer(ChannelHandlerContext ss, String key) {
         ServerInfo info = serverCache.get(key);
         if (info == null) {
-            log.error(key + " 已经没有服务器信息了！");
+            log.error(key + " — информация о сервере отсутствует!");
             return false;
         }
         ChannelHandlerContext session = gameSessions.get(key);
         if (session == null) {
-            log.error(key + " 老的连接地址已经没有了！");
+            log.error(key + " — старое соединение отсутствует!");
             return false;
         }
 
         if (ss == null) {
-            log.error(key + "  新连接地址已经没有了！");
+            log.error(key + " — новое соединение отсутствует!");
             return false;
         }
 
         if (!ss.equals(session)) {
-            log.error(key + " 老连接与新连接不相等！");
+            log.error(key + " — старое и новое соединение не совпадают!");
             return false;
         }
 
         gameSessions.remove(key);
-        log.info("服务器数量删除前：" + serverCache.size());
+        log.info("Количество серверов до удаления: " + serverCache.size());
         try {
             for (int id : info.getSids()) {
                 String kk = makeKey(info.getPlatName(), id);
                 serverCache.remove(kk);
-                log.info(info.getPlatName() + " _ " + id + " 注册的游戏服ID： " + info.getServerId() + "清除");
+                log.info(info.getPlatName() + " _ " + id + " — игровой сервер ID " + info.getServerId() + " удалён");
             }
         } catch (Exception e) {
             log.error(e, e);
         }
-        log.info("服务器数量删除后：" + serverCache.size());
+        log.info("Количество серверов после удаления: " + serverCache.size());
         List<ServerInfo> list = typeCache.get(info.getServerType());
-        log.info("服务器分类列表删除前：" + list.size());
+        log.info("Список серверов по типу до удаления: " + list.size());
         list.remove(info);
-        log.info("服务器分类列表删除后：" + list.size());
+        log.info("Список серверов по типу после удаления: " + list.size());
         return true;
     }
 
@@ -156,7 +156,7 @@ public class GameServerManager {
         if (gameSessions.containsKey(key)) {
             return gameSessions.get(plat + "_" + serverId);
         } else {
-            log.error(" 向（" + plat + "）服务器id:" + serverId + " 发送消息时，连接已经不存在了！");
+            log.error("При отправке сообщения на сервер (" + plat + ") с ID: " + serverId + " — соединение отсутствует!");
             return null;
         }
     }
@@ -171,7 +171,7 @@ public class GameServerManager {
             if (info != null) {
                 return GetSession(info.getPlatName(), info.getServerId());
             }
-            log.error(" 向（" + key + ") 发送消息时，连接已经不存在了！");
+            log.error("При отправке сообщения на (" + key + ") — соединение отсутствует!");
 
             return null;
         }
@@ -210,12 +210,12 @@ public class GameServerManager {
     public void send_all_FightGame(int msgId, byte[] msg) {
         List<ServerInfo> list = typeCache.get(ServerType.FIGHTSERVER);
         if (list == null) {
-            log.error("还没有战斗服连接进哦=========================");
+            log.error("Нет активных подключений к боевым серверам =========================");
             return;
         }
 
         if (list.size() < 1) {
-            log.error("还没有战斗服连接进哦========================2=");
+            log.error("Нет активных подключений к боевым серверам ========================2=");
             return;
         }
 
@@ -260,7 +260,7 @@ public class GameServerManager {
 
             return instance.getTimeInMillis();
         } catch (ParseException ex) {
-            log.error("开服时间解析错误,开服时间：" +openTime);
+            log.error("Ошибка парсинга времени открытия сервера. Время открытия: " + openTime);
             return 0;
         }
     }

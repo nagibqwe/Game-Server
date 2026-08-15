@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('元宝变化日志列表')" />
+    <th:block th:include="include :: header('Журнал изменения юаней')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -13,11 +13,11 @@
                     <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
                         <ul>
                             <li>
-                                <label>ID персонажа：</label>
+                                <label>ID персонажа:</label>
                                 <input type="text" name="roleId"/>
                             </li>
                             <li>
-                                <label>Код причины：</label>
+                                <label>Код причины:</label>
                                 <input type="text" name="reason"/>
                             </li>
 
@@ -49,7 +49,7 @@
             var options = {
                 url: prefix + "/list",
                 exportUrl: prefix + "/export",
-                modalName: "元宝变化日志",
+                modalName: "Журнал изменения юаней",
                 pagination: false,
                 firstLoad:false,
                 height:$(document).height() - 160,
@@ -66,7 +66,7 @@
                 },
                 {
                     field: 'actionId',
-                    title: 'Связанный ID'
+                    title: 'ID действия'
                 },
                 {
                     field: 'roleId',
@@ -87,15 +87,15 @@
                 },
                 {
                     field: 'changeNum',
-                    title: '变化量'
+                    title: 'Изменение'
                 },
                 {
                     field: 'beforeNum',
-                    title: '变化前元宝数'
+                    title: 'До изменения'
                 },
                 {
                     field: 'afterNum',
-                    title: '变化后元宝数'
+                    title: 'После изменения'
                 },
                 {
                     field: 'reason',

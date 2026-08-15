@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('角色转移列表')" />
+    <th:block th:include="include :: header('Журнал переноса персонажей')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label is-required" for="userId">目标账号ID:</label>
+                                <label class="col-sm-2 control-label is-required" for="userId">ID целевого аккаунта:</label>
                                 <div class="col-sm-3">
                                     <input class="form-control" id="userId" type="text" name="userId" required/>
                                 </div>
@@ -43,7 +43,7 @@
                                     Отправить
                                 </button>
                                 <button type="button" class="btn btn-primary" onclick="showList()">
-                                    查看记录
+                                    Просмотр записей
                                 </button>
                             </div>
 
@@ -75,7 +75,7 @@
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
                 showSearch:false,
-                modalName: "Перенос персонажа",
+                modalName: "Журнал переноса персонажей",
                 columns: [
                 {
                     field: 'roleId',
@@ -83,11 +83,11 @@
                 },
                 {
                     field: 'srcUserId',
-                    title: '原账号ID'
+                    title: 'ID исходного аккаунта'
                 },
                 {
                     field: 'targetUserId',
-                    title: '目标账号ID'
+                    title: 'ID целевого аккаунта'
                 },
                 {
                     field: 'serverId',
@@ -105,11 +105,11 @@
             $.table.init(options);
         });
 
-        //角色转移操作
+        // Операция переноса персонажа
         function transfer() {
             var select_server = $("#select_server").val();
             if (!$('#transferForm').validate().form()) {
-                $.modal.msgError("Ошибка проверки");
+                $.modal.msgError("Ошибка валидации");
                 return;
             }
 
@@ -136,7 +136,7 @@
             });
         }
 
-        //查看角色转移记录
+        // Просмотр записей переноса персонажей
         function showList() {
             $("#tableDiv").show();
             $.table.refresh("bootstrap-table");

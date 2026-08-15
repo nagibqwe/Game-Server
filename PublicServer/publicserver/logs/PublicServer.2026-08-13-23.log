@@ -1,0 +1,47 @@
+2026-08-13 23:03:24.807 ERROR [Public service][ServerThread.java:87] - Public service-->ServerHeartTimer run:210
+2026-08-13 23:15:30.792 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-13 23:15:30.792 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-13 23:54:36.948 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x56be72b6, L:/94.250.249.128:9200 - R:/94.250.249.128:55726]
+2026-08-13 23:54:36.948 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-13 23:54:36.951 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x56be72b6, L:/94.250.249.128:9200 - R:/94.250.249.128:55726] — порядковый номер подключения: 2
+2026-08-13 23:54:38.143 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726] — при отправке очереди соединение уже разорвано! 4
+2026-08-13 23:54:38.143 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726] — при отправке очереди соединение уже разорвано! 4
+2026-08-13 23:54:38.144 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726] — при отправке очереди соединение уже разорвано! 4
+2026-08-13 23:54:38.145 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726] — при отправке очереди соединение уже разорвано! 4
+2026-08-13 23:54:38.146 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726] — при отправке очереди соединение уже разорвано! 4
+2026-08-13 23:54:38.147 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726] — при отправке очереди соединение уже разорвано! 4
+2026-08-13 23:54:38.148 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726]
+2026-08-13 23:54:38.148 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-13 23:54:38.149 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x56be72b6, L:/94.250.249.128:9200 ! R:/94.250.249.128:55726]
+3:02.718 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 117, имя: common.servermatch.ServerMatchManagerScript
+2026-08-13 23:53:02.721 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 115, имя: common.soulanimalforest.SoulAnimalForestManagerScript
+2026-08-13 23:53:02.722 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 127, имя: common.universewar.UniverseWarScript
+2026-08-13 23:53:02.724 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 125, имя: common.worldBonfire.WorldBonfireScript
+2026-08-13 23:53:02.725 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 119, имя: common.worldanswer.WorldAnswerScript
+2026-08-13 23:53:02.726 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 110, имя: common.zone.ZoneDealHandlerScript
+2026-08-13 23:53:02.728 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 106, имя: common.zone.ZoneManagerScript
+2026-08-13 23:53:02.736 INFO [Thread-1][LogService.java:87] - Инициализация сервиса базы данных логов
+2026-08-13 23:53:02.774 INFO [Thread-1][LogService.java:120] - Запуск пула соединений с базой данных логов завершён: jdbc:mysql://127.0.0.1:3306/tzj_public_log?autoReconnect=true&useUnicode=true&characterEncoding=utf8&nullCatalogMeansCurrent=true
+2026-08-13 23:53:04.594 INFO [Thread-1][LogService.java:173] - Проверка таблицы: fightroomcreatelog202608
+2026-08-13 23:53:04.634 INFO [Thread-1][LogService.java:272] - Проверка таблицы fightroomcreatelog202608 завершена
+2026-08-13 23:53:04.636 INFO [Thread-1][LogService.java:173] - Проверка таблицы: questionnairelog2026
+2026-08-13 23:53:04.666 INFO [Thread-1][LogService.java:272] - Проверка таблицы questionnairelog2026 завершена
+2026-08-13 23:53:04.667 INFO [Thread-1][LogService.java:125] - Запуск пула потоков для логов завершён
+2026-08-13 23:53:04.667 INFO [Thread-1][LogService.java:129] - Инициализация сервиса базы данных логов завершена
+2026-08-13 23:53:04.674 INFO [Thread-1][QuestionnaireManager.java:87] - 开始时间：1590958800000
+2026-08-13 23:53:04.675 INFO [Thread-1][QuestionnaireManager.java:88] - 结束时间：1593550799000
+2026-08-13 23:53:06.336 INFO [Thread-1][ServerParamUtil.java:217] - Параметры сервера успешно загружены!
+2026-08-13 23:53:06.338 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-14 00:00:00 — расчётное время: 2026-08-14 00:00:00
+2026-08-13 23:53:06.341 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-14 00:00:00 — расчётное время: 2026-08-14 00:00:00
+2026-08-13 23:53:06.356 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 8 groupID-- 30001  serverId1001-- openDay-- 1190  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-13 23:53:06.357 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 1 groupID-- 2  serverId1001-- openDay-- 1190  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-13 23:53:06.358 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 2 groupID-- 10001  serverId1001-- openDay-- 1190  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-13 23:53:06.359 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 4 groupID-- 20001  serverId1001-- openDay-- 1190  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-13 23:53:06.373 INFO [Thread-1][CrossRankManager.java:90] - 跨服世界等级 timer 初始化成功
+2026-08-13 23:53:06.394 INFO [Thread-1][FudScript.java:606] - 加载福地分组数据 len=0
+2026-08-13 23:53:06.403 INFO [Thread-1][FudScript.java:614] - 加载福地玩家数据 len=0
+2026-08-13 23:53:06.460 INFO [Thread-1][PeakScript.java:690] - 加载巅峰竞技场数据 len=0 rank=0
+2026-08-13 23:53:06.468 INFO [Thread-1][MainServer.java:237] - Public сервер успешно запущен!
+2026-08-13 23:53:07.066 ERROR [nioEventLoopGroup-4-1][SocketServer.java:63] - HTTP порт  не удалось запустить на порту 9201! Выход
+2026-08-13 23:53:07.066 ERROR [nioEventLoopGroup-2-1][SocketServer.java:63] - publicserver не удалось запустить на порту 9200! Выход
+2026-08-13 23:53:07.069 ERROR [Thread-5][SocketServer.java:80] - publicserver освобождение порта!

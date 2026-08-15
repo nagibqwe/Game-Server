@@ -49,7 +49,7 @@ public class ActivityManager {
     private Dao dao;
 
     public void init(Dao dao) {
-        log.info("初始化活动信息...");
+        log.info("Инициализация информации об активностях...");
         this.dao = dao;
     }
 
@@ -256,7 +256,7 @@ public class ActivityManager {
             }
         } catch (Exception e) {
             log.error(e);
-            throw new RuntimeException(",活动类型：" + activity.getType() + ",节日类型：" + activity.getSubType() + "\n-------------------------------------------详细错误：" + Utils.getStackTrace(e));
+            throw new RuntimeException(", Тип активности: " + activity.getType() + ", Тип праздника: " + activity.getSubType() + "\n-------------------------------------------Подробная ошибка: " + Utils.getStackTrace(e));
         }
         return activities;
     }

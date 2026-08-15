@@ -62,7 +62,7 @@ public class QueryUtil {
     public int getHeFuId(int serverId) {
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            log.error("t_server中未找到serverId = " + serverId);
+            log.error("В t_server не найден serverId = " + serverId);
             return serverId;
         }
         if (server.getIsHeFu() == 1) {
@@ -78,7 +78,7 @@ public class QueryUtil {
 
         Dblog dblog = DbLogListManager.getInstance().getDblog(serverId);
         if (dblog == null) {
-            log.error("在t_dblog表中未找到serverId=" + serverId);
+            log.error("В таблице t_dblog не найден serverId = " + serverId);
             return null;
         }
 
@@ -98,7 +98,7 @@ public class QueryUtil {
         List<Dblog> dbList = new ArrayList<>();
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            log.error("未找到serverId=" + serverId + "的server");
+            log.error("Сервер с serverId = " + serverId + " не найден");
             return dbList;
         }
 
@@ -108,7 +108,7 @@ public class QueryUtil {
         String ids = idSet.toString().replaceAll("[\\[\\] ]", "");
         List<Dblog> list = getHeFuDBLogList(ids);
         if (list.isEmpty()) {
-            log.error("未找到ids=" + ids + "的dblog");
+            log.error("Записи в dblog для ids = " + ids + " не найдены");
             return dbList;
         }
         dbList.addAll(list);
@@ -149,14 +149,14 @@ public class QueryUtil {
             server = CrossManager.getInstance().getDB(serverId);
         }
         if (server == null) {
-            log.error("未找到serverId=" + serverId + "的server");
+            log.error("Не найден сервер с serverId = " + serverId);
             return dbList;
         }
 
         checkHeFuServer(server, dbList, sTime, eTime);
 
         if (dbList.isEmpty()) {
-            log.error("未找到合服的dblog");
+            log.error("Не найдены записи dblog для объединённых серверов");
             return dbList;
         }
         return dbList;

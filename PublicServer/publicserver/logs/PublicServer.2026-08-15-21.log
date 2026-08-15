@@ -1,0 +1,23 @@
+2026-08-15 21:00:00.034 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=106【八极阵图】开始阶段
+2026-08-15 21:00:00.034 INFO [Public service][EightDiagramsScript.java:360] - 没有战斗服
+2026-08-15 21:19:08.357 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x598c97ff, L:/94.250.249.128:9200 - R:/20.65.194.133:47240]
+2026-08-15 21:19:08.357 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-15 21:19:08.357 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x598c97ff, L:/94.250.249.128:9200 - R:/20.65.194.133:47240] — порядковый номер подключения: 72
+2026-08-15 21:19:18.203 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0x598c97ff, L:/94.250.249.128:9200 ! R:/20.65.194.133:47240]
+2026-08-15 21:19:18.203 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-15 21:19:18.204 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x598c97ff, L:/94.250.249.128:9200 ! R:/20.65.194.133:47240]
+2026-08-15 21:19:51.858 ERROR [nioEventLoopGroup-5-1][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-15 21:19:51.858 ERROR [nioEventLoopGroup-5-1][SendBackFuture.java:23] - back http result success!
+2026-08-15 21:19:52.595 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xdace562f, L:/94.250.249.128:9200 - R:/85.217.149.44:42464]
+2026-08-15 21:19:52.595 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-15 21:19:52.595 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xdace562f, L:/94.250.249.128:9200 - R:/85.217.149.44:42464] — порядковый номер подключения: 73
+2026-08-15 21:20:22.467 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0xdace562f, L:/94.250.249.128:9200 ! R:/85.217.149.44:42464]
+2026-08-15 21:20:22.467 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xdace562f, L:/94.250.249.128:9200 ! R:/85.217.149.44:42464] — при отправке очереди соединение уже разорвано! 4
+2026-08-15 21:20:22.467 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-15 21:20:22.468 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xdace562f, L:/94.250.249.128:9200 ! R:/85.217.149.44:42464]
+2026-08-15 21:30:01.672 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 24, количество: 9
+2026-08-15 21:31:00.011 INFO [Public service][DailyActiveScript.java:263] - 日常活动id=106【八极阵图】关闭阶段
+2026-08-15 21:31:00.011 INFO [Public service][EightDiagramsScript.java:96] - eightDiagramsOver
+2026-08-15 21:32:53.433 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-15 21:32:53.434 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-15 21:33:45.084 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 79, количество: 9

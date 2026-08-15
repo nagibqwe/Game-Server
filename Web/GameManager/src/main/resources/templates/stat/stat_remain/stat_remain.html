@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('留存统计列表')" />
+    <th:block th:include="include :: header('Статистика удержания')" />
     <th:block th:include="include :: footer" />
 
     <th:block th:include="include :: bootstrap-table-export-js" />
@@ -23,10 +23,10 @@
             </div>
             <div class="btn-group-sm" id="toolbar" role="group">
                 <div class="btn-group">
-                    <button name="group_tab" class="btn btn-primary" id="new_user_remain" type="button">新用户留存</button>
-                    <button name="group_tab" class="btn btn-white" id="new_user_pay_remain" type="button">付费用户留存</button>
-                    <button name="group_tab" class="btn btn-white" id="old_user_remain" type="button">老用户留存</button>
-                    <button name="group_tab" class="btn btn-white" id="new_role_remain" type="button">新创角留存</button>
+                    <button name="group_tab" class="btn btn-primary" id="new_user_remain" type="button">Удержание новых пользователей</button>
+                    <button name="group_tab" class="btn btn-white" id="new_user_pay_remain" type="button">Удержание платящих пользователей</button>
+                    <button name="group_tab" class="btn btn-white" id="old_user_remain" type="button">Удержание старых пользователей</button>
+                    <button name="group_tab" class="btn btn-white" id="new_role_remain" type="button">Удержание новых персонажей</button>
                 </div>
             </div>
             <div class="col-sm-12 select-table table-striped">
@@ -39,18 +39,18 @@
     <script th:inline="javascript">
         var prefix = ctx + "stat/stat_remain";
         var helptip = "<span style='color:Black'> " +
-            "<b>功能说明(点击键盘Esc关闭)</b></br>" +
-            "-统计不同类型的玩家的1~30日留存、45日留存、60日留存、120日留存。</br>" +
-            "-按照日期展示，按照选中的服去重与日期无关</br>" +
-            "<b>指标说明</b></br>" +
-            "-次留:当天有登录且在次日(第2天)有登录的玩家数/当天登录玩家数</br>" +
-            "-3留:当天有登录且在第3天有登录的玩家数/当天登录玩家数</br>" +
-            "-7留当天有登录且在第7天有登灵的玩家数/当天登录玩家数</br>" +
-            "-30留:当天有登录且在第30天有登录的玩家数/当天登录玩家数</br>" +
-            "-新用户:当日新增加的账号</br>" +
-            "-付费用户:有过付费的用户</br>" +
-            "-老用户:当天之前有登录过目当日有登录的帐号</br>" +
-            "-新创角:当日新创角" +
+            "<b>Описание функционала (нажмите Esc для закрытия)</b></br>" +
+            "- Статистика удержания для разных типов игроков на 1-30, 45, 60, 120 дней.</br>" +
+            "- Отображается по датам, данные агрегируются по серверу без привязки к дате</br>" +
+            "<b>Пояснение к метрикам</b></br>" +
+            "- Day 2 Retention: количество игроков, вошедших на следующий день после первого входа / общее количество игроков за день</br>" +
+            "- Day 3 Retention: количество игроков, вошедших на 3-й день / общее количество игроков за день</br>" +
+            "- Day 7 Retention: количество игроков, вошедших на 7-й день / общее количество игроков за день</br>" +
+            "- Day 30 Retention: количество игроков, вошедших на 30-й день / общее количество игроков за день</br>" +
+            "- Новые пользователи: новые аккаунты за день</br>" +
+            "- Платящие пользователи: пользователи, совершавшие платежи</br>" +
+            "- Старые пользователи: аккаунты, которые входили до текущего дня и вошли в текущий день</br>" +
+            "- Новые персонажи: новые созданные персонажи за день" +
             "</span>";
 
         $(function() {
@@ -62,20 +62,20 @@
                 $.table.destroy('bootstrap-table');
                 initRemainTable(e.target.id);
             });
-            //默认初始化第一个
+            // По умолчанию инициализируем первую вкладку
             initRemainTable("new_user_remain");
         });
 
         /**
-         * 留存表格
+         * Таблица удержания
          * @param name
          */
         function initRemainTable(remainType) {
             var caclNewCountNameMap = {};
-            caclNewCountNameMap["new_user_remain"] = "新用户";
-            caclNewCountNameMap["new_user_pay_remain"] = "付费用户";
-            caclNewCountNameMap["old_user_remain"] = "老用户";
-            caclNewCountNameMap["new_role_remain"] = "新创角";
+            caclNewCountNameMap["new_user_remain"] = "Новые пользователи";
+            caclNewCountNameMap["new_user_pay_remain"] = "Платящие пользователи";
+            caclNewCountNameMap["old_user_remain"] = "Старые пользователи";
+            caclNewCountNameMap["new_role_remain"] = "Новые персонажи";
             var options = {
                 pageSize: 10000000,
                 pageList: [],
@@ -98,11 +98,11 @@
 
                     },{
                         field: 'diffDay',
-                        title: '天数',
+                        title: 'День',
                     }
                     ,{
                         field: 'currDayKeep',
-                        title: '今日留',
+                        title: 'Удержание за текущий день',
                     },
                     {
                         field: 'caclNewCount',
@@ -110,7 +110,7 @@
                     },
                     {
                         field: 'keep2',
-                        title: '次留'
+                        title: 'День 2'
                     }]
             };
             var list = []
@@ -123,7 +123,7 @@
             for(var i =0;i<list.length;i++){
                 options.columns.push({
                     field: 'keep'+list[i],
-                    title: list[i]+'留'
+                    title: 'День '+list[i]
                 });
             }
             $.table.init(options);

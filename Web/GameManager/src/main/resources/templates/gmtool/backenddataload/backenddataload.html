@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('后台数据加载')" />
+    <th:block th:include="include :: header('Загрузка данных бэкенда')" />
     <th:block th:include="include :: footer" />
     <script>
         var prefix = ctx + "gmtool/backenddataload";
@@ -13,9 +13,9 @@
                 dataType : "json",
                 success : function(data) {
                     if (data.ok) {
-                        $.modal.alertSuccess("加载完成");
+                        $.modal.alertSuccess("Загрузка завершена");
                     }else{
-                        $.modal.alertError("加载失败");
+                        $.modal.alertError("Ошибка загрузки");
                     }
                 }
             });
@@ -149,48 +149,48 @@
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
-            <th>功能模块</th>
-            <th>后台数据</th>
+            <th>Функциональный модуль</th>
+            <th>Данные бэкенда</th>
             <th>Действия</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td rowspan="9" style="vertical-align: middle;"><p class="text-center">其他数据</p></td>
-            <td>公告数据加载</td>
-            <td><input type="button" value="重新加载" class="btn btn-primary" onclick="reload('reloadAnnouce');"></td>
+            <td rowspan="9" style="vertical-align: middle;"><p class="text-center">Другие данные</p></td>
+            <td>Загрузка данных объявлений</td>
+            <td><input type="button" value="Перезагрузить" class="btn btn-primary" onclick="reload('reloadAnnouce');"></td>
         </tr>
         <tr>
-            <td>黑名单数据加载</td>
-            <td><input type="button" value="重新加载" class="btn btn-primary" onclick="reload('reloadBlackList');"></td>
+            <td>Загрузка данных чёрного списка</td>
+            <td><input type="button" value="Перезагрузить" class="btn btn-primary" onclick="reload('reloadBlackList');"></td>
         </tr>
         <tr>
-            <td>物品装备数据加载</td>
-            <td><a href="#itemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+            <td>Загрузка данных предметов и экипировки</td>
+            <td><a href="#itemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Перезагрузить</a></td>
         </tr>
         <tr>
-            <td>功能开放列表加载</td>
-            <td><a href="#functionLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+            <td>Загрузка списка открытых функций</td>
+            <td><a href="#functionLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Перезагрузить</a></td>
         </tr>
         <tr>
-            <td>原因码加载</td>
-            <td><a href="#changeReasonLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+            <td>Загрузка кодов причин</td>
+            <td><a href="#changeReasonLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Перезагрузить</a></td>
         </tr>
         <tr>
-            <td>有奖问答加载</td>
-            <td><a href="#questionnaireLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+            <td>Загрузка опросов с наградами</td>
+            <td><a href="#questionnaireLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Перезагрузить</a></td>
         </tr>
         <tr>
-            <td>运营活动BOSS类型加载</td>
-            <td><a href="#activityBossTypeLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+            <td>Загрузка типов BOSS для операционных событий</td>
+            <td><a href="#activityBossTypeLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Перезагрузить</a></td>
         </tr>
         <tr>
-            <td>运营活动节日类型加载</td>
-            <td><a href="#activityFestivalTypeLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+            <td>Загрузка типов праздников для операционных событий</td>
+            <td><a href="#activityFestivalTypeLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Перезагрузить</a></td>
         </tr>
         <tr>
-            <td>运营活动节日关系加载</td>
-            <td><a href="#activityFestivalRelationLoadModel" role="button" class="btn btn-primary" data-toggle="modal">重新加载</a></td>
+            <td>Загрузка связей праздников для операционных событий</td>
+            <td><a href="#activityFestivalRelationLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Перезагрузить</a></td>
         </tr>
         </tbody>
     </table>
@@ -200,11 +200,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>物品装备表</h3>
+                    <h3>Таблица предметов и экипировки</h3>
                 </div>
                 <div class="modal-body">
                     <input id="items" type="file" name="itemFile"/>
-                    <label>注意，先加载item.xlsx，再加载equip.xlsx</label>
+                    <label>Внимание: сначала загрузите item.xlsx, затем equip.xlsx</label>
                 </div>
                 <div class="modal-footer">
                     <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>
@@ -219,11 +219,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>功能开放配置表</h3>
+                    <h3>Таблица открытия функций</h3>
                 </div>
                 <div class="modal-body">
                     <input id="functionFile" type="file" name="functionFile"/>
-                    <label>加载FunctionStart.xlsx</label>
+                    <label>Загрузить FunctionStart.xlsx</label>
                 </div>
                 <div class="modal-footer">
                     <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>
@@ -238,11 +238,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>原因码配置表</h3>
+                    <h3>Таблица кодов причин</h3>
                 </div>
                 <div class="modal-body">
                     <input id="changeReasonFile" type="file" name="changeReasonFile"/>
-                    <label>加载ItemChangeReason.xlsx</label>
+                    <label>Загрузить ItemChangeReason.xlsx</label>
                 </div>
                 <div class="modal-footer">
                     <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>
@@ -257,7 +257,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>有奖问卷配置表</h3>
+                    <h3>Таблица опросов с наградами</h3>
                 </div>
                 <div class="modal-body">
                     <input id="questionnaireFile" type="file" name="questionnaireFile"/>
@@ -275,11 +275,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>运营活动BOSS类型配置表</h3>
+                    <h3>Таблица типов BOSS для операционных событий</h3>
                 </div>
                 <div class="modal-body">
                     <input id="activityBossTypeFile" type="file" name="activityBossTypeFile"/>
-                    <label>加载activity_boss_type.xlsx表</label>
+                    <label>Загрузить activity_boss_type.xlsx</label>
                 </div>
                 <div class="modal-footer">
                     <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>
@@ -294,11 +294,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>运营活动节日类型配置表</h3>
+                    <h3>Таблица типов праздников для операционных событий</h3>
                 </div>
                 <div class="modal-body">
                     <input id="activityFestivalTypeFile" type="file" name="activityFestivalTypeFile"/>
-                    <label>加载activity_festival.xlsx表</label>
+                    <label>Загрузить activity_festival.xlsx</label>
                 </div>
                 <div class="modal-footer">
                     <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>
@@ -313,11 +313,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>运营活动节日关系配置表</h3>
+                    <h3>Таблица связей праздников для операционных событий</h3>
                 </div>
                 <div class="modal-body">
                     <input id="activityFestivalRelationFile" type="file" name="activityFestivalRelationFile"/>
-                    <label>加载activity_yunying.xlsx表</label>
+                    <label>Загрузить activity_yunying.xlsx</label>
                 </div>
                 <div class="modal-footer">
                     <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>

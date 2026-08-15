@@ -37,7 +37,7 @@ public class PlayerActiveStatisticModule {
     //初始化界面
     public void index(HttpServletRequest request) {
         request.setAttribute("nowDate", sdf.format(new Date()));
-        BackendLogUtil.getInstance().log(request, "进入玩家活跃度统计页面");
+        BackendLogUtil.getInstance().log(request, "Вход на страницу статистики активности игроков");
         Set<String> groupNames = DbLogListManager.getInstance().getPlatformDBNames();
         //获取平台列表
         request.setAttribute("groupNameList", groupNames);

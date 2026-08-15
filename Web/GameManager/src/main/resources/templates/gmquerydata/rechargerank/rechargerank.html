@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('ПополнениеРейтинг')" />
+    <th:block th:include="include :: header('Рейтинг пополнений')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -14,10 +14,10 @@
                         <div th:replace="common/stat_date_head2.html"></div>
                         <ul>
                             <li>
-                                <label >查询类型:</label>
+                                <label>Тип запроса:</label>
                                 <select id="select_type" name="type" class="span2">
-                                    <option value="0">角色</option>
-                                    <option value="1">用户</option>
+                                    <option value="0">Персонаж</option>
+                                    <option value="1">Пользователь</option>
                                 </select>
                             </li>
                         </ul>
@@ -41,7 +41,7 @@
     $(function() {
         var options = {
             url: prefix + "/rechargerank",
-            modalName: "日常数据",
+            modalName: "Рейтинг пополнений",
             pagination: true,
             firstLoad:false,
             columns: [{
@@ -65,7 +65,7 @@
                 title: 'Класс',
             },{
                 field: 'rechargeGold',
-                title: '总充值元宝',
+                title: 'Всего пополнено слитков',
             },{
                 field: 'remainGold',
                 title: 'Остаток слитков',
@@ -77,28 +77,28 @@
                 title: 'Время онлайн (сек.)',
             },{
                 field: 'lastLoginTime',
-                title: '上次登录时间',
+                title: 'Время последнего входа',
             },{
                 field: 'createSid',
-                title: '所在服',
+                title: 'Сервер создания',
             },{
                 field: 'totalRecharge',
-                title: '充值金额(元)',
+                title: 'Сумма пополнений (юани)',
             },{
                 field: 'rechargeCount',
                 title: 'Количество пополнений',
             },{
                 field: 'maxRecharge',
-                title: '单次最大充值(元)',
+                title: 'Макс. пополнение (юани)',
             },{
                 field: 'minRecharge',
-                title: '单次最小充值(元)',
+                title: 'Мин. пополнение (юани)',
             },{
                 field: 'avgRecharge',
-                title: '平均充值(元)',
+                title: 'Среднее пополнение (юани)',
             },{
                 field: 'lastRechargeTime',
-                title: '最后充值时间',
+                title: 'Время последнего пополнения',
             }
            ]
         };

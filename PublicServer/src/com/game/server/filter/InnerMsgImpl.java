@@ -85,9 +85,9 @@ public class InnerMsgImpl extends CommandProcessor {
         if (useTime > 300) {
             if (command instanceof RMessage) {
                 RMessage handler = (RMessage) command;
-                log.info("处理消息：" + handler.getId() + " 超时：" + useTime);
+                log.info("Обработка сообщения: " + handler.getId() + " — превышение времени: " + useTime);
             } else {
-                log.error("处理了未知的协议信息!超时：" + useTime);
+                log.error("Обработка неизвестного протокола! Превышение времени: " + useTime);
             }
         }
     }

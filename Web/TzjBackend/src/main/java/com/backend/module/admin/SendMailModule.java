@@ -23,26 +23,25 @@ public class SendMailModule {
     public Object send(@Param("to") String to, @Param("title") String title, @Param("content") String content, HttpServletRequest request) {
 
         if (Strings.isBlank(to)) {
-            return Toolkit.outResult(false, "当前没有指定发送的目标邮件");
+            return Toolkit.outResult(false, "Не указан получатель письма");
         }
 
         if (!to.contains("@")) {
-            return Toolkit.outResult(false, "邮件格式不正确！");
+            return Toolkit.outResult(false, "Неверный формат email!");
         }
 
         if (Strings.isBlank(title) || Strings.isBlank(content)) {
-            return Toolkit.outResult(false, "邮件内容为空");
+            return Toolkit.outResult(false, "Содержимое письма пусто");
         }
 
         if (!Toolkit.checkSign(request)) {
-            return Toolkit.outResult(false, "发送失败1");
+            return Toolkit.outResult(false, "Ошибка отправки");
         }
 
         boolean ok = emailService.send(to, title, content);
         if (!ok) {
-            return Toolkit.outResult(false, "发送失败");
+            return Toolkit.outResult(false, "Ошибка отправки");
         }
-        return Toolkit.outResult(true, "发送成功");
+        return Toolkit.outResult(true, "Отправлено успешно");
     }
-
 }

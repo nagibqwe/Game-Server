@@ -83,7 +83,7 @@ public class EquipScript implements IEquipScript {
 
             eqBean = CfgManager.getCfg_Equip_Container().getValueByKey(it.getItemModelId());
             if (eqBean == null) {
-                log.error("没有找到该装备,id=" + it.getItemModelId());
+                log.error("Экипировка не найдена. ID=" + it.getItemModelId());
                 continue;
             }
 
@@ -138,7 +138,7 @@ public class EquipScript implements IEquipScript {
 
         Cfg_Equip_Bean eqBean = CfgManager.getCfg_Equip_Container().getValueByKey(it.getItemModelId());
         if (eqBean == null) {
-            log.info("装备表中没有找到该装备,id=" + it.getItemModelId());
+            log.info("Экипировка не найдена в таблице. ID=" + it.getItemModelId());
             return;
         }
         if(!eqBean.getGender().contains(player.getCareer())){
@@ -355,7 +355,7 @@ public class EquipScript implements IEquipScript {
         if(eq.getId()<=0){
             return;
         }
-        log.info(player.getInfo() + "请求穿戴装备ID:" + eq.getId() + ",装备部位:" + eq.getPart() + "，装备战力:" + eq.getScore());
+        log.info(player.getInfo() + " запрос на экипировку. ID: " + eq.getId() + ", слот: " + eq.getPart() + ", боевая мощь: " + eq.getScore());
         EquipMessage.ReqEquipWear.Builder msg = EquipMessage.ReqEquipWear.newBuilder();
         msg.setEquipId(eq.getId());
         msg.setInherit(false);

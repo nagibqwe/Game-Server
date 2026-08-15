@@ -1,16 +1,35 @@
-2026-08-13 20:57:25.646 INFO [Thread-2][LogService.java:87] - 初始化日志数据库服务
-2026-08-13 20:57:25.671 INFO [Thread-2][LogService.java:120] - 启动日志数据库连接池完毕jdbc:mysql://127.0.0.1:3306/tzj_login_log?autoReconnect=true&nullCatalogMeansCurrent=true
-2026-08-13 20:57:26.718 INFO [Thread-2][LogService.java:173] - 检测查表loguser202608
-2026-08-13 20:57:26.741 INFO [Thread-2][LogService.java:272] - loguser202608检查结束
-2026-08-13 20:57:26.743 INFO [Thread-2][LogService.java:173] - 检测查表loguserdobean
-2026-08-13 20:57:26.760 INFO [Thread-2][LogService.java:272] - loguserdobean检查结束
-2026-08-13 20:57:26.761 INFO [Thread-2][LogService.java:125] - 启动日志线程池完毕
-2026-08-13 20:57:26.761 INFO [Thread-2][LogService.java:129] - 初始化日志数据库服务结束
-2026-08-13 20:57:26.780 INFO [Thread-2][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/AgentServer/agentserver/AgentServer.jar:bin]
-2026-08-13 20:57:26.785 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：1 脚本名：common.LoginUrl
-2026-08-13 20:57:26.787 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：3 脚本名：common.biqq.BiQQScript
-2026-08-13 20:57:26.788 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：2 脚本名：common.ipfind.IPFinderScript
-2026-08-13 20:57:27.485 INFO [Thread-2][IPFinderScript.java:122] - Начинается загрузка файла ip2region.bytes... ...
-2026-08-13 20:57:27.654 INFO [Thread-2][IPFinderScript.java:151] - Загрузка файла ip2region.bytes завершена, количество записей: 162899
-2026-08-13 20:57:28.100 INFO [nioEventLoopGroup-4-1][SocketServer.java:61] - HTTP-сервис входа监听3001成功！
-2026-08-13 20:57:28.100 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - agentserver监听3002成功！
+2026-08-16 01:02:00.556 INFO [Thread-8][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 01:02:00.556 INFO [Thread-8][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 01:02:00.556 INFO [Thread-8][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 01:02:00.567 INFO [Thread-8][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 01:02:01.813 INFO [nioEventLoopGroup-3-4][ClientHandlerAdapter.java:58] - /164.138.251.76:52930 Соединение закрыто!
+2026-08-16 01:04:31.735 ERROR [nioEventLoopGroup-3-5][ClientHandlerAdapter.java:68] - /85.217.149.55:48976 Удалённое соединение закрыто ClientHandlerAdapter!
+2026-08-16 01:05:01.606 INFO [nioEventLoopGroup-3-5][ClientHandlerAdapter.java:58] - /85.217.149.55:48976 Соединение закрыто!
+2026-08-16 01:09:34.706 INFO [Thread-10][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 01:09:34.706 INFO [Thread-10][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 01:09:34.706 INFO [Thread-10][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 01:09:34.716 INFO [Thread-10][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 01:09:35.902 INFO [nioEventLoopGroup-3-6][ClientHandlerAdapter.java:58] - /164.138.251.76:43076 Соединение закрыто!
+2026-08-16 01:12:14.509 INFO [Thread-12][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 01:12:14.509 INFO [Thread-12][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 01:12:14.510 INFO [Thread-12][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 01:12:14.519 INFO [Thread-12][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 01:12:15.680 INFO [nioEventLoopGroup-3-7][ClientHandlerAdapter.java:58] - /164.138.251.76:53486 Соединение закрыто!
+2026-08-16 01:19:11.550 INFO [Thread-11][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 01:19:11.551 INFO [Thread-11][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 01:19:11.551 INFO [Thread-11][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 01:19:11.564 INFO [Thread-11][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 01:19:12.742 INFO [nioEventLoopGroup-3-8][ClientHandlerAdapter.java:58] - /164.138.251.76:57150 Соединение закрыто!
+2026-08-16 01:19:15.653 INFO [nioEventLoopGroup-5-5][HttpChannelImpl.java:130] - back http result success!
+2026-08-16 01:22:33.612 INFO [Thread-14][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 01:22:33.612 INFO [Thread-14][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 01:22:33.612 INFO [Thread-14][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 01:22:33.625 INFO [Thread-14][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 01:22:34.810 INFO [nioEventLoopGroup-3-1][ClientHandlerAdapter.java:58] - /164.138.251.76:57066 Соединение закрыто!
+2026-08-16 01:22:48.284 INFO [nioEventLoopGroup-5-6][HttpChannelImpl.java:130] - back http result success!
+2026-08-16 01:29:07.107 INFO [Thread-13][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 01:29:07.108 INFO [Thread-13][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 01:29:07.108 INFO [Thread-13][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 01:29:07.118 INFO [Thread-13][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 01:29:08.288 INFO [nioEventLoopGroup-3-2][ClientHandlerAdapter.java:58] - /164.138.251.76:54680 Соединение закрыто!
+2026-08-16 01:29:10.334 INFO [nioEventLoopGroup-5-7][HttpChannelImpl.java:130] - back http result success!

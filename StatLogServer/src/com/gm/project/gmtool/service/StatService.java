@@ -35,7 +35,7 @@ public class StatService {
             // 任务调度器
             scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
-            logger.error("添加统计");
+            logger.error("Добавление статистики");
             /**================  添加【xxx】统计任务  start ================= **/
             // 各个在线时长区间的在线玩家个数统计（00:30）
            statJob(StatLoginLogTask.class, StatConfigService.getInstance().getValue("stat.login.log.corn"), true );

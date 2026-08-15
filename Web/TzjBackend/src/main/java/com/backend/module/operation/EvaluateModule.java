@@ -56,25 +56,25 @@ public class EvaluateModule {
             evaluate.setActionTime(new Date());
             evaluate.setActionUser(user.getName());
             evaluate.setIsDelete(0);
-            //发送消息到GameServer
+            // Отправка сообщения на GameServer
             Server server = ServerListManager.getInstance().getServer(serverId);
             if (server == null) {
-                return Toolkit.outResult(false, "服务器连接信息获取失败");
+                return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
             }
             NutMap resultMap = GameServerRequestUtil.gmSetEvaluate(server, evaluate);
             String prompt;
             if (resultMap.getBoolean("ok")) {
-                prompt = "操作成功！";
+                prompt = "Операция выполнена успешно!";
                 dao.insert(evaluate);
             } else {
-                prompt = "操作失败！";
+                prompt = "Ошибка операции!";
             }
-            log.error("评价开关：sid=" + serverId + ",操作结果:" + resultMap.getString("msg"));
-            BackendLogUtil.getInstance().log(request, "评价开关"+ evaluate.geteType()+",状态："+evaluate.isState());
+            log.error("Переключатель оценки: sid=" + serverId + ", результат: " + resultMap.getString("msg"));
+            BackendLogUtil.getInstance().log(request, "Переключатель оценки " + evaluate.geteType() + ", статус: " + evaluate.isState());
             return Toolkit.outResult(resultMap.getBoolean("ok"), prompt);
         } catch (Exception e) {
             log.error(e);
-            return Toolkit.outResult(false, "操作失败");
+            return Toolkit.outResult(false, "Ошибка операции");
         }
     }
 
@@ -96,7 +96,3 @@ public class EvaluateModule {
         return Toolkit.outResult(false);
     }
 }
-
-
-
-

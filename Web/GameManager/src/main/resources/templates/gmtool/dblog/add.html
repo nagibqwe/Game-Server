@@ -1,100 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('新增日志库列表')" />
+    <th:block th:include="include :: header('Добавить журнал')" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-dblog-add">
             <div class="form-group">
-                <label class="col-sm-3 control-label is-required">ID сервера：</label>
+                <label class="col-sm-3 control-label is-required">ID сервера:</label>
                 <div class="col-sm-8">
                     <input name="serverId" class="form-control" type="text" onblur="checkInput('serverId')" required>
                     <span id="checkServerId"></span>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Название сервера：</label>
+                <label class="col-sm-3 control-label is-required">Название сервера:</label>
                 <div class="col-sm-8">
                     <input name="serverName" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Тип：</label>
+                <label class="col-sm-3 control-label is-required">Тип:</label>
                 <div class="col-sm-8">
                     <select name="type" class="form-control m-b" required>
-                        <option value="1">日志库</option>
+                        <option value="1">База данных журналов</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Платформа：</label>
+                <label class="col-sm-3 control-label is-required">Платформа:</label>
                 <div class="col-sm-8">
                     <input name="groupName" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">IP базы данных：</label>
+                <label class="col-sm-3 control-label is-required">IP базы данных:</label>
                 <div class="col-sm-8">
                     <input name="dbIp" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Порт базы данных：</label>
+                <label class="col-sm-3 control-label is-required">Порт базы данных:</label>
                 <div class="col-sm-8">
                     <input name="dbPort" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Название базы данных：</label>
+                <label class="col-sm-3 control-label is-required">Название базы данных:</label>
                 <div class="col-sm-8">
                     <input name="dbname" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Пользователь базы данных：</label>
+                <label class="col-sm-3 control-label is-required">Пользователь базы данных:</label>
                 <div class="col-sm-8">
                     <input name="dbuser" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Пароль базы данных：</label>
+                <label class="col-sm-3 control-label is-required">Пароль базы данных:</label>
                 <div class="col-sm-8">
                     <input name="dbpassword" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Список объединения：</label>
+                <label class="col-sm-3 control-label">Список объединённых серверов:</label>
                 <div class="col-sm-8">
                     <textarea name="serverIdList" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Объединён：</label>
+                <label class="col-sm-3 control-label">Объединён:</label>
                 <div class="col-sm-8">
                     <select name="isHeFu" class="form-control m-b">
-                        <option value="0" th:checked="true">否</option>
+                        <option value="0" th:checked="true">Нет</option>
                         <option value="1">Да</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">ID целевого сервера：</label>
+                <label class="col-sm-3 control-label">ID целевого сервера:</label>
                 <div class="col-sm-8">
                     <input name="hefuServerID" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Время объединения серверов：</label>
+                <label class="col-sm-3 control-label">Время объединения серверов:</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
-                        <input name="hefuTime" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss" type="text">
+                        <input name="hefuTime" class="form-control" placeholder="гггг-мм-дд чч:мм:сс" type="text">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">Тип сервера：</label>
+                <label class="col-sm-3 control-label is-required">Тип сервера:</label>
                 <div class="col-sm-8">
                     <select name="serverType" class="form-control m-b" required>
                         <option value="0" selected>Тестовый сервер</option>
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label is-required">是否生效：</label>
+                <label class="col-sm-3 control-label is-required">Активен:</label>
                 <div class="col-sm-8">
                     <div class="radio-box">
                         <input type="radio" id="isDeleted0" name="isDeleted" value="0" checked="checked">
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <!--<div class="form-group">    -->
-                <!--<label class="col-sm-3 control-label">开服时间：</label>-->
+                <!--<label class="col-sm-3 control-label">Время открытия сервера:</label>-->
                 <!--<div class="col-sm-8">-->
                     <!--<input name="serverOpenTime" class="form-control" type="text">-->
                 <!--</div>-->

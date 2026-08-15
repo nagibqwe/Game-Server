@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.util.*;
 
 /**
- * 服务器管理接口类， 用于管理服务器的添加， 合服， 修改
+ * Класс интерфейса управления серверами для добавления, объединения и изменения серверов
  */
 @IocBean
 @At("/server")
@@ -82,11 +82,11 @@ public class ServerModule {
 
         server.setWorldIP(server.getWorldIP().trim());
         Server updateServer = dao.fetch(Server.class, Cnd.where("serverId", "=", server.getServerId()));
-        // 如果没有记录
+        // Если запись отсутствует
         if (updateServer == null) {
             Server no = dao.insert(server);
             if (no != null) {
-                BackendLogUtil.getInstance().log(request, "增加服务器信息，serverId:" + server.getServerId());
+                BackendLogUtil.getInstance().log(request, "Добавление информации о сервере, serverId:" + server.getServerId());
                 ServerListManager.getInstance().updateServer(server);
                 return Toolkit.outResult(true, msg.get("server.insert.success") + no.getId());
             }
@@ -103,7 +103,7 @@ public class ServerModule {
 
             int no = dao.update(updateServer);
             if (no > 0) {
-                BackendLogUtil.getInstance().log(request, "修改服务器信息，serverId:" + server.getServerId());
+                BackendLogUtil.getInstance().log(request, "Изменение информации о сервере, serverId:" + server.getServerId());
                 ServerListManager.getInstance().updateServer(updateServer);
                 return Toolkit.outResult(true, msg.get("db.update.success"));
             }
@@ -139,7 +139,7 @@ public class ServerModule {
         }
 
         if (server.getIsDeleted() != 0) {
-            return Toolkit.outResult(false, "服务器未启用");
+            return Toolkit.outResult(false, "Сервер не активен");
         }
 
         if (server.getHefuServerID() < 1) {
@@ -178,10 +178,10 @@ public class ServerModule {
             srcDBlog.setIsHeFu(1);
             srcDBlog.setHefuServerID(server.getHefuServerID());
             srcDBlog.setHefuTime(server.getHefuTime());
-            // 更新原日志库信息
+            // Обновление информации об исходной лог-базе
             dao.update(srcDBlog);
             destDBlog.setOwerlist(destDBlog.getOwerlist() + srcDBlog.getOwerlist());
-            // 更新目标日志库信息
+            // Обновление информации о целевой лог-базе
             dao.update(destDBlog);
             ServerListManager.getInstance().updateServer(server);
             return Toolkit.outResult(true);
@@ -213,7 +213,7 @@ public class ServerModule {
         String srcSerStr = srcDBlog.getOwerlist();
         int destSId = srcSer.getHefuServerID();
 
-        // 检查日志库的修改记录， 如果有， 则可以清理， 如果没有是不可以清理的
+        // Проверка наличия записи об изменении в лог-базе
         Dblog destDBlog = dao.fetch(Dblog.class, Cnd.where("serverId", "=", destSId));
         if (destDBlog == null) {
             return Toolkit.outResult(false, msg.get("server.combine.noDblog"));
@@ -274,7 +274,7 @@ public class ServerModule {
         int no = dao.delete(Server.class, id);
         if (no > 0) {
             ServerListManager.getInstance().updateServer(server);
-            BackendLogUtil.getInstance().log(request, "删除服务器信息，serverId:" + id);
+            BackendLogUtil.getInstance().log(request, "Удаление информации о сервере, serverId:" + id);
             return new NutMap().setv("ok", true);
         }
         return Toolkit.outResult(false, msg.get("dblog.delete.tishi1") + id + msg.get("dblog.delete.tishi2"));
@@ -292,19 +292,19 @@ public class ServerModule {
             case 0:
             case 1:
             case 4:
-                return GameServerRequestUtil.gmOrderSendMess(server,"gmTest","");
+                return GameServerRequestUtil.gmOrderSendMess(server, "gmTest", "");
             case 2:
             case 3:
                 try {
                     String url = "http://" + server.getWorldIP() + ":" + server.getWorldPort() + "/test";
 
-                    HashMap<String,Object> paramMap = new HashMap<String,Object>();
+                    HashMap<String, Object> paramMap = new HashMap<String, Object>();
                     paramMap.put("secret_key", ServerKeyUtil.GetLSRequestKey());
-                    String res = Http.post(url, paramMap,15*1000);
+                    String res = Http.post(url, paramMap, 15 * 1000);
                     return Toolkit.outResult(true, res);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return Toolkit.outResult(false, "连接失败");
+                    return Toolkit.outResult(false, "Ошибка подключения");
                 }
         }
         return Toolkit.outResult(false, "");
@@ -320,21 +320,21 @@ public class ServerModule {
     @POST
     public Object customSql(@Param("sql") String sqlStr, @Param("serverId") int serverId) {
 
-        //首先拿到数据库的连接信息
+        // Получение информации о подключении к базе данных
         Dblog databaseInfo = QueryUtil.getInstance().getFinalHeFuDB(serverId);
         if (databaseInfo == null) {
-            return Toolkit.outResult(false, "server not found");
+            return Toolkit.outResult(false, "Сервер не найден");
         }
 
-        //拿到SimpleDataSource
+        // Получение SimpleDataSource
         SimpleDataSource dataSource = DbConfigUtil.getInstance().getSDS(databaseInfo);
 
         Dao dao = new NutDao(dataSource);
 
-        //获取数据并拼装
+        // Получение и сборка данных
         Sql sql = Sqls.create(sqlStr);
         sql.setCallback((Connection con, ResultSet rs, Sql sql1) -> {
-            //构建返回的信息
+            // Формирование возвращаемой информации
             List<List<String>> list = new ArrayList<>();
             List<String> rowTitle = new ArrayList<>();
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
@@ -381,7 +381,7 @@ public class ServerModule {
     }
 
     /**
-     * 测试服列表
+     * Список тестовых серверов
      */
     @At
     public Object getTestServerMap() {
@@ -389,7 +389,7 @@ public class ServerModule {
     }
 
     /**
-     * 正式服列表
+     * Список боевых серверов
      */
     @At
     public Object getOfficalServerMap() {
@@ -397,11 +397,10 @@ public class ServerModule {
     }
 
     /**
-     * 游戏服务器连接信息(0:测试服1:正式服)不包括合服的服务器
+     * Информация о подключениях игровых серверов (0: тестовые, 1: боевые) без учёта объединённых серверов
      */
     @At
     public Object getNoHeFuServerMap() {
         return ServerListManager.getInstance().getNoHefuServerListMap();
     }
-
 }

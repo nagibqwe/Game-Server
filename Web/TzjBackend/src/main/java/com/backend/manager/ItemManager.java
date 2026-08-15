@@ -78,7 +78,7 @@ public class ItemManager {
             sb.append(entry.getValue());
             nameMap.put(entry.getKey().toString(), sb.toString());
         }
-        log.info("服务器语言包(languageNo.properties)加载完成");
+        log.info("Загрузка языкового пакета сервера (languageNo.properties) завершена.");
     }
 
     /**
@@ -106,7 +106,7 @@ public class ItemManager {
                 return item.getItemName() + "[" + itemId + "]";
             }
         }
-        return "未知物品[" + itemId + "]";
+        return "Неизвестный предмет [" + itemId + "]";
     }
 
     public boolean checkItems(String items) {

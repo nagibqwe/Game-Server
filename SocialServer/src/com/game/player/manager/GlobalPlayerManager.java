@@ -57,7 +57,7 @@ public class GlobalPlayerManager {
         if (is instanceof IGlobalPlayerScript) {
             return (IGlobalPlayerScript) is;
         } else {
-            log.error("没有实现玩家管理脚本");
+            log.error("Не реализован скрипт управления игроками");
             return null;
         }
     }

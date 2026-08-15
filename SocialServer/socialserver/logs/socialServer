@@ -1,2 +1,5 @@
-2026-07-26 21:00:00.702 INFO [workThread][HomeScript.java:252] - 家装大赛排序
-2026-07-26 21:00:00.702 INFO [workThread][HomeScript.java:81] - 初始化家装大赛数据完成len=0！！！！！！！！！
+2026-08-16 01:03:38.281 INFO [nioEventLoopGroup-3-6][ServerMessageAdapter.java:63] - 游戏服首次来注册ServerMessageAdapter#0: [id: 0x41b6ded7, L:/94.250.249.128:9520 - R:/85.217.149.24:35296] 连接的序号是：null
+2026-08-16 01:03:38.281 INFO [nioEventLoopGroup-3-6][ServerMessageAdapter.java:56] - 游戏服激活连接ServerMessageAdapter#0: [id: 0x41b6ded7, L:/94.250.249.128:9520 - R:/85.217.149.24:35296] 连接的序号是：6
+2026-08-16 01:04:08.147 INFO [游戏服消息发送队列][ServerMessageAdapter.java:118] - [id: 0x41b6ded7, L:/94.250.249.128:9520 ! R:/85.217.149.24:35296]发送队列时， 连接已经断开了！4
+2026-08-16 01:04:08.147 INFO [nioEventLoopGroup-3-6][ServerMessageAdapter.java:72] - 游戏服断开连接ServerMessageAdapter#0: [id: 0x41b6ded7, L:/94.250.249.128:9520 ! R:/85.217.149.24:35296] 连接的序号是：6
+2026-08-16 01:04:08.149 INFO [nioEventLoopGroup-3-6][ServerMessageAdapter.java:80] - 游戏服退出注册ServerMessageAdapter#0: [id: 0x41b6ded7, L:/94.250.249.128:9520 ! R:/85.217.149.24:35296] 连接的序号是：6

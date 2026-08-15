@@ -87,7 +87,7 @@ public class ActivityManager {
         if (is instanceof IActivityRank) {
             return (IActivityRank) is;
         }
-        throw new Exception("没有实现跨服战场的副本！荣耀之战IBraveGloryWarScript没有找到具体的实例！");
+        throw new Exception("Реализация для кросс-серверного подземелья не найдена! Не удалось найти экземпляр IBraveGloryWarScript.");
     }
     
     

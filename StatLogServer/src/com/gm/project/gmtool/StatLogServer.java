@@ -148,7 +148,7 @@ public class StatLogServer {
                     logger.error("targetDBClient is null" + tDblogBeanMap.get("serverName").toString());
                     continue;
                 }
-                logger.error("targetDBClient " + tDblogBeanMap.get("serverName").toString() + "连接成功！！！！");
+                logger.error("targetDBClient " + tDblogBeanMap.get("serverName").toString() + " — подключение успешно!!!!");
             }
         }
     }

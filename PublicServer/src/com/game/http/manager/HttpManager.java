@@ -33,7 +33,7 @@ public class HttpManager {
         if (is instanceof IHttpScript) {
             return (IHttpScript) is;
         } else {
-            log.info("HTTP操作:没有找到执行的脚本处理！");
+            log.info("HTTP-операция: не найден скрипт для выполнения!");
             return null;
         }
     }

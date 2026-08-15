@@ -1,0 +1,976 @@
+2026-08-15 19:00:00.071 INFO [RankThread][UniverseRankScript.java:402] - 检查天墟战场名人堂排名
+2026-08-15 19:00:29.826 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29954
+2026-08-15 19:00:59.898 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30072
+2026-08-15 19:01:10.594 INFO [nioEventLoopGroup-3-2][ClientMsgAdapter.java:64] - [id: 0x6309818e, L:/94.250.249.128:9101 - R:/85.217.149.59:54188], id=17首次来连接
+2026-08-15 19:01:18.165 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-15 19:01:29.832 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-08-15 19:01:40.458 INFO [nioEventLoopGroup-3-2][ClientMsgAdapter.java:114] - [id: 0x6309818e, L:/94.250.249.128:9101 ! R:/85.217.149.59:54188] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-08-15 19:01:40.459 WARN [nioEventLoopGroup-3-2][SessionUtils.java:22] - remote ip:/85.217.149.59:54188 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-08-15 19:01:40.459 INFO [nioEventLoopGroup-3-2][ClientMsgAdapter.java:122] - [id: 0x6309818e, L:/94.250.249.128:9101 ! R:/85.217.149.59:54188],id=17 连接的已经移除了！
+2026-08-15 19:01:40.459 INFO [nioEventLoopGroup-3-2][MyOutClientHandler.java:37] - [id: 0x6309818e, L:/94.250.249.128:9101 ! R:/85.217.149.59:54188] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-08-15 19:01:59.866 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-15 19:02:29.892 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30026
+2026-08-15 19:02:59.819 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29927
+2026-08-15 19:03:29.852 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-08-15 19:03:58.720 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-15 19:03:59.883 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-08-15 19:04:29.817 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-08-15 19:04:59.853 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-08-15 19:05:29.897 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30044
+2026-08-15 19:05:59.831 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-08-15 19:06:29.867 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-08-15 19:06:59.901 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-08-15 19:07:29.846 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29945
+2026-08-15 19:07:59.887 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30040
+2026-08-15 19:08:29.813 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29927
+2026-08-15 19:08:59.841 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-15 19:09:29.884 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30043
+2026-08-15 19:09:51.610 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:7 session[id: 0xac23eb03, L:/94.250.249.128:8191 - R:/121.43.117.20:57620]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 218762510 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:09:56.852 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:8 session[id: 0xcc7c497e, L:/94.250.249.128:8191 - R:/121.43.117.20:57914]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1195725860 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:09:59.812 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29928
+2026-08-15 19:10:02.117 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:9 session[id: 0xa4e9837a, L:/94.250.249.128:8191 - R:/121.43.117.20:58072]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1330664525 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:07.248 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:10 session[id: 0x7db39b47, L:/94.250.249.128:8191 - R:/121.43.117.20:58366]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1330664525 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:12.546 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:11 session[id: 0x5ac39a32, L:/94.250.249.128:8191 - R:/121.43.117.20:58470]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 2147483692 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:28.335 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:14 session[id: 0x2ed8384f, L:/94.250.249.128:8191 - R:/121.43.117.20:58944]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1212501076 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:29.852 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30040
+2026-08-15 19:10:36.098 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:15 session[id: 0xdd3bcd94, L:/94.250.249.128:8191 - R:/121.43.117.20:59238]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 369295364 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:41.313 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:16 session[id: 0x04d5f02f, L:/94.250.249.128:8191 - R:/121.43.117.20:59360]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 50331694 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:46.569 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:17 session[id: 0x22024387, L:/94.250.249.128:8191 - R:/121.43.117.20:59454]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 369295364 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:51.819 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:94] - [id: 0xd3f9854e, L:/94.250.249.128:8191 - R:/121.43.117.20:59566] http send:j�n0�k��
+��^0\� P� �NM�0� �0krbtgtNM�19700101000000Z��٨0!
+2026-08-15 19:10:51.821 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:105] - game.core.exception.GameException: can not cast to com.game.backgrand.manager.BackGrandServer$MessagetAdapter$1@480bba47
+game.core.exception.GameException: can not cast to com.game.backgrand.manager.BackGrandServer$MessagetAdapter$1@480bba47
+	at game.core.util.JsonUtils.parseObject(JsonUtils.java:114) ~[GameCore.jar:?]
+	at com.game.backgrand.manager.BackGrandServer$MessagetAdapter.decode(BackGrandServer.java:96) [GameServer.jar:?]
+	at io.netty.handler.codec.ByteToMessageCodec$1.decode(ByteToMessageCodec.java:42) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageCodec.channelRead(ByteToMessageCodec.java:103) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:310) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:284) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'j': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: (String)"j�n0�k��
+��^0\� P� �NM�0� �0krbtgtNM�19700101000000Z��٨0"; line: 1, column: 2]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1851) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:717) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:2898) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:1944) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:776) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4620) ~[jackson-databind-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4469) ~[jackson-databind-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3434) ~[jackson-databind-2.11.1.jar:2.11.1]
+	at game.core.util.JsonUtils.parseObject(JsonUtils.java:112) ~[GameCore.jar:?]
+	... 26 more
+2026-08-15 19:10:51.822 ERROR [nioEventLoopGroup-7-1][SessionUtils.java:61] - BackGrandServer can not cast to com.game.backgrand.manager.BackGrandServer$MessagetAdapter$1@480bba47
+java.lang.Throwable: 断开日志
+	at game.core.util.SessionUtils.log(SessionUtils.java:61) [GameCore.jar:?]
+	at com.game.backgrand.manager.BackGrandServer$MessagetAdapter.decode(BackGrandServer.java:107) [GameServer.jar:?]
+	at io.netty.handler.codec.ByteToMessageCodec$1.decode(ByteToMessageCodec.java:42) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageCodec.channelRead(ByteToMessageCodec.java:103) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:310) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:284) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:52.275 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:94] - [id: 0x52ceb0d5, L:/94.250.249.128:8191 - R:/121.43.117.20:59574] http send:�SMBr    @              @    � PC NETWORK PROGRAM 1.0 MICROSOFT NETWORKS 1.03 MICROSOFT NETWORKS 3.0 LANMAN1.0 LM1.2X002 Samba NT LANMAN 1.0 NT LM 0.12 !
+2026-08-15 19:10:52.275 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:105] - game.core.exception.GameException: can not cast to com.game.backgrand.manager.BackGrandServer$MessagetAdapter$1@1e6a845b
+game.core.exception.GameException: can not cast to com.game.backgrand.manager.BackGrandServer$MessagetAdapter$1@1e6a845b
+	at game.core.util.JsonUtils.parseObject(JsonUtils.java:114) ~[GameCore.jar:?]
+	at com.game.backgrand.manager.BackGrandServer$MessagetAdapter.decode(BackGrandServer.java:96) [GameServer.jar:?]
+	at io.netty.handler.codec.ByteToMessageCodec$1.decode(ByteToMessageCodec.java:42) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageCodec.channelRead(ByteToMessageCodec.java:103) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:310) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:284) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+Caused by: com.fasterxml.jackson.core.JsonParseException: Unexpected character ('�' (code 65533 / 0xfffd)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: (String)"�SMBr    @              @    � PC NETWORK PROGRAM 1.0 MICROSOFT NETWORKS 1.03 MICROSOFT NETWORKS 3.0 LANMAN1.0 LM1.2X002 Samba NT LANMAN 1.0 NT LM 0.12 "; line: 1, column: 2]
+	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1851) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:707) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportUnexpectedChar(ParserMinimalBase.java:632) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:1947) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:776) ~[jackson-core-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4620) ~[jackson-databind-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4469) ~[jackson-databind-2.11.1.jar:2.11.1]
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3434) ~[jackson-databind-2.11.1.jar:2.11.1]
+	at game.core.util.JsonUtils.parseObject(JsonUtils.java:112) ~[GameCore.jar:?]
+	... 26 more
+2026-08-15 19:10:52.277 ERROR [nioEventLoopGroup-7-2][SessionUtils.java:61] - BackGrandServer can not cast to com.game.backgrand.manager.BackGrandServer$MessagetAdapter$1@1e6a845b
+java.lang.Throwable: 断开日志
+	at game.core.util.SessionUtils.log(SessionUtils.java:61) [GameCore.jar:?]
+	at com.game.backgrand.manager.BackGrandServer$MessagetAdapter.decode(BackGrandServer.java:107) [GameServer.jar:?]
+	at io.netty.handler.codec.ByteToMessageCodec$1.decode(ByteToMessageCodec.java:42) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageCodec.channelRead(ByteToMessageCodec.java:103) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:310) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:284) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:52.780 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:20 session[id: 0x001f17a6, L:/94.250.249.128:8191 - R:/121.43.117.20:59578]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1811942148 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:57.925 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:21 session[id: 0xde469d31, L:/94.250.249.128:8191 - R:/121.43.117.20:59664]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1195725860 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:10:59.884 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-08-15 19:11:03.223 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:22 session[id: 0xd235aaa1, L:/94.250.249.128:8191 - R:/121.43.117.20:59754]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 23356778 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:08.462 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:23 session[id: 0x19670d02, L:/94.250.249.128:8191 - R:/121.43.117.20:59882]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 813957124 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:13.749 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:24 session[id: 0x6c80b4ed, L:/94.250.249.128:8191 - R:/121.43.117.20:60036]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 806093317 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:18.967 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:25 session[id: 0x7479c67c, L:/94.250.249.128:8191 - R:/121.43.117.20:60132]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1330664525 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:26.691 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:26 session[id: 0xd26ae98b, L:/94.250.249.128:8191 - R:/121.43.117.20:60330]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1414417748 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:29.812 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29928
+2026-08-15 19:11:31.893 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:27 session[id: 0xe7d75150, L:/94.250.249.128:8191 - R:/121.43.117.20:60378]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 50331663 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:37.175 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:28 session[id: 0xf1b16496, L:/94.250.249.128:8191 - R:/121.43.117.20:60652]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1148019800 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:42.448 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:29 session[id: 0x053ef56d, L:/94.250.249.128:8191 - R:/121.43.117.20:60878]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 973078532 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:47.699 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:30 session[id: 0x9d262cce, L:/94.250.249.128:8191 - R:/121.43.117.20:33102]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1246907725 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:52.986 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:31 session[id: 0x7d5a5cb6, L:/94.250.249.128:8191 - R:/121.43.117.20:33546]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 16777473 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:58.238 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:32 session[id: 0xbcffc09e, L:/94.250.249.128:8191 - R:/121.43.117.20:34002]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 5898244 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:11:59.842 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-08-15 19:12:03.474 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:33 session[id: 0xb868f1fe, L:/94.250.249.128:8191 - R:/121.43.117.20:34158]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 302055480 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:12:14.016 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:35 session[id: 0xa0bf1394, L:/94.250.249.128:8191 - R:/121.43.117.20:34708]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 1195986772 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:12:29.881 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30039
+2026-08-15 19:12:38.415 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:37 session[id: 0x5d3eb139, L:/94.250.249.128:8191 - R:/121.43.117.20:35944]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 369295622 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:12:43.420 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:38 session[id: 0x01487dc2, L:/94.250.249.128:8191 - R:/121.43.117.20:896]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 2147483692 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:12:43.449 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:39 session[id: 0x79fa5df5, L:/94.250.249.128:8191 - R:/121.43.117.20:36054]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 369295364 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:12:50.715 ERROR [nioEventLoopGroup-7-1][BackGrandServer.java:121] - 连接出现异常了，sessionId:40 session[id: 0x0952c979, L:/94.250.249.128:8191 - R:/121.43.117.20:36230]
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 4194304: 369295364 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:343) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:489) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:428) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:265) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1334) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 19:12:59.815 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-08-15 19:13:29.844 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-08-15 19:13:59.879 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-15 19:14:29.821 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29941
+2026-08-15 19:14:59.847 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30027
+2026-08-15 19:15:29.882 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-15 19:15:59.814 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-08-15 19:16:29.842 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-15 19:16:59.873 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-08-15 19:17:29.902 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-08-15 19:17:59.838 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29936
+2026-08-15 19:18:29.889 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30051
+2026-08-15 19:18:59.827 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29939
+2026-08-15 19:19:29.857 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-08-15 19:19:59.893 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-08-15 19:20:00.090 INFO [mainThread][DailyActiveScript.java:101] - 日常活动id=105【日暮篝火】准备阶段：stage=1
+2026-08-15 19:20:01.128 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 58, количество: 245
+2026-08-15 19:20:29.867 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29974
+2026-08-15 19:20:59.896 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-08-15 19:21:29.826 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29930
+2026-08-15 19:21:59.851 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30025
+2026-08-15 19:22:29.884 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-08-15 19:22:29.965 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 23, количество: 245
+2026-08-15 19:22:59.810 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29926
+2026-08-15 19:23:29.838 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-15 19:23:59.876 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30038
+2026-08-15 19:24:29.858 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29982
+2026-08-15 19:24:59.892 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-08-15 19:25:29.821 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29928
+2026-08-15 19:25:59.843 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30023
+2026-08-15 19:26:29.877 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-08-15 19:26:59.904 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30027
+2026-08-15 19:27:29.841 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29937
+2026-08-15 19:27:59.873 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-08-15 19:28:29.811 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29939
+2026-08-15 19:28:59.847 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-08-15 19:29:29.876 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-08-15 19:29:59.815 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29939
+2026-08-15 19:30:00.014 INFO [mainThread][DailyActiveScript.java:296] - 日常活动id=105【日暮篝火】开始阶段
+2026-08-15 19:30:29.886 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30071
+2026-08-15 19:30:59.827 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29940
+2026-08-15 19:31:29.862 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-08-15 19:31:59.894 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-08-15 19:32:29.829 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-08-15 19:32:59.861 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-08-15 19:33:29.901 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30039
+2026-08-15 19:33:59.833 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-08-15 19:34:29.867 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-15 19:34:59.898 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-08-15 19:35:29.841 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29944
+2026-08-15 19:35:59.872 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-08-15 19:36:20.891 INFO [nioEventLoopGroup-3-7][ClientMsgAdapter.java:114] - [id: 0xd2378dd5, L:/94.250.249.128:9101 ! R:/66.228.62.150:33385] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-08-15 19:36:20.892 WARN [nioEventLoopGroup-3-7][SessionUtils.java:22] - remote ip:/66.228.62.150:33385 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-08-15 19:36:20.892 INFO [nioEventLoopGroup-3-7][ClientMsgAdapter.java:122] - [id: 0xd2378dd5, L:/94.250.249.128:9101 ! R:/66.228.62.150:33385],id=6 连接的已经移除了！
+2026-08-15 19:36:20.892 INFO [nioEventLoopGroup-3-7][MyOutClientHandler.java:37] - [id: 0xd2378dd5, L:/94.250.249.128:9101 ! R:/66.228.62.150:33385] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-08-15 19:36:29.906 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-15 19:36:39.034 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 30, количество: 245
+2026-08-15 19:36:50.957 INFO [nioEventLoopGroup-3-8][ClientMsgAdapter.java:114] - [id: 0xfda9cbc1, L:/94.250.249.128:9101 ! R:/66.228.62.150:33386] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-08-15 19:36:50.957 WARN [nioEventLoopGroup-3-8][SessionUtils.java:22] - remote ip:/66.228.62.150:33386 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-08-15 19:36:50.957 INFO [nioEventLoopGroup-3-8][ClientMsgAdapter.java:122] - [id: 0xfda9cbc1, L:/94.250.249.128:9101 ! R:/66.228.62.150:33386],id=7 连接的已经移除了！
+2026-08-15 19:36:50.957 INFO [nioEventLoopGroup-3-8][MyOutClientHandler.java:37] - [id: 0xfda9cbc1, L:/94.250.249.128:9101 ! R:/66.228.62.150:33386] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-08-15 19:36:59.891 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29985
+2026-08-15 19:37:11.901 INFO [nioEventLoopGroup-3-1][ClientMsgAdapter.java:114] - [id: 0x62b9b706, L:/94.250.249.128:9101 ! R:/66.228.62.150:33387] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-08-15 19:37:11.902 WARN [nioEventLoopGroup-3-1][SessionUtils.java:22] - remote ip:/66.228.62.150:33387 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-08-15 19:37:11.902 INFO [nioEventLoopGroup-3-1][ClientMsgAdapter.java:122] - [id: 0x62b9b706, L:/94.250.249.128:9101 ! R:/66.228.62.150:33387],id=8 连接的已经移除了！
+2026-08-15 19:37:11.902 INFO [nioEventLoopGroup-3-1][MyOutClientHandler.java:37] - [id: 0x62b9b706, L:/94.250.249.128:9101 ! R:/66.228.62.150:33387] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-08-15 19:37:15.862 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 21, количество: 245
+2026-08-15 19:37:20.521 INFO [nioEventLoopGroup-3-3][ClientMsgAdapter.java:64] - [id: 0x6cdb34bc, L:/94.250.249.128:9101 - R:/172.235.41.44:21024], id=18首次来连接
+2026-08-15 19:37:29.853 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29962
+2026-08-15 19:37:50.349 INFO [nioEventLoopGroup-3-3][ClientMsgAdapter.java:114] - [id: 0x6cdb34bc, L:/94.250.249.128:9101 ! R:/172.235.41.44:21024] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-08-15 19:37:50.349 WARN [nioEventLoopGroup-3-3][SessionUtils.java:22] - remote ip:/172.235.41.44:21024 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-08-15 19:37:50.349 INFO [nioEventLoopGroup-3-3][ClientMsgAdapter.java:122] - [id: 0x6cdb34bc, L:/94.250.249.128:9101 ! R:/172.235.41.44:21024],id=18 连接的已经移除了！
+2026-08-15 19:37:50.349 INFO [nioEventLoopGroup-3-3][MyOutClientHandler.java:37] - [id: 0x6cdb34bc, L:/94.250.249.128:9101 ! R:/172.235.41.44:21024] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-08-15 19:37:50.554 INFO [nioEventLoopGroup-3-4][ClientMsgAdapter.java:64] - [id: 0x91560cd9, L:/94.250.249.128:9101 - R:/172.235.41.44:12470], id=19首次来连接
+2026-08-15 19:37:59.889 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-08-15 19:38:20.367 INFO [nioEventLoopGroup-3-4][ClientMsgAdapter.java:114] - [id: 0x91560cd9, L:/94.250.249.128:9101 ! R:/172.235.41.44:12470] 连接还没有注册成功玩家信息！ClientMsgAdapter
+2026-08-15 19:38:20.367 WARN [nioEventLoopGroup-3-4][SessionUtils.java:22] - remote ip:/172.235.41.44:12470 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-08-15 19:38:20.367 INFO [nioEventLoopGroup-3-4][ClientMsgAdapter.java:122] - [id: 0x91560cd9, L:/94.250.249.128:9101 ! R:/172.235.41.44:12470],id=19 连接的已经移除了！
+2026-08-15 19:38:20.367 INFO [nioEventLoopGroup-3-4][MyOutClientHandler.java:37] - [id: 0x91560cd9, L:/94.250.249.128:9101 ! R:/172.235.41.44:12470] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-08-15 19:38:29.851 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29961
+2026-08-15 19:38:59.863 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30013
+2026-08-15 19:39:29.811 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29948
+2026-08-15 19:39:59.842 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-08-15 19:40:29.876 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-08-15 19:40:49.032 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-15 19:40:59.907 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-08-15 19:41:29.853 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29945
+2026-08-15 19:41:59.880 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-15 19:42:29.906 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30026
+2026-08-15 19:42:59.851 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29944
+2026-08-15 19:43:29.882 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-08-15 19:43:59.818 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29936
+2026-08-15 19:44:29.875 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30057
+2026-08-15 19:44:59.903 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-15 19:45:29.852 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29949
+2026-08-15 19:45:59.879 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30027
+2026-08-15 19:46:00.076 INFO [mainThread][DailyActiveScript.java:386] - 日常活动id=105【日暮篝火】关闭阶段
+2026-08-15 19:46:29.809 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29930
+2026-08-15 19:46:59.852 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30042
+2026-08-15 19:47:29.882 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-08-15 19:47:59.814 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29932
+2026-08-15 19:48:29.839 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30025
+2026-08-15 19:48:59.866 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30026
+2026-08-15 19:49:29.899 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-08-15 19:49:59.826 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29927
+2026-08-15 19:50:00.023 INFO [mainThread][DailyActiveScript.java:101] - 日常活动id=111【仙盟首领】准备阶段：stage=-1
+2026-08-15 19:50:29.892 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30066
+2026-08-15 19:50:59.827 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29936
+2026-08-15 19:51:29.854 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30027
+2026-08-15 19:51:59.888 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30034
+2026-08-15 19:52:29.822 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29934
+2026-08-15 19:52:59.856 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30033
+2026-08-15 19:53:29.887 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-08-15 19:53:59.813 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29926
+2026-08-15 19:54:29.848 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-15 19:54:59.877 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-08-15 19:55:29.905 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-15 19:55:59.843 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29938
+2026-08-15 19:56:29.866 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30023
+2026-08-15 19:56:59.899 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-08-15 19:57:29.832 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-08-15 19:57:59.048 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 41, количество: 63
+2026-08-15 19:57:59.862 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30031
+2026-08-15 19:58:29.903 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30041
+2026-08-15 19:58:59.837 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-08-15 19:59:29.886 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30050
+2026-08-15 19:59:59.816 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29930

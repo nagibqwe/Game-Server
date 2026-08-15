@@ -79,7 +79,7 @@ public class MainServer extends SocketServer {
 
     //具体的初始化函数
     public MainServer() {
-        this("Public服务", 9888);
+        this("Публичный порт", 9888);
     }
 
     /**
@@ -105,7 +105,7 @@ public class MainServer extends SocketServer {
         if (is instanceof IServerStart) {
             return (IServerStart) is;
         }
-        throw new NullPointerException("没有找到具体的实例！");
+        throw new NullPointerException("Не найден конкретный экземпляр!");
     }
 
     public IErrorLogScript webErrorLog() {
@@ -113,7 +113,7 @@ public class MainServer extends SocketServer {
         if (is instanceof IErrorLogScript) {
             return (IErrorLogScript) is;
         }
-        throw new NullPointerException("没有找到具体的实例！");
+        throw new NullPointerException("Не найден конкретный экземпляр!");
     }
 
     public IGSManagerScript gsmanager() {
@@ -121,7 +121,7 @@ public class MainServer extends SocketServer {
         if (is instanceof IGSManagerScript) {
             return (IGSManagerScript) is;
         }
-        throw new NullPointerException("没有找到具体的实例！");
+        throw new NullPointerException("Не найден конкретный экземпляр!");
     }
 
     //服务器启动线程组
@@ -181,7 +181,7 @@ public class MainServer extends SocketServer {
             IDConfigUtil.platfromID = ServerConfig.getLsId();
 
             if (IDConfigUtil.platfromID < 1 || IDConfigUtil.m_ServerId < 1) {
-                log.info("当前没有配置 serverId 或者 lsID, 请在server-config.xml中配置此两个值");
+                log.info("В данный момент не настроены serverId или lsId. Пожалуйста, укажите их в файле server-config.xml.");
                 System.exit(0);
             }
             errorLogThread = new ErrorLogThread("errorlog_report_thread");
@@ -191,10 +191,10 @@ public class MainServer extends SocketServer {
                 port = pp;
             }
             server_name = ServerConfig.getServerName();
-            group = new ThreadGroup("服务器线程池");
+            group = new ThreadGroup("Пул потоков сервера");
             serverTimer = new TimerThread("public-Timer", 100);
             //线程初始化
-            wServerThread = new ServerThread(group, "public服务", serverTimer);
+            wServerThread = new ServerThread(group, "Public service", serverTimer);
 
             //加载配置表
             ScriptConfigManager.GetInstance();
@@ -234,7 +234,7 @@ public class MainServer extends SocketServer {
             Manager.crossHorseBossManager.deal().initData();
             //仙侣对决初始化
             Manager.couplefightManager.init();
-            log.info("公共服开始启动了！");
+            log.info("Public сервер успешно запущен!");
         } catch (ParserConfigurationException | IOException | SAXException e) {
             log.error(e, e);
             System.exit(1);
@@ -267,7 +267,7 @@ public class MainServer extends SocketServer {
                 }
             }).start();
 
-            new Timer("发送消息队列").schedule(new TimerTask() {
+           new Timer("Отправка очереди сообщений").schedule(new TimerTask() {
                 @Override
                 public void run() {
                     //发送网络消息处理
@@ -304,7 +304,7 @@ public class MainServer extends SocketServer {
         Manager.crossRankManager.stop();
         //关闭仙侣对决
         Manager.couplefightManager.getScript().stop();
-        log.info("public服务器停止了！");
+        log.info("Public сервер остановлен!");
     }
 
     @Override

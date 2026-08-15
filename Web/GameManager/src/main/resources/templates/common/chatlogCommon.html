@@ -4,7 +4,7 @@
     var prefix = ctx + "gamelog/chatlog";
 
     /**
-     * 批量禁言
+     * Массовая блокировка чата
      */
     function batchBanChat() {
         var selections = $("#bootstrap-table").bootstrapTable('getSelections');
@@ -16,7 +16,7 @@
     }
 
     /**
-     * 禁言
+     * Блокировка чата
      */
     function singleBanChat(userId) {
         var roleList = [];
@@ -25,20 +25,20 @@
     }
 
     function chatLogBanChat(roleList) {
-        $.modal.open("批量禁言", prefix + "/chatLogBanChat", '', '420', function (index, layero) {
-            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+        $.modal.open("Массовая блокировка чата", prefix + "/chatLogBanChat", '', '420', function (index, layero) {
+            var iframeWin = layero.find('iframe')[0]; // Находим нужное модальное окно
             iframeWin.contentWindow.banChat(function (data) {
                 $.modal.alertSuccess(data.msg);
                 layer.close(index);
             });
         }, function (layero, index) {
-            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+            var iframeWin = layero.find('iframe')[0]; // Находим нужное модальное окно
             iframeWin.contentWindow.init($("#select_server").val(), roleList.join(","));
         })
     }
 
     /**
-     * 批量封号
+     * Массовая блокировка аккаунтов
      */
     function batchBanAccount() {
         var selections = $("#bootstrap-table").bootstrapTable('getSelections');
@@ -50,7 +50,7 @@
     }
 
     /**
-     * 单个封号
+     * Блокировка одного аккаунта
      */
     function singleBanAccount(userId) {
         var userList = [];
@@ -58,20 +58,20 @@
         chatLogBanAccount(userList);
     }
     function chatLogBanAccount(userList) {
-        $.modal.open("封号", prefix + "/chatLogBanAccount", '', '420', function (index, layero) {
-            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+        $.modal.open("Блокировка аккаунта", prefix + "/chatLogBanAccount", '', '420', function (index, layero) {
+            var iframeWin = layero.find('iframe')[0]; // Находим нужное модальное окно
             iframeWin.contentWindow.banAccount(function (data) {
                 $.modal.alertSuccess(data.msg);
                 layer.close(index);
             });
         }, function (layero, index) {
-            var iframeWin = layero.find('iframe')[0];//找到哪个弹框
+            var iframeWin = layero.find('iframe')[0]; // Находим нужное модальное окно
             iframeWin.contentWindow.init($("#select_server").val(), userList.join(","));
         })
     }
 
     /**
-     * 近期记录
+     * Недавние записи
      * @param roleId
      */
     function chatOption(roleId){
@@ -80,23 +80,23 @@
         var serverId = $("#select_server").val();
         var platform = $("#select_group").val();
         var startDate = $("input[name='startDate']").val();
-        // var start = startDate.trim().split(" "); //字符分割
+        // var start = startDate.trim().split(" "); // Разделение строки
         var endDate = $("input[name='endDate']").val();
-        // var end = endDate.trim().split(" "); //字符分割
+        // var end = endDate.trim().split(" "); // Разделение строки
 
         var dateStr = endDate;
         dateStr = dateStr.substring(0,19);
-        dateStr = dateStr.replace(/-/g,'/'); //必须把日期'-'转为'/'
+        dateStr = dateStr.replace(/-/g,'/'); // Необходимо заменить '-' на '/'
         console.log(dateStr);
         var timestamp = new Date(dateStr).getTime();
         timestamp = timestamp - 2*24*60*60*1000;
         console.log(timestamp);
-        var d = new Date(timestamp);    //根据时间戳生成的时间对象
+        var d = new Date(timestamp);    // Создание объекта времени из временной метки
         var date = (d.getFullYear()) + "-" +
             ((d.getMonth() + 1)>=10?(d.getMonth() + 1):("0"+(d.getMonth() + 1))) + "-" +
             ((d.getDate())>=10?(d.getDate()):("0"+(d.getDate()))) + " 00:00:00";
 
-        $.modal.open("历史记录", prefix + "/chatLogHistory?serverId="+serverId+"&startDate="+date+"&endDate="+endDate+"&roleId="+roleId, '500', '300', function (index, layero) {
+        $.modal.open("История", prefix + "/chatLogHistory?serverId="+serverId+"&startDate="+date+"&endDate="+endDate+"&roleId="+roleId, '500', '300', function (index, layero) {
             layer.close(index);
         }, function (layero, index) {
 
@@ -135,7 +135,7 @@
         var options = {
             url: prefix + $("#chatlogUrl").val(),
             exportUrl: prefix + "/export",
-            modalName: "聊天日志",
+            modalName: "Журнал чата",
             pagination: ispagination,
             firstLoad: false,
             columns: [{
@@ -143,11 +143,11 @@
             },
                 {
                     field: 'platformName',
-                    title: '平台名称'
+                    title: 'Название платформы'
                 },
                 {
                     field: 'id',
-                    title: 'id',
+                    title: 'ID',
                     visible: false
                 },
                 {
@@ -170,12 +170,12 @@
                 },
                 {
                     field: 'ip',
-                    title: 'ip'
+                    title: 'IP'
                 },
                 {
                     field: 'content',
                     width: 400,
-                    title: '聊天内容'
+                    title: 'Текст сообщения'
                 },
                 {
                     field: 'level',
@@ -184,11 +184,11 @@
                 },
                 {
                     field: 'receRoleId',
-                    title: '接收角色ID'
+                    title: 'ID получателя'
                 },
                 {
                     field: 'channel',
-                    title: '聊天类型',
+                    title: 'Тип чата',
                     formatter: formatterChatChannel
                 },
                 {
@@ -201,9 +201,9 @@
                     formatter: function (value, row, index) {
                         if (row.parentId != 0) {
                             var actions = [];
-                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="singleBanAccount(\'' + row.roleId + '\')"><i class="fa fa-edit"></i>封号</a> ');
-                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="singleBanChat(\'' + row.userId + '\')"><i class="fa fa-edit"></i>禁言</a> ');
-                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="chatOption(\'' + row.roleId + '\')"><i class="fa fa-edit"></i>近期记录</a> ');
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="singleBanAccount(\'' + row.roleId + '\')"><i class="fa fa-edit"></i>Заблокировать аккаунт</a> ');
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="singleBanChat(\'' + row.userId + '\')"><i class="fa fa-edit"></i>Заблокировать чат</a> ');
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="chatOption(\'' + row.roleId + '\')"><i class="fa fa-edit"></i>Недавние записи</a> ');
                             return actions.join('');
                         } else {
                             return "";

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('设置游戏功能开关')" />
+    <th:block th:include="include :: header('Управление системными переключателями')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -14,16 +14,16 @@
                         <ul>
                             <li>
                                 <div th:replace="common/select_server_single.html"></div>
-                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                                 <input type="hidden" id="requestUrl" value="gameServer">
                                 <input type="hidden" id="ignoreMerge" value="1">
                                 <br/>
                                 <br/>
                                 <button type="button" class="btn btn-w-m btn-primary" onclick="queryServerInfo()">
-                                    查看功能开关
+                                    Показать переключатели
                                 </button>
                                 <button type="button" class="btn btn-w-m btn-info" onclick="saveFunctionSwitch()">
-                                    应用此次修改
+                                    Применить изменения
                                 </button>
                             </li>
                         </ul>
@@ -34,16 +34,16 @@
 
 <!--        <div class="btn-group-sm" id="toolbar" role="group">-->
 <!--            <a class="btn btn-success" onclick="saveFunctionSwitch()">-->
-<!--                <i class="fa fa-plus"></i> 应用此次修改-->
+<!--                <i class="fa fa-plus"></i> Применить изменения-->
 <!--            </a>-->
 <!--            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:function:edit">-->
-<!--                <i class="fa fa-edit"></i> 修改-->
+<!--                <i class="fa fa-edit"></i> Редактировать-->
 <!--            </a>-->
 <!--            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:function:remove">-->
-<!--                <i class="fa fa-remove"></i> 删除-->
+<!--                <i class="fa fa-remove"></i> Удалить-->
 <!--            </a>-->
 <!--            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:function:export">-->
-<!--                <i class="fa fa-download"></i> 导出-->
+<!--                <i class="fa fa-download"></i> Экспорт-->
 <!--            </a>-->
 <!--        </div>-->
 
@@ -60,7 +60,7 @@
     var prefix = ctx + "gmtool/function";
     var switchs = [];
 
-    //查看服务器功能信息
+    // Просмотр переключателей функций сервера
     function queryServerInfo() {
         $.post(ctx + "gmtool/function/queryFunction", $("#formId1").serialize(), function (gameData) {
             // console.log(JSON.stringify(gameData));
@@ -77,19 +77,19 @@
                     },
                         {
                             field: 'funcId',
-                            title: '功能Id'
+                            title: 'ID функции'
                         },
                         {
                             field: 'funcName',
-                            title: '功能名'
+                            title: 'Название функции'
                         },
                         {
                             field: 'parentId',
-                            title: '父Id'
+                            title: 'ID родителя'
                         },
                         // {
                         //     field: 'openState',
-                        //     title: '开启状态'
+                        //     title: 'Статус включения'
                         // },
                         {
                             field: 'opSwitch',
@@ -103,14 +103,14 @@
                                     if(gd[j].id == row.funcId){
                                         // var switchState = gd[j].id+'@'+gd[j].openState;
                                         if(gd[j].openState == 1){
-                                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="setFunctionSwitch(\'' + index + '\',\'' + row.funcId + '\',\''+ gd[j].openState + '\')">Закрыть</a><input type="hidden" name="funcSwitch" value="" />');
+                                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="setFunctionSwitch(\'' + index + '\',\'' + row.funcId + '\',\''+ gd[j].openState + '\')">Выключить</a><input type="hidden" name="funcSwitch" value="" />');
                                         }else{
-                                            actions.push('<a class="btn btn-primary btn-xs" href="javascript:void(0)" onclick="setFunctionSwitch(\'' + index + '\',\'' + row.funcId + '\',\''+ gd[j].openState + '\')">Включено</a><input type="hidden" name="funcSwitch" value="" />');
+                                            actions.push('<a class="btn btn-primary btn-xs" href="javascript:void(0)" onclick="setFunctionSwitch(\'' + index + '\',\'' + row.funcId + '\',\''+ gd[j].openState + '\')">Включить</a><input type="hidden" name="funcSwitch" value="" />');
                                         }
                                     }
                                 }
-                                // actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.funcId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                                // actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.funcId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                                // actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.funcId + '\')"><i class="fa fa-edit"></i>Редактировать</a> ');
+                                // actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.funcId + '\')"><i class="fa fa-remove"></i>Удалить</a>');
                                 return actions.join('');
                             }
                         }
@@ -132,38 +132,38 @@
         });
     }
 
-    //设置功能开关
+    // Установка переключателя функции
     function setFunctionSwitch(index, funcId, initState) {
         console.log("funcSwitch:"+$("input[name='funcSwitch']").eq(index).val());
         var fid = $("input[name='funcSwitch']").eq(index).val();
         if(fid == funcId+'@1'){//'1@1'
-            // console.log($("input[name='funcSwitch']").eq(index).parent().find("a").text()+">>开启");
-            // if(fid == funcId+'@'+initState){//初始数据如果一致，则清空
+            // console.log($("input[name='funcSwitch']").eq(index).parent().find("a").text()+">>Включить");
+            // if(fid == funcId+'@'+initState){// Если данные совпадают с начальными, очищаем
             //     $("input[name='funcSwitch']").eq(index).val('');
             //     // $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class',initState==1?'btn btn-danger btn-xs':'btn btn-primary btn-xs');
-            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'关闭':'开启');
+            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'Выключить':'Включить');
             //     return;
             // }
 
             $("input[name='funcSwitch']").eq(index).val(funcId+'@0');
             $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class','btn btn-primary btn-xs');
-            $("input[name='funcSwitch']").eq(index).parent().find("a").text('Включено');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").text('Включить');
         }else if(fid == funcId+'@0'){//'1@0'
-            // console.log($("input[name='funcSwitch']").eq(index).parent().find("a").text()+">>关闭");
-            // if(fid == funcId+'@'+initState){//初始数据如果一致，则清空
+            // console.log($("input[name='funcSwitch']").eq(index).parent().find("a").text()+">>Выключить");
+            // if(fid == funcId+'@'+initState){// Если данные совпадают с начальными, очищаем
             //     $("input[name='funcSwitch']").eq(index).val('');
             //     // $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class',initState==1?'btn btn-primary btn-xs':'btn btn-danger btn-xs');
-            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'关闭':'开启');
+            //     // $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'Выключить':'Включить');
             //     return;
             // }
 
             $("input[name='funcSwitch']").eq(index).val(funcId+'@1');
             $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class','btn btn-danger btn-xs');
-            $("input[name='funcSwitch']").eq(index).parent().find("a").text('Закрыть');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").text('Выключить');
         }else{//''
             $("input[name='funcSwitch']").eq(index).val(initState==1?funcId+'@0':funcId+'@1');
             $("input[name='funcSwitch']").eq(index).parent().find("a").prop('class',initState==1?'btn btn-primary btn-xs':'btn btn-danger btn-xs');
-            $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'Включено':'Закрыть');
+            $("input[name='funcSwitch']").eq(index).parent().find("a").text(initState==1?'Включить':'Выключить');
         }
 
         // $("input[name='funcSwitch']").eq(index).val(old == funcId+'@1'?funcId+'@0':funcId+'@1');
@@ -175,7 +175,7 @@
         //
         // $("input[name='funcSwitch']").eq(index).parent().find("a").attr('class',old == funcId+'@1'?'btn btn-primary btn-xs':'btn btn-danger btn-xs');
         // var oldText = $("input[name='funcSwitch']").eq(index).parent().find("a").text();
-        // $("input[name='funcSwitch']").eq(index).parent().find("a").text(oldText=='开启'?'关闭':'开启');
+        // $("input[name='funcSwitch']").eq(index).parent().find("a").text(oldText=='Включить'?'Выключить':'Включить');
     }
 
     function saveFunctionSwitch() {
@@ -190,7 +190,7 @@
             return;
         }
         switchIs = switchIs.slice(0,switchIs.length-1);
-        $.modal.confirm("ПодтвердитьДаНетСохранить？",function () {
+        $.modal.confirm("Подтвердить сохранение изменений?", function () {
             $.ajax({
                 type: "POST",
                 url: prefix + "/sendFunctionSwitch",

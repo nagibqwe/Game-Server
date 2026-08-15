@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('玩家流失统计')" />
+    <th:block th:include="include :: header('Статистика оттока игроков')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -16,19 +16,19 @@
                             <div th:replace="common/stat_date_head.html"></div>
 
                             <li>
-                                <label >选择条件:</label>
+                                <label>Выбор условий:</label>
                                 <select id="select_condition" name="select_condition" class="span2" onchange="selectConditionChange(this.value);">
-                                    <option value="0">普通玩家</option>
-                                    <option value="1">付费玩家</option>
+                                    <option value="0">Обычные игроки</option>
+                                    <option value="1">Платящие игроки</option>
                                 </select>
                             </li>
                             <li>
-                                <label  for="minPay">付费最低值:</label>
+                                <label for="minPay">Минимальная сумма платежа:</label>
                                 <input type="text" id="minPay" name="minPay" class="span2"/>
                             </li>
 
                             <li>
-                                <label  for="maxPay">付费最高值:</label>
+                                <label for="maxPay">Максимальная сумма платежа:</label>
                                 <input type="text" id="maxPay" name="maxPay" class="span2"/>
                             </li>
                             <div th:replace="common/stat_black_list_head.html"></div>
@@ -41,9 +41,9 @@
 
             <div class="btn-group-sm" id="toolbar" role="group">
                 <div class="btn-group">
-                    <button name="group_tab" class="btn btn-primary" id="stat_player_leave_count" type="button">流失用户统计</button>
-                    <button name="group_tab" class="btn btn-white" id="stat_player_leave_rank" type="button">流失用户等级分布</button>
-                    <button name="group_tab" class="btn btn-white" id="stat_player_leave_amount" type="button">流失用户付费金额与次数统计</button>
+                    <button name="group_tab" class="btn btn-primary" id="stat_player_leave_count" type="button">Статистика оттока пользователей</button>
+                    <button name="group_tab" class="btn btn-white" id="stat_player_leave_rank" type="button">Распределение по уровням</button>
+                    <button name="group_tab" class="btn btn-white" id="stat_player_leave_amount" type="button">Сумма и количество платежей</button>
                 </div>
             </div>
             <div class="col-sm-12 select-table table-striped">
@@ -79,23 +79,23 @@
     function init_stat_player_leave_count() {
         var options = {
             url: prefix + "/stat_player_leave_count",
-            modalName: "流失用户统计",
+            modalName: "Статистика оттока пользователей",
             pagination: false,
             firstLoad:false,
             showExport:true,
             showExport:true,
             columns: [{
                 field: 'date',
-                title: 'Время',
+                title: 'Дата',
             },{
                 field: 'roleLoginCount',
-                title: '登录用户总数',
+                title: 'Всего вошедших пользователей',
             },{
                 field: 'roleLostCount',
-                title: '用户流失数',
+                title: 'Количество оттока пользователей',
             },{
                 field: 'rate',
-                title: '用户流失率',
+                title: 'Уровень оттока',
                 formatter: function (value) {
                     var val = value*100;
                     return val.toFixed(2)+"%";
@@ -107,18 +107,18 @@
     function init_stat_player_leave_amount() {
         var options = {
             url: prefix + "/stat_player_leave_amount",
-            modalName: "流失用户付费金额与次数统计",
+            modalName: "Сумма и количество платежей",
             pagination: false,
             showExport:true,
             columns: [{
                 field: 'key',
-                title: '累计金额',
+                title: 'Накопленная сумма',
             },{
                 field: 'paylcount',
-                title: '账号数',
+                title: 'Количество аккаунтов',
             },{
                 field: 'rechargeSum',
-                title: '流失用户充值总金额',
+                title: 'Общая сумма пополнений',
             }]
         };
         $.table.init(options);
@@ -127,18 +127,18 @@
     function init_stat_player_leave_rank() {
         var options = {
             url: prefix + "/stat_player_leave_rank",
-            modalName: "流失用户等级分布",
+            modalName: "Распределение по уровням",
             pagination: false,
             showExport:true,
             columns: [{
                 field: 'rank',
-                title: '等级分布',
+                title: 'Уровень',
             },{
                 field: 'userLeaveCount',
-                title: '用户流失数',
+                title: 'Количество оттока пользователей',
             },{
                 field: 'vipUserLeaveCount',
-                title: '付费用户流失数',
+                title: 'Количество оттока платящих пользователей',
             }]
         };
         $.table.init(options);

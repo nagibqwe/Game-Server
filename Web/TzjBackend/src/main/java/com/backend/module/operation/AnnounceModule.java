@@ -44,7 +44,7 @@ public class AnnounceModule {
     private TaskTimerService taskTimer;
 
     static {
-        //0-可用  1-停用  2-过期  3-次数耗尽  4-删除
+        // 0 — активно, 1 — отключено, 2 — истекло, 3 — лимит исчерпан, 4 — удалено
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         stateMap.put(0, msg.get("announce.qiyong"));
         stateMap.put(1, msg.get("announce.stop"));
@@ -86,7 +86,7 @@ public class AnnounceModule {
 
     @At
     @POST
-    public Object addImmediateAnnounce(HttpServletRequest request,String groupName, String[] serverId, int type, String content, String reason) {
+    public Object addImmediateAnnounce(HttpServletRequest request, String groupName, String[] serverId, int type, String content, String reason) {
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         User user = (User) request.getSession().getAttribute("USER");
         if (serverId == null || serverId.length <= 0) {
@@ -116,7 +116,7 @@ public class AnnounceModule {
             if (ret.getBoolean("ok")) {
                 sb.append(server.getServerName()).append(ret.get("msg")).append("\n");
             } else {
-                sb.append(server.getServerName()).append("失败，原因：").append(ret.get("msg")).append("\n");
+                sb.append(server.getServerName()).append(" — ошибка, причина: ").append(ret.get("msg")).append("\n");
             }
         }
 
@@ -131,8 +131,8 @@ public class AnnounceModule {
         a.setContent(content);
         a.setReason(reason);
         dao.insert(a);
-        //保存公告内容
-        BackendLogUtil.getInstance().log(request, "添加即时公告\t理由：" + reason + "\t" + JsonUtils.toJSONString(serverIdList) + "\t" + content + "\t结果：" + sb.toString());
+        // Сохранение содержимого объявления
+        BackendLogUtil.getInstance().log(request, "Добавление мгновенного объявления. Причина: " + reason + "\t" + JsonUtils.toJSONString(serverIdList) + "\t" + content + "\tРезультат: " + sb.toString());
         return Toolkit.outResult(true, sb.toString());
     }
 
@@ -168,7 +168,7 @@ public class AnnounceModule {
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         int num = dao.delete(Announce.class, announceId);
         boolean b = num > 0;
-        BackendLogUtil.getInstance().log(request, "删除即时公告，结果：" + b);
+        BackendLogUtil.getInstance().log(request, "Удаление мгновенного объявления, результат: " + b);
         return Toolkit.outResult(b, msg.get("announce.do.success"));
     }
 
@@ -177,29 +177,29 @@ public class AnnounceModule {
         Map<String, Object> cycleList = new HashMap<>();
         Cnd cnd = Cnd.where("state", "=", 0);
         cnd.orderBy("createTime", "desc");
-        List<CyAnnounce> enableList = dao.query(CyAnnounce.class, cnd,pager);
+        List<CyAnnounce> enableList = dao.query(CyAnnounce.class, cnd, pager);
         for (CyAnnounce cya : enableList) {
-            cya.setStateStr(stateMap.getOrDefault(cya.getState(), "未知"));
+            cya.setStateStr(stateMap.getOrDefault(cya.getState(), "Неизвестно"));
         }
         QueryResult qr = new QueryResult();
         qr.setList(enableList);
-        pager.setRecordCount(dao.count(CyAnnounce.class,cnd));
+        pager.setRecordCount(dao.count(CyAnnounce.class, cnd));
         qr.setPager(pager);
 
         cnd = Cnd.where("state", ">", 0).and("state", "<", 4);
         cnd.orderBy("createTime", "desc");
         List<CyAnnounce> disableList = dao.query(CyAnnounce.class, cnd);
         for (CyAnnounce cya : disableList) {
-            cya.setStateStr(stateMap.getOrDefault(cya.getState(), "未知"));
+            cya.setStateStr(stateMap.getOrDefault(cya.getState(), "Неизвестно"));
         }
 
         int fromIndex = 0;
         int toIndex = 0;
         if (null != disableList){
-            fromIndex = rows*(page - 1);
-            toIndex = rows*page >= disableList.size() ? disableList.size() : rows*page;
+            fromIndex = rows * (page - 1);
+            toIndex = rows * page >= disableList.size() ? disableList.size() : rows * page;
         }
-        return Toolkit.outResult(true).setv("qr", qr).setv("total",disableList.size()).setv("rows",disableList.subList(fromIndex,toIndex));
+        return Toolkit.outResult(true).setv("qr", qr).setv("total", disableList.size()).setv("rows", disableList.subList(fromIndex, toIndex));
     }
 
     @At
@@ -208,7 +208,7 @@ public class AnnounceModule {
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         User user = (User) request.getSession().getAttribute("USER");
         if (user == null) {
-            return Toolkit.outResult(false, "不存在该用户");
+            return Toolkit.outResult(false, "Пользователь не найден");
         }
         if (Strings.isBlank(announce.getGroupName()) || serverId == null || serverId.length < 1) {
             return Toolkit.outResult(false, msg.get("announce.imedia.serverNull"));
@@ -258,10 +258,10 @@ public class AnnounceModule {
             if (cb != null) {
                 boolean bn = CyAnnounceManager.getInstance().addCyAnnounce(cb);
                 if (bn) {
-                    //开启一个新的计时器
+                    // Запуск нового таймера
                     taskTimer.StartAnnounceTask(cb.getCycleInterval());
                 }
-                BackendLogUtil.getInstance().log(request, "发布即时公告:" + cb.getBatchTag() + "\t" + cb.getContent() + "\t结果：" + cb.getId());
+                BackendLogUtil.getInstance().log(request, "Публикация циклического объявления: " + cb.getBatchTag() + "\t" + cb.getContent() + "\tРезультат: " + cb.getId());
                 return Toolkit.outResult(true, msg.get("announce.add.saveSuccess"));
             } else {
                 return Toolkit.outResult(false, msg.get("announce.add.savefailure"));
@@ -276,33 +276,33 @@ public class AnnounceModule {
     @At
     @POST
     public Object sendUpdateNotice(HttpServletRequest request, String[] serverId, String content, String items, int type) {
-        if (serverId==null||serverId.length == 0||Strings.isBlank(content) || Strings.isBlank(items)) {
-            return Toolkit.outResult(false, "param error");
+        if (serverId == null || serverId.length == 0 || Strings.isBlank(content) || Strings.isBlank(items)) {
+            return Toolkit.outResult(false, "Ошибка параметров");
         }
         StringBuilder serverIdStr = new StringBuilder();
         boolean sendSuccess = false;
-        for (String sid:serverId) {
+        for (String sid : serverId) {
             Server server = ServerListManager.getInstance().getServer(sid);
             if (server == null) {
-                return Toolkit.outResult(false, "服务器连接信息获取失败,serverId="+serverId);
+                return Toolkit.outResult(false, "Не удалось получить информацию о сервере, serverId=" + sid);
             }
-            NutMap resultMap = GameServerRequestUtil.gmSendUpdateNotice(server, content, items, type>0?"1":String.valueOf(type));
+            NutMap resultMap = GameServerRequestUtil.gmSendUpdateNotice(server, content, items, type > 0 ? "1" : String.valueOf(type));
             if (resultMap.getBoolean("ok")) {
                 serverIdStr.append(sid).append(",");
                 sendSuccess = true;
             }
         }
 
-        if(sendSuccess){
+        if (sendSuccess) {
             UpdateNotice bean = new UpdateNotice();
             bean.setServerIds(serverIdStr.toString());
             bean.setContent(content);
             bean.setReward(items);
             bean.setType(type);
             bean = dao.insert(bean);
-            BackendLogUtil.getInstance().log(request, "设置更新公告成功,ID="+bean.getId());
+            BackendLogUtil.getInstance().log(request, "Объявление об обновлении успешно отправлено, ID=" + bean.getId());
         }
-        return Toolkit.outResult(sendSuccess,"更新公告成功");
+        return Toolkit.outResult(sendSuccess, "Объявление об обновлении успешно отправлено");
     }
 
     @At
@@ -347,7 +347,7 @@ public class AnnounceModule {
         boolean b = num > 0;
         User user = (User) request.getSession().getAttribute("USER");
         if (user != null) {
-            BackendLogUtil.getInstance().log(request, String.format("更新公告状态，id: %s, state: %s, 结果 %s：", announceId, state, b));
+            BackendLogUtil.getInstance().log(request, String.format("Обновление статуса объявления, id: %s, state: %s, результат %s:", announceId, state, b));
         }
         return Toolkit.outResult(b, msg.get("announce.do.success"));
     }
@@ -361,8 +361,7 @@ public class AnnounceModule {
             return Toolkit.outResult(false, msg.get("announce.query.noRecord"));
         }
         CyAnnounceManager.getInstance().remove(ca);
-        BackendLogUtil.getInstance().log(request, "删除发送公告\t" + announceId);
+        BackendLogUtil.getInstance().log(request, "Удаление отправленного объявления\t" + announceId);
         return Toolkit.outResult(true, msg.get("announce.do.success"));
     }
-
 }

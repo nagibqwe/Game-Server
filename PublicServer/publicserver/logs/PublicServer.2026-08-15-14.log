@@ -1,0 +1,209 @@
+2026-08-15 14:22:57.248 INFO [Thread-1][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/PublicServer/publicserver/PublicServer.jar:/home/Game-Server/PublicServer/publicserver/bin/:/home/Game-Server/PublicServer/publicserver/lib/slf4j-log4j12-1.7.6.jar:/home/Game-Server/PublicServer/publicserver/lib/disruptor-3.3.6.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-annotations-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/slf4j-api-1.7.6.jar:/home/Game-Server/PublicServer/publicserver/lib/netty-all-4.1.11.Final-sources.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-databind-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-api-2.17.0.jar:/home/Game-Server/PublicServer/publicserver/lib/GameCore.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-core-2.17.0.jar:/home/Game-Server/PublicServer/publicserver/lib/mybatis-3.2.5.jar:/home/Game-Server/PublicServer/publicserver/lib/httpcore-nio-4.4.5.jar:/home/Game-Server/PublicServer/publicserver/lib/netty-all-4.1.11.Final.jar:/home/Game-Server/PublicServer/publicserver/lib/httpasyncclient-4.1.2.jar:/home/Game-Server/PublicServer/publicserver/lib/httpclient-4.5.8.jar:/home/Game-Server/PublicServer/publicserver/lib/PushJavaSDK.jar:/home/Game-Server/PublicServer/publicserver/lib/httpcore-4.4.4.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-lang-2.5.jar:/home/Game-Server/PublicServer/publicserver/lib/GameCfg.jar:/home/Game-Server/PublicServer/publicserver/lib/druid-1.0.15.jar:/home/Game-Server/PublicServer/publicserver/lib/mysql-connector-java-8.0.27.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-core-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-1.2.17.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-codec-1.9.jar:/home/Game-Server/PublicServer/publicserver/lib/protobuf-java-2.5.0.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-logging-1.0.4.jar:bin]
+2026-08-15 14:22:57.287 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 114, имя: common.activity.ActivityRankScript
+2026-08-15 14:22:57.288 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 124, имя: common.bravepeak.BravePeakManagerScript
+2026-08-15 14:22:57.292 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 130, имя: common.couplefight.CouplefightScript
+2026-08-15 14:22:57.293 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 129, имя: common.crosshorseboss.CrossHorseBossScript
+2026-08-15 14:22:57.294 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 128, имя: common.crossrank.CrossRankScript
+2026-08-15 14:22:57.295 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 118, имя: common.dailyactive.DailyActiveScript
+2026-08-15 14:22:57.297 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 122, имя: common.eightdiagrams.EightDiagramsScript
+2026-08-15 14:22:57.298 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 105, имя: common.fightroom.FightManagerScript
+2026-08-15 14:22:57.299 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 123, имя: common.fud.AlienScript
+2026-08-15 14:22:57.300 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 111, имя: common.fud.DevilFudScript
+2026-08-15 14:22:57.303 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 112, имя: common.fud.FudScript
+2026-08-15 14:22:57.304 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 102, имя: common.gameserver.GSManagerScript
+2026-08-15 14:22:57.304 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 121, имя: common.goddevilwar.GodDevilWarScript
+2026-08-15 14:22:57.309 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 103, имя: common.http.HttpBackScript
+2026-08-15 14:22:57.309 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 120, имя: common.ninedaysfocused.NineDaysFocusedScript
+2026-08-15 14:22:57.311 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 113, имя: common.peak.PeakScript
+2026-08-15 14:22:57.312 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 126, имя: common.questionnaire.QuestionaireScript
+2026-08-15 14:22:57.313 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 50, имя: common.server.ErrorLogReport
+2026-08-15 14:22:57.314 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 108, имя: common.server.GMScript
+2026-08-15 14:22:57.314 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 101, имя: common.server.ServerStart
+2026-08-15 14:22:57.315 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 117, имя: common.servermatch.ServerMatchManagerScript
+2026-08-15 14:22:57.317 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 115, имя: common.soulanimalforest.SoulAnimalForestManagerScript
+2026-08-15 14:22:57.318 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 127, имя: common.universewar.UniverseWarScript
+2026-08-15 14:22:57.320 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 125, имя: common.worldBonfire.WorldBonfireScript
+2026-08-15 14:22:57.321 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 119, имя: common.worldanswer.WorldAnswerScript
+2026-08-15 14:22:57.322 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 110, имя: common.zone.ZoneDealHandlerScript
+2026-08-15 14:22:57.323 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 106, имя: common.zone.ZoneManagerScript
+2026-08-15 14:22:57.328 INFO [Thread-1][LogService.java:87] - Инициализация сервиса базы данных логов
+2026-08-15 14:22:57.350 INFO [Thread-1][LogService.java:120] - Запуск пула соединений с базой данных логов завершён: jdbc:mysql://127.0.0.1:3306/tzj_public_log?autoReconnect=true&useUnicode=true&characterEncoding=utf8&nullCatalogMeansCurrent=true
+2026-08-15 14:22:58.370 INFO [Thread-1][LogService.java:173] - Проверка таблицы: fightroomcreatelog202608
+2026-08-15 14:22:58.391 INFO [Thread-1][LogService.java:272] - Проверка таблицы fightroomcreatelog202608 завершена
+2026-08-15 14:22:58.392 INFO [Thread-1][LogService.java:173] - Проверка таблицы: questionnairelog2026
+2026-08-15 14:22:58.408 INFO [Thread-1][LogService.java:272] - Проверка таблицы questionnairelog2026 завершена
+2026-08-15 14:22:58.409 INFO [Thread-1][LogService.java:125] - Запуск пула потоков для логов завершён
+2026-08-15 14:22:58.409 INFO [Thread-1][LogService.java:129] - Инициализация сервиса базы данных логов завершена
+2026-08-15 14:22:58.416 INFO [Thread-1][QuestionnaireManager.java:87] - 开始时间：1590958800000
+2026-08-15 14:22:58.416 INFO [Thread-1][QuestionnaireManager.java:88] - 结束时间：1593550799000
+2026-08-15 14:22:59.337 INFO [Thread-1][ServerParamUtil.java:217] - Параметры сервера успешно загружены!
+2026-08-15 14:22:59.338 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-16 00:00:00 — расчётное время: 2026-08-16 00:00:00
+2026-08-15 14:22:59.339 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-16 00:00:00 — расчётное время: 2026-08-16 00:00:00
+2026-08-15 14:22:59.346 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 8 groupID-- 30001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:22:59.347 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 1 groupID-- 2  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:22:59.347 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 2 groupID-- 10001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:22:59.348 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 4 groupID-- 20001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:22:59.361 INFO [Thread-1][CrossRankManager.java:90] - 跨服世界等级 timer 初始化成功
+2026-08-15 14:22:59.375 INFO [Thread-1][FudScript.java:606] - 加载福地分组数据 len=0
+2026-08-15 14:22:59.381 INFO [Thread-1][FudScript.java:614] - 加载福地玩家数据 len=0
+2026-08-15 14:22:59.420 INFO [Thread-1][PeakScript.java:690] - 加载巅峰竞技场数据 len=0 rank=0
+2026-08-15 14:22:59.438 INFO [Thread-1][MainServer.java:237] - Public сервер успешно запущен!
+2026-08-15 14:23:01.209 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=2【掌门传道】开始阶段
+2026-08-15 14:23:01.209 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=14【神兽首领】开始阶段
+2026-08-15 14:23:01.211 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=113【诸界远征】开始阶段
+2026-08-15 14:23:01.211 INFO [Public service][FudScript.java:985] - 跨服福地活动开启
+2026-08-15 14:23:01.212 INFO [Public service][FudScript.java:777] - 跨服福地分配福地 !!!!Day=2026-08-15 14:23:01
+2026-08-15 14:23:01.221 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=30001, stage=8, openDay=1192, worldLevel=79, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=801, state=2, camp=1}
+2026-08-15 14:23:01.222 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=20001, stage=4, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=401, state=2, camp=1}
+2026-08-15 14:23:01.223 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=10001, stage=2, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=201, state=2, camp=1}
+2026-08-15 14:23:01.224 INFO [Public service][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=30001, stage=8, openDay=1192, worldLevel=79, servers=[1001]}
+2026-08-15 14:23:01.225 INFO [Public service][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=20001, stage=4, openDay=0, worldLevel=0, servers=[1001]}
+2026-08-15 14:23:01.225 INFO [Public service][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=10001, stage=2, openDay=0, worldLevel=0, servers=[1001]}
+2026-08-15 14:23:01.226 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=115【仙侣对决】开始阶段
+2026-08-15 14:23:01.226 INFO [Public service][CouplefightScript.java:1368] - 开始仙侣对决
+2026-08-15 14:23:01.228 INFO [Public service][QuestionaireScript.java:59] - 有奖问答结束
+2026-08-15 14:23:01.236 INFO [Public service][PeakScript.java:746] - 【巅峰竞技场】 场次奖励结算。。。Time=2026-08-15 14:23:01
+2026-08-15 14:23:01.274 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - publicserver успешно запущен на порту 9200!
+2026-08-15 14:23:01.274 INFO [nioEventLoopGroup-4-1][SocketServer.java:61] - HTTP порт  успешно запущен на порту 9201!
+2026-08-15 14:23:01.324 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-1-1
+2026-08-15 14:23:01.328 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-15 14:23:01.328 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-15 14:23:01.426 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-1-1
+2026-08-15 14:23:01.524 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-1-1
+2026-08-15 14:23:01.624 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-1-1
+2026-08-15 14:23:01.710 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-15 14:23:01.710 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-15 14:23:02.082 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-15 14:23:02.082 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-15 14:23:02.701 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-15 14:23:02.701 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-15 14:23:59.447 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-15 14:25:11.460 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xabaa16dc, L:/94.250.249.128:9200 - R:/94.250.249.128:58986]
+2026-08-15 14:25:11.461 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-15 14:25:11.462 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xabaa16dc, L:/94.250.249.128:9200 - R:/94.250.249.128:58986] — порядковый номер подключения: 1
+2026-08-15 14:25:12.583 INFO [Thread-6][GameServerManager.java:90] - cn _ 1001 — ID зарегистрированного игрового сервера: 1001, ip: 94.250.249.128
+2026-08-15 14:25:12.584 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 8 groupID-- 30001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:25:12.584 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 1 groupID-- 2  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:25:12.584 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 2 groupID-- 10001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:25:12.585 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 4 groupID-- 20001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:25:12.593 ERROR [Thread-6][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-15 14:25:12.740 INFO [Thread-6][GSManagerScript.java:252] - [id: 0xabaa16dc, L:/94.250.249.128:9200 - R:/94.250.249.128:58986] 注册来的信息是：sinfo {
+  serverId: 1001
+  serverIP: "94.250.249.128"
+  serverPort: 9101
+  serverType: 1
+  platformMark: "cn"
+  version: "20170615"
+  serverOpentime: "2023-05-12 00:00:00"
+  serverWorldlv: 79
+}
+combinedIds: 1001
+
+2026-08-15 14:29:32.107 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xabaa16dc, L:/94.250.249.128:9200 ! R:/94.250.249.128:58986] — при отправке очереди соединение уже разорвано! 4
+2026-08-15 14:29:32.108 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0xabaa16dc, L:/94.250.249.128:9200 ! R:/94.250.249.128:58986]
+2026-08-15 14:29:32.108 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xabaa16dc, L:/94.250.249.128:9200 ! R:/94.250.249.128:58986] — при отправке очереди соединение уже разорвано! 4
+2026-08-15 14:29:32.109 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-15 14:29:32.110 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xabaa16dc, L:/94.250.249.128:9200 ! R:/94.250.249.128:58986]
+2026-08-15 14:29:32.111 INFO [nioEventLoopGroup-3-1][GameServerManager.java:135] - Количество серверов до удаления: 1
+2026-08-15 14:29:32.111 INFO [nioEventLoopGroup-3-1][GameServerManager.java:140] - cn _ 1001 — игровой сервер ID 1001 удалён
+2026-08-15 14:29:32.112 INFO [nioEventLoopGroup-3-1][GameServerManager.java:145] - Количество серверов после удаления: 0
+2026-08-15 14:29:32.112 INFO [nioEventLoopGroup-3-1][GameServerManager.java:147] - Список серверов по типу до удаления: 1
+2026-08-15 14:29:32.112 INFO [nioEventLoopGroup-3-1][GameServerManager.java:149] - Список серверов по типу после удаления: 0
+2026-08-15 14:29:32.112 INFO [nioEventLoopGroup-3-1][ServerStart.java:54] - [id: 0xabaa16dc, L:/94.250.249.128:9200 ! R:/94.250.249.128:58986] 注销的服务器ID：cn_1001
+2026-08-15 14:29:43.145 ERROR [Thread-5][SocketServer.java:80] - publicserver освобождение порта!
+2026-08-15 14:31:51.171 INFO [Thread-1][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/PublicServer/publicserver/PublicServer.jar:/home/Game-Server/PublicServer/publicserver/bin/:/home/Game-Server/PublicServer/publicserver/lib/slf4j-log4j12-1.7.6.jar:/home/Game-Server/PublicServer/publicserver/lib/disruptor-3.3.6.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-annotations-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/slf4j-api-1.7.6.jar:/home/Game-Server/PublicServer/publicserver/lib/netty-all-4.1.11.Final-sources.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-databind-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-api-2.17.0.jar:/home/Game-Server/PublicServer/publicserver/lib/GameCore.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-core-2.17.0.jar:/home/Game-Server/PublicServer/publicserver/lib/mybatis-3.2.5.jar:/home/Game-Server/PublicServer/publicserver/lib/httpcore-nio-4.4.5.jar:/home/Game-Server/PublicServer/publicserver/lib/netty-all-4.1.11.Final.jar:/home/Game-Server/PublicServer/publicserver/lib/httpasyncclient-4.1.2.jar:/home/Game-Server/PublicServer/publicserver/lib/httpclient-4.5.8.jar:/home/Game-Server/PublicServer/publicserver/lib/PushJavaSDK.jar:/home/Game-Server/PublicServer/publicserver/lib/httpcore-4.4.4.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-lang-2.5.jar:/home/Game-Server/PublicServer/publicserver/lib/GameCfg.jar:/home/Game-Server/PublicServer/publicserver/lib/druid-1.0.15.jar:/home/Game-Server/PublicServer/publicserver/lib/mysql-connector-java-8.0.27.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-core-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-1.2.17.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-codec-1.9.jar:/home/Game-Server/PublicServer/publicserver/lib/protobuf-java-2.5.0.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-logging-1.0.4.jar:bin]
+2026-08-15 14:31:51.212 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 114, имя: common.activity.ActivityRankScript
+2026-08-15 14:31:51.212 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 124, имя: common.bravepeak.BravePeakManagerScript
+2026-08-15 14:31:51.216 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 130, имя: common.couplefight.CouplefightScript
+2026-08-15 14:31:51.217 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 129, имя: common.crosshorseboss.CrossHorseBossScript
+2026-08-15 14:31:51.217 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 128, имя: common.crossrank.CrossRankScript
+2026-08-15 14:31:51.218 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 118, имя: common.dailyactive.DailyActiveScript
+2026-08-15 14:31:51.220 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 122, имя: common.eightdiagrams.EightDiagramsScript
+2026-08-15 14:31:51.221 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 105, имя: common.fightroom.FightManagerScript
+2026-08-15 14:31:51.222 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 123, имя: common.fud.AlienScript
+2026-08-15 14:31:51.222 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 111, имя: common.fud.DevilFudScript
+2026-08-15 14:31:51.225 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 112, имя: common.fud.FudScript
+2026-08-15 14:31:51.227 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 102, имя: common.gameserver.GSManagerScript
+2026-08-15 14:31:51.227 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 121, имя: common.goddevilwar.GodDevilWarScript
+2026-08-15 14:31:51.230 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 103, имя: common.http.HttpBackScript
+2026-08-15 14:31:51.231 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 120, имя: common.ninedaysfocused.NineDaysFocusedScript
+2026-08-15 14:31:51.233 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 113, имя: common.peak.PeakScript
+2026-08-15 14:31:51.233 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 126, имя: common.questionnaire.QuestionaireScript
+2026-08-15 14:31:51.234 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 50, имя: common.server.ErrorLogReport
+2026-08-15 14:31:51.235 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 108, имя: common.server.GMScript
+2026-08-15 14:31:51.235 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 101, имя: common.server.ServerStart
+2026-08-15 14:31:51.236 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 117, имя: common.servermatch.ServerMatchManagerScript
+2026-08-15 14:31:51.238 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 115, имя: common.soulanimalforest.SoulAnimalForestManagerScript
+2026-08-15 14:31:51.239 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 127, имя: common.universewar.UniverseWarScript
+2026-08-15 14:31:51.240 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 125, имя: common.worldBonfire.WorldBonfireScript
+2026-08-15 14:31:51.241 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 119, имя: common.worldanswer.WorldAnswerScript
+2026-08-15 14:31:51.242 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 110, имя: common.zone.ZoneDealHandlerScript
+2026-08-15 14:31:51.242 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 106, имя: common.zone.ZoneManagerScript
+2026-08-15 14:31:51.248 INFO [Thread-1][LogService.java:87] - Инициализация сервиса базы данных логов
+2026-08-15 14:31:51.271 INFO [Thread-1][LogService.java:120] - Запуск пула соединений с базой данных логов завершён: jdbc:mysql://127.0.0.1:3306/tzj_public_log?autoReconnect=true&useUnicode=true&characterEncoding=utf8&nullCatalogMeansCurrent=true
+2026-08-15 14:31:52.344 INFO [Thread-1][LogService.java:173] - Проверка таблицы: fightroomcreatelog202608
+2026-08-15 14:31:52.376 INFO [Thread-1][LogService.java:272] - Проверка таблицы fightroomcreatelog202608 завершена
+2026-08-15 14:31:52.377 INFO [Thread-1][LogService.java:173] - Проверка таблицы: questionnairelog2026
+2026-08-15 14:31:52.396 INFO [Thread-1][LogService.java:272] - Проверка таблицы questionnairelog2026 завершена
+2026-08-15 14:31:52.397 INFO [Thread-1][LogService.java:125] - Запуск пула потоков для логов завершён
+2026-08-15 14:31:52.397 INFO [Thread-1][LogService.java:129] - Инициализация сервиса базы данных логов завершена
+2026-08-15 14:31:52.405 INFO [Thread-1][QuestionnaireManager.java:87] - 开始时间：1590958800000
+2026-08-15 14:31:52.406 INFO [Thread-1][QuestionnaireManager.java:88] - 结束时间：1593550799000
+2026-08-15 14:31:53.353 INFO [Thread-1][ServerParamUtil.java:217] - Параметры сервера успешно загружены!
+2026-08-15 14:31:53.353 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-16 00:00:00 — расчётное время: 2026-08-16 00:00:00
+2026-08-15 14:31:53.354 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-16 00:00:00 — расчётное время: 2026-08-16 00:00:00
+2026-08-15 14:31:53.360 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 8 groupID-- 30001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:31:53.361 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 1 groupID-- 2  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:31:53.361 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 2 groupID-- 10001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:31:53.362 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 4 groupID-- 20001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:31:53.371 INFO [Thread-1][CrossRankManager.java:90] - 跨服世界等级 timer 初始化成功
+2026-08-15 14:31:53.417 INFO [Thread-1][FudScript.java:606] - 加载福地分组数据 len=3
+2026-08-15 14:31:53.422 INFO [Thread-1][FudScript.java:614] - 加载福地玩家数据 len=0
+2026-08-15 14:31:53.467 INFO [Thread-1][PeakScript.java:690] - 加载巅峰竞技场数据 len=0 rank=0
+2026-08-15 14:31:53.482 INFO [Thread-1][MainServer.java:237] - Public сервер успешно запущен!
+2026-08-15 14:31:55.471 INFO [nioEventLoopGroup-4-1][SocketServer.java:61] - HTTP порт  успешно запущен на порту 9201!
+2026-08-15 14:31:55.471 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - publicserver успешно запущен на порту 9200!
+2026-08-15 14:32:00.108 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=2【掌门传道】开始阶段
+2026-08-15 14:32:00.109 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=14【神兽首领】开始阶段
+2026-08-15 14:32:00.110 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=113【诸界远征】开始阶段
+2026-08-15 14:32:00.111 INFO [Public service][FudScript.java:985] - 跨服福地活动开启
+2026-08-15 14:32:00.111 INFO [Public service][FudScript.java:777] - 跨服福地分配福地 !!!!Day=2026-08-15 14:32:00
+2026-08-15 14:32:00.117 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=30001, stage=8, openDay=1192, worldLevel=79, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=801, state=2, camp=1}
+2026-08-15 14:32:00.118 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=20001, stage=4, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=401, state=2, camp=1}
+2026-08-15 14:32:00.118 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=10001, stage=2, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=201, state=2, camp=1}
+2026-08-15 14:32:00.121 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=115【仙侣对决】开始阶段
+2026-08-15 14:32:00.121 INFO [Public service][CouplefightScript.java:1368] - 开始仙侣对决
+2026-08-15 14:32:00.121 INFO [Public service][QuestionaireScript.java:59] - 有奖问答结束
+2026-08-15 14:32:00.196 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-1-1
+2026-08-15 14:32:00.200 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-15 14:32:00.200 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-15 14:32:00.292 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-1-1
+2026-08-15 14:32:00.392 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-1-1
+2026-08-15 14:32:00.484 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-15 14:32:00.484 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-15 14:32:00.929 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-15 14:32:00.929 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-15 14:32:53.430 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-15 14:33:55.942 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x4cf16503, L:/94.250.249.128:9200 - R:/94.250.249.128:60318]
+2026-08-15 14:33:55.942 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-15 14:33:55.944 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x4cf16503, L:/94.250.249.128:9200 - R:/94.250.249.128:60318] — порядковый номер подключения: 1
+2026-08-15 14:34:00.344 ERROR [nioEventLoopGroup-3-1][GameServerManager.java:174] - При отправке сообщения на (cn_1001) — соединение отсутствует!
+2026-08-15 14:34:00.344 INFO [Thread-6][GameServerManager.java:90] - cn _ 1001 — ID зарегистрированного игрового сервера: 1001, ip: 94.250.249.128
+2026-08-15 14:34:00.345 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 8 groupID-- 30001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:34:00.345 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 1 groupID-- 2  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:34:00.346 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 2 groupID-- 10001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:34:00.346 INFO [Thread-6][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 4 groupID-- 20001  serverId1001-- openDay-- 1192  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-15 14:34:00.357 ERROR [Thread-6][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-15 14:34:00.503 INFO [Thread-6][GSManagerScript.java:252] - [id: 0x4cf16503, L:/94.250.249.128:9200 - R:/94.250.249.128:60318] 注册来的信息是：sinfo {
+  serverId: 1001
+  serverIP: "94.250.249.128"
+  serverPort: 9101
+  serverType: 1
+  platformMark: "cn"
+  version: "20170615"
+  serverOpentime: "2023-05-12 00:00:00"
+  serverWorldlv: 79
+}
+combinedIds: 1001
+
+2026-08-15 14:37:12.990 ERROR [nioEventLoopGroup-5-1][SendBackFuture.java:23] - back http result success!

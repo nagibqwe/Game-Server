@@ -6,14 +6,14 @@
 package com.game.structs;
 
 /**
- *游戏服的结构定义
+ * Определение типов игровых серверов
  * @author soko <xuchangming@haowan123.com>
  */
 public class ServerType {
-    public final static int GAMESERVER_TEST = 0;//测试服
-    public final static int GAMESERVER = 1;//游戏服
-    public final static int LOGINSERVER = 2;//登录服
-    public final static int PUBLICSERVER = 3;//公共管理服
-    public final static int FIGHTSERVER = 4;//战斗服
-    public final static int SocialServer = 5;//社交服务器
+    public final static int GAMESERVER_TEST = 0;   // Тестовый игровой сервер
+    public final static int GAMESERVER = 1;        // Игровой сервер
+    public final static int LOGINSERVER = 2;       // Сервер входа
+    public final static int PUBLICSERVER = 3;      // Публичный управляющий сервер
+    public final static int FIGHTSERVER = 4;       // Боевой сервер
+    public final static int SocialServer = 5;      // Социальный сервер
 }

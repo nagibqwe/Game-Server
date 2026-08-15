@@ -37,7 +37,7 @@ public class DailyActivityScript implements IDailyActivityScript {
         //检查等级是否满足
        Cfg_Daily_Bean bean = Cfg_Daily_Container.GetInstance().getValueByKey(dailyId);
        if (bean == null) {
-           log.error("日常副本配置没找到，ID=" + bean.getId());
+           log.error("Конфигурация ежедневного подземелья не найдена. ID=" + bean.getId());
            return afterTime;
        }
        if (player.getLevel() < bean.getOpenLevel()) {
@@ -45,7 +45,7 @@ public class DailyActivityScript implements IDailyActivityScript {
            return afterTime;
        }
        if (bean.getCloneID().isEmpty()) {
-           log.info("日常副本没有配置副本ID字段，ID=" + bean.getId());
+           log.info("В конфигурации ежедневного подземелья не указан ID подземелья. ID=" + bean.getId());
            return afterTime;
        }
         int modelId = 0;
@@ -54,7 +54,7 @@ public class DailyActivityScript implements IDailyActivityScript {
         for (int i = 0; i < bean.getCloneID().size(); i++) {
             Cfg_Clone_map_Bean cloneMapBean = CfgManager.getCfg_Clone_map_Container().getValueByKey(bean.getCloneID().get(i));
             if (cloneMapBean == null) {
-                log.info("副本配置没找到，ID=" + cloneMapBean.getId());
+                log.info("Конфигурация подземелья не найдена. ID=" + cloneMapBean.getId());
                 continue;
             }
             if (player.getLevel() < cloneMapBean.getMin_lv() || player.getLevel() > cloneMapBean.getMax_lv()) {
@@ -63,7 +63,7 @@ public class DailyActivityScript implements IDailyActivityScript {
 
             Cfg_Mapsetting_Bean mapBean = CfgManager.getCfg_Mapsetting_Container().getValueByKey(cloneMapBean.getMapid());
             if (mapBean == null) {
-                log.info("地图配置没找到，ID=" + mapBean.getMap_id());
+                log.info("Конфигурация карты не найдена. ID=" + mapBean.getMap_id());
                 continue;
             }
             Manager.bossManager.getNumMap().putIfAbsent(cloneMapBean.getId(),0);
@@ -101,7 +101,7 @@ public class DailyActivityScript implements IDailyActivityScript {
         //检查等级是否满足
         Cfg_Daily_Bean bean = Cfg_Daily_Container.GetInstance().getValueByKey(dailyId);
         if (bean == null) {
-            log.error("日常副本配置没找到，ID=" + bean.getId());
+            log.error("Конфигурация ежедневного подземелья не найдена. ID=" + bean.getId());
             return afterTime;
         }
         if (player.getLevel() < bean.getOpenLevel()) {
@@ -111,7 +111,7 @@ public class DailyActivityScript implements IDailyActivityScript {
 
         Cfg_Clone_map_Bean cloneMapBean = CfgManager.getCfg_Clone_map_Container().getValueByKey(modelId);
         if (cloneMapBean == null) {
-            log.error("副本配置没找到，ID=" + cloneMapBean.getId());
+            log.error("Конфигурация подземелья не найдена. ID=" + cloneMapBean.getId());
             return afterTime;
         }
         if (player.getLevel() < cloneMapBean.getMin_lv() && player.getLevel() > cloneMapBean.getMax_lv()) {
@@ -128,6 +128,6 @@ public class DailyActivityScript implements IDailyActivityScript {
         msg.setDailyId(dailyId);
         msg.setParam(modelId);
         player.sendMsg(DailyactiveMessage.ReqJoinDaily.MsgID.eMsgID_VALUE, msg.build().toByteArray());
-        log.info(player.getInfo()+"请求进入日常副本,type="+dailyId+",id="+modelId);
+        log.info(player.getInfo() + " запрос на вход в ежедневное подземелье. type=" + dailyId + ", id=" + modelId);
     }
 }

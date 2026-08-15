@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('公会成员信息列表')" />
+    <th:block th:include="include :: header('Информация о членах гильдии')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -13,19 +13,19 @@
                         <ul>
                             <li>
                                 <div th:replace="common/select_server_single.html"></div>
-                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                                 <input type="hidden" id="requestUrl" value="selectServerList">
                                 <input type="hidden" id="ignoreMerge" value="0">
                                 <input type="hidden" id="serverTypeList" value="0,1">
                             </li>
                             <li>
-                                <label>ID гильдии：</label>
+                                <label>ID гильдии:</label>
                                 <input type="text" name="guildId"/>
                                 <input type="hidden" name="queryType" value="1"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                             </li>
                         </ul>
                     </div>
@@ -52,7 +52,7 @@
             var options = {
                 url: prefix + "/list",
                 exportUrl: prefix + "/export",
-                modalName: "公会成员信息",
+                modalName: "Информация о членах гильдии",
                 pagination: false,
                 firstLoad: false,
                 columns: [
@@ -71,11 +71,11 @@
                 },
                 // {
                 //     field: 'param',
-                //     title: '其他参数'
+                //     title: 'Другие параметры'
                 // },
                 // {
                 //     field: 'sid',
-                //     title: '服务器ID'
+                //     title: 'ID сервера'
                 // },
                 {
                     field: 'guildName',
@@ -87,7 +87,7 @@
                 }
                 // {
                 //     field: 'userId',
-                //     title: '用户ID'
+                //     title: 'ID пользователя'
                 // }
                 ]
             };

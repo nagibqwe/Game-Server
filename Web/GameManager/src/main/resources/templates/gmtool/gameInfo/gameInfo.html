@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('游戏参数信息列表')" />
+    <th:block th:include="include :: header('Список параметров игры')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -11,32 +11,32 @@
                     <div class="select-list">
                         <ul>
                                 <li>
-                                    <label>游戏ID：</label>
+                                    <label>ID игры:</label>
                                     <input type="text" name="gameId"/>
                                 </li>
 <!--                            <li>-->
-<!--                                <label>第三方充值密钥：</label>-->
+<!--                                <label>Ключ для сторонних пополнений:</label>-->
 <!--                                <input type="text" name="rechargeSecretkey"/>-->
 <!--                            </li>-->
 <!--                            <li>-->
-<!--                                <label>自动开服检查起始服务器ID：</label>-->
+<!--                                <label>Начальный ID сервера для автоматического открытия:</label>-->
 <!--                                <input type="text" name="autoFirstServerId"/>-->
 <!--                            </li>-->
 <!--                            <li>-->
-<!--                                <label>自动开服注册角色数条件：</label>-->
+<!--                                <label>Условие по количеству персонажей для автоматического открытия сервера:</label>-->
 <!--                                <input type="text" name="autoUserCount"/>-->
 <!--                            </li>-->
 <!--                            <li>-->
-<!--                                <label>自动开服进度ID：</label>-->
+<!--                                <label>ID прогресса автоматического открытия сервера:</label>-->
 <!--                                <input type="text" name="autoServerId"/>-->
 <!--                            </li>-->
 <!--                            <li>-->
-<!--                                <label>修改时间：</label>-->
+<!--                                <label>Время изменения:</label>-->
 <!--                                <input type="text" name="time"/>-->
 <!--                            </li>-->
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +48,7 @@
                     <i class="fa fa-plus"></i> Добавить
                 </a>
                 <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:gameInfo:edit">
-                    <i class="fa fa-edit"></i> Изменить
+                    <i class="fa fa-edit"></i> Редактировать
                 </a>
                 <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:gameInfo:remove">
                     <i class="fa fa-remove"></i> Удалить
@@ -81,28 +81,28 @@
                 },
                 {
                     field: 'gameId',
-                    title: '游戏ID',
+                    title: 'ID игры',
                     // visible: false
                 },
                 {
                     field: 'rechargeSecretkey',
-                    title: '第三方充值密钥'
+                    title: 'Ключ для сторонних пополнений'
                 },
                 // {
                 //     field: 'autoFirstServerId',
-                //     title: '自动开服检查起始服务器ID'
+                //     title: 'Начальный ID сервера для автоматического открытия'
                 // },
                 {
                     field: 'autoUserCount',
-                    title: '自动开服注册角色数条件'
+                    title: 'Условие по количеству персонажей для автоматического открытия сервера'
                 },
                 {
                     field: 'autoServerId',
-                    title: '自动开服进度ID'
+                    title: 'ID прогресса автоматического открытия сервера'
                 },
                 // {
                 //     field: 'time',
-                //     title: '修改时间'
+                //     title: 'Время изменения'
                 // },
                 {
                     title: 'Действия',

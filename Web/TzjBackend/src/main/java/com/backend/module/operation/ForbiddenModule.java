@@ -47,16 +47,13 @@ public class ForbiddenModule {
     private static final Log log = Logs.get();
 
     private final static String ACCESS_KEY = "4399AccessKey";
-    private final static String PARAM_ERROR = "parameters error";
-    private final static String SIGN_ERROR = "sign error";
-    private final static String TIME_ERROR = "time error";
-    private final static String USER_ERROR = "user error";
+    private final static String PARAM_ERROR = "Ошибка параметров";
+    private final static String SIGN_ERROR = "Ошибка подписи";
+    private final static String TIME_ERROR = "Ошибка времени";
+    private final static String USER_ERROR = "Ошибка пользователя";
     private final static String SUCCESS = "";
 
-//    //申明一个长用线程池
-//	private static final ExecutorService excutor = Executors.newCachedThreadPool();
-
-    // 时间格式数据处理
+    // Формат времени
     private SimpleDateFormat ymdhmssdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -224,7 +221,7 @@ public class ForbiddenModule {
         try {
             if (!Strings.isNumber(server) || Strings.isBlank(sendType) || Strings.isBlank(data)
                     || Strings.isBlank(reason) || Strings.isBlank(flag) || Strings.isBlank(time)) {
-                return Toolkit.result(request, 200, "参数错误", "", "");
+                return Toolkit.result(request, 200, "Ошибка параметров", "", "");
             }
             StringBuilder paramStr = new StringBuilder();
             TreeMap<String, String> paramMap = new TreeMap<>();
@@ -242,20 +239,20 @@ public class ForbiddenModule {
             paramStr.append(ServerKeyUtil.getKey(ACCESS_KEY));
             String md5Sign = Lang.md5(paramStr);
             if (!flag.equalsIgnoreCase(md5Sign)) {
-                return Toolkit.result(request, 201, "签名验证失败", "", "");
+                return Toolkit.result(request, 201, "Ошибка проверки подписи", "", "");
             }
 
             Server serverObj = ServerListManager.getInstance().getServer(server);
             if (serverObj == null) {
-                return Toolkit.result(request, 202, "服务器Id错误", "", "");
+                return Toolkit.result(request, 202, "Неверный ID сервера", "", "");
             }
             if (kickAll == 1) {
                 NutMap ret = GameServerRequestUtil.gmKickPlayer(serverObj, "0");
-                log.info("全服踢人下线,结果" + ret);
+                log.info("Принудительное отключение всех игроков, результат " + ret);
                 if (ret.getBoolean("ok")) {
-                    return Toolkit.result(request, 0, "全服踢人成功", "", "");
+                    return Toolkit.result(request, 0, "Все игроки отключены", "", "");
                 }
-                return Toolkit.result(request, 300, "全服踢人失败", "", "");
+                return Toolkit.result(request, 300, "Ошибка отключения всех игроков", "", "");
             }
             int type = Integer.valueOf(sendType);
             RoleState roleState = null;
@@ -274,17 +271,17 @@ public class ForbiddenModule {
                     break;
             }
             if (roleState == null) {
-                return Toolkit.result(request, 301, "不存在指定玩家", "", "");
+                return Toolkit.result(request, 301, "Игрок не найден", "", "");
             }
             NutMap ret = GameServerRequestUtil.gmKickPlayer(serverObj, roleState.getRoleId());
-            log.info("踢人下线,结果" + ret);
+            log.info("Принудительное отключение игрока, результат " + ret);
             if (ret.getBoolean("ok")) {
-                return Toolkit.result(request, 0, "踢人成功:" + roleState.getRoleName(), "", "");
+                return Toolkit.result(request, 0, "Игрок отключён: " + roleState.getRoleName(), "", "");
             }
-            return Toolkit.result(request, 300, "踢人失败:" + roleState.getRoleName(), "", "");
+            return Toolkit.result(request, 300, "Ошибка отключения игрока: " + roleState.getRoleName(), "", "");
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.result(request, 303, "操作失败", "", "");
+            return Toolkit.result(request, 303, "Ошибка операции", "", "");
         }
     }
 
@@ -298,7 +295,7 @@ public class ForbiddenModule {
         try {
             if (!Strings.isNumber(server) || Strings.isBlank(banType) || Strings.isBlank(data)
                     || Strings.isBlank(reason) || Strings.isBlank(flag) || Strings.isBlank(time)) {
-                return Toolkit.result(request, 200, "参数错误", "", "");
+                return Toolkit.result(request, 200, "Ошибка параметров", "", "");
             }
             StringBuilder paramStr = new StringBuilder();
             TreeMap<String, String> paramMap = new TreeMap<>();
@@ -316,20 +313,20 @@ public class ForbiddenModule {
             paramStr.append(ServerKeyUtil.getKey(ACCESS_KEY));
             String md5Sign = Lang.md5(paramStr);
             if (!flag.equalsIgnoreCase(md5Sign)) {
-                return Toolkit.result(request, 201, "签名验证失败", "", "");
+                return Toolkit.result(request, 201, "Ошибка проверки подписи", "", "");
             }
 
             Server serverObj = ServerListManager.getInstance().getServer(server);
             if (serverObj == null) {
-                return Toolkit.result(request, 202, "服务器Id错误", "", "");
+                return Toolkit.result(request, 202, "Неверный ID сервера", "", "");
             }
             if (banDate < System.currentTimeMillis() / 1000) {
-                return Toolkit.result(request, 203, "封禁时间错误", "", "");
+                return Toolkit.result(request, 203, "Ошибка времени блокировки", "", "");
             }
 
             Server loginServer = LoginServerManager.getInstance().getLoginServer();
             if (loginServer == null) {
-                return Toolkit.result(request, 300, "服务器配置错误", "", "");
+                return Toolkit.result(request, 300, "Ошибка конфигурации сервера", "", "");
             }
             String[] datalist = data.split(",");
 
@@ -337,14 +334,14 @@ public class ForbiddenModule {
             RoleState roleState = null;
             List<String> successList = new ArrayList<>();
             List<String> failList = new ArrayList<>();
-            String operateType = status == 1 ? "增加" : "解除";
+            String operateType = status == 1 ? "Добавление" : "Снятие";
             switch (banType.toLowerCase()) {
                 case "banrole":
                     for (String tempData : datalist) {
                         roleState = queryRole(serverObj, tempData);
                         if (roleState == null) {
                             failList.add(tempData);
-                            log.error("角色不存在：" + tempData);
+                            log.error("Персонаж не найден: " + tempData);
                             continue;
                         }
                         if (status == 1) {
@@ -354,12 +351,12 @@ public class ForbiddenModule {
                         }
                         if (!"ok".equalsIgnoreCase(response)) {
                             failList.add(tempData);
-                            log.info(operateType + "封号失败：" + roleState.getFuncellUUid() + "|" + banDate + "|" + response);
+                            log.info(operateType + " блокировки не удалось: " + roleState.getFuncellUUid() + "|" + banDate + "|" + response);
                         } else {
                             successList.add(tempData);
-                            log.info(operateType + "封号成功：" + roleState.getFuncellUUid() + "|" + banDate);
+                            log.info(operateType + " блокировки выполнено: " + roleState.getFuncellUUid() + "|" + banDate);
                             NutMap ret = GameServerRequestUtil.gmKickPlayer(serverObj, roleState.getRoleId());
-                            log.info("踢玩家下线：" + roleState.getRoleName()+ "_" + ret.getBoolean("ok"));
+                            log.info("Отключение игрока: " + roleState.getRoleName() + "_" + ret.getBoolean("ok"));
                         }
                     }
                     break;
@@ -368,17 +365,17 @@ public class ForbiddenModule {
                         roleState = queryRole(serverObj, tempData);
                         if (roleState == null) {
                             failList.add(tempData);
-                            log.error("角色不存在：" + tempData);
+                            log.error("Персонаж не найден: " + tempData);
                             continue;
                         }
                         int banTime = (int) Math.max(banDate - (System.currentTimeMillis() / 1000), 1);
-                        NutMap ret = (NutMap) playerCloseChat(request, new String[] {serverObj.getServerId() + ""}, roleState.getUserId(), reason, banTime, 2, 4);
+                        NutMap ret = (NutMap) playerCloseChat(request, new String[]{serverObj.getServerId() + ""}, roleState.getUserId(), reason, banTime, 2, 4);
                         if (!ret.getBoolean("ok")) {
                             failList.add(tempData);
-                            log.info("禁言失败：" + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
+                            log.info("Блокировка чата не удалась: " + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
                         } else {
                             successList.add(tempData);
-                            log.info("禁言成功：" + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
+                            log.info("Блокировка чата выполнена: " + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
                         }
                     }
                     break;
@@ -387,7 +384,7 @@ public class ForbiddenModule {
                         roleState = queryRoleById(serverObj, tempData);
                         if (roleState == null) {
                             failList.add(tempData);
-                            log.error("角色不存在：" + tempData);
+                            log.error("Персонаж не найден: " + tempData);
                             continue;
                         }
                         if (status == 1) {
@@ -397,12 +394,12 @@ public class ForbiddenModule {
                         }
                         if (!"ok".equalsIgnoreCase(response)) {
                             failList.add(tempData);
-                            log.info(operateType + "封号失败：" + roleState.getFuncellUUid() + "|" + banDate);
+                            log.info(operateType + " блокировки не удалось: " + roleState.getFuncellUUid() + "|" + banDate);
                         } else {
                             successList.add(tempData);
-                            log.info(operateType + "封号成功：" + roleState.getFuncellUUid() + "|" + banDate);
+                            log.info(operateType + " блокировки выполнено: " + roleState.getFuncellUUid() + "|" + banDate);
                             NutMap ret = GameServerRequestUtil.gmKickPlayer(serverObj, roleState.getRoleId());
-                            log.info("踢玩家下线：" + roleState.getRoleName()+ "_" + ret.getBoolean("ok"));
+                            log.info("Отключение игрока: " + roleState.getRoleName() + "_" + ret.getBoolean("ok"));
                         }
                     }
                     break;
@@ -411,17 +408,17 @@ public class ForbiddenModule {
                         roleState = queryRoleById(serverObj, tempData);
                         if (roleState == null) {
                             failList.add(tempData);
-                            log.error("角色不存在：" + tempData);
+                            log.error("Персонаж не найден: " + tempData);
                             continue;
                         }
                         int banTime = (int) Math.max(banDate - (System.currentTimeMillis() / 1000), 1);
-                        NutMap ret = (NutMap) playerCloseChat(request, new String[] {serverObj.getServerId() + ""}, roleState.getUserId(), reason, banTime, 2, 4);
+                        NutMap ret = (NutMap) playerCloseChat(request, new String[]{serverObj.getServerId() + ""}, roleState.getUserId(), reason, banTime, 2, 4);
                         if (!ret.getBoolean("ok")) {
                             failList.add(tempData);
-                            log.info(operateType + "禁言失败：" + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
+                            log.info(operateType + " блокировки чата не удалась: " + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
                         } else {
                             successList.add(tempData);
-                            log.info(operateType + "禁言成功：" + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
+                            log.info(operateType + " блокировки чата выполнена: " + roleState.getUserId() + "|" + banDate + "|" + banTime + "|" + ret.toString());
                         }
                     }
                     break;
@@ -433,7 +430,7 @@ public class ForbiddenModule {
                         }
                         if (roleState == null) {
                             failList.add(tempData);
-                            log.error("角色不存在：" + tempData);
+                            log.error("Персонаж не найден: " + tempData);
                             continue;
                         }
                         if (status == 1) {
@@ -443,14 +440,14 @@ public class ForbiddenModule {
                         }
                         if (!"ok".equalsIgnoreCase(response)) {
                             failList.add(tempData);
-                            log.info(operateType + "封号失败：" + tempData + "|" + banDate);
+                            log.info(operateType + " блокировки не удалось: " + tempData + "|" + banDate);
                         } else {
                             successList.add(tempData);
                             for (RoleState role : roleStates) {
                                 NutMap ret = GameServerRequestUtil.gmKickPlayer(serverObj, role.getRoleId());
-                                log.info("踢玩家下线：" + role.getRoleName()+ "_" + ret.getBoolean("ok"));
+                                log.info("Отключение игрока: " + role.getRoleName() + "_" + ret.getBoolean("ok"));
                             }
-                            log.info(operateType + "封号成功：" + tempData + "|" + banDate);
+                            log.info(operateType + " блокировки выполнено: " + tempData + "|" + banDate);
                         }
                     }
                     break;
@@ -464,20 +461,20 @@ public class ForbiddenModule {
                         }
                         if (!"ok".equalsIgnoreCase(response)) {
                             failList.add(tempData);
-                            log.info(operateType + "封号失败：" + tempData + "|" + banDate);
+                            log.info(operateType + " блокировки не удалось: " + tempData + "|" + banDate);
                         } else {
                             successList.add(tempData);
-                            log.info(operateType + "封号成功：" + tempData + "|" + banDate);
+                            log.info(operateType + " блокировки выполнено: " + tempData + "|" + banDate);
                         }
                     }
                     break;
                 default:
-                    return Toolkit.result(request, 204, "不存在的封禁类型", "", "");
+                    return Toolkit.result(request, 204, "Неизвестный тип блокировки", "", "");
             }
-            return Toolkit.result(request, 0, "操作完成，成功列表：" + Json.toJson(successList) + "失败列表：" + Json.toJson(failList), "", "");
+            return Toolkit.result(request, 0, "Операция завершена. Успешно: " + Json.toJson(successList) + ", ошибки: " + Json.toJson(failList), "", "");
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.result(request, 300, "操作失败", "", "");
+            return Toolkit.result(request, 300, "Ошибка операции", "", "");
         }
     }
 
@@ -486,7 +483,7 @@ public class ForbiddenModule {
     public Object kickPlayer(String serverId, String roleId, String reason, HttpServletRequest request) {
         Server ser = ServerListManager.getInstance().getServer(serverId);
         if (ser == null) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
         NutMap ret = GameServerRequestUtil.gmKickPlayer(ser, roleId);
 
@@ -494,9 +491,9 @@ public class ForbiddenModule {
         if (ret.getBoolean("ok")) {
             result = String.format("【%s】 %s", ser.getServerName(), ret.getString("msg"));
         } else {
-            result = String.format("【%s】" + "踢人下线失败，原因：%s", ser.getServerName(), ret.getString("msg"));
+            result = String.format("【%s】 Ошибка отключения игрока, причина: %s", ser.getServerName(), ret.getString("msg"));
         }
-        BackendLogUtil.getInstance().log(request, "踢人下线\t理由：" + reason + "\t区服ID:" + ser.getServerId() + "\t结果：" + result);
+        BackendLogUtil.getInstance().log(request, "Отключение игрока\tПричина: " + reason + "\tID сервера: " + ser.getServerId() + "\tРезультат: " + result);
         return Toolkit.outResult(true, result);
     }
 
@@ -542,7 +539,7 @@ public class ForbiddenModule {
     }
 
     /**
-     * 禁言
+     * Блокировка чата
      */
     @At
     public Object playerCloseChat(HttpServletRequest request, @Param("serverId") String[] serverId, @Param("playerId") String playerId,
@@ -550,7 +547,7 @@ public class ForbiddenModule {
         Map<String, String> language = Mvcs.getMessages(Mvcs.getReq());
         User user = (User) request.getSession().getAttribute("USER");
         if (serverId == null || serverId.length == 0) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
 
         ForbidChatPlayer fcp = dao.fetch(ForbidChatPlayer.class, Cnd.where("userId", "=", playerId));
@@ -571,7 +568,7 @@ public class ForbiddenModule {
         if (times <= 0) {
             endTime = -1;
         }
-        log.info("userId:" + playerId + ",禁言结束时间：" + endTime);
+        log.info("userId: " + playerId + ", время окончания блокировки чата: " + endTime);
 
         Sql sql = Sqls.create("select count(*) from forbidspeeking where `userId`=" + playerId + ";");
         sql.setCallback(Sqls.callback.integer());
@@ -580,11 +577,11 @@ public class ForbiddenModule {
         if (num > 0) {
             sql = Sqls.create("update forbidspeeking set `endTime`= " + endTime + ", `forbidType`=" + forbidType + " where userId = " + playerId + ";");
         } else {
-            sql = Sqls.create("insert into forbidspeeking(userId, forbidType, endTime, createTime) values(" + playerId + ","+ forbidType +"," + endTime + ",'" + fcp.getCreateTime() + "')");
+            sql = Sqls.create("insert into forbidspeeking(userId, forbidType, endTime, createTime) values(" + playerId + "," + forbidType + "," + endTime + ",'" + fcp.getCreateTime() + "')");
         }
         loginDao.execute(sql);
         int exeNum = sql.getUpdateCount();
-        log.info("刷新forbidspeeking禁言表的结果是：" + (exeNum > 0));
+        log.info("Обновление таблицы forbidspeeking: " + (exeNum > 0));
 
         StringBuilder serverIdStr = new StringBuilder();
         StringBuilder BSSB = new StringBuilder();
@@ -593,61 +590,60 @@ public class ForbiddenModule {
             Cnd gp = Cnd.where("serverId", "=", sid);
             Server server = dao.fetch(Server.class, gp);
             if (server == null) {
-                log.error("未找到id对应的服务器:" + sid);
+                log.error("Сервер с ID " + sid + " не найден");
                 continue;
             }
             NutMap result = GameServerRequestUtil.gmForbidChat(server);
             BSSB.append(server.getServerName()).append(":");
             if (result.getBoolean("ok")) {
                 serverIdStr.append(sid).append(",");
-                sb1.append(server.getServerName()).append("禁言刷新成功 ！");
+                sb1.append(server.getServerName()).append(" — обновление блокировки чата выполнено успешно!");
                 BSSB.append("ok;\n");
             } else {
-                sb1.append(server.getServerName()).append("禁言失败，原因：").append(result.get("msg"));
-                BSSB.append("failed,").append(language.get("forbid.deal.reason")).append(result.get("msg")).append(";\n");
+                sb1.append(server.getServerName()).append(" — ошибка блокировки чата, причина: ").append(result.get("msg"));
+                BSSB.append("failed, ").append(language.get("forbid.deal.reason")).append(result.get("msg")).append(";\n");
             }
-            log.info("禁言处理结果：" + sb1.toString());
+            log.info("Результат блокировки чата: " + sb1.toString());
         }
         fcp.setServerIds(serverIdStr.toString());
         fcp.setState(0);
-        // 更新记录
         if (isUpdate) {
             dao.update(fcp);
         } else {
             dao.insert(fcp);
         }
 
-        BackendLogUtil.getInstance().log(request, "禁言操作\t理由：" + reason + "\t,区服ID:" + Arrays.toString(serverId) + "\t,刷表结果：" + BSSB.toString() + "\t,禁言结果：" + BSSB.toString());
+        BackendLogUtil.getInstance().log(request, "Блокировка чата\tПричина: " + reason + "\tID серверов: " + Arrays.toString(serverId) + "\tРезультат обновления БД: " + BSSB.toString() + "\tРезультат блокировки: " + BSSB.toString());
         return Toolkit.outResult(true, BSSB.toString());
     }
 
     /**
-     * 批量禁言
+     * Массовая блокировка чата
      */
     @At
     public Object batchForbidChat(HttpServletRequest request, String serverId, String roleIds, String reason, int times, int crimeType, int forbidType) {
         Map<String, String> language = Mvcs.getMessages(Mvcs.getReq());
         User user = (User) request.getSession().getAttribute("USER");
         if (Strings.isBlank(serverId) || Strings.isBlank(roleIds) || Strings.isBlank(reason)) {
-            return Toolkit.outResult(false, "param error");
+            return Toolkit.outResult(false, "Ошибка параметров");
         }
 
         Cnd gp = Cnd.where("serverId", "=", serverId);
         Server server = dao.fetch(Server.class, gp);
         if (server == null) {
-            log.error("未找到id对应的服务器:" + serverId);
+            log.error("Сервер с ID " + serverId + " не найден");
             return null;
         }
 
         Dblog dblog = DbLogListManager.getInstance().getDblog(serverId);
-        String roleStateSqlStr = "SELECT rs.userId FROM rolestate rs WHERE rs.roleId in (" + roleIds+ ") AND rs.createsid = " + serverId;
+        String roleStateSqlStr = "SELECT rs.userId FROM rolestate rs WHERE rs.roleId in (" + roleIds + ") AND rs.createsid = " + serverId;
         List<Map<String, Object>> userMap = QueryUtil.getInstance().query(dblog, roleStateSqlStr);
         if (userMap.isEmpty()) {
             return null;
         }
 
         StringBuilder BSSB = new StringBuilder();
-        for(Map<String, Object> map:userMap) {
+        for (Map<String, Object> map : userMap) {
             String userId = map.get("userId").toString();
 
             ForbidChatPlayer fcp = dao.fetch(ForbidChatPlayer.class, Cnd.where("userId", "=", userId));
@@ -668,7 +664,7 @@ public class ForbiddenModule {
             if (times <= 0) {
                 endTime = -1;
             }
-            log.info("userId:" + userId + ",禁言结束时间：" + endTime);
+            log.info("userId: " + userId + ", время окончания блокировки чата: " + endTime);
 
             Sql sql = Sqls.create("select count(*) from forbidspeeking where `userId`=" + userId + ";");
             sql.setCallback(Sqls.callback.integer());
@@ -677,12 +673,11 @@ public class ForbiddenModule {
             if (num > 0) {
                 sql = Sqls.create("update forbidspeeking set `endTime`= " + endTime + ", `forbidType`=" + forbidType + " where userId = " + userId + ";");
             } else {
-                sql = Sqls.create("insert into forbidspeeking(userId, forbidType, endTime, createTime) values(" + userId +"," + forbidType + "," + endTime + ",\"" + fcp.getCreateTime() + "\")");
+                sql = Sqls.create("insert into forbidspeeking(userId, forbidType, endTime, createTime) values(" + userId + "," + forbidType + "," + endTime + ",\"" + fcp.getCreateTime() + "\")");
             }
             loginDao.execute(sql);
             int exeNum = sql.getUpdateCount();
-            log.info("刷新forbidspeeking禁言表的结果是：" + (exeNum > 0));
-
+            log.info("Обновление таблицы forbidspeeking: " + (exeNum > 0));
 
             StringBuilder serverIdStr = new StringBuilder();
             StringBuilder sb1 = new StringBuilder();
@@ -691,17 +686,16 @@ public class ForbiddenModule {
             BSSB.append(server.getServerName()).append(":");
             if (result.getBoolean("ok")) {
                 serverIdStr.append(serverId).append(",");
-                sb1.append(server.getServerName()).append("禁言刷新成功 ！");
+                sb1.append(server.getServerName()).append(" — обновление блокировки чата выполнено успешно!");
                 BSSB.append("ok;\n");
             } else {
-                sb1.append(server.getServerName()).append("禁言失败，原因：").append(result.get("msg"));
-                BSSB.append("failed,").append(language.get("forbid.deal.reason")).append(result.get("msg")).append(";\n");
+                sb1.append(server.getServerName()).append(" — ошибка блокировки чата, причина: ").append(result.get("msg"));
+                BSSB.append("failed, ").append(language.get("forbid.deal.reason")).append(result.get("msg")).append(";\n");
             }
-            log.info("禁言处理结果：" + sb1.toString());
+            log.info("Результат блокировки чата: " + sb1.toString());
 
             fcp.setServerIds(serverIdStr.toString());
             fcp.setState(0);
-            // 更新记录
             if (isUpdate) {
                 dao.update(fcp);
             } else {
@@ -709,12 +703,12 @@ public class ForbiddenModule {
             }
         }
 
-        BackendLogUtil.getInstance().log(request, "禁言操作\t理由：" + reason + "\t,区服ID:" + serverId + "\t,刷表结果：" + BSSB.toString() + "\t,禁言结果：" + BSSB.toString());
+        BackendLogUtil.getInstance().log(request, "Блокировка чата\tПричина: " + reason + "\tID сервера: " + serverId + "\tРезультат обновления БД: " + BSSB.toString() + "\tРезультат блокировки: " + BSSB.toString());
         return Toolkit.outResult(true, BSSB.toString());
     }
 
     /**
-     * 禁言列表分页查询
+     * Список заблокированных чатов с пагинацией
      */
     @At
     @POST
@@ -731,7 +725,7 @@ public class ForbiddenModule {
     }
 
     /**
-     * 解除玩家的禁言
+     * Снятие блокировки чата с игрока
      */
     @At
     @POST
@@ -742,10 +736,9 @@ public class ForbiddenModule {
             return Toolkit.outResult(false, language.get("announce.imedia.serverNull"));
         }
 
-        // 保存数据到LS的表中
         Sql sql = Sqls.create("update forbidspeeking set `endTime`= 0 where userId=" + fbc.getUserId() + ";");
         loginDao.execute(sql);
-        log.error("刷新forbidspeeking禁言表的结果是：" + (sql.getUpdateCount() > 0));
+        log.error("Обновление таблицы forbidspeeking: " + (sql.getUpdateCount() > 0));
 
         StringBuilder sb = new StringBuilder();
         String serverList = fbc.getServerIds();
@@ -758,12 +751,12 @@ public class ForbiddenModule {
                 }
                 NutMap ret = GameServerRequestUtil.gmForbidChat(ser);
                 if (ret.getBoolean("ok")) {
-                    sb.append(ser.getServerName()).append("解除禁言刷新成功 ！");
+                    sb.append(ser.getServerName()).append(" — обновление снятия блокировки выполнено успешно!");
                     serverList = serverList.replace(sid + ",", "");
                 } else {
-                    sb.append(ser.getServerName()).append("解除禁言失败，原因：").append(ret.get("msg"));
+                    sb.append(ser.getServerName()).append(" — ошибка снятия блокировки, причина: ").append(ret.get("msg"));
                 }
-                log.error("解除禁言处理结果：" + sb.toString());
+                log.error("Результат снятия блокировки чата: " + sb.toString());
             }
         }
 
@@ -773,7 +766,7 @@ public class ForbiddenModule {
         if (num < 1) {
             return Toolkit.outResult(false, language.get("forbid.deal.exceptionError"));
         }
-        BackendLogUtil.getInstance().log(request, "解除禁言\t记录id：" + id);
+        BackendLogUtil.getInstance().log(request, "Снятие блокировки чата\tID записи: " + id);
         return Toolkit.outResult(true, language.get("forbid.deal.chatTonot"));
     }
 
@@ -806,7 +799,7 @@ public class ForbiddenModule {
 
             Server loginServer = LoginServerManager.getInstance().getLoginServer();
             if (loginServer == null) {
-                return Toolkit.outResult(false, "未找到登录服服务器配置信息");
+                return Toolkit.outResult(false, "Конфигурация сервера входа не найдена");
             }
             String response = forbidUser(loginServer, roleState.getFuncellUUid(), now + forbidTime * 60);
             if ("ok".equalsIgnoreCase(response)) {
@@ -820,7 +813,7 @@ public class ForbiddenModule {
     }
 
     /**
-     * 封号
+     * Блокировка аккаунта
      */
     @At
     @POST
@@ -828,7 +821,7 @@ public class ForbiddenModule {
 
         User user = (User) request.getSession().getAttribute("USER");
         if (Strings.isBlank(condition) || Strings.isBlank(endTime) || Strings.isBlank(reason)) {
-            return Toolkit.outResult(false, "param error");
+            return Toolkit.outResult(false, "Ошибка параметров");
         }
         int forbidEndTime;
         try {
@@ -836,7 +829,7 @@ public class ForbiddenModule {
             forbidEndTime = (int) (eDate.getTime() / 1000);
         } catch (ParseException e1) {
             log.error(e1);
-            return Toolkit.outResult(false, "param error");
+            return Toolkit.outResult(false, "Ошибка параметров");
         }
         if (type == 1) {
             try {
@@ -848,7 +841,7 @@ public class ForbiddenModule {
                     }
                     for (RoleState role : roleStates) {
                         NutMap ret = GameServerRequestUtil.gmKickPlayer(server, role.getRoleId());
-                        log.info("内部封号并踢玩家下线：" + role.getRoleName() + "_" + ret.getBoolean("ok"));
+                        log.info("Внутренняя блокировка и отключение игрока: " + role.getRoleName() + "_" + ret.getBoolean("ok"));
                     }
                 }
             } catch (Exception e) {
@@ -872,11 +865,11 @@ public class ForbiddenModule {
 
         Server loginServer = LoginServerManager.getInstance().getLoginServer();
         if (loginServer == null) {
-            return Toolkit.outResult(false, "未找到登录服服务器配置信息");
+            return Toolkit.outResult(false, "Конфигурация сервера входа не найдена");
         }
 
         String response = forbidUser(loginServer, condition, forbidEndTime);
-        BackendLogUtil.getInstance().log(request, "封号，条件" + condition + "\t理由：" + reason + "\t" + "\t结果：" + reason);
+        BackendLogUtil.getInstance().log(request, "Блокировка аккаунта, условие: " + condition + "\tПричина: " + reason + "\tРезультат: " + response);
         if ("ok".equalsIgnoreCase(response)) {
             fcp.setBackStr(response);
             if (isUpdate) {
@@ -894,7 +887,7 @@ public class ForbiddenModule {
     public Object forbidUsers(HttpServletRequest request, String serverId, String roleIds, String endTime, String reason) {
         User user = (User) request.getSession().getAttribute("USER");
         if (Strings.isBlank(roleIds) || Strings.isBlank(endTime) || Strings.isBlank(reason)) {
-            return Toolkit.outResult(false, "param error");
+            return Toolkit.outResult(false, "Ошибка параметров");
         }
         int forbidEndTime;
         try {
@@ -902,10 +895,10 @@ public class ForbiddenModule {
             forbidEndTime = (int) (eDate.getTime() / 1000);
         } catch (ParseException e1) {
             log.error(e1);
-            return Toolkit.outResult(false, "param error");
+            return Toolkit.outResult(false, "Ошибка параметров");
         }
         Dblog dblog = DbLogListManager.getInstance().getDblog(serverId);
-        String roleStateSqlStr = "SELECT rs.roleId,rs.userId,rs.ip,rs.machineCode,rs.funcellUUid FROM rolestate rs WHERE rs.roleId in (" + roleIds+ ") AND rs.createsid = " + serverId;
+        String roleStateSqlStr = "SELECT rs.roleId,rs.userId,rs.ip,rs.machineCode,rs.funcellUUid FROM rolestate rs WHERE rs.roleId in (" + roleIds + ") AND rs.createsid = " + serverId;
         List<Map<String, Object>> userMap = QueryUtil.getInstance().query(dblog, roleStateSqlStr);
         if (userMap.isEmpty()) {
             return null;
@@ -913,18 +906,18 @@ public class ForbiddenModule {
 
         Server loginServer = LoginServerManager.getInstance().getLoginServer();
         if (loginServer == null) {
-            return Toolkit.outResult(false, "未找到登录服服务器配置信息");
+            return Toolkit.outResult(false, "Конфигурация сервера входа не найдена");
         }
 
         StringBuilder sb = new StringBuilder();
         boolean isOk = false;
-        for(Map<String, Object> map:userMap) {
-            String condition=null;
-            if(map.get("ip").toString() != null){
+        for (Map<String, Object> map : userMap) {
+            String condition = null;
+            if (map.get("ip").toString() != null) {
                 condition = map.get("ip").toString();
-            }else if(map.get("machineCode").toString() != null){
+            } else if (map.get("machineCode").toString() != null) {
                 condition = map.get("machineCode").toString();
-            }else if(map.get("funcellUUid").toString() != null){
+            } else if (map.get("funcellUUid").toString() != null) {
                 condition = map.get("funcellUUid").toString();
             }
             sb.append(condition);
@@ -942,9 +935,8 @@ public class ForbiddenModule {
             fcp.setEndTime(endTime);
             fcp.setState(0);
 
-            //通知登录服封号
             String response = forbidUser(loginServer, condition, forbidEndTime);
-            BackendLogUtil.getInstance().log(request, "封号，条件" + condition + "\t理由：" + reason + "\t" + "\t结果：" + reason);
+            BackendLogUtil.getInstance().log(request, "Блокировка аккаунта, условие: " + condition + "\tПричина: " + reason + "\tРезультат: " + response);
             if ("ok".equalsIgnoreCase(response)) {
                 fcp.setBackStr(response);
                 if (isUpdate) {
@@ -955,17 +947,16 @@ public class ForbiddenModule {
                 sb.append(response);
                 isOk = true;
 
-                //通知游戏服踢下线
                 Server server = ServerListManager.getInstance().getServer(serverId);
                 NutMap ret = GameServerRequestUtil.gmKickPlayer(server, map.get("roleId").toString());
-                log.info("内部封号并踢玩家下线：" + map.get("roleId").toString() + "_" + ret.getBoolean("ok"));
+                log.info("Внутренняя блокировка и отключение игрока: " + map.get("roleId").toString() + "_" + ret.getBoolean("ok"));
                 continue;
             }
             sb.append(response);
         }
-        if(isOk){
+        if (isOk) {
             return Toolkit.outResult(true, sb.toString());
-        }else{
+        } else {
             return Toolkit.outResult(false, sb.toString());
         }
     }
@@ -978,7 +969,7 @@ public class ForbiddenModule {
             log.info(url + "======>>>" + res.getContent());
             return res.getContent();
         } catch (Exception e) {
-            log.error("封禁账号，请求发送失败！！");
+            log.error("Ошибка отправки запроса на блокировку аккаунта!!");
             log.error(e, e);
             return "error";
         }
@@ -1023,7 +1014,7 @@ public class ForbiddenModule {
 
             Server loginServer = LoginServerManager.getInstance().getLoginServer();
             if (loginServer == null) {
-                return Toolkit.outResult(false, "未找到登录服服务器配置信息");
+                return Toolkit.outResult(false, "Конфигурация сервера входа не найдена");
             }
             String response = unForbidUser(loginServer, roleState.getFuncellUUid());
             if ("ok".equalsIgnoreCase(response)) {
@@ -1037,7 +1028,7 @@ public class ForbiddenModule {
     }
 
     /**
-     * 解封账号
+     * Снятие блокировки аккаунта
      */
     @At
     @POST
@@ -1049,11 +1040,10 @@ public class ForbiddenModule {
         }
         Server loginServer = LoginServerManager.getInstance().getLoginServer();
         if (loginServer == null) {
-            log.error("未找到登录服服务器配置信息");
+            log.error("Конфигурация сервера входа не найдена");
             return false;
         }
 
-        // 查询登录服务器
         String response = unForbidUser(loginServer, fcp.getUserId());
         fcp.setBackStr(response);
         fcp.setState(1);
@@ -1062,7 +1052,7 @@ public class ForbiddenModule {
             return Toolkit.outResult(false, language.get("forbid.deal.userUpdaterError"));
         }
 
-        BackendLogUtil.getInstance().log(request, "解除封号 \t条件：" + fcp.getUserId() + "\t结果：" + response);
+        BackendLogUtil.getInstance().log(request, "Снятие блокировки аккаунта\tУсловие: " + fcp.getUserId() + "\tРезультат: " + response);
         return Toolkit.outResult(true, language.get("forbid.deal.userToSuccess"));
     }
 
@@ -1074,14 +1064,14 @@ public class ForbiddenModule {
             log.info(url + "======>>>" + res.getContent());
             return res.getContent();
         } catch (Exception e) {
-            log.error("解封账号，请求发送失败！！");
+            log.error("Ошибка отправки запроса на снятие блокировки аккаунта!!");
             log.error(e, e);
             return "error";
         }
     }
 
     /**
-     * 设置白名单
+     * Добавление в белый список
      */
     @At
     @POST
@@ -1091,10 +1081,9 @@ public class ForbiddenModule {
 
         Server loginServer = LoginServerManager.getInstance().getLoginServer();
         if (loginServer == null) {
-            return Toolkit.outResult(false, "未找到登录服服务器配置信息");
+            return Toolkit.outResult(false, "Конфигурация сервера входа не найдена");
         }
 
-        // 查询登录服务器
         StringBuilder sb = new StringBuilder();
         try {
             String url = "http://" + loginServer.getWorldIP() + ":" + loginServer.getWorldPort() + "/whiteadd?secret_key="
@@ -1102,7 +1091,7 @@ public class ForbiddenModule {
             Response res = Http.get(url);
             sb.append("LS").append(loginServer.getServerName()).append("(").append(loginServer.getServerId()).append("):").append(res.getContent()).append("      ");
         } catch (Exception e) {
-            sb.append(loginServer.getWorldIP()).append(":").append(loginServer.getWorldPort()).append(" 连接异常，发送失败!");
+            sb.append(loginServer.getWorldIP()).append(":").append(loginServer.getWorldPort()).append(" — ошибка подключения, отправка не удалась!");
             log.error(e, e);
         }
 
@@ -1126,12 +1115,12 @@ public class ForbiddenModule {
                 wl = list;
             }
         }
-        BackendLogUtil.getInstance().log(request, "添加白名单  publicId:" + loginServer.getServerId() + " \t条件：" + condition + "\t结果：" + sb.toString());
-        log.error(user.getName() + "(" + user.getIp() + ") 添加白名单 \t条件：" + condition + "\t结果：" + sb.toString() + " 插入数据库的结果：" + (wl != null ? wl.getId() : " 插入失败！"));
-        return Toolkit.outResult(true, condition + " + " + language.get("whitelist.deal.success"));//"");
+        BackendLogUtil.getInstance().log(request, "Добавление в белый список, publicId: " + loginServer.getServerId() + "\tУсловие: " + condition + "\tРезультат: " + sb.toString());
+        log.error(user.getName() + "(" + user.getIp() + ") Добавление в белый список \tУсловие: " + condition + "\tРезультат: " + sb.toString() + " Результат вставки в БД: " + (wl != null ? wl.getId() : " Ошибка вставки!"));
+        return Toolkit.outResult(true, condition + " — " + language.get("whitelist.deal.success"));
     }
 
-    //删除白名单
+    // Удаление из белого списка
     @At
     @POST
     public Object deleteWhiteList(String condition, HttpServletRequest request) {
@@ -1140,10 +1129,9 @@ public class ForbiddenModule {
 
         Server loginServer = LoginServerManager.getInstance().getLoginServer();
         if (loginServer == null) {
-            return Toolkit.outResult(false, "未找到登录服服务器配置信息");
+            return Toolkit.outResult(false, "Конфигурация сервера входа не найдена");
         }
 
-        // 查询登录服务器
         StringBuilder sb = new StringBuilder();
         try {
             String url = "http://" + loginServer.getWorldIP() + ":" + loginServer.getWorldPort() + "/whitecancel?secret_key="
@@ -1159,10 +1147,10 @@ public class ForbiddenModule {
                 sql = Sqls.create("delete from white where str = \"" + condition + "\"");
                 loginDao.execute(sql);
                 int exeNum = sql.getUpdateCount();
-                sb.append("删除数据状态：").append(exeNum > 0);
+                sb.append("Статус удаления данных: ").append(exeNum > 0);
             }
         } catch (Exception e) {
-            sb.append(loginServer.getWorldIP()).append(":").append(loginServer.getWorldPort()).append(" 连接异常，发送失败!");
+            sb.append(loginServer.getWorldIP()).append(":").append(loginServer.getWorldPort()).append(" — ошибка подключения, отправка не удалась!");
             log.error(e, e);
         }
 
@@ -1185,9 +1173,9 @@ public class ForbiddenModule {
                 wl = list;
             }
         }
-        BackendLogUtil.getInstance().log(request, "删除白名单 \t条件：" + condition + "\t结果：" + sb.toString());
-        log.info(user.getName() + "(" + user.getIp() + ") 删除白名单 \t条件：" + condition + "\t结果：" + sb.toString() + " 插入数据库的结果：" + (wl != null ? wl.getId() : " 插入失败！"));
-        return Toolkit.outResult(true, condition + " - " + language.get("whitelist.deal.success"));
+        BackendLogUtil.getInstance().log(request, "Удаление из белого списка \tУсловие: " + condition + "\tРезультат: " + sb.toString());
+        log.info(user.getName() + "(" + user.getIp() + ") Удаление из белого списка \tУсловие: " + condition + "\tРезультат: " + sb.toString() + " Результат вставки в БД: " + (wl != null ? wl.getId() : " Ошибка вставки!"));
+        return Toolkit.outResult(true, condition + " — " + language.get("whitelist.deal.success"));
     }
 
     @At
@@ -1218,11 +1206,10 @@ public class ForbiddenModule {
             type = 0;
         }
         wl.setCtype(type);
-        // 查询登录服务器
 
         Server loginServer = LoginServerManager.getInstance().getLoginServer();
         if (loginServer == null) {
-            return Toolkit.outResult(false, "未找到登录服服务器配置信息");
+            return Toolkit.outResult(false, "Конфигурация сервера входа не найдена");
         }
 
         StringBuilder sb = new StringBuilder();
@@ -1232,14 +1219,14 @@ public class ForbiddenModule {
             Response res = Http.get(url);
             sb.append("LS").append(loginServer.getServerName()).append("(").append(loginServer.getServerId()).append("):").append(res.getContent()).append("      ");
         } catch (Exception e) {
-            sb.append(loginServer.getWorldIP()).append(":").append(loginServer.getWorldPort()).append(" 连接异常，发送失败!");
+            sb.append(loginServer.getWorldIP()).append(":").append(loginServer.getWorldPort()).append(" — ошибка подключения, отправка не удалась!");
             log.error(e, e);
         }
         wl.setBackStr(sb.toString());
         int num = dao.update(wl);
 
-        BackendLogUtil.getInstance().log(request, "删除白名单 \t条件：" + condition + "\t结果：" + sb.toString());
-        log.error(user.getName() + "(" + user.getIp() + ") 删除白名单 \t条件：" + condition + "\t结果：" + sb.toString() + " 更新数据库的结果：" + num);
+        BackendLogUtil.getInstance().log(request, "Обновление белого списка \tУсловие: " + condition + "\tРезультат: " + sb.toString());
+        log.error(user.getName() + "(" + user.getIp() + ") Обновление белого списка \tУсловие: " + condition + "\tРезультат: " + sb.toString() + " Результат обновления БД: " + num);
         return Toolkit.outResult(true, language.get("whitelist.deal.success"));
     }
 
@@ -1264,7 +1251,7 @@ public class ForbiddenModule {
         }
         String roleloginSqlStr = "";
         roleloginSqlStr += "SELECT lu.id,lu.userid,lu.lastLoginIp,lu.userName,lu.mac,lu.imei,lu.machineCode ";
-        roleloginSqlStr += "FROM " + table + " lu where lu.userid="+userMap.get(0).get("userId");
+        roleloginSqlStr += "FROM " + table + " lu where lu.userid=" + userMap.get(0).get("userId");
         List<Map<String, Object>> roleLoginMap = QueryUtil.getInstance().query(loginLogDao, roleloginSqlStr);
         if (roleLoginMap.size() == 0) {
             return null;
@@ -1276,12 +1263,12 @@ public class ForbiddenModule {
     public Object getShieldKeywordList(String serverId) {
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "获取服务失败");
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap resultMap = GameServerRequestUtil.gmOrderSendMess(server, "gmGetKeyWords", "");
         if (!resultMap.getBoolean("ok")) {
-            log.error("服务器编号" + serverId + "反馈信息:被屏蔽的关键字列表获取失败！");
-            return Toolkit.outResult(false, "列表获取失败");
+            log.error("Сервер " + serverId + " — ошибка получения списка заблокированных ключевых слов!");
+            return Toolkit.outResult(false, "Ошибка получения списка");
         }
         return Toolkit.outResult(true, resultMap.get("msg"));
     }
@@ -1290,21 +1277,21 @@ public class ForbiddenModule {
     public Object addShieldKeyWord(String serverId, String keyword, String type) {
         Server server = dao.fetch(Server.class, Cnd.where("serverId", "=", serverId).and("isDeleted", "=", 0));
         if (server == null) {
-            log.error("服务器获取失败！sid=" + serverId);
-            return Toolkit.outResult(false, "获取服务失败");
+            log.error("Ошибка получения сервера! sid=" + serverId);
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap resultMap = GameServerRequestUtil.gmAddKeyWord(server, type, keyword);
         if (!resultMap.getBoolean("ok")) {
-            return Toolkit.outResult(false, "关键字添加失败！");
+            return Toolkit.outResult(false, "Ошибка добавления ключевого слова!");
         }
-        return Toolkit.outResult(false, "关键字添加成功！");
+        return Toolkit.outResult(true, "Ключевое слово добавлено успешно!");
     }
 
     @At
     public Object deleteShieldKeyWord(String serverId, int id) {
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "服务器连接信息获取失败");
+            return Toolkit.outResult(false, "Ошибка получения информации о сервере");
         }
         return GameServerRequestUtil.gmDeleteKeyWord(server, id);
     }
@@ -1312,53 +1299,52 @@ public class ForbiddenModule {
     @At
     public Object getChatReplaceWordList(String serverId) {
         String table = "chatword";
-        String sqlStr = "SELECT id,serverId,word,`replace`,`type` FROM " + table + " where serverId="+serverId;
+        String sqlStr = "SELECT id,serverId,word,`replace`,`type` FROM " + table + " where serverId=" + serverId;
         List<Map<String, Object>> resultMap = QueryUtil.getInstance().query(loginDao, sqlStr);
         if (resultMap.size() == 0) {
-            return Toolkit.outResult(false, "列表获取失败");
+            return Toolkit.outResult(false, "Ошибка получения списка");
         }
         return Toolkit.outResult(true, resultMap);
     }
 
     @At
     public Object addChatReplaceWord(String serverId, String keyword, String replace, String type) {
-//        Map<String, String> language = Mvcs.getMessages(Mvcs.getReq());
         if (serverId == null) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
 
-        Sql sql = Sqls.create("select count(*) from chatword where `serverId`=" + serverId + " and word='" + keyword +"';");
+        Sql sql = Sqls.create("select count(*) from chatword where `serverId`=" + serverId + " and word='" + keyword + "';");
         sql.setCallback(Sqls.callback.integer());
         loginDao.execute(sql);
         int num = (int) sql.getResult();
         if (num > 0) {
-            sql = Sqls.create("update chatword set `replace`= " + replace + " where serverId = " + serverId + " and word=" + keyword +";");
+            sql = Sqls.create("update chatword set `replace`= " + replace + " where serverId = " + serverId + " and word=" + keyword + ";");
         } else {
             sql = Sqls.create("insert into chatword(serverId, type, `word`, `replace`) values(" + serverId + "," + type + ",'" + keyword + "','" + replace + "')");
         }
         loginDao.execute(sql);
         int exeNum = sql.getUpdateCount();
-        log.info("添加chatWord替换关键字表的结果是：" + (exeNum > 0));
+        log.info("Результат добавления chatWord: " + (exeNum > 0));
 
         Cnd gp = Cnd.where("serverId", "=", serverId);
         Server server = dao.fetch(Server.class, gp);
         if (server == null) {
-            log.error("未找到id对应的服务器:" + serverId);
-            return Toolkit.outResult(false, "获取服务失败");
+            log.error("Сервер с ID " + serverId + " не найден");
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap result = GameServerRequestUtil.gmLoadChatWord(server);
         if (!result.getBoolean("ok")) {
-            BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
-            return Toolkit.outResult(false, "替换关键字表刷新失败");
+            BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
+            return Toolkit.outResult(false, "Ошибка обновления таблицы замены ключевых слов");
         }
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
         return Toolkit.outResult(true, result.get("msg"));
     }
 
     @At
     public Object deleteChatReplaceWord(String serverId, int id) {
         if (serverId == null) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
 
         Sql sql = Sqls.create("DELETE from chatword where id=" + id + ";");
@@ -1366,32 +1352,32 @@ public class ForbiddenModule {
         loginDao.execute(sql);
         int num = sql.getUpdateCount();
         if (num <= 0) {
-            return Toolkit.outResult(false, "删除替换关键词失败");
+            return Toolkit.outResult(false, "Ошибка удаления ключевого слова замены");
         }
-        log.info("删除chatWord替换关键字表的结果是：" + (num > 0));
+        log.info("Результат удаления chatWord: " + (num > 0));
 
         Cnd gp = Cnd.where("serverId", "=", serverId);
         Server server = dao.fetch(Server.class, gp);
         if (server == null) {
-            log.error("未找到id对应的服务器:" + serverId);
-            return Toolkit.outResult(false, "获取服务失败");
+            log.error("Сервер с ID " + serverId + " не найден");
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap result = GameServerRequestUtil.gmLoadChatWord(server);
         if (!result.getBoolean("ok")) {
-            BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
-            return Toolkit.outResult(false, "替换关键字表刷新失败");
+            BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
+            return Toolkit.outResult(false, "Ошибка обновления таблицы замены ключевых слов");
         }
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
         return Toolkit.outResult(true, result.get("msg"));
     }
 
     @At
     public Object getChatBlackList(String serverId) {
         String table = "chatblacklist";
-        String sqlStr = "SELECT userId,serverId FROM " + table + " where serverId="+serverId;
+        String sqlStr = "SELECT userId,serverId FROM " + table + " where serverId=" + serverId;
         List<Map<String, Object>> resultMap = QueryUtil.getInstance().query(loginDao, sqlStr);
         if (resultMap.size() == 0) {
-            return Toolkit.outResult(false, "列表获取失败");
+            return Toolkit.outResult(false, "Ошибка получения списка");
         }
         return Toolkit.outResult(true, resultMap);
     }
@@ -1399,66 +1385,63 @@ public class ForbiddenModule {
     @At
     public Object addChatBlackList(String serverId, String userId) {
         if (serverId == null) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
-        Sql sql = Sqls.create("select count(*) from chatblacklist where `serverId`=" + serverId + " and userId='" + userId +"';");
+        Sql sql = Sqls.create("select count(*) from chatblacklist where `serverId`=" + serverId + " and userId='" + userId + "';");
         sql.setCallback(Sqls.callback.integer());
         loginDao.execute(sql);
         int num = (int) sql.getResult();
         if (num > 0) {
-            return Toolkit.outResult(false, "黑名单已存在");
+            return Toolkit.outResult(false, "Чёрный список уже существует");
         } else {
             sql = Sqls.create("insert into chatblacklist(userId,serverId) values(" + userId + "," + serverId + ")");
         }
         loginDao.execute(sql);
         int exeNum = sql.getUpdateCount();
-        log.info("添加chatblacklist替换关键字表的结果是：" + (exeNum > 0));
+        log.info("Результат добавления chatblacklist: " + (exeNum > 0));
 
         Cnd gp = Cnd.where("serverId", "=", serverId);
         Server server = dao.fetch(Server.class, gp);
         if (server == null) {
-            log.error("未找到id对应的服务器:" + serverId);
-            return Toolkit.outResult(false, "获取服务失败");
+            log.error("Сервер с ID " + serverId + " не найден");
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap result = GameServerRequestUtil.gmLoadChatBlackList(server);
         if (!result.getBoolean("ok")) {
-            BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
-            return Toolkit.outResult(false, "禁言黑名单表刷新失败");
+            BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
+            return Toolkit.outResult(false, "Ошибка обновления чёрного списка чата");
         }
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
         return Toolkit.outResult(true, result.get("msg"));
     }
 
     @At
     public Object deleteChatBlackList(String serverId, String userId) {
         if (serverId == null) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
 
-        Sql sql = Sqls.create("DELETE from chatblacklist where userId="+userId+" and serverId=" + serverId + ";");
+        Sql sql = Sqls.create("DELETE from chatblacklist where userId=" + userId + " and serverId=" + serverId + ";");
         sql.setCallback(Sqls.callback.integer());
         loginDao.execute(sql);
         int num = sql.getUpdateCount();
         if (num <= 0) {
-            return Toolkit.outResult(false, "删除禁言黑名单失败");
+            return Toolkit.outResult(false, "Ошибка удаления из чёрного списка чата");
         }
-        log.info("删除chatblacklist禁言黑名单表的结果是：" + (num > 0));
+        log.info("Результат удаления chatblacklist: " + (num > 0));
 
         Cnd gp = Cnd.where("serverId", "=", serverId);
         Server server = dao.fetch(Server.class, gp);
         if (server == null) {
-            log.error("未找到id对应的服务器:" + serverId);
-            return Toolkit.outResult(false, "获取服务失败");
+            log.error("Сервер с ID " + serverId + " не найден");
+            return Toolkit.outResult(false, "Ошибка получения сервера");
         }
         NutMap result = GameServerRequestUtil.gmLoadChatBlackList(server);
         if (!result.getBoolean("ok")) {
-            BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
-            return Toolkit.outResult(false, "禁言黑名单表刷新失败");
+            BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
+            return Toolkit.outResult(false, "Ошибка обновления чёрного списка чата");
         }
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "区服ID:" + serverId + "\t,刷表结果：" +result.getBoolean("ok"));
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "ID сервера: " + serverId + "\tРезультат обновления: " + result.getBoolean("ok"));
         return Toolkit.outResult(true, result.get("msg"));
     }
 }
-
-
-

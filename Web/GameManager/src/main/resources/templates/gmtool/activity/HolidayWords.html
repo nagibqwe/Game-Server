@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('节日集字')" />
+    <th:block th:include="include :: header('Праздничный сбор символов')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -10,7 +10,7 @@
         var count_01 = 0;
         var count_02 = 0;
         var count_03 = 0;
-        //boss副本数据
+        // Данные о боссах
         var bossData;
 
         $(function () {
@@ -23,7 +23,7 @@
     </script>
     <script>
         /**
-         * 加载活动boss信息
+         * Загрузка информации о боссах
          */
         function loadActivityBossType() {
             $.ajax({
@@ -32,11 +32,11 @@
                 dataType: "json",
                 success: function (data) {
                     if (!data.ok) {
-                        $.modal.alertError("load failed");
+                        $.modal.alertError("Ошибка загрузки данных о боссах");
                         return;
                     }
                     bossData = data.data;
-                    console.log("load boss success!!");
+                    console.log("Боссы загружены успешно!!");
                 }
             });
         }
@@ -45,9 +45,9 @@
     <script>
         function addSaltIpGrp(obj) {
             html = '<div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">消耗货币:</label>' +
+                '<label class="input-group-addon">Расходуемая валюта:</label>' +
                 '<input type="text" class="form-control"  name="coinType" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">兑换活跃:</label>' +
+                '<label class="input-group-addon">Активность за обмен:</label>' +
                 '<input type="text" class="form-control"  name="coinCv" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" id="delGridGroup"><span class="glyphicon glyphicon-minus"></span></button>' +
@@ -65,15 +65,15 @@
             var wordsRewardAddBtn = 'showAddWordsModel' + count_01
             count_01 += 1;
             html = '<div name="cfg2" class="input-group saltIp" style="width:100%;padding:0 0 1px 0; margin-left:fill  ">' +
-                '<label class="input-group-addon">掉落奖励:</label>' +
+                '<label class="input-group-addon">Награда за выпадение:</label>' +
                 '<span class="input-group-btn" >' +
-                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="添加掉落物品" id="' + wordsRewardAddBtn +'"  style="border:5px;width: 35px;height: 34px;" ' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Добавить предмет для выпадения" id="' + wordsRewardAddBtn +'"  style="border:5px;width: 35px;height: 34px;" ' +
                 'onclick="showAddItemUI(' + wordsRewardInput + ',' + wordsRewardAddBtn + ')">' +
                 '<span class="glyphicon glyphicon-plus"></span></button>' +
                 '<div class="hide"><input id="' + wordsRewardInput + '" type="text" name="'+prefix+'dropRewardItems'+postfix+'"/></div>' +
                 '</span>' +
-                '<label class="input-group-addon">掉落权重:</label>' +
-                '<input type="text" class="form-control"  name="'+prefix+'dropWeight'+postfix+'" id="'+prefix+'dropWeight" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="掉落权重" >' +
+                '<label class="input-group-addon">Вес выпадения:</label>' +
+                '<input type="text" class="form-control"  name="'+prefix+'dropWeight'+postfix+'" id="'+prefix+'dropWeight" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="Вес выпадения" >' +
 
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delReward(this,\''+prefix+'\')"><span class="glyphicon glyphicon-minus"></span></button>' +
@@ -89,7 +89,7 @@
                 $(obj).parent().find("input[name='dropBossReward']").val(count*1+1);
             }
         }
-        //删除奖励配置
+        // Удаление конфигурации награды
         function delReward(obj,prefix) {
             if (prefix == "clone_"){
                 var count = $(obj).parent().parent().parent().find("input[name='dropCloneReward']").val();
@@ -112,13 +112,13 @@
             var postfix = '_' + count_02;
             html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0; margin-left:fill  ">' +
                 '<div class="col-lg-11">'+
-                '<legend>副本配置</legend>'+
+                '<legend>Конфигурация подземелья</legend>'+
                 '<fieldset>'+
-                '<label class="input-group-addon">掉落副本</label>' +
-                '<input type="text" class="form-control"  name="dropCloneMap" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="掉落副本" >' +
+                '<label class="input-group-addon">Подземелье для выпадения</label>' +
+                '<input type="text" class="form-control"  name="dropCloneMap" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="ID подземелья" >' +
                 '<div class="hide"><input id="' +'cloneIdx'+count_02 + '" value='+count_02+' name="cloneIdx"/></div>'+
                 '<div class="input-group" id="jianglishuju2">'+
-                '<label class="input-group-addon">奖励配置:</label>'+
+                '<label class="input-group-addon">Конфигурация наград:</label>'+
                 '<input type="hidden" name="dropCloneReward" value="0">'+
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtn'+count_02+'"'+
                 'onclick="jiangliGrp_01(this,\'clone_\',\''+postfix+'\')"><span class="glyphicon glyphicon-plus"></span>'+
@@ -133,7 +133,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除副本配置
+        // Удаление конфигурации подземелья
         function delCloneConfig(obj,count) {
             count-=1;
             count_02=count;
@@ -146,9 +146,9 @@
             var postfix = '_' + count_03;
             html = '<div name="cfg3" class="input-group saltIp" style="width:100%;padding:0 0 1px 0; margin-left:fill  ">' +
                 '<div class="col-lg-11">'+
-                '<legend>Boss掉落配置</legend>'+
+                '<legend>Конфигурация выпадения у Босса</legend>'+
                 '<fieldset>'+
-                '<label class="input-group-addon">选择Boss类型</label>';
+                '<label class="input-group-addon">Выберите тип Босса</label>';
             console.log(bossData);
             if(bossData) {
                 $.each(bossData, function (i, n) {
@@ -157,13 +157,13 @@
                 });
             }
             else{
-                html +='<label>没有boss数据,请重新加载boss数据,[后台数据加载]->[其他数据]->[运营活动BOSS类型加载]</label>';
+                html +='<label>Нет данных о боссах. Загрузите данные о боссах через [Загрузка данных бэкенда] -> [Другие данные] -> [Загрузка типов BOSS]</label>';
             }
 
             html += '<div class="input-group" id="bossCfg"  name="dropBoss" style="width:100%;padding:0 0 1px 0;">'+
                 '<div class="hide"><input id="' +'bossIdx'+count_03 + '" value='+count_03+' name="bossIdx"/></div>'+
                 '<div class="input-group" id="jianglishuju3">'+
-                '<label class="input-group-addon">奖励配置:</label>'+
+                '<label class="input-group-addon">Конфигурация наград:</label>'+
                 '<input type="hidden" name="dropBossReward" value="0">'+
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtn3'+count_03+'"'+
                 'onclick="jiangliGrp_01(this,\'boss_\',\''+postfix+'\')"><span class="glyphicon glyphicon-plus"></span>'+
@@ -178,7 +178,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除Boss掉落配置
+        // Удаление конфигурации выпадения у Босса
         function delBossConfig(obj,count) {
             count-=1;
             count_03=count;
@@ -193,25 +193,25 @@
             var wordsAddBtn = 'showAddWordsModel' + count_01;
             count_01 += 1;
             html = '<div name="cfg4" class="input-group saltIp" style="width:100%;padding:0 0 1px 0; margin-left:fill  ">' +
-                '<label class="input-group-addon">收集字体:</label>' +
+                '<label class="input-group-addon">Собираемые символы:</label>' +
                 '<span class="input-group-btn" >' +
-                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="添加字体物品" id="' + wordsAddBtn +'"  style="border:5px;width: 35px;height: 34px;" ' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Добавить предмет-символ" id="' + wordsAddBtn +'"  style="border:5px;width: 35px;height: 34px;" ' +
                 'onclick="showAddItemUI(' + wordsInput + ',' + wordsAddBtn + ')">' +
                 '<span class="glyphicon glyphicon-plus"></span></button>' +
                 '<div class="hide"><input id="' + wordsInput + '" name="wordItems"/></div>' +
                 '</span>' +
 
-                '<label class="input-group-addon">奖励宝箱:</label>' +
+                '<label class="input-group-addon">Сундук с наградой:</label>' +
                 '<span class="input-group-btn" >' +
-                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="添加奖励" id="' + rewardAddBtn +'"  style="border:5px;width: 35px;height: 34px;" ' +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Добавить награду" id="' + rewardAddBtn +'"  style="border:5px;width: 35px;height: 34px;" ' +
                 'onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
                 '<span class="glyphicon glyphicon-plus"></span></button>' +
                 '<div class="hide"><input id="' + rewardInput + '" name="rewardBox"/></div>' +
                 '</span>' +
 
-                '<label class="input-group-addon">最大兑换次数:</label>' +
-                '<input type="text" class="form-control"  name="exChangeLimit" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="最大兑换次数" >' +
-                '<label class="input-group-addon">是否显示小红点:</label>' +
+                '<label class="input-group-addon">Максимальное количество обменов:</label>' +
+                '<input type="text" class="form-control"  name="exChangeLimit" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="Максимальное количество обменов" >' +
+                '<label class="input-group-addon">Показывать красную точку:</label>' +
                 '<div class="col-md-12 col-sm-12 col-xs-12">' +
                 '<select name="isShowRedPoint" onchange="" class="form-control heightSet">' +
                 '<option value="1">Да</option>'+
@@ -226,7 +226,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除兑换配置
+        // Удаление конфигурации обмена
         function delExChangeConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -255,9 +255,9 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>节日集字<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Праздничный сбор символов<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="副本需要填入对应的副本ID，副本ID对应游戏内clone_map配置表"></span></h3>
+                              data-content="ID подземелья должен соответствовать таблице clone_map"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -266,10 +266,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>副本掉落配置</legend>
+                            <legend>Конфигурация выпадения в подземельях</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishujua">
-                                    <label class="input-group-addon">奖励池配置:</label>
+                                    <label class="input-group-addon">Конфигурация пула наград:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtna"
                                             onclick="jiangliGrp_Clone(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>
@@ -281,10 +281,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>Boss掉落配置</legend>
+                            <legend>Конфигурация выпадения у Боссов</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishujub">
-                                    <label class="input-group-addon">奖励池配置:</label>
+                                    <label class="input-group-addon">Конфигурация пула наград:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtnb"
                                             onclick="jiangliGrp_Boss(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>
@@ -297,12 +297,12 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>兑换配置</legend>
+                            <legend>Конфигурация обмена</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishujuc">
-                                    <label class="input-group-addon">兑换配置:</label>
+                                    <label class="input-group-addon">Конфигурация обмена:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtnc"
-                                            onclick="jiangliGrp_03(this)"><span class="glyphicon glyphicon-plus"></span>
+                                            onclick="jiangliGrp_03(this)"><span class="glyphium glyphicon-plus"></span>
                                     </button>
                                 </div>
                             </fieldset>

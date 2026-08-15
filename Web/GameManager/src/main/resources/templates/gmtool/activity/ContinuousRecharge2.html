@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('连续累充2(购买礼包)')" />
+    <th:block th:include="include :: header('Непрерывное накопление 2 (покупка наборов)')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -25,7 +25,7 @@
             var totalRewardAddBtn = 'showTotalRewardModel' + count_01;
             count_01 += 1;
             var html = '<div name="cfg" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">'+
-                '<label class="input-group-addon">充值天数:</label>'+
+                '<label class="input-group-addon">Количество дней пополнения:</label>'+
                 '<input type="text" class="form-control" name="i_day" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:auto;">'+
                 '<label class="input-group-addon">Фиксированная группа наград:</label>'+
                 '<span class="input-group-btn" >' +
@@ -35,9 +35,9 @@
                 '<div class="hide"><input id="' + fixRewardInput + '" name="i_fixRewardGroup"/></div>' +
                 '</span>' +
                 // '<input type="text" class="form-control" name="i_fixRewardGroup" style="max-width:auto;">'+
-                '<label class="input-group-addon">累计奖励组:</label>'+
+                '<label class="input-group-addon">Накопительная группа наград:</label>'+
                 '<span class="input-group-btn" >' +
-                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="累计奖励组" id="' + totalRewardAddBtn +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Накопительная группа наград" id="' + totalRewardAddBtn +
                 '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + totalRewardInput + ',' + totalRewardAddBtn + ')">' +
                 '<span class="glyphicon glyphicon-plus"></span></button>' +
                 '<div class="hide"><input id="' + totalRewardInput + '" name="i_totalRewardGroup"/></div>' +
@@ -51,12 +51,12 @@
             addHeightSet();
 
             var dayCount = $(obj).parent().parent().find("input[name='dayCount']").val();
-            $(obj).parent().parent().find("input[name='dayCount']").val(dayCount*1+1);//每个充值配置中的充值天数计数
+            $(obj).parent().parent().find("input[name='dayCount']").val(dayCount*1+1);// Счётчик дней пополнения в каждой конфигурации
         }
-        //删除配置
+        // Удаление конфигурации
         function delExChangeConfig(obj) {
             var dayCount = $(obj).parent().parent().parent().find("input[name='dayCount']").val();
-            $(obj).parent().parent().parent().find("input[name='dayCount']").val(dayCount*1-1);//每个充值配置中的充值天数计数
+            $(obj).parent().parent().parent().find("input[name='dayCount']").val(dayCount*1-1);// Счётчик дней пополнения в каждой конфигурации
             $(obj).parent().parent().remove();
         }
     </script>
@@ -72,9 +72,9 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>连续累充2(购买礼包)<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Непрерывное накопление 2 (покупка наборов)<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="在配置活动的时候活动名字,支持多语言展示,需要运营人员使用一下副文本进行填写: [CH]中文简体[/CH][EN]英文[/EN][TW]中文繁体[/TW][KR]韩文[/KR][VIE]越南[/VIE][TH]泰文[/TH][JP]日文[/JP]"></span></h3>
+                              data-content="При настройке события название события поддерживает многоязычное отображение. Используйте следующий синтаксис: [CH]Китайский (упрощ.)[/CH][EN]Английский[/EN][TW]Китайский (трад.)[/TW][KR]Корейский[/KR][VIE]Вьетнамский[/VIE][TH]Тайский[/TH][JP]Японский[/JP]"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -83,22 +83,22 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>Настройки пополнения1</legend>
+                            <legend>Настройка пополнения 1</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup1">
-                                    <label class="input-group-addon">充值档位:</label>
+                                    <label class="input-group-addon">Уровень пополнения:</label>
                                     <select name="i_reach" class="form-control" style="color:#FF0000">
-                                        <option value="">--请选择充值档位--</option>
-                                        <option value="20101">6元直购礼包</option>
-                                        <option value="20102">30元直购礼包</option>
-                                        <option value="20103">68元直购礼包</option>
-                                        <option value="20104">98元直购礼包</option>
-                                        <option value="20105">128元直购礼包</option>
-                                        <option value="20106">198元直购礼包</option>
-                                        <option value="20107">328元直购礼包</option>
-                                        <option value="20108">648元直购礼包</option>
+                                        <option value="">-- Выберите уровень пополнения --</option>
+                                        <option value="20101">Набор за 6 юаней</option>
+                                        <option value="20102">Набор за 30 юаней</option>
+                                        <option value="20103">Набор за 68 юаней</option>
+                                        <option value="20104">Набор за 98 юаней</option>
+                                        <option value="20105">Набор за 128 юаней</option>
+                                        <option value="20106">Набор за 198 юаней</option>
+                                        <option value="20107">Набор за 328 юаней</option>
+                                        <option value="20108">Набор за 648 юаней</option>
                                     </select>
-                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="单位分">-->
+                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="в центах">-->
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn1" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" name="dayCount" value="0">
                                 </div>
@@ -106,22 +106,22 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <legend>Настройки пополнения2</legend>
+                            <legend>Настройка пополнения 2</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup2">
-                                    <label class="input-group-addon">充值档位:</label>
+                                    <label class="input-group-addon">Уровень пополнения:</label>
                                     <select name="i_reach" class="form-control" style="color:#FF0000">
-                                        <option value="">--请选择充值档位--</option>
-                                        <option value="20101">6元直购礼包</option>
-                                        <option value="20102">30元直购礼包</option>
-                                        <option value="20103">68元直购礼包</option>
-                                        <option value="20104">98元直购礼包</option>
-                                        <option value="20105">128元直购礼包</option>
-                                        <option value="20106">198元直购礼包</option>
-                                        <option value="20107">328元直购礼包</option>
-                                        <option value="20108">648元直购礼包</option>
+                                        <option value="">-- Выберите уровень пополнения --</option>
+                                        <option value="20101">Набор за 6 юаней</option>
+                                        <option value="20102">Набор за 30 юаней</option>
+                                        <option value="20103">Набор за 68 юаней</option>
+                                        <option value="20104">Набор за 98 юаней</option>
+                                        <option value="20105">Набор за 128 юаней</option>
+                                        <option value="20106">Набор за 198 юаней</option>
+                                        <option value="20107">Набор за 328 юаней</option>
+                                        <option value="20108">Набор за 648 юаней</option>
                                     </select>
-                                    <!--<input type="text" class="form-control" id="i_reach" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="单位分">-->
+                                    <!--<input type="text" class="form-control" id="i_reach" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="в центах">-->
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn2" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" name="dayCount" value="0">
                                 </div>
@@ -129,22 +129,22 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <legend>Настройки пополнения3</legend>
+                            <legend>Настройка пополнения 3</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup3">
-                                    <label class="input-group-addon">充值档位:</label>
+                                    <label class="input-group-addon">Уровень пополнения:</label>
                                     <select name="i_reach" class="form-control" style="color:#FF0000">
-                                        <option value="">--请选择充值档位--</option>
-                                        <option value="20101">6元直购礼包</option>
-                                        <option value="20102">30元直购礼包</option>
-                                        <option value="20103">68元直购礼包</option>
-                                        <option value="20104">98元直购礼包</option>
-                                        <option value="20105">128元直购礼包</option>
-                                        <option value="20106">198元直购礼包</option>
-                                        <option value="20107">328元直购礼包</option>
-                                        <option value="20108">648元直购礼包</option>
+                                        <option value="">-- Выберите уровень пополнения --</option>
+                                        <option value="20101">Набор за 6 юаней</option>
+                                        <option value="20102">Набор за 30 юаней</option>
+                                        <option value="20103">Набор за 68 юаней</option>
+                                        <option value="20104">Набор за 98 юаней</option>
+                                        <option value="20105">Набор за 128 юаней</option>
+                                        <option value="20106">Набор за 198 юаней</option>
+                                        <option value="20107">Набор за 328 юаней</option>
+                                        <option value="20108">Набор за 648 юаней</option>
                                     </select>
-                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="单位分">-->
+                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="в центах">-->
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn3" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" name="dayCount" value="0">
                                 </div>
@@ -152,22 +152,22 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <legend>Настройки пополнения4</legend>
+                            <legend>Настройка пополнения 4</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup4">
-                                    <label class="input-group-addon">充值档位:</label>
+                                    <label class="input-group-addon">Уровень пополнения:</label>
                                     <select name="i_reach" class="form-control" style="color:#FF0000">
-                                        <option value="">--请选择充值档位--</option>
-                                        <option value="20101">6元直购礼包</option>
-                                        <option value="20102">30元直购礼包</option>
-                                        <option value="20103">68元直购礼包</option>
-                                        <option value="20104">98元直购礼包</option>
-                                        <option value="20105">128元直购礼包</option>
-                                        <option value="20106">198元直购礼包</option>
-                                        <option value="20107">328元直购礼包</option>
-                                        <option value="20108">648元直购礼包</option>
+                                        <option value="">-- Выберите уровень пополнения --</option>
+                                        <option value="20101">Набор за 6 юаней</option>
+                                        <option value="20102">Набор за 30 юаней</option>
+                                        <option value="20103">Набор за 68 юаней</option>
+                                        <option value="20104">Набор за 98 юаней</option>
+                                        <option value="20105">Набор за 128 юаней</option>
+                                        <option value="20106">Набор за 198 юаней</option>
+                                        <option value="20107">Набор за 328 юаней</option>
+                                        <option value="20108">Набор за 648 юаней</option>
                                     </select>
-                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="单位分">-->
+                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="в центах">-->
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn4" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" name="dayCount" value="0">
                                 </div>
@@ -175,22 +175,22 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <legend>Настройки пополнения5</legend>
+                            <legend>Настройка пополнения 5</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup5">
-                                    <label class="input-group-addon">充值档位:</label>
+                                    <label class="input-group-addon">Уровень пополнения:</label>
                                     <select name="i_reach" class="form-control" style="color:#FF0000">
-                                        <option value="">--请选择充值档位--</option>
-                                        <option value="20101">6元直购礼包</option>
-                                        <option value="20102">30元直购礼包</option>
-                                        <option value="20103">68元直购礼包</option>
-                                        <option value="20104">98元直购礼包</option>
-                                        <option value="20105">128元直购礼包</option>
-                                        <option value="20106">198元直购礼包</option>
-                                        <option value="20107">328元直购礼包</option>
-                                        <option value="20108">648元直购礼包</option>
+                                        <option value="">-- Выберите уровень пополнения --</option>
+                                        <option value="20101">Набор за 6 юаней</option>
+                                        <option value="20102">Набор за 30 юаней</option>
+                                        <option value="20103">Набор за 68 юаней</option>
+                                        <option value="20104">Набор за 98 юаней</option>
+                                        <option value="20105">Набор за 128 юаней</option>
+                                        <option value="20106">Набор за 198 юаней</option>
+                                        <option value="20107">Набор за 328 юаней</option>
+                                        <option value="20108">Набор за 648 юаней</option>
                                     </select>
-                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="单位分">-->
+                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="в центах">-->
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn5" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" name="dayCount" value="0">
                                 </div>
@@ -198,22 +198,22 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <legend>Настройки пополнения6</legend>
+                            <legend>Настройка пополнения 6</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup6">
-                                    <label class="input-group-addon">充值档位:</label>
+                                    <label class="input-group-addon">Уровень пополнения:</label>
                                     <select name="i_reach" class="form-control" style="color:#FF0000">
-                                        <option value="">--请选择充值档位--</option>
-                                        <option value="20101">6元直购礼包</option>
-                                        <option value="20102">30元直购礼包</option>
-                                        <option value="20103">68元直购礼包</option>
-                                        <option value="20104">98元直购礼包</option>
-                                        <option value="20105">128元直购礼包</option>
-                                        <option value="20106">198元直购礼包</option>
-                                        <option value="20107">328元直购礼包</option>
-                                        <option value="20108">648元直购礼包</option>
+                                        <option value="">-- Выберите уровень пополнения --</option>
+                                        <option value="20101">Набор за 6 юаней</option>
+                                        <option value="20102">Набор за 30 юаней</option>
+                                        <option value="20103">Набор за 68 юаней</option>
+                                        <option value="20104">Набор за 98 юаней</option>
+                                        <option value="20105">Набор за 128 юаней</option>
+                                        <option value="20106">Набор за 198 юаней</option>
+                                        <option value="20107">Набор за 328 юаней</option>
+                                        <option value="20108">Набор за 648 юаней</option>
                                     </select>
-                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="单位分">-->
+                                    <!--<input type="text" class="form-control" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:200px;" placeholder="в центах">-->
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn6" onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" name="dayCount" value="0">
                                 </div>

@@ -57,11 +57,11 @@ public class SaveServerParamThread extends Thread {
                             }
                         }
                     } else {
-                        DBErrorToFile.error(String.format("ServerParam数据执行步骤[4]，ServerParam_Key[%s]，ServerID[%d]", serverParamInfo.getServerParam().getParamkey(), serverParamInfo.getServerParam().getServerid()));
+                        DBErrorToFile.error(String.format("Ошибка выполнения ServerParam [шаг 4]: ServerParam_Key[%s], ServerID[%d]", serverParamInfo.getServerParam().getParamkey(), serverParamInfo.getServerParam().getServerid()));
                     }
                 } catch (Exception e) {
-                    DBErrorToFile.error(String.format("ServerParam数据执行步骤[8]，ServerParam_Key[%s]，ServerID[%d]，ServerParam_Value[%s]", serverParamInfo.getServerParam().getParamkey(), serverParamInfo.getServerParam().getServerid(), serverParamInfo.getServerParam().getParamvalue()));
-                    DBErrorToFile.error("serverParam Exception:", e);
+                    DBErrorToFile.error(String.format("Ошибка выполнения ServerParam [шаг 8]: ServerParam_Key[%s], ServerID[%d], ServerParam_Value[%s]", serverParamInfo.getServerParam().getParamkey(), serverParamInfo.getServerParam().getServerid(), serverParamInfo.getServerParam().getParamvalue()));
+                    DBErrorToFile.error("Исключение в serverParam:", e);
                     serverParam_queue.add(serverParamInfo);
                 }
             }

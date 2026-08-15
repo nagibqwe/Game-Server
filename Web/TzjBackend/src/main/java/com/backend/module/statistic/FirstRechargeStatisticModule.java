@@ -38,7 +38,7 @@ public class FirstRechargeStatisticModule {
     @Ok("jsp:jsp.statistic.firstRecharge")
     @Filters(@By(type = MenuFilter.class, args = {"USERMENUS", "/noauthority.jsp"}))
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "进入首充页面");
+        BackendLogUtil.getInstance().log(request, "Вход на страницу первого пополнения");
         request.setAttribute("newDate", sdf.format(new Date()));
     }
 
@@ -519,23 +519,23 @@ public class FirstRechargeStatisticModule {
     private String TimeCastInfo(int time) {
         switch (time) {
             case 0:
-                return "小于5分钟（≤5分钟）";
+                return "Менее 5 минут (≤5 минут)";
             case 5 * 60:
-                return "5分钟~30分钟（>5分钟,≤30分钟）";
+                return "5 минут ~ 30 минут (>5 минут, ≤30 минут)";
             case 30 * 60:
-                return "30分钟~2小时（>30分钟,≤2小时）";
+                return "30 минут ~ 2 часа (>30 минут, ≤2 часа)";
             case 120 * 60:
-                return "2小时~5小时（>2小时,≤5小时）";
+                return "2 часа ~ 5 часов (>2 часов, ≤5 часов)";
             case 300 * 60:
-                return "5小时~10小时 （>5小时,≤10小时）";
+                return "5 часов ~ 10 часов (>5 часов, ≤10 часов)";
             case 600 * 60:
-                return "10小时~15小时 （>10小时,≤15小时）";
+                return "10 часов ~ 15 часов (>10 часов, ≤15 часов)";
             case 900 * 60:
-                return "15小时~25小时 （>15小时,≤25小时）";
+                return "15 часов ~ 25 часов (>15 часов, ≤25 часов)";
             case 1500 * 60:
-                return "25小时~30小时 （>25小时,≤30小时）";
+                return "25 часов ~ 30 часов (>25 часов, ≤30 часов)";
             case 1800 * 60:
-                return "30小时以上 （>30小时）";
+                return "Более 30 часов (>30 часов)";
             default:
                 return "";
         }

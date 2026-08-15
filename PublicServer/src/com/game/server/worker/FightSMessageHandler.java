@@ -66,7 +66,7 @@ public class FightSMessageHandler implements WorkHandler<TaskEvent<FightSMessage
 
     public void sendToGame(ChannelHandlerContext session, byte[] mess, int msgid, long srcId) {
         if (session == null) {
-            log.error("游戏服连接失败了， 发送协议msg.id=" + msgid + "失败了！");
+            log.error("Не удалось подключиться к игровому серверу. Отправка протокола msg.id=" + msgid + " не выполнена!");
             return;
         }
 
@@ -100,7 +100,7 @@ public class FightSMessageHandler implements WorkHandler<TaskEvent<FightSMessage
                 }
             }
         } catch (Exception e) {
-            log.error("向游戏服发送消息协议时出错了，！", e);
+            log.error("Ошибка при отправке сообщения на игровой сервер!", e);
         }
     }
 
@@ -143,7 +143,7 @@ public class FightSMessageHandler implements WorkHandler<TaskEvent<FightSMessage
                 }
             }
         } catch (Exception e) {
-            log.error("world处理消息协议时出错了，！", e);
+            log.error("Ошибка при обработке протокола сообщения на World-сервере!", e);
         }
 
     }

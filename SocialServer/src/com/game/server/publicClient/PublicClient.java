@@ -111,7 +111,7 @@ public class PublicClient implements Runnable {
 
     public void sendToPublic(SMessage message) {
         if (channel == null) {
-            logger.error("发送公共服消息时， 连接已经不存在了！， ID= " + message.getId());
+            logger.error("Соединение с публичным сервером потеряно при отправке сообщения. ID: " + message.getId());
             return;
         }
         ByteBuf buf = null;
@@ -133,7 +133,7 @@ public class PublicClient implements Runnable {
                 }
             }
         } catch (Exception e) {
-            logger.error("处理消息协议时出错了，！", e);
+            logger.error("Ошибка при обработке протокола сообщения!", e);
         }
     }
 
@@ -148,24 +148,24 @@ public class PublicClient implements Runnable {
         synchronized (channel) {
             ChannelHandlerContext temp = channel;
             if (temp.channel() == null) {
-                logger.info(temp + "发送队列时， 连接已经断开了！1");
+                logger.info(temp + "при отправке очереди соединение уже разорвано! ！1");
                 return;
             }
             if (temp.channel().unsafe() == null) {
-                logger.info(temp.channel() + "发送队列时， 连接已经断开了！2");
+                logger.info(temp.channel() + "при отправке очереди соединение уже разорвано! ！2");
                 return;
             }
             if (!temp.channel().isActive()) {
-                logger.info(temp.channel() + "发送队列时， 连接已经断开了！4");
+                logger.info(temp.channel() + "при отправке очереди соединение уже разорвано! ！4");
                 temp.channel().attr(SessionUtils.SEND_BUF).set(null);
                 return;
             }
             if (temp.channel().unsafe().outboundBuffer() == null) {
-                logger.info(temp.channel() + "发送队列时， 连接已经断开了！3");
+                logger.info(temp.channel() + "при отправке очереди соединение уже разорвано! ！3");
                 return;
             }
             if (!temp.channel().isWritable()) {
-                logger.info(temp.channel() + "发送队列时，暂时不可写！ size=" + temp.channel().unsafe().outboundBuffer().totalPendingWriteBytes());
+                logger.info(temp.channel() + "при отправке очереди временно недоступно для записи！ size=" + temp.channel().unsafe().outboundBuffer().totalPendingWriteBytes());
                 return;
             }
             ByteBuf buf = temp.channel().attr(SessionUtils.SEND_BUF).get();

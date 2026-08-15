@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('全服角色信息统计')"/>
+    <th:block th:include="include :: header('Статистика персонажей по всем серверам')"/>
     <th:block th:include="include :: footer"/>
 
 </head>
@@ -21,9 +21,9 @@
                 <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
                     <ul>
                         <li>
-                            <label style="width: auto">Тип:</label>
+                            <label style="width: auto">Тип сортировки:</label>
                             <select id="sortType" name="sortType">
-                                <option value="rechargeGold" selected="selected">Пополнение слитков</option>
+                                <option value="rechargeGold" selected="selected">Пополнено слитков</option>
                                 <option value="gold">Остаток слитков</option>
                             </select>
                         </li>
@@ -54,7 +54,7 @@
     $(function () {
         var options = {
             url: prefix + "/stat_role",
-            modalName: "全服角色信息统计",
+            modalName: "Статистика персонажей по всем серверам",
             firstLoad: false,
 
             columns: [{
@@ -66,11 +66,11 @@
                 },
                 {
                     field: 'createsid',
-                    title: '创建区服ID'
+                    title: 'ID сервера создания'
                 },
                 {
                     field: 'funcellUUid',
-                    title: '账号名'
+                    title: 'Имя аккаунта'
                 },
                 {
                     field: 'userId',
@@ -91,11 +91,11 @@
                 },
                 {
                     field: 'onlineTime',
-                    title: '在线时长(单位：秒)'
+                    title: 'Время онлайн (сек.)'
                 },
                 {
                     field: 'rechargeGold',
-                    title: 'Пополнение слитков'
+                    title: 'Пополнено слитков'
                 },
                 {
                     field: 'gold',
@@ -103,7 +103,7 @@
                 },
                 {
                     field: 'createTimeStr',
-                    title: '角色创建时间'
+                    title: 'Время создания персонажа'
                 },
                 {
                     field: 'isDelete',

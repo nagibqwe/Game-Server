@@ -53,14 +53,14 @@ public class ServerMessageAdapter extends SimpleChannelInboundHandler<RMessage> 
         super.channelActive(ctx);
         ctx.channel().attr(SESSIONID).set(orderId.getAndIncrement());
         sessions.add(ctx);
-        logger.info("游戏服激活连接{}: {} 连接的序号是：{}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
+        logger.info("Активация соединения с игровым сервером {}: {}, порядковый номер: {}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
     }
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
         super.channelRegistered(ctx);
         sessions.add(ctx);
-        logger.info("游戏服首次来注册{}: {} 连接的序号是：{}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
+        logger.info("Первичная регистрация игрового сервера {}: {}, порядковый номер: {}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ServerMessageAdapter extends SimpleChannelInboundHandler<RMessage> 
         SessionUtils.release(ctx.channel());
 
         sessions.remove(ctx);
-        logger.info("游戏服断开连接{}: {} 连接的序号是：{}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
+        logger.info("Разрыв соединения с игровым сервером {}: {}, порядковый номер: {}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
     }
 
     @Override
@@ -77,14 +77,14 @@ public class ServerMessageAdapter extends SimpleChannelInboundHandler<RMessage> 
         super.channelUnregistered(ctx);
         SessionUtils.release(ctx.channel());
         sessions.remove(ctx);
-        logger.info("游戏服退出注册{}: {} 连接的序号是：{}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
+        logger.info("Выход игрового сервера из регистрации {}: {}, порядковый номер: {}", ctx.name(), ctx.channel(), ctx.channel().attr(SESSIONID).get());
 
         SocialServer.getInstance().server().close(ctx, 0);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        logger.info("游戏服{}: {} 发生了异常：{}", ctx.name(), ctx.channel(), cause);
+        logger.info("Игровой сервер {}: {} — произошло исключение: {}", ctx.name(), ctx.channel(), cause);
         //出错就主动断开
         if (ctx.channel().isActive()) {
             ctx.channel().unsafe().closeForcibly();//主动断开
@@ -105,27 +105,27 @@ public class ServerMessageAdapter extends SimpleChannelInboundHandler<RMessage> 
             try {
                 synchronized (ctx) {
                     if (ctx.channel() == null) {
-                        logger.info(ctx + "发送队列时， 连接已经断开了！1");
+                        logger.info(ctx + " — при отправке очереди соединение уже разорвано! 1");
                         continue;
                     }
 
                     if (ctx.channel().unsafe() == null) {
-                        logger.info(ctx.channel() + "发送队列时， 连接已经断开了！2");
+                         logger.info(ctx.channel() + " — при отправке очереди соединение уже разорвано! 2");
                         continue;
                     }
 
                     if (!ctx.channel().isActive()) {
-                        logger.info(ctx.channel() + "发送队列时， 连接已经断开了！4");
+                        logger.info(ctx.channel() + "при отправке очереди соединение уже разорвано!！4");
                         ctx.channel().attr(SessionUtils.SEND_BUF).set(null);
                         continue;
                     }
 
                     if (ctx.channel().unsafe().outboundBuffer() == null) {
-                        logger.info(ctx.channel() + "发送队列时， 连接已经断开了！3");
+                        logger.info(ctx.channel() + "при отправке очереди соединение уже разорвано!！3");
                         continue;
                     }
                     if (!ctx.channel().isWritable()) {
-                        logger.info(ctx.channel() + "发送队列时，暂时不可写！ size=" + ctx.channel().unsafe().outboundBuffer().totalPendingWriteBytes());
+                        logger.info(ctx.channel() + " — при отправке очереди временно недоступно для записи! size=" + ctx.channel().unsafe().outboundBuffer().totalPendingWriteBytes());
                         continue;
                     }
                     buf = ctx.channel().attr(SessionUtils.SEND_BUF).get();

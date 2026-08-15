@@ -20,13 +20,13 @@ public class DateUtil {
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(i);
         int dayofweek = c.get(Calendar.DAY_OF_WEEK);
-        if (dayofweek == Calendar.MONDAY) day = "周一";
-        if (dayofweek == Calendar.TUESDAY) day = "周二";
-        if (dayofweek == Calendar.WEDNESDAY) day = "周三";
-        if (dayofweek == Calendar.THURSDAY) day = "周四";
-        if (dayofweek == Calendar.FRIDAY) day = "周五";
-        if (dayofweek == Calendar.SATURDAY) day = "周六";
-        if (dayofweek == Calendar.MONDAY) day = "周日";
+if (dayofweek == Calendar.MONDAY) day = "Пн";
+        if (dayofweek == Calendar.TUESDAY) day = "Вт";
+        if (dayofweek == Calendar.WEDNESDAY) day = "Ср";
+        if (dayofweek == Calendar.THURSDAY) day = "Чт";
+        if (dayofweek == Calendar.FRIDAY) day = "Пт";
+        if (dayofweek == Calendar.SATURDAY) day = "Сб";
+        if (dayofweek == Calendar.MONDAY) day = "Вс";
         return day;
     }
 

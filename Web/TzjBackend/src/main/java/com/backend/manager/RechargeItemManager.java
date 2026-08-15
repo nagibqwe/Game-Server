@@ -84,8 +84,8 @@ public class RechargeItemManager {
     public Object sendRechargeInfos() {
         TreeMap<Integer, RechargeItemInfo> rechargeItemInfoMap = RechargeItemManager.getInstance().getRechargeItemInfoMap();
         if(rechargeItemInfoMap.isEmpty()){
-            logger.error("充值数据为空");
-            return Toolkit.outResult(false, "数据获取失败");
+            logger.error("Данные о пополнении отсутствуют");
+            return Toolkit.outResult(false, "Ошибка получения данных");
         }
 
         StringBuilder sb = new StringBuilder();
@@ -99,7 +99,7 @@ public class RechargeItemManager {
 //        logger.info("==============md5:"+md5);
         String httpResult = HttpConnectionUtils.post(ServerKeyUtil.getKey("APIServerUrl")+"/rechargeItem/refreshRechargeInfos", paramMap);
 
-        sb.append("API服务器返回结果：").append(httpResult).append("\n");
+        sb.append("Результат ответа API-сервера: ").append(httpResult).append("\n");
 
         //通知游戏服更新某一条的充值信息
         Cnd cnd = Cnd.where("isDeleted", "=", 0).
@@ -114,17 +114,17 @@ public class RechargeItemManager {
                 NutMap resultMap = GameServerRequestUtil.gmRefreshRechargeItemInfos(server, rechargeStr, md5, 15*1000);
                 if (!resultMap.getBoolean("ok")) {
                     serverFailedList.add(serverId);
-                    logger.error(serverId + "服,充值配置刷新失败！操作结果：" + resultMap.get("data").toString());
+                    logger.error("Сервер " + serverId + ": ошибка обновления конфигурации пополнения! Результат: " + resultMap.get("data").toString());
                 } else {
                     serverSuccessList.add(serverId);
                 }
             }catch (Exception e){
-                logger.error(serverId + "服充值配置同步失败！error："+e.getMessage());
+                logger.error("Сервер " + serverId + ": ошибка синхронизации конфигурации пополнения! Ошибка: " + e.getMessage());
                 serverFailedList.add(serverId);
             }
         }
-        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("\n");
-        sb.append("游戏服同步失败列表：").append(serverFailedList).append("\n");
+        sb.append("Список успешно синхронизированных игровых серверов: ").append(serverSuccessList).append("\n");
+        sb.append("Список серверов с ошибкой синхронизации: ").append(serverFailedList).append("\n");
         return Toolkit.outResult(true, sb.toString());
     }
 
@@ -157,7 +157,7 @@ public class RechargeItemManager {
                 for (int j = 1; j < platformArr.length; j++) {
                     String[] moneyArr = platformArr[j].split(",");
                     if(moneyArr.length!=2){
-                        logger.error("配置解析错误，id："+rechargeItem.getGoods_id());
+                        logger.error("Ошибка парсинга конфигурации, id: " + rechargeItem.getGoods_id());
                         continue;
                     }
                     moneyMap.put(moneyArr[0], moneyArr[1]);
@@ -174,7 +174,7 @@ public class RechargeItemManager {
                 }
             }
         }catch (Exception e){
-            logger.error("充值配置解析错误，ID:"+rechargeItem.getGoods_id(),e);
+            logger.error("Ошибка парсинга конфигурации пополнения, ID: " + rechargeItem.getGoods_id(), e);
             return rechargeItemInfo;
         }
 

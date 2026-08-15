@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('付费总览')" />
+    <th:block th:include="include :: header('Обзор платежей')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -36,7 +36,7 @@
     $(function() {
         var options = {
             url: prefix + "/stat_recharge_overview",
-            modalName: "付费总览",
+            modalName: "Обзор платежей",
             pagination: false,
             firstLoad:false,
             showExport:true,
@@ -46,31 +46,31 @@
             }
             ,{
                 field: 'totalPayment',
-                title: '付费总额',
+                title: 'Общая сумма платежей',
             },{
                     field: 'DAU',
                     title: 'DAU',
                 },{
                     field: 'newUsers',
-                    title: '当天新增账号',
+                    title: 'Новые аккаунты за день',
                 },{
                     field: 'rechargeUsers',
-                    title: '当天付费账号',
+                    title: 'Платящие аккаунты за день',
                 },{
                     field: 'newRechargeUsers',
-                    title: '新增付费账号',
+                    title: 'Новые платящие аккаунты',
                 },{
                     field: 'oldRechargeUsers',
-                    title: '老玩家付费账号',
+                    title: 'Платящие аккаунты (старые игроки)',
                 },{
                     field: 'newRechargeRate',
-                    title: '新增玩家付费率',
+                    title: 'Доля платящих среди новых',
                 },{
                     field: 'oldRechargeRate',
-                    title: '老玩家付费率',
+                    title: 'Доля платящих среди старых',
                 },{
                     field: 'rechargeRate',
-                    title: '付费率',
+                    title: 'Общая доля платящих',
                 },{
                     field: 'ARPU',
                     title: 'ARPU',

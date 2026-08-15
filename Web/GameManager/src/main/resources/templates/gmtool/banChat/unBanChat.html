@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('聊天解封列表')" />
+    <th:block th:include="include :: header('Список разблокировки чата')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -29,7 +29,7 @@
                 // updateUrl: prefix + "/edit/{id}",
                 // removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "聊天解封",
+                modalName: "Разблокировка чата",
                 columns: [{
                     checkbox: true
                 },
@@ -40,15 +40,15 @@
                 },
                 {
                     field: 'userId',
-                    title: '聊天禁言的账号'
+                    title: 'Аккаунт для блокировки чата'
                 },
                 {
                     field: 'crimeType',
-                    title: '违规类型 1黑色产业 2不良信息'
+                    title: 'Тип нарушения: 1 — нелегальная деятельность, 2 — запрещённая информация'
                 },
                 {
                     field: 'banType',
-                    title: '禁言类型 1:工作室禁言2:全文替换禁言3:关键字替换禁言4:常规禁言5:隐形禁言6:隔离禁言'
+                    title: 'Тип блокировки чата: 1 — блокировка фермеров, 2 — замена текста, 3 — блокировка по ключевым словам, 4 — обычная блокировка, 5 — скрытая блокировка, 6 — изоляционная блокировка'
                 },
                 {
                     field: 'endTime',
@@ -60,7 +60,7 @@
                 },
                 {
                     field: 'serverIds',
-                    title: '发送到游戏服列表'
+                    title: 'Отправлено на игровые серверы'
                 },
                 {
                     field: 'state',
@@ -71,7 +71,7 @@
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="unBanChat(' + row.id + ')">聊天解封</a> ');
+                        actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="unBanChat(' + row.id + ')">Разблокировать чат</a> ');
                         return actions.join('');
                     }
                 }]
@@ -79,9 +79,9 @@
             $.table.init(options);
         });
 
-        //解除封禁
+        // Разблокировка чата
         function unBanChat(id){
-            $.modal.confirm("确认是否解禁？",function () {
+            $.modal.confirm("Подтвердить разблокировку?", function () {
                 $.ajax({
                     url: prefix + "/unBan",
                     method: 'POST',

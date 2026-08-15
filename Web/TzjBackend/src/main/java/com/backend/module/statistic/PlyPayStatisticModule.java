@@ -32,7 +32,7 @@ public class PlyPayStatisticModule {
     @At("/")
     @Ok("jsp:jsp.statistic.playerPay")
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "玩家充值统计");
+        BackendLogUtil.getInstance().log(request, "Статистика пополнений игроков");
         request.setAttribute("nowDate", sdf.format(new Date()));
     }
 

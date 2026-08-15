@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('积分排名')" />
+    <th:block th:include="include :: header('Рейтинг очков')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -24,11 +24,11 @@
             var rewardAddBtn = 'showRewardModel' + count_01;
             count_01 += 1;
             var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">开始名次:</label>' +
+                '<label class="input-group-addon">Начальное место:</label>' +
                 '<input type="text" class="form-control" name="start" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">结束名次:</label>' +
+                '<label class="input-group-addon">Конечное место:</label>' +
                 '<input type="text" class="form-control" name="tail" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">积分条件:</label>' +
+                '<label class="input-group-addon">Условие по очкам:</label>' +
                 '<input type="text" class="form-control" name="rankScore" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<label class="input-group-addon">Группа наград:</label>'+
                 // '<input type="text" class="form-control" id="rankRewards" name="rankRewards"  style="max-width:auto;">'+
@@ -45,7 +45,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除配置
+        // Удаление конфигурации
         function delExChangeConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -57,7 +57,7 @@
             var rewardAddBtn = 'showRewardModel2' + count_02;
             count_02 += 1;
             var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">积分条件:</label>' +
+                '<label class="input-group-addon">Условие по очкам:</label>' +
                 '<input type="text" class="form-control"  name="score" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<label class="input-group-addon">Группа наград:</label>'+
                 // '<input type="text" class="form-control" id="rewards" name="rewards"  style="max-width:auto;">'+
@@ -75,7 +75,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除配置
+        // Удаление конфигурации
         function delConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -104,10 +104,10 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>积分排名<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Рейтинг очков<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="消耗灵玉获得积分，积分进行排名的活动<br/>
-                                奖励组里面需要作为模型显示的物品，必须放在第一个，且必须要有模型展示的物品，否则界面会异常"></span></h3>
+                              data-content="Событие, в котором за расход духовных нефритов начисляются очки, по которым строится рейтинг.<br/>
+                                В группе наград предмет, который должен отображаться в качестве модели, должен быть первым. Обязательно наличие предмета с моделью для отображения, иначе интерфейс будет работать некорректно"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -116,10 +116,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>排名奖励</legend>
+                            <legend>Награды за места в рейтинге</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup">
-                                    <label class="input-group-addon">排名奖励配置:</label>
+                                    <label class="input-group-addon">Конфигурация наград за места:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn"
                                             onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" id="cfgCount1" value="0">
@@ -131,10 +131,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>积分奖励</legend>
+                            <legend>Награды за очки</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishuju">
-                                    <label class="input-group-addon">积分奖励配置:</label>
+                                    <label class="input-group-addon">Конфигурация наград за очки:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtn"
                                             onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>
@@ -144,13 +144,13 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <legend>其他配置</legend>
+                            <legend>Прочие настройки</legend>
                             <fieldset>
                                 <div class="input-group " id="otherCfg">
                                     <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
-                                        <label class="input-group-addon">排名展示限制:</label>
+                                        <label class="input-group-addon">Лимит отображения рейтинга:</label>
                                         <input type="text" class="form-control" id="limit" name="limit" onkeyup="value=value.replace(/\D/g,'')" style="" value="50" readonly>
-                                        <label class="input-group-addon">一个积分等于多少元宝:</label>
+                                        <label class="input-group-addon">Сколько духовных нефритов равно 1 очку:</label>
                                         <input type="text" class="form-control" id="gold" name="gold" onkeyup="value=value.replace(/\D/g,'')" style="">
                                     </div>
                                 </div>

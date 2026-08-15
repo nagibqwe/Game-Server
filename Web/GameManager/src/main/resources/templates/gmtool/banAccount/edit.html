@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('ИзменитьБлокировка аккаунта')" />
+    <th:block th:include="include :: header('Редактировать блокировку аккаунта')" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-banAccount-edit" th:object="${banAccount}">
             <input name="id" th:field="*{id}" type="hidden">
             <div class="form-group">    
-                <label class="col-sm-3 control-label">封号的条件：</label>
+                <label class="col-sm-3 control-label">Условие блокировки аккаунта:</label>
                 <div class="col-sm-8">
                     <input name="con" th:field="*{con}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Окончание блокировки：</label>
+                <label class="col-sm-3 control-label">Окончание блокировки:</label>
                 <div class="col-sm-8">
                     <input name="endTime" th:field="*{endTime}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Причина：</label>
+                <label class="col-sm-3 control-label">Причина:</label>
                 <div class="col-sm-8">
                     <textarea name="reason" class="form-control">[[*{reason}]]</textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">НазадРезультат：</label>
+                <label class="col-sm-3 control-label">Результат выполнения:</label>
                 <div class="col-sm-8">
                     <textarea name="result" class="form-control">[[*{result}]]</textarea>
                 </div>

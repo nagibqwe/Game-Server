@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('gm命令日志列表')" />
+    <th:block th:include="include :: header('Журнал команд GM')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -39,7 +39,7 @@
             var options = {
                 url: prefix + "/list",
                 exportUrl: prefix + "/export",
-                modalName: "gm命令日志",
+                modalName: "Журнал команд GM",
                 pagination: false,
                 firstLoad:false,
                 height:$(document).height() - 160,
@@ -72,11 +72,11 @@
                 },
                 {
                     field: 'gmLevel',
-                    title: 'gmУровень'
+                    title: 'Уровень GM'
                 },
                 {
                     field: 'command',
-                    title: '命令内容'
+                    title: 'Текст команды'
                 },
                ]
             };

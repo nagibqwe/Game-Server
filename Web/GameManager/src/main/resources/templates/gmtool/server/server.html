@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <th:block th:include="include :: header('Список серверов')" />
 </head>
@@ -11,20 +11,20 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>ID сервера：</label>
+                                <label>ID сервера:</label>
                                 <input type="text" name="serverId"/>
                             </li>
                             <li>
-                                <label>Название сервера：</label>
+                                <label>Название сервера:</label>
                                 <input type="text" name="serverName"/>
                             </li>
                             <li>
-                                <label>Платформа：</label>
+                                <label>Платформа:</label>
                                 <input type="text" name="groupName"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                     <i class="fa fa-download"></i> Экспорт
                 </a>
                 <a class="btn btn-warning multiple disabled" onclick="testAll()">
-                    <i class="fa fa-bookmark"></i> 批量服务器测试
+                    <i class="fa fa-bookmark"></i> Массовое тестирование серверов
                 </a>
             </div>
             <div class="col-sm-12 select-table table-striped">
@@ -66,13 +66,13 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "服务器列",
+                modalName: "Список серверов",
                 columns: [{
                     checkbox: true
                 },
                 {
                     field: 'id',
-                    title: 'id',
+                    title: 'ID',
                     visible: false
                 },
                 {
@@ -89,31 +89,31 @@
                 },
                 {
                     field: 'serverIP',
-                    title: 'СерверIP'
+                    title: 'IP сервера'
                 },
                 {
                     field: 'serverPort',
-                    title: '服务器端口'
+                    title: 'Порт сервера'
                 },
                 {
                     field: 'dblogIp',
-                    title: '日志库IP'
+                    title: 'IP базы данных логов'
                 },
                 {
                     field: 'dblogPort',
-                    title: '日志库端口'
+                    title: 'Порт базы данных логов'
                 },
                 {
                     field: 'dblogName',
-                    title: '日志库名称'
+                    title: 'Название базы данных логов'
                 },
                 {
                     field: 'dblogUser',
-                    title: '日志库用户名'
+                    title: 'Пользователь базы данных логов'
                 },
                 {
                     field: 'dblogPwd',
-                    title: '日志库密码'
+                    title: 'Пароль базы данных логов'
                 },
                 {
                     field: 'isHeFu',
@@ -154,32 +154,32 @@
                 },
                 {
                     field: 'openState',
-                    title: 'Открыт',
+                    title: 'Статус открытия',
                     formatter:function (value) {
                         if (value == 0){
-                            return value+"[Резервный]"
+                            return value+" [Резервный]"
                         } else {
-                            return value+"[Открыт]"
+                            return value+" [Открыт]"
                         }
                     }
                 },
                 {
                     field: 'isDeleted',
-                    title: '是否生效',
+                    title: 'Активен',
                     formatter:function (value) {
                         if (value == 0){
-                            return "有效"
+                            return "Активен"
                         }else {
-                            return "无效"
+                            return "Неактивен"
                         }
                     }
                 },
                 {
                     field: 'isDeleted',
-                    title: 'ДаНетВключить',
+                    title: 'Управление',
                     formatter:function (value, row, index) {
                         if (value == 0){
-                            return "<a class='btn btn-danger btn-xs' href='javascript:void(0)' onclick='changeIsDeleted("+row.id+","+value+")'>禁用</a>"
+                            return "<a class='btn btn-danger btn-xs' href='javascript:void(0)' onclick='changeIsDeleted("+row.id+","+value+")'>Отключить</a>"
                         }else {
                             return "<a class='btn btn-success btn-xs' href='javascript:void(0)' onclick='changeIsDeleted("+row.id+","+value+")'>Включить</a>"
                         }
@@ -190,11 +190,11 @@
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
-                        // actions.push('<a style="margin-right: 5px" class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        // actions.push('<a style="margin-right: 5px" class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
-                        // actions.push('<a style="margin-right: 5px" class="btn btn-info btn-xs" href="javascript:void(0)" onclick="combineclear(\''+row.id+'\')"><i class="fa fa-refresh"></i>清理合服数据</a>');
-                        actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="test(\''+row.id+'\')"><i class="fa fa-bookmark"></i>СерверТестовый</a>');
-                        actions.push('<a style="margin-top: 5px" class="btn btn-primary btn-xs" href="javascript:void(0)" onclick="dbTest(\''+row.id+'\')"><i class="fa fa-bookmark"></i>数据库测试</a>');
+                        // actions.push('<a style="margin-right: 5px" class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>Редактировать</a> ');
+                        // actions.push('<a style="margin-right: 5px" class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>Удалить</a>');
+                        // actions.push('<a style="margin-right: 5px" class="btn btn-info btn-xs" href="javascript:void(0)" onclick="combineclear(\''+row.id+'\')"><i class="fa fa-refresh"></i>Очистить данные объединения</a>');
+                        actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="test(\''+row.id+'\')"><i class="fa fa-bookmark"></i>Тест сервера</a>');
+                        actions.push('<a style="margin-top: 5px" class="btn btn-primary btn-xs" href="javascript:void(0)" onclick="dbTest(\''+row.id+'\')"><i class="fa fa-bookmark"></i>Тест базы данных</a>');
                         return actions.join('');
                     }
                 }]
@@ -202,9 +202,9 @@
             $.table.init(options);
         });
 
-        //清理合服数据
+        // Очистка данных объединения серверов
         function combineclear(id) {
-            $.modal.confirm("确认清理当前服的合服信息？", function() {
+            $.modal.confirm("Подтвердить очистку данных объединения для текущего сервера?", function() {
                 $.post(prefix + "/cleanCombine", {"id": id}, function (data) {
                     if (data.code > 0) {
                         $.modal.alertError(data.msg);
@@ -214,13 +214,13 @@
                 });
             });
         }
-        //测试连接(服务器测试)
+        // Тест соединения (тест сервера)
         function test(id) {
             $.post(prefix + "/test", {"ids": id}, function (data) {
                 $.modal.alertWarning(data.msg);
             });
         }
-        //测试连接(数据库测试)
+        // Тест соединения (тест базы данных)
         function dbTest(id) {
             $.post(prefix + "/dbTest", {"id": id}, function (data) {
                 if (data.code > 0) {
@@ -230,7 +230,7 @@
                 }
             });
         }
-        //改变服务器是否删除状态
+        // Изменение статуса активности сервера
         function changeIsDeleted(id,isDeleted) {
             if (isDeleted == 0){
                 isDeleted = 1;
@@ -257,7 +257,7 @@
                 }
             });
         }
-        //批量测试连接(服务器测试)
+        // Массовое тестирование соединения (тест серверов)
         function testAll() {
             var idsArr = $.table.selectColumns("id");
             $.ajax({

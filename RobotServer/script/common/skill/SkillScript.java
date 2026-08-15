@@ -51,7 +51,7 @@ public class SkillScript implements ISkillScript {
         for (int occSkillId : occSkillIds) {
             Cfg_Occ_Skill_Bean skillBean = CfgManager.getCfg_Occ_Skill_Container().getValueByKey(occSkillId);
             if (skillBean == null) {
-                log.info("Cfg_Occ_Skill_Bean  为空 "  + 1);
+                log.info("Cfg_Occ_Skill_Bean равен null, код: " + 1);
                 return;
             }
             for (Integer skillId:skillBean.getSkill_id().getValue()) {
@@ -72,7 +72,7 @@ public class SkillScript implements ISkillScript {
         }
         for (Skill skill1 : player.getSkills()){
             if (skill1.getId() == skill.getId()){
-                log.error("技能重复学习 {}",skill.getId());
+                log.error("Повторное изучение навыка {}", skill.getId());
                 return;
             }
         }
@@ -99,7 +99,7 @@ public class SkillScript implements ISkillScript {
             while (its.hasNext()){
                 Skill skill = its.next();
                 if(skill.getId() == messInfo.getSkillID()){
-                    log.error("技能重复学习 {}",skill.getId());
+                    log.error("Повторное изучение навыка {}", skill.getId());
                     return;
                 }
             }
@@ -142,7 +142,7 @@ public class SkillScript implements ISkillScript {
 
     @Override
     public void sendReqOneKeyUpSkill(Player player) {
-        log.info(player.getInfo()+"请求升级全部技能");
+        log.info(player.getInfo() + " запрос на улучшение всех навыков");
         SkillMessage.ReqUpCell.Builder msg = SkillMessage.ReqUpCell.newBuilder();
 //        msg.setCellId(0);
         player.sendMsg(SkillMessage.ReqUpCell.MsgID.eMsgID_VALUE, msg.build().toByteArray());

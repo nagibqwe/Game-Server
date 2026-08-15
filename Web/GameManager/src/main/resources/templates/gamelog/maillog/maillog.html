@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('邮件日志列表')"/>
+    <th:block th:include="include :: header('Журнал почты')"/>
     <th:block th:include="include :: footer"/>
 </head>
 <body class="gray-bg">
@@ -15,11 +15,11 @@
 
                     <ul>
                         <li>
-                            <label>ПисьмоДействияТип：</label>
+                            <label>Тип действия с почтой:</label>
                             <input type="text" name="mailAction"/>
                         </li>
                         <li>
-                            <label>收件人ID：</label>
+                            <label>ID получателя:</label>
                             <input type="text" name="receiverId"/>
                         </li>
                     </ul>
@@ -52,7 +52,7 @@
         var options = {
             url: prefix + "/list",
             exportUrl: prefix + "/export",
-            modalName: "ПисьмоЖурнал",
+            modalName: "Журнал почты",
             pagination: false,
             firstLoad: false,
             height:$(document).height() - 160,
@@ -65,21 +65,21 @@
                 },
                 {
                     field: 'mailAction',
-                    title: 'ПисьмоДействияТип',
+                    title: 'Тип действия с почтой',
                     formatter: formatterMailAction
                 },
                 {
                     field: 'type',
-                    title: 'ПисьмоТип'
+                    title: 'Тип письма'
                 },
                 {
                     field: 'mailId',
                     width: 155,
-                    title: '邮件唯一Id'
+                    title: 'Уникальный ID письма'
                 },
                 {
                     field: 'receiveTime',
-                    title: '邮件收到时间',
+                    title: 'Время получения письма',
                     width: 136,
                     formatter: formatterDate
                 },
@@ -90,7 +90,7 @@
                 },
                 {
                     field: 'sender',
-                    title: 'sender'
+                    title: 'Отправитель'
                 },
                 {
                     field: 'mailTitle',
@@ -104,11 +104,11 @@
                 {
                     field: 'receiverId',
                     width: 155,
-                    title: '收件人ID'
+                    title: 'ID получателя'
                 },
                 {
                     field: 'receiverName',
-                    title: '收件人'
+                    title: 'Получатель'
                 },
                 {
                     field: 'attachment',

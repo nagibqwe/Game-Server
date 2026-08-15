@@ -1,17 +1,17 @@
-<!--通用运营活动页面查询条件-->
+<!-- Общие условия поиска для операционных событий -->
 <form style="display: none" id="formId">
     <input type="text" name="searchType" id="searchType" style="display: none">
 </form>
 
 <div class="btn-group-sm" id="toolbar" role="group">
-    <!--此处作为服务器请求分组地址映射设置地方-->
+    <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
     <input type="hidden" id="requestUrl" value="gameServer">
     <input type="hidden" id="ignoreMerge" value="1">
-    <input type="button" id="batchTest" value="批量发布" onclick="publishEvent(3)" class="btn btn-primary">
-    <!--<input type="button" id="batchValid" value="批量验证" onclick="verifyEvent()" class="btn btn-primary">-->
-    <!--<input type="button" id="batchPublish" value="批量发布" onclick="publishEvent(3)" class="btn btn-primary">-->
-    <input type="button" id="batchDelete" value="批量删除" onclick="deleteActivity()" class="btn btn-danger">
-    <!--<input type="button" id="oneKeyDelete" value="一键删除过期活动" onclick="oneKeyDelete()" class="btn btn-primary">-->
+    <input type="button" id="batchTest" value="Массовая публикация" onclick="publishEvent(3)" class="btn btn-primary">
+    <!--<input type="button" id="batchValid" value="Массовая проверка" onclick="verifyEvent()" class="btn btn-primary">-->
+    <!--<input type="button" id="batchPublish" value="Массовая публикация" onclick="publishEvent(3)" class="btn btn-primary">-->
+    <input type="button" id="batchDelete" value="Массовое удаление" onclick="deleteActivity()" class="btn btn-danger">
+    <!--<input type="button" id="oneKeyDelete" value="Одним кликом удалить просроченные события" onclick="oneKeyDelete()" class="btn btn-primary">-->
     <a href="javascript:;" class="file">Импорт
         <input type="file" name="" id="" onchange="importf(this)">
     </a>
@@ -120,7 +120,7 @@
                 align: 'center',
                 formatter: function(value, row, index) {
                     var actions = [];
-                    actions.push("<form style='display: inline' name='actForm"+index+"' method='post' action='exportActivityData'><input name='actId' type='hidden' value='"+row.id+"'><a class='btn btn-warning btn-xs' href='javascript:void(0)' id='export' onclick='exportActivityData("+index+",this)'><i class='fa fa-bookmark'>ЭкспортExcel</a></form>");
+                    actions.push("<form style='display: inline' name='actForm"+index+"' method='post' action='exportActivityData'><input name='actId' type='hidden' value='"+row.id+"'><a class='btn btn-warning btn-xs' href='javascript:void(0)' id='export' onclick='exportActivityData("+index+",this)'><i class='fa fa-bookmark'>Экспорт в Excel</a></form>");
                     return actions.join('');
                 }
             });
@@ -136,7 +136,7 @@
                     }else {
                         actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="editActData(\'' + row.id + '\')"><i class="fa fa-edit"></i>Редактировать</a> ');
                     }
-                    actions.push("<form style='display: inline' name='actForm"+index+"' method='post' action='exportActivityData'><input name='actId' type='hidden' value='"+row.id+"'><a class='btn btn-warning btn-xs' href='javascript:void(0)' id='export' onclick='exportActivityData("+index+",this)'><i class='fa fa-bookmark'>ЭкспортExcel</a></form>");
+                    actions.push("<form style='display: inline' name='actForm"+index+"' method='post' action='exportActivityData'><input name='actId' type='hidden' value='"+row.id+"'><a class='btn btn-warning btn-xs' href='javascript:void(0)' id='export' onclick='exportActivityData("+index+",this)'><i class='fa fa-bookmark'>Экспорт в Excel</a></form>");
                     return actions.join('');
                 }
             });
@@ -152,7 +152,7 @@
             case 1:
                 return row.openServerOffsetBegin;
         }
-        return "error";
+        return "ошибка";
     }
     function getEndTime(value, row, index) {
         switch (row.timeType) {
@@ -161,19 +161,19 @@
             case 1:
                 return row.openServerRecordOffset;
         }
-        return "error";
+        return "ошибка";
     }
     function getState(value, row, index) {
         switch (value) {
             case 0:
             case 1:
             case 2:
-                return "待发布";
+                return "Ожидает публикации";
             case 3:
-                return "已发布";
+                return "Опубликовано";
             case 4:
-                return "发布后修改"
+                return "Изменено после публикации"
         }
-        return "error";
+        return "ошибка";
     }
 </script>

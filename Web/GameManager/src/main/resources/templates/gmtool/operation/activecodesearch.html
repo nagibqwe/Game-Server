@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('激活码日志列表')" />
+    <th:block th:include="include :: header('Журнал активационных кодов')" />
     <th:block th:include="include :: footer" />
     <script>
       var options;
@@ -19,10 +19,10 @@
               formatter: function(value, row, index) {
                   if (value == 0){
                       var actions = [];
-                      actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="deleteCode(\'' + row.code + '\')"><i class="fa fa-remove"></i>禁用</a>');
+                      actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="deleteCode(\'' + row.code + '\')"><i class="fa fa-remove"></i>Отключить</a>');
                       return actions.join('');
                   } else {
-                      return "УдалитьВремя:"+value;
+                      return "Время удаления: " + value;
                   }
               }
           });
@@ -32,32 +32,32 @@
       function activeCodeListPatchConfig(baseOptions) {
           baseOptions.columns.push({
               field: 'getTime',
-              title: '激活码使用时间'
+              title: 'Время использования кода'
           });
           baseOptions.columns.push({
               field: 'getPlayerId',
-              title: '使用者角色ID'
+              title: 'ID персонажа-получателя'
           });
           baseOptions.columns.push({
               field: 'getPlateformAid',
-              title: '使用者角色名'
+              title: 'Имя персонажа-получателя'
           });
           baseOptions.columns.push({
               field: 'getAccountId',
-              title: '使用者帐号'
+              title: 'Аккаунт получателя'
           });
           baseOptions.columns.push({
               field: 'getPlateformName',
-              title: '使用者平台名'
+              title: 'Платформа получателя'
           });
           baseOptions.columns.push({
               field: 'getServerId',
-              title: '使用者区服'
+              title: 'Сервер получателя'
           });
           $.table.init(baseOptions);
       }
 
-      //点击查询操作
+      // Выполнение поиска
       function search() {
 
               var batchId = $("#searchParam").val();
@@ -76,12 +76,12 @@
       }
 
       /**
-       * 导出当前显示的table数据
+       * Экспорт данных из текущей таблицы
        */
       function exportExcel() {
           $(".select-table").each(function () {
              if($(this).css("display") == "block"){
-                 var table = $(this).find("table").eq(1);//生成后的表格有3个table
+                 var table = $(this).find("table").eq(1);// После генерации создаётся 3 таблицы
                  var tableId = $(table).prop("id");
                  console.log(tableId);
                  $("#"+tableId).tableExport({type: 'excel', escape: 'false'});
@@ -90,11 +90,11 @@
       }
 
       /**
-       * 禁用激活码
+       * Отключение активационного кода
        * @param code
        */
       function deleteCode(code) {
-          $.modal.confirm("确认是否禁用？",function () {
+          $.modal.confirm("Подтвердить отключение?", function () {
               $.ajax({
                   type: "POST",
                   url: prefix + "/deleteCode",
@@ -104,7 +104,7 @@
                       if (!data.ok) {
                           $.modal.alertError(data.msg);
                       }else {
-                          $.modal.alertSuccess("禁用成功");
+                          $.modal.alertSuccess("Отключено успешно");
                       }
                       $.table.refresh("activeCodeList");
                   }
@@ -120,12 +120,12 @@
         <div class="col-sm-12 search-collapse">
             <form id="formId">
                 <select id="searchType" name="searchType" class="span2 selectClass">
-                    <option value="1" selected="selected">激活码批次号查询</option>
-                    <option value="0">激活码查询</option>
+                    <option value="1" selected="selected">Поиск по номеру партии</option>
+                    <option value="0">Поиск по коду</option>
                 </select>
                 <input id="searchParam" type="text" name="searchParam" class="span2 selectClass" >
-                <input type="button" id="query_btn" value="查询" class="btn btn-primary" onclick="search()">
-                <input type="button" id="excel_btn" value="ЭкспортExcel" class="btn btn-primary" onclick="exportExcel()">
+                <input type="button" id="query_btn" value="Поиск" class="btn btn-primary" onclick="search()">
+                <input type="button" id="excel_btn" value="Экспорт в Excel" class="btn btn-primary" onclick="exportExcel()">
             </form>
         </div>
 
@@ -149,7 +149,7 @@
         options = {
             url: prefix + url,
             id:tableId,
-            modalName: "Код активации",
+            modalName: "Активационные коды",
             showSearch: false,
             columns: [
                 {
@@ -160,15 +160,15 @@
                 },
                 {
                     field: 'code',
-                    title: 'Код активации'
+                    title: 'Активационный код'
                 },
                 {
                     field: 'activeName',
-                    title: '激活码类型名'
+                    title: 'Тип активационного кода'
                 },
                 {
                     field: 'batch',
-                    title: 'Номер пакета'
+                    title: 'Номер партии'
                 },
                 {
                     field: 'itemList',
@@ -176,7 +176,7 @@
                 },
                 {
                     field: 'param',
-                    title: '万能码',
+                    title: 'Универсальный код',
                     formatter:function (value,row,index) {
                         if (value == 1) {
                             return "Да";
@@ -187,19 +187,19 @@
                 },
                 {
                     field: 'valide_time_begin',
-                    title: '有效开始时间'
+                    title: 'Дата начала действия'
                 },
                 {
                     field: 'valide_time_end',
-                    title: '有效结束时间'
+                    title: 'Дата окончания действия'
                 },
                 {
                     field: 'plateform_name_big',
-                    title: '渠道名'
+                    title: 'Канал'
                 },
                 {
                     field: 'valide_server_id_list',
-                    title: '有效区服'
+                    title: 'Серверы применения'
                 },
                 {
                     field: 'create_time',

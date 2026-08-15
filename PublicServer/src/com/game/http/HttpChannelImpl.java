@@ -46,7 +46,7 @@ class httpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         if (msg.uri().length() > 0) {
             dispatcherRequest(ctx, msg);
         } else {
-            log.error(ctx + "错误的请求HTTP：" + msg);
+            log.error(ctx + " Неверный HTTP-запрос: " + msg);
             ctx.close();
         }
     }

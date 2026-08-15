@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('首领死亡复活日志列表')" />
+    <th:block th:include="include :: header('Журнал смерти и возрождения боссов')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -13,19 +13,19 @@
                     <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
                         <ul>
                             <li>
-                                <label>Тип：</label>
+                                <label>Тип:</label>
                                 <input type="text" name="type"/>
                             </li>
                             <li>
-                                <label>bossId：</label>
+                                <label>ID босса:</label>
                                 <input type="text" name="bossId"/>
                             </li>
                             <li>
-                                <label>地图ID：</label>
+                                <label>ID карты:</label>
                                 <input type="text" name="mapId"/>
                             </li>
                             <li>
-                                <label>击杀者：</label>
+                                <label>Убийца:</label>
                                 <input type="text" name="param"/>
                             </li>
                             <div th:replace="common/log_limit.html"></div>
@@ -56,7 +56,7 @@
             var options = {
                 url: prefix + "/list",
                 exportUrl: prefix + "/export",
-                modalName: "首领死亡复活日志",
+                modalName: "Журнал смерти и возрождения боссов",
                 pagination: false,
                 firstLoad:false,
                 height:$(document).height() - 160,
@@ -77,15 +77,15 @@
                 },
                 {
                     field: 'bossId',
-                    title: 'bossId'
+                    title: 'ID босса'
                 },
                 {
                     field: 'mapId',
-                    title: '地图ID'
+                    title: 'ID карты'
                 },
                 {
                     field: 'param',
-                    title: '击杀者'
+                    title: 'Убийца'
                 },
                 ]
             };

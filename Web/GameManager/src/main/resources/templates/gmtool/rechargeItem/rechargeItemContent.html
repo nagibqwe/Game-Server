@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('充值配置历史记录内容')" />
+    <th:block th:include="include :: header('Содержимое истории конфигурации пополнений')" />
     <style type="text/css">
         .table {table-layout:fixed;}
     </style>
@@ -57,7 +57,7 @@
                 },
                 {
                     field: 'goodsName',
-                    title: '商品名字描述'
+                    title: 'Название товара'
                 },
                 {
                     field: 'goodsPayChannel',
@@ -89,16 +89,16 @@
                 },
                 {
                     field: 'goodsPrice',
-                    title: '充值档位对应消耗的真实货币',
+                    title: 'Реальная валюта для пополнения',
                     formatter:formatterValue
                 },
                 {
                     field: 'goodsPricePoint',
-                    title: '充值计费点'
+                    title: 'Точка биллинга'
                 },
                 {
                     field: 'goodsShowPrice',
-                    title: '界面默认显示的货币 例如:THB'
+                    title: 'Валюта отображаемая в интерфейсе (например: THB)'
                 },
                 {
                     field: 'goodsReward',
@@ -118,11 +118,11 @@
                 },
                 {
                     field: 'isTotalRecharge',
-                    title: '是否计入到游戏累充活动'
+                    title: 'Учитывать в накопительных акциях'
                 },
                 {
                     field: 'totalVipPower',
-                    title: '是否增加VIP经验'
+                    title: 'Увеличивать VIP-опыт'
                 }
                ]
         };

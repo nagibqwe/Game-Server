@@ -17,7 +17,7 @@ public class GodDevilWarManager {
         if (is instanceof IGodDevilWarScript) {
             return (IGodDevilWarScript) is;
         }
-        log.error("没有找到具体的接口实现类！不会走到这里，请注意实现！");
+        log.error("Не найден конкретный класс реализации интерфейса! Это место не должно выполняться. Проверьте реализацию!");
         return null;
     }
 

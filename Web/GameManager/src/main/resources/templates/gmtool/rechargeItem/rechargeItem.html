@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('充值配置列表')" />
+    <th:block th:include="include :: header('Список конфигураций пополнений')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-fixed-columns-js" />
     <style type="text/css">
@@ -13,11 +13,11 @@
          <div class="row">
              <div class="col-sm-12">
                  <div class="tabs-container">
-                     <!--<input type="button" value="普通充值及第三方充值数据清除" class="btn btn-primary" onclick="clearData()">-->
+                     <!--<input type="button" value="Очистить данные обычных и сторонних пополнений" class="btn btn-primary" onclick="clearData()">-->
                      <ul class="nav nav-tabs" id="nav-tabs">
-                         <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">普通充值配置表</a>
+                         <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">Обычные пополнения</a>
                          </li>
-                         <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">第三方充值配置表</a>
+                         <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">Сторонние пополнения</a>
                          </li>
                      </ul>
                      <div class="tab-content">
@@ -27,10 +27,10 @@
                                      <table id="rechargeItemData"></table>
                                  </div>
                                  <div style="margin-left: 85%;display: inline;margin-top: 10px">
-                                     <a href="#rechargeItemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">ИмпортEXCEL</a>
+                                     <a href="#rechargeItemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Импорт из Excel</a>
                                      <form name="rechargeItem" id="rechargeItem" method="post" action="rechargeItem/exportRechargeExcel" style="display: inline-block">
                                          <input name="type" type="hidden" value="0">
-                                         <input type="button" value="ЭкспортEXCEL" class="btn btn-primary" onclick="exportExcel(this)">
+                                         <input type="button" value="Экспорт в Excel" class="btn btn-primary" onclick="exportExcel(this)">
                                      </form>
                                  </div>
                              </div>
@@ -41,10 +41,10 @@
                                      <table id="rechargeItemData3"></table>
                                  </div>
                                  <div style="margin-left: 85%;display: inline">
-                                     <a href="#otherRechargeItemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">ИмпортEXCEL</a>
+                                     <a href="#otherRechargeItemLoadModel" role="button" class="btn btn-primary" data-toggle="modal">Импорт из Excel</a>
                                      <form name="rechargeItem3" id="rechargeItem3" method="post" action="rechargeItem/exportRechargeExcel" style="display: inline-block">
                                          <input name="type" type="hidden" value="3">
-                                         <input type="button" value="ЭкспортEXCEL" class="btn btn-primary" onclick="exportExcel(this)">
+                                         <input type="button" value="Экспорт в Excel" class="btn btn-primary" onclick="exportExcel(this)">
                                      </form>
                                  </div>
                              </div>
@@ -65,11 +65,11 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                     <h3>普通充值配置表</h3>
+                     <h3>Обычные пополнения</h3>
                  </div>
                  <div class="modal-body">
                      <input id="rechargeItems" type="file" name="rechargeItemFile"/>
-                     <label>加载rechargeItem.xlsx表</label>
+                     <label>Загрузить rechargeItem.xlsx</label>
                  </div>
                  <div class="modal-footer">
                      <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>
@@ -84,11 +84,11 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                     <h3>第三方充值配置表</h3>
+                     <h3>Сторонние пополнения</h3>
                  </div>
                  <div class="modal-body">
                      <input id="otherRechargeItems" type="file" name="otherRechargeItemFile"/>
-                     <label>加载rechargeItem.xlsx表</label>
+                     <label>Загрузить rechargeItem.xlsx</label>
                  </div>
                  <div class="modal-footer">
                      <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>
@@ -99,12 +99,12 @@
      </div>
     <script th:inline="javascript">
         var prefix = ctx + "gmtool/rechargeItem";
-        var tableName="rechargeItem";//选项卡第一个
+        var tableName="rechargeItem";// Первая вкладка
         $(function () {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                // **已激活的标签页的名称
+                // Название активной вкладки
                 var title = $(e.target).text();
-                if ("第三方充值配置表" == title) {
+                if ("Сторонние пополнения" == title) {
                     tableName="otherRechargeItem";
                 }else {
                     tableName = "rechargeItem";
@@ -152,7 +152,7 @@
                         },
                         {
                             field: 'goodsName',
-                            title: '商品名字描述（主要用于BI后台数据）'
+                            title: 'Название товара (для BI-аналитики)'
                         },
                         {
                             field: 'goodsPayChannel',
@@ -160,7 +160,7 @@
                         },
                         {
                             field: 'goodsPayType',
-                            title: '支付类型(第三方)'
+                            title: 'Тип платежа (сторонний)'
                         },
                         {
                             field: 'goodsType',
@@ -172,7 +172,7 @@
                         },
                         {
                             field: 'goodsLimit',
-                            title: '充值次数（当前轮每个挡位对应充值的次数)'
+                            title: 'Количество пополнений (текущий раунд)'
                         },
                         {
                             field: 'goodsIcon',
@@ -184,16 +184,16 @@
                         },
                         {
                             field: 'goodsPrice',
-                            title: '充值档位对应消耗的真实货币',
+                            title: 'Реальная валюта для пополнения',
                             formatter:formatterValue
                         },
                         {
                             field: 'goodsPricePoint',
-                            title: '充值计费点'
+                            title: 'Точка биллинга'
                         },
                         {
                             field: 'goodsShowPrice',
-                            title: '充值默认显示货币'
+                            title: 'Валюта по умолчанию'
                         },
                         {
                             field: 'goodsReward',
@@ -213,11 +213,11 @@
                         },
                         {
                             field: 'isTotalRecharge',
-                            title: '是否计入到游戏累充活动'
+                            title: 'Учитывать в накопительных акциях'
                         },
                         {
                             field: 'totalVipPower',
-                            title: '是否增加VIP经验'
+                            title: 'Увеличивать VIP-опыт'
                         },
                         {
                             title: 'Действия',
@@ -250,7 +250,7 @@
                 singleSelect:true,
                 // fixedColumns: true,
                 // fixedNumber: 4,
-                modalName: "充值配置历史记录",
+                modalName: "История изменений конфигурации пополнений",
                 columns: [{
                     checkbox: true
                 },
@@ -264,12 +264,12 @@
                     },
                     {
                         field: 'id',
-                        title: 'id',
+                        title: 'ID',
                         visible: false
                     },
                     {
                         field: 'userName',
-                        title: '修改人'
+                        title: 'Изменил'
                     },
                     {
                         field: 'time',
@@ -277,23 +277,23 @@
                     },
                     {
                         field: 'tableName',
-                        title: '操作表名'
+                        title: 'Имя таблицы'
                     },
                     {
-                        title: '记录详情',
+                        title: 'Детали записи',
                         align: 'center',
                         formatter: function(value, row, index) {
-                            return '<a href="#" class="btn btn-success btn-xs" onclick="showRechargeItemLog('+index+',this)">点击查看</a>';
+                            return '<a href="#" class="btn btn-success btn-xs" onclick="showRechargeItemLog('+index+',this)">Просмотр</a>';
                         }
                     },
                     {
-                        title: 'ЭкспортEXCEL',
+                        title: 'Экспорт в Excel',
                         align: 'center',
                         formatter: function(value, row, index) {
                             return '<form name="exportRechargeItemLogForm" id="exportRechargeItemLogForm" method="post" action="rechargeItem/exportRechargeItemLog">' +
                                 '<input id="hId" name="hId" type="hidden" value="'+row.id+'">'+
                                 '<input id="tableName" name="tableName" type="hidden" value="'+row.tableName+'">'+
-                                '<a href="#" class="btn btn-primary btn-xs" onclick="exportRechargeItemLog('+index+',this)">ЭкспортEXCEL</a>' +
+                                '<a href="#" class="btn btn-primary btn-xs" onclick="exportRechargeItemLog('+index+',this)">Экспорт в Excel</a>' +
                                 '</form>';
                         }
                     }]
@@ -302,7 +302,7 @@
         });
 
         /**
-         *  导入普通充值配置
+         *  Импорт обычных пополнений
          */
         function loadRechargeItem() {
             var data = new FormData();
@@ -340,7 +340,7 @@
         }
 
         /**
-         *  导入第三方充值配置
+         *  Импорт сторонних пополнений
          */
         function loadOtherRechargeItem() {
             var data = new FormData();
@@ -374,7 +374,7 @@
         }
 
         /**
-         * 导出普通充值/第三方充值配置
+         *  Экспорт обычных/сторонних пополнений
          */
         function exportExcel(obj) {
             var type=$(obj).parent().find("input").eq(0).val();
@@ -382,15 +382,15 @@
             var data = new FormData();
             data.append('type', type);
             if (type == 0){
-                $("form[name='rechargeItem']").submit();//向服务器请求需要下载的数据并导出EXCEL
+                $("form[name='rechargeItem']").submit();// Отправка запроса на сервер для экспорта данных в Excel
             }else {
                 $("form[name='rechargeItem3']").submit();
             }
         }
 
-        //点击查看显示历史记录
+        // Просмотр исторических записей
         function showRechargeItemLog(index,obj) {
-            selectRow(index,obj);//先选中这一行
+            selectRow(index,obj);// Сначала выбираем строку
             layer.open({
                 type: 2,
                 shade: [0.05, '#393D49'],
@@ -399,16 +399,16 @@
                 // offset:"rb",
                 fix: false,
                 btnAlign: 'l',
-                //不固定
+                // Не фиксировать
                 maxmin: true,
-                title: "历史记录",
+                title: "История",
                 content: prefix+'/queryRechargeItemLogPage?index='+index,
-                btn: ['ОК'],
-                // 弹层外区域关闭
+                btn: ['OK'],
+                // Закрытие при клике вне области
                 shadeClose: true,
                 success: function(layero,index){
                 },
-                yes: function(index, layero) { //确定按钮点击函数
+                yes: function(index, layero) { // Функция кнопки подтверждения
                     layer.close(index)
                 },
                 cancel: function(index) {
@@ -417,15 +417,15 @@
             });
         }
 
-        //历史记录导出EXCEL
+        // Экспорт истории в Excel
         function exportRechargeItemLog(index,obj) {
-            selectRow(index,$(obj).parent());//先选中这一行
-            $("form[name='exportRechargeItemLogForm']").eq(index).submit();//确定是哪个table表格
+            selectRow(index,$(obj).parent());// Сначала выбираем строку
+            $("form[name='exportRechargeItemLogForm']").eq(index).submit();// Определяем, какая таблица
         }
 
-        //普通充值及第三方充值数据清除
+        // Очистка данных обычных и сторонних пополнений
         function clearData() {
-            $.modal.confirm("确认清除？",function () {
+            $.modal.confirm("Подтвердить очистку?", function () {
                 $.ajax({
                     url: prefix + "/clearRechargeItem",
                     type: 'POST',
@@ -436,9 +436,9 @@
                             $('#rechargeItemData').bootstrapTable('refresh');
                             $('#rechargeItemData3').bootstrapTable('refresh');
                             $("#rechargeItemLog").bootstrapTable('refresh');
-                            $.modal.alertSuccess("删除普通充值及第三方充值数据成功");
+                            $.modal.alertSuccess("Данные обычных и сторонних пополнений успешно удалены");
                         }else {
-                            $.modal.alertError("删除普通充值及第三方充值数据失败");
+                            $.modal.alertError("Ошибка удаления данных обычных и сторонних пополнений");
                         }
                     }
                 });

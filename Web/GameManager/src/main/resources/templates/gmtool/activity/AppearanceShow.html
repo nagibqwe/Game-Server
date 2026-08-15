@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('外观展示')" />
+    <th:block th:include="include :: header('Демонстрация внешности')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -24,13 +24,13 @@
             var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
                 '<label class="input-group-addon">ID предмета:</label>' +
                 '<span class="input-group-btn" >' +
-                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="添加物品" id="' + showAddBtn +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Добавить предмет" id="' + showAddBtn +
                 '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + showInput + ',' + showAddBtn + ')">' +
                 '<span class="glyphicon glyphicon-plus"></span></button>' +
                 '<div class="hide"><input id="' + showInput + '" name="show"/></div>' +
                 '</span>' +
-                '<label class="input-group-addon">跳转功能:</label>' +
-                '<input type="text" class="form-control"  name="toFunction" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
+                '<label class="input-group-addon">Функция перехода:</label>' +
+                '<input type="text" class="form-control" name="toFunction" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" id="delGridGroup"><span class="glyphicon glyphicon-minus"></span></button>' +
                 '</span>' +
@@ -64,9 +64,9 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>外观展示<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Демонстрация внешности<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="在配置活动的时候活动名字,支持多语言展示,需要运营人员使用一下副文本进行填写: [CH]中文简体[/CH][EN]英文[/EN][TW]中文繁体[/TW][KR]韩文[/KR][VIE]越南[/VIE][TH]泰文[/TH][JP]日文[/JP]"></span></h3>
+                              data-content="При настройке события название события поддерживает многоязычное отображение. Используйте следующий синтаксис: [CH]Китайский (упрощ.)[/CH][EN]Английский[/EN][TW]Китайский (трад.)[/TW][KR]Корейский[/KR][VIE]Вьетнамский[/VIE][TH]Тайский[/TH][JP]Японский[/JP]"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -75,10 +75,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>外观展示配置</legend>
+                            <legend>Конфигурация демонстрации внешности</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishuju">
-                                    <label class="input-group-addon">外观展示配置:</label>
+                                    <label class="input-group-addon">Конфигурация демонстрации внешности:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="showBtn"
                                             onclick="showGrp(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>

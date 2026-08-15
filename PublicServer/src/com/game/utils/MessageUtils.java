@@ -56,7 +56,7 @@ public class MessageUtils {
 
     private static boolean send(ChannelHandlerContext session, int msgId, byte[] data, long sender) {
         if (session == null) {
-            log.error("传过来的连接为空", new NullPointerException());
+            log.error("Переданное соединение равно null", new NullPointerException());
             return false;
         }
 

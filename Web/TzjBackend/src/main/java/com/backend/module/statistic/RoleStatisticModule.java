@@ -37,7 +37,7 @@ public class RoleStatisticModule {
     @Ok("jsp:jsp.statistic.roleStatistic")
     @Filters(@By(type = MenuFilter.class, args = {"USERMENUS", "/noauthority.jsp"}))
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "进入角色信息统计页面");
+        BackendLogUtil.getInstance().log(request, "Вход на страницу статистики информации о персонажах");
     }
 
     @At

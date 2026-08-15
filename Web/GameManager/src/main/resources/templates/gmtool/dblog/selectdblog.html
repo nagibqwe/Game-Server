@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('服务器选择列表')" />
+    <th:block th:include="include :: header('Список выбора сервера')" />
 </head>
 <body class="gray-bg">
 <div class="container-div">
@@ -27,7 +27,7 @@
     var isDeletedDatas = [[${@dict.getType('deleted_type')}]];
     var prefix = ctx + "gmtool/dblog";
 
-    var selectServerIdList =  [[${selectServerIdList}]];
+    var selectServerIdList = [[${selectServerIdList}]];
 
 
     function selectCancel() {
@@ -37,7 +37,7 @@
         }
     }
     /**
-     *选中区间
+     * Выбор диапазона
      */
     function selectRange() {
 
@@ -64,7 +64,7 @@
         }
 
     }
-    //获取选中的数据
+    // Получение выбранных данных
     function getSelections(){
         var selections = $("#bootstrap-table").bootstrapTable('getSelections');
         var serverIdList = [];
@@ -74,7 +74,7 @@
         return serverIdList;
     }
     /**
-     * 全部选中
+     * Выбрать всё
      */
     function selectAll(){
         var datas = $("#bootstrap-table").bootstrapTable('getData');
@@ -83,7 +83,7 @@
         }
     }
     /**
-     * 初始化选中
+     * Инициализация выбора
      * @param selectServerIdHideValue
      */
     function initSelectData(selectServerIdHideValue){
@@ -106,7 +106,7 @@
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
             exportUrl: prefix + "/export",
-            modalName: "日志库列",
+            modalName: "Колонки журналов",
             onLoadSuccess: function(data){
                 if (typeof selectServerIdList === 'string') {
                     var selectServerIdHideValueArray = selectServerIdList.split(',');

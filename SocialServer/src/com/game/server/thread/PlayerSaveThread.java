@@ -47,7 +47,7 @@ public class PlayerSaveThread extends Thread {
                 try {
                     player.toDB();
                     if (dao.insert(InsertOption, player) == 0) {
-                        DBErrorToFile.error("Player 保存出错:" + player);
+                        DBErrorToFile.error("Ошибка сохранения Player: " + player);
                     }
 //                    DBErrorToFile.error("Player 保存完成:" + player);
                 } catch (Exception e) {

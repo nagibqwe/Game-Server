@@ -90,11 +90,11 @@ public class InnerMsgAdapter extends SimpleChannelInboundHandler<RMessage> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
         ctx.channel().attr(SESSIONID).set(orderId.getAndIncrement());
-        log.info("游戏服开始连接" + ctx.name() + " :" + ctx.channel() + " 连接的序号是：" + ctx.channel().attr(SESSIONID).get());
+        log.info("Игровой сервер начал подключение: " + ctx.name() + " :" + ctx.channel() + " — порядковый номер подключения: " + ctx.channel().attr(SESSIONID).get());
         synchronized (obj) {
             if (!sessions.contains(ctx)) {
                 sessions.add(ctx);
-                loginfo("开始连接注册成功！");
+                loginfo("Подключение успешно зарегистрировано!");
             }
         }
     }
@@ -102,11 +102,11 @@ public class InnerMsgAdapter extends SimpleChannelInboundHandler<RMessage> {
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
         super.channelRegistered(ctx);
-        log.info("游戏服首次来注册" + ctx.name() + " :" + ctx.channel());
+        log.info("Игровой сервер впервые регистрируется: " + ctx.name() + " :" + ctx.channel());
         synchronized (obj) {
             if (!sessions.contains(ctx)) {
                 sessions.add(ctx);
-                loginfo("首次连接注册成功！");
+                loginfo("Первичная регистрация подключения выполнена успешно!");
             }
         }
     }
@@ -115,11 +115,11 @@ public class InnerMsgAdapter extends SimpleChannelInboundHandler<RMessage> {
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         super.channelInactive(ctx);
         SessionUtils.release(ctx.channel());
-        log.info("游戏服断开连接" + ctx.name() + " :" + ctx.channel());
+        log.info("Игровой сервер отключился: " + ctx.name() + " :" + ctx.channel());
         synchronized (obj) {
             if (sessions.contains(ctx)) {
                 sessions.remove(ctx);
-                loginfo("channelInactive 注销连接!");
+                loginfo("channelInactive: подключение удалено!");
             }
         }
 
@@ -129,11 +129,11 @@ public class InnerMsgAdapter extends SimpleChannelInboundHandler<RMessage> {
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         super.channelUnregistered(ctx);
         SessionUtils.release(ctx.channel());
-        log.info("游戏服退出注册" + ctx.name() + " :" + ctx.channel());
+        log.info("Игровой сервер вышел из регистрации: " + ctx.name() + " :" + ctx.channel());
         synchronized (obj) {
             if (sessions.contains(ctx)) {
                 sessions.remove(ctx);
-                loginfo("unreg 注销连接!");
+                loginfo("unreg: подключение удалено!");
             }
         }
         MainServer.getInstance().SessionQuit(ctx);
@@ -142,7 +142,7 @@ public class InnerMsgAdapter extends SimpleChannelInboundHandler<RMessage> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         //super.exceptionCaught(ctx, cause);
-        log.info("游戏服" + ctx.name() + " :" + ctx.channel() + " 发生了异常===" + cause);
+        log.info("Игровой сервер " + ctx.name() + " :" + ctx.channel() + " — произошло исключение: " + cause);
         //出错就主动断开
         if (ctx.channel().isActive()) {
             ctx.channel().unsafe().closeForcibly();//主动断开
@@ -177,27 +177,27 @@ public class InnerMsgAdapter extends SimpleChannelInboundHandler<RMessage> {
                 buf = null;
                 synchronized (ctx) {
                     if (ctx.channel() == null) {
-                        log.info(ctx + "发送队列时， 连接已经断开了！1");
+                        log.info(ctx + " — при отправке очереди соединение уже разорвано! 1");
                         continue;
                     }
 
                     if (ctx.channel().unsafe() == null) {
-                        log.info(ctx.channel() + "发送队列时， 连接已经断开了！2");
+                        log.info(ctx.channel() + " — при отправке очереди соединение уже разорвано! 2");
                         continue;
                     }
 
                     if (!ctx.channel().isActive()) {
-                        log.info(ctx.channel() + "发送队列时， 连接已经断开了！4");
+                        log.info(ctx.channel() + " — при отправке очереди соединение уже разорвано! 4");
                         ctx.channel().attr(SessionUtils.SEND_BUF).set(null);
                         continue;
                     }
 
                     if (ctx.channel().unsafe().outboundBuffer() == null) {
-                        log.info(ctx.channel() + "发送队列时， 连接已经断开了！3");
+                        log.info(ctx.channel() + " — при отправке очереди соединение уже разорвано! 3");
                         continue;
                     }
                     if (!ctx.channel().isWritable()) {
-                        log.info(ctx.channel() + "发送队列时，暂时不可写！ size=" + ctx.channel().unsafe().outboundBuffer().totalPendingWriteBytes());
+                        log.info(ctx.channel() + " — при отправке очереди временно недоступно для записи! size=" + ctx.channel().unsafe().outboundBuffer().totalPendingWriteBytes());
                         continue;
                     }
                     buf = ctx.channel().attr(SessionUtils.SEND_BUF).get();

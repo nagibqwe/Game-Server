@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('二次付费统计')" />
+    <th:block th:include="include :: header('Статистика повторных платежей')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -23,8 +23,8 @@
 
             <div class="btn-group-sm" id="toolbar" role="group">
                 <div class="btn-group">
-                    <button name="group_tab" class="btn btn-primary" id="stat_recharge_second_time_interval" type="button">二次付费间隔统计</button>
-                    <button name="group_tab" class="btn btn-white" id="stat_recharge_second_item" type="button">二次付费项目统计</button>
+                    <button name="group_tab" class="btn btn-primary" id="stat_recharge_second_time_interval" type="button">Распределение по интервалам между платежами</button>
+                    <button name="group_tab" class="btn btn-white" id="stat_recharge_second_item" type="button">Распределение по товарам/проектам</button>
                 </div>
             </div>
             <div class="col-sm-12 select-table table-striped">
@@ -58,17 +58,17 @@
     function init_stat_recharge_second_time_interval() {
         var options = {
             url: prefix + "/stat_recharge_second_time_interval",
-            modalName: "二次付费间隔统计",
+            modalName: "Распределение по интервалам между платежами",
             pagination: false,
             firstLoad:false,
             showExport:true,
             columns: [{
                 field: 'intervaDay',
-                title: '间隔天数',
+                title: 'Количество дней между платежами',
             }
                 ,{
                     field: 'roles',
-                    title: 'Количество',
+                    title: 'Количество игроков',
                 }]
         };
         $.table.init(options);
@@ -78,14 +78,14 @@
     function init_stat_recharge_second_item() {
         var options = {
             url: prefix + "/stat_recharge_second_item",
-            modalName: "二次付费项目统计",
+            modalName: "Распределение по товарам/проектам",
             pagination: false,
             columns: [{
                 field: 'secondItem',
-                title: '二次付费项目',
+                title: 'Товар/проект',
             },{
                 field: 'roles',
-                title: 'Количество',
+                title: 'Количество игроков',
             }
             ]
         };

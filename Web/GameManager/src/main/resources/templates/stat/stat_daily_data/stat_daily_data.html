@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('日常数据')" />
+    <th:block th:include="include :: header('Ежедневные данные')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -34,7 +34,7 @@
     $(function() {
         var options = {
             url: prefix + "/stat_daily_data",
-            modalName: "日常数据",
+            modalName: "Ежедневные данные",
             pagination: false,
             firstLoad:false,
             showExport:true,
@@ -43,45 +43,45 @@
                 title: 'Дата',
             },{
                 field: 'totalmoney',
-                title: 'Сумма пополнения',
+                title: 'Сумма пополнений (юани)',
             },{
                 field: 'totalgold',
-                title: 'Пополнение слитков',
+                title: 'Пополнено слитков',
             },{
                 field: 'totaltimes',
                 title: 'Количество пополнений',
             },{
                 field: 'totaluser',
-                title: '付费人数',
+                title: 'Количество платящих игроков',
             },{
                 field: 'activpayrate',
-                title: '活跃付费率',
+                title: 'Доля платящих среди активных',
                 formatter: function (value) {
                     var val = value*100;
                     return val.toFixed(2)+"%";
                 }
             },{
                 field: 'activenum',
-                title: '活跃玩家',
+                title: 'Активные игроки',
             },{
                 field: 'addnum',
-                title: '新增玩家',
+                title: 'Новые игроки',
             },{
                 field: 'addRechargeNum',
-                title: '新增付费玩家人数',
+                title: 'Новые платящие игроки',
             },{
                 field: 'addpayrate',
-                title: '新增付费率',
+                title: 'Доля платящих среди новых',
                 formatter: function (value) {
                     var val = value*100;
                     return val.toFixed(2)+"%";
                 }
             },{
                 field: 'deviceNum',
-                title: '活跃设备',
+                title: 'Активные устройства',
             },{
                 field: 'deviceaddnum',
-                title: '新增设备',
+                title: 'Новые устройства',
             },{
                 field: 'arpu',
                 title: 'ARPU',
@@ -90,10 +90,10 @@
                 title: 'ARPPU',
             },{
                 field: 'maxnum',
-                title: '最高在线',
+                title: 'Максимальное онлайн',
             },{
                 field: 'avgnum',
-                title: '平均在线',
+                title: 'Среднее онлайн',
             }
            ]
         };

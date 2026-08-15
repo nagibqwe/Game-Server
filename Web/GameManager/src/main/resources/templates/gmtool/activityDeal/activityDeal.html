@@ -1,389 +1,709 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('Игровые событияДействия')" />
+    <th:block th:include="include :: header('Управление игровыми событиями')" />
     <th:block th:include="include :: footer" />
 </head>
+
 <body class="gray-bg">
+
 <div class="container-div">
     <div class="row">
+
         <div class="col-sm-12 search-collapse">
+
             <form id="formId1">
+
                 <div class="col-sm-12 search-collapse">
+
                     <div class="select-list">
+
                         <ul>
+
                             <li>
+
                                 <div th:replace="common/select_server_single.html"></div>
-                                <!--此处作为服务器请求分组地址映射设置地方-->
+
+                                <!-- Настройка адреса группы серверов для отправки запроса -->
                                 <input type="hidden" id="requestUrl" value="gameServer">
                                 <input type="hidden" id="ignoreMerge" value="1">
+
                             </li>
+
+
                             <li>
-                                <label>Тип события：</label>
-                                <select id="type" name="type" onchange="" class="span2">
-                                    <option value="-1" selected>所有</option>
-                                    <option value="1">活跃活动(1)</option>
-                                    <option value="2">每日充值(2)</option>
-                                    <option value="3">每日登陆(3)</option>
-                                    <option value="4">限购礼包(4)</option>
-                                    <option value="5">天帝宝库(5)</option>
-                                    <option value="6">累计充值(6)</option>
-                                    <option value="7">累计消耗(7)</option>
-                                    <option value="8">集物兑换(8)</option>
-                                    <option value="9">团购活动(9)</option>
-                                    <option value="10">招财猫(10)</option>
-                                    <option value="11">首领狂欢(11)</option>
-                                    <option value="12">庆典任务(12)</option>
-                                    <option value="13">节日集字(13)</option>
-                                    <option value="14">节日特惠(14)</option>
-                                    <option value="15">连续累充(15)</option>
-                                    <option value="16">限时商城(16)</option>
-                                    <option value="17">节日礼包(17)</option>
-                                    <option value="18">积分排名(18)</option>
-                                    <option value="19">节日许愿(19)</option>
-                                    <option value="20">FB分享(20)</option>
-                                    <option value="21">连续累充2(21)</option>
-                                    <option value="22">节日祝福(22)</option>
-                                    <option value="23">掷骰子(23)</option>
-                                    <option value="24">外观展示(24)</option>
-                                    <option value="25">登陆展示(25)</option>
-                                    <option value="26">聚宝盆(26)</option>
-                                    <option value="27">幸运砸蛋(27)</option>
-                                    <option value="28">幸运宝玉(28)</option>
-                                    <option value="29">方泽探宝(29)</option>
+
+                                <label>Тип события:</label>
+
+                                <select id="type"
+                                        name="type"
+                                        onchange=""
+                                        class="span2">
+
+                                    <option value="-1" selected>Все</option>
+                                    <option value="1">Активное событие (1)</option>
+                                    <option value="2">Ежедневное пополнение (2)</option>
+                                    <option value="3">Ежедневный вход (3)</option>
+                                    <option value="4">Набор с ограниченной покупкой (4)</option>
+                                    <option value="5">Сокровищница Небесного императора (5)</option>
+                                    <option value="6">Накопительное пополнение (6)</option>
+                                    <option value="7">Накопительные расходы (7)</option>
+                                    <option value="8">Обмен собранных предметов (8)</option>
+                                    <option value="9">Групповая покупка (9)</option>
+                                    <option value="10">Счастливый кот (10)</option>
+                                    <option value="11">Праздник боссов (11)</option>
+                                    <option value="12">Праздничные задания (12)</option>
+                                    <option value="13">Сбор праздничных символов (13)</option>
+                                    <option value="14">Праздничные скидки (14)</option>
+                                    <option value="15">Последовательное накопительное пополнение (15)</option>
+                                    <option value="16">Магазин с ограничением по времени (16)</option>
+                                    <option value="17">Праздничный набор (17)</option>
+                                    <option value="18">Рейтинг по очкам (18)</option>
+                                    <option value="19">Праздничные желания (19)</option>
+                                    <option value="20">Поделиться в Facebook (20)</option>
+                                    <option value="21">Последовательное накопительное пополнение 2 (21)</option>
+                                    <option value="22">Праздничные поздравления (22)</option>
+                                    <option value="23">Бросок кубика (23)</option>
+                                    <option value="24">Демонстрация внешнего вида (24)</option>
+                                    <option value="25">Экран входа (25)</option>
+                                    <option value="26">Чаша сокровищ (26)</option>
+                                    <option value="27">Счастливое яйцо (27)</option>
+                                    <option value="28">Счастливый нефрит (28)</option>
+                                    <option value="29">Поиск сокровищ Фанцзэ (29)</option>
+
                                 </select>
+
                             </li>
+
+
                             <li>
+
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label is-required" for="subType">节日子类型:</label>
+
+                                    <label class="col-sm-2 control-label is-required"
+                                           for="subType">
+                                        Подтип праздника:
+                                    </label>
+
                                     <div class="col-sm-3">
-                                        <select class="form-control" id="subType" name="subType">
+
+                                        <select class="form-control"
+                                                id="subType"
+                                                name="subType">
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+
+                            <li>
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 control-label is-required"
+                                           for="isPre">
+                                        Тип запроса:
+                                    </label>
+
+                                    <div class="col-sm-3">
+
+                                        <select class="form-control"
+                                                id="isPre"
+                                                name="isPre">
+
+                                            <option value="0">
+                                                Активные события
+                                            </option>
+
+                                            <option value="1">
+                                                События в очереди ожидания
+                                            </option>
 
                                         </select>
+
                                     </div>
+
                                 </div>
+
                             </li>
+
+
                             <li>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label is-required" for="isPre">查询类型:</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control" id="isPre" name="isPre" >
-                                            <option value="0">正在进行活动</option>
-                                            <option value="1">预备队列活动</option>
-                                        </select>
-                                    </div>
-                                </div>
+
+                                <a class="btn btn-primary btn-rounded btn-sm"
+                                   onclick="$.table.search()">
+
+                                    <i class="fa fa-search"></i>
+                                    &nbsp;Просмотр
+
+                                </a>
+
+                                <a class="btn btn-warning btn-rounded btn-sm"
+                                   onclick="reloadAllActivity()">
+
+                                    <i class="fa fa-refresh"></i>
+                                    Перезагрузить все игровые события
+
+                                </a>
+
+<!--
+                                <button type="button"
+                                        class="btn btn-w-m btn-primary"
+                                        onclick="queryServerInfo()">
+                                    Просмотр
+                                </button>
+-->
+
                             </li>
-                            <li>
-                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Просмотр</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="reloadAllActivity()"><i class="fa fa-refresh"></i> 重新加载所有运营活动</a>
-<!--                                <button type="button" class="btn btn-w-m btn-primary" onclick="queryServerInfo()">-->
-<!--                                    查看-->
-<!--                                </button>-->
-                            </li>
+
                         </ul>
+
                     </div>
+
                 </div>
+
             </form>
+
         </div>
 
-<!--        <div class="btn-group-sm" id="toolbar" role="group">-->
-<!--            <a class="btn btn-success" onclick="saveFunctionSwitch()">-->
-<!--                <i class="fa fa-plus"></i> 应用此次修改-->
-<!--            </a>-->
-<!--            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:function:edit">-->
-<!--                <i class="fa fa-edit"></i> 修改-->
-<!--            </a>-->
-<!--            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:function:remove">-->
-<!--                <i class="fa fa-remove"></i> 删除-->
-<!--            </a>-->
-<!--            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="gmtool:function:export">-->
-<!--                <i class="fa fa-download"></i> 导出-->
-<!--            </a>-->
-<!--        </div>-->
+
+<!--
+        <div class="btn-group-sm" id="toolbar" role="group">
+
+            <a class="btn btn-success" onclick="saveFunctionSwitch()">
+                <i class="fa fa-plus"></i>
+                Применить изменения
+            </a>
+
+            <a class="btn btn-primary single disabled"
+               onclick="$.operate.edit()"
+               shiro:hasPermission="gmtool:function:edit">
+
+                <i class="fa fa-edit"></i>
+                Изменить
+
+            </a>
+
+            <a class="btn btn-danger multiple disabled"
+               onclick="$.operate.removeAll()"
+               shiro:hasPermission="gmtool:function:remove">
+
+                <i class="fa fa-remove"></i>
+                Удалить
+
+            </a>
+
+            <a class="btn btn-warning"
+               onclick="$.table.exportExcel()"
+               shiro:hasPermission="gmtool:function:export">
+
+                <i class="fa fa-download"></i>
+                Экспорт
+
+            </a>
+
+        </div>
+-->
+
 
         <div class="col-sm-12 select-table table-striped">
+
             <form id="formId2">
+
                 <table id="bootstrap-table"></table>
+
             </form>
+
         </div>
 
     </div>
 </div>
+
+
 <script th:inline="javascript">
+
     var editFlag = [[${@permission.hasPermi('gmtool:function:edit')}]];
+
     var prefix = ctx + "gmtool/activity";
     var dealPrefix = ctx + "gmtool/activityDeal";
 
+
     $(function () {
-        loadActivityFestivalType();//Тип праздника
+
+        loadActivityFestivalType(); // Тип праздника
+
 
         var op = {
+
             url: dealPrefix + "/searchActivity",
-            modalName: "Функции игры",
+
+            modalName: "Игровые события",
+
             pagination: false,
+
             firstLoad: false,
+
             // pageSize: 9999,
-            columns: [{
-                checkbox: false
-            },
+
+            columns: [
+
+                {
+                    checkbox: false
+                },
+
                 {
                     field: 'id',
                     title: 'ID события'
                 },
+
                 {
                     field: 'name',
                     title: 'Название события'
                 },
+
                 {
                     field: 'description',
                     title: 'Примечание к событию'
                 },
+
                 {
                     field: 'type',
                     title: 'Тип события'
                 },
+
                 {
                     field: 'subType',
                     title: 'Тип праздника'
                 },
+
                 {
                     field: 'minLv',
                     title: 'Минимальный уровень'
                 },
+
                 {
                     field: 'maxLv',
                     title: 'Максимальный уровень'
                 },
+
                 {
                     field: 'tag',
                     title: 'Метка события'
                 },
+
                 {
                     field: 'sort',
                     title: 'Порядок метки'
                 },
+
                 {
                     field: 'autoSend',
                     title: 'Автопубликация при открытии'
                 },
+
                 {
                     field: 'isOpenServer',
                     title: 'Событие нового сервера'
                 },
+
                 {
                     field: 'timeType',
                     title: 'Тип времени',
-                    formatter:getTimeType
+                    formatter: getTimeType
                 },
+
                 {
                     field: 'beginTime',
                     title: 'Время начала',
-                    formatter:getBeginTime
+                    formatter: getBeginTime
                 },
+
                 {
                     field: 'endTime',
                     title: 'Время окончания',
-                    formatter:getEndTime
+                    formatter: getEndTime
                 },
+
                 {
                     field: 'custom',
                     title: 'Данные',
-                    formatter:formatterValue
+                    formatter: formatterValue
                 },
+
                 // {
                 //     field: 'state',
-                //     title: '活动状态',
-                //     formatter:getState
+                //     title: 'Статус события',
+                //     formatter: getState
                 // },
+
                 // {
                 //     field: 'toSidList',
-                //     title: '发布列表',
-                //     formatter:formatterValue
+                //     title: 'Список публикаций',
+                //     formatter: formatterValue
                 // },
+
                 // {
                 //     field: 'okSidList',
-                //     title: '成功列表',
-                //     formatter:formatterValue
+                //     title: 'Список успешных публикаций',
+                //     formatter: formatterValue
                 // },
+
                 {
                     field: 'opAct',
                     title: 'Действия',
                     align: 'center',
+
                     formatter: function(value, row, index) {
+
                         var actions = [];
-                        if($("#isPre").val() == 0){
-                            actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="reloadActivity(\'' + row.id + '\')">重新加载正在运行的运营活动</a><br />');
-                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="removeData(\'' + (row.type*1000+row.subType) + '\')">删除正在运行的运营活动</a>');
-                        }else{
-                            actions.push('<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="removePreData(\'' + (row.type*1000+row.subType) + '\',\'' + row.id + '\')">删除预备队列的运营活动</a>');
+
+                        if ($("#isPre").val() == 0) {
+
+                            actions.push(
+                                '<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="reloadActivity(\'' +
+                                row.id +
+                                '\')">Перезагрузить активное событие</a><br />'
+                            );
+
+                            actions.push(
+                                '<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="removeData(\'' +
+                                (row.type * 1000 + row.subType) +
+                                '\')">Удалить активное событие</a>'
+                            );
+
+                        } else {
+
+                            actions.push(
+                                '<a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="removePreData(\'' +
+                                (row.type * 1000 + row.subType) +
+                                '\',\'' +
+                                row.id +
+                                '\')">Удалить событие из очереди ожидания</a>'
+                            );
+
                         }
+
                         return actions.join('');
                     }
                 }
+
             ],
+
+
             onLoadSuccess: function(data) {
+
                 // console.log(JSON.stringify(data));
                 // console.log(data);
+
             },
+
+
             onPostBody: function(data) {
+
                 // console.log(JSON.stringify(data));
                 // console.log(data);
+
             }
+
         };
 
+
         $.table.init(op);
+
     });
 
+
     function removeData(actType) {
-        $.modal.confirm("ПодтвердитьУдалён？",function () {
+
+        $.modal.confirm("Удалить активное событие?", function () {
+
             $.ajax({
+
                 type: "POST",
+
                 url: dealPrefix + "/removeActivity",
+
                 data: {
+
                     "serverId": $("#select_server").val(),
+
                     "actType": actType
+
                 },
+
                 // data:$("#formId2").serialize(),
+
                 dataType: "json",
+
+
                 success: function (data) {
+
                     if (!data.ok) {
+
                         $.modal.alertError(data.msg);
+
                     } else {
+
                         $.modal.alertSuccess("Операция выполнена");
+
                     }
+
                     $.table.refresh();
+
                 }
+
             });
+
         });
+
     }
+
 
     function removePreData(actType, actId) {
-        $.modal.confirm("ПодтвердитьУдалён？",function () {
+
+        $.modal.confirm("Удалить событие из очереди ожидания?", function () {
+
             $.ajax({
+
                 type: "POST",
+
                 url: dealPrefix + "/removePreActivity",
+
                 data: {
+
                     "serverId": $("#select_server").val(),
+
                     "actType": actType,
+
                     "actId": actId
+
                 },
+
                 // data:$("#formId2").serialize(),
+
                 dataType: "json",
+
+
                 success: function (data) {
+
                     if (!data.ok) {
+
                         $.modal.alertError(data.msg);
+
                     } else {
+
                         $.modal.alertSuccess("Операция выполнена");
+
                     }
+
                     $.table.refresh();
+
                 }
+
             });
+
         });
+
     }
+
 
     function reloadActivity(actId) {
-        $.modal.confirm("确认是否重新加载？注意：该操作会先把服务器正在运行的该活动移除，再重新加载，且部分活动在移除时会结算活动奖励",function () {
-            $.ajax({
-                type: "POST",
-                url: dealPrefix + "/reloadActivity",
-                data: {
-                    "serverId": $("#select_server").val(),
-                    "actId": actId
-                },
-                // data:$("#formId2").serialize(),
-                dataType: "json",
-                success: function (data) {
-                    if (!data.ok) {
-                        $.modal.alertError(data.msg);
-                    } else {
-                        $.modal.alertSuccess("Операция выполнена");
+
+        $.modal.confirm(
+            "Перезагрузить событие? Внимание: сначала текущее активное событие будет удалено с сервера, затем загружено заново. Для некоторых событий при удалении может быть выполнена выдача итоговых наград.",
+            function () {
+
+                $.ajax({
+
+                    type: "POST",
+
+                    url: dealPrefix + "/reloadActivity",
+
+                    data: {
+
+                        "serverId": $("#select_server").val(),
+
+                        "actId": actId
+
+                    },
+
+                    // data:$("#formId2").serialize(),
+
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        if (!data.ok) {
+
+                            $.modal.alertError(data.msg);
+
+                        } else {
+
+                            $.modal.alertSuccess("Операция выполнена");
+
+                        }
+
+                        $.table.refresh();
+
                     }
-                    $.table.refresh();
-                }
-            });
-        });
+
+                });
+
+            }
+        );
+
     }
+
 
     function reloadAllActivity() {
-        $.modal.confirm("确认是否重新加载？注意：该操作会先把服务器正在运行的所有活动移除，再重新加载，且部分活动在移除时会结算活动奖励",function () {
-            $.ajax({
-                type: "POST",
-                url: dealPrefix + "/reloadAllActivity",
-                data: {
-                    "serverId": $("#select_server").val()
-                },
-                // data:$("#formId2").serialize(),
-                dataType: "json",
-                success: function (data) {
-                    if (!data.ok) {
-                        $.modal.alertError(data.msg);
-                    } else {
-                        $.modal.alertSuccess("Операция выполнена");
+
+        $.modal.confirm(
+            "Перезагрузить все события? Внимание: сначала все активные события будут удалены с сервера, затем загружены заново. Для некоторых событий при удалении может быть выполнена выдача итоговых наград.",
+            function () {
+
+                $.ajax({
+
+                    type: "POST",
+
+                    url: dealPrefix + "/reloadAllActivity",
+
+                    data: {
+
+                        "serverId": $("#select_server").val()
+
+                    },
+
+                    // data:$("#formId2").serialize(),
+
+                    dataType: "json",
+
+
+                    success: function (data) {
+
+                        if (!data.ok) {
+
+                            $.modal.alertError(data.msg);
+
+                        } else {
+
+                            $.modal.alertSuccess("Операция выполнена");
+
+                        }
+
+                        $.table.refresh();
+
                     }
-                    $.table.refresh();
-                }
-            });
-        });
+
+                });
+
+            }
+        );
+
     }
 
-    //查看服务器功能信息
+
+    // Просмотр информации о функциях сервера
     function queryServerInfo() {
-        // $.post(ctx + "gmtool/activityDeal/searchActivity", $("#formId1").serialize(), function (data) {
-        //     console.log(JSON.stringify(data));
-        //     if (data.code == 0) {
 
+        // $.post(ctx + "gmtool/activityDeal/searchActivity",
+        //     $("#formId1").serialize(),
+        //     function (data) {
+        //
+        //         console.log(JSON.stringify(data));
+        //
+        //         if (data.code == 0) {
+        //
+        //
+        //
+        //         } else {
+        //
+        //             $.modal.alertError(data.msg);
+        //
+        //         }
+        //
+        //     }
+        // );
 
-            // } else {
-            //     $.modal.alertError(data.msg);
-            // }
-        // });
     }
+
 
     function getTimeType(value, row, index) {
+
         switch (value) {
+
             case 0:
-                return "固定时间";
+                return "Фиксированное время";
+
             case 1:
-                return "开服天数";
+                return "Количество дней с открытия сервера";
+
         }
+
         return value;
+
     }
+
 
     function getBeginTime(value, row, index) {
+
         switch (row.timeType) {
+
             case 0:
                 return row.beginTime;
+
             case 1:
                 return row.openServerOffsetBegin;
+
         }
-        return "error";
+
+        return "Ошибка";
+
     }
+
 
     function getEndTime(value, row, index) {
+
         switch (row.timeType) {
+
             case 0:
                 return row.endTime;
+
             case 1:
                 return row.openServerRecordOffset;
+
         }
-        return "error";
+
+        return "Ошибка";
+
     }
 
+
     function getState(value, row, index) {
+
         switch (value) {
+
             case 0:
             case 1:
             case 2:
-                return "待发布";
+                return "Ожидает публикации";
+
             case 3:
-                return "已发布";
+                return "Опубликовано";
+
             case 4:
-                return "发布后修改"
+                return "Изменено после публикации";
+
         }
-        return "error";
+
+        return "Ошибка";
+
     }
 
 </script>
+
 </body>
 </html>

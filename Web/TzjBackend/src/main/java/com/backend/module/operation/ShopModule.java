@@ -35,12 +35,12 @@ public class ShopModule {
     @At
     public Object list(String serverId, String shopId) {
         if (Strings.isBlank(serverId)) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
-        //发送消息到GameServer
+        // Отправка сообщения на GameServer
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "服务器连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
         }
         NutMap result = GameServerRequestUtil.gmGetShopInfo(server, "0");
         if (!result.getBoolean("ok")) {
@@ -67,17 +67,17 @@ public class ShopModule {
         Object data = "null";
         if (!"0".equals(id)) {
             if (Strings.isBlank(serverId)) {
-                logger.error("未获取到服务器id");
+                logger.error("ID сервера не получен");
                 return;
             }
-            //发送消息到GameServer
+            // Отправка сообщения на GameServer
             Server server = ServerListManager.getInstance().getServer(serverId);
             if (server == null) {
-                logger.error("对应id的服务器不存在：" + serverId);
+                logger.error("Сервер с указанным ID не найден: " + serverId);
                 return;
             }
             NutMap result = GameServerRequestUtil.gmGetShopInfo(server, id);
-            data  = result.get("data");
+            data = result.get("data");
         }
         request.setAttribute("id", id);
         request.setAttribute("date", new Date());
@@ -89,15 +89,15 @@ public class ShopModule {
     @At
     public Object updateShop(String serverId, ShopInfo info, int type) {
         if (Strings.isBlank(serverId)) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
-        //发送消息到GameServer
+        // Отправка сообщения на GameServer
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "服务器连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
         }
         if (info.getId() > 110000 || info.getId() < 100000) {
-            return Toolkit.outResult(false, "商品id配置错误，范围100000~1100000");
+            return Toolkit.outResult(false, "Ошибка ID товара, допустимый диапазон: 100000~110000");
         }
         if (type == 0) {
             NutMap result = GameServerRequestUtil.gmGetShopInfo(server, "0");
@@ -106,7 +106,7 @@ public class ShopModule {
                 JSONObject shopInfo = (JSONObject) datum;
                 String id = shopInfo.getOrDefault("id", 0).toString();
                 if (info.getId().toString().equals(id)) {
-                    return Toolkit.outResult(false, "增加商品配置错误，重复的商品id");
+                    return Toolkit.outResult(false, "Ошибка добавления товара: дублирующийся ID");
                 }
             }
         }
@@ -117,12 +117,12 @@ public class ShopModule {
     @At
     public Object deleteShop(String serverId, String shopId) {
         if (Strings.isBlank(serverId)) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
-        //发送消息到GameServer
+        // Отправка сообщения на GameServer
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "服务器连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
         }
         return GameServerRequestUtil.gmDeleteShopInfo(server, shopId);
     }
@@ -130,12 +130,12 @@ public class ShopModule {
     @At
     public Object refreshShop(String serverId) {
         if (Strings.isBlank(serverId)) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
-        //发送消息到GameServer
+        // Отправка сообщения на GameServer
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "服务器连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
         }
         return GameServerRequestUtil.gmOrderSendMess(server, "gmRefreshShop", "");
     }

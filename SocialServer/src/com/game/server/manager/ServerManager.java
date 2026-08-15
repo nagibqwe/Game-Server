@@ -72,7 +72,7 @@ public class ServerManager implements ICount {
     public IServer server() {
         IScript is = Manager.scriptManager.GetScriptClass(ScriptEnum.ServerScript);
         if (is == null) {
-            throw new NullPointerException("没有找到具体的脚本实例！script=" + ScriptEnum.ServerScript);
+            throw new NullPointerException("Не найден конкретный экземпляр скрипта! script=" + ScriptEnum.ServerScript);
         }
         return (IServer) is;
     }

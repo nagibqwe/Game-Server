@@ -1,6 +1,5 @@
-
 <script>
-    var item_btn_id_index = 200;//为了防止模板中新增道具会跟之前的重复,增加一个范围取值
+    var item_btn_id_index = 200; // Для предотвращения дублирования новых предметов в шаблоне, задаём диапазон значений
     var item_container = "";
     var item_add_btn = "";
     var item_old_data = "";
@@ -72,7 +71,7 @@
         formatGender(item_btn_id,itemName,dialog_item_num,dialog_item_gender,dialog_item_bind);
 
     }
-    //♂ ♀ ⚤ 🔓 🔒
+    // ♂ ♀ ⚤ 🔓 🔒
     function formatGender(item_btn_id,itemName,item_num,gender,bind) {
         console.log("itemName:"+itemName);
         if (itemName == "" || itemName==undefined){
@@ -113,7 +112,7 @@
             // console.log(btn)
             btn.remove();
     })
-        //TODO 生成更新道具
+        // TODO Генерация обновлённого предмета
         func_add_item()
     }
 </script>
@@ -128,7 +127,7 @@
         var dialog_item_gender = $("#dialog_item_gender").val();
 
         var itemValue = dialog_item_id + "_" + dialog_item_num + "_" + dialog_item_bind + "_" + dialog_item_gender;
-        console.log("Удалить" + itemValue + ":" + itemName);
+        console.log("Удалить " + itemValue + ": " + itemName);
 
         var item_container_object = $("#" + item_container);
 
@@ -145,7 +144,7 @@
     }
 </script>
 <script>
-    //(道具索引, 道具数组, 道具父容器）
+    // (Индекс предмета, массив предметов, родительский контейнер предмета)
     function showAddItemUI(item_clt, item_add_btn) {
         console.log(item_clt);
         console.log(item_add_btn);
@@ -164,11 +163,11 @@
     }
 </script>
 <script>
-    //(道具索引, 道具数组, 道具父容器）
+    // (Индекс предмета, массив предметов, родительский контейнер предмета, лимит)
     function showAddItemUILimit(item_clt, item_add_btn,limitNum) {
         var itemNum = $(item_add_btn).parent().find("input[type='button']").length;
         if (itemNum >=limitNum){
-            alert("添加道具不能超过"+limitNum+"个！");
+            alert("Нельзя добавить больше " + limitNum + " предметов!");
             console.log("itemNum:"+itemNum);
         }else {
             console.log(item_clt);
@@ -194,7 +193,7 @@
         <div class="modal-content" style="width: 500px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="_ModalLabel">添加物品</h4>
+                <h4 class="modal-title" id="_ModalLabel">Добавить предмет</h4>
             </div>
             <div class="modal-body">
                 <div class="row-fluid">
@@ -204,10 +203,10 @@
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button"
-                                                style="width:138px;">物品ID:</button>
+                                                style="width:138px;">ID предмета:</button>
                                     </span>
                                     <input type="text" class="form-control heightSet" id="dialog_item_id" list="itemList" value="12"
-                                           placeholder="物品ID列表">
+                                           placeholder="Список ID предметов">
                                     <datalist id="itemList"></datalist>
                                 </div><!-- /input-group -->
                             </div><!-- /.col-lg-6 -->
@@ -220,7 +219,7 @@
                                 <div class="input-group">
                                       <span class="input-group-btn">
                                         <button class="btn btn-default" type="button"
-                                                style="width:138px;">物品数量:</button>
+                                                style="width:138px;">Количество:</button>
                                       </span>
                                     <input type="text" class="form-control heightSet" id="dialog_item_num" value="1"
                                            placeholder="">
@@ -235,14 +234,14 @@
                             <div class="col-lg-10">
                                 <div class="input-group">
                                       <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button" style="width:138px;">职业:</button>
+                                        <button class="btn btn-default" type="button" style="width:138px;">Класс:</button>
                                       </span>
                                     <select class="span4 itemAddModelSelect" data-width="150px" id="dialog_item_gender">
-                                        <option value="0">玄剑</option>
-                                        <option value="1">天英</option>
-                                        <option value="2">地藏</option>
-                                        <option value="3">罗刹</option>
-                                        <option value="9" selected>通用</option>
+                                        <option value="0">Сюаньцзянь</option>
+                                        <option value="1">Тяньин</option>
+                                        <option value="2">Дицзан</option>
+                                        <option value="3">Лоча</option>
+                                        <option value="9" selected>Универсальный</option>
                                     </select>
 
                                 </div><!-- /input-group -->
@@ -257,11 +256,11 @@
                                 <div class="input-group " style="margin-top:10px;top:10px">
                                       <span class="input-group-btn">
                                         <button class="btn btn-default" type="button"
-                                                style="width:138px;">是否绑定:</button>
+                                                style="width:138px;">Привязка:</button>
                                       </span>
                                     <select id="dialog_item_bind" class="span4 itemAddModelSelect" data-width="150px">
-                                        <option value="0">非绑</option>
-                                        <option value="1" selected>绑定</option>
+                                        <option value="0">Не привязан</option>
+                                        <option value="1" selected>Привязан</option>
                                     </select>
                                 </div><!-- /input-group -->
                             </div><!-- /.col-lg-6 -->

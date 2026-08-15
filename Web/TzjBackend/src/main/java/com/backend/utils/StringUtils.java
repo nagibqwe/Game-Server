@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class StringUtils {
 
     private StringUtils() {
-        throw new UnsupportedOperationException("该类不允许被实例化!");
+        throw new UnsupportedOperationException("Невозможно создать экземпляр этого класса!");
     }
 
     private static final char[] DIGITS =
@@ -146,7 +146,7 @@ public class StringUtils {
         if (null == source)
             throw new NullPointerException("source");
         if (bytes < 1)
-            throw new IllegalArgumentException("bytes必须大于0! bytes: " + bytes);
+            throw new IllegalArgumentException("bytes должно быть больше 0! bytes: " + bytes);
 
         int count = 0;
         if (source.length() > 0) {
@@ -173,7 +173,7 @@ public class StringUtils {
      */
     public static String random(int length) {
         if (length < 1)
-            throw new IllegalArgumentException("length必须大于0! length: " + length);
+            throw new IllegalArgumentException("length должно быть больше 0! length: " + length);
 
         StringBuilder result = new StringBuilder(length);
         for (int i = 0, j; i < length; i++) {
@@ -223,8 +223,7 @@ public class StringUtils {
             throw new StringIndexOutOfBoundsException("beginIndex: "
                     + beginIndex);
         if (maxLength < 1)
-            throw new IllegalArgumentException("maxLength必须大于0! maxLength: "
-                    + maxLength);
+            throw new IllegalArgumentException("maxLength должен быть больше 0! maxLength: " + maxLength);
         if (beginIndex == count - 1)
             return "";
 
@@ -251,7 +250,7 @@ public class StringUtils {
         if (null == source)
             throw new NullPointerException("source");
         if (maxLength < 1)
-            throw new IllegalArgumentException("maxLength必须大于0! maxLength: "
+            throw new IllegalArgumentException("maxLength должно быть больше 0! maxLength: "
                     + maxLength);
         if (maxLength >= source.length())
             return source;
@@ -283,7 +282,7 @@ public class StringUtils {
         if (null == source)
             throw new NullPointerException("source");
         if (maxBytes < 1)
-            throw new IllegalArgumentException("maxBytes必须大于0! maxBytes: "
+            throw new IllegalArgumentException("maxBytes должно быть больше 0! maxBytes: "
                     + maxBytes);
 
         int count = 0; // 统计字节数
@@ -325,7 +324,7 @@ public class StringUtils {
         if (null == source)
             throw new NullPointerException("source");
         if (maxBytes < 1)
-            throw new IllegalArgumentException("maxBytes必须大于0! maxBytes: "
+            throw new IllegalArgumentException("maxBytes должно быть больше 0! maxBytes: "
                     + maxBytes);
 
         int length; // 纪录单个字符的字节数

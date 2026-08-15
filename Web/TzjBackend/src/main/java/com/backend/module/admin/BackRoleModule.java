@@ -61,9 +61,9 @@ public class BackRoleModule {
             role = dao.insert(role);
             if (role != null) {
                 flag = 2;
-                msg = "添加角色:" + roleName;
+                msg = "Добавление персонажа: " + roleName;
             } else {
-                msg = "角色添加失败";
+                msg = "Ошибка добавления персонажа";
             }
             BackendLogUtil.getInstance().log(request, msg);
         }
@@ -81,7 +81,7 @@ public class BackRoleModule {
         role.setDescription(role.getDescription());
         role.setRoleName(role.getRoleName());
         int flag = dao.updateIgnoreNull(role);
-        BackendLogUtil.getInstance().log(request, "修改角色基本信息");
+        BackendLogUtil.getInstance().log(request, "Обновление базовой информации о персонаже");
         return Toolkit.outResult(flag > 0);
     }
 
@@ -125,7 +125,7 @@ public class BackRoleModule {
             if (num > 0) {
                 map = new HashMap<>();
                 map.put("id", "0");
-                map.put("name", "用户角色");
+                map.put("name", "Персонажи пользователя");
                 map.put("pId", -1);
                 map.put("open", true);
                 dataList.add(map);
@@ -151,7 +151,7 @@ public class BackRoleModule {
             sql.params().set("roleId", s);
             dao.execute(sql);
         }
-        BackendLogUtil.getInstance().log(request, "为用户重新分配角色：" + roleIds.substring(0, roleIds.length() - 1));
+        BackendLogUtil.getInstance().log(request, "Переназначение ролей для пользователя: " + roleIds.substring(0, roleIds.length() - 1));
         return Toolkit.outResult(true);
     }
 
@@ -211,7 +211,7 @@ public class BackRoleModule {
             sql.params().set("menuId", s);
             dao.execute(sql);
         }
-        BackendLogUtil.getInstance().log(request, "为角色重新分配权限：" + menuIds.substring(0, menuIds.length() - 1));
+        BackendLogUtil.getInstance().log(request, "Переназначение прав для роли: " + menuIds.substring(0, menuIds.length() - 1));
         return Toolkit.outResult(true);
     }
 }

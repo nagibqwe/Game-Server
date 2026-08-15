@@ -34,7 +34,7 @@ public class RoleAttrModule {
 
     private static final Logger log = Logger.getLogger(RoleAttrModule.class);
 
-    //等级
+    // Уровень
     private static final int attrType_0 = 0;
 
     @Inject
@@ -52,44 +52,44 @@ public class RoleAttrModule {
 
         Dblog dbLog = dao.fetch(Dblog.class, Cnd.where("serverId", "=", sid));
         if (dbLog == null) {
-            return Toolkit.outResult(false, "服务器DB连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверной БД");
         }
 
-        //检查角色ID
+        // Проверка ID персонажа
         String sqlStr = "SELECT roleId,userId FROM $table WHERE roleId = @roleId";
         List<RoleState> roles = queryRoleState(dbLog, sqlStr, roleAttr.getRoleId());
         if (roles.isEmpty()) {
-            return Toolkit.outResult(false, "没有找到此角色ID");
+            return Toolkit.outResult(false, "ID персонажа не найден");
         }
         if (roles.get(0).getIsDelete() != 0) {
-            return Toolkit.outResult(false, "此角色已删除");
+            return Toolkit.outResult(false, "Этот персонаж уже удалён");
         }
         try {
             roleAttr.setActionTime(new Date());
             roleAttr.setActionUser(user.getName());
             roleAttr.setIsDelete(0);
-            //发送消息到GameServer
+            // Отправка сообщения на GameServer
             Server server = ServerListManager.getInstance().getServer(serverId);
             if (server == null) {
-                return Toolkit.outResult(false, "服务器连接信息获取失败");
+                return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
             }
             NutMap resultMap = GameServerRequestUtil.gmSetRoleAttrOpt(server, roleAttr);
-            //得到实际数量
+            // Получение фактического значения
             int realValue = Integer.parseInt(resultMap.get("data").toString());
             roleAttr.setRealValue(realValue);
             String prompt;
             if (resultMap.getBoolean("ok")) {
-                prompt = "操作成功！";
+                prompt = "Операция выполнена успешно!";
                 dao.insert(roleAttr);
             } else {
-                prompt = "操作失败！";
+                prompt = "Ошибка операции!";
             }
-            log.error("属性设置：sid=" + serverId + ",roleId=" + roleAttr.getRoleId() + ",操作结果:" + resultMap.getString("msg"));
-            BackendLogUtil.getInstance().log(request, "设置角色(roleId=" + roleAttr.getRoleId() + ")的类型"+roleAttr.getAttrType()+"属性为："+ roleAttr.getRealValue());
+            log.error("Установка атрибута: sid=" + serverId + ", roleId=" + roleAttr.getRoleId() + ", результат: " + resultMap.getString("msg"));
+            BackendLogUtil.getInstance().log(request, "Установка атрибута (roleId=" + roleAttr.getRoleId() + ") типа " + roleAttr.getAttrType() + " значение: " + roleAttr.getRealValue());
             return Toolkit.outResult(resultMap.getBoolean("ok"), prompt);
         } catch (Exception e) {
             log.error(e);
-            return Toolkit.outResult(false, "操作失败");
+            return Toolkit.outResult(false, "Ошибка операции");
         }
     }
 
@@ -124,7 +124,3 @@ public class RoleAttrModule {
         return sql.getList(RoleState.class);
     }
 }
-
-
-
-

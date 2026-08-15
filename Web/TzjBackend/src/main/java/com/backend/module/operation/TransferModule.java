@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 角色转移功能
+ * Функция переноса персонажа
  */
 @IocBean
 @Ok("json")
@@ -49,42 +49,42 @@ public class TransferModule {
     }
 
     /**
-     * 角色转移
+     * Перенос персонажа
      */
     @At
     public Object transfer(int serverId, String roleId, String userId, String reason, HttpServletRequest request) {
         if (serverId <= 0) {
-            return Toolkit.outResult(false, "区服错误");
+            return Toolkit.outResult(false, "Ошибка ID сервера");
         }
 
         if (Strings.isBlank(roleId)) {
-            return Toolkit.outResult(false, "角色ID为空");
+            return Toolkit.outResult(false, "ID персонажа пуст");
         }
 
         if (Strings.isBlank(userId)) {
-            return Toolkit.outResult(false, "转移帐号ID为空");
+            return Toolkit.outResult(false, "ID целевого аккаунта пуст");
         }
 
         if (Strings.isBlank(reason)) {
-            return Toolkit.outResult(false, "转移原因为空");
+            return Toolkit.outResult(false, "Причина переноса не указана");
         }
 
         Dblog dbLog = dao.fetch(Dblog.class, Cnd.where("serverId", "=", serverId));
         if (dbLog == null) {
-            return Toolkit.outResult(false, "服务器DB连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверной БД");
         }
 
-        //检查角色ID
+        // Проверка ID персонажа
         String roleSqlStr = "SELECT roleId,userId FROM $table WHERE roleId = @roleId";
         List<RoleState> roles = queryRoleState(dbLog, roleSqlStr, "roleId", roleId);
         if (roles.isEmpty()) {
-            return Toolkit.outResult(false, "角色ID未找到");
+            return Toolkit.outResult(false, "ID персонажа не найден");
         }
 
-        //发送消息到GameServer
+        // Отправка сообщения на GameServer
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "服务器连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
         }
 
         NutMap result = GameServerRequestUtil.gmTranRole(server, roleId, userId);
@@ -98,7 +98,7 @@ public class TransferModule {
             roleTransfer.setIsDeleted(0);
             roleTransfer.setTime((int) (System.currentTimeMillis() / 1000));
             dao.insert(roleTransfer);
-            BackendLogUtil.getInstance().log(request, "角色转移成功,serverId:" + serverId + "roleId:" + roleId + ">>>userId:" + userId + ",原因:" + reason);
+            BackendLogUtil.getInstance().log(request, "Перенос персонажа успешен, serverId: " + serverId + ", roleId: " + roleId + " >>> userId: " + userId + ", причина: " + reason);
         }
         return result;
     }

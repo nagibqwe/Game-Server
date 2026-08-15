@@ -52,18 +52,18 @@ public class CurrencyRateManager {
         for (Entry<Object, Object> entry : reasonProp.entrySet()) {
             currencyMap.put(entry.getKey().toString(), Double.parseDouble(entry.getValue().toString()));
         }
-        log.info("货币汇率信息(currency.properties)加载完成，共" + currencyMap.size() + "条数据");
+        log.info("Загрузка информации о курсах валют (currency.properties) завершена, всего записей: " + currencyMap.size());
     }
 
     public Double getValue(String currencyType) {
         if (Strings.isBlank(currencyType)) {
-            log.error("没有找到货币汇率,币种:" + currencyType);
+            log.error("Курс валюты не найден. Тип валюты: " + currencyType);
             return 1.0;
         }
         if (currencyMap.containsKey(currencyType.trim().toUpperCase())) {
             return currencyMap.get(currencyType.trim().toUpperCase());
         }
-        log.error("没有配置货币汇率,币种:" + currencyType);
+        log.error("Курс валюты не настроен. Тип валюты: " + currencyType);
         return 1.0;
     }
 }

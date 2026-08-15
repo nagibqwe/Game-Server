@@ -1,0 +1,27 @@
+2026-08-15 18:25:23.517 INFO [Thread-2][LogService.java:87] - 初始化日志数据库服务
+2026-08-15 18:25:23.545 INFO [Thread-2][LogService.java:120] - 启动日志数据库连接池完毕jdbc:mysql://127.0.0.1:3306/tzj_login_log?autoReconnect=true&nullCatalogMeansCurrent=true
+2026-08-15 18:25:24.712 INFO [Thread-2][LogService.java:173] - 检测查表loguser202608
+2026-08-15 18:25:24.734 INFO [Thread-2][LogService.java:272] - loguser202608检查结束
+2026-08-15 18:25:24.736 INFO [Thread-2][LogService.java:173] - 检测查表loguserdobean
+2026-08-15 18:25:24.752 INFO [Thread-2][LogService.java:272] - loguserdobean检查结束
+2026-08-15 18:25:24.753 INFO [Thread-2][LogService.java:125] - 启动日志线程池完毕
+2026-08-15 18:25:24.753 INFO [Thread-2][LogService.java:129] - 初始化日志数据库服务结束
+2026-08-15 18:25:24.771 INFO [Thread-2][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/AgentServer/agentserver/AgentServer.jar:/home/Game-Server/AgentServer/agentserver/bin/:/home/Game-Server/AgentServer/agentserver/lib/slf4j-log4j12-1.7.6.jar:/home/Game-Server/AgentServer/agentserver/lib/disruptor-3.3.6.jar:/home/Game-Server/AgentServer/agentserver/lib/ehcache-2.10.1.jar:/home/Game-Server/AgentServer/agentserver/lib/jackson-annotations-2.11.1.jar:/home/Game-Server/AgentServer/agentserver/lib/slf4j-api-1.7.6.jar:/home/Game-Server/AgentServer/agentserver/lib/netty-all-4.1.11.Final-sources.jar:/home/Game-Server/AgentServer/agentserver/lib/jackson-databind-2.11.1.jar:/home/Game-Server/AgentServer/agentserver/lib/log4j-api-2.17.0.jar:/home/Game-Server/AgentServer/agentserver/lib/GameCore.jar:/home/Game-Server/AgentServer/agentserver/lib/log4j-core-2.17.0.jar:/home/Game-Server/AgentServer/agentserver/lib/mybatis-3.2.5.jar:/home/Game-Server/AgentServer/agentserver/lib/httpcore-nio-4.4.5.jar:/home/Game-Server/AgentServer/agentserver/lib/netty-all-4.1.11.Final.jar:/home/Game-Server/AgentServer/agentserver/lib/httpasyncclient-4.1.2.jar:/home/Game-Server/AgentServer/agentserver/lib/httpclient-4.5.8.jar:/home/Game-Server/AgentServer/agentserver/lib/PushJavaSDK.jar:/home/Game-Server/AgentServer/agentserver/lib/httpcore-4.4.4.jar:/home/Game-Server/AgentServer/agentserver/lib/commons-lang-2.5.jar:/home/Game-Server/AgentServer/agentserver/lib/druid-1.0.15.jar:/home/Game-Server/AgentServer/agentserver/lib/mysql-connector-java-8.0.27.jar:/home/Game-Server/AgentServer/agentserver/lib/jackson-core-2.11.1.jar:/home/Game-Server/AgentServer/agentserver/lib/log4j-1.2.17.jar:/home/Game-Server/AgentServer/agentserver/lib/commons-codec-1.9.jar:/home/Game-Server/AgentServer/agentserver/lib/protobuf-java-2.5.0.jar:/home/Game-Server/AgentServer/agentserver/lib/commons-logging-1.0.4.jar:bin]
+2026-08-15 18:25:24.777 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：1 脚本名：common.LoginUrl
+2026-08-15 18:25:24.779 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：3 脚本名：common.biqq.BiQQScript
+2026-08-15 18:25:24.780 INFO [Thread-2][ScriptAbstractManager.java:400] - 脚本id：2 脚本名：common.ipfind.IPFinderScript
+2026-08-15 18:25:25.525 INFO [Thread-2][IPFinderScript.java:122] - Начинается загрузка файла ip2region.bytes... ...
+2026-08-15 18:25:25.706 INFO [Thread-2][IPFinderScript.java:151] - Загрузка файла ip2region.bytes завершена, количество записей: 162899
+2026-08-15 18:25:26.241 INFO [nioEventLoopGroup-4-1][SocketServer.java:61] - HTTP-сервис входа监听3001成功！
+2026-08-15 18:25:26.243 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - agentserver监听3002成功！
+2026-08-15 18:35:00.596 INFO [Thread-7][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-15 18:35:00.597 INFO [Thread-7][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-15 18:35:00.597 INFO [Thread-7][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-15 18:35:00.597 INFO [Thread-7][LoginUrl.java:219] - Начинается проверка скрипта для аккаунта FunCell: nagibqwe. userId не найден в кеше, выполняется чтение из базы данных...
+2026-08-15 18:35:00.953 INFO [Thread-7][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-15 18:35:00.955 ERROR [Thread-7][LoginUrl.java:259] - Время проверки входа превышено. Аккаунт: nagibqwe, время проверки: 359
+2026-08-15 18:35:00.955 ERROR [Thread-7][ReqLoginHandler.java:31] - ReqLoginHandler deal long time:360
+2026-08-15 18:35:02.294 INFO [nioEventLoopGroup-3-1][ClientHandlerAdapter.java:58] - /164.138.251.76:33784 Соединение закрыто!
+2026-08-15 18:35:17.156 INFO [nioEventLoopGroup-5-1][HttpChannelImpl.java:130] - back http result success!
+2026-08-15 18:40:26.355 ERROR [nioEventLoopGroup-3-2][ClientHandlerAdapter.java:68] - /175.6.54.21:42582 Удалённое соединение закрыто ClientHandlerAdapter!
+2026-08-15 18:40:28.086 INFO [nioEventLoopGroup-3-2][ClientHandlerAdapter.java:58] - /175.6.54.21:42582 Соединение закрыто!

@@ -60,7 +60,7 @@ public class LoginServerManager {
     }
 
     public void init(Dao dao, Dao loginDao, Dao loginLogDao) {
-        log.info("初始化登录服务器相关信息...");
+        log.info("Инициализация информации о LoginServer...");
         this.dao = dao;
         this.loginDao = loginDao;
         this.loginLogDao = loginLogDao;
@@ -71,11 +71,11 @@ public class LoginServerManager {
         reloadChannels();
         List<Server> loginList = dao.query(Server.class, Cnd.where("serverType", "=", "2"));
         if (loginList == null || loginList.isEmpty()) {
-            log.error("登录服配置不存在！！！");
+            log.error("Конфигурация сервера входа отсутствует!!!");
             return;
         }
         if (loginList.size() > 1) {
-            log.error("存在多个登录服配置！！！");
+            log.error("Обнаружено несколько конфигураций сервера входа!!!");
         }
         loginServer = loginList.get(0);
     }

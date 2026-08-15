@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('ИзменитьНастройки пополнения')" />
+    <th:block th:include="include :: header('Редактировать настройки пополнения')" />
     <th:block th:include="include :: footer" />
     <script th:inline="javascript">
         var rechargeTableName = "";
@@ -15,115 +15,115 @@
         <form class="form-horizontal m" id="form-rechargeItem-edit" th:object="${rechargeItem}">
             <!--<input name="goodsId" th:field="*{goodsId}" type="hidden">-->
             <div class="form-group">
-                <label class="col-sm-3 control-label">ID пополнения：</label>
+                <label class="col-sm-3 control-label">ID пополнения:</label>
                 <div class="col-sm-8">
                     <input name="goodsId" th:field="*{goodsId}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Внутренний ID конфигурации：</label>
+                <label class="col-sm-3 control-label">Внутренний ID конфигурации:</label>
                 <div class="col-sm-8">
                     <input name="goodsSystemCfgId" th:field="*{goodsSystemCfgId}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">商品名字描述：</label>
+                <label class="col-sm-3 control-label">Название товара:</label>
                 <div class="col-sm-8">
                     <input name="goodsName" th:field="*{goodsName}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Название канала：</label>
+                <label class="col-sm-3 control-label">Название канала:</label>
                 <div class="col-sm-8">
                     <input name="goodsPayChannel" th:field="*{goodsPayChannel}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Платёжный канал：</label>
+                <label class="col-sm-3 control-label">Платёжный канал:</label>
                 <div class="col-sm-8">
                     <input name="goodsPayType" th:field="*{goodsPayType}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Тип пополнения：</label>
+                <label class="col-sm-3 control-label">Тип пополнения:</label>
                 <div class="col-sm-8">
                     <input name="goodsType" th:field="*{goodsType}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Подтип пополнения：</label>
+                <label class="col-sm-3 control-label">Подтип пополнения:</label>
                 <div class="col-sm-8">
                     <input name="goodsSubtype" th:field="*{goodsSubtype}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Количество пополнений：</label>
+                <label class="col-sm-3 control-label">Количество пополнений:</label>
                 <div class="col-sm-8">
                     <input name="goodsLimit" th:field="*{goodsLimit}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">ID отображаемой иконки：</label>
+                <label class="col-sm-3 control-label">ID отображаемой иконки:</label>
                 <div class="col-sm-8">
                     <input name="goodsIcon" th:field="*{goodsIcon}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">URL изображения товара：</label>
+                <label class="col-sm-3 control-label">URL изображения товара:</label>
                 <div class="col-sm-8">
                     <input name="goodsurl" th:field="*{goodsurl}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">充值档位对应消耗的真实货币：</label>
+                <label class="col-sm-3 control-label">Реальная валюта для пополнения:</label>
                 <div class="col-sm-8">
                     <textarea name="goodsPrice" class="form-control">[[*{goodsPrice}]]</textarea>
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">充值计费点：</label>
+                <label class="col-sm-3 control-label">Точка биллинга:</label>
                 <div class="col-sm-8">
                     <input name="goodsPricePoint" th:field="*{goodsPricePoint}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">界面默认显示的货币 例如:THB：</label>
+                <label class="col-sm-3 control-label">Валюта отображаемая в интерфейсе (например: THB):</label>
                 <div class="col-sm-8">
                     <input name="goodsShowPrice" th:field="*{goodsShowPrice}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Награда за пополнение：</label>
+                <label class="col-sm-3 control-label">Награда за пополнение:</label>
                 <div class="col-sm-8">
                     <input name="goodsReward" th:field="*{goodsReward}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Множитель награды：</label>
+                <label class="col-sm-3 control-label">Множитель награды:</label>
                 <div class="col-sm-8">
                     <input name="goodsMultiple" th:field="*{goodsMultiple}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Дополнительная награда：</label>
+                <label class="col-sm-3 control-label">Дополнительная награда:</label>
                 <div class="col-sm-8">
                     <input name="goodsExtraReward" th:field="*{goodsExtraReward}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Количество дополнительных наград：</label>
+                <label class="col-sm-3 control-label">Количество дополнительных наград:</label>
                 <div class="col-sm-8">
                     <input name="goodsExtraRewardLimit" th:field="*{goodsExtraRewardLimit}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">是否计入到游戏累充活动：</label>
+                <label class="col-sm-3 control-label">Учитывать в накопительных акциях:</label>
                 <div class="col-sm-8">
                     <input name="isTotalRecharge" th:field="*{isTotalRecharge}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">是否增加VIP经验：</label>
+                <label class="col-sm-3 control-label">Увеличивать VIP-опыт:</label>
                 <div class="col-sm-8">
                     <input name="totalVipPower" th:field="*{totalVipPower}" class="form-control" type="text">
                 </div>
@@ -155,7 +155,7 @@
                         var document = $(window.parent.document);
                         // console.log($(window.parent.document));
                         if (data.ok){
-                            $.modal.msgSuccess("ИзменитьУспешно");
+                            $.modal.msgSuccess("Изменено успешно");
                             parent.$.table.refresh("rechargeItemData");
                             parent.$.table.refresh("rechargeItemData3");
                             parent.$.table.refresh("rechargeItemLog");
@@ -165,7 +165,7 @@
                                 $.modal.close();
                             },1000);
                         }else {
-                            $.modal.alertError("ИзменитьОшибка");
+                            $.modal.alertError("Ошибка изменения");
                         }
 
                         $.modal.closeLoading();

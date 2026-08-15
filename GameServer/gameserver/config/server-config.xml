@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- serverType字段服务器类型：0表示测试服，1表示正式游戏服，4表示跨服 -->
+<!-- Тип сервера (serverType): 0 — тестовый, 1 — боевой/игровой, 4 — кросс-серверный -->
 <server>
     <db-game
             url="jdbc:mysql://127.0.0.1:3306/tzj_game?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"

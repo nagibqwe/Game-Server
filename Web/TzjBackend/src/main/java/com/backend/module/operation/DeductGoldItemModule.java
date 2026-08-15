@@ -49,44 +49,44 @@ public class DeductGoldItemModule {
 
         Dblog dbLog = dao.fetch(Dblog.class, Cnd.where("serverId", "=", sid));
         if (dbLog == null) {
-            return Toolkit.outResult(false, "服务器DB连接信息获取失败");
+            return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверной БД");
         }
 
-        //检查角色ID
+        // Проверка ID персонажа
         String sqlStr = "SELECT roleId,userId FROM $table WHERE roleId = @roleId";
         List<RoleState> roles = queryRoleState(dbLog, sqlStr, deductItem.getRoleId());
         if (roles.isEmpty()) {
-            return Toolkit.outResult(false, "没有找到此角色ID");
+            return Toolkit.outResult(false, "ID персонажа не найден");
         }
         if (roles.get(0).getIsDelete() != 0) {
-            return Toolkit.outResult(false, "此角色已删除");
+            return Toolkit.outResult(false, "Этот персонаж уже удалён");
         }
         try {
             deductItem.setDedTime(new Date());
             deductItem.setSendUser(user.getName());
             deductItem.setIsDelete(0);
-            //发送消息到GameServer
+            // Отправка сообщения на GameServer
             Server server = ServerListManager.getInstance().getServer(serverId);
             if (server == null) {
-                return Toolkit.outResult(false, "服务器连接信息获取失败");
+                return Toolkit.outResult(false, "Не удалось получить информацию о подключении к серверу");
             }
             NutMap resultMap = GameServerRequestUtil.gmDeductItemopt(server, deductItem);
-            //得到实际扣除的数量
+            // Получение фактического количества списанных предметов
             int realCount = Integer.parseInt(resultMap.get("data").toString());
             deductItem.setRealCount(realCount);
             String prompt;
             if (resultMap.getBoolean("ok")) {
-                prompt = "操作成功！";
+                prompt = "Операция выполнена успешно!";
                 dao.insert(deductItem);
             } else {
-                prompt = "操作失败！";
+                prompt = "Ошибка операции!";
             }
-            log.error("道具扣除：sid=" + serverId + ",roleId=" + deductItem.getRoleId() + ",操作结果:" + resultMap.getString("msg"));
-            BackendLogUtil.getInstance().log(request, "删除角色(roleIds=" + deductItem.getRoleId() + ")"  + deductItem.getRealCount() + "个道具");
+            log.error("Списание предметов: sid=" + serverId + ", roleId=" + deductItem.getRoleId() + ", результат: " + resultMap.getString("msg"));
+            BackendLogUtil.getInstance().log(request, "Удаление персонажа (roleIds=" + deductItem.getRoleId() + ")" + deductItem.getRealCount() + " предметов");
             return Toolkit.outResult(resultMap.getBoolean("ok"), prompt);
         } catch (Exception e) {
             log.error(e);
-            return Toolkit.outResult(false, "扣除失败");
+            return Toolkit.outResult(false, "Ошибка списания");
         }
     }
 
@@ -121,7 +121,3 @@ public class DeductGoldItemModule {
         return sql.getList(RoleState.class);
     }
 }
-
-
-
-

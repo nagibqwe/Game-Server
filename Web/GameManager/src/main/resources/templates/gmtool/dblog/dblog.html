@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('日志库列表列表')" />
+    <th:block th:include="include :: header('Список журналов')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -11,16 +11,16 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>Название сервера：</label>
+                                <label>Название сервера:</label>
                                 <input type="text" name="serverName"/>
                             </li>
                             <li>
-                                <label>Платформа：</label>
+                                <label>Платформа:</label>
                                 <input type="text" name="groupName"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                             </li>
                         </ul>
                     </div>
@@ -32,7 +32,7 @@
                     <i class="fa fa-plus"></i> Добавить
                 </a>
                 <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:dblog:edit">
-                    <i class="fa fa-edit"></i> Изменить
+                    <i class="fa fa-edit"></i> Редактировать
                 </a>
                 <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:dblog:remove">
                     <i class="fa fa-remove"></i> Удалить
@@ -59,13 +59,13 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "日志库列表",
+                modalName: "Список журналов",
                 columns: [{
                     checkbox: true
                 },
                 {
                     field: 'id',
-                    title: 'id',
+                    title: 'ID',
                     visible: false
                 },
                 {
@@ -82,7 +82,7 @@
                     field: 'type',
                     title: 'Тип',
                     formatter:function (value,row,index) {
-                        return "1[日志库]"
+                        return "1 [База данных журналов]"
                     }
                 },
                 {
@@ -111,7 +111,7 @@
                 },
                 {
                     field: 'serverIdList',
-                    title: 'Список объединения'
+                    title: 'Список объединённых серверов'
                 },
                 {
                     field: 'isHeFu',
@@ -144,18 +144,18 @@
                 },
                 {
                     field: 'isDeleted',
-                    title: '是否生效',
+                    title: 'Активен',
                     formatter:function (value,row,index) {
                         if (value == 0){
-                            return "有效"
+                            return "Активен"
                         }else {
-                            return "无效"
+                            return "Неактивен"
                         }
                     }
                 },
                 // {
                 //     field: 'serverOpenTime',
-                //     title: '开服时间'
+                //     title: 'Время открытия сервера'
                 // },
                 {
                     title: 'Действия',

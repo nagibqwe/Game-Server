@@ -1,39 +1,39 @@
-# 数据源配置
+# Конфигурация источников данных
 spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
         druid:
-            # GM后台数据源
+            # Источник данных GM-админки
             master:
                 url: jdbc:mysql://127.0.0.1:3306/tzj_gm?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username: root
                 password: 4512kek4512
-            # 统计数据源
-            stat: # 统计库数据源
+            # Источник данных статистики
+            stat: # Источник данных статистики
                  url: jdbc:mysql://127.0.0.1:3306/tzj_stat_log?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                  username: root
                  password: 4512kek4512
-             # 登陆逻辑服数据源
+             # Источник данных логического сервера входа
             login:
                 url: jdbc:mysql://127.0.0.1:3306/tzj_login?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username: root
                 password: 4512kek4512
-            # 初始连接数
+            # Начальное количество соединений
             initialSize: 5
-            # 最小连接池数量
+            # Минимальное количество соединений в пуле
             minIdle: 10
-            # 最大连接池数量
+            # Максимальное количество соединений в пуле
             maxActive: 20
-            # 配置获取连接等待超时的时间
+            # Максимальное время ожидания получения соединения
             maxWait: 60000
-            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+            # Интервал проверки на необходимость закрытия простаивающих соединений (в миллисекундах)
             timeBetweenEvictionRunsMillis: 60000
-            # 配置一个连接在池中最小生存的时间，单位是毫秒
+            # Минимальное время жизни соединения в пуле (в миллисекундах)
             minEvictableIdleTimeMillis: 300000
-            # 配置一个连接在池中最大生存的时间，单位是毫秒
+            # Максимальное время жизни соединения в пуле (в миллисекундах)
             maxEvictableIdleTimeMillis: 900000
-            # 配置检测连接是否有效
+            # Проверка активности соединения
             validationQuery: SELECT 1 FROM DUAL
             testWhileIdle: true
             testOnBorrow: false
@@ -42,16 +42,16 @@ spring:
                 enabled: true
             statViewServlet:
                 enabled: true
-                # 设置白名单，不填则允许所有访问
+                # Белый список IP (если не заполнен — доступ разрешён всем)
                 allow:
                 url-pattern: /druid/*
-                # 控制台管理用户名和密码
+                # Имя пользователя и пароль для входа в консоль управления
                 login-username: root
                 login-password: 4512kek4512
             filter:
                 stat:
                     enabled: true
-                    # 慢SQL记录
+                    # Запись медленных SQL-запросов
                     log-slow-sql: true
                     slow-sql-millis: 1000
                     merge-sql: true

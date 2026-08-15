@@ -140,25 +140,25 @@ public class RechargeCountsStatisticModule {
         String rechargeTimesName = "";
         switch (counts) {
             case 1:
-                rechargeTimesName = "1次";
+                rechargeTimesName = "1 раз";
                 break;
             case 2:
-                rechargeTimesName = "2次";
+                rechargeTimesName = "2 раза";
                 break;
             case 5:
-                rechargeTimesName = "3~5次";
+                rechargeTimesName = "3~5 раз";
                 break;
             case 10:
-                rechargeTimesName = "6~10次";
+                rechargeTimesName = "6~10 раз";
                 break;
             case 20:
-                rechargeTimesName = "11~20次";
+                rechargeTimesName = "11~20 раз";
                 break;
             case 30:
-                rechargeTimesName = "21~30次";
+                rechargeTimesName = "21~30 раз";
                 break;
             case 31:
-                rechargeTimesName = "31次以上";
+                rechargeTimesName = "31 раз и более";
                 break;
         }
         return rechargeTimesName;

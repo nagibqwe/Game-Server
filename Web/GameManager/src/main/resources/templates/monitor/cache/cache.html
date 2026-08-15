@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('缓存监控')" />
+    <th:block th:include="include :: header('Мониторинг кэша')" />
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content">
@@ -11,7 +11,7 @@
                 <div class="col-sm-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>缓存列表</h5>
+                            <h5>Список кэшей</h5>
                             <div class="ibox-tools">
                                 <a href="javascript:getCacheNames()"><i class="fa fa-refresh"></i></a>
                             </div>
@@ -21,7 +21,7 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>缓存名称</th>
+                                        <th>Имя кэша</th>
                                         <th>Действия</th>
                                     </tr>
                                 </thead>
@@ -29,7 +29,7 @@
                                     <tr th:fragment="fragment-cache-names" th:each="cacheName, stat : ${cacheNames}">
                                         <td>[[${stat.index + 1}]]</td>
                                         <td style="word-wrap:break-word;word-break:break-all;" th:onclick="getCacheKeys([[${cacheName}]])">[[${cacheName}]]</td>
-                                        <td style="width: 50px"><a href="#" th:onclick="clearCacheName([[${cacheName}]])" title="清空"><i class="fa fa-trash-o text-danger"></i></a></td>
+                                        <td style="width: 50px"><a href="#" th:onclick="clearCacheName([[${cacheName}]])" title="Очистить"><i class="fa fa-trash-o text-danger"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -39,7 +39,7 @@
                 <div class="col-sm-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>键名列表</h5>
+                            <h5>Список ключей</h5>
                             <div class="ibox-tools">
                                 <a href="javascript:getCacheKeys('', true)"><i class="fa fa-refresh"></i></a>
                             </div>
@@ -49,7 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>缓存键名</th>
+                                        <th>Ключ кэша</th>
                                         <th>Действия</th>
                                     </tr>
                                 </thead>
@@ -57,7 +57,7 @@
                                     <tr th:fragment="fragment-cache-kyes" th:each="cacheKey, stat : ${cacheKyes}">
                                         <td>[[${stat.index + 1}]]</td>
                                         <td style="word-wrap:break-word;word-break:break-all;" th:onclick="getCacheValue([[${cacheName}]], [[${cacheKey}]])">[[${cacheKey}]]</td>
-                                        <td style="width: 50px"><a href="#" th:onclick="clearCacheKey([[${cacheName}]], [[${cacheKey}]])" title="清空"><i class="fa fa-trash-o text-danger"></i></a></td>
+                                        <td style="width: 50px"><a href="#" th:onclick="clearCacheKey([[${cacheName}]], [[${cacheKey}]])" title="Очистить"><i class="fa fa-trash-o text-danger"></i></a></td>
                                     </tr>
                                 </tbody>
                                 </div>
@@ -68,28 +68,28 @@
                 <div class="col-sm-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>缓存内容</h5>
+                            <h5>Содержимое кэша</h5>
                             <div class="ibox-tools">
-                                <a href="javascript:clearAll()"><i class="fa fa-refresh"></i> 清理全部</a>
+                                <a href="javascript:clearAll()"><i class="fa fa-refresh"></i> Очистить всё</a>
                             </div>
                         </div>
                         <div class="ibox-content">
-	                        <div class="row" id="cacheValue">
-	                            <div class="col-sm-12" th:fragment="fragment-cache-value">
-	                                <div class="form-group">
-	                                    <label>缓存名称：</label>
-	                                    <input type="text" class="form-control" th:value="${cacheName}">
-	                                </div>
-	                                <div class="form-group">
-	                                    <label>缓存键名：</label>
-	                                    <input type="text"class="form-control" th:value="${cacheKey}">
-	                                </div>
-	                                <div class="form-group">
-	                                    <label>缓存内容：</label>
-	                                    <textarea class="form-control" style="height: 100px">[[${cacheValue}]]</textarea>
-	                                </div>
-	                            </div>
-	                        </div>
+                            <div class="row" id="cacheValue">
+                                <div class="col-sm-12" th:fragment="fragment-cache-value">
+                                    <div class="form-group">
+                                        <label>Имя кэша:</label>
+                                        <input type="text" class="form-control" th:value="${cacheName}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ключ кэша:</label>
+                                        <input type="text"class="form-control" th:value="${cacheKey}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Содержимое кэша:</label>
+                                        <textarea class="form-control" style="height: 100px">[[${cacheValue}]]</textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,13 +110,13 @@ function getCacheNames() {
         },
         success: function(data) {
             $("#cacheNames").html(data);
-            $.modal.msgSuccess("刷新缓存列表成功");
+            $.modal.msgSuccess("Список кэшей обновлён успешно");
         }
     });
 }
 
 function getCacheKeys(cacheName, isMsg) {
-	var _cacheName = $.common.isNotEmpty(cacheName) ? cacheName : $("#cacheName").val();
+    var _cacheName = $.common.isNotEmpty(cacheName) ? cacheName : $("#cacheName").val();
     $.ajax({
         type: "post",
         url: prefix + "/getKeys",
@@ -128,7 +128,7 @@ function getCacheKeys(cacheName, isMsg) {
             $("#cacheKyes").html(data);
             $("#cacheName").val(_cacheName);
             if (isMsg) {
-                $.modal.msgSuccess("刷新键名列表成功");
+                $.modal.msgSuccess("Список ключей обновлён успешно");
             }
         }
     });
@@ -150,35 +150,35 @@ function getCacheValue(cacheName, cacheKey) {
 }
 
 function clearCacheName(cacheName){
-	$.post(prefix + "/clearCacheName", {cacheName: cacheName}, function(result) {
-		if (result.code == web_status.SUCCESS) {
-			$.modal.msgSuccess("清理缓存[" + cacheName + "]成功")
-			getCacheKeys(cacheName);
+    $.post(prefix + "/clearCacheName", {cacheName: cacheName}, function(result) {
+        if (result.code == web_status.SUCCESS) {
+            $.modal.msgSuccess("Кэш [" + cacheName + "] очищен успешно")
+            getCacheKeys(cacheName);
         } else {
             $.modal.msgError(result.msg);
         }
-	});
+    });
 }
 
 function clearCacheKey(cacheName, cacheKey) {
-	$.post(prefix + "/clearCacheKey", {cacheName: cacheName, cacheKey: cacheKey}, function(result) {
-		if (result.code == web_status.SUCCESS) {
-			$.modal.msgSuccess("清理缓存[" + cacheKey + "]成功")
-			getCacheKeys(cacheName);
+    $.post(prefix + "/clearCacheKey", {cacheName: cacheName, cacheKey: cacheKey}, function(result) {
+        if (result.code == web_status.SUCCESS) {
+            $.modal.msgSuccess("Ключ [" + cacheKey + "] очищен успешно")
+            getCacheKeys(cacheName);
         } else {
             $.modal.msgError(result.msg);
         }
-	});
+    });
 }
 
 function clearAll(){
-	$.get(prefix + "/clearAll", function(result) {
-		if (result.code == web_status.SUCCESS) {
-			$.modal.msgSuccess("清理缓存成功")
+    $.get(prefix + "/clearAll", function(result) {
+        if (result.code == web_status.SUCCESS) {
+            $.modal.msgSuccess("Все кэши очищены успешно")
         } else {
             $.modal.msgError(result.msg);
         }
-	});
+    });
 }
 </script>
 </html>

@@ -195,7 +195,7 @@ public class ParamUtil {
         if (map.containsKey(Integer.valueOf(paraname))) {
             value = (String) map.get(Integer.valueOf(paraname));
         } else {
-            value = "未知" + paraname;
+            value = "Неизвестный параметр: " + paraname;
         }
         return value;
     }

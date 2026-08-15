@@ -79,7 +79,7 @@ public class DAUStatisticModule {
                     roleLoginHefuTableMap = QueryUtil.getInstance().getHefuTable(value, ROLELOGINLOG, sdf.parse(s + " 00:00:00"), sdf.parse(s + " 23:59:59"));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return Toolkit.outResult(false, "查询数据异常，serverId：" + value);
+                    return Toolkit.outResult(false, "Ошибка при запросе данных, serverId: " + value);
                 }
                 for (String key : roleLoginHefuTableMap.keySet()) {
                     List<String> tableList = roleLoginHefuTableMap.get(key);

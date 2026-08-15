@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('集物兑换')" />
+    <th:block th:include="include :: header('Обмен коллекционных предметов')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -23,11 +23,11 @@
             var rewardAddBtn = 'showRewardModel' + count_01;
             count_01 += 1;
             html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">兑换次数:</label>' +
+                '<label class="input-group-addon">Количество обменов:</label>' +
                 '<input type="text" class="form-control" id="exChangeTimes" name="exChangeTimes" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:180px;">' +
-                '<label class="input-group-addon">兑换价格:</label>' +
+                '<label class="input-group-addon">Цена обмена:</label>' +
                 '<input type="text" class="form-control" id="exChangePrice" name="exChangePrice" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:220px;">' +
-                '<label class="input-group-addon">兑换道具表:</label>' +
+                '<label class="input-group-addon">Таблица обмена:</label>' +
                 '<span class="input-group-btn" >' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Фиксированная группа наград" id="' + rewardAddBtn +
                 '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
@@ -42,7 +42,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除配置
+        // Удаление конфигурации
         function delExChangeConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -59,10 +59,10 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>集物兑换<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Обмен коллекционных предметов<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="集物道具ID：填入item表中的ID<br/>
-                                活动关闭兑换货币：活动关闭时未兑换完毕的活动道具，系统进行回收"></span></h3>
+                              data-content="ID коллекционного предмета: введите ID из таблицы предметов<br/>
+                                Валюта возврата при завершении события: неиспользованные предметы события возвращаются системой"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -71,16 +71,16 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11 ">
-                            <legend>集物配置表</legend>
+                            <legend>Таблица конфигурации предметов</legend>
                             <div class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">
-                                <label class="input-group-addon ">集物道具ID:</label>
+                                <label class="input-group-addon ">ID коллекционного предмета:</label>
                                 <input type="text" class="form-control " id="exChangeMaterialsId" name="exChangeMaterialsId" onkeyup="value=value.replace(/\D/g,'')" style="max-width:390px;">
-                                <label class="input-group-addon ">活动关闭兑换货币:</label>
+                                <label class="input-group-addon ">Валюта возврата при закрытии события:</label>
                                 <select id="returnMoneyCoinType" name="returnMoneyCoinType" onchange="" class="form-control heightSet">
                                     <option value="3">Монеты</option>
                                     <option value="12">Серебряные слитки</option>
                                 </select>
-                                <label class="input-group-addon">兑换数量:</label>
+                                <label class="input-group-addon">Количество:</label>
                                 <input type="text" class="form-control " id="returnMoneyCoinNum" name="returnMoneyCoinNum" onkeyup="value=value.replace(/\D/g,'')" style="max-width:120px;">
                             </div>
                         </div>
@@ -88,10 +88,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>兑换配置表</legend>
+                            <legend>Таблица конфигурации обмена</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup">
-                                    <label class="input-group-addon">兑换配置:</label>
+                                    <label class="input-group-addon">Конфигурация обмена:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn"
                                             onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" id="cfgCount1" value="0">

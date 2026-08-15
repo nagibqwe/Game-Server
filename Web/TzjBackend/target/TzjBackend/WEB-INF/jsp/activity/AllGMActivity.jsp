@@ -72,22 +72,22 @@
                     $("#loadingmodal").modal('hide');
                     html += "<tbody>";
                     html += "<tr>";
-                    html += "<th>活动ID</th>";
-                    html += "<th>活动类型</th>";
-                    html += "<th>活动名称</th>";
-                    html += "<th>活动时间</th>";
-                    html += "<th>活动条件列表</th>";
-                    html += "<th>活动奖励列表</th>";
-                    html += "<th>活动封顶(重复)次数</th>";
-                    html += "<th>活动面板显示文字</th>";
-                    html += "<th>活动面板图片资源ID</th>";
-                    html += "<th>活动标签位置</th>";
-                    html += "<th>活动在标签中的排序(标签内活动排序)</th>";
-                    html += "<th>活动状态</th>";
-                    html += "<th>活动发布平台标识</th>";
-                    html += "<th>活动要发布到的区服列表</th>";
-                    html += "<th>活动发布成功的区服列表</th>";
-                    html += "<th>活动是否被删除</th>";
+                    html += "<th>ID активности</th>";
+                    html += "<th>Тип активности</th>";
+                    html += "<th>Название активности</th>";
+                    html += "<th>Время активности</th>";
+                    html += "<th>Список условий</th>";
+                    html += "<th>Список наград</th>";
+                    html += "<th>Макс. количество активаций</th>";
+                    html += "<th>Текст на панели активности</th>";
+                    html += "<th>ID ресурса изображения</th>";
+                    html += "<th>Позиция вкладки</th>";
+                    html += "<th>Порядок сортировки во вкладке</th>";
+                    html += "<th>Статус активности</th>";
+                    html += "<th>Платформа публикации</th>";
+                    html += "<th>Список серверов для публикации</th>";
+                    html += "<th>Список успешно опубликованных серверов</th>";
+                    html += "<th>Активность удалена</th>";
                     html += "</tr>";
 
                     var activitydata = data.list;
@@ -108,7 +108,7 @@
                         html += "<td>" + activitydata[i].platform + "</td>";
                         html += "<td>" + activitydata[i].toSidList + "</td>";
                         html += "<td>" + activitydata[i].okSidList + "</td>";
-                        html += "<td>" + (activitydata[i].isDeleted == 0 ? "否" : "是") + "</td>";
+                        html += "<td>" + (activitydata[i].isDeleted == 0 ? "Нет" : "Да") + "</td>";
                         html += "</tr>";
                     }
                     html += "</tbody>";
@@ -123,13 +123,13 @@
                         itemTexts: function (type, page) {
                             switch (type) {
                                 case "first":
-                                    return "首页";
+                                    return "Первая";
                                 case "prev":
-                                    return "上一页";
+                                    return "Назад";
                                 case "next":
-                                    return "下一页";
+                                    return "Вперед";
                                 case "last":
-                                    return "末页";
+                                    return "Последняя";
                                 case "page":
                                     return page;
                             }
@@ -142,11 +142,11 @@
 
         function getstate(state) {
             if (state === "0") {
-                return "未验证";
+                return "Не проверено";
             } else if (state === "1") {
-                return "已验证";
+                return "Проверено";
             } else if (state === "2") {
-                return "已发布";
+                return "Опубликовано";
             }
         }
 
@@ -167,7 +167,7 @@
 <div class="container-fluid">
     <form action="#" class="well form-inline">
         <input type="text" id="id" placeholder="活动ID"/>
-        <label class="label">活动类型</label>
+        <label class="label">Вид ивента</label>
         <select id="actType">
             <option value="0" selected="selected">${msg['activity.all']}</option>
             <option value="1">${msg['activity.recharge.common']}</option>
@@ -203,10 +203,10 @@
             <option value="102">${msg['activity.submitMaterial']}</option>
         </select>
 
-        <input id="activeName" name="activeName" type="text" id="serverId" placeholder="活动名称"/>
+        <input id="activeName" name="activeName" type="text" placeholder="Название активности"/>
 
         <!-- 时间段 -->
-        <label class="label">活动时间</label>
+        <label class="label">Время проведения</label>
         <div class="input-append date" id="start">
             <input style="width: 120px;" name="beginTime" size="20" type="text" readonly>
             <span class="add-on"><i class="icon-th"></i></span>

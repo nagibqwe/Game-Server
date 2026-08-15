@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('充值金额分布统计列表')" />
+    <th:block th:include="include :: header('Статистика распределения сумм пополнений')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -24,9 +24,9 @@
 
             <div class="btn-group-sm" id="toolbar" role="group">
                 <div class="btn-group">
-                    <button name="group_tab" class="btn btn-primary" id="pay_level_stat" type="button">充值档位分布</button>
-                    <button name="group_tab" class="btn btn-white" id="pay_day_stat" type="button">每日充值金额</button>
-                    <button name="group_tab" class="btn btn-white" id="payGoodIdslStat" type="button">礼包id分布</button>
+                    <button name="group_tab" class="btn btn-primary" id="pay_level_stat" type="button">Распределение по суммам пополнений</button>
+                    <button name="group_tab" class="btn btn-white" id="pay_day_stat" type="button">Ежедневная сумма пополнений</button>
+                    <button name="group_tab" class="btn btn-white" id="payGoodIdslStat" type="button">Распределение по наборам</button>
 
                 </div>
             </div>
@@ -68,17 +68,17 @@
         function initPayLevelStatTable() {
             var options = {
                 url: prefix + "/payLevelStat",
-                modalName: "充值金额分布统计",
+                modalName: "Статистика распределения сумм пополнений",
                 firstLoad:false,
                 pagination: false,
                 showExport:true,
                 columns: [{
                     field: 'totalFee',
-                    title: 'Сумма',
+                    title: 'Сумма пополнения',
                 }
                     ,{
                         field: 'count',
-                        title: 'Количество',
+                        title: 'Количество игроков',
                     }]
             };
             $.table.init(options);
@@ -88,19 +88,19 @@
         function initPayDayStatTable() {
             var options = {
                 url: prefix + "/payDaylStat",
-                modalName: "充值金额分布统计",
+                modalName: "Статистика распределения сумм пополнений",
                 firstLoad:false,
                 pagination: false,
                 showExport:true,
                 columns: [{
                         field: 'time',
-                        title: '时间段',
+                        title: 'Период',
                     },{
                         field: 'amountSum',
-                        title: 'Сумма',
+                        title: 'Общая сумма',
                     },{
                         field: 'countSum',
-                        title: 'Количество',
+                        title: 'Количество игроков',
                      }
                      ]
             };
@@ -111,22 +111,22 @@
         function initPayGoodIdslStatTable() {
             var options = {
                 url: prefix + "/payGoodIdslStat",
-                modalName: "充值礼包分布",
+                modalName: "Распределение по наборам",
                 firstLoad:false,
                 pagination: false,
                 showExport:true,
                 columns: [{
                     field: 'goodsId',
-                    title: '礼包id',
+                    title: 'ID набора',
                 },{
                     field: 'goodsName',
-                    title: '礼包名称',
+                    title: 'Название набора',
                 },{
                     field: 'count',
-                    title: 'Количество',
+                    title: 'Количество покупок',
                 },{
                     field: 'countRate',
-                    title: '占总人数比例',
+                    title: 'Доля от общего числа игроков',
                     formatter: function (value) {
                         return value+"%";
                      }

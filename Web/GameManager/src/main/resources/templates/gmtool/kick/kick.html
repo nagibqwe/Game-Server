@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('踢人下线')" />
+    <th:block th:include="include :: header('Принудительный выход')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
         <div class="row">
-            <!--角色信息查询-->
+            <!-- Поиск информации о персонаже -->
             <div class="col-sm-12 search-collapse">
                 <div th:replace="common/query_game_role.html"></div>
             </div>
@@ -15,7 +15,7 @@
             <div class="col-sm-12 search-collapse">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>踢人下线</h5>
+                        <h5>Принудительный выход</h5>
                     </div>
                     <div class="ibox-content">
                         <form id="kickForm" class="form-horizontal m-t" method="post">
@@ -59,10 +59,10 @@
             $("#tableDiv").hide();
         });
 
-        //账号封禁
+        // Принудительный выход
         function kick() {
             if (!$('#kickForm').validate().form()) {
-                $.modal.msgError("Ошибка проверки");
+                $.modal.msgError("Ошибка валидации");
                 return;
             }
 

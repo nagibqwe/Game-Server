@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('运营活动模板列表')" />
+    <th:block th:include="include :: header('Список шаблонов событий')" />
     <th:block th:include="include :: footer" />
 
     <script>
         $(function () {
-            loadActivityFestivalType();//Тип праздника
-            loadActivityTag();//标签
+            loadActivityFestivalType(); // Тип праздника
+            loadActivityTag(); // Теги
             loadFestivalTypeAddTag();
         });
-        
+
         function loadActivityTemplate() {
             var data = new FormData();
             data.append('activityTemplateFile', $("#activityTemplateFile").prop('files')[0]);
@@ -43,75 +43,75 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>模版名称：</label>
+                                <label>Название шаблона:</label>
                                 <input type="text" name="templateName"/>
                             </li>
                             <li>
-                                <label>Тип события：</label>
+                                <label>Тип события:</label>
                                 <select id="type" name="type" onchange="" class="span2">
-                                    <option value="1">活跃活动(1)</option>
-                                    <option value="2">每日充值(2)</option>
-                                    <option value="3">每日登陆(3)</option>
-                                    <option value="4">限购礼包(4)</option>
-                                    <option value="5">天帝宝库(5)</option>
-                                    <option value="6">累计充值(6)</option>
-                                    <option value="7">累计消耗(7)</option>
-                                    <option value="8">集物兑换(8)</option>
-                                    <option value="9">团购活动(9)</option>
-                                    <option value="10">招财猫(10)</option>
-                                    <option value="11">首领狂欢(11)</option>
-                                    <option value="12">庆典任务(12)</option>
-                                    <option value="13">节日集字(13)</option>
-                                    <option value="14">节日特惠(14)</option>
-                                    <option value="15">连续累充(15)</option>
-                                    <option value="16">限时商城(16)</option>
-                                    <option value="17">节日礼包(17)</option>
-                                    <option value="18">积分排名(18)</option>
-                                    <option value="19">节日许愿(19)</option>
-                                    <option value="20">FB分享(20)</option>
-                                    <option value="21">连续累充2(21)</option>
-                                    <option value="22">节日祝福(22)</option>
-                                    <option value="23">掷骰子(23)</option>
-                                    <option value="24">外观展示(24)</option>
-                                    <option value="25">登陆展示(25)</option>
-                                    <option value="26">聚宝盆(26)</option>
-                                    <option value="27">幸运砸蛋(27)</option>
-                                    <option value="28">幸运宝玉(28)</option>
-                                    <option value="29">方泽探宝(29)</option>
-                                    <option value="-1" selected>所有</option>
+                                    <option value="1">Активные события (1)</option>
+                                    <option value="2">Ежедневное пополнение (2)</option>
+                                    <option value="3">Ежедневный вход (3)</option>
+                                    <option value="4">Лимитированные наборы (4)</option>
+                                    <option value="5">Сокровищница Небесного Императора (5)</option>
+                                    <option value="6">Накопительное пополнение (6)</option>
+                                    <option value="7">Накопительное потребление (7)</option>
+                                    <option value="8">Обмен коллекционных предметов (8)</option>
+                                    <option value="9">Групповая покупка (9)</option>
+                                    <option value="10">Кот удачи (10)</option>
+                                    <option value="11">Праздник боссов (11)</option>
+                                    <option value="12">Праздничные задания (12)</option>
+                                    <option value="13">Праздничный сбор символов (13)</option>
+                                    <option value="14">Праздничные предложения (14)</option>
+                                    <option value="15">Непрерывное накопление пополнений (15)</option>
+                                    <option value="16">Временный магазин (16)</option>
+                                    <option value="17">Праздничные наборы (17)</option>
+                                    <option value="18">Рейтинг очков (18)</option>
+                                    <option value="19">Праздничные желания (19)</option>
+                                    <option value="20">Поделиться в Facebook (20)</option>
+                                    <option value="21">Непрерывное накопление 2 (21)</option>
+                                    <option value="22">Праздничные поздравления (22)</option>
+                                    <option value="23">Бросок кубика (23)</option>
+                                    <option value="24">Демонстрация внешности (24)</option>
+                                    <option value="25">Демонстрация входа (25)</option>
+                                    <option value="26">Сундук сокровищ (26)</option>
+                                    <option value="27">Счастливый разбиватель яиц (27)</option>
+                                    <option value="28">Счастливый нефрит (28)</option>
+                                    <option value="29">Поиск сокровищ Фанцзэ (29)</option>
+                                    <option value="-1" selected>Все</option>
                                 </select>
                             </li>
                             <li>
-                                <label>Тип праздника：</label>
+                                <label>Тип праздника:</label>
                                 <select id="subType2" name="subType" onchange="" class="span2">
 
                                 </select>
                             </li>
                             <li>
-                                <label>标签：</label>
+                                <label>Теги:</label>
                                 <select id="tag2" name="tag" onchange="" class="span2">
 
                                 </select>
                             </li>
                             <li>
-                                <label>Автопубликация при открытии：</label>
+                                <label>Автопубликация при открытии:</label>
                                 <select id="autoSend" name="autoSend" onchange="" class="span2">
                                     <option value="1">Да</option>
                                     <option value="0">Нет</option>
-                                    <option value="-1" selected>所有</option>
+                                    <option value="-1" selected>Все</option>
                                 </select>
                             </li>
                             <li>
-                                <label>Событие нового сервера：</label>
+                                <label>Событие нового сервера:</label>
                                 <select id="isOpenServer" name="isOpenServer" onchange="" class="span2">
                                     <option value="1">Да</option>
                                     <option value="0">Нет</option>
-                                    <option value="-1" selected>所有</option>
+                                    <option value="-1" selected>Все</option>
                                 </select>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                             </li>
                         </ul>
                     </div>
@@ -156,7 +156,7 @@
                 },
                 {
                     field: 'templateName',
-                    title: 'Название'
+                    title: 'Название шаблона'
                 },
                 {
                     field: 'createTime',
@@ -168,7 +168,7 @@
                 },
                 {
                     field: 'subType',
-                    title: '活动子类型'
+                    title: 'Подтип события'
                 },
                 {
                     field: 'minLv',
@@ -196,35 +196,35 @@
                 },
                 {
                     field: 'openServerOffsetBegin',
-                    title: '距离开服多少天'
+                    title: 'Дней с открытия сервера'
                 },
                 {
                     field: 'openServerOffset',
-                    title: '活动天数'
+                    title: 'Длительность события (дней)'
                 },
                 {
                     field: 'beginTime',
-                    title: '活动开始时间'
+                    title: 'Время начала события'
                 },
                 {
                     field: 'endTime',
-                    title: '活动结束时间'
+                    title: 'Время окончания события'
                 },
                 {
                     field: 'openServerRecordOffsetBegin',
-                    title: '记录距离开服多少天'
+                    title: 'Начало записи с дня открытия сервера'
                 },
                 {
                     field: 'openServerRecordOffset',
-                    title: '活动记录持续天数'
+                    title: 'Длительность записи (дней)'
                 },
                 {
                     field: 'startRecordTime',
-                    title: '开始记录时间'
+                    title: 'Время начала записи'
                 },
                 {
                     field: 'endRecordTime',
-                    title: '结束记录时间'
+                    title: 'Время окончания записи'
                 },
                 {
                     field: 'autoSend',
@@ -236,12 +236,12 @@
                 },
                 {
                     field: 'custom',
-                    title: '自定义参数',
+                    title: 'Пользовательские параметры',
                     formatter:formatterValue
                 },
                 {
                     field: 'description',
-                    title: '模板描述'
+                    title: 'Описание шаблона'
                 },
                 {
                     title: 'Действия',
@@ -257,17 +257,17 @@
         });
     </script>
 </body>
-<!-- 导入区域 -->
+<!-- Область импорта -->
 <div id="activityTemplateLoadModel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3>Шаблоны событийДанные</h3>
+                <h3>Импорт данных шаблонов событий</h3>
             </div>
             <div class="modal-body">
                 <input id="activityTemplateFile" type="file" name="activityTemplateFile"/>
-                <label>提示：仅允许导入“xls”或“xlsx”格式文件！</label>
+                <label>Примечание: разрешены только файлы форматов "xls" или "xlsx"!</label>
             </div>
             <div class="modal-footer">
                 <input type="button" value="Закрыть" class="btn" data-dismiss="modal" aria-hidden="true"/>

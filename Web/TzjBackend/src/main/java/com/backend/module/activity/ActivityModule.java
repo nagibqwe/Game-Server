@@ -134,8 +134,8 @@ public class ActivityModule {
         try {
             Map<String, String[]> paramMap = request.getParameterMap();
             flag = ActivityManager.getInstance().addActivity(activity, paramMap);
-            BackendLogUtil.getInstance().log(request, "添加活动,活动ID:" + activity.getId() +
-                    ",活动名字:" + activity.getName());
+            BackendLogUtil.getInstance().log(request, "Добавление активности. ID активности: " + activity.getId() +
+                    ", название: " + activity.getName());
         } catch (Exception e) {
             log.error(e);
             return Toolkit.outResult(false, e.getMessage());
@@ -236,14 +236,14 @@ public class ActivityModule {
         for (Integer actId : actIdSet) {
             Activity activity = dao.fetch(Activity.class, Cnd.where("id", "=", actId));
             if (activity == null) {
-                log.error("发布活动时未找到活动数据,id：" + actId);
+                log.error("Активность не найдена при публикации. ID: " + actId);
                 continue;
             }
             //同类型活动无法进行覆盖操作
             if(cover == 1){
                 int type = activity.getType()*1000+activity.getSubType();
                 if(typeSet.contains(type)){
-                    return Toolkit.outResult(false, "同类型活动无法进行批量的覆盖操作，相同类型："+type+",活动类型："+activity.getType()+",节日类型："+activity.getSubType());
+                    return Toolkit.outResult(false, "Нельзя выполнять массовую перезапись активностей одного типа. Тип: " + type + ", тип активности: " + activity.getType() + ", тип праздника: " + activity.getSubType());
                 }
                 typeSet.add(type);
 
@@ -261,7 +261,7 @@ public class ActivityModule {
             Server server = dao.fetch(Server.class, Cnd.where("groupName", "=", platform)
                     .and("serverId", "=", serverId).and("isDeleted", "=", 0));
             if (server == null) {
-                log.error("发布活动时服务器获取失败！platform=" + platform + ", sid=" + serverId);
+                log.error("Не удалось получить сервер при публикации активности! platform=" + platform + ", sid=" + serverId);
                 serverFailedList.put(serverId, actIdList);
                 continue;
             }
@@ -281,7 +281,7 @@ public class ActivityModule {
                     }
                     activityFailList.get(n).add(serverId);
                 }
-                log.error(serverId + "服,活动[" + failIds + "]发布失败！,失败的活动：" + JsonUtils.toJSONString(failIds));
+                log.error("Сервер " + serverId + ": публикация активностей [" + failIds + "] не удалась! Список неудачных активностей: " + JsonUtils.toJSONString(failIds));
             } else {
                 serverSuccessList.put(serverId, actIdList);
             }
@@ -312,32 +312,32 @@ public class ActivityModule {
                 activity.setState(operationType);
             }
 
-            BackendLogUtil.getInstance().log(request, "发布活动，活动编号：" + activity.getId() +
-                    "，活动名字：" + activity.getName() + ",发布全部列表:" + JsonUtils.toJSONString(toSidList) +
-                    "失败列表：" + JsonUtils.toJSONString(activityFailList.get(activity.getId())) +
-                    "成功列表：" + JsonUtils.toJSONString(okSidList));
+            BackendLogUtil.getInstance().log(request, "Публикация активности. ID активности: " + activity.getId() +
+                    ", название: " + activity.getName() + ", полный список публикации: " + JsonUtils.toJSONString(toSidList) +
+                    ", список неудач: " + JsonUtils.toJSONString(activityFailList.get(activity.getId())) +
+                    ", список успехов: " + JsonUtils.toJSONString(okSidList));
         }
         dao.update(actList);
 
         //返回发布结果信息
-        StringBuilder promptInfo = new StringBuilder("返回结果: \n");
+        StringBuilder promptInfo = new StringBuilder("Результат:\n");
         if (serverFailedList.size() > 0) {
-            promptInfo.append("失败列表:\n");
-            promptInfo.append("失败个数：").append(serverFailedList.size())
-                    .append("，失败区服：").append(JsonUtils.toJSONString(serverFailedList.keySet())).append("\n");
+            promptInfo.append("Список неудач:\n");
+            promptInfo.append("Количество неудач: ").append(serverFailedList.size())
+                .append(", серверы с ошибкой: ").append(JsonUtils.toJSONString(serverFailedList.keySet())).append("\n");
             for (Integer serverId : serverFailedList.keySet()) {
-                promptInfo.append("失败区服：").append(serverId)
-                        .append("，未成功发布活动：").append(JsonUtils.toJSONString(serverFailedList.get(serverId))).append("\n");
+                promptInfo.append("Сервер с ошибкой: ").append(serverId)
+                        .append(", неопубликованные активности: ").append(JsonUtils.toJSONString(serverFailedList.get(serverId))).append("\n");
             }
         }
         if (serverSuccessList.size() > 0) {
-            promptInfo.append("成功列表:\n");
-            promptInfo.append("是否覆盖: ").append(cover==1?"是\n":"否\n");
-            promptInfo.append("成功个数：").append(serverSuccessList.size())
-                    .append("，成功区服：").append(JsonUtils.toJSONString(serverSuccessList.keySet())).append("\n");
+            promptInfo.append("Список успехов:\n");
+            promptInfo.append("Перезапись: ").append(cover == 1 ? "Да\n" : "Нет\n");
+            promptInfo.append("Количество успехов: ").append(serverSuccessList.size())
+                    .append(", успешные серверы: ").append(JsonUtils.toJSONString(serverSuccessList.keySet())).append("\n");
             for (Integer serverId : serverSuccessList.keySet()) {
-                promptInfo.append("成功区服：").append(serverId)
-                        .append("，成功发布活动：").append(JsonUtils.toJSONString(serverSuccessList.get(serverId))).append("\n");
+                promptInfo.append("Успешный сервер: ").append(serverId)
+                        .append(", успешно опубликованные активности: ").append(JsonUtils.toJSONString(serverSuccessList.get(serverId))).append("\n");
             }
         }
         return Toolkit.outResult(true, promptInfo.toString());
@@ -392,7 +392,7 @@ public class ActivityModule {
         for (Integer serverId : serverActIds.keySet()) {
             Server server = dao.fetch(Server.class, Cnd.where("serverId", "=", serverId).and("isDeleted", "=", 0));
             if (server == null) {
-                log.error("删除活动时服务器获取失败！sid=" + serverId);
+                log.error("Не удалось получить сервер при удалении активности! sid=" + serverId);
                 serverFailedList.put(serverId, serverActIds.get(serverId));
                 continue;
             }
@@ -411,7 +411,7 @@ public class ActivityModule {
                     }
                     activityFailList.get(n).add(serverId);
                 }
-                log.error(serverId + "服,活动[" + failIds + "]删除失败！,失败的活动：" + JsonUtils.toJSONString(failIds));
+                log.error("Сервер " + serverId + ": удаление активностей [" + failIds + "] не удалось! Список неудачных активностей: " + JsonUtils.toJSONString(failIds));
             } else {
                 serverSuccessList.put(serverId, serverActIds.get(serverId));
             }
@@ -426,26 +426,26 @@ public class ActivityModule {
                 successActList.add(activity.getId());
 
             }
-            BackendLogUtil.getInstance().log(request, "删除活动，活动编号：" + activity.getId() +
-                    "，活动名字：" + activity.getName() + " 失败列表：" + JsonUtils.toJSONString(activityFailList.get(activity.getId())));
+            BackendLogUtil.getInstance().log(request, "Удаление активности. ID активности: " + activity.getId() +
+                    ", название: " + activity.getName() + ", список неудач: " + JsonUtils.toJSONString(activityFailList.get(activity.getId())));
         }
         dao.update(actList);
 
         //返回删除活动结果信息
-        StringBuilder promptInfo = new StringBuilder("结果: \n");
-        promptInfo.append("成功删除活动：").append(JsonUtils.toJSONString(successActList));
+        StringBuilder promptInfo = new StringBuilder("Результат:\n");
+        promptInfo.append("Успешно удалённые активности: ").append(JsonUtils.toJSONString(successActList));
         if (activityFailList.size() > 0) {
-            promptInfo.append("失败列表:\n");
-            promptInfo.append("失败个数：").append(activityFailList.size()).append("\n");
+            promptInfo.append("Список неудач:\n");
+    promptInfo.append("Количество неудач: ").append(activityFailList.size()).append("\n");
             for (Integer serverId : serverFailedList.keySet()) {
-                promptInfo.append("失败区服：").append(serverId)
-                        .append("，未删除活动：").append(JsonUtils.toJSONString(serverFailedList.get(serverId))).append("\n");
+                promptInfo.append("Сервер с ошибкой: ").append(serverId)
+                        .append(", не удалённые активности: ").append(JsonUtils.toJSONString(serverFailedList.get(serverId))).append("\n");
             }
         }
         if (serverSuccessList.size() > 0) {
-            promptInfo.append("成功列表:\n");
-            promptInfo.append("成功个数：").append(serverSuccessList.size())
-                    .append("，对应区服：").append(JsonUtils.toJSONString(serverSuccessList.keySet())).append("\n");
+            promptInfo.append("Список успехов:\n");
+            promptInfo.append("Количество успехов: ").append(serverSuccessList.size())
+                    .append(", соответствующие серверы: ").append(JsonUtils.toJSONString(serverSuccessList.keySet())).append("\n");
         }
         BackendLogUtil.getInstance().log(request,promptInfo.toString());
         return Toolkit.outResult(true, promptInfo.toString());
@@ -475,7 +475,7 @@ public class ActivityModule {
             }
             activity.setState(ActivityManager.VALID);
             int result = dao.update(activity);
-            BackendLogUtil.getInstance().log(Mvcs.getReq(), "验证活动" + activity.getId() + "[" + activity.getName() + "]\t 结果=" + (result == 1));
+            BackendLogUtil.getInstance().log(Mvcs.getReq(), "Проверка активности " + activity.getId() + " [" + activity.getName() + "] \t Результат: " + (result == 1));
         }
         return Toolkit.outResult(true, msg.get("activity.msg.validatesuccess"));
     }
@@ -535,7 +535,7 @@ public class ActivityModule {
         if (result < 1){
             return Toolkit.outResult(false);
         }
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "更新活动模板id:" + activity.getId());
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "Обновление шаблона активности. ID: " + activity.getId());
         return Toolkit.outResult(true);
     }
 
@@ -546,7 +546,7 @@ public class ActivityModule {
     @POST
     public Object deleteTemplate(int id) {
         dao.delete(ActivityTemplate.class, id);
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "删除活动模板id:" + id);
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "Удаление шаблона активности. ID: " + id);
         return Toolkit.outResult(true);
     }
 
@@ -605,29 +605,29 @@ public class ActivityModule {
         List<Map<String, String>> listMap = new ArrayList<>();
         Activity activity = list.get(0);
         Map<String,String> map = new LinkedHashMap<>();
-        map.put("活动名称",activity.getName());
-        map.put("活动备注",activity.getDescription());
-        map.put("活动类型",String.valueOf(activity.getType()));
-        map.put("节日类型",String.valueOf(activity.getSubType()));
-        map.put("最小等级",String.valueOf(activity.getMinLv()));
-        map.put("最大等级",String.valueOf(activity.getMaxLv()));
-        map.put("活动标签",String.valueOf(activity.getTag()));
-        map.put("标签排序",String.valueOf(activity.getSort()));
-        map.put("时间类型",String.valueOf(activity.getTimeType()));
-        map.put("开服天数",String.valueOf(activity.getOpenServerOffsetBegin()));
-        map.put("持续天数",String.valueOf(activity.getOpenServerOffset()));
-        map.put("开始时间",activity.getBeginTime());
-        map.put("结束时间",activity.getEndTime());
-        map.put("记录开始天数",String.valueOf(activity.getOpenServerRecordOffsetBegin()));
-        map.put("记录持续天数",String.valueOf(activity.getOpenServerRecordOffset()));
-        map.put("记录开始时间",activity.getStartRecordTime());
-        map.put("记录结束时间",activity.getEndRecordTime());
-        map.put("开服自动发布",String.valueOf(activity.getAutoSend()));
-        map.put("是否是新服活动",String.valueOf(activity.getIsOpenServer()));
-        map.put("数据",activity.getCustom());
-//        map.put("活动状态", String.valueOf(activity.getState()));
-//        map.put("发布列表", activity.getPlatform());
-//        map.put("成功列表", activity.getOkSidList());
+        map.put("Название активности", activity.getName());
+        map.put("Описание активности", activity.getDescription());
+        map.put("Тип активности", String.valueOf(activity.getType()));
+        map.put("Тип праздника", String.valueOf(activity.getSubType()));
+        map.put("Минимальный уровень", String.valueOf(activity.getMinLv()));
+        map.put("Максимальный уровень", String.valueOf(activity.getMaxLv()));
+        map.put("Тег активности", String.valueOf(activity.getTag()));
+        map.put("Порядок тега", String.valueOf(activity.getSort()));
+        map.put("Тип времени", String.valueOf(activity.getTimeType()));
+        map.put("Дней с открытия сервера (начало)", String.valueOf(activity.getOpenServerOffsetBegin()));
+        map.put("Дней с открытия сервера (продолжительность)", String.valueOf(activity.getOpenServerOffset()));
+        map.put("Время начала", activity.getBeginTime());
+        map.put("Время окончания", activity.getEndTime());
+        map.put("Дней записи (начало)", String.valueOf(activity.getOpenServerRecordOffsetBegin()));
+        map.put("Дней записи (продолжительность)", String.valueOf(activity.getOpenServerRecordOffset()));
+        map.put("Время начала записи", activity.getStartRecordTime());
+        map.put("Время окончания записи", activity.getEndRecordTime());
+        map.put("Автопубликация при открытии сервера", String.valueOf(activity.getAutoSend()));
+        map.put("Активность для нового сервера", String.valueOf(activity.getIsOpenServer()));
+        map.put("Данные", activity.getCustom());
+    //  map.put("Статус активности", String.valueOf(activity.getState()));
+    //  map.put("Список публикации", activity.getPlatform());
+    //  map.put("Список успехов", activity.getOkSidList());
         listMap.add(map);
         List<String> list1 = Arrays.asList("name","description","type","subType","minLv","maxLv","tag","sort","timeType","openServerOffsetBegin","openServerOffset","beginTime","endTime","openServerRecordOffsetBegin","openServerRecordOffset","startRecordTime","endRecordTime","autoSend","isOpenServer","custom");
         try (OutputStream out = response.getOutputStream()) {
@@ -802,10 +802,10 @@ public class ActivityModule {
             }
             if (activities.size() > 0){
                 List<Activity> result = dao.insert(activities);
-                StringBuilder promptInfo = new StringBuilder("导入运营活动数据: \n");
+                StringBuilder promptInfo = new StringBuilder("Импорт данных операционных активностей:\n");
                 for (Activity activity:activities){
-                    promptInfo.append("  活动名：").append(activity.getName())
-                            .append("，活动类型：").append(JsonUtils.toJSONString(activity.getType())).append("\n");
+                    promptInfo.append("  Название активности: ").append(activity.getName())
+                            .append(", тип активности: ").append(JsonUtils.toJSONString(activity.getType())).append("\n");
                 }
                 BackendLogUtil.getInstance().log(request, String.valueOf(promptInfo));
                 return Toolkit.outResult(true, "import activity file, saved " + result.size() + " record!");
@@ -826,16 +826,16 @@ public class ActivityModule {
     public Object sendOpenServerActivity(int serverId) throws ParseException {
         Server server = dao.fetch(Server.class, Cnd.where("serverId","=",serverId));
         if(server == null){
-            log.error("发送开服活动时，服务器未找到，serverId="+serverId);
-            return Toolkit.outResult(false, "发送开服活动时，服务器未找到，serverId="+serverId);
+            log.error("При отправке активности открытия сервера сервер не найден. serverId=" + serverId);
+            return Toolkit.outResult(false, "При отправке активности открытия сервера сервер не найден. serverId=" + serverId);
         }
 
         Cnd cnd = Cnd.where("isDeleted", "=", 0).
                 and("autoSend","=","1");
         List<Activity> activities = dao.query(Activity.class, cnd);
         if(activities.isEmpty()){
-            log.error("发送开服活动时，没有找到开服活动");
-            return Toolkit.outResult(false, "发送开服活动时，没有找到开服活动");
+            log.error("При отправке активности открытия сервера активность не найдена.");
+            return Toolkit.outResult(false, "При отправке активности открытия сервера активность не найдена.");
         }
 
         Iterator<Activity> iterator = activities.iterator();
@@ -849,14 +849,14 @@ public class ActivityModule {
         try {
             NutMap resultMap = GameServerRequestUtil.gmBatchSendActMess(server, activities);
             if (!resultMap.getBoolean("ok")) {
-                log.error(serverId + "服,发布开服活动失败！操作结果：" + resultMap.get("data").toString());
+                log.error("Сервер " + serverId + ": публикация активности открытия сервера не удалась! Результат: " + resultMap.get("data").toString());
             } else {
-                return Toolkit.outResult(true, serverId + "服,发布开服活动成功！");
+                return Toolkit.outResult(true, "Сервер " + serverId + ": активность открытия сервера опубликована успешно!");
             }
         }catch (Exception e){
-            log.error(serverId + "服,发布活动失败！error："+e.getMessage());
-            return Toolkit.outResult(false, serverId + "服,发布活动失败！error："+e.getMessage());
+            log.error("Сервер " + serverId + ": ошибка публикации активности! Ошибка: " + e.getMessage());
+            return Toolkit.outResult(false, "Сервер " + serverId + ": ошибка публикации активности! Ошибка: " + e.getMessage());
         }
-        return Toolkit.outResult(false, serverId + "服,发布开服活动失败！");
+        return Toolkit.outResult(false, "Сервер " + serverId + ": публикация активности открытия сервера не удалась!");
     }
 }

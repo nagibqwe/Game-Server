@@ -1,0 +1,73 @@
+2026-08-15 18:35:16.531 INFO [recvWorker-4][:] - 超值折扣延期 id=10801 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.534 INFO [recvWorker-4][:] - 超值折扣延期 id=10802 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.534 INFO [recvWorker-4][:] - 超值折扣延期 id=10803 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.534 INFO [recvWorker-4][:] - 超值折扣延期 id=10901 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.534 INFO [recvWorker-4][:] - 超值折扣延期 id=10902 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.535 INFO [recvWorker-4][:] - 超值折扣延期 id=10903 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.535 INFO [recvWorker-4][:] - 超值折扣延期 id=10701 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.535 INFO [recvWorker-4][:] - 超值折扣延期 id=10702 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:35:16.535 INFO [recvWorker-4][:] - 超值折扣延期 id=10703 player= player: 281873304391993039 f:7998 n: 解半云 p:{210.16031,99.460106} mMId: 102599 i: 1 e: 500
+2026-08-15 18:43:56.551 INFO [RechargeManager][:] - order: GM_ID_1786808636536 src:1 recharge data:{"order_no":"GM_ID_1786808636536","role_id":281873304391993039,"goods_id":0,"goods_type":"0","goods_ext":"","total_fee":100000,"item_id":0,"game_money":10000,"ext_param":"gm","sign_type":"1","sign":"","goods_name":"GM充值","money_type":"CNY","trade_status":0,"totalRecharge":10000,"totalVipPower":10000} struct:Recharge{order_no='GM_ID_1786808636536', role_id=281873304391993039, goods_id=0, goods_type='0', goods_ext='', total_fee=100000, item_id=0, game_money=10000, ext_param='gm', sign_type='1', sign='', goods_code='null', goods_name='GM充值', money_type='CNY', notify_time='null', notify_id='null', trade_no='null', trade_status='0', totalRecharge='10000', totalVipPower='10000'}
+2026-08-15 18:43:56.664 INFO [RechargeManager][:] - order: GM_ID_1786808636536 player:(角色名:解半云 ID:281873304391993039) add success
+2026-08-15 18:43:56.864 INFO [RechargeManager][:] - (角色名:解半云 ID:281873304391993039) 不知名的订单，后台有，配置表中没有：GM_ID_1786808636536
+2026-08-15 18:43:56.968 ERROR [RechargeManager][:] - java.lang.NullPointerException
+java.lang.NullPointerException: null
+	at common.recharge.RechargeScript.getMoney(RechargeScript.java:1173) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.callBack(RechargeScript.java:555) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.Reward(RechargeScript.java:255) ~[GameServer.jar:?]
+	at com.game.recharge.handler.RechargeRewardHandler.action(RechargeRewardHandler.java:28) [GameServer.jar:?]
+	at game.core.command.CommandProcessor.doCommand(CommandProcessor.java:148) [GameCore.jar:?]
+	at game.core.command.CommandProcessor$1.run(CommandProcessor.java:129) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 18:46:57.318 INFO [RechargeManager][:] - order: GM_ID_1786808817318 src:1 recharge data:{"order_no":"GM_ID_1786808817318","role_id":281873304391993039,"goods_id":0,"goods_type":"0","goods_ext":"","total_fee":1000000,"item_id":0,"game_money":200000,"ext_param":"gm","sign_type":"1","sign":"","goods_name":"GM充值","money_type":"CNY","trade_status":0,"totalRecharge":200000,"totalVipPower":200000} struct:Recharge{order_no='GM_ID_1786808817318', role_id=281873304391993039, goods_id=0, goods_type='0', goods_ext='', total_fee=1000000, item_id=0, game_money=200000, ext_param='gm', sign_type='1', sign='', goods_code='null', goods_name='GM充值', money_type='CNY', notify_time='null', notify_id='null', trade_no='null', trade_status='0', totalRecharge='200000', totalVipPower='200000'}
+2026-08-15 18:46:57.496 INFO [RechargeManager][:] - order: GM_ID_1786808817318 player:(角色名:解半云 ID:281873304391993039) add success
+2026-08-15 18:46:57.816 INFO [RechargeManager][:] - (角色名:解半云 ID:281873304391993039) 不知名的订单，后台有，配置表中没有：GM_ID_1786808817318
+2026-08-15 18:46:57.852 ERROR [RechargeManager][:] - java.lang.NullPointerException
+java.lang.NullPointerException: null
+	at common.recharge.RechargeScript.getMoney(RechargeScript.java:1173) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.callBack(RechargeScript.java:555) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.Reward(RechargeScript.java:255) ~[GameServer.jar:?]
+	at com.game.recharge.handler.RechargeRewardHandler.action(RechargeRewardHandler.java:28) [GameServer.jar:?]
+	at game.core.command.CommandProcessor.doCommand(CommandProcessor.java:148) [GameCore.jar:?]
+	at game.core.command.CommandProcessor$1.run(CommandProcessor.java:129) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 18:50:04.902 INFO [RechargeManager][:] - order: GM_ID_1786809004902 src:1 recharge data:{"order_no":"GM_ID_1786809004902","role_id":281873304391993039,"goods_id":0,"goods_type":"0","goods_ext":"","total_fee":12,"item_id":0,"game_money":12,"ext_param":"gm","sign_type":"1","sign":"","goods_name":"GM充值","money_type":"CNY","trade_status":0,"totalRecharge":12,"totalVipPower":12} struct:Recharge{order_no='GM_ID_1786809004902', role_id=281873304391993039, goods_id=0, goods_type='0', goods_ext='', total_fee=12, item_id=0, game_money=12, ext_param='gm', sign_type='1', sign='', goods_code='null', goods_name='GM充值', money_type='CNY', notify_time='null', notify_id='null', trade_no='null', trade_status='0', totalRecharge='12', totalVipPower='12'}
+2026-08-15 18:50:05.353 INFO [RechargeManager][:] - order: GM_ID_1786809004902 player:(角色名:解半云 ID:281873304391993039) add success
+2026-08-15 18:50:05.720 INFO [RechargeManager][:] - (角色名:解半云 ID:281873304391993039) 不知名的订单，后台有，配置表中没有：GM_ID_1786809004902
+2026-08-15 18:50:05.741 ERROR [RechargeManager][:] - java.lang.NullPointerException
+java.lang.NullPointerException: null
+	at common.recharge.RechargeScript.getMoney(RechargeScript.java:1173) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.callBack(RechargeScript.java:555) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.Reward(RechargeScript.java:255) ~[GameServer.jar:?]
+	at com.game.recharge.handler.RechargeRewardHandler.action(RechargeRewardHandler.java:28) [GameServer.jar:?]
+	at game.core.command.CommandProcessor.doCommand(CommandProcessor.java:148) [GameCore.jar:?]
+	at game.core.command.CommandProcessor$1.run(CommandProcessor.java:129) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-15 18:50:35.274 INFO [RechargeManager][:] - order: GM_ID_1786809035273 src:1 recharge data:{"order_no":"GM_ID_1786809035273","role_id":281873304391993039,"goods_id":0,"goods_type":"0","goods_ext":"","total_fee":13,"item_id":0,"game_money":100000000,"ext_param":"gm","sign_type":"1","sign":"","goods_name":"GM充值","money_type":"CNY","trade_status":0,"totalRecharge":100000000,"totalVipPower":100000000} struct:Recharge{order_no='GM_ID_1786809035273', role_id=281873304391993039, goods_id=0, goods_type='0', goods_ext='', total_fee=13, item_id=0, game_money=100000000, ext_param='gm', sign_type='1', sign='', goods_code='null', goods_name='GM充值', money_type='CNY', notify_time='null', notify_id='null', trade_no='null', trade_status='0', totalRecharge='100000000', totalVipPower='100000000'}
+2026-08-15 18:50:35.524 INFO [RechargeManager][:] - order: GM_ID_1786809035273 player:(角色名:解半云 ID:281873304391993039) add success
+2026-08-15 18:50:36.058 INFO [RechargeManager][:] - (角色名:解半云 ID:281873304391993039) 不知名的订单，后台有，配置表中没有：GM_ID_1786809035273
+2026-08-15 18:50:36.083 ERROR [RechargeManager][:] - java.lang.NullPointerException
+java.lang.NullPointerException: null
+	at common.recharge.RechargeScript.getMoney(RechargeScript.java:1173) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.callBack(RechargeScript.java:555) ~[GameServer.jar:?]
+	at common.recharge.RechargeScript.Reward(RechargeScript.java:255) ~[GameServer.jar:?]
+	at com.game.recharge.handler.RechargeRewardHandler.action(RechargeRewardHandler.java:28) [GameServer.jar:?]
+	at game.core.command.CommandProcessor.doCommand(CommandProcessor.java:148) [GameCore.jar:?]
+	at game.core.command.CommandProcessor$1.run(CommandProcessor.java:129) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]

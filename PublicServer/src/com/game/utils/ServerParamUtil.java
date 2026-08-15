@@ -128,13 +128,13 @@ public class ServerParamUtil {
         if (serverParamMap.containsKey(paramKey)) {
             serverParamMap.put(paramKey, paramValue);
             if (getServerParamDao().update(serverParam) == 0) {
-                logger.info(String.format("serverParamMap保存update错误！paramKey = %s", paramKey));
+                logger.info(String.format("Ошибка сохранения serverParamMap (update)! paramKey = %s", paramKey));
                 return 0;
             }
         } else {
             serverParamMap.put(paramKey, paramValue);
             if (getServerParamDao().insert(serverParam) == 0) {
-                logger.info(String.format("serverParamMap保存insert错误！paramKey = %s", paramKey));
+                logger.info(String.format("Ошибка сохранения serverParamMap (insert)! paramKey = %s", paramKey));
                 return 0;
             }
         }
@@ -166,7 +166,7 @@ public class ServerParamUtil {
                                 });
                         ServerParamUtil.groupCityInfos.putAll(groupCityInfos);
                     } catch (Exception e) {
-                        logger.error("八星阵图 城市信息 错误", e);
+                        logger.error("Ошибка данных городов формации Восьми Триграмм", e);
                     }
                 } else if (eightDiagramGroupInfo.equals(serverParam.getParamkey())) {
                     try {
@@ -175,7 +175,7 @@ public class ServerParamUtil {
                                 });
                         ServerParamUtil.groupWithServer.putAll(groupServerInfos);
                     } catch (Exception e) {
-                        logger.error("八星阵图 服务器组分配信息 错误", e);
+                        logger.error("Ошибка распределения серверов для формации Восьми Триграмм", e);
                     }
                 }
                 else if (saveServer.equals(serverParam.getParamkey())) {
@@ -185,7 +185,7 @@ public class ServerParamUtil {
                                 });
                         ServerMatchManager.infos.putAll(serverInfo);
                     } catch (Exception e) {
-                        logger.error("服务器列表", e);
+                        logger.error("Ошибка списка серверов", e);
                     }
                 } else if (guildBattleInfo.equals(serverParam.getParamkey())) {
                     try {
@@ -195,7 +195,7 @@ public class ServerParamUtil {
                                         });
                         ServerParamUtil.guildBattleInfoMap.putAll(guildInfo);
                     } catch (Exception e) {
-                        logger.error("公会战信息 错误", e);
+                        logger.error("Ошибка информации о битве гильдий", e);
                     }
                 } else if (peakSeasonKey.equals(serverParam.getParamkey())) {
                     peakSeason = Integer.parseInt(serverParam.getParamvalue());
@@ -209,12 +209,12 @@ public class ServerParamUtil {
                                 });
                         ServerMatchManager.gm_OperatingGroup.putAll(gm_OperatingGroup);
                     } catch (Exception e) {
-                        logger.error("gm_setServerMatchinfos 错误", e);
+                        logger.error("Ошибка gm_setServerMatchinfos", e);
                     }
                 }
             }
         }
-        logger.info("服务器参数加载成功！");
+        logger.info("Параметры сервера успешно загружены!");
         return true;
 
     }

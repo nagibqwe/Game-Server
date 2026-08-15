@@ -38,12 +38,11 @@ public class RankingListModule {
 
 	private static final String dataTimeFormatter = "yyyy-MM-dd HH:mm:ss";
 
-
     private static final ExecutorService executor = Executors.newCachedThreadPool();
 
     @At
 	@Ok("forward:${obj}")
-	@Filters(@By(type = MenuFilter.class,args={"USERMENUS","/noauthority.jsp"}))
+	@Filters(@By(type = MenuFilter.class, args={"USERMENUS","/noauthority.jsp"}))
 	public String getPage(int type, HttpServletRequest request) {
 		switch (type) {
 			case 2:
@@ -60,27 +59,27 @@ public class RankingListModule {
 	public Object getRank(int serverId, int rankType){
 		Server server = ServerListManager.getInstance().getServer(serverId);
 		if (server == null) {
-			log.error("服务器获取失败！sid=" + serverId);
+			log.error("Ошибка получения сервера! sid=" + serverId);
 			return Toolkit.outResult(false, Mvcs.getMessages(Mvcs.getReq()).get("log.serverfail"));
 		}
-		NutMap resultMap = GameServerRequestUtil.gmQueryRankList(server,rankType);
+		NutMap resultMap = GameServerRequestUtil.gmQueryRankList(server, rankType);
 
 		if (!resultMap.getBoolean("ok")) {
-			log.error(serverId + "排行榜获取失败！");
+			log.error(serverId + " — ошибка получения рейтинга!");
 			return Toolkit.outResult(false, resultMap.get("msg"));
 		}
-		List<LinkedHashMap<String,Object>> list= JsonUtils.parseObject(resultMap.get("data").toString(), new TypeReference<List<LinkedHashMap<String,Object>>>(){});
+		List<LinkedHashMap<String,Object>> list = JsonUtils.parseObject(resultMap.get("data").toString(), new TypeReference<List<LinkedHashMap<String,Object>>>(){});
 		List<RankListGrid> grids = new ArrayList<>();
-		for (LinkedHashMap<String,Object> linkedHashMap:list){
+		for (LinkedHashMap<String,Object> linkedHashMap : list){
 		    RankListGrid grid = new RankListGrid();
-            for(Map.Entry<String, Object> entry : linkedHashMap.entrySet()) {
+            for (Map.Entry<String, Object> entry : linkedHashMap.entrySet()) {
               if (entry.getKey().equals("rank")){
                   grid.setRank(String.valueOf(entry.getValue()));
-              }else if (entry.getKey().equals("roleId")){
+              } else if (entry.getKey().equals("roleId")){
                   grid.setRoleId(String.valueOf(entry.getValue()));
-              }else if (entry.getKey().equals("roleName")){
+              } else if (entry.getKey().equals("roleName")){
                   grid.setRoleName(String.valueOf(entry.getValue()));
-              }else if (entry.getKey().equals("rankData")){
+              } else if (entry.getKey().equals("rankData")){
                   grid.setRankData(String.valueOf(entry.getValue()));
               }
             }
@@ -94,7 +93,7 @@ public class RankingListModule {
 	public Object getRechargeRank(String[] serverId, String[] channelName, String startDate, String endDate, int type) {
         List<RechargeRankVo> list = new ArrayList<>();
         if (serverId == null || serverId.length == 0) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
         try {
             Date start = sdfhm.parse(startDate);
@@ -115,7 +114,7 @@ public class RankingListModule {
                 }
             }
             if (result.isEmpty()) {
-                return Toolkit.outResult(false, "无充值记录");
+                return Toolkit.outResult(false, "Нет записей о пополнениях");
             }
 
             Map<Object, List<Map<String, Object>>> tempMap;
@@ -133,15 +132,15 @@ public class RankingListModule {
                     vo.setRoleId(String.valueOf(obj.get("roleId")));
                     vo.setRoleName((String) obj.get("roleName"));
                     vo.setLevel(Integer.valueOf((String) obj.get("level")));
-                    vo.setSex(Integer.valueOf((String)obj.get("sex")));
-                    vo.setCareer(Integer.valueOf((String)obj.get("career")));
-                    vo.setRechargeGold(Integer.valueOf((String)obj.get("rechargeGold")));
-                    vo.setRemainGold(Integer.valueOf((String)obj.get("gold")));
+                    vo.setSex(Integer.valueOf((String) obj.get("sex")));
+                    vo.setCareer(Integer.valueOf((String) obj.get("career")));
+                    vo.setRechargeGold(Integer.valueOf((String) obj.get("rechargeGold")));
+                    vo.setRemainGold(Integer.valueOf((String) obj.get("gold")));
                     vo.setCreateTime(obj.get("createTime").toString());
-                    vo.setOnlineTime(Integer.valueOf((String)obj.get("onlineTime")));
+                    vo.setOnlineTime(Integer.valueOf((String) obj.get("onlineTime")));
                     Long lastLoginTime = Long.valueOf((String) obj.get("lastLoginTime"));
                     vo.setLastLoginTime(sdfhm.format(new Date(lastLoginTime * 1000)));
-                    vo.setCreateSid(Integer.valueOf((String)obj.get("createsid")));
+                    vo.setCreateSid(Integer.valueOf((String) obj.get("createsid")));
                     Stream<Integer> totalFee = mapList.stream().map(n -> Integer.valueOf(n.get("totalFee").toString()));
                     vo.setTotalRecharge(totalFee.reduce(0, Integer::sum));
                     Stream<Integer> totalFee1 = mapList.stream().map(n -> Integer.valueOf(n.get("totalFee").toString()));
@@ -158,7 +157,7 @@ public class RankingListModule {
             }
         } catch (Exception e) {
             log.error(e, e);
-            return Toolkit.outResult(false, "统计排行榜错误");
+            return Toolkit.outResult(false, "Ошибка статистики рейтинга");
         }
         list.sort(Comparator.comparingInt(RechargeRankVo::getTotalRecharge).reversed());
         return Toolkit.outResult(true, list);
@@ -183,5 +182,4 @@ public class RankingListModule {
         }
         return builder.toString();
     }
-
 }

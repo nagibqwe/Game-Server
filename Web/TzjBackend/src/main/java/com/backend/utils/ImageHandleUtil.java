@@ -49,7 +49,7 @@ public class ImageHandleUtil {
             }
         } catch (Exception e) {
             writeLog(playerID);
-            log.error(sdfs.format(new Date()) + "--图片上传异常");
+            log.error(sdfs.format(new Date()) + "--Ошибка загрузки изображения");
             return false;
         }
 
@@ -74,7 +74,7 @@ public class ImageHandleUtil {
         }
 
         FileWriter fw = null;
-        String writeDate = "时间:" + sdfs.format(new Date()) + "---" + "error:" + playerID + " 上传头像异常";
+        String writeDate = "Время: " + sdfs.format(new Date()) + " --- Ошибка загрузки аватара, игрок: " + playerID;
         try {
             //设置为:True,表示写入的时候追加数据
             fw = new FileWriter(file, true);
@@ -126,7 +126,7 @@ public class ImageHandleUtil {
             out.close();
             return true;
         } catch (Exception e) {
-            log.error("--图片缩减异常");
+            log.error("-- Ошибка сжатия изображения");
             return false;
         }
     }

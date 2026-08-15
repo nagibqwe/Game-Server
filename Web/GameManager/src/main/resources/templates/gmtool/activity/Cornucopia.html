@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('聚宝盆')" />
+    <th:block th:include="include :: header('Сундук сокровищ')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -29,7 +29,7 @@
                 if (i<num){
                     addShowGridSingle(obj);
                 }else {
-                    $("#addShowGridCfgBtn").attr("disabled", true);//设置不可点击
+                    $("#addShowGridCfgBtn").attr("disabled", true);// Установить недоступным
                     $("#addShowGridCfgBtn").style.backgroundColor="#555555";
                 }
             }
@@ -42,7 +42,7 @@
             var rewardInput = 'grids' + count;
             var rewardAddBtn = 'showAddItemModel' + count;
             var html = '<div name="cfg0" class="input-group saltIp" style="">' +
-                '<label class="input-group-addon">位置:'+count+'</label>' +
+                '<label class="input-group-addon">Позиция: '+count+'</label>' +
                 // '<input type="text" class="form-control" id="p_round" name="p_round" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:100px;">' +
                 '<label class="input-group-addon">Награда:</label>' +
                 // '<input type="text" class="form-control" id="g_reward" name="g_reward" style="max-width:auto;">' +
@@ -53,7 +53,7 @@
                 '<div class="hide"><input id="' + rewardInput + '" name="grids"/></div>' +
                 '</span>' +
                 // '<span class="input-group-btn">' +
-                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="删除" id="delGridGroup">' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" id="delGridGroup">' +
                 // '<span class="glyphicon glyphicon-minus"></span>' +
                 '</button>' +
                 '</span>' +
@@ -67,9 +67,9 @@
             var rewardAddBtn = 'showRewardModel' + count_01;
             count_01 += 1;
             html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">纯道具抽权重:</label>' +
+                '<label class="input-group-addon">Вес для предметного розыгрыша:</label>' +
                 '<input type="text" class="form-control" id="i_item_weight_big" name="i_item_weight_big" onkeyup="value=value.replace(/\\D/g,\'\')">' +
-                '<label class="input-group-addon">花金元宝抽权重:</label>' +
+                '<label class="input-group-addon">Вес для розыгрыша за золотые слитки:</label>' +
                 '<input type="text" class="form-control" id="i_gold_weight_big" name="i_gold_weight_big" onkeyup="value=value.replace(/\\D/g,\'\')">' +
                 '<label class="input-group-addon">Награда:</label>' +
                 '<span class="input-group-btn" >' +
@@ -80,7 +80,7 @@
                 '</span>' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
-                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Копировать" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
                 '</span>' +
                 '</div>';
             obj.insertAdjacentHTML('beforeBegin', html);
@@ -96,9 +96,9 @@
             var rewardAddBtn = 'showRewardModel2' + count_02;
             count_02 += 1;
             html = '<div name="cfg2" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">纯道具抽权重:</label>' +
+                '<label class="input-group-addon">Вес для предметного розыгрыша:</label>' +
                 '<input type="text" class="form-control" id="i_item_weight_one" name="i_item_weight_one" onkeyup="value=value.replace(/\\D/g,\'\')">' +
-                '<label class="input-group-addon">花金元宝抽权重:</label>' +
+                '<label class="input-group-addon">Вес для розыгрыша за золотые слитки:</label>' +
                 '<input type="text" class="form-control" id="i_gold_weight_one" name="i_gold_weight_one" onkeyup="value=value.replace(/\\D/g,\'\')">' +
                 '<label class="input-group-addon">Награда:</label>' +
                 '<span class="input-group-btn" >' +
@@ -109,7 +109,7 @@
                 '</span>' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delConfig2(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
-                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Копировать" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
                 '</span>' +
                 '</div>';
             obj.insertAdjacentHTML('beforeBegin', html);
@@ -125,9 +125,9 @@
             var rewardAddBtn = 'showRewardModel3' + count_03;
             count_03 += 1;
             html = '<div name="cfg3" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">纯道具抽权重:</label>' +
+                '<label class="input-group-addon">Вес для предметного розыгрыша:</label>' +
                 '<input type="text" class="form-control" id="i_item_weight_two" name="i_item_weight_two" onkeyup="value=value.replace(/\\D/g,\'\')">' +
-                '<label class="input-group-addon">花金元宝抽权重:</label>' +
+                '<label class="input-group-addon">Вес для розыгрыша за золотые слитки:</label>' +
                 '<input type="text" class="form-control" id="i_gold_weight_two" name="i_gold_weight_two" onkeyup="value=value.replace(/\\D/g,\'\')">' +
                 '<label class="input-group-addon">Награда:</label>' +
                 '<span class="input-group-btn" >' +
@@ -138,7 +138,7 @@
                 '</span>' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delConfig3(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
-                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Копировать" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
                 '</span>' +
                 '</div>';
             obj.insertAdjacentHTML('beforeBegin', html);
@@ -154,9 +154,9 @@
             var rewardAddBtn = 'showRewardModel4' + count_04;
             count_04 += 1;
             html = '<div name="cfg4" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">纯道具抽权重:</label>' +
+                '<label class="input-group-addon">Вес для предметного розыгрыша:</label>' +
                 '<input type="text" class="form-control" id="i_item_weight_three" name="i_item_weight_three" onkeyup="value=value.replace(/\\D/g,\'\')">' +
-                '<label class="input-group-addon">花金元宝抽权重:</label>' +
+                '<label class="input-group-addon">Вес для розыгрыша за золотые слитки:</label>' +
                 '<input type="text" class="form-control" id="i_gold_weight_three" name="i_gold_weight_three" onkeyup="value=value.replace(/\\D/g,\'\')">' +
                 '<label class="input-group-addon">Награда:</label>' +
                 '<span class="input-group-btn" >' +
@@ -167,7 +167,7 @@
                 '</span>' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delConfig4(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
-                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Копировать" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
                 '</span>' +
                 '</div>';
             obj.insertAdjacentHTML('beforeBegin', html);
@@ -183,9 +183,9 @@
             var rewardAddBtn = 'showRewardModel5' + count_05;
             count_05 += 1;
             html = '<div name="cfg5" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">累计领奖次数:</label>' +
+                '<label class="input-group-addon">Количество накопленных наград:</label>' +
                 '<input type="text" class="form-control" id="i_countReward_num" name="i_countReward_num" onkeyup="value=value.replace(/\\D/g,\'\')">' +
-                '<label class="input-group-addon">累计奖励:</label>' +
+                '<label class="input-group-addon">Накопительная награда:</label>' +
                 '<span class="input-group-btn" >' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Награда" id="' + rewardAddBtn +
                 '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
@@ -194,7 +194,7 @@
                 '</span>' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delConfig5(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
-                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Копировать" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
                 '</span>' +
                 '</div>';
             obj.insertAdjacentHTML('beforeBegin', html);
@@ -211,9 +211,9 @@
             var rewardAddBtn = 'showRewardModel8' + count_08;
             count_08 += 1;
             html = '<div name="cfg8" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">活跃值要求:</label>' +
+                '<label class="input-group-addon">Требуемое значение активности:</label>' +
                 '<input type="text" class="form-control" id="activeValue" name="activeValue" onkeyup="value=value.replace(/\\D/g,\'\')">' +
-                '<label class="input-group-addon">道具奖励:</label>' +
+                '<label class="input-group-addon">Награда предметами:</label>' +
                 '<span class="input-group-btn" >' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Награда" id="' + rewardAddBtn +
                 '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + rewardInput + ',' + rewardAddBtn + ')">' +
@@ -222,7 +222,7 @@
                 '</span>' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delConfig8(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
-                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="复制" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
+                // '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Копировать" id="copyGridGroup"><span class="glyphicon glyphicon-copy"></span></button>' +
                 '</span>' +
                 '</div>';
             obj.insertAdjacentHTML('beforeBegin', html);
@@ -248,7 +248,7 @@
             var minValue=Number($("#i_baodi_scope_min").val());
             var maxValue=Number($("#i_baodi_scope_max").val());
             if (minValue >= maxValue){
-                alert("最大值不能小于等于最小值！");
+                alert("Максимальное значение не может быть меньше или равно минимальному!");
                 flag = false;
             }
             return flag;
@@ -271,9 +271,9 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>聚宝盆<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Сундук сокровищ<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="在配置活动的时候活动名字,支持多语言展示,需要运营人员使用一下副文本进行填写: [CH]中文简体[/CH][EN]英文[/EN][TW]中文繁体[/TW][KR]韩文[/KR][VIE]越南[/VIE][TH]泰文[/TH][JP]日文[/JP]"></span></h3>
+                              data-content="При настройке события название события поддерживает многоязычное отображение. Используйте следующий синтаксис: [CH]Китайский (упрощ.)[/CH][EN]Английский[/EN][TW]Китайский (трад.)[/TW][KR]Корейский[/KR][VIE]Вьетнамский[/VIE][TH]Тайский[/TH][JP]Японский[/JP]"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -282,10 +282,10 @@
                     <div id="showGridGroup" class="col-lg-12 col-sm-12 col-md-12">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-11">
-                            <legend>客户端奖励展示</legend>
+                            <legend>Отображение наград на клиентской стороне</legend>
                             <fieldset>
                                 <div class="input-group" id="showGridCfg">
-                                    <label class="input-group-addon">奖励展示:</label>
+                                    <label class="input-group-addon">Демонстрация наград:</label>
                                     <input id="gridCount" type="hidden" value="">
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addShowGridCfgBtn"
                                             onclick="addShowGridCfg(this,8)"><span class="glyphicon glyphicon-plus"></span></button>
@@ -297,44 +297,44 @@
                     <div id="costGroup" class="col-lg-12 col-sm-12 col-md-12">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>抽奖道具</legend>
+                            <legend>Предметы для розыгрыша</legend>
                             <fieldset>
                                 <div class="input-group saltIp">
-                                    <label class="input-group-addon">大奖系数:</label>
+                                    <label class="input-group-addon">Коэффициент главного приза:</label>
                                     <input name="i_big_limit" id="i_big_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">一等奖系数:</label>
+                                    <label class="input-group-addon">Коэффициент первого приза:</label>
                                     <input name="i_one_limit" id="i_one_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">二等奖系数:</label>
+                                    <label class="input-group-addon">Коэффициент второго приза:</label>
                                     <input name="i_two_limit" id="i_two_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">三等奖系数:</label>
+                                    <label class="input-group-addon">Коэффициент третьего приза:</label>
                                     <input name="i_three_limit" id="i_three_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">金元宝奖池系数:</label>
+                                    <label class="input-group-addon">Коэффициент золотого слитка:</label>
                                     <input name="i_gold_limit" id="i_gold_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
                                 </div>
                                 <div style="margin-top: 5px" class="input-group saltIp">
-                                    <label class="input-group-addon">抽奖道具:</label>
+                                    <label class="input-group-addon">Предмет для розыгрыша:</label>
                                     <input name="i_costItem" id="i_costItem"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">1抽道具消耗数量:</label>
+                                    <label class="input-group-addon">Количество предметов для 1 розыгрыша:</label>
                                     <input name="i_oneCostItem" id="i_oneCostItem"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">1抽元宝消耗:</label>
+                                    <label class="input-group-addon">Золотых слитков для 1 розыгрыша:</label>
                                     <input name="i_oneCostGold" id="i_oneCostGold"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">10抽道具消耗数量:</label>
+                                    <label class="input-group-addon">Количество предметов для 10 розыгрышей:</label>
                                     <input name="i_tenCostItem" id="i_tenCostItem"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">10抽元宝消耗:</label>
+                                    <label class="input-group-addon">Золотых слитков для 10 розыгрышей:</label>
                                     <input name="i_tenCostGold" id="i_tenCostGold"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">每抽赠送道具:</label>
+                                    <label class="input-group-addon">Бонусный предмет за каждый розыгрыш:</label>
                                     <span class="input-group-btn">
-                            <button class="btn btn-info" type="button" data-toggle="tooltip" title="每抽赠送道具" id="addGiveGiftBtn"
+                            <button class="btn btn-info" type="button" data-toggle="tooltip" title="Бонусный предмет за каждый розыгрыш" id="addGiveGiftBtn"
                                     onclick="showAddItemUILimit(i_GiveGift,addGiveGiftBtn,1)"><span class="glyphicon glyphicon-plus"></span></button>
                             <input type="hidden" id="cfgCount1" value="0">
                         </span>
@@ -347,19 +347,19 @@
                     <div id="itemWeight" class="col-lg-6 col-sm-6 col-md-6">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>纯道具抽权重</legend>
+                            <legend>Веса для розыгрыша предметами</legend>
                             <fieldset>
                                 <div class="input-group saltIp">
-                                    <label class="input-group-addon">大奖权重:</label>
+                                    <label class="input-group-addon">Вес главного приза:</label>
                                     <input name="i_item_big" id="i_item_big" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">一等奖权重:</label>
+                                    <label class="input-group-addon">Вес первого приза:</label>
                                     <input name="i_item_one" id="i_item_one" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">二等奖权重:</label>
+                                    <label class="input-group-addon">Вес второго приза:</label>
                                     <input name="i_item_two" id="i_item_two" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">三等奖权重:</label>
+                                    <label class="input-group-addon">Вес третьего приза:</label>
                                     <input name="i_item_three" id="i_item_three"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
                                 </div>
@@ -370,19 +370,19 @@
                     <div id="goldWeight" class="col-lg-6 col-sm-6 col-md-6">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>花金元宝抽权重</legend>
+                            <legend>Веса для розыгрыша за золотые слитки</legend>
                             <fieldset>
                                 <div class="input-group saltIp">
-                                    <label class="input-group-addon">大奖权重:</label>
+                                    <label class="input-group-addon">Вес главного приза:</label>
                                     <input name="i_gold_big" id="i_gold_big" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">一等奖权重:</label>
+                                    <label class="input-group-addon">Вес первого приза:</label>
                                     <input name="i_gold_one" id="i_gold_one" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">二等奖权重:</label>
+                                    <label class="input-group-addon">Вес второго приза:</label>
                                     <input name="i_gold_two" id="i_gold_two" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">三等奖权重:</label>
+                                    <label class="input-group-addon">Вес третьего приза:</label>
                                     <input name="i_gold_three" id="i_gold_three"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
                                 </div>
@@ -393,25 +393,25 @@
                     <div id="rewardPool" class="col-lg-9 col-sm-9 col-md-9">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>奖池数据配置</legend>
+                            <legend>Конфигурация пула наград</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishujubig">
-                                    <label class="input-group-addon">大奖奖池数据:</label>
+                                    <label class="input-group-addon">Данные пула главного приза:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtnBig"
                                             onclick="jiangliGrpBig(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>
                                 <div style="margin-top: 5px" class="input-group" id="jianglishujuone">
-                                    <label class="input-group-addon">一等奖奖池数据:</label>
+                                    <label class="input-group-addon">Данные пула первого приза:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtnOne"
                                             onclick="jiangliGrpOne(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>
                                 <div style="margin-top: 5px" class="input-group" id="jianglishujutwo">
-                                    <label class="input-group-addon">二等奖奖池数据:</label>
+                                    <label class="input-group-addon">Данные пула второго приза:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtnTwo"
                                             onclick="jiangliGrpTwo(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>
                                 <div style="margin-top: 5px" class="input-group" id="jianglishujuthree">
-                                    <label class="input-group-addon">三等奖奖池数据:</label>
+                                    <label class="input-group-addon">Данные пула третьего приза:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtnThree"
                                             onclick="jiangliGrpThree(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>
@@ -422,10 +422,10 @@
                     <div id="luckyGroup" class="col-lg-5 col-sm-5 col-md-5">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>抽奖幸运值配置</legend>
+                            <legend>Конфигурация удачи</legend>
                             <fieldset>
                                 <div class="input-group saltIp">
-                                    <label class="input-group-addon">参与一次增加的幸运值:</label>
+                                    <label class="input-group-addon">Удачи за одно участие:</label>
                                     <input name="oneLuckyValue" id="oneLuckyValue"
                                            type="text" class=" form-control" style="width:100px;" onkeyup="value=value.replace(/\D/g,'')"/>
                                     <label class="input-group-addon">Список наград:</label>
@@ -443,39 +443,39 @@
                     <div id="goldPool" class="col-lg-12 col-sm-12 col-md-12">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>金元宝池配置</legend>
+                            <legend>Конфигурация пула золотых слитков</legend>
                             <fieldset>
                                 <div class="input-group saltIp">
-                                    <label class="input-group-addon">纯道具抽概率:</label>
-                                    <input name="i_item_probability" id="i_item_probability" value="" placeholder="int值/万分比"
+                                    <label class="input-group-addon">Вероятность розыгрыша предметами:</label>
+                                    <input name="i_item_probability" id="i_item_probability" value="" placeholder="int / на 10000"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">花金元宝抽概率:</label>
-                                    <input name="i_gold_probability" id="i_gold_probability" value="" placeholder="int值/万分比"
+                                    <label class="input-group-addon">Вероятность розыгрыша золотыми слитками:</label>
+                                    <input name="i_gold_probability" id="i_gold_probability" value="" placeholder="int / на 10000"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">抽取奖池比例:</label>
-                                    <input name="i_get_probability" id="i_get_probability" value="" placeholder="int值/万分比"
+                                    <label class="input-group-addon">Процент извлечения из пула:</label>
+                                    <input name="i_get_probability" id="i_get_probability" value="" placeholder="int / на 10000"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">金元宝奖池起始值:</label>
+                                    <label class="input-group-addon">Начальное значение пула золотых слитков:</label>
                                     <input name="i_gold_init" id="i_gold_init" value="0"
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">触发系统金元宝基准:</label>
+                                    <label class="input-group-addon">Базовое значение системы для золотых слитков:</label>
                                     <input name="i_gold_standard" id="i_gold_standard" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
                                 </div>
                                 <div style="margin-top: 5px" class="input-group saltIp">
-                                    <label class="input-group-addon">系统投入金元宝日上限:</label>
+                                    <label class="input-group-addon">Дневной лимит системы на золотые слитки:</label>
                                     <input name="i_gold_upper_limit" id="i_gold_upper_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">单次补充的金元宝:</label>
+                                    <label class="input-group-addon">Количество золотых слитков на одно пополнение:</label>
                                     <input name="i_gold_set" id="i_gold_set" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">奖池总上限:</label>
+                                    <label class="input-group-addon">Максимальный размер пула:</label>
                                     <input name="i_total_limit" id="i_total_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">单次奖励上限:</label>
+                                    <label class="input-group-addon">Максимальная награда за один розыгрыш:</label>
                                     <input name="i_one_reward_limit" id="i_one_reward_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
-                                    <label class="input-group-addon">每日灵玉奖励次数上限:</label>
+                                    <label class="input-group-addon">Дневной лимит наград духовными нефритами:</label>
                                     <input name="i_day_reward_limit" id="i_day_reward_limit" value=""
                                            type="text" class=" form-control" onkeyup="value=value.replace(/\D/g,'')"/>
                                 </div>
@@ -486,15 +486,15 @@
                     <div id="goldBaoDiPool" class="col-lg-6 col-sm-6 col-md-6">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>金元宝池保底</legend>
+                            <legend>Гарантированный минимум пула золотых слитков</legend>
                             <fieldset>
                                 <div class="input-group" id="goldbaodishuju">
-                                    <!--<label class="input-group-addon">金元宝池:</label>-->
-                                    <!--<button class="btn btn-info" type="button" data-toggle="tooltip" title="新增" id="goldbaodiBtn" onclick="goldbaodiGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>-->
+                                    <!--<label class="input-group-addon">Пул золотых слитков:</label>-->
+                                    <!--<button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="goldbaodiBtn" onclick="goldbaodiGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>-->
                                     <!--<input type="hidden" id="cfgCount5" value="0">-->
-                                    <label class="input-group-addon">保底范围最小值:</label>
+                                    <label class="input-group-addon">Минимальное значение гарантии:</label>
                                     <input type="text" class="form-control" id="i_baodi_scope_min" name="i_baodi_scope_min" onkeyup="value=value.replace(/\D/g,'')">
-                                    <label class="input-group-addon">保底范围最大值:</label>
+                                    <label class="input-group-addon">Максимальное значение гарантии:</label>
                                     <input type="text" class="form-control" id="i_baodi_scope_max" name="i_baodi_scope_max" onkeyup="value=value.replace(/\D/g,'')">
                                 </div>
                             </fieldset>
@@ -503,10 +503,10 @@
                     <div id="countReward" class="col-lg-9 col-sm-9 col-md-9">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>累计领奖配置</legend>
+                            <legend>Конфигурация накопленных наград</legend>
                             <fieldset>
                                 <div class="input-group" id="countRewardshuju">
-                                    <label class="input-group-addon">累计领奖:</label>
+                                    <label class="input-group-addon">Накопленные награды:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="countRewardBtn"
                                             onclick="countRewardGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>
@@ -516,10 +516,10 @@
                     <div id="freeGiftPool" class="col-lg-9 col-sm-9 col-md-9">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-12">
-                            <legend>免费礼包</legend>
+                            <legend>Бесплатные подарки</legend>
                             <fieldset>
                                 <div class="input-group" id="freeGiftshuju">
-                                    <label class="input-group-addon">免费礼包:</label>
+                                    <label class="input-group-addon">Бесплатные подарки:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="freeGiftBtn"
                                             onclick="freeGiftGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>
@@ -529,10 +529,10 @@
                     <div id="baodiPool" class="col-lg-12 col-sm-12 col-md-12">
                         <!--<div class="col-lg-1"></div>-->
                         <div class="col-lg-11">
-                            <legend>保底次数配置</legend>
+                            <legend>Конфигурация гарантированных попыток</legend>
                             <fieldset>
                                 <div class="input-group" id="baodishuju">
-                                    <label class="input-group-addon">保底次数:</label>
+                                    <label class="input-group-addon">Гарантированные попытки:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="baoDiBtn"
                                             onclick="baoDiGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                 </div>

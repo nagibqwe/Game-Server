@@ -59,7 +59,7 @@ public class Main {
                         System.out.println(str);
 
                         if (str.equalsIgnoreCase("quit")) {
-                            System.out.println("输入了QUIT 命令，需要退出！");
+                            System.out.println("Введена команда QUIT, процесс закрывается!");
                             System.exit(1);
                             return;
                         }

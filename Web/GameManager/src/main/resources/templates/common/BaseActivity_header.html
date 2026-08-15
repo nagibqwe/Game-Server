@@ -1,4 +1,3 @@
-
 <script>
     function t_v_change() {
         var timeType = $("#timeType").val();
@@ -8,7 +7,7 @@
             $("#openServerOffsetBeginDiv").show();
             $("#openServerOffsetDiv").show();
 
-            //记录时间
+            // Время записи
             $("#startRecordTimeDiv").hide();
             $("#endRecordTimeDiv").hide();
             $("#openServerRecordOffsetBeginDiv").show();
@@ -19,19 +18,19 @@
             $("#openServerOffsetBeginDiv").hide();
             $("#openServerOffsetDiv").hide();
 
-            //记录时间
+            // Время записи
             $("#startRecordTimeDiv").show();
             $("#endRecordTimeDiv").show();
             $("#openServerRecordOffsetBeginDiv").hide();
             $("#openServerRecordOffsetDiv").hide();
         }
     }
-    //显示鼠标样式和输入框的边框变色
+    // Изменение стиля курсора и цвета рамки при наведении
     function showMouse(obj) {
         obj.style.cursor="pointer";
         obj.style.borderColor="#82D900";
     }
-    //鼠标移出时改变输入框的边框颜色
+    // Возврат цвета рамки при уходе мыши
     function hiddenMouse(obj) {
         obj.style.borderColor="#DCDCDC";
     }
@@ -39,10 +38,10 @@
 </script>
 
 <script>
-    //(活动模板父容器）
+    // (Родительский контейнер шаблона события)
     function showAddTemplateUI(add_btn) {
         if (!$('#activity_form').validate().form()) {
-            $.modal.msgError("Ошибка проверки");
+            $.modal.msgError("Ошибка валидации");
             return;
         }
         // console.log(add_btn);
@@ -53,16 +52,16 @@
 <div class="col-lg-12 col-sm-12 col-md-12">
     <div class="col-lg-1"></div>
     <div class="col-lg-11">
-        <legend>模板选择</legend>
+        <legend>Выбор шаблона</legend>
         <fieldset>
             <div class="input-group">
-                <!--<label>选择模板:</label>-->
+                <!--<label>Выберите шаблон:</label>-->
                 <select id="template" class="selectClass" onchange="copyTemplate(this.value)" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
-                    <!--<option>请选择模板</option>-->
+                    <!--<option>Пожалуйста, выберите шаблон</option>-->
                 </select>
                 <br/>
-                <input type="button" class="btn btn-info" name="addTemplate" id="addTemplate" value="保存模板" style="margin-top: 3px" onclick="showAddTemplateUI(this)"/>
-                <input type="button" class="btn btn-info" name="delTemplate" id="delTemplate" value="删除模板" style="margin-top: 3px;margin-left: 8px" onclick="deleteTemplate()"/>
+                <input type="button" class="btn btn-info" name="addTemplate" id="addTemplate" value="Сохранить шаблон" style="margin-top: 3px" onclick="showAddTemplateUI(this)"/>
+                <input type="button" class="btn btn-info" name="delTemplate" id="delTemplate" value="Удалить шаблон" style="margin-top: 3px;margin-left: 8px" onclick="deleteTemplate()"/>
             </div>
         </fieldset>
     </div>
@@ -71,37 +70,37 @@
 <div class="col-lg-12 col-sm-12 col-md-12">
     <div class="col-lg-1"></div>
     <div id="publicCondition" class="col-lg-11">
-        <legend>活动基础信息 - 公共信息</legend>
+        <legend>Базовая информация о событии - Общая информация</legend>
         <fieldset>
-            <!--活动类型参数-->
+            <!-- Параметры типа события -->
             <input id="id" type="hidden" name="id" value="0">
             <input id="type" type="hidden" name="type">
 
             <div class="item form-group col-md-4 col-sm-4 col-xs-12">
                 <label for="name" class="control-label col-md-3 col-sm-3 col-xs-12">Название события:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="例：活动1" value=""
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Пример: Событие 1" value=""
                            onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
             <div class="item form-group col-md-4 col-sm-4 col-xs-12">
                 <label for="description" class="control-label col-md-3 col-sm-3 col-xs-12">Примечание к событию:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="description" name="description" placeholder="描述" value=""
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Описание" value=""
                            onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
             <div class="item form-group col-md-4 col-sm-4 col-xs-12 ">
-                <label for="minLv" class="control-label col-md-3 col-sm-3 col-xs-12">最小开放等级:</label>
+                <label for="minLv" class="control-label col-md-3 col-sm-3 col-xs-12">Минимальный уровень:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="minLv" name="minLv" placeholder="例：1"
+                    <input type="text" class="form-control" id="minLv" name="minLv" placeholder="Пример: 1"
                            onkeyup="value=value.replace(/\D/g,'')" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
             <div class="item form-group col-md-4 col-sm-4 col-xs-12">
-                <label for="maxLv" class="control-label col-md-3 col-sm-3 col-xs-12">最大开放等级:</label>
+                <label for="maxLv" class="control-label col-md-3 col-sm-3 col-xs-12">Максимальный уровень:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="maxLv" name="maxLv" placeholder="例：800"
+                    <input type="text" class="form-control" id="maxLv" name="maxLv" placeholder="Пример: 800"
                            onkeyup="value=value.replace(/\D/g,'')" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
@@ -122,9 +121,9 @@
                 </div>
             </div>
             <div class="item form-group col-md-4 col-sm-4 col-xs-12 ">
-                <label for="sort" class="control-label col-md-3 col-sm-3 col-xs-12">标签中的排序:</label>
+                <label for="sort" class="control-label col-md-3 col-sm-3 col-xs-12">Порядок в метке:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="sort" name="sort" placeholder="例：1 （从1开始）"
+                    <input type="text" class="form-control" id="sort" name="sort" placeholder="Пример: 1 (начиная с 1)"
                            onkeyup="value=value.replace(/\D/g,'')" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
@@ -132,8 +131,8 @@
                 <label for="timeType" class="control-label col-md-3 col-sm-3 col-xs-12">Тип времени:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <select id="timeType" name="timeType" onchange="t_v_change()" class="form-control" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)">
-                        <option value="0">固定时间变量(0)</option>
-                        <option value="1">开服时间变量(1)</option>
+                        <option value="0">Фиксированное время (0)</option>
+                        <option value="1">Время открытия сервера (1)</option>
                     </select>
                 </div>
             </div>
@@ -156,7 +155,7 @@
             </div>
 
             <div id="startRecordTimeDiv" class="item form-group col-md-4 col-sm-4 col-xs-12" >
-                <label for="startRecordTime" class="control-label col-md-3 col-sm-3 col-xs-12">开始记录时间:</label>
+                <label for="startRecordTime" class="control-label col-md-3 col-sm-3 col-xs-12">Время начала записи:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="text" class="form-control datetimepicker span10" id="startRecordTime"
                            name="startRecordTime" placeholder="2020-09-07 15:30" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" readonly required/>
@@ -164,7 +163,7 @@
             </div>
 
             <div id="endRecordTimeDiv" class="item form-group col-md-4 col-sm-4 col-xs-12" >
-                <label for="endRecordTime" class="control-label col-md-3 col-sm-3 col-xs-12">结束记录时间:</label>
+                <label for="endRecordTime" class="control-label col-md-3 col-sm-3 col-xs-12">Время окончания записи:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="text" class="form-control datetimepicker span10" id="endRecordTime"
                            name="endRecordTime" placeholder="2020-09-07 15:30" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" readonly required/>
@@ -172,33 +171,33 @@
             </div>
 
             <div id="openServerOffsetBeginDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
-                <label for="openServerOffsetBegin" class="control-label col-md-3 col-sm-3 col-xs-12">开服第几天生效:</label>
+                <label for="openServerOffsetBegin" class="control-label col-md-3 col-sm-3 col-xs-12">Действует с дня открытия сервера:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="openServerOffsetBegin" name="openServerOffsetBegin" placeholder="例：1 （开服第1天）"
+                    <input type="text" class="form-control" id="openServerOffsetBegin" name="openServerOffsetBegin" placeholder="Пример: 1 (с 1-го дня открытия)"
                            onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
 
             <div id="openServerOffsetDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
-                <label for="openServerOffset" class="control-label col-md-3 col-sm-3 col-xs-12">活动持续天数:</label>
+                <label for="openServerOffset" class="control-label col-md-3 col-sm-3 col-xs-12">Длительность события (дней):</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="openServerOffset" name="openServerOffset" placeholder="例：1 (活动持续天数)"
+                    <input type="text" class="form-control" id="openServerOffset" name="openServerOffset" placeholder="Пример: 1 (длительность в днях)"
                            onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
 
             <div id="openServerRecordOffsetBeginDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
-                <label for="openServerRecordOffsetBegin" class="control-label col-md-3 col-sm-3 col-xs-12">记录从开服第几天开始:</label>
+                <label for="openServerRecordOffsetBegin" class="control-label col-md-3 col-sm-3 col-xs-12">Запись с дня открытия сервера:</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="openServerRecordOffsetBegin" name="openServerRecordOffsetBegin" placeholder="例：1 （开服第1天）"
+                    <input type="text" class="form-control" id="openServerRecordOffsetBegin" name="openServerRecordOffsetBegin" placeholder="Пример: 1 (с 1-го дня открытия)"
                            onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
 
             <div id="openServerRecordOffsetDiv" class="item form-group col-md-4 col-sm-4 col-xs-12"  style="display: none" >
-                <label for="openServerRecordOffset" class="control-label col-md-3 col-sm-3 col-xs-12">记录持续天数:</label>
+                <label for="openServerRecordOffset" class="control-label col-md-3 col-sm-3 col-xs-12">Длительность записи (дней):</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" class="form-control" id="openServerRecordOffset" name="openServerRecordOffset" placeholder="例：1 (记录持续天数)"
+                    <input type="text" class="form-control" id="openServerRecordOffset" name="openServerRecordOffset" placeholder="Пример: 1 (длительность записи в днях)"
                            onkeyup="value=value.replace(/\D/g,'')" value="" onmouseover="showMouse(this)" onmouseout="hiddenMouse(this)" required/>
                 </div>
             </div>
@@ -220,7 +219,7 @@
                         <option value="0">Нет</option>
                         <option value="1">Да</option>
                     </select>
-                    <span style="color: red">*若开服时间<=7天则必须选择是才会生效,否则无效</span>
+                    <span style="color: red">* Если с момента открытия сервера прошло <= 7 дней, необходимо выбрать "Да", иначе событие не будет активно</span>
                 </div>
             </div>
 
@@ -234,13 +233,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3>添加模板</h3>
+                <h3>Добавить шаблон</h3>
             </div>
             <div class="modal-body">
                 <div class="row-fluid">
                     <div class="input-group">
-                        <label for="templateName">模板名称：</label><input type="text" class="selectClass" id="templateName"/>
-                        <label style="margin-left: 3px" for="description">模板说明：</label><input type="text" class="selectClass" id="templateDec"/>
+                        <label for="templateName">Название шаблона:</label><input type="text" class="selectClass" id="templateName"/>
+                        <label style="margin-left: 3px" for="description">Описание шаблона:</label><input type="text" class="selectClass" id="templateDec"/>
                     </div>
                 </div>
             </div>

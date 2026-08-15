@@ -79,7 +79,7 @@ public class ServerMatchManager {
     public static void stop(){
         ServerParamUtil.savaGameServerInfo();
         ServerParamUtil.saveOperatingGroup();
-        log.info("服务器关闭，保存时间事件数据完成：");
+        log.info("Сервер завершает работу. Сохранение данных таймерных событий завершено.");
     }
 
     public static void addGameServer(ServerInfo info){
@@ -175,7 +175,7 @@ public class ServerMatchManager {
         if(event.nature>0){
             event.startup = LeagueConfig.getNature(event.nature);
         }
-        log.info("初始的时间="+ TimeUtils.format2string(next, "yyyy-MM-dd HH:mm:ss")+" 计算的时间="+TimeUtils.format2string(event.startup, "yyyy-MM-dd HH:mm:ss"));
+        log.info("Начальное время: " + TimeUtils.format2string(next, "yyyy-MM-dd HH:mm:ss") + " — расчётное время: " + TimeUtils.format2string(event.startup, "yyyy-MM-dd HH:mm:ss"));
 //        event.startup = initialDelay;
         event.setTriggr(TriggerParser.parseType(time.getTrigger()));
         event.setCondition(ConditionParser.parseType(time.getCondition()));
@@ -188,6 +188,6 @@ public class ServerMatchManager {
         if (is instanceof IServerMatchManagerScript) {
             return (IServerMatchManagerScript) is;
         }
-        throw new NullPointerException("公共服没有实现联赛系统！");
+        throw new NullPointerException("В публичном сервере не реализована система лиг!");
     }
 }

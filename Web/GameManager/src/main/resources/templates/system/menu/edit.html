@@ -1,99 +1,99 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('修改菜单')" />
+    <th:block th:include="include :: header('Редактировать пункт меню')" />
 </head>
 <body class="white-bg">
-	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
-		<form class="form-horizontal m" id="form-menu-edit" th:object="${menu}">
-			<input name="menuId"   type="hidden" th:field="*{menuId}"   />
-			<input id="treeId" name="parentId" type="hidden" th:field="*{parentId}" />
-			<div class="form-group">
-				<label class="col-sm-3 control-label">上级菜单：</label>
-				<div class="col-sm-8">
-				    <div class="input-group">
-						<input class="form-control" type="text" onclick="selectMenuTree()" id="treeName" readonly="true" th:value="${menu.parentName == null ? '无' : menu.parentName}">
-					    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-				    </div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label is-required">菜单类型：</label>
-				<div class="col-sm-8">
-					<label class="radio-box"> <input type="radio" th:field="*{menuType}" name="menuType" value="M" /> 目录 </label> 
-					<label class="radio-box"> <input type="radio" th:field="*{menuType}" name="menuType" value="C" /> 菜单 </label> 
-					<label class="radio-box"> <input type="radio" th:field="*{menuType}" name="menuType" value="F" /> 按钮 </label>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label is-required">菜单名称：</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="menuName" id="menuName" th:field="*{menuName}" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">请求地址：</label>
-				<div class="col-sm-8">
-					<input id="url" name="url" class="form-control" type="text" th:field="*{url}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">打开方式：</label>
-				<div class="col-sm-8">
-					<select id="target" name="target" class="form-control m-b">
-	                    <option value="menuItem" th:field="*{target}">页签</option>
-	                    <option value="menuBlank" th:selected="*{target == 'menuBlank'}">新窗口</option>
-	                </select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">权限标识：</label>
-				<div class="col-sm-8">
-					<input id="perms" name="perms" class="form-control" type="text" th:field="*{perms}">
-				    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 控制器中定义的权限标识，如：@RequiresPermissions("")</span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label is-required">ПоказыватьСортировка：</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="orderNum" th:field="*{orderNum}" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">图标：</label>
-				<div class="col-sm-8">
-					<input id="icon" name="icon" class="form-control" type="text" placeholder="选择图标" th:field="*{icon}">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-menu-edit" th:object="${menu}">
+            <input name="menuId" type="hidden" th:field="*{menuId}" />
+            <input id="treeId" name="parentId" type="hidden" th:field="*{parentId}" />
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Родительское меню:</label>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <input class="form-control" type="text" onclick="selectMenuTree()" id="treeName" readonly="true" th:value="${menu.parentName == null ? 'Нет' : menu.parentName}">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">Тип меню:</label>
+                <div class="col-sm-8">
+                    <label class="radio-box"> <input type="radio" th:field="*{menuType}" name="menuType" value="M" /> Каталог </label>
+                    <label class="radio-box"> <input type="radio" th:field="*{menuType}" name="menuType" value="C" /> Меню </label>
+                    <label class="radio-box"> <input type="radio" th:field="*{menuType}" name="menuType" value="F" /> Кнопка </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">Название меню:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" name="menuName" id="menuName" th:field="*{menuName}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">URL-адрес:</label>
+                <div class="col-sm-8">
+                    <input id="url" name="url" class="form-control" type="text" th:field="*{url}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Способ открытия:</label>
+                <div class="col-sm-8">
+                    <select id="target" name="target" class="form-control m-b">
+                        <option value="menuItem" th:field="*{target}">Вкладка</option>
+                        <option value="menuBlank" th:selected="*{target == 'menuBlank'}">Новое окно</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Ключ прав доступа:</label>
+                <div class="col-sm-8">
+                    <input id="perms" name="perms" class="form-control" type="text" th:field="*{perms}">
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> Ключ прав, определённый в контроллере, например: @RequiresPermissions("")</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label is-required">Порядок отображения:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" name="orderNum" th:field="*{orderNum}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Иконка:</label>
+                <div class="col-sm-8">
+                    <input id="icon" name="icon" class="form-control" type="text" placeholder="Выберите иконку" th:field="*{icon}">
                     <div class="ms-parent" style="width: 100%;">
                         <div class="icon-drop animated flipInX" style="display: none;max-height:200px;overflow-y:auto">
                             <div data-th-include="system/menu/icon"></div>
                         </div>
                     </div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">菜单状态：</label>
-				<div class="col-sm-3">
-					<div class="radio-box" th:each="dict : ${@dict.getType('sys_show_hide')}">
-						<input type="radio" th:id="${dict.dictCode}" name="visible" th:value="${dict.dictValue}" th:field="*{visible}">
-						<label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
-					</div>
-				</div>
-				<label class="col-sm-2 control-label is-refresh" title="打开菜单选项卡是否刷新页面">是否刷新：<i class="fa fa-question-circle-o"></i></label>
-				<div class="col-sm-3 is-refresh">
-				    <div class="radio-box">
-						<input type="radio" id="refresh-no" name="isRefresh" value="1" th:field="*{isRefresh}">
-						<label for="refresh-no">Нет</label>
-					</div>
-					<div class="radio-box">
-						<input type="radio" id="refresh-yes" name="isRefresh" value="0" th:field="*{isRefresh}">
-						<label for="refresh-yes">Да</label>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-	<th:block th:include="include :: footer" />
-	 <script>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Статус меню:</label>
+                <div class="col-sm-3">
+                    <div class="radio-box" th:each="dict : ${@dict.getType('sys_show_hide')}">
+                        <input type="radio" th:id="${dict.dictCode}" name="visible" th:value="${dict.dictValue}" th:field="*{visible}">
+                        <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                    </div>
+                </div>
+                <label class="col-sm-2 control-label is-refresh" title="Обновлять страницу при открытии вкладки меню">Обновлять:<i class="fa fa-question-circle-o"></i></label>
+                <div class="col-sm-3 is-refresh">
+                    <div class="radio-box">
+                        <input type="radio" id="refresh-no" name="isRefresh" value="1" th:field="*{isRefresh}">
+                        <label for="refresh-no">Нет</label>
+                    </div>
+                    <div class="radio-box">
+                        <input type="radio" id="refresh-yes" name="isRefresh" value="0" th:field="*{isRefresh}">
+                        <label for="refresh-yes">Да</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script>
         var prefix = ctx + "system/menu";
 
         $(function() {
@@ -102,49 +102,49 @@
         });
 
         $("#form-menu-edit").validate({
-        	onkeyup: false,
-        	rules:{
-        		menuType:{
-        			required:true,
-        		},
-        		menuName:{
-        			remote: {
+            onkeyup: false,
+            rules:{
+                menuType:{
+                    required:true,
+                },
+                menuName:{
+                    remote: {
                         url: prefix + "/checkMenuNameUnique",
                         type: "post",
                         dataType: "json",
                         data: {
-                        	"menuId": function() {
+                            "menuId": function() {
                                 return $("#menuId").val();
                             },
                             "parentId": function() {
-		                		return $("input[name='parentId']").val();
-		                    },
-                			"menuName": function() {
+                                return $("input[name='parentId']").val();
+                            },
+                            "menuName": function() {
                                 return $.common.trim($("#menuName").val());
                             }
                         },
                         dataFilter: function(data, type) {
-                        	return $.validate.unique(data);
+                            return $.validate.unique(data);
                         }
                     }
-        		},
-        		orderNum:{
-        			digits:true
-        		},
-        	},
-        	messages: {
+                },
+                orderNum:{
+                    digits:true
+                },
+            },
+            messages: {
                 "menuName": {
-                    remote: "菜单已经存在"
+                    remote: "Пункт меню уже существует"
                 }
             },
             focusCleanup: true
         });
-        
+
         function submitHandler() {
-	        if ($.validate.form()) {
-	            $.operate.save(prefix + "/edit", $('#form-menu-edit').serialize());
-	        }
-	    }
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-menu-edit').serialize());
+            }
+        }
 
         $(function() {
             $("input[name='icon']").focus(function() {
@@ -192,39 +192,39 @@
             }
         }
 
-        /*菜单管理-修改-选择菜单树*/
+        /* Управление меню — выбор родительского меню */
         function selectMenuTree() {
-        	var menuId = $("#treeId").val();
-        	if(menuId > 0) {
-        		var url = prefix + "/selectMenuTree/" + menuId;
-        		$.modal.open("选择菜单", url, '380', '380');
-        	} else {
-        		$.modal.alertError("主菜单不能选择");
-        	}
+            var menuId = $("#treeId").val();
+            if (menuId > 0) {
+                var url = prefix + "/selectMenuTree/" + menuId;
+                $.modal.open("Выбор меню", url, '380', '380');
+            } else {
+                $.modal.alertError("Нельзя выбрать главное меню");
+            }
         }
-        
+
         function selectMenuTree() {
-        	var menuId = $("#treeId").val();
-        	if(menuId > 0) {
-        		var url = prefix + "/selectMenuTree/" + menuId;
-        		var options = {
-       				title: 'Выбор меню',
-       				width: "380",
-       				url: url,
-       				callBack: doSubmit
-       			};
-       			$.modal.openOptions(options);
-        	} else {
-        		$.modal.alertError("主菜单不能选择");
-        	}
-		}
-		
-		function doSubmit(index, layero){
-			var body = layer.getChildFrame('body', index);
-   			$("#treeId").val(body.find('#treeId').val());
-   			$("#treeName").val(body.find('#treeName').val());
-   			layer.close(index);
-		}
+            var menuId = $("#treeId").val();
+            if (menuId > 0) {
+                var url = prefix + "/selectMenuTree/" + menuId;
+                var options = {
+                    title: 'Выбор меню',
+                    width: "380",
+                    url: url,
+                    callBack: doSubmit
+                };
+                $.modal.openOptions(options);
+            } else {
+                $.modal.alertError("Нельзя выбрать главное меню");
+            }
+        }
+
+        function doSubmit(index, layero){
+            var body = layer.getChildFrame('body', index);
+            $("#treeId").val(body.find('#treeId').val());
+            $("#treeName").val(body.find('#treeName').val());
+            layer.close(index);
+        }
     </script>
 </body>
 </html>

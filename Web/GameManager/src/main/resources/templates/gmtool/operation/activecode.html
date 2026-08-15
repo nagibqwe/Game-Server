@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('激活码列表')" />
+    <th:block th:include="include :: header('Список активационных кодов')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -14,7 +14,7 @@
         var prefix = ctx + "gmtool/operation";
 
         /**
-         * 切换激活码类型操作
+         * Переключение типа активационного кода
          * @param type
          */
         function changeParam(type) {
@@ -32,7 +32,7 @@
         }
 
         /**
-         * 点击生成操作
+         * Генерация кодов
          */
         function insert() {
             if ($("#activeCodeForm").validate().form()){
@@ -43,25 +43,25 @@
                 }
                 var items = $("#reward").val();
                 if (items == undefined || items == "") {
-                    $.modal.alertError("未选择物品！");
+                    $.modal.alertError("Не выбраны предметы!");
                     return;
                 }
                 $("#activeCodeForm").submit();
                 $("#activeCodeForm")[0].reset();
-                $.modal.alertSuccess("信息检测完成,已经启动当前批次的激活码生成!");
+                $.modal.alertSuccess("Проверка завершена, запущена генерация активационных кодов для текущей партии!");
             }
         }
 
-        //显示添加物品的组件
+        // Отображение окна добавления предмета
         function showAddItemModel() {
             $("#addItemModal").modal('toggle');
             $("#addItemForm")[0].reset();
         }
 
-        //点击添加物品
+        // Добавление предмета
         function addItem() {
             if (!$('#addItemForm').validate().form()) {
-                $.modal.alertError("物品配置错误!");
+                $.modal.alertError("Ошибка конфигурации предмета!");
                 return;
             }
             var itemId = $("#itemId").val();
@@ -83,7 +83,7 @@
             $("#addItemModal").modal('hide');
         }
 
-        //删除物品操作
+        // Удаление предмета
         function removeItem(obj, itemId, itemNum) {
             var pos;
             var value = $(obj).parent().parent().prev(".rewardInput").val();
@@ -101,11 +101,11 @@
             event.stopPropagation();
         }
 
-        //检测礼包码可用性
+        // Проверка доступности кода
         function checkCode() {
             var code = $("#code").val();
             if (code == "") {
-                $.modal.alertError("礼包码不能为空！")
+                $.modal.alertError("Код не может быть пустым!")
                 return;
             }
             $.ajax({
@@ -117,9 +117,9 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.ok) {
-                        $("#tips").html("<span style='color:green'>激活码可用</span>")
+                        $("#tips").html("<span style='color:green'>Код доступен</span>")
                     } else {
-                        $("#tips").html("<span style='color:red'>激活码重复</span>")
+                        $("#tips").html("<span style='color:red'>Код уже существует</span>")
                     }
                 }
             });
@@ -132,7 +132,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>激活码生成</h5>
+                    <h5>Генерация активационных кодов</h5>
                 </div>
                 <div class="ibox-content">
                     <form id="activeCodeForm" action="activecode" class="form-horizontal m-t" method="post">
@@ -142,25 +142,25 @@
 
                             <label class="radio col-sm-5 control-label" style="margin-left: 22px">
                                 <input checked="checked" value="0" name="param" type="radio" onchange="changeParam(0);"/>
-                                普通码(一批可生成多个,同一批激活码1个角色只能使用其中一个,获得1次奖励)
+                                Обычный код (одна партия — несколько кодов, один персонаж может использовать только один код из партии, награда выдаётся 1 раз)
                             </label>
                         </div>
                         <div class="form-group">
                             <label class="radio col-sm-4 control-label" style="margin-left: 1px">
                                 <input value="1" name="param" type="radio" onchange="changeParam(1);"/>
-                                万能码(一批生成一个,不同角色均可使用此激活码)
+                                Универсальный код (одна партия — один код, любой персонаж может использовать этот код)
                             </label>
                         </div>
                         <div class="form-group">
                             <label class="radio col-sm-5 control-label" style="margin-left: 4px">
                                 <input value="2" name="param" type="radio" onchange="changeParam(2);"/>
-                                多次码(一批可生成多个,同一批激活码1个角色可以使用多个,获得多次奖励)
+                                Многократный код (одна партия — несколько кодов, один персонаж может использовать несколько кодов из партии, награда выдаётся несколько раз)
                             </label>
 
                         </div>
 
                         <div id="codeDiv" class="form-group">
-                            <label for="code" class="col-sm-2 control-label is-required">礼包码</label>
+                            <label for="code" class="col-sm-2 control-label is-required">Код</label>
                             <div class="col-sm-2">
                                 <input id="code" name="code" type="text" class="form-control input" onblur="checkCode()" required/>
                                 <div id="tips" class="help-inline"></div>
@@ -168,21 +168,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="codeNum" class="col-sm-2 control-label is-required">激活码数量</label>
+                            <label for="codeNum" class="col-sm-2 control-label is-required">Количество кодов</label>
                             <div class="col-sm-2">
                                 <input id="codeNum" name="codeNum" type="text" class="form-control input" onkeyup="value=value.replace(/\D/g,'')" minlength="1"  required/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="activeName" class="col-sm-2 control-label is-required">类型名(用途简述)</label>
+                            <label for="activeName" class="col-sm-2 control-label is-required">Название типа (краткое описание)</label>
                             <div class="col-sm-2">
                                 <input id="activeName" name="activeName" type="text" class="input form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">附件物品</label>
+                            <label class="col-sm-2 control-label">Награда</label>
                             <div class="col-sm-8">
                                 <div class="span6" style="border: 1px solid rgb(204, 204, 204); border-radius: 2px; height: 60px; margin-left: 0" onclick="showAddItemModel()">
                                     <input type="hidden" id="reward" name="itemList" class="rewardInput validate[required]"/>
@@ -192,21 +192,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="valide_time_begin" class="col-sm-2 control-label is-required">有效开始时间</label>
+                            <label for="valide_time_begin" class="col-sm-2 control-label is-required">Дата начала действия</label>
                             <div class="col-sm-2">
                                 <input id="valide_time_begin" name="valide_time_begin" type="text" class="datetimepicker form-control input" required readonly/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="valide_time_end" class="col-sm-2 control-label is-required">有效结束时间</label>
+                            <label for="valide_time_end" class="col-sm-2 control-label is-required">Дата окончания действия</label>
                             <div class="col-sm-2">
                                 <input id="valide_time_end" name="valide_time_end" type="text" class="datetimepicker form-control input" required readonly/>
                             </div>
                         </div>
 
                         <!--<div class="form-group">-->
-                            <!--<label for="select_group" class="col-sm-2 control-label">平台名</label>-->
+                            <!--<label for="select_group" class="col-sm-2 control-label">Платформа</label>-->
                             <!--<div class="col-sm-8">-->
                                 <!--<select id="select_group" name="groupName" class="input validate[required]"-->
                                         <!--onchange="getChannelNameSelect(this.value); getServer(this.value)"></select>-->
@@ -214,30 +214,30 @@
                         <!--</div>-->
 
                         <!--<div class="form-group">-->
-                            <!--<label for="select_channel" class="col-sm-2 control-label">生效渠道</label>-->
+                            <!--<label for="select_channel" class="col-sm-2 control-label">Каналы применения</label>-->
                             <!--<div class="col-sm-8">-->
                                 <!--<select id="select_channel" name="plateform_name_big" class="input">-->
-                                    <!--<option value="">所有渠道</option>-->
+                                    <!--<option value="">Все каналы</option>-->
                                 <!--</select>-->
                             <!--</div>-->
                         <!--</div>-->
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">生效区服</label>
+                            <label class="col-sm-2 control-label">Серверы применения</label>
                             <div class="col-sm-2">
                                 <div th:replace="common/select_server_byGroup.html"></div>
-                                <!--此处作为服务器请求分组地址映射设置地方-->
+                                <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                                 <input type="hidden" id="selectRequestUrl" value="gameServer">
                                 <input type="hidden" id="selectIgnoreMerge" value="1">
                             </div>
                         </div>
                         <div style="margin-top: 12px;margin-bottom: 10px;margin-left: 90px">
-                            <span style="color: red;margin-left: 180px;">（若不勾选任何选项，则默认所有区服，包括后续新加入的区服）</span>
+                            <span style="color: red;margin-left: 180px;">(Если не выбрано ни одного сервера, код будет действовать на всех серверах, включая новые)</span>
                         </div>
                         <div class="form-group" style="margin-top: 40px">
                             <label class="col-sm-2 control-label" style="margin-left: 13px"></label>
                             <button type="button" class="btn btn-primary" onclick="insert()">
-                                生成
+                                Сгенерировать
                             </button>
                         </div>
 
@@ -255,7 +255,7 @@
             <div class="modal-content" style="width: 430px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>添加物品</h3>
+                    <h3>Добавить предмет</h3>
                 </div>
                 <div class="modal-body">
                     <form id="addItemForm" class="form-horizontal m-t">
@@ -267,15 +267,15 @@
                                                                     class="selectClass" style="margin-left: 25px"/>
                             <datalist id="itemList"></datalist>
                             <br/>
-                            <label for="itemNum">Количество предметов:</label><input id="itemNum" type="text"
+                            <label for="itemNum">Количество:</label><input id="itemNum" type="text"
                                                                      onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
                                                                      class="selectClass"
                                                                      style="margin-top: 10px;margin-left: 13px"/>
                             <br/>
-                            <label for="isBind">是否绑定:</label>
+                            <label for="isBind">Привязка:</label>
                             <select id="isBind" class="selectClass" style="margin-top: 10px;margin-left: 10px">
-                                <option value="0" selected>非绑</option>
-                                <option value="1">绑定</option>
+                                <option value="0" selected>Не привязан</option>
+                                <option value="1">Привязан</option>
                             </select>
                         </div>
                     </form>

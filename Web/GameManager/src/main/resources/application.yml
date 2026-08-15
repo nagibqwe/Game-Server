@@ -1,95 +1,95 @@
-# 项目相关配置
+# Конфигурация, связанная с проектом
 gm:
-  # 名称
+  # Название
   name: GameManager
-  # 版本
+  # Версия
   version: 4.6.1
-  # 版权年份
+  # Год копирайта
   copyrightYear: 2021
-  # 实例演示开关
+  # Включение демо-режима
   demoEnabled: false
-  # 文件路径 示例（ Windows配置D:/gm/uploadPath，Linux配置 /home/gm/uploadPath）
+  # Путь к файлам (пример: Windows D:/gm/uploadPath, Linux /home/gm/uploadPath)
   profile: /home/gm/uploadPath
-  # 获取ip地址开关
+  # Включение определения IP-адреса
   addressEnabled: false
-  # GM后台与服务器
+  # Ключ запроса между GM-админкой и сервером
   requestServerKey: 753509031ad2ced8d284f0f20f4277a8
-  # gameID
+  # Идентификатор игры
   gameID: 1001
-  # APIServer连接地址
+  # Адрес подключения к APIServer
   APIServerUrl: http://94.250.249.128:8080/APIServer
-  #合服-文件保存位置
+  # Объединение серверов — расположение сохранения файлов
   hefudir: /data/game/gm/hefudir
-  #合服-更新服务器配置
+  # Объединение серверов — обновление конфигурации сервера
   platUpdateUrl: http://94.250.249.128:8080/PlatformKits/serverListConfig/server/refreshServer
 
-# 开发环境配置
+# Конфигурация среды разработки
 server:
-  # 服务器的HTTP端口，默认为80
+  # HTTP-порт сервера, по умолчанию 80
   port: 8098
   servlet:
-    # 应用的访问路径
+    # Путь доступа к приложению
     context-path: /
   tomcat:
-    # tomcat的URI编码
+    # Кодировка URI в tomcat
     uri-encoding: UTF-8
-    # tomcat最大线程数，默认为200
+    # Максимальное количество потоков tomcat, по умолчанию 200
     max-threads: 800
-    # Tomcat启动初始化的线程数，默认值25
+    # Количество потоков инициализации при запуске Tomcat, по умолчанию 25
     min-spare-threads: 30
 
-# 日志配置
+# Конфигурация логирования
 logging:
   level:
     com.gm: debug
     org.springframework: warn
 
-# 用户配置
+# Конфигурация пользователя
 user:
   password:
-    # 密码错误{maxRetryCount}次锁定10分钟
+    # Блокировка на 10 минут после {maxRetryCount} ошибок пароля
     maxRetryCount: 99
 
-# Spring配置
+# Конфигурация Spring
 spring:
-  # 模板引擎
+  # Шаблонизатор
   thymeleaf:
     mode: HTML
     encoding: utf-8
-    # 禁用缓存
+    # Отключение кэширования
     cache: false
-  # 资源信息
+  # Информация о ресурсах
   messages:
-    # 国际化资源文件路径
+    # Путь к файлам интернационализации ресурсов
     basename: static/i18n/messages
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
   profiles:
     active: druid
-  # 文件上传
+  # Загрузка файлов
   servlet:
     multipart:
-      # 单个文件大小
-      max-file-size:  10MB
-      # 设置总上传的文件大小
-      max-request-size:  20MB
-  # 服务模块
+      # Максимальный размер одного файла
+      max-file-size: 10MB
+      # Максимальный общий размер загружаемых файлов
+      max-request-size: 20MB
+  # Модуль сервиса
   devtools:
     restart:
-      # 热部署开关
+      # Включение горячего развертывания
       enabled: false
 
 # MyBatis
 mybatis:
-  # 搜索指定包别名
+  # Поиск псевдонимов пакетов
   typeAliasesPackage: com.gm.project.**.domain
-  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  # Настройка сканирования mapper.xml
   mapperLocations: classpath:mybatis/**/*Mapper.xml
-  # 加载全局的配置文件
+  # Загрузка глобального конфигурационного файла
   configLocation: classpath:mybatis/mybatis-config.xml
 
-# PageHelper分页插件
+# Плагин постраничного разделения PageHelper
 pagehelper:
   helperDialect: mysql
   reasonable: true
@@ -99,60 +99,60 @@ pagehelper:
 # Shiro
 shiro:
   user:
-    # 登录地址
+    # Адрес входа
     loginUrl: /login
-    # 权限认证失败地址
+    # Адрес при ошибке авторизации
     unauthorizedUrl: /unauth
-    # 首页地址
+    # Адрес главной страницы
     indexUrl: /index
-    # 验证码开关
+    # Включение капчи
     captchaEnabled: false
-    # 验证码类型 math 数组计算 char 字符
+    # Тип капчи: math — вычисления, char — символы
     captchaType: math
   cookie:
-    # 设置Cookie的域名 默认空，即当前访问的域名
+    # Домен Cookie (по умолчанию пусто — текущий домен)
     domain:
-    # 设置cookie的有效访问路径
+    # Путь доступа Cookie
     path: /
-    # 设置HttpOnly属性
+    # Установка атрибута HttpOnly
     httpOnly: true
-    # 设置Cookie的过期时间，天为单位
+    # Время жизни Cookie в днях
     maxAge: 30
-    # 设置密钥，务必保持唯一性（生成方式，直接拷贝到main运行即可）KeyGenerator keygen = KeyGenerator.getInstance("AES"); SecretKey deskey = keygen.generateKey(); System.out.println(Base64.encodeToString(deskey.getEncoded()));
+    # Ключ шифрования (обязательно уникальный)
     cipherKey: zSyK5Kp6PZAAjlT+eeNMlg==
   session:
-    # Session超时时间，-1代表永不过期（默认30分钟）
+    # Время сессии, -1 означает бессрочно (по умолчанию 30 минут)
     expireTime: -1
-    # 同步session到数据库的周期（默认1分钟）
+    # Период синхронизации сессии с БД (по умолчанию 1 минута)
     dbSyncPeriod: 1
-    # 相隔多久检查一次session的有效性，默认就是10分钟
+    # Интервал проверки активности сессии (по умолчанию 10 минут)
     validationInterval: 10
-    # 同一个用户最大会话数，比如2的意思是同一个账号允许最多同时两个人登录（默认-1不限制）
+    # Максимальное количество сессий на одного пользователя (-1 без ограничений)
     maxSession: -1
-    # 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
+    # Выгнать предыдущего/последующего пользователя (по умолчанию предыдущего)
     kickoutAfter: false
 
-# 防止XSS攻击
+# Защита от XSS-атак
 xss:
-  # 过滤开关
+  # Включение фильтрации
   enabled: true
-  # 排除链接（多个用逗号分隔）
+  # Исключаемые ссылки (через запятую)
   excludes: /system/notice/*
-  # 匹配链接
+  # Сопоставляемые ссылки
   urlPatterns: /system/*,/monitor/*,/tool/*
 
-# Swagger配置
+# Конфигурация Swagger
 swagger:
-  # 是否开启swagger
+  # Включение Swagger
   enabled: true
 
-# 代码生成
+# Генерация кода
 gen:
-  # 作者
+  # Автор
   author: gm
-  # 默认生成包路径 system 需改成自己的模块名称 如 system monitor tool
+  # Пакет по умолчанию (укажите свой модуль: system, monitor, tool)
   packageName: com.gm.project.system
-  # 自动去除表前缀，默认是true
+  # Автоматическое удаление префикса таблицы (по умолчанию true)
   autoRemovePre: true
-  # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
+  # Префиксы таблиц (не включаются в имя класса, через запятую)
   tablePrefix: sys_

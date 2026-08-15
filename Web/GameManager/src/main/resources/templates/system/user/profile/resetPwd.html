@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('修改用户密码')" />
+    <th:block th:include="include :: header('Смена пароля')" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-user-resetPwd">
             <input name="userId"  type="hidden"  th:value="${user.userId}" />
             <div class="form-group">
-                <label class="col-sm-3 control-label">Логин：</label>
+                <label class="col-sm-3 control-label">Логин:</label>
                 <div class="col-sm-8">
                     <input class="form-control" type="text" readonly="true" name="loginName" th:value="${user.loginName}"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">旧密码：</label>
+                <label class="col-sm-3 control-label">Старый пароль:</label>
                 <div class="col-sm-8">
                     <input class="form-control" type="password" name="oldPassword" id="oldPassword">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">新密码：</label>
+                <label class="col-sm-3 control-label">Новый пароль:</label>
                 <div class="col-sm-8">
                     <input class="form-control" type="password" name="newPassword" id="newPassword">
-                    <th:block th:with="chrtype=${@config.getKey('sys.account.chrtype')}"> 
+                    <th:block th:with="chrtype=${@config.getKey('sys.account.chrtype')}">
                         <th:block th:if="${chrtype != '0'}">
                             <span class="help-block m-b-none">
-                                <th:block th:if="${chrtype == '1'}"><i class="fa fa-info-circle" style="color: red;"></i>  密码只能为0-9数字 </th:block>
-                                <th:block th:if="${chrtype == '2'}"><i class="fa fa-info-circle" style="color: red;"></i>  密码只能为a-z和A-Z字母</th:block>
-                                <th:block th:if="${chrtype == '3'}"><i class="fa fa-info-circle" style="color: red;"></i>  密码必须包含（字母，数字）</th:block>
-                                <th:block th:if="${chrtype == '4'}"><i class="fa fa-info-circle" style="color: red;"></i>  密码必须包含（字母，数字，特殊字符!@#$%^&*()-=_+）</th:block>
+                                <th:block th:if="${chrtype == '1'}"><i class="fa fa-info-circle" style="color: red;"></i> Пароль может содержать только цифры 0-9</th:block>
+                                <th:block th:if="${chrtype == '2'}"><i class="fa fa-info-circle" style="color: red;"></i> Пароль может содержать только буквы a-z и A-Z</th:block>
+                                <th:block th:if="${chrtype == '3'}"><i class="fa fa-info-circle" style="color: red;"></i> Пароль должен содержать буквы и цифры</th:block>
+                                <th:block th:if="${chrtype == '4'}"><i class="fa fa-info-circle" style="color: red;"></i> Пароль должен содержать буквы, цифры и спецсимволы !@#$%^&*()-=_+</th:block>
                             </span>
                         </th:block>
                     </th:block>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">再次确认：</label>
+                <label class="col-sm-3 control-label">Подтверждение:</label>
                 <div class="col-sm-8">
                     <input class="form-control" type="password" name="confirmPassword" id="confirmPassword">
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> Повторите ввод пароля</span>
                 </div>
             </div>
         </form>
@@ -74,23 +74,23 @@
             },
             messages: {
                 oldPassword: {
-                    required: "请输入原密码",
-                    remote: "原密码错误"
+                    required: "Введите старый пароль",
+                    remote: "Неверный старый пароль"
                 },
                 newPassword: {
-                    required: "请输入新密码",
-                    minlength: "密码不能小于5个字符",
-                    maxlength: "密码不能大于20个字符"
+                    required: "Введите новый пароль",
+                    minlength: "Пароль должен содержать не менее 5 символов",
+                    maxlength: "Пароль должен содержать не более 20 символов"
                 },
                 confirmPassword: {
-                    required: "请再次输入新密码",
+                    required: "Подтвердите новый пароль",
                     equalTo: "Пароли не совпадают"
                 }
 
             },
             focusCleanup: true
         });
-        
+
         function submitHandler() {
             var chrtype = [[${#strings.defaultString(@config.getKey('sys.account.chrtype'), 0)}]];
             var password = $("#newPassword").val();

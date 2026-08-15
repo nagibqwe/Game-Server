@@ -85,9 +85,9 @@ public class AnnounceTimerTask extends TimerTask{
 				NutMap ret = GameServerRequestUtil.gmPublishAnnounce(server, an.getType(), an.getContent());
 				StringBuilder sb = new StringBuilder();
 				if( ret.getBoolean("ok")) {
-					sb.append(server.getServerName()).append("接收即时公告刷新成功 ！");
+					sb.append(server.getServerName()).append(" — объявление успешно отправлено!");
 				} else {
-					sb.append(server.getServerName()) .append("失败，原因：").append(ret.get("msg"));
+					sb.append(server.getServerName()).append(" — не удалось отправить, причина: ").append(ret.get("msg"));
 				}
 				log.info(sb.toString());
 			}
@@ -97,7 +97,7 @@ public class AnnounceTimerTask extends TimerTask{
 				an.setNextDate(format.format(new Date(an.getNextTimes())));
 			}
 			int num = CyAnnounceManager.getInstance().updateSave(an);
-			log.info("公告id：" + an.getId() + "发送次数：" + an.getNowTimes() + "  更新结果：" + num);
+			log.info("Объявление ID: " + an.getId() + ", отправлено: " + an.getNowTimes() + " раз, результат сохранения: " + num);
 		}	
 	}
 

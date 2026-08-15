@@ -13,12 +13,12 @@
     <version version="1.0.0.0"/>
     <privatekey privatekey="753509031ad2ced8d284f0f20f4277a8"/>
 
-    <heartHttp host="http://157.22.200.3:8080/APIServer/serverstate/checkstate?"/>
-    <errorlog http="http://157.22.200.3:8080/APIServer"/>
+    <heartHttp host="http://94.250.249.128:8080/APIServer/serverstate/checkstate?"/>
+    <errorlog http="http://94.250.249.128:8080/APIServer"/>
 
     <backgrand port="9521"/>
 
-    <public publicIp="157.22.200.3" publicPort="9200"/>
+    <public publicIp="94.250.249.128" publicPort="9200"/>
 
     <serverType serverType="5"/>
     <serverInfo serverName="socialServer" port="9520" serverId="5000" platfrom="cn" lsId="1"/>

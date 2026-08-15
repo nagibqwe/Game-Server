@@ -71,13 +71,13 @@ public class RobotServer implements Runnable {
         serverMainTimer = new TimerThread("main_timer", 100);
 
         group = new ThreadGroup("group");
-        serverThread = new ServerThread(group, "机器人服务器", serverMainTimer);
+        serverThread = new ServerThread(group, "Бот-сервер", serverMainTimer);
 
         initLog();
     }
 
     private void initLog() {
-        log.info("初始化日志系统。。。。。。");
+        log.info("Инициализация системы логирования......");
         StringBuilder pathBuilder = new StringBuilder(System.getProperty("user.dir") + File.separator + "config" + File.separator);
         DOMConfigurator.configureAndWatch(pathBuilder.toString() + "log4j_socket.xml");
         pathBuilder.append("log4j2.xml");
@@ -92,22 +92,22 @@ public class RobotServer implements Runnable {
 
     private void init() {
         try {
-            log.error("加载协议。。。。。。！");
+            log.error("Загрузка протоколов......!");
             loadMessageDictionaryConfig();
 
-            log.error("加载数据库连接。。。。。。！");
+            log.error("Загрузка подключения к базе данных......!");
             initDbSystem();
 
             //加载地图配置
-            log.error("加载地图。。。。。。！");
+            log.error("Загрузка карт......!");
             Manager.mapCfgManager.loadMaps();
 
             //技能配置
-            log.error("加载技能。。。。。。！");
+            log.error("Загрузка навыков......!");
             String skillConfig = "config/SkillCfg.xml";
             SkillEventContainer.getInstance().load(skillConfig);
 
-            log.error("加载完成， 可以执行命令了！");
+            log.error("Загрузка завершена. Можно выполнять команды!");
             //配置表中的预设机器人创建连接并登陆游戏
             Manager.playerManager.deal().init();
         } catch (ParserConfigurationException | IOException | SAXException ex) {
@@ -121,7 +121,7 @@ public class RobotServer implements Runnable {
     @Override
     public void run() {
         init();
-        logger.info("开始启动线程");
+        logger.info("Запуск выполнения в потоке");
 //        serverThread.start();
 //        serverThread.addTimerEvent(new ServerHeartTimer(-1, 0, 1000));
         new Timer("Heart-Timer").schedule(new TimerTask() {
@@ -215,7 +215,7 @@ public class RobotServer implements Runnable {
         }
         for (IoSession ioSession : sess) {
             if (ioSession.isWriteSuspended()) {
-                log.error(ioSession.getId() + "正在忙， 不能写数据了！");
+                log.error(ioSession.getId() + " — занят, запись данных невозможна!");
                 continue;
             }
 
@@ -223,7 +223,7 @@ public class RobotServer implements Runnable {
             synchronized (ioSession) {
 
                 if (ioSession.containsAttribute("sendheart")) {
-                    logger.error(ioSession.getAttribute("roleId") + "发送心跳了！");
+                    logger.error(ioSession.getAttribute("roleId") + " — отправлен heartbeat!");
                     ioSession.removeAttribute("sendheart");
                 }
 
@@ -241,7 +241,7 @@ public class RobotServer implements Runnable {
                         String info = "";
                         synchronized (ioSession) {
                             if (ioSession.containsAttribute("补发一个心跳消息")) {
-                                info = "本次包含补发心跳消息";
+                                info = " — содержит повторно отправленное heartbeat-сообщение";
                                 ioSession.removeAttribute("补发一个心跳消息");
                             }
                         }
@@ -306,7 +306,7 @@ public class RobotServer implements Runnable {
     }
 
     public String getMsgRecord() {
-        StringBuilder ret = new StringBuilder("心跳消息流程统计:\n");
+        StringBuilder ret = new StringBuilder("Статистика обработки heartbeat-сообщений:\n");
         MsgRecorder retr = new MsgRecorder();
 
         synchronized (msgRecord) {
@@ -315,7 +315,7 @@ public class RobotServer implements Runnable {
             retr.dispatchingLast = recorder.dispatchingLast;
         }
 
-        ret.append(String.format("停在接收时候的数量:%d 停在分发处的数量:%d (正常应该都是0)\n", retr.messageReceivedLast, retr.dispatchingLast));
+        ret.append(String.format("Количество застрявших на приёме: %d, количество застрявших на распределении: %d (в норме должно быть 0)\n", retr.messageReceivedLast, retr.dispatchingLast));
 
         return ret.toString();
     }

@@ -41,26 +41,26 @@ public class RoleModule {
     @At
     public Object query(int serverId, int queryType, String queryString) {
         if (Strings.isBlank(queryString)) {
-            return Toolkit.outResult(false, "query condition is blank");
+            return Toolkit.outResult(false, "Условие запроса пусто");
         }
         queryString = queryString.trim();
         Dblog dblog = QueryUtil.getInstance().getFinalHeFuDB(serverId);
         if (dblog == null) {
-            return Toolkit.outResult(false, "server not found");
+            return Toolkit.outResult(false, "Сервер не найден");
         }
 
         switch (queryType) {
-            case 1://角色名
+            case 1: // Имя персонажа
                 return queryRoleByRoleName(dblog, queryString);
-            case 2://FunCell帐号
+            case 2: // Аккаунт FunCell
                 return queryRoleByUserName(dblog, queryString);
-            case 3://角色ID(10进制)
+            case 3: // ID персонажа (десятичный)
                 return queryRoleByRoleId(dblog, queryString, 0);
-            case 4://角色ID(36进制)
+            case 4: // ID персонажа (36-ричный)
                 return queryRoleByRoleId(dblog, queryString, 1);
-            case 5://帐号ID
+            case 5: // ID аккаунта
                 return queryRoleByUserId(dblog, queryString);
-            case 6://平台帐号
+            case 6: // Аккаунт платформы
                 return queryRoleByPlatFormAccount(dblog, queryString);
             default:
                 return null;
@@ -75,7 +75,7 @@ public class RoleModule {
             roles = queryRoleState(dblog, roleSqlStr, "roleName", "%" + roleName + "%");
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.outResult(false, "连接数据库失败");
+            return Toolkit.outResult(false, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
             return Toolkit.outResult(false, msg.get("jsp.role.norole"));
@@ -124,7 +124,7 @@ public class RoleModule {
             roles = queryRoleState(dblog, roleSqlStr, "userId", account.getUserid());
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.outResult(false, "连接数据库失败");
+            return Toolkit.outResult(false, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
             return Toolkit.outResult(true, msg.get("jsp.role.norole")).setv("accounts", account);
@@ -137,7 +137,7 @@ public class RoleModule {
         try {
             roleId = type == 1 ? toBase10(queryString) : Long.valueOf(queryString);
         } catch (Exception e) {
-            return Toolkit.outResult(false, "输入查询参数错误");
+            return Toolkit.outResult(false, "Ошибка в параметрах запроса");
         }
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         String roleSqlStr = "SELECT * FROM $table WHERE roleId = @roleId";
@@ -146,7 +146,7 @@ public class RoleModule {
             roles = queryRoleState(dblog, roleSqlStr, "roleId", roleId);
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.outResult(false, "连接数据库失败");
+            return Toolkit.outResult(false, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
             return Toolkit.outResult(false, msg.get("jsp.role.norole"));
@@ -183,7 +183,7 @@ public class RoleModule {
         try {
             userId = Long.parseLong(queryString);
         } catch (Exception e) {
-            return Toolkit.outResult(false, "输入参数错误");
+            return Toolkit.outResult(false, "Ошибка в параметрах запроса");
         }
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         String roleSqlStr = "SELECT * FROM $table WHERE userId = @userId";
@@ -192,7 +192,7 @@ public class RoleModule {
             roles = queryRoleState(dblog, roleSqlStr, "userId", userId);
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.outResult(false, "连接数据库失败");
+            return Toolkit.outResult(false, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
             return Toolkit.outResult(false, msg.get("jsp.role.nouserid"));
@@ -207,7 +207,7 @@ public class RoleModule {
                 "machineCode,imei,mac FROM $table WHERE userid = @userid order by time desc limit 0,1";
         Dao daoLSLog = LoginServerManager.getInstance().getLoginLogDao();
         if (daoLSLog == null) {
-            log.error("没有找到LSLog连接");
+            log.error("Подключение к LSLog не найдено");
             return Toolkit.outResult(true).setv("roles", roles).setv("msg", msg.get("jsp.role.nolslog"));
         }
         List<String> tableList = QueryUtil.getInstance().queryTables(daoLSLog, ServerKeyUtil.getKey("loginLogName"), "loguser");
@@ -246,7 +246,7 @@ public class RoleModule {
             roles = queryRoleState(dblog, roleSqlStr, "userId", account.getUserid());
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.outResult(false, "连接数据库失败");
+            return Toolkit.outResult(false, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
             return Toolkit.outResult(true, msg.get("jsp.role.norole")).setv("accounts", account);
@@ -280,7 +280,7 @@ public class RoleModule {
     }
 
     /**
-     * 从36进制的字符串转换为10进制的long型
+     * Преобразование из 36-ричной строки в десятичное long
      */
     private static long toBase10(String str) {
         return Long.parseLong(str, 36);

@@ -114,7 +114,7 @@ public class DblogModule {
                 return Toolkit.outResult(false, msg.get("db.insert.failure"));
             }
             DbLogListManager.getInstance().updateDBlog(logs);
-            BackendLogUtil.getInstance().log(request, "增加服务器数据库信息，serverId:" + dblog.getServerId());
+            BackendLogUtil.getInstance().log(request, "Добавление информации о серверной базе данных, serverId: " + dblog.getServerId());
             return Toolkit.outResult(true, msg.get("db.insert.success"));
         } else {
             dblog.setId(logs.getId());
@@ -124,7 +124,7 @@ public class DblogModule {
                 return Toolkit.outResult(false, msg.get("db.update.failure"));
             }
             DbLogListManager.getInstance().updateDBlog(logs);
-            BackendLogUtil.getInstance().log(request, "修改服务器数据库信息，serverId:" + dblog.getServerId());
+            BackendLogUtil.getInstance().log(request, "Редактирование информации о серверной базе данных, serverId: " + dblog.getServerId());
             return Toolkit.outResult(true, msg.get("db.update.success"));
         }
     }
@@ -163,7 +163,7 @@ public class DblogModule {
         Dblog dblog = dao.fetch(Dblog.class, id);
         int no = dao.delete(Dblog.class, id);
         if (no > 0) {
-            BackendLogUtil.getInstance().log(Mvcs.getReq(), "删除服务器数据库信息，serverId:" + id);
+            BackendLogUtil.getInstance().log(Mvcs.getReq(), "Удаление информации о серверной базе данных, serverId: " + id);
             DbLogListManager.getInstance().updateDBlog(dblog);
             return Toolkit.outResult(true);
         }

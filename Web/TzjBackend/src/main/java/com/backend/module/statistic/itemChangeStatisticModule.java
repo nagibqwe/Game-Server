@@ -29,7 +29,7 @@ public class itemChangeStatisticModule {
     @Ok("jsp:jsp.statistic.itemChange")
     @Filters(@By(type = MenuFilter.class, args = {"USERMENUS", "/noauthority.jsp"}))
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "进入物品、货币流向统计页面");
+        BackendLogUtil.getInstance().log(request, "Вход на страницу статистики потоков предметов и валюты");
         Map<String, String> langMap = Mvcs.getMessages(Mvcs.getReq());
         Map<Integer, String> reasonMap = new TreeMap<>();
         for (String key : langMap.keySet()) {

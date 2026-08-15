@@ -59,7 +59,7 @@ public class MainTaskScript implements IMainTaskScript {
                     return afterTime;
                 }
             }else{
-                log.info(player.getInfo()+"主线任务做完,taskId="+nowTaskId+",进入世界BOSS副本打怪,cloneId=1509");
+                log.info(player.getInfo() + " — сюжетное задание завершено, taskId=" + nowTaskId + ", переход в подземелье мирового босса для убийства монстров, cloneId=1509");
                 //进入世界boss副本
 
                 if (player.getLevel()<800){
@@ -89,7 +89,7 @@ public class MainTaskScript implements IMainTaskScript {
         }
         Cfg_Task_Bean bean = CfgManager.getCfg_Task_Container().getValueByKey(nowTaskId);
         if (bean == null) {
-            log.error(player.getInfo()+"主线任务配置表数据错误，taskId="+nowTaskId);
+            log.error(player.getInfo() + " — ошибка в данных конфигурации сюжетного задания, taskId=" + nowTaskId);
             return gmFinishMainTask(player,nowTaskId);
         }
         if (bean.getPathMap() == 1010){
@@ -111,7 +111,7 @@ public class MainTaskScript implements IMainTaskScript {
             if (lastTime == 0) {
                 waitTimeMap.put(nowTaskId,nowTime);
             }else if(nowTime-lastTime>=60*1000){
-                log.info("使用GM命令完成，任务执行超时:"+(nowTime-lastTime));
+                log.info("GM-команда выполнена. Превышение времени выполнения задачи: " + (nowTime - lastTime));
                 return gmFinishMainTask(player,nowTaskId);
             }
         }
@@ -176,7 +176,7 @@ public class MainTaskScript implements IMainTaskScript {
             }
             double dis = MapUtils.getDistance(p, player.getCurPos());
             if (dis < 3) {//到了地方，交任务
-                log.info(player.getInfo()+"距离较近,dis="+dis+"，移动到目标位置:"+p.getX()+" "+p.getY()+",当前位置:"+player.getCurPos().getX()+" "+player.getCurPos().getY()+",当前地图ID:"+player.getMapModelId());
+                log.info(player.getInfo() + " — расстояние мало, dis=" + dis + ", перемещение к цели: " + p.getX() + " " + p.getY() + ", текущая позиция: " + player.getCurPos().getX() + " " + player.getCurPos().getY() + ", текущий ID карты: " + player.getMapModelId());
 //                afterTime = finishMainTask(player, bean);
                 if(player.getMainTask().isFinish()){
                     sendFinishMainTask(player);
@@ -186,7 +186,7 @@ public class MainTaskScript implements IMainTaskScript {
                 //有时候卡地图直接传送到目标
                 if (checkMoveWaitTime(player, p)) return 2000;
 
-                log.info(player.getInfo()+"移动到目标位置:"+p.getX()+" "+p.getY()+",当前位置："+player.getCurPos()+",目标地图ID:"+player.getMapModelId());
+                 log.info(player.getInfo() + " — перемещение к цели: " + p.getX() + " " + p.getY() + ", текущая позиция: " + player.getCurPos() + ", ID карты: " + player.getMapModelId());
                 player.moveAi_MoveToPos(p);
                 afterTime = 2000;
             }
@@ -258,7 +258,7 @@ public class MainTaskScript implements IMainTaskScript {
         int gatherId = values.get(0);
 
         if(Manager.cooldownManager.isCooldowning(player, CooldownTypes.AI_GATHER_CD,String.valueOf(gatherId))){
-            log.info(player.getInfo()+"正在进行采集操作");
+            log.info(player.getInfo() + " — выполняется операция сбора");
             return afterTime;
         }
 //        int shoujiNum = player.getMainTask().getTargetValue().get(key);
@@ -302,11 +302,11 @@ public class MainTaskScript implements IMainTaskScript {
         }
         ReadIntegerArray ri = bean.getTarget();
         if(ri == null||ri.isEmpty()){
-            log.error("Cfg_Task_Bean配置表错误,ID:"+bean.getTask_id());
+            log.error("Ошибка в конфигурации Cfg_Task_Bean, ID: " + bean.getTask_id());
             return afterTime;
         }
         if(ri.size() != 2){
-            log.error("Cfg_Task_Bean配置表错误,ID:"+bean.getTask_id());
+            log.error("Ошибка в конфигурации Cfg_Task_Bean, ID: " + bean.getTask_id());
             return afterTime;
         }
         if(player.getLevel() < ri.get(1)){
@@ -336,7 +336,7 @@ public class MainTaskScript implements IMainTaskScript {
         }
         Cfg_Clone_map_Bean clone = CfgManager.getCfg_Clone_map_Container().getValueByKey(zoneModelId);
         if (clone == null) {
-            log.info(player.getInfo() + "正在做任务:" + bean.getTask_name() + "(" + bean.getTask_id() + ")");
+            log.info(player.getInfo() + " — выполняется задание: " + bean.getTask_name() + " (" + bean.getTask_id() + ")");
             return player.attack(player.getCurPos(), 0);
         }
         //已经在副本地图
@@ -365,7 +365,7 @@ public class MainTaskScript implements IMainTaskScript {
         }
 
         player.reqEnterZone(zoneModelId);
-        log.info(player.getInfo()+"进入副本:" +clone.getId()+ "_" +clone.getDuplicate_name());
+        log.info(player.getInfo() + " — вход в подземелье: " + clone.getId() + "_" + clone.getDuplicate_name());
         return 10 * 1000;
     }
 
@@ -391,7 +391,7 @@ public class MainTaskScript implements IMainTaskScript {
         int task_clone_id = bean.getTarget().get(2);
         Cfg_Clone_map_Bean cloneBean = CfgManager.getCfg_Clone_map_Container().getValueByKey(task_clone_id);
         if (cloneBean == null) {
-            log.error("Cfg_Clone_map_Bean没有找到位面副本数据,ID："+task_clone_id);
+            log.error("Данные подземелья (Cfg_Clone_map_Bean) не найдены. ID: " + task_clone_id);
             return afterTime;
         }
 
@@ -413,46 +413,46 @@ public class MainTaskScript implements IMainTaskScript {
                 }
             }
 
-            log.info(player.getInfo()+"寻怪攻击,怪物数量:"+player.getNpcs().size()+",当前地图ID:"+player.getMapModelId());
-            //寻怪并战斗
-            afterTime = player.findAndAttack();
-        } else if(player.getMainTask().getMapId() == player.getMapModelId()){//在寻路地图中
-            if(player.getMainTask().getxPos() == player.getCurPos().getX()&&player.getMainTask().getyPos() == player.getCurPos().getY()){//在目标位置
-                //请求进入位面副本
-                player.reqEnterZone(task_clone_id);
-                afterTime = 3000;
-            }else{//移动到目标位置
-                Position p = new Position(player.getMainTask().getxPos(), player.getMainTask().getyPos());
-                if (MapUtils.getDistance(p, player.getCurPos()) < 3) {
-                    player.moveAi_MoveToPos(p);
-                    log.info(player.getInfo()+"距离较近，移动到目标位置：X="+p.getX()+",Y="+p.getY()+",当前位置：X="+player.getCurPos().getX()+",Y="+player.getCurPos().getY()+",当前地图ID:"+player.getMapModelId());
-                } else {
-                    //有时候卡地图直接传送到目标
-                    if (checkMoveWaitTime(player, p)) return 3000;
+log.info(player.getInfo() + " — поиск монстров для атаки, количество монстров: " + player.getNpcs().size() + ", текущий ID карты: " + player.getMapModelId());
+// Поиск монстров и начало боя
+afterTime = player.findAndAttack();
+} else if (player.getMainTask().getMapId() == player.getMapModelId()) { // на карте маршрута
+    if (player.getMainTask().getxPos() == player.getCurPos().getX() && player.getMainTask().getyPos() == player.getCurPos().getY()) { // в целевой позиции
+        // Запрос на вход в подземелье
+        player.reqEnterZone(task_clone_id);
+        afterTime = 3000;
+    } else { // движение к целевой позиции
+        Position p = new Position(player.getMainTask().getxPos(), player.getMainTask().getyPos());
+        if (MapUtils.getDistance(p, player.getCurPos()) < 3) {
+            player.moveAi_MoveToPos(p);
+            log.info(player.getInfo() + " — расстояние мало, перемещение к цели: X=" + p.getX() + ", Y=" + p.getY() + ", текущая позиция: X=" + player.getCurPos().getX() + ", Y=" + player.getCurPos().getY() + ", текущий ID карты: " + player.getMapModelId());
+        } else {
+            // иногда при зависании на карте — телепортируем к цели
+            if (checkMoveWaitTime(player, p)) return 3000;
 
-                    log.info(player.getInfo()+"移动到目标位置:"+p.getX()+" "+p.getY()+",当前位置："+player.getCurPos().getX()+" "+player.getCurPos().getY()+",当前地图ID:"+player.getMapModelId());
-                    player.moveAi_MoveToPos(p);
-                }
-            }
-        } else {//不在寻路地图，也不在位面副本中
-            log.info(player.getInfo()+"不在寻路地图或位面副本中,任务寻路地图："+player.getMainTask().getMapId()+"，位面副本地图："+cloneMapId);
-            Cfg_Mapsetting_Bean mapBean = CfgManager.getCfg_Mapsetting_Container().getValueByKey(player.getMapModelId());
-            if(mapBean == null){
-                log.error("配置表中没有找到地图数据,ID："+player.getMapModelId());
-                return afterTime;
-            }
-            if(mapBean.getType() == 0){//在世界地图中
-                player.reqTransportControl(1,player.getMainTask().getMapId());
-                afterTime = 3000;
-            } else {//在副本中,要先退出副本
-                player.reqCopyMapOut();
-//                player.chatGM("&entermap " + player.getMapModelId() + " " + player.getMainTask().getxPos() + " " + player.getMainTask().getyPos());
-                afterTime = 3000;
-//                player.moveToMapObject(mapDataId, npcId, MapObject_NPC);
-            }
+            log.info(player.getInfo() + " — перемещение к цели: " + p.getX() + " " + p.getY() + ", текущая позиция: " + player.getCurPos().getX() + " " + player.getCurPos().getY() + ", текущий ID карты: " + player.getMapModelId());
+            player.moveAi_MoveToPos(p);
         }
+    }
+} else { // не на карте маршрута и не в подземелье
+    log.info(player.getInfo() + " — не на карте маршрута и не в подземелье. ID карты маршрута: " + player.getMainTask().getMapId() + ", ID карты подземелья: " + cloneMapId);
+    Cfg_Mapsetting_Bean mapBean = CfgManager.getCfg_Mapsetting_Container().getValueByKey(player.getMapModelId());
+    if (mapBean == null) {
+        log.error("Конфигурация карты не найдена. ID: " + player.getMapModelId());
         return afterTime;
     }
+    if (mapBean.getType() == 0) { // на мировой карте
+        player.reqTransportControl(1, player.getMainTask().getMapId());
+        afterTime = 3000;
+    } else { // в подземелье — сначала выйти из него
+        player.reqCopyMapOut();
+        // player.chatGM("&entermap " + player.getMapModelId() + " " + player.getMainTask().getxPos() + " " + player.getMainTask().getyPos());
+        afterTime = 3000;
+        // player.moveToMapObject(mapDataId, npcId, MapObject_NPC);
+    }
+}
+return afterTime;
+}
 
     /**
      * 进行位面演示副本
@@ -460,103 +460,103 @@ public class MainTaskScript implements IMainTaskScript {
      * @param bean
      * @return
      */
-    private int doPlaneFaBaoTask(Player player, Cfg_Task_Bean bean){
-        int afterTime = 3000;
-        ByteMapCfg cfg = Manager.mapCfgManager.getMapCfg(player.getMapModelId());
-        if (cfg == null) {
-            return afterTime;
-        }
-
-        int task_clone_id = bean.getTarget().get(2);
-        Cfg_Clone_map_Bean cloneBean = CfgManager.getCfg_Clone_map_Container().getValueByKey(task_clone_id);
-        if (cloneBean == null) {
-            log.error("没有找到位面副本数据,ID："+task_clone_id);
-            return afterTime;
-        }
-
-        int cloneMapId = cloneBean.getMapid();
-        if (cloneMapId == player.getMapModelId()) {//在位面副本中
-            sendFinishMainTask(player);
-            log.info(player.getInfo()+"在位面演示副本中，请求完成任务,当前地图ID:"+player.getMapModelId());
-            afterTime = 3000;
-        } else if(player.getMainTask().getMapId() == player.getMapModelId()){//在寻路地图中
-            if(player.getMainTask().getxPos() == player.getCurPos().getX()&&player.getMainTask().getyPos() == player.getCurPos().getY()){//在目标位置
-                //请求进入位面副本
-                player.reqEnterZone(task_clone_id);
-                log.info(player.getInfo()+"请求进入位面副本："+task_clone_id);
-                afterTime = 3000;
-            }else{//移动到目标位置
-                Position p = new Position(player.getMainTask().getxPos(), player.getMainTask().getyPos());
-                if (MapUtils.getDistance(p, player.getCurPos()) < 3) {
-                    player.moveAi_MoveToPos(p);
-                    log.info(player.getInfo()+"距离较近，移动到目标位置：X="+p.getX()+",Y="+p.getY()+",当前位置：X="+player.getCurPos().getX()+",Y="+player.getCurPos().getY()+",当前地图ID:"+player.getMapModelId());
-                } else {
-                    //有时候卡地图直接传送到目标
-                    if (checkMoveWaitTime(player, p)) return 3000;
-
-                    log.info(player.getInfo()+"移动到目标位置:"+p.getX()+" "+p.getY()+",当前位置："+player.getCurPos().getX()+" "+player.getCurPos().getY()+",当前地图ID:"+player.getMapModelId());
-                    player.moveAi_MoveToPos(p);
-                }
-            }
-        } else {//不在寻路地图，也不在位面副本中
-            log.info("玩家地图不一致,当前地图:"+player.getMapModelId()+",主线任务寻径地图ID："+player.getMainTask().getMapId()+"，主线位面副本地图："+cloneMapId);
-            player.reqTransportControl(1,player.getMainTask().getMapId());
-            afterTime = 5000;
-            //            moveToMapObject(mapDataId, npcId, MapObject_NPC);
-        }
+    private int doPlaneFaBaoTask(Player player, Cfg_Task_Bean bean) {
+    int afterTime = 3000;
+    ByteMapCfg cfg = Manager.mapCfgManager.getMapCfg(player.getMapModelId());
+    if (cfg == null) {
         return afterTime;
     }
+
+    int task_clone_id = bean.getTarget().get(2);
+    Cfg_Clone_map_Bean cloneBean = CfgManager.getCfg_Clone_map_Container().getValueByKey(task_clone_id);
+    if (cloneBean == null) {
+        log.error("Данные подземелья не найдены. ID: " + task_clone_id);
+        return afterTime;
+    }
+
+    int cloneMapId = cloneBean.getMapid();
+    if (cloneMapId == player.getMapModelId()) { // в подземелье
+        sendFinishMainTask(player);
+        log.info(player.getInfo() + " — в подземелье, запрос на выполнение задания. Текущий ID карты: " + player.getMapModelId());
+        afterTime = 3000;
+    } else if (player.getMainTask().getMapId() == player.getMapModelId()) { // на карте маршрута
+        if (player.getMainTask().getxPos() == player.getCurPos().getX() && player.getMainTask().getyPos() == player.getCurPos().getY()) { // в целевой позиции
+            // Запрос на вход в подземелье
+            player.reqEnterZone(task_clone_id);
+            log.info(player.getInfo() + " — запрос на вход в подземелье: " + task_clone_id);
+            afterTime = 3000;
+        } else { // движение к целевой позиции
+            Position p = new Position(player.getMainTask().getxPos(), player.getMainTask().getyPos());
+            if (MapUtils.getDistance(p, player.getCurPos()) < 3) {
+                player.moveAi_MoveToPos(p);
+                log.info(player.getInfo() + " — расстояние мало, перемещение к цели: X=" + p.getX() + ", Y=" + p.getY() + ", текущая позиция: X=" + player.getCurPos().getX() + ", Y=" + player.getCurPos().getY() + ", текущий ID карты: " + player.getMapModelId());
+            } else {
+                // иногда при зависании на карте — телепортируем к цели
+                if (checkMoveWaitTime(player, p)) return 3000;
+
+                log.info(player.getInfo() + " — перемещение к цели: " + p.getX() + " " + p.getY() + ", текущая позиция: " + player.getCurPos().getX() + " " + player.getCurPos().getY() + ", текущий ID карты: " + player.getMapModelId());
+                player.moveAi_MoveToPos(p);
+            }
+        }
+    } else { // не на карте маршрута и не в подземелье
+        log.info("Карта игрока не совпадает. Текущая карта: " + player.getMapModelId() + ", ID карты маршрута: " + player.getMainTask().getMapId() + ", ID карты подземелья: " + cloneMapId);
+        player.reqTransportControl(1, player.getMainTask().getMapId());
+        afterTime = 5000;
+        // moveToMapObject(mapDataId, npcId, MapObject_NPC);
+    }
+    return afterTime;
+}
 
     /**
      * 操作任务,主要根据main_task表的target字段去FunctionVariable表查找对应操作功能
      * @param bean
      * @return
      */
-    private int doOprateTask(Player player, Cfg_Task_Bean bean){
-        int afterTime = 2000;
+    private int doOprateTask(Player player, Cfg_Task_Bean bean) {
+    int afterTime = 2000;
 
-        if(player.getMainTask().isFinish()){
-            sendFinishMainTask(player);
-            return 2000;
-        }
+    if (player.getMainTask().isFinish()) {
+        sendFinishMainTask(player);
+        return 2000;
+    }
 
-        int fvId = bean.getTarget().get(0);
-        int fvVal = bean.getTarget().get(1);
-        Cfg_FunctionVariable_Bean fbean = CfgManager.getCfg_FunctionVariable_Container().getValueByKey(fvId);
-        if (fbean == null) {
-            log.error("FunctionVariable配置表数据错误,ID="+fvId);
-            return afterTime;
-        }
-
-        if(bean.getOpen_panel_param() == 1){//需要先到目标位置
-            log.info(player.getInfo()+"执行操作任务"+bean.getTask_id()+"前需要先移动到目标位置,X="+bean.getEndpath().get(0)+",Y="+bean.getEndpath().get(1));
-            player.moveToCurMapPos(bean.getEndpath().get(0),bean.getEndpath().get(1));
-        }
-
-        switch (fvId){
-            case FunctionType.FUNCTION_PlayerLevel: {//玩家等级
-                return doPlayerLevel(player, bean);
-            }
-            case FunctionType.FUNCTION_WornEquip: {//穿戴X件X阶及以上的X色X星装备
-                return Manager.equipManager.deal().doWornEquipTask(player, bean);
-//                return gmFinishMainTask(player,bean.getTask_id());
-            }
-            case FunctionType.FUNCTION_StateLevel: {//境界突破
-                return doStateLevel(player, bean);
-            }
-            case FunctionType.FUNCTION_RiChangJingYanNum: {//累计完成日常经验任务次数
-                  return gmFinishMainTask(player,bean.getTask_id());
-//                return doRiChangJingYanNum(player);
-            }
-            case FunctionType.FUNCTION_EquipSmelt: {//装备熔炼
-                return doEquipSmelt(player);
-            }
-            default:
-                break;
-        }
-
+    int fvId = bean.getTarget().get(0);
+    int fvVal = bean.getTarget().get(1);
+    Cfg_FunctionVariable_Bean fbean = CfgManager.getCfg_FunctionVariable_Container().getValueByKey(fvId);
+    if (fbean == null) {
+        log.error("Ошибка в данных конфигурации FunctionVariable, ID=" + fvId);
         return afterTime;
     }
+
+    if (bean.getOpen_panel_param() == 1) { // сначала нужно переместиться к цели
+        log.info(player.getInfo() + " — перед выполнением операционного задания " + bean.getTask_id() + " необходимо переместиться к цели. X=" + bean.getEndpath().get(0) + ", Y=" + bean.getEndpath().get(1));
+        player.moveToCurMapPos(bean.getEndpath().get(0), bean.getEndpath().get(1));
+    }
+
+    switch (fvId) {
+        case FunctionType.FUNCTION_PlayerLevel: { // Уровень игрока
+            return doPlayerLevel(player, bean);
+        }
+        case FunctionType.FUNCTION_WornEquip: { // Надеть X предметов X-го ранга X-го цвета с X звёздами
+            return Manager.equipManager.deal().doWornEquipTask(player, bean);
+            // return gmFinishMainTask(player, bean.getTask_id());
+        }
+        case FunctionType.FUNCTION_StateLevel: { // Прорыв уровня развития
+            return doStateLevel(player, bean);
+        }
+        case FunctionType.FUNCTION_RiChangJingYanNum: { // Накопленное количество выполнений ежедневных заданий опыта
+            return gmFinishMainTask(player, bean.getTask_id());
+            // return doRiChangJingYanNum(player);
+        }
+        case FunctionType.FUNCTION_EquipSmelt: { // Переплавка экипировки
+            return doEquipSmelt(player);
+        }
+        default:
+            break;
+    }
+
+    return afterTime;
+}
 
     /**
      * 执行境界突破操作
@@ -568,7 +568,7 @@ public class MainTaskScript implements IMainTaskScript {
         int stateLv = bean.getTarget().get(1);
         Cfg_State_Bean stateBean = CfgManager.getCfg_State_Container().getValueByKey(stateLv*100+1);
         if(stateBean == null){
-            log.error("没有找到配置数据,ID："+player.getMapModelId());
+            log.error("Конфигурационные данные не найдены. ID: " + player.getMapModelId());
             return afterTime;
         }
 
@@ -631,7 +631,7 @@ public class MainTaskScript implements IMainTaskScript {
             player.chatGM("&additem 2000005");
             return 2000;
         }
-        log.info(player.getInfo()+"请求装备熔炼个数："+rmList.size());
+        log.info(player.getInfo() + " — запрос на переплавку экипировки, количество: " + rmList.size());
         RecycleMessage.ReqRecycle.Builder msg = RecycleMessage.ReqRecycle.newBuilder();
         msg.addAllItemId(rmList);
         player.sendMsg(RecycleMessage.ReqRecycle.MsgID.eMsgID_VALUE, msg.build().toByteArray());
@@ -646,11 +646,11 @@ public class MainTaskScript implements IMainTaskScript {
             if(waitTimeMap!=null&&!waitTimeMap.isEmpty()){//进度更新时清空超时时间
                 waitTimeMap.put(player.getMainTask().getNowTaskId(),TimeUtils.Time());
             }
-            log.info(player.getInfo() + "更新任务进度，任务ID=" + messInfo.getModelId()+",进度:"+player.getMainTask().getTargetValue().get(messInfo.getUseItems().getModel()));
+            log.info(player.getInfo() + " — обновление прогресса задания. ID задания: " + messInfo.getModelId() + ", прогресс: " + player.getMainTask().getTargetValue().get(messInfo.getUseItems().getModel()));
         }else {//接任务
             player.getMainTask().resetTaskInfo(messInfo);
             player.waitDoTime(500);
-            log.info(player.getInfo() + "变更(接取)任务ID=" + messInfo.getModelId());
+            log.info(player.getInfo() + " — изменение (принятие) задания. ID задания: " + messInfo.getModelId());
         }
     }
 
@@ -658,7 +658,7 @@ public class MainTaskScript implements IMainTaskScript {
     public void mainTaskFinish(Player player, taskMessage.ResTaskFinish messInfo) {
         if (messInfo.getState() == TaskState.TOO_FAR_WITH_NPC) {
             player.setOverlen(true);
-            log.info(player.getInfo()+"与交任务的npc太远");
+            log.info(player.getInfo() + " — слишком далеко от NPC для сдачи задания");
             return;
         }
         if (messInfo.getState() == TaskState.SUCCESS) {
@@ -671,12 +671,12 @@ public class MainTaskScript implements IMainTaskScript {
 
             Cfg_Task_Bean bean = CfgManager.getCfg_Task_Container().getValueByKey(messInfo.getModelId());
             if (bean == null) {
-                log.error(player.getInfo()+"主线任务配置表数据错误，taskId="+messInfo.getModelId());
+                log.error(player.getInfo() + " — ошибка в данных конфигурации сюжетного задания, taskId=" + messInfo.getModelId());
                 return;
             }
 
             if(bean.getPost_task_id() <= 0){
-                log.info(player.getInfo()+"没有主线任务了");
+                log.info(player.getInfo() + " — нет активных сюжетных заданий");
                 player.getMainTask().setNowTaskId(-1);
                 return;
             }
@@ -686,7 +686,7 @@ public class MainTaskScript implements IMainTaskScript {
                 int fvValue = bean.getConditions_value().get(0).get(1);
                 Cfg_FunctionVariable_Bean fbean = CfgManager.getCfg_FunctionVariable_Container().getValueByKey(fvId);
                 if (fbean == null) {
-                    log.error("FunctionVariable配置表数据错误,ID="+fvId);
+                    log.error("Ошибка в данных конфигурации FunctionVariable, ID=" + fvId);
                     return;
                 }
 
@@ -708,7 +708,7 @@ public class MainTaskScript implements IMainTaskScript {
             return afterTime;
         }
         if (player.getSession().isWriteSuspended()) {
-            log.error(player.getInfo()+"网络忙");
+            log.error(player.getInfo() + " — сеть перегружена");
             return afterTime;
         }
         ReadArray<Integer> values = bean.getEndpath();
@@ -725,11 +725,11 @@ public class MainTaskScript implements IMainTaskScript {
             }
             if (p == null) {
                 gmFinishMainTask(player,bean.getTask_id());
-                log.info(player.getInfo() + " GM3完成任务：" + bean.getTask_id());
+                log.info(player.getInfo() + " — GM3: завершено задание: " + bean.getTask_id());
                 return 2000;
             }
             if (player.isOverlen()) {
-                log.info(player.getInfo() + "距离太远了，完成任务Id ：" + bean.getTask_id() + "(" + bean.getTask_name() + ")");
+                log.info(player.getInfo() + " — слишком далеко для завершения задания. ID: " + bean.getTask_id() + " (" + bean.getTask_name() + ")");
 //                    chatGM("&moveto " + p.getX() + " " + p.getY());
 //                    moveToPos(mapModelId, p);
                 player.moveAi_MoveToPos(p);
@@ -820,7 +820,7 @@ public class MainTaskScript implements IMainTaskScript {
         }
 
         if(player.getNpcs().values().size() == 0){
-            log.info(player.getInfo()+"周围npc都被移除了");
+            log.info(player.getInfo() + " — все NPC вокруг удалены");
             return true;
         }
 
@@ -838,7 +838,7 @@ public class MainTaskScript implements IMainTaskScript {
         if (player.getMoveWaitTime() == 0) {
             player.setMoveWaitTime(now);
         } else if (offset > 30 * 1000) {
-            log.info(player.getInfo() + "移动超时：" + offset + "ms");
+            log.info(player.getInfo() + " — превышено время перемещения: " + offset + " мс");
             player.chatGM("&moveto " + p.getX() + " " + p.getY());
             player.setMoveWaitTime(0);
             return true;
@@ -856,7 +856,7 @@ public class MainTaskScript implements IMainTaskScript {
         msg.setTaskId(player.getMainTask().getInstanceId());
         msg.setType(0);
         player.sendMsg(taskMessage.ReqTaskFinish.MsgID.eMsgID_VALUE, msg.build().toByteArray());
-        log.info(player.getInfo() + "请求完成主线任务,modelId:" + player.getMainTask().getNowTaskId());
+        log.info(player.getInfo() + " — запрос на завершение сюжетного задания. modelId: " + player.getMainTask().getNowTaskId());
     }
 
     private int doMoveToPos(Player player, Cfg_Task_Bean bean) {

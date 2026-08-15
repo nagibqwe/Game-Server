@@ -24,7 +24,7 @@ import java.util.*;
 @At("/dailyLogin")
 @Fail("http:500")
 /**
- * 指定玩家登录记录
+ * Ежедневные записи входа указанных игроков
  */
 public class DailyLoginStatisticModule {
     private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -35,15 +35,15 @@ public class DailyLoginStatisticModule {
     @At
     @Ok("jsp:jsp.statistic.dailyLogin")
     @Filters(@By(type = MenuFilter.class, args = {"USERMENUS", "/noauthority.jsp"}))
-    //初始化界面
+    // Инициализация интерфейса
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "进入指定玩家每日登录情况统计界面");
+        BackendLogUtil.getInstance().log(request, "Вход на страницу статистики ежедневного входа указанных игроков");
         Set<String> groupNames = DbLogListManager.getInstance().getPlatformDBNames();
-        //获取平台列表
+        // Получение списка платформ
         request.setAttribute("groupNameList", groupNames);
 
         List<Map<String, Object>> dbServerList = new ArrayList<>();
-        //获取平台对应游戏数据库列表
+        // Получение списка игровых БД для платформы
         for (String groupName : groupNames) {
             List<Dblog> dbServers = DbLogListManager.getInstance().getServerDBs(groupName);
             for (Dblog dbServer : dbServers) {
@@ -60,17 +60,16 @@ public class DailyLoginStatisticModule {
         request.setAttribute("dbServerList", ja);
 
         Map<String, String> conditionMap = new TreeMap<>();
-        conditionMap.put("userId", "账号ID(userId)");
-        conditionMap.put("roleId", "角色ID(roleId)");
-        conditionMap.put("roleName", "角色名称(roleName)");
+        conditionMap.put("userId", "ID аккаунта (userId)");
+        conditionMap.put("roleId", "ID персонажа (roleId)");
+        conditionMap.put("roleName", "Имя персонажа (roleName)");
         request.setAttribute("conditionMap", conditionMap);
         request.setAttribute("nowDate", sdf.format(new Date()));
     }
 
     @At
     /*
-     * 指定玩家每日新建角色登录情况
-     *
+     * Ежедневный вход созданных персонажей указанных игроков
      */
     public Object getUserLogin(String serverIds, String condition, String conditionContent, String createStartDate, String createEndDate, String startDate, String endDate, int pageIndex, int pageSize) throws Exception {
         String judge = "getUserLogin,data";
@@ -82,7 +81,7 @@ public class DailyLoginStatisticModule {
 
     @At
     /*
-     * 指定玩家登录每日登录情况
+     * Ежедневный вход указанных игроков
      */
     public Object getRoleLogin(String serverIds, String condition, String conditionContent, String createStartDate, String createEndDate, String startDate, String endDate, int pageIndex, int pageSize) throws Exception {
         String judge = "getRoleLogin,data";
@@ -94,7 +93,7 @@ public class DailyLoginStatisticModule {
 
     @At
     /*
-     * 指定玩家每日新建角色登录情况的条数
+     * Количество записей ежедневного входа созданных персонажей указанных игроков
      */
     public Object getUserLoginCounts(String serverIds, String condition, String conditionContent, String createStartDate, String createEndDate, String startDate, String endDate, int pageIndex, int pageSize) throws Exception {
         String judge = "getUserLoginCounts,count";
@@ -103,7 +102,7 @@ public class DailyLoginStatisticModule {
 
     @At
     /*
-     * 指定玩家登录每日登录情况的条数
+     * Количество записей ежедневного входа указанных игроков
      */
     public Object getRoleLoginCounts(String serverIds, String condition, String conditionContent, String createStartDate, String createEndDate, String startDate, String endDate, int pageIndex, int pageSize) throws Exception {
         String judge = "getRoleLoginCounts,count";
@@ -111,14 +110,14 @@ public class DailyLoginStatisticModule {
     }
 
     /**
-     * @param judge            判断参数，获取不同所需的数据
-     * @param serverIds        服务器ID
-     * @param condition        传入的条件选项的值
-     * @param conditionContent 传入条件的内容
-     * @param createStartDate  传入角色创建开始时间
-     * @param createEndDate    传入角色创建结束时间
-     * @param pageIndex        分页的当前页
-     * @param pageSize         分页每页显示的条数
+     * @param judge            Параметр для определения типа запрашиваемых данных
+     * @param serverIds        ID серверов
+     * @param condition        Выбранное условие поиска
+     * @param conditionContent Содержание условия
+     * @param createStartDate  Начало периода создания персонажа
+     * @param createEndDate    Конец периода создания персонажа
+     * @param pageIndex        Текущая страница
+     * @param pageSize         Количество записей на странице
      */
     private List<Map<String, Object>> getData(String judge, String serverIds, String condition, String conditionContent, String createStartDate, String createEndDate, String startDate, String endDate, int pageIndex, int pageSize) throws Exception {
         startDate = startDate + " 00:00:00";
@@ -128,19 +127,17 @@ public class DailyLoginStatisticModule {
         String[] serverId = serverIds.split(",");
         List<Map<String, Object>> dailyLoginMap = new ArrayList<>();
         for (String s : serverId) {
-            List<String> goalTables = QueryUtil.getInstance().getQueryTables(ROLELOGINLOG,  TableType.Month, startDate, endDate);
+            List<String> goalTables = QueryUtil.getInstance().getQueryTables(ROLELOGINLOG, TableType.Month, startDate, endDate);
             Map<String, List<String>> hefuTableMap = new TreeMap<>(QueryUtil.getInstance().getHefuTable(s, ROLELOGINLOG, sdf.parse(startDate), sdf.parse(endDate)));
 
             for (String key : hefuTableMap.keySet()) {
                 List<String> tableList = hefuTableMap.get(key);
-                tableList.retainAll(goalTables);//过滤重复数据表
+                tableList.retainAll(goalTables);
                 for (String value : tableList) {
-
                     Dblog dblog = DbLogListManager.getInstance().getDblog(key);
                     if (dblog == null) {
                         continue;
                     }
-                    //获取sql
                     String sqlStr = "";
                     String sqlCountStr = "";
                     String[] judges = judge.split(",");
@@ -163,7 +160,6 @@ public class DailyLoginStatisticModule {
                         List<Map<String, Object>> dataMap = QueryUtil.getInstance().query(dblog, sqlStr);
 
                         for (Map<String, Object> map : dataMap) {
-                            //columnName：列名
                             for (String columnName : map.keySet()) {
                                 if (columnName.equals("roleId") || columnName.equals("userId")) {
                                     String idStr = map.get(columnName).toString();
@@ -179,7 +175,7 @@ public class DailyLoginStatisticModule {
         return dailyLoginMap;
     }
 
-    //获取指定账号在某天新建角色，并且这些角色在某天登录的情况的sql
+    // SQL для созданных в указанный день персонажей с указанных аккаунтов и их входов
     private String getUserLoginSql(String table, String condition, String conditionContent, String createStartDate, String createEndDate, String startDate, String endDate, int pageIndex, int pageSize) {
         String strSql = "select userId,roleId,roleName,FROM_UNIXTIME(createTime) createTime,max(level) level,FROM_UNIXTIME(max(time)) time";
         strSql += " from " + table;
@@ -190,7 +186,7 @@ public class DailyLoginStatisticModule {
         return strSql;
     }
 
-    //获取指定账号在某天新建角色，并且这些角色在某天登录的情况的条数
+    // Количество записей для созданных в указанный день персонажей с указанных аккаунтов
     private String getUserLoginCountsSql(String table, String condition, String conditionContent, String createStartDate, String createEndDate, String startDate, String endDate) {
         String strSql = "select count(*) count from (select userId,roleId,roleName,FROM_UNIXTIME(createTime) createTime,max(level) level,FROM_UNIXTIME(max(time)) time";
         strSql += " from " + table;
@@ -201,7 +197,7 @@ public class DailyLoginStatisticModule {
         return strSql;
     }
 
-    //获取指定角色在某天登录的情况的SQL
+    // SQL для указанных персонажей и их входов в указанный день
     private String getRoleLoginSql(String table, String condition, String conditionContent, String startDate, String endDate, int pageIndex, int pageSize) {
         String strSql = "select userId,roleId,roleName,FROM_UNIXTIME(createTime) createTime,max(level) level,FROM_UNIXTIME(max(time)) time";
         strSql += " from " + table;
@@ -211,7 +207,7 @@ public class DailyLoginStatisticModule {
         return strSql;
     }
 
-    //获取指定角色在某天登录的情况的条数
+    // Количество записей для указанных персонажей и их входов в указанный день
     private String getRoleLoginCountsSql(String table, String condition, String conditionContent, String startDate, String endDate) {
         String strSql = "select count(*) count from (select userId,roleId,roleName,FROM_UNIXTIME(createTime) createTime,max(level) level,FROM_UNIXTIME(max(time)) time";
         strSql += " from " + table;
@@ -224,9 +220,7 @@ public class DailyLoginStatisticModule {
     @At
     @Ok("")
     public void exportExcel() {
-        // 取得文件名
         String fileName = exName;
-        // 取得表名
         String tableName = exName;
         ExportExcelUtil ex = new ExportExcelUtil();
         User user = (User) Mvcs.getHttpSession().getAttribute("USER");
@@ -242,5 +236,4 @@ public class DailyLoginStatisticModule {
             ex.exportExcel(tableName, dataMapList, response, fileName);
         }
     }
-
 }

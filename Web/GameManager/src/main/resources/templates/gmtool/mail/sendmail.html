@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('Список серверов')" />
+    <th:block th:include="include :: header('Отправка письма')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -10,33 +10,33 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>发送邮件</h5>
+                    <h5>Отправка письма</h5>
                 </div>
                 <div class="ibox-content">
                     <form id="sendMailForm" class="form-horizontal m-t" method="post">
 
                         <div class="form-group">
                             <div th:replace="common/select_server_single.html"></div>
-                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                             <input type="hidden" id="requestUrl" value="gameServer">
                             <input type="hidden" id="ignoreMerge" value="1">
-                            <input id="all" style="width: 18px;height: 15px" type="checkbox" onclick="allServerMail()"/>全服邮件
+                            <input id="all" style="width: 18px;height: 15px" type="checkbox" onclick="allServerMail()"/>Письмо на все серверы
                         </div>
                         <div id="roleDiv" class="form-group">
                             <label class="col-sm-2 control-label is-required">ID персонажа:</label>
                             <div class="col-sm-8">
                                 <input class="form-control" id="roleIds" type="text" onblur="autocheckRoleIds()"
-                                       name="roleIds" placeholder="支持输入多个角色ID[','分隔]" required/>
+                                       name="roleIds" placeholder="Поддерживается ввод нескольких ID через запятую" required/>
                                 <span id="autoCheckResult"></span>
 
                                 <input style="margin-top: 10px;" id="roleFile" type="file"
                                        onchange="fileSelected(this.files);"/>
                                 <br/>
-                                <label class="label" style="color: #00B83F;width: auto;">请上传txt格式文件，多个数据请使用换行来分割</label>
+                                <label class="label" style="color: #00B83F;width: auto;">Загрузите файл в формате txt, данные разделяются переносом строки</label>
                                 <br/>
                                 <br/>
                                 <button type="button" class="btn btn-warning" onclick="checkRoleIds()">
-                                    检查角色ID有效性
+                                    Проверить ID персонажа
                                 </button>
                                 <label id="checkResult"></label>
                             </div>
@@ -46,14 +46,14 @@
                             <label for="mailTitle" class="col-sm-2 control-label is-required">Тема письма:</label>
                             <div class="col-sm-8">
                                 <input id="mailTitle" type="text" name="title" minlength="4" class="form-control"
-                                       maxlength="20" placeholder="最大20个字" required/>
+                                       maxlength="20" placeholder="Макс. 20 символов" required/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="mailContent" class="col-sm-2 control-label is-required">Текст письма:</label>
                             <div class="col-sm-8">
-                                <textarea id="mailContent" type="text" name="content" minlength="6" class="form-control" maxlength="1000" placeholder="最大1000个字" required></textarea>
+                                <textarea id="mailContent" type="text" name="content" minlength="6" class="form-control" maxlength="1000" placeholder="Макс. 1000 символов" required></textarea>
                             </div>
                         </div>
 
@@ -67,12 +67,12 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="margin-left: 86px">
-                                <input style="width: 18px;height: 15px" type="checkbox" id="show" onclick="showItemDiv()"/>发物品
+                                <input style="width: 18px;height: 15px" type="checkbox" id="show" onclick="showItemDiv()"/>Добавить вложение
                             </label>
                         </div>
 
                         <div class="form-group" id="itemDiv">
-                            <label class="col-sm-2 control-label">附件物品</label>
+                            <label class="col-sm-2 control-label">Вложение</label>
                             <div class="col-sm-8" style="border: 1px solid rgb(204, 204, 204); border-radius: 2px; height: 25px" onclick="showAddItemModel()">
                                 <input type="hidden" id="reward" name="items" class="rewardInput"/>
                                 <div id="items" class="items" style="margin-top: 3px"></div>
@@ -100,7 +100,7 @@
 <script th:inline="javascript">
     var prefix = ctx + "gmtool/mail";
     var items = new Map();
-    var addItemIndex=0;//初始化添加物品的id
+    var addItemIndex=0; // Инициализация ID добавляемого предмета
     var itemIndexAll='';
 
     $(function () {
@@ -109,7 +109,7 @@
         $("#itemDiv").hide();
     });
 
-    //公共取值部分
+    // Общая часть для получения данных
     var roleIds;
     var serverId;
     function coom() {
@@ -119,14 +119,14 @@
             return;
         }
         if ($("input[name='serverId']:checked").length > 1 || $("input[name='serverId']:checked").length < 0) {
-            $.modal.alertError("必须选择一个服务器");
+            $.modal.alertError("Необходимо выбрать сервер");
             return;
         }
 
         serverId = $("#select_server").val();
     }
 
-    //手动检测角色ID是否有效
+    // Ручная проверка валидности ID персонажа
     function checkRoleIds() {
         coom();
         $.ajax({
@@ -153,7 +153,7 @@
         });
     }
 
-    //异步自动检测角色ID是否有效
+    // Асинхронная автоматическая проверка валидности ID персонажа
     function autocheckRoleIds() {
         coom();
         $("#checkResult").html("");
@@ -186,7 +186,7 @@
         var subLength = filePath.lastIndexOf(".");
         var sub = filePath.substring(subLength + 1, filePath.length);
         if (sub != "txt") {
-            $.modal.alertError("请上传txt格式文件，多个数据请使用换行来分割");
+            $.modal.alertError("Загрузите файл в формате txt, данные разделяются переносом строки");
             return;
         }
         var roleContent = "";
@@ -196,7 +196,7 @@
         reader.onload = function () {
             var fileContent = this.result;
             if (fileContent == "") {
-                $.modal.alertError("上传的文件内容为空！");
+                $.modal.alertError("Загруженный файл пуст!");
                 return;
             }
             var roleIds = fileContent.split("\n");
@@ -217,13 +217,13 @@
         }
     }
 
-    //显示添加物品界面
+    // Отображение окна добавления предмета
     function showAddItemModel() {
 
         $("#addItemModal").modal('toggle');
         $("#addItemForm")[0].reset();
         $("#autoCheckItemId").html("");
-        $("h3").text("添加物品");
+        $("h3").text("Добавить предмет");
         $("#updateItem").css("display", "none");
         $("#addItem").css("display", "inline-block");
     }
@@ -250,14 +250,14 @@
         $("#addItemModal").modal('hide');
         addItemIndex+=1;
     }
-    //显示修改物品界面
+    // Отображение окна изменения предмета
     var itemIdAll;
     var itemNumAll;
     var isBindAll;
     var pickerAll;
     function showUpdateItem(itemId,itemNum,isBind,picker,itemIndex) {
         $("#addItemModal").modal('toggle');
-        $("h3").text("修改物品");
+        $("h3").text("Изменить предмет");
         $("#autoCheckItemId").html("");
         $("#updateItem").css("display", "inline-block");
         $("#addItem").css("display", "none");
@@ -272,10 +272,10 @@
         isBindAll=isBind;
         pickerAll=picker;
         console.log("itemIndexAll:"+itemIndexAll);
-        event.stopPropagation();//防止冒泡事件的触发，只触发当前的点击事件
+        event.stopPropagation(); // Предотвращение всплытия событий
     }
     var count=0;
-    //确认修改物品
+    // Подтверждение изменения предмета
     function updateItem() {
         var itemId = $("#itemId").val();
         var itemName = items.get(itemId);
@@ -369,7 +369,7 @@
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
-                        actions.push('<a style="margin-right: 5px" class="btn btn-success btn-xs" href="javascript:void(0)" onclick="parse(' + row.id + ')"><i class="fa fa-edit"></i>粘贴内容</a> ');
+                        actions.push('<a style="margin-right: 5px" class="btn btn-success btn-xs" href="javascript:void(0)" onclick="parse(' + row.id + ')"><i class="fa fa-edit"></i>Вставить содержимое</a> ');
                         return actions.join('');
                     }
                 }]
@@ -387,11 +387,11 @@
         }
     }
 
-    //异步自动检测物品ID有效性
+    // Асинхронная проверка валидности ID предмета
     function autoCheckItemId(obj) {
         var itemName=items.get($(obj).val());
         if (itemName == undefined){
-            $("#autoCheckItemId").html("<font color='red'>ID предмета не существует </font>");
+            $("#autoCheckItemId").html("<font color='red'>ID предмета не существует</font>");
         } else {
             $("#autoCheckItemId").html("<font color='#90ee90'>ID предмета доступен</font>");
         }
@@ -446,14 +446,14 @@
                     $("#mailContent").val(mailData.content);
                     $("#reason").val(mailData.reason);
 
-                    if (mailData.items.length > 0) {//列如1,6,0,0}3,6,1,9
+                    if (mailData.items.length > 0) { // Пример: 1,6,0,0}3,6,1,9
                         $("#items").empty();
                         $("#reward").val('');
                         $("#items").show();
                         $("#show").prop("checked", true);
                         $("#itemDiv").show();
                         var itemsArr=mailData.items.split("}");
-                        $.each(itemsArr,function (i) {//列如1,6,0,0
+                        $.each(itemsArr,function (i) { // Пример: 1,6,0,0
                             var item=itemsArr[i].split(",");
                             var itemId=item[0];
                             var itemName=items.get(item[0]);
@@ -479,7 +479,7 @@
             <div class="modal-content" style="width: 430px">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3>添加物品</h3>
+                    <h3>Добавить предмет</h3>
                 </div>
                 <div class="modal-body">
                     <form id="addItemForm" class="form-horizontal m-t">
@@ -492,23 +492,23 @@
                             <datalist id="itemList"></datalist>
                             <span id="autoCheckItemId"></span>
                             <br/>
-                            <label for="itemNum">Количество предметов:</label><input id="itemNum" type="text"
+                            <label for="itemNum">Количество:</label><input id="itemNum" type="text"
                                                                     onkeyup="this.value=this.value.replace(/^(0+)|[^\d]+/g,'')"
                                                                     class="selectClass" style="margin-top: 10px;margin-left: 13px"/>
                             <br/>
-                            <label for="isBind">是否绑定:</label>
+                            <label for="isBind">Привязка:</label>
                             <select id="isBind" class="selectClass" style="margin-top: 10px;margin-left: 10px">
-                                <option value="0" selected>非绑</option>
-                                <option value="1">绑定</option>
+                                <option value="0" selected>Не привязан</option>
+                                <option value="1">Привязан</option>
                             </select>
                             <br/>
                             <label for="selectpicker">Класс:</label>
                             <select id="selectpicker" class="selectClass" style="margin-top: 10px;margin-left: 35px">
-                                <option value="0">玄剑</option>
-                                <option value="1">天英</option>
-                                <option value="2">地藏</option>
-                                <option value="3">罗刹</option>
-                                <option value="9" selected>通用</option>
+                                <option value="0">Сюаньцзянь</option>
+                                <option value="1">Тяньин</option>
+                                <option value="2">Дицзан</option>
+                                <option value="3">Лоча</option>
+                                <option value="9" selected>Универсальный</option>
                             </select>
                         </div>
                     </form>

@@ -39,12 +39,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
- * 处理充值商城请求
+ * Обработка запросов магазина пополнения
  */
 @IocBean
 @At("/rechargeItem")
@@ -66,7 +65,7 @@ public class RechargeItemModule {
     }
 
     /**
-     * 通知游戏服刷新充值商城商品列表
+     * Уведомление игрового сервера об обновлении списка товаров магазина пополнения
      */
     @At
     public Object sendRechargeInfos() {
@@ -74,30 +73,30 @@ public class RechargeItemModule {
     }
 
     /**
-     * 通知游戏服更新充值商城某条商品
+     * Уведомление игрового сервера об обновлении товара магазина пополнения
      */
     @At
     public String updateRechargeItem(RechargeItem rechargeItem) {
-        //更新GM后台本地数据库数据
+        // Обновление данных в локальной БД GM-бэкенда
         int count = dao.update(rechargeItem);
-        if(count<=0){
-            return "更新GM后台充值商城配置失败";
+        if (count <= 0) {
+            return "Ошибка обновления конфигурации магазина пополнения в GM-бэкенде";
         }
 
         RechargeItemManager.getInstance().getRechargeItemMap().put(rechargeItem.getGoods_id(), rechargeItem);
         RechargeItemManager.getInstance().getRechargeItemInfoMap().put(rechargeItem.getGoods_id(), RechargeItemManager.getInstance().convertRechargeItem(rechargeItem));
 
         StringBuilder sb = new StringBuilder();
-        //通知API服务器更新某一条的充值信息
+        // Уведомление API-сервера об обновлении информации о пополнении
         String rechargeStr = JsonUtils.toJSONString(RechargeItemManager.getInstance().convertRechargeItem(rechargeItem));
-        HashMap<String,String> paramMap = new HashMap<>();
+        HashMap<String, String> paramMap = new HashMap<>();
         paramMap.put("rechargeStr", rechargeStr);
-        String httpResult = HttpConnectionUtils.post(ServerKeyUtil.getKey("APIServerUrl")+"/rechargeItem/updateRechargeItem", paramMap);
+        String httpResult = HttpConnectionUtils.post(ServerKeyUtil.getKey("APIServerUrl") + "/rechargeItem/updateRechargeItem", paramMap);
 
-        sb.append("API服务器返回结果：").append(httpResult).append("/n");
+        sb.append("Результат ответа API-сервера: ").append(httpResult).append("\n");
 
-        //通知游戏服更新全部的充值信息
-        Cnd cnd = Cnd.where("isDeleted", "=", 0).and("isHeFu","=", 0).and("serverType", "in", "0,1");
+        // Уведомление игровых серверов об обновлении всей информации о пополнении
+        Cnd cnd = Cnd.where("isDeleted", "=", 0).and("isHeFu", "=", 0).and("serverType", "in", "0,1");
         List<Server> servers = dao.query(Server.class, cnd);
         List<Integer> serverSuccessList = new ArrayList<>();
         List<Integer> serverFailedList = new ArrayList<>();
@@ -105,81 +104,78 @@ public class RechargeItemModule {
         String allRechargeStr = RechargeItemManager.getInstance().getRechargeStr();
         String md5 = MD5Util.MD5(allRechargeStr);
 
-        for(Server server : servers){
+        for (Server server : servers) {
             int serverId = server.getServerId();
             try {
-                NutMap resultMap = GameServerRequestUtil.gmRefreshRechargeItemInfos(server, allRechargeStr, md5, 15*1000);
+                NutMap resultMap = GameServerRequestUtil.gmRefreshRechargeItemInfos(server, allRechargeStr, md5, 15 * 1000);
                 if (!resultMap.getBoolean("ok")) {
                     serverFailedList.add(serverId);
-                    logger.error(serverId + "服,充值配置[" + rechargeItem.getGoods_id() + "]更新失败！操作结果：" + resultMap.get("data").toString());
+                    logger.error("Сервер " + serverId + ": ошибка обновления конфигурации пополнения [" + rechargeItem.getGoods_id() + "]! Результат: " + resultMap.get("data").toString());
                 } else {
                     serverSuccessList.add(serverId);
                 }
-            }catch (Exception e){
-                logger.error(serverId + "服充值配置更新失败！error："+e.getMessage());
+            } catch (Exception e) {
+                logger.error("Сервер " + serverId + ": ошибка обновления конфигурации пополнения! Ошибка: " + e.getMessage());
                 serverFailedList.add(serverId);
             }
         }
-        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("/n");
-        sb.append("游戏服同步失败列表：").append(serverFailedList).append("/n");
-        BackendLogUtil.getInstance().log(Mvcs.getReq(), "修改充值配置，修改的ID："+rechargeItem.getGoods_id());
+        sb.append("Список успешно синхронизированных игровых серверов: ").append(serverSuccessList).append("\n");
+        sb.append("Список серверов с ошибкой синхронизации: ").append(serverFailedList).append("\n");
+        BackendLogUtil.getInstance().log(Mvcs.getReq(), "Изменение конфигурации пополнения, ID: " + rechargeItem.getGoods_id());
         return sb.toString();
     }
 
     /**
-     * 通知游戏服删除充值商城某条商品
+     * Уведомление игрового сервера об удалении товара магазина пополнения
      */
     @At
     public Object deleteRechargeItem(String id) {
-        //删除GM后台本地数据库数据
+        // Удаление данных из локальной БД GM-бэкенда
         int count = dao.delete(RechargeItem.class, Integer.parseInt(id));
-        if(count<=0){
-            return Toolkit.outResult(false, "删除GM后台充值商城配置失败");
+        if (count <= 0) {
+            return Toolkit.outResult(false, "Ошибка удаления конфигурации магазина пополнения в GM-бэкенде");
         }
 
         RechargeItemManager.getInstance().getRechargeItemMap().remove(Integer.parseInt(id));
         RechargeItemManager.getInstance().getRechargeItemInfoMap().remove(Integer.parseInt(id));
 
         StringBuilder sb = new StringBuilder();
-        //通知API服务器删除某一条的充值信息
-        HashMap<String,String> paramMap = new HashMap<>();
+        // Уведомление API-сервера об удалении информации о пополнении
+        HashMap<String, String> paramMap = new HashMap<>();
         paramMap.put("id", id);
-        String httpResult = HttpConnectionUtils.post(ServerKeyUtil.getKey("APIServerUrl")+"/rechargeItem/deleteRechargeItem", paramMap);
+        String httpResult = HttpConnectionUtils.post(ServerKeyUtil.getKey("APIServerUrl") + "/rechargeItem/deleteRechargeItem", paramMap);
 
-        sb.append("API服务器返回结果：").append(httpResult).append("/n");
+        sb.append("Результат ответа API-сервера: ").append(httpResult).append("\n");
 
-        //通知游戏服删除某一条的充值信息
-        Cnd cnd = Cnd.where("isDeleted", "=", 0).and("isHeFu","=", 0).and("serverType", "in", "0,1");
+        // Уведомление игровых серверов об удалении информации о пополнении
+        Cnd cnd = Cnd.where("isDeleted", "=", 0).and("isHeFu", "=", 0).and("serverType", "in", "0,1");
         List<Server> servers = dao.query(Server.class, cnd);
         List<Integer> serverSuccessList = new ArrayList<>();
         List<Integer> serverFailedList = new ArrayList<>();
-        for(Server server : servers){
+        for (Server server : servers) {
             int serverId = server.getServerId();
             NutMap resultMap = GameServerRequestUtil.gmDeleteRechargeInfo(server, id);
             if (!resultMap.getBoolean("ok")) {
                 serverFailedList.add(serverId);
-                logger.error(serverId + "服,充值配置[" + id + "]删除失败！操作结果：" + resultMap.get("data").toString());
+                logger.error("Сервер " + serverId + ": ошибка удаления конфигурации пополнения [" + id + "]! Результат: " + resultMap.get("data").toString());
             } else {
                 serverSuccessList.add(serverId);
             }
         }
-        sb.append("游戏服同步成功列表：").append(serverSuccessList).append("/n");
-        sb.append("游戏服同步失败列表：").append(serverFailedList).append("/n");
+        sb.append("Список успешно синхронизированных игровых серверов: ").append(serverSuccessList).append("\n");
+        sb.append("Список серверов с ошибкой синхронизации: ").append(serverFailedList).append("\n");
         return Toolkit.outResult(true, sb.toString());
     }
 
     /**
-     *普通充值查询
-     * @param page
-     * @param rows
-     * @return
+     * Запрос обычных пополнений
      */
     @At
     @POST
     public Object queryRechargeItem(@Param("page") int page, @Param("rows") int rows) {
-        Cnd cnd = Cnd.where("goods_pay_channel","=","").or(Exps.isNull("goods_pay_channel"));
-        List<RechargeItem> list = dao.query(RechargeItem.class,cnd);
-        if (list == null){
+        Cnd cnd = Cnd.where("goods_pay_channel", "=", "").or(Exps.isNull("goods_pay_channel"));
+        List<RechargeItem> list = dao.query(RechargeItem.class, cnd);
+        if (list == null) {
             return Toolkit.outResult(true).setv("total", 0).setv("rows", 0);
         }
         int fromIndex = 0;
@@ -188,21 +184,18 @@ public class RechargeItemModule {
         toIndex = rows * page >= list.size() ? list.size() : rows * page;
 
         String md5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
-        return Toolkit.outResult(true).setv("total", list.size()).setv("rows", list.subList(fromIndex, toIndex)).setv("md5",md5);
+        return Toolkit.outResult(true).setv("total", list.size()).setv("rows", list.subList(fromIndex, toIndex)).setv("md5", md5);
     }
 
     /**
-     * 第三方充值配置查询
-     * @param page
-     * @param rows
-     * @return
+     * Запрос конфигурации пополнения для сторонних платформ
      */
     @At
     @POST
     public Object queryRechargeItem3(@Param("page") int page, @Param("rows") int rows) {
-        Cnd cnd = Cnd.where("goods_pay_channel","<>","");
-        List<RechargeItem> list = dao.query(RechargeItem.class,cnd);
-        if (list == null){
+        Cnd cnd = Cnd.where("goods_pay_channel", "<>", "");
+        List<RechargeItem> list = dao.query(RechargeItem.class, cnd);
+        if (list == null) {
             return Toolkit.outResult(true).setv("total", 0).setv("rows", 0);
         }
         int fromIndex = 0;
@@ -211,7 +204,7 @@ public class RechargeItemModule {
         toIndex = rows * page >= list.size() ? list.size() : rows * page;
 
         String md5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
-        return Toolkit.outResult(true).setv("total", list.size()).setv("rows", list.subList(fromIndex, toIndex)).setv("md5",md5);
+        return Toolkit.outResult(true).setv("total", list.size()).setv("rows", list.subList(fromIndex, toIndex)).setv("md5", md5);
     }
 
     @At
@@ -223,7 +216,7 @@ public class RechargeItemModule {
         int goods_id = Integer.parseInt(request.getParameter("goods_id"));
         rechargeItem.setGoods_id(goods_id);
 
-        if (!request.getParameter("goods_system_cfg_id").equals("")){
+        if (!request.getParameter("goods_system_cfg_id").equals("")) {
             rechargeItem.setGoods_system_cfg_id(Integer.parseInt(request.getParameter("goods_system_cfg_id")));
         }
 
@@ -233,23 +226,23 @@ public class RechargeItemModule {
         String goods_pay_channel = request.getParameter("goods_pay_channel");
         rechargeItem.setGoods_pay_channel(goods_pay_channel);
 
-        if (!request.getParameter("goods_pay_type").equals("")){
+        if (!request.getParameter("goods_pay_type").equals("")) {
             rechargeItem.setGoods_pay_type(Integer.parseInt(request.getParameter("goods_pay_type")));
         }
 
-        if (!request.getParameter("goods_type").equals("")){
+        if (!request.getParameter("goods_type").equals("")) {
             rechargeItem.setGoods_type(Integer.parseInt(request.getParameter("goods_type")));
         }
 
-        if (!request.getParameter("goods_subtype").equals("")){
+        if (!request.getParameter("goods_subtype").equals("")) {
             rechargeItem.setGoods_subtype(Integer.parseInt(request.getParameter("goods_subtype")));
         }
 
-        if (!request.getParameter("goods_limit").equals("")){
+        if (!request.getParameter("goods_limit").equals("")) {
             rechargeItem.setGoods_limit(Integer.parseInt(request.getParameter("goods_limit")));
         }
 
-        if (!request.getParameter("goods_icon").equals("")){
+        if (!request.getParameter("goods_icon").equals("")) {
             rechargeItem.setGoods_icon(Integer.parseInt(request.getParameter("goods_icon")));
         }
         String goods_price = request.getParameter("goods_price");
@@ -265,57 +258,56 @@ public class RechargeItemModule {
         String goods_extra_reward = request.getParameter("goods_extra_reward");
         rechargeItem.setGoods_extra_reward(goods_extra_reward);
 
-        if (!request.getParameter("goods_extra_reward_limit").equals("")){
+        if (!request.getParameter("goods_extra_reward_limit").equals("")) {
             rechargeItem.setGoods_extra_reward_limit(Integer.parseInt(request.getParameter("goods_extra_reward_limit")));
         }
-        if (!request.getParameter("isTotalRecharge").equals("")){
+        if (!request.getParameter("isTotalRecharge").equals("")) {
             rechargeItem.setIsTotalRecharge(Integer.parseInt(request.getParameter("isTotalRecharge")));
         }
-        if (!request.getParameter("totalVipPower").equals("")){
+        if (!request.getParameter("totalVipPower").equals("")) {
             rechargeItem.setTotalVipPower(Integer.parseInt(request.getParameter("totalVipPower")));
         }
-        //获取之前旧充值表的MD5码
+        // Получение старого MD5-кода таблицы пополнений
         String oldMd5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
 
-        //更新数据(数据库和APIServer)
+        // Обновление данных (база данных и APIServer)
         String updateResultStr = updateRechargeItem(rechargeItem);
-        //重新加载内存数据
+        // Перезагрузка данных в памяти
         RechargeItemManager.getInstance().load();
 
-        //记录用户操作日志
-        BackendLogUtil.getInstance().log(request,rechargeItem.toString());
+        // Запись лога действий пользователя
+        BackendLogUtil.getInstance().log(request, rechargeItem.toString());
 
-        //MD5码更新
+        // Обновление MD5-кода
         String md5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
         List<RechargeItem> rechargeItemList = new ArrayList<>();
         String content = "";
-        if (null != oldMd5  && !oldMd5.equals(md5)){//md5码不一样则进行了改变
-            if (rechargeTableName.equals("rechargeItem")){//普通充值
-                Cnd cnd = Cnd.where("goods_pay_channel","=","").or(Exps.isNull("goods_pay_channel"));
-                rechargeItemList = dao.query(RechargeItem.class,cnd);
+        if (null != oldMd5 && !oldMd5.equals(md5)) { // MD5 изменился
+            if (rechargeTableName.equals("rechargeItem")) { // Обычное пополнение
+                Cnd cnd = Cnd.where("goods_pay_channel", "=", "").or(Exps.isNull("goods_pay_channel"));
+                rechargeItemList = dao.query(RechargeItem.class, cnd);
                 content = JsonUtils.toJSONString(rechargeItemList);
-                BackendLogUtil.getInstance().rechargeItemlog(request,content,rechargeTableName);
-
-            }else {//第三方充值
-                Cnd cnd = Cnd.where("goods_pay_channel","<>","");
-                rechargeItemList = dao.query(RechargeItem.class,cnd);
+                BackendLogUtil.getInstance().rechargeItemlog(request, content, rechargeTableName);
+            } else { // Пополнение через сторонние платформы
+                Cnd cnd = Cnd.where("goods_pay_channel", "<>", "");
+                rechargeItemList = dao.query(RechargeItem.class, cnd);
                 content = JsonUtils.toJSONString(rechargeItemList);
-                BackendLogUtil.getInstance().rechargeItemlog(request,content,rechargeTableName);
+                BackendLogUtil.getInstance().rechargeItemlog(request, content, rechargeTableName);
             }
         }
 
-        return Toolkit.outResult(true).setv("msg",updateResultStr).setv("md5",md5);
+        return Toolkit.outResult(true).setv("msg", updateResultStr).setv("md5", md5);
     }
 
     @At
     @AdaptBy(type = UploadAdaptor.class, args = {"ioc:upload"})
-    public Object loadRechargeItem(HttpServletRequest request, @Param("rechargeItemFile") TempFile rechargeItemFile){
+    public Object loadRechargeItem(HttpServletRequest request, @Param("rechargeItemFile") TempFile rechargeItemFile) {
         if (rechargeItemFile == null) {
-            return Toolkit.outResult(false, "file is null!");
+            return Toolkit.outResult(false, "Файл не найден!");
         }
         String fileName = rechargeItemFile.getSubmittedFileName();
         if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".xls")) {
-            return Toolkit.outResult(false, "file type error!");
+            return Toolkit.outResult(false, "Неверный тип файла!");
         }
         List<RechargeItem> items = new ArrayList<>();
         int[] itemInfoPos = new int[19];
@@ -324,38 +316,38 @@ public class RechargeItemModule {
             XSSFWorkbook wb = new XSSFWorkbook(in);
             XSSFSheet sheet = wb.getSheetAt(0);
             if (!sheet.getSheetName().equalsIgnoreCase("rechargeItem")) {
-                return Toolkit.outResult(false, "not rechargeItem config file");
+                return Toolkit.outResult(false, "Это не конфигурационный файл rechargeItem");
             }
 
-            //获取之前旧充值表的MD5码
+            // Получение старого MD5-кода таблицы пополнений
             String oldMd5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
 
             parseRechargeExcel(items, itemInfoPos, sheet);
 
-            if (items.size()>0) {//普通充值只会替换普通充值档位
-                //先删除数据库中普通充值数据
+            if (items.size() > 0) { // Обычное пополнение заменяет только обычные уровни пополнения
+                // Удаление данных обычного пополнения из БД
                 int delCount = dao.clear(RechargeItem.class,
                         Cnd.wrap("goods_pay_channel is NULL or goods_pay_channel = ''"));
 
                 List<RechargeItem> result = dao.insert(items);
-                if(result.size()>0){
+                if (result.size() > 0) {
                     RechargeItemManager.getInstance().load();
-                    Object resultStr=RechargeItemManager.getInstance().sendRechargeInfos();
-                    //MD5码更新
+                    Object resultStr = RechargeItemManager.getInstance().sendRechargeInfos();
+                    // Обновление MD5-кода
                     String md5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
-                    BackendLogUtil.getInstance().log(Mvcs.getReq(), "导入普通充值配置数据成功，MD5:"+md5);
+                    BackendLogUtil.getInstance().log(Mvcs.getReq(), "Импорт конфигурации обычного пополнения успешен, MD5:" + md5);
                     List<RechargeItem> rechargeItemList = new ArrayList<>();
                     String content = "";
-                    if (null != oldMd5  && !oldMd5.equals(md5)){//md5码不一样则进行了改变
-                        Cnd cnd = Cnd.where("goods_pay_channel","=","").or(Exps.isNull("goods_pay_channel"));
-                        rechargeItemList = dao.query(RechargeItem.class,cnd);
+                    if (null != oldMd5 && !oldMd5.equals(md5)) { // MD5 изменился
+                        Cnd cnd = Cnd.where("goods_pay_channel", "=", "").or(Exps.isNull("goods_pay_channel"));
+                        rechargeItemList = dao.query(RechargeItem.class, cnd);
                         content = JsonUtils.toJSONString(rechargeItemList);
-                        BackendLogUtil.getInstance().rechargeItemlog(request,content,"rechargeItem");
+                        BackendLogUtil.getInstance().rechargeItemlog(request, content, "rechargeItem");
                     }
-                    return Toolkit.outResult(true, "Reload Ok, saved " + result.size() + " record!\n"+resultStr);
+                    return Toolkit.outResult(true, "Перезагрузка выполнена, сохранено " + result.size() + " записей!\n" + resultStr);
                 }
             }
-            return Toolkit.outResult(false, "Reload rechargeItem file failed!");
+            return Toolkit.outResult(false, "Ошибка перезагрузки файла rechargeItem!");
         } catch (IOException e) {
             e.printStackTrace();
             return Toolkit.outResult(false, e.getMessage());
@@ -364,13 +356,13 @@ public class RechargeItemModule {
 
     @At
     @AdaptBy(type = UploadAdaptor.class, args = {"ioc:upload"})
-    public Object loadOtherRechargeItem(HttpServletRequest request,@Param("otherRechargeItemFile") TempFile otherRechargeItemFile){
+    public Object loadOtherRechargeItem(HttpServletRequest request, @Param("otherRechargeItemFile") TempFile otherRechargeItemFile) {
         if (otherRechargeItemFile == null) {
-            return Toolkit.outResult(false, "file is null!");
+            return Toolkit.outResult(false, "Файл не найден!");
         }
         String fileName = otherRechargeItemFile.getSubmittedFileName();
         if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".xls")) {
-            return Toolkit.outResult(false, "file type error!");
+            return Toolkit.outResult(false, "Неверный тип файла!");
         }
         List<RechargeItem> items = new ArrayList<>();
         int[] itemInfoPos = new int[19];
@@ -379,36 +371,36 @@ public class RechargeItemModule {
             XSSFWorkbook wb = new XSSFWorkbook(in);
             XSSFSheet sheet = wb.getSheetAt(0);
             if (!sheet.getSheetName().equalsIgnoreCase("otherRechargeItem")) {
-                return Toolkit.outResult(false, "not rechargeItem config file");
+                return Toolkit.outResult(false, "Это не конфигурационный файл rechargeItem");
             }
-            //获取之前旧充值表的MD5码
+            // Получение старого MD5-кода таблицы пополнений
             String oldMd5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
             parseRechargeExcel(items, itemInfoPos, sheet);
 
-            if (items.size()>0) {
-                //先删除数据库中第三方充值数据
+            if (items.size() > 0) {
+                // Удаление данных пополнения через сторонние платформы из БД
                 int delCount = dao.clear(RechargeItem.class,
                         Cnd.wrap("goods_pay_channel is NOT NULL and goods_pay_channel != ''"));
 
                 List<RechargeItem> result = dao.insert(items);
-                if(result.size()>0){
+                if (result.size() > 0) {
                     RechargeItemManager.getInstance().load();
-                    Object resultStr=RechargeItemManager.getInstance().sendRechargeInfos();
-                    //MD5码更新
+                    Object resultStr = RechargeItemManager.getInstance().sendRechargeInfos();
+                    // Обновление MD5-кода
                     String md5 = MD5Util.MD5(RechargeItemManager.getInstance().getRechargeStr());
-                    BackendLogUtil.getInstance().log(Mvcs.getReq(), "导入第三方充值配置数据成功，MD5:"+md5);
+                    BackendLogUtil.getInstance().log(Mvcs.getReq(), "Импорт конфигурации пополнения через сторонние платформы успешен, MD5:" + md5);
                     List<RechargeItem> rechargeItemList = new ArrayList<>();
                     String content = "";
-                    if (null != oldMd5  && !oldMd5.equals(md5)){//md5码不一样则进行了改变
-                        Cnd cnd = Cnd.where("goods_pay_channel","<>","");
-                        rechargeItemList = dao.query(RechargeItem.class,cnd);
+                    if (null != oldMd5 && !oldMd5.equals(md5)) { // MD5 изменился
+                        Cnd cnd = Cnd.where("goods_pay_channel", "<>", "");
+                        rechargeItemList = dao.query(RechargeItem.class, cnd);
                         content = JsonUtils.toJSONString(rechargeItemList);
-                        BackendLogUtil.getInstance().rechargeItemlog(request,content,"otherRechargeItem");
+                        BackendLogUtil.getInstance().rechargeItemlog(request, content, "otherRechargeItem");
                     }
-                    return Toolkit.outResult(true, "Reload Ok, saved " + result.size() + " record!\n"+resultStr);
+                    return Toolkit.outResult(true, "Перезагрузка выполнена, сохранено " + result.size() + " записей!\n" + resultStr);
                 }
             }
-            return Toolkit.outResult(false, "Reload failed!");
+            return Toolkit.outResult(false, "Ошибка перезагрузки!");
         } catch (IOException e) {
             e.printStackTrace();
             return Toolkit.outResult(false, e.getMessage());
@@ -563,118 +555,90 @@ public class RechargeItemModule {
 
                 items.add(item);
             }
-        }catch (Exception e){
-            logger.error(e,e);
-            throw  new RuntimeException("解析充值Excel出错，出错行数:"+rowCount+",列数:"+columnCount);
+        } catch (Exception e) {
+            logger.error(e, e);
+            throw new RuntimeException("Ошибка парсинга Excel с пополнениями. Строка с ошибкой: " + rowCount + ", столбец: " + columnCount);
         }
     }
 
     @At
     @POST
     @Ok("void")
-    public void exportRechargeExcel(int type, HttpServletResponse response){
+    public void exportRechargeExcel(int type, HttpServletResponse response) {
         Cnd cnd = Cnd.NEW();
         String sheetName = "";
-        if (type == 0){//普通充值表
-            cnd = Cnd.where("goods_pay_channel","=","").or(Exps.isNull("goods_pay_channel"));
-            sheetName="rechargeItem";
-        }else {
-            cnd = Cnd.where("goods_pay_channel","<>","");
-            sheetName="otherRechargeItem";
+        if (type == 0) { // Обычная таблица пополнений
+            cnd = Cnd.where("goods_pay_channel", "=", "").or(Exps.isNull("goods_pay_channel"));
+            sheetName = "rechargeItem";
+        } else {
+            cnd = Cnd.where("goods_pay_channel", "<>", "");
+            sheetName = "otherRechargeItem";
         }
-        List<RechargeItem> rechargeItemList = dao.query(RechargeItem.class,cnd);
-        exportExcel(rechargeItemList,sheetName,response);
+        List<RechargeItem> rechargeItemList = dao.query(RechargeItem.class, cnd);
+        exportExcel(rechargeItemList, sheetName, response);
     }
 
-    public void exportExcel(List<RechargeItem> rechargeItemList,String sheetName,HttpServletResponse response){
+    public void exportExcel(List<RechargeItem> rechargeItemList, String sheetName, HttpServletResponse response) {
         LinkedList<Map<String, String>> listMap = new LinkedList<>();
-        for(RechargeItem rechargeItem:rechargeItemList) {
-            Map<String,String> map = new LinkedHashMap<>();
-            map.put("充值档位ID，用于发送给第三方充值使用", String.valueOf(rechargeItem.getGoods_id()));
-            map.put("用于游戏服系统内使用，主要是其他功能调用", String.valueOf(rechargeItem.getGoods_system_cfg_id()));
-            map.put("商品名字描述（主要用于BI后台数据）", rechargeItem.getGoods_name());
-            map.put("渠道名称(不填或留空为游戏内普通充值，否则为第三方渠道充值)", rechargeItem.getGoods_pay_channel());
-            map.put("支付类型(根据第三方SDK传过来的paytype字段在配置表筛选对应的商品数据)", String.valueOf(rechargeItem.getGoods_pay_type()));
-            map.put("充值类型\n" +
-                    "1：正常充值 2：每日礼包充值 3：畅游月卡 4：尊享月卡 5：终身卡 6：成长基金 7：神秘商店 8：0元购 9：直购礼包（超值折扣） 10：狂欢周 11：运营活动类（后台配置） 12：天禁令高级令牌 99:第三方档位信息\"", String.valueOf(rechargeItem.getGoods_type()));
-            map.put("只针对Type=1（正常充值）的情况使用，其他类型不能使用\n" +
-                    "1=正常充值\n" +
-                    "2=新手礼包（一生一次）\n" +
-                    "3=周礼包（一周一刷新）\n" +
-                    "4=日礼包（一日一刷新）", String.valueOf(rechargeItem.getGoods_subtype()));
-            map.put("充值次数（当前轮每个挡位对应充值的次数）\n" +
-                    "-1=无次数限制", String.valueOf(rechargeItem.getGoods_limit()));
-            map.put("显示的图标的ID（hide）", String.valueOf(rechargeItem.getGoods_icon()));
-            map.put("充值档位对应消耗的真实货币(单位:分)\n" +
-                    "1：android\n" +
-                    "2：ios\n" +
-                    "（不需要区分大小写）\n" +
-                    "THB  泰铢   MYR  马来西亚令吉   SGD  新加坡元   VND  越南盾   EUR  欧元   GBP  英镑   HKD  港币   IDR  印尼盾   KRW  韩元   TWD  新台币   USD  美金   JPY  日元\n" +
-                    "CNY人民币\n" +
-                    "示例：android_THB,1200_CNY,1200;ios_THB,1200_CNY,120", rechargeItem.getGoods_price());
-            map.put("充值平台计费点\n" +
-                    "（需要运营配置）\n" +
-                    "android:tzj_oo6;ios:tzj_oo6（渠道_平台商品ID）", rechargeItem.getGoods_price_point());
-            map.put("默认的金额币种（用于运营方读取money字段里需要显示的种类） ", rechargeItem.getGoods_show_price());
-            map.put("对应奖励\n" +
-                    "物品类型_数量_绑定_职业\n" +
-                    "绑定 0未绑定 1绑定\n" +
-                    "也只 0男剑 1女枪 2地藏 3罗刹 9通用", rechargeItem.getGoods_reward());
-            map.put("充值倍数\n" +
-                    "倍数_次数（3_2表示前2次充值都是3倍奖励）\n" +
-                    "-1代表无限次", rechargeItem.getGoods_multiple());
-            map.put("额外赠送\n" +
-                    "物品类型_数量_绑定_职业\n" +
-                    "绑定 0未绑定 1绑定\n" +
-                    "也只 0男剑 1女枪 2地藏 3罗刹 9通用", rechargeItem.getGoods_extra_reward());
-            map.put("额外奖励可领取次数\n" +
-                    "-1代表无限次", String.valueOf(rechargeItem.getGoods_extra_reward_limit()));
-            map.put("是否计入到游戏累充活动\n" +
-                    "为0则代表不计入累充，大于0则代表计入累充的数额", String.valueOf(rechargeItem.getIsTotalRecharge()));
-            map.put("是否增加VIP经验\n" +
-                    "为0代表不增加VIP经验，大于0代表增加对应的VIP经验", String.valueOf(rechargeItem.getTotalVipPower()));
+        for (RechargeItem rechargeItem : rechargeItemList) {
+            Map<String, String> map = new LinkedHashMap<>();
+            map.put("ID уровня пополнения, используется для отправки сторонним платформам", String.valueOf(rechargeItem.getGoods_id()));
+            map.put("Используется внутри игрового сервера, в основном для вызова других функций", String.valueOf(rechargeItem.getGoods_system_cfg_id()));
+            map.put("Название товара (в основном для BI-бэкенда)", rechargeItem.getGoods_name());
+            map.put("Название канала (если не заполнено или пусто — обычное пополнение в игре, иначе — пополнение через сторонний канал)", rechargeItem.getGoods_pay_channel());
+            map.put("Тип оплаты (фильтрация товаров по полю paytype из стороннего SDK)", String.valueOf(rechargeItem.getGoods_pay_type()));
+            map.put("Тип пополнения\n1: обычное, 2: ежедневный подарок, 3: месячная карта, 4: премиум-карта, 5: пожизненная карта, 6: фонд роста, 7: тайный магазин, 8: покупка за 0, 9: прямая покупка (супер-скидка), 10: неделя карнавала, 11: операционные активности (бэкенд), 12: продвинутый пропуск Tianjinling, 99: сторонние уровни", String.valueOf(rechargeItem.getGoods_type()));
+            map.put("Используется только для Type=1 (обычное пополнение), другие типы не используют\n1=обычное пополнение\n2=подарок новичка (один раз)\n3=недельный подарок (обновляется раз в неделю)\n4=ежедневный подарок (обновляется раз в день)", String.valueOf(rechargeItem.getGoods_subtype()));
+            map.put("Количество пополнений (текущий уровень)\n-1=без ограничений", String.valueOf(rechargeItem.getGoods_limit()));
+            map.put("ID отображаемой иконки (скрыто)", String.valueOf(rechargeItem.getGoods_icon()));
+            map.put("Реальная валюта для уровня пополнения (в копейках)\n1: android\n2: ios\n(регистр не важен)\nTHB тайский бат, MYR малайзийский ринггит, SGD сингапурский доллар, VND вьетнамский донг, EUR евро, GBP фунт, HKD гонконгский доллар, IDR индонезийская рупия, KRW вона, TWD новый тайваньский доллар, USD доллар США, JPY иена, CNY юань\nПример: android_THB,1200_CNY,1200;ios_THB,1200_CNY,120", rechargeItem.getGoods_price());
+            map.put("Точка оплаты платформы\n(требуется настройка оператором)\nandroid:tzj_oo6;ios:tzj_oo6 (канал_ID товара платформы)", rechargeItem.getGoods_price_point());
+            map.put("Валюта по умолчанию (для отображения в поле money)", rechargeItem.getGoods_show_price());
+            map.put("Соответствующая награда\nтип предмета_количество_привязка_класс\nпривязка: 0 — нет, 1 — да\nкласс: 0 — мужской меч, 1 — женское ружьё, 2 — Дидзан, 3 — Ракшаса, 9 — общий", rechargeItem.getGoods_reward());
+            map.put("Множитель пополнения\nмножитель_количество (3_2 означает, что первые 2 пополнения дают тройную награду)\n-1=без ограничений", rechargeItem.getGoods_multiple());
+            map.put("Дополнительный бонус\nтип предмета_количество_привязка_класс\nпривязка: 0 — нет, 1 — да\nкласс: 0 — мужской меч, 1 — женское ружьё, 2 — Дидзан, 3 — Ракшаса, 9 — общий", rechargeItem.getGoods_extra_reward());
+            map.put("Количество получений дополнительной награды\n-1=без ограничений", String.valueOf(rechargeItem.getGoods_extra_reward_limit()));
+            map.put("Учитывается ли в накопительной активности пополнения\n0 — не учитывается, >0 — учитывается с указанной суммой", String.valueOf(rechargeItem.getIsTotalRecharge()));
+            map.put("Добавляет ли VIP-опыт\n0 — не добавляет, >0 — добавляет указанное количество", String.valueOf(rechargeItem.getTotalVipPower()));
             listMap.add(map);
         }
-        List<String> list1 = Arrays.asList("goods_id","goods_system_cfg_id","goods_name","goods_pay_channel","goods_pay_type","goods_type","goods_subtype","goods_limit","goods_icon","goods_price","goods_price_point","goods_show_price","goods_reward","goods_multiple","goods_extra_reward","goods_extra_reward_limit","isTotalRecharge","totalVipPower");
+        List<String> list1 = Arrays.asList("goods_id", "goods_system_cfg_id", "goods_name", "goods_pay_channel", "goods_pay_type", "goods_type", "goods_subtype", "goods_limit", "goods_icon", "goods_price", "goods_price_point", "goods_show_price", "goods_reward", "goods_multiple", "goods_extra_reward", "goods_extra_reward_limit", "isTotalRecharge", "totalVipPower");
         try (OutputStream out = response.getOutputStream()) {
             response.reset();
             response.addHeader("content-type", "application/shlnd.ms-excel;charset=utf-8");
-//                Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
-//                String excelName = msg.get("activity.activityData");
             response.addHeader("Content-Disposition", "attachment;filename="
                     + new String(sheetName.getBytes(StandardCharsets.UTF_8), "ISO8859-1")
                     + ".xls");
-            // 转码防止乱码
-            genExcel(listMap,list1,sheetName,out);
+            genExcel(listMap, list1, sheetName, out);
             out.flush();
         } catch (Exception e) {
             logger.error(e);
         }
     }
 
-    public void genExcel(LinkedList<Map<String, String>> dataList,List<String> list1,String sheetName,OutputStream out) throws IOException {
+    public void genExcel(LinkedList<Map<String, String>> dataList, List<String> list1, String sheetName, OutputStream out) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet();
         workbook.setSheetName(0, sheetName);
 
         int ri = 1, ci = 0;
-        HSSFRow row = sheet.createRow(ri++);//第2行英文表头
+        HSSFRow row = sheet.createRow(ri++); // Строка 2: заголовки на английском
         HSSFCell cell;
         for (String field : list1) {
             cell = row.createCell(ci);
             cell.setCellValue(field);
-            ci++;//增加列
+            ci++;
         }
-        ri+=2;
-        row = sheet.createRow(ri++);//第5行中文表头
-        ci=0;//从第一列开始
+        ri += 2;
+        row = sheet.createRow(ri++); // Строка 5: заголовки на русском
+        ci = 0;
         for (Map.Entry<String, String> entry : dataList.get(0).entrySet()) {
             cell = row.createCell(ci);
             cell.setCellValue(entry.getKey());
             ci++;
         }
-        //数据
-        for (Map<String, String> dataMap : dataList){//第6行数据开始
+        // Данные
+        for (Map<String, String> dataMap : dataList) { // Данные начиная со строки 6
             row = sheet.createRow(ri++);
             ci = 0;
             for (String key : dataMap.keySet()) {
@@ -686,25 +650,23 @@ public class RechargeItemModule {
     }
 
     /**
-     * 获取goods_type类型为11的充值表数据
-     * @return
+     * Получение данных таблицы пополнений с goods_type = 11
      */
     @At
     public Object getRechargeByType() {
-        Cnd cnd = Cnd.where("goods_type","=",11);
-        List<RechargeItem> list = dao.query(RechargeItem.class,cnd);
+        Cnd cnd = Cnd.where("goods_type", "=", 11);
+        List<RechargeItem> list = dao.query(RechargeItem.class, cnd);
         return Toolkit.outResult(true, list);
     }
 
     /**
-     * 查询充值配置修改的历史记录
-     * @return
+     * Запрос истории изменения конфигурации пополнений
      */
     @At
     public Object queryRechargeItemLog(@Param("page") int page, @Param("rows") int rows) {
         List<RechargeItemLog> list = dao.query(RechargeItemLog.class, Cnd.wrap("order by time desc limit 20"));
         List<RechargeItemLogGrid> rechargeItemLogGrids = new ArrayList<>();
-        for (RechargeItemLog rechargeItemLog:list){
+        for (RechargeItemLog rechargeItemLog : list) {
             RechargeItemLogGrid rechargeItemLogGrid = new RechargeItemLogGrid();
             rechargeItemLogGrid.setId(rechargeItemLog.getId());
             rechargeItemLogGrid.setUserName(rechargeItemLog.getUserName());
@@ -713,7 +675,7 @@ public class RechargeItemModule {
             rechargeItemLogGrid.setContent(rechargeItemLog.getContent());
             rechargeItemLogGrids.add(rechargeItemLogGrid);
         }
-        if (rechargeItemLogGrids.size() == 0){
+        if (rechargeItemLogGrids.size() == 0) {
             return Toolkit.outResult(true).setv("total", 0).setv("rows", 0);
         }
         int fromIndex = 0;
@@ -724,22 +686,18 @@ public class RechargeItemModule {
     }
 
     /**
-     * 根据页面传过来的index查询对应的记录详情
-     * @param page
-     * @param rows
-     * @param index
-     * @return
+     * Получение деталей записи по индексу, переданному со страницы
      */
     @At
-    public Object queryRechargeItemContent(@Param("page") int page, @Param("rows") int rows,int index) {
+    public Object queryRechargeItemContent(@Param("page") int page, @Param("rows") int rows, int index) {
         List<RechargeItemLog> list = dao.query(RechargeItemLog.class, Cnd.wrap("order by time desc limit 20"));
         List<JSONArray> jsonArrayList = new ArrayList<>();
-        for (RechargeItemLog rechargeItemLog:list){
+        for (RechargeItemLog rechargeItemLog : list) {
             JSONArray jsonarray = new JSONArray();
             jsonarray = JSONArray.fromObject(rechargeItemLog.getContent());
             jsonArrayList.add(jsonarray);
         }
-        if (jsonArrayList.size() == 0){
+        if (jsonArrayList.size() == 0) {
             return Toolkit.outResult(true).setv("total", 0).setv("rows", 0);
         }
         int fromIndex = 0;
@@ -750,21 +708,19 @@ public class RechargeItemModule {
     }
 
     /**
-     * 导出充值配置修改的历史记录
-     * @param request
-     * @param response
+     * Экспорт истории изменения конфигурации пополнений
      */
     @At
     @POST
     @Ok("void")
-    public void exportRechargeItemLog(HttpServletRequest request, HttpServletResponse response){
+    public void exportRechargeItemLog(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("hId"));
         String tableName = request.getParameter("tableName");
-        RechargeItemLog rechargeItemLog = dao.fetch(RechargeItemLog.class,Cnd.where("id","=",id));
+        RechargeItemLog rechargeItemLog = dao.fetch(RechargeItemLog.class, Cnd.where("id", "=", id));
         String content = rechargeItemLog.getContent();
         JSONArray jsonarray = JSONArray.fromObject(content);
         List<RechargeItem> rechargeItemList = new ArrayList<>();
-        for (int i = 0; i < jsonarray.size(); i++){
+        for (int i = 0; i < jsonarray.size(); i++) {
             RechargeItem rechargeItem = new RechargeItem();
             rechargeItem.setGoods_id(jsonarray.getJSONObject(i).getInt("goods_id"));
             rechargeItem.setGoods_system_cfg_id(jsonarray.getJSONObject(i).getInt("goods_system_cfg_id"));
@@ -786,20 +742,17 @@ public class RechargeItemModule {
             rechargeItem.setTotalVipPower(jsonarray.getJSONObject(i).getInt("totalVipPower"));
             rechargeItemList.add(rechargeItem);
         }
-        exportExcel(rechargeItemList,tableName,response);
+        exportExcel(rechargeItemList, tableName, response);
     }
 
     /**
-     * 普通充值及第三方充值数据清除
-     * @param request
-     * @param response
-     * @return
+     * Очистка данных обычного пополнения и пополнения через сторонние платформы
      */
     @At
     @POST
-    public Object clearRechargeItem(HttpServletRequest request, HttpServletResponse response){
+    public Object clearRechargeItem(HttpServletRequest request, HttpServletResponse response) {
         dao.truncate(RechargeItem.class);
-        BackendLogUtil.getInstance().log(request,"普通充值及第三方充值数据清除");
+        BackendLogUtil.getInstance().log(request, "Очистка данных обычного пополнения и пополнения через сторонние платформы");
         return Toolkit.outResult(true);
     }
 }

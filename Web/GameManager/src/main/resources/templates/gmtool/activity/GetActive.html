@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('活跃兑换')" />
+    <th:block th:include="include :: header('Обмен активности')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -19,9 +19,9 @@
         function addSaltIpGrp(obj) {
             // console.log(obj);
             var html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">消耗货币:</label>' +
+                '<label class="input-group-addon">Расходуемый предмет:</label>' +
                 '<input type="text" class="form-control"  name="coinType" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">兑换活跃:</label>' +
+                '<label class="input-group-addon">Активность за обмен:</label>' +
                 '<input type="text" class="form-control"  name="coinCv" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" id="delGridGroup"><span class="glyphicon glyphicon-minus"></span></button>' +
@@ -39,9 +39,9 @@
             var rewardAddBtn = 'showAddItemModel' + count
             $("#cfgCount2").val(Number(count)+1);
             var html = '<div name="cfg2" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">活动活跃:</label>' +
+                '<label class="input-group-addon">Требуемая активность:</label>' +
                 '<input type="text" class="form-control"  name="reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="">' +
-                '<label class="input-group-addon">展示奖励项:</label>' +
+                '<label class="input-group-addon">Показывать награду:</label>' +
                 '<input type="text" class="form-control"  name="showReward" onkeyup="value=value.replace(/\\D/g,\'\')" style=";">' +
                 '<label class="input-group-addon">Список наград:</label>' +
                 '<span class="input-group-btn" >' +
@@ -83,10 +83,10 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>活跃兑换<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Обмен активности<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="消耗货币：填入item表主键，代表消耗一个物品，可配置多条，多个货币消耗都可以兑换活跃<br/>
-                              兑换活跃：每消耗一个货币兑换X点活跃点（活跃点用于领取奖励）<br/>"></span></h3>
+                              data-content="Расходуемый предмет: ID из таблицы предметов, указывает на расходуемый предмет для обмена на активность. Можно настроить несколько видов валют<br/>
+                              Активность за обмен: количество очков активности за один расходуемый предмет (очки активности используются для получения наград)"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -95,10 +95,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-6">
-                            <legend>活动货币兑换</legend>
+                            <legend>Обмен валюты на активность</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup">
-                                    <label class="input-group-addon">货币兑换配置:</label>
+                                    <label class="input-group-addon">Конфигурация обмена валюты:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn"
                                             onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" id="cfgCount1" value="0">
@@ -110,10 +110,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>奖励数据兑换</legend>
+                            <legend>Конфигурация наград</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishuju">
-                                    <label class="input-group-addon">奖励数据配置:</label>
+                                    <label class="input-group-addon">Конфигурация наград:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtn"
                                             onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>

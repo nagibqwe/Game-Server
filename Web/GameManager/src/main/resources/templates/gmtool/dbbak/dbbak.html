@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <th:block th:include="include :: header('Список резервных копий БД')" />
 </head>
@@ -11,31 +11,31 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>ID сервера：</label>
+                                <label>ID сервера:</label>
                                 <input type="text" name="serverId"/>
                             </li>
                             <li>
-                                <label>类型1游戏库 2日志库：</label>
+                                <label>Тип: 1 — игровая БД, 2 — БД журналов:</label>
                                 <select name="type">
-                                    <option value="">所有</option>
-                                    <option value="-1">代码生成请选择字典属性</option>
+                                    <option value="">Все</option>
+                                    <option value="-1">При генерации кода выберите атрибут словаря</option>
                                 </select>
                             </li>
                             <li>
-                                <label>Время создания：</label>
-                                <input type="text" class="time-input" placeholder="请选择创建时间" name="createTime"/>
+                                <label>Время создания:</label>
+                                <input type="text" class="time-input" placeholder="Выберите время создания" name="createTime"/>
                             </li>
                             <li>
-                                <label>Путь к резервной копии：</label>
+                                <label>Путь к резервной копии:</label>
                                 <input type="text" name="url"/>
                             </li>
                             <li>
-                                <label>Размер файла：</label>
+                                <label>Размер файла:</label>
                                 <input type="text" name="size"/>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;Поиск</a>
-                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сбросить</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;Сброс</a>
                             </li>
                         </ul>
                     </div>
@@ -47,7 +47,7 @@
                     <i class="fa fa-plus"></i> Добавить
                 </a>
                 <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="gmtool:dbbak:edit">
-                    <i class="fa fa-edit"></i> Изменить
+                    <i class="fa fa-edit"></i> Редактировать
                 </a>
                 <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="gmtool:dbbak:remove">
                     <i class="fa fa-remove"></i> Удалить
@@ -89,12 +89,12 @@
                 },
                 {
                     field: 'type',
-                    title: '类型1游戏库 2日志库',
+                    title: 'Тип: 1 — игровая БД, 2 — БД журналов',
                     formatter: function(value, row, index) {
                         if(value == null){
                             return "";
                         }
-                        return value == 1 ? "游戏库" : value == 2 ? "日志库" : "";
+                        return value == 1 ? "Игровая БД" : value == 2 ? "БД журналов" : "";
                     }
                 },
                 {

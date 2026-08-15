@@ -47,7 +47,7 @@ public class ServerSaveThread extends Thread {
                 ServerParamBean bean = beans.remove(key);
                 try {
                     if (dao.insert(bean) == 0) {
-                        DBErrorToFile.error("ServerParams 保存出错:" + bean);
+                        DBErrorToFile.error("Ошибка сохранения ServerParams: " + bean);
                     }
 //                    DBErrorToFile.error("ServerParams 保存完成:" + bean);
                 } catch (Exception e) {

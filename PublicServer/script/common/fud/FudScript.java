@@ -163,7 +163,7 @@ public class FudScript implements IFudScript {
         CommonMessage.CrossRole cr = mess.getRole();
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
 
@@ -207,7 +207,7 @@ public class FudScript implements IFudScript {
         CommonMessage.CrossRole cr = mess.getRole();
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
 
@@ -234,7 +234,7 @@ public class FudScript implements IFudScript {
         message.setBoxId(mess.getBoxId());
         message.setRoleId(cr.getRoleId());
         MessageUtils.send_to_game(context, GuildCrossFudMessage.P2GCrossFudBoxUnLock.MsgID.eMsgID_VALUE, message.build().toByteArray());
-        logger.info("福地个人积分宝箱解锁成功 box={} role={}", mess.getBoxId(), cr);
+        logger.info("Личный сундук с очками благодатной земли успешно разблокирован. box={}, role={}", mess.getBoxId(), cr);
     }
 
     /**
@@ -268,7 +268,7 @@ public class FudScript implements IFudScript {
         CommonMessage.CrossRole cr = mess.getRole();
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
         FudRole role = Manager.fudManager.getFudRole().get(cr.getRoleId());
@@ -293,7 +293,7 @@ public class FudScript implements IFudScript {
         message.setRoleId(cr.getRoleId());
         MessageUtils.send_to_game(context, GuildCrossFudMessage.P2GCrossFudScoreBoxOpen.MsgID.eMsgID_VALUE, message.build().toByteArray());
 
-        logger.info("福地个人积分宝箱开启 box={} role={}", mess.getBoxId(), cr);
+        logger.info("Личный сундук с очками благодатной земли открыт. box={}, role={}", mess.getBoxId(), cr);
     }
 
     /**
@@ -310,7 +310,7 @@ public class FudScript implements IFudScript {
         CommonMessage.CrossRole cr = mess.getRole();
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
 
@@ -342,7 +342,7 @@ public class FudScript implements IFudScript {
         }
 
         if (city.getCityBean() == null) {
-            logger.error("福地占领奖励配置错误 city={} openDay={} worldLevel={}", city.getCityId(), group.getOpenDay(), group.getWorldLevel());
+            logger.error("Ошибка конфигурации награды за захват благодатной земли. city={}, openDay={}, worldLevel={}", city.getCityId(), group.getOpenDay(), group.getWorldLevel());
             return;
         }
         //根据玩家积分排名获取奖励
@@ -368,7 +368,7 @@ public class FudScript implements IFudScript {
         update.setBox(mBox(city.getCityBean().getId(), true, false));
         MessageUtils.send_to_player(context, cr.getRoleId(), GuildCrossFudMessage.ResUpdateCrossFudBox.MsgID.eMsgID_VALUE, update.build().toByteArray());
 
-        logger.info("领取福地占领奖励 box={} role={}", array, cr);
+        logger.info("Получение награды за захват благодатной земли. box={}, role={}", array, cr);
     }
 
     ReadIntegerArrayEs getReward(int career, Cfg_Cross_fudi_hold_reward_Bean bean) {
@@ -453,7 +453,7 @@ public class FudScript implements IFudScript {
         CommonMessage.CrossRole cr = mess.getRole();
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
         FudRole role = Manager.fudManager.getFudRole().get(cr.getRoleId());
@@ -500,7 +500,7 @@ public class FudScript implements IFudScript {
         CommonMessage.CrossRole cr = mess.getRole();
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
 
@@ -540,7 +540,7 @@ public class FudScript implements IFudScript {
         }
 
         MessageUtils.send_to_player(context, cr.getRoleId(), GuildCrossFudMessage.ResCrossFudRankInfo.MsgID.eMsgID_VALUE, message.build().toByteArray());
-        logger.info("获取福地排名数据 type={} role={}", mess.getType(), cr);
+        logger.info("Получение данных рейтинга благодатной земли. type={}, role={}", mess.getType(), cr);
     }
 
     /**
@@ -557,7 +557,7 @@ public class FudScript implements IFudScript {
         CommonMessage.CrossRole cr = mess.getRole();
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
 
@@ -588,7 +588,7 @@ public class FudScript implements IFudScript {
         message.setBoss(pack(city, boss, role));
 
         MessageUtils.send_to_player(context, cr.getRoleId(), GuildCrossFudMessage.ResCrossFudCareBoss.MsgID.eMsgID_VALUE, message.build().toByteArray());
-        logger.info("福地boss关注 type={} role={}", mess.getType(), cr);
+        logger.info("Отслеживание босса благодатной земли. type={}, role={}", mess.getType(), cr);
     }
 
     /**
@@ -603,7 +603,7 @@ public class FudScript implements IFudScript {
             toClass(g);
             Manager.fudManager.getGroups().put(g.getGroupId(), g);
         }
-        logger.info("加载福地分组数据 len={}", fudGroups.size());
+        logger.info("Загрузка данных групп благодатной земли len={}", fudGroups.size());
 
         //加载玩家积分数据
         List<FudRole> fudRoles = fudDao.selectFudRole();
@@ -611,7 +611,7 @@ public class FudScript implements IFudScript {
             toClass(role);
             Manager.fudManager.getFudRole().put(role.getRoleId(), role);
         }
-        logger.info("加载福地玩家数据 len={}", fudRoles.size());
+        logger.info("Загрузка данных игроков благодатной земли len={}", fudRoles.size());
         //初始化积分排名
         for (FudGroup g : fudGroups) {
             resetRank(g);
@@ -640,7 +640,7 @@ public class FudScript implements IFudScript {
             fudDao.insertOrUpdateFudRole(r);
         }
 
-        logger.info("保存跨服福地数据");
+        logger.info("Сохранение данных кросс-серверной благодатной земли.");
     }
 
     //分组排名
@@ -661,7 +661,7 @@ public class FudScript implements IFudScript {
         fudRoles.sort(Comparator.comparingInt(FudRole::getKill).thenComparingInt(FudRole::getScore).reversed());
         g.getKillRank().clear();
         g.getKillRank().addAll(fudRoles.subList(0, Math.min(RankLimit, fudRoles.size())));
-        logger.info("福地积分击杀排名刷新！！！！");
+        logger.info("Обновление рейтинга убийств по очкам благодатной земли!!!!");
     }
 
     //序列化
@@ -710,7 +710,7 @@ public class FudScript implements IFudScript {
                 message.setRoomId(city.getRoomId());
                 message.setType(1);
                 MessageUtils.send_to_game(socket, GuildCrossFudMessage.P2GCrossFudProcess.MsgID.eMsgID_VALUE, message.build().toByteArray());
-                logger.info("跨服福地通知刷新boss city={} ", city);
+                logger.info("Уведомление о обновлении босса кросс-серверной благодатной земли. city={}", city);
             }
         }
     }
@@ -763,7 +763,7 @@ public class FudScript implements IFudScript {
                 message.setRoomId(city.getRoomId());
                 message.setType(2);
                 MessageUtils.send_to_game(socket, GuildCrossFudMessage.P2GCrossFudProcess.MsgID.eMsgID_VALUE, message.build().toByteArray());
-                logger.info("跨服福地通知踢人 city={} ", city);
+                logger.info("Уведомление о принудительном выходе из кросс-серверной благодатной земли. city={}", city);
             }
         }
     }
@@ -774,7 +774,7 @@ public class FudScript implements IFudScript {
     @Override
     public void allocCity(boolean zeroMatchTick) {
 
-        logger.info("跨服福地分配福地 !!!!Day={}", TimeUtils.format2string(TimeUtils.Time()));
+        logger.info("Распределение кросс-серверной благодатной земли !!!! День={}", TimeUtils.format2string(TimeUtils.Time()));
 
         if (zeroMatchTick) {
 //            tickOutCityRoom();
@@ -814,7 +814,7 @@ public class FudScript implements IFudScript {
         }
 
         for (FudGroup group : groups) {
-            logger.info("分配组成功 group={}", group);
+            logger.info("Группа успешно распределена. group={}", group);
             Manager.fudManager.getGroups().put(group.getGroupId(), group);
             //刷新排名
             resetRank(group);
@@ -834,7 +834,7 @@ public class FudScript implements IFudScript {
         room.setModelId(bean.getId());
         room.setCtime(TimeUtils.Time());
         room.setCrId(city.getCityId());
-        room.setCname("跨服福地");
+        room.setCname("Кросс-серверная благодатная земля");
         room.setFid(IDConfigUtil.getLogId());
         room.setAllReadyStart(true);
         room.setType(bean.getType());
@@ -863,7 +863,7 @@ public class FudScript implements IFudScript {
         ServerInfo serverInfo = Manager.fightManager.deal().getFightServerId(0);
         if (serverInfo == null) {
             List<ServerInfo> list = Manager.gameServerManager.GetType(ServerType.FIGHTSERVER);
-            logger.error("没有战斗服连接在线， 请运维检查一下战斗服是否有！ 战斗服个数：" + list.size());
+            logger.error("Нет активных подключений к боевым серверам. Пожалуйста, проверьте состояние боевых серверов! Количество боевых серверов: " + list.size());
             return null;
         }
 
@@ -936,7 +936,7 @@ public class FudScript implements IFudScript {
                 FudCity city = birthCityList.get(i);
                 city.setState(CityStateOwn);
                 city.setCamp(camp.getCamp());
-                logger.info("分配出生福地 group={} camp={} city={}", group, camp, city);
+                logger.info("Распределение стартовой благодатной земли. group={}, camp={}, city={}", group, camp, city);
             }
         }
     }
@@ -982,7 +982,7 @@ public class FudScript implements IFudScript {
      */
     @Override
     public void activeBegin() {
-        logger.info("跨服福地活动开启");
+        logger.info("Кросс-серверная активность «Благодатная земля» запущена.");
         //活动开始分配福地
         allocCity(false);
         //活动开始刷新一轮boss
@@ -1008,7 +1008,7 @@ public class FudScript implements IFudScript {
 
         tickOutCityRoom();
 
-        logger.info("跨服福地活动关闭");
+        logger.info("Кросс-серверная активность «Благодатная земля» завершена.");
     }
 
     /**
@@ -1061,7 +1061,7 @@ public class FudScript implements IFudScript {
                 role.setScore(0);
                 role.setScoreReward(0);
             }
-            logger.info("刷新玩家福地积分！！！！！");
+            logger.info("Обновление очков игроков в благодатной земле!!!!!");
         }
     }
 
@@ -1120,7 +1120,7 @@ public class FudScript implements IFudScript {
         }
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
 
@@ -1183,12 +1183,12 @@ public class FudScript implements IFudScript {
     public void F2PKillFudBoss(ChannelHandlerContext context, GuildCrossFudMessage.F2PKillFudBoss mess) {
         FudGroup group = Manager.fudManager.getGroups().get(mess.getGroupId());
         if (group == null) {
-            logger.info("福地数据更新失败 group={} city={}", mess.getGroupId(), mess.getCityId());
+            logger.info("Ошибка обновления данных благодатной земли. group={}, city={}", mess.getGroupId(), mess.getCityId());
             return;
         }
         FudCity city = group.getCity().get(mess.getCityId());
         if (city == null) {
-            logger.info("福地数据更新失败 group={} city={} roomId={}", mess.getGroupId(), mess.getCityId(), mess.getRoomId());
+            logger.info("Ошибка обновления данных благодатной земли. group={}, city={}, roomId={}", mess.getGroupId(), mess.getCityId(), mess.getRoomId());
             return;
         }
         if (city.getRoomId() != mess.getRoomId()) {
@@ -1220,12 +1220,12 @@ public class FudScript implements IFudScript {
 
         FudGroup group = Manager.fudManager.getGroups().get(mess.getGroupId());
         if (group == null) {
-            logger.info("福地数据更新失败 group={} city={}", mess.getGroupId(), mess.getCityId());
+            logger.info("Ошибка обновления данных благодатной земли. group={}, city={}", mess.getGroupId(), mess.getCityId());
             return;
         }
         FudCity city = group.getCity().get(mess.getCityId());
         if (city == null) {
-            logger.info("福地数据更新失败 group={} city={} roomId={}", mess.getGroupId(), mess.getCityId(), mess.getRoomId());
+            logger.info("Ошибка обновления данных благодатной земли. group={}, city={}, roomId={}", mess.getGroupId(), mess.getCityId(), mess.getRoomId());
             return;
         }
 
@@ -1313,17 +1313,17 @@ public class FudScript implements IFudScript {
     public void F2PCrossFudGain(ChannelHandlerContext context, GuildCrossFudMessage.F2PCrossFudGain mess) {
         FudGroup group = Manager.fudManager.getGroups().get(mess.getGroupId());
         if (group == null) {
-            logger.info("占领福地失败 group={} city={}", mess.getGroupId(), mess.getCityId());
+            logger.info("Ошибка захвата благодатной земли. group={}, city={}", mess.getGroupId(), mess.getCityId());
             return;
         }
         FudCity city = group.getCity().get(mess.getCityId());
         if (city == null || city.getRoomId() != mess.getRoomId()) {
-            logger.info("占领福地失败 group={} city={} roomId={}", mess.getGroupId(), mess.getCityId(), mess.getRoomId());
+            logger.info("Ошибка захвата благодатной земли. group={}, city={}, roomId={}", mess.getGroupId(), mess.getCityId(), mess.getRoomId());
             return;
         }
         FudCamp camp = group.getCamp().get(mess.getCamp().getCamp());
         if (camp == null) {
-            logger.info("占领福地失败 group={} city={} camp={}", mess.getGroupId(), mess.getCityId(), mess.getCamp());
+            logger.info("Ошибка захвата благодатной земли. group={}, city={}, camp={}", mess.getGroupId(), mess.getCityId(), mess.getCamp());
             return;
         }
         city.setCamp(camp.getCamp());
@@ -1376,7 +1376,7 @@ public class FudScript implements IFudScript {
                 MessageUtils.send_to_game(server.getSession(), GuildCrossFudMessage.P2GCrossFudOwnerNotice.MsgID.eMsgID_VALUE, message.build().toByteArray());
             }
         }
-        logger.info("占领福地 group={} city={} camp={}", mess.getGroupId(), mess.getCityId(), camp);
+        logger.info("Захват благодатной земли. group={}, city={}, camp={}", mess.getGroupId(), mess.getCityId(), camp);
     }
 
     /**
@@ -1405,7 +1405,7 @@ public class FudScript implements IFudScript {
         }
         FudGroup group = Manager.fudManager.getGroups().get(groupID);
         if (group == null) {
-            logger.info("你所在服务器没有跨服福地参与资格！！！role={}", cr);
+            logger.info("Ваш сервер не имеет права на участие в кросс-серверной благодатной земле!!! role={}", cr);
             return;
         }
 
@@ -1425,7 +1425,7 @@ public class FudScript implements IFudScript {
 
         //检测福地是否可进入
         if (!checkRootCity(new HashSet<>(), group, city, camp)) {
-            logger.info("没有进入权限！！！role={}", cr);
+            logger.info("Нет прав на вход!!! role={}", cr);
             return;
         }
         FightRoom room;
@@ -1436,14 +1436,14 @@ public class FudScript implements IFudScript {
                 room = allocRoom(group, city);
             }
             if (room == null) {
-                logger.info("跨服福地已销毁 city={} role={}", city.getCityId(), cr);
+                logger.info("Кросс-серверная благодатная земля уничтожена. city={}, role={}", city.getCityId(), cr);
                 return;
             }
         } else {
             //魔王缝隙
             room = Manager.fightManager.getFrcache().get(city.getDevilRoomId());
             if (room == null) {
-                logger.info("魔王缝隙已销毁 city={} role={}", city.getCityId(), cr);
+                logger.info("Разлом демона уничтожен. city={}, role={}", city.getCityId(), cr);
                 return;
             }
         }
@@ -1472,7 +1472,7 @@ public class FudScript implements IFudScript {
         msg.addMapSetList(param1);
         MessageUtils.send_to_game(context, CrossFightMessage.P2GResFightStart.MsgID.eMsgID_VALUE, msg.build().toByteArray());
 
-        logger.info("玩家进入{} city={} role={}", mess.getType() == 0 ? "诸界远征" : "魔王缝隙", city.getCityId(), role);
+        logger.info("Игрок входит в {}: city={}, role={}", mess.getType() == 0 ? "Экспедицию в миры" : "Разлом демона", city.getCityId(), role);
     }
 
     /**

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('排行榜日志列表')" />
+    <th:block th:include="include :: header('Журнал рейтингов')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -13,7 +13,7 @@
                     <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
                         <ul>
                             <li>
-                                <label>РейтингТип：</label>
+                                <label>Тип рейтинга:</label>
                                 <input type="text" name="rankKind"/>
                             </li>
                             <div th:replace="common/log_limit.html"></div>
@@ -44,7 +44,7 @@
             var options = {
                 url: prefix + "/list",
                 exportUrl: prefix + "/export",
-                modalName: "РейтингЖурнал",
+                modalName: "Журнал рейтингов",
                 pagination: false,
                 firstLoad:false,
                 height:$(document).height() - 160,
@@ -56,11 +56,11 @@
                 },
                 {
                     field: 'date',
-                    title: 'date'
+                    title: 'Дата'
                 },
                 {
                     field: 'rankKind',
-                    title: 'РейтингТип'
+                    title: 'Тип рейтинга'
                 },
                 {
                     field: 'rank',
@@ -68,7 +68,7 @@
                 },
                 {
                     field: 'roleId',
-                    title: '角色Id'
+                    title: 'ID персонажа'
                 },
                 {
                     field: 'roleName',

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('累冲统计')" />
+    <th:block th:include="include :: header('Статистика накопительных пополнений')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -38,23 +38,23 @@
     $(function() {
         var options = {
             url: prefix + "/stat_recharge_accumulate",
-            modalName: "充值金额分布统计",
+            modalName: "Статистика распределения сумм пополнений",
             firstLoad:false,
             pagination: false,
             showExport:true,
             columns: [{
                 field: 'accumulateAmount',
-                title: '累充金额',
+                title: 'Накопительная сумма',
             }
             ,{
                 field: 'roleNum',
-                title: 'Количество',
+                title: 'Количество игроков',
             },{
                     field: 'roleNumRate',
-                    title: '人数占总充值人数比',
+                    title: 'Доля от общего числа пополнивших',
                 },{
                 field: 'rechargeAmount',
-                title: 'Сумма пополнения',
+                title: 'Сумма пополнений',
              }]
         };
         $.table.init(options);

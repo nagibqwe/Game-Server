@@ -73,7 +73,7 @@ public class BackGrandServer extends Thread {
             if (msg.uri().length() > 0) {
                 dispatcherRequest(ctx, msg);
             } else {
-                log.error(ctx + "错误的请求HTTP：" + msg);
+                log.error(ctx + " Неверный HTTP-запрос: " + msg);
                 ctx.close();
             }
         }

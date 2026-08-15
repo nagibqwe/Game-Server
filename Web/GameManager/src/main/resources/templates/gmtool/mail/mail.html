@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('邮件列表列表')" />
+    <th:block th:include="include :: header('Список писем')" />
     <th:block th:include="include :: footer" />
     <style type="text/css">
         .table {table-layout:fixed;}
@@ -11,9 +11,9 @@
 <div class="container-fluid">
 
     <div class="container-fluid" style="margin-top: 10px">
-        <a id="mail1" class="label label-info" onclick="toggleTable(waitDealDiv)">待处理邮件</a>
+        <a id="mail1" class="label label-info" onclick="toggleTable(waitDealDiv)">Ожидают обработки</a>
         <div class="btn-group-sm" id="toolbar1" role="group">
-            <a class="btn btn-warning" onclick="oneKeySend()">一键发送</a>
+            <a class="btn btn-warning" onclick="oneKeySend()">Отправить всё</a>
         </div>
         <form id="waitDealForm" style="display: none">
             <div class="select-list">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="container-fluid" style="margin-top: 10px">
-        <a id="mail2" class="label label-info" onclick="toggleTable(mineDiv)">自己的邮件</a>
+        <a id="mail2" class="label label-info" onclick="toggleTable(mineDiv)">Мои письма</a>
         <form id="mineForm" style="display: none">
             <div class="select-list">
                 <ul>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="container-fluid" style="margin-top: 10px">
-        <a id="mail3" class="label label-info" onclick="toggleTable(historyDiv)">历史邮件</a>
+        <a id="mail3" class="label label-info" onclick="toggleTable(historyDiv)">История</a>
         <form id="historyForm" style="display: none">
             <div class="select-list">
                 <ul>
@@ -97,7 +97,7 @@
                 columns: [
                     {
                         field: 'id',
-                        title: 'Номер'
+                        title: '№'
                     },
                     {
                         field: 'serverId',
@@ -149,8 +149,8 @@
                         width:250,
                         formatter: function(value, row, index) {
                             var actions = [];
-                            actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="operateMail(' + row.id + ',1)">准予发送</a> ');
-                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="operateMail(' + row.id + ',2)">Не отправлять</a> ');
+                            actions.push('<a class="btn btn-success btn-xs" href="javascript:void(0)" onclick="operateMail(' + row.id + ',1)">Одобрить отправку</a> ');
+                            actions.push('<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="operateMail(' + row.id + ',2)">Отклонить</a> ');
                             return actions.join('');
                         }
                     }]
@@ -172,7 +172,7 @@
                 columns: [
                     {
                         field: 'id',
-                        title: 'Номер'
+                        title: '№'
                     },
                     {
                         field: 'serverId',
@@ -258,7 +258,7 @@
                 columns: [
                     {
                         field: 'id',
-                        title: 'Номер'
+                        title: '№'
                     },
                     {
                         field: 'serverId',
@@ -321,7 +321,7 @@
             // console.log(table.options.formId)
         }
 
-        //一键发送
+        // Отправить всё
         function oneKeySend() {
             $.ajax({
                 url: prefix + "/onekeySend",
@@ -344,7 +344,7 @@
             });
         }
 
-        //邮件操作，1：准予发送，2不予发送，3：删除
+        // Операции с письмами: 1 — одобрить отправку, 2 — отклонить, 3 — удалить
         function operateMail(id, type){
             console.log("id:"+id);
             $.ajax({

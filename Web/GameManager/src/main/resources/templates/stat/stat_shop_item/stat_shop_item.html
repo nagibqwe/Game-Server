@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('商城购买统计')" />
+    <th:block th:include="include :: header('Статистика покупок в магазине')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: bootstrap-table-export-js" />
 </head>
@@ -22,30 +22,30 @@
                     <div class="row select-list" style="padding-left: 15px; margin-bottom: 10px;">
                         <ul>
                             <li>
-                                <label  style="width: auto"  for="FromSrc">&nbsp;商品标签页：</label>
+                                <label style="width: auto" for="FromSrc">&nbsp;Вкладка магазина:</label>
                                 <select id="FromSrc" name="FromSrc" class="span2">
-                                    <option value="1241100">每日特惠(1241100)</option>
-                                    <option value="1241200">灵玉商城(1241200)</option>
-                                    <option value="1241300">元宝商城(1241300)</option>
-                                    <option value="1241400">荣誉商城(1241400)</option>
-                                    <option value="1242000">兑换商城(1242000)</option>
-                                    <option value="1242100">声望商城(1242100)</option>
-                                    <option value="1242200">积分商城(1242200)</option>
-                                    <option value="1242300">绑玉商城(1242300)</option>
-                                    <option value="1242400">贡献商城(1242400)</option>
-                                    <option value="1242500">限时特惠(1242500)</option>
-                                    <option value="1241100">超值折扣(1243000)</option>
-                                    <option value="1244000">超值折扣(1244000)</option>
-                                    <option value="1224000">福地商店(1224000)</option>
+                                    <option value="1241100">Ежедневные предложения (1241100)</option>
+                                    <option value="1241200">Магазин духовных нефритов (1241200)</option>
+                                    <option value="1241300">Магазин слитков (1241300)</option>
+                                    <option value="1241400">Магазин чести (1241400)</option>
+                                    <option value="1242000">Обменный магазин (1242000)</option>
+                                    <option value="1242100">Магазин репутации (1242100)</option>
+                                    <option value="1242200">Магазин очков (1242200)</option>
+                                    <option value="1242300">Магазин связанных нефритов (1242300)</option>
+                                    <option value="1242400">Магазин вклада (1242400)</option>
+                                    <option value="1242500">Ограниченные предложения (1242500)</option>
+                                    <option value="1241100">Супер скидка (1243000)</option>
+                                    <option value="1244000">Супер скидка (1244000)</option>
+                                    <option value="1224000">Магазин Благословенной земли (1224000)</option>
 
                                 </select>
                             </li>
                             <li style="display: none">
-                                <label class="col-sm-2 control-label" style="width: auto"  for="moneyType">&nbsp;Тип валюты:</label>
+                                <label class="col-sm-2 control-label" style="width: auto" for="moneyType">&nbsp;Тип валюты:</label>
                                 <select id="moneyType" name="moneyType" class="span2">
-                                    <option value="0">所有货币类型</option>
-                                    <option value="1">元宝</option>
-                                    <option value="12">灵石</option>
+                                    <option value="0">Все типы валют</option>
+                                    <option value="1">Слитки</option>
+                                    <option value="12">Духовные камни</option>
                                 </select>
                             </li>
                             <div th:replace="common/stat_black_list_head.html"></div>
@@ -75,7 +75,7 @@
         $(function() {
             var options = {
                 url: prefix + "/stat_shop_item",
-                modalName: "商城购买统计",
+                modalName: "Статистика покупок в магазине",
                 pagination: false,
                 firstLoad:false,
                 showExport:true,
@@ -92,23 +92,23 @@
                 },
                 {
                     field: 'users',
-                    title: '购买用户数'
+                    title: 'Количество покупателей (аккаунты)'
                 },
                 {
                     field: 'roles',
-                    title: '购买角色数'
+                    title: 'Количество покупателей (персонажи)'
                 },
                 {
                     field: 'totalnum',
-                    title: '道具销量'
+                    title: 'Продано предметов'
                 },
                 {
                     field: 'totalgold',
-                    title: '消耗货币数'
+                    title: 'Потрачено валюты'
                 },
                 {
                     field: 'totaltimes',
-                    title: '购买次数'
+                    title: 'Количество покупок'
                 }]
             };
             $.table.init(options);

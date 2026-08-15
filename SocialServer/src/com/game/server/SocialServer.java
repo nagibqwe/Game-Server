@@ -70,7 +70,7 @@ public class SocialServer extends SocketServer {
     }
 
     public SocialServer() {
-        super("社交服务器", 9527);
+        super("SocialServer запущен ", 9527);
     }
 
     /**
@@ -103,7 +103,7 @@ public class SocialServer extends SocketServer {
         super.init();
         try {
             if (ServerConfig.getLsId() < 1 || ServerConfig.getServerId() < 1) {
-                logger.info("当前没有配置 serverId 或者 lsID, 请在server-config.xml中配置此两个值");
+                logger.info("В данный момент не настроены serverId или lsId. Пожалуйста, укажите их в файле server-config.xml.");
                 System.exit(0);
             }
 
@@ -114,14 +114,14 @@ public class SocialServer extends SocketServer {
             /*
              * 线程分组
              */
-            ThreadGroup group = new ThreadGroup("服务器线程组");
-            serverTimer = new TimerThread("Main-Timer", 100);
+            ThreadGroup group = new ThreadGroup("ThreadGroup");
+            serverTimer = new TimerThread("serverTimer", 100);
             mainThread = new ServerThread(group, "mainThread", serverTimer);
             workThread = new ServerThread(group, "workThread", serverTimer);
 
-            playerSaveThread = new PlayerSaveThread("玩家数据保存线程");
+            playerSaveThread = new PlayerSaveThread("playerSaveThread");
 
-            serverSaveThread = new ServerSaveThread("服务器参数保存线程");
+            serverSaveThread = new ServerSaveThread("serverSaveThread");
 
             //初始化脚本
             Manager.scriptManager.load();
@@ -153,7 +153,7 @@ public class SocialServer extends SocketServer {
             System.exit(-2);
         }
 
-        logger.info("服务器初始化完成 mess={}", MessageDictionary.getInstance().size());
+        logger.info("Инициализация сервера завершена. mess={}", MessageDictionary.getInstance().size());
 
     }
 
@@ -177,19 +177,19 @@ public class SocialServer extends SocketServer {
 
         addTimerEvent(new ServerHeartTimer());
 
-        new Thread(pc, "公共服连接").start();
+        new Thread(pc, "Подключение к публичному серверу").start();
 
         //TODO 启动后台监听线程
         new BackGrandServer(ServerConfig.getBackPort()).start();
 
-        new Timer("游戏服消息发送队列").schedule(new TimerTask() {
+        new Timer("Очередь отправки сообщений игрового сервера").schedule(new TimerTask() {
             @Override
             public void run() {
                 ServerMessageAdapter.BufferSend();
             }
         }, 1, 1);
 
-        new Timer("公共服消息发送队列").schedule(new TimerTask() {
+        new Timer("Очередь отправки сообщений публичного сервера").schedule(new TimerTask() {
             @Override
             public void run() {
                 pc.BufferSend();
@@ -198,7 +198,7 @@ public class SocialServer extends SocketServer {
 
         ServerChannelImpl channelImpl = new ServerChannelImpl();
         start(channelImpl);
-        logger.info("服务器启动完成");
+        logger.info("Запуск сервера завершён");
     }
 
     @Override
@@ -224,7 +224,7 @@ public class SocialServer extends SocketServer {
         serverSaveThread.stop(true);
 
         super.stop();
-        logger.info("服务器关闭完成");
+        logger.info("Завершение работы сервера выполнено.");
     }
 
     public void addCommand(ICommand iCommand) {
@@ -246,7 +246,7 @@ public class SocialServer extends SocketServer {
     public IServer server() {
         IScript is = Manager.scriptManager.GetScriptClass(ScriptEnum.ServerScript);
         if (is == null) {
-            throw new NullPointerException("没有找到具体的脚本实例！script=" + ScriptEnum.ServerScript);
+            throw new NullPointerException("Не найден конкретный экземпляр скрипта! script=" + ScriptEnum.ServerScript);
         }
         return (IServer) is;
     }

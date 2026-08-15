@@ -50,7 +50,7 @@ public class GmCommandModule {
     }
 
     /**
-     * 请求某个玩家的操作刷新记录
+     * Запрос истории операций игрока
      */
     @At
     public Object query(@Param("action") String action, @Param("params") String params, @Param("gmType") int gmType,
@@ -79,10 +79,10 @@ public class GmCommandModule {
     @Filters
     public Object sendCommand(HttpServletRequest request, String[] serverId, String action, String params) {
         if (Strings.isBlank(action)) {
-            return Toolkit.outResult(false, "命令为空！");
+            return Toolkit.outResult(false, "Команда не может быть пустой!");
         }
         if (serverId == null || serverId.length == 0) {
-            return Toolkit.outResult(false, "没有选择服务器Id");
+            return Toolkit.outResult(false, "Не выбран ID сервера");
         }
 
         boolean isOk = true;
@@ -90,7 +90,7 @@ public class GmCommandModule {
         for (String id : serverId) {
             Server ser = ServerListManager.getInstance().getServer(id);
             if (ser == null) {
-                return Toolkit.outResult(false, "选择服务器Id不存在");
+                return Toolkit.outResult(false, "Выбранный ID сервера не существует");
             }
             if (ser.getIsHeFu() == 1) {
                 continue;
@@ -101,9 +101,9 @@ public class GmCommandModule {
                 isOk = false;
             }
 
-            String result = "执行GM命令,区服:" + ser.getServerName() + "(" + ser.getServerId() + ")"
-                    + "命令：" + action + ", 参数:" + params
-                    + "结果：" + map.toString() + "\n";
+            String result = "Выполнение GM-команды, сервер: " + ser.getServerName() + "(" + ser.getServerId() + ")"
+                    + "Команда: " + action + ", параметры: " + params
+                    + "Результат: " + map.toString() + "\n";
             sb.append(result);
 
             writeGmRunLog(request, ser, 0, action, params, isOk, result);
@@ -116,23 +116,23 @@ public class GmCommandModule {
     @POST
     public Object sendPS(HttpServletRequest request, String[] serverId, String action, String params) throws UnsupportedEncodingException {
         if (Strings.isBlank(action)) {
-            return Toolkit.outResult(false, "命令错误");
+            return Toolkit.outResult(false, "Ошибка команды");
         }
         if (serverId == null || serverId.length == 0) {
-            return Toolkit.outResult(false, "没有选择服务器Id");
+            return Toolkit.outResult(false, "Не выбран ID сервера");
         }
 
-        HashMap<String,String> paramMap = new HashMap<>();
-        if(!"".equals(params)){
+        HashMap<String, String> paramMap = new HashMap<>();
+        if (!"".equals(params)) {
             String[] param = params.split("&");
-            for (String pStr:param) {
-                if(!"".equals(pStr)){
+            for (String pStr : param) {
+                if (!"".equals(pStr)) {
                     String[] ps = pStr.split("=");
                     paramMap.put(ps[0], ps[1]);
                 }
             }
         }
-        paramMap.put("secret_key",ServerKeyUtil.GetPSRuquestKey());
+        paramMap.put("secret_key", ServerKeyUtil.GetPSRuquestKey());
 
         params += "secret_key=" + ServerKeyUtil.GetPSRuquestKey();
 
@@ -142,7 +142,7 @@ public class GmCommandModule {
         for (String id : serverId) {
             Server ser = ServerListManager.getInstance().getServer(id);
             if (ser == null) {
-                return Toolkit.outResult(false, "选择服务器Id不存在");
+                return Toolkit.outResult(false, "Выбранный ID сервера не существует");
             }
             if (ser.getIsHeFu() == 1) {
                 continue;
@@ -154,11 +154,11 @@ public class GmCommandModule {
 
             if (Strings.isBlank(result)) {
                 isOk = false;
-                result.append("请求异常!");
+                result.append("Ошибка запроса!");
             }
 
             writeGmRunLog(request, ser, 1, action, params, isOk, re);
-            BackendLogUtil.getInstance().log(request, "执行GM命令,结果:" + result);
+            BackendLogUtil.getInstance().log(request, "Выполнение GM-команды, результат: " + result);
         }
         return Toolkit.outResult(isOk, result.toString());
     }
@@ -187,11 +187,11 @@ public class GmCommandModule {
     @POST
     public Object queryOpsTime(String serverId) {
         if (Strings.isBlank(serverId)) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "选择服务器Id不存在");
+            return Toolkit.outResult(false, "Выбранный ID сервера не существует");
         }
         return GameServerRequestUtil.gmQueryOpsTime(server);
     }
@@ -200,11 +200,11 @@ public class GmCommandModule {
     @POST
     public Object setOpsTime(String serverId, String time) {
         if (serverId == null) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "选择服务器Id不存在");
+            return Toolkit.outResult(false, "Выбранный ID сервера не существует");
         }
         return GameServerRequestUtil.gmSetOpsTime(server, time);
     }
@@ -214,11 +214,11 @@ public class GmCommandModule {
     public Object queryRegisterLimitNum(String serverId) {
 
         if (Strings.isBlank(serverId)) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "选择服务器Id不存在");
+            return Toolkit.outResult(false, "Выбранный ID сервера не существует");
         }
         return GameServerRequestUtil.gmQueryRegisterLimitNum(server);
     }
@@ -227,11 +227,11 @@ public class GmCommandModule {
     @POST
     public Object setRegisterLimitNum(String serverId, int num) {
         if (serverId == null) {
-            return Toolkit.outResult(false, "未选择服务器");
+            return Toolkit.outResult(false, "Сервер не выбран");
         }
         Server server = ServerListManager.getInstance().getServer(serverId);
         if (server == null) {
-            return Toolkit.outResult(false, "选择服务器Id不存在");
+            return Toolkit.outResult(false, "Выбранный ID сервера не существует");
         }
         return GameServerRequestUtil.gmSetRegisterLimitNum(server, num);
     }

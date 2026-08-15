@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('节日特惠')" />
+    <th:block th:include="include :: header('Праздничные предложения')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -15,7 +15,7 @@
             loadRecharge();
         });
 
-        //加载goods_type类型为11的充值表数据
+        // Загрузка данных пополнений с типом goods_type = 11
         function loadRecharge() {
             $.ajax({
                 url: ctx + "gmtool/rechargeItem/getRechargeByType",
@@ -24,7 +24,7 @@
                 async:false,
                 success: function (data) {
                     if (!data.ok) {
-                        $.modal.alertError("recharges load failed");
+                        $.modal.alertError("Ошибка загрузки данных пополнений");
                         return;
                     }
                     $.each(data.data, function (i, n) {
@@ -44,8 +44,8 @@
             var rewardAddBtn = 'showAddItemModel' + count;
             $("#cfgCount").val(Number(count)+1);
             html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">Настройки пополненияID:</label>' +
-                // '<input type="text" class="form-control"  name="rechargeId" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="购买金额(单位分)" style="">' +
+                '<label class="input-group-addon">ID конфигурации пополнения:</label>' +
+                // '<input type="text" class="form-control"  name="rechargeId" onkeyup="value=value.replace(/\\D/g,\'\')" placeholder="Сумма покупки (в центах)" style="">' +
                 '<select id="select_rechargeId" name="rechargeId" class="form-control heightSet">' +
                 '</select>' +
                 '<label class="input-group-addon">Список наград:</label>' +
@@ -64,7 +64,7 @@
             addHeightSet();
             loadRechargeData();
         }
-        //下拉框选项生成
+        // Генерация опций выпадающего списка
         var countRecharge=0;
         function loadRechargeData() {
             recharges.forEach(function(value, key) {
@@ -98,9 +98,9 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>节日特惠<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Праздничные предложения<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="对应充值表rechargeitem中的类型为11的充值档位，如需新增其他档位，需要添加rechargeitem表"></span></h3>
+                              data-content="Соответствует уровням пополнения с типом 11 в таблице rechargeitem. Для добавления новых уровней необходимо добавить записи в таблицу rechargeitem"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -109,10 +109,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>档位奖励</legend>
+                            <legend>Награды за уровни</legend>
                             <fieldset>
                                 <div class="input-group" id="jianglishuju">
-                                    <label class="input-group-addon">奖励数据配置:</label>
+                                    <label class="input-group-addon">Конфигурация наград:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="jiangliBtn"
                                             onclick="jiangliGrp(this)"><span class="glyphicon glyphicon-plus"></span>
                                     </button>

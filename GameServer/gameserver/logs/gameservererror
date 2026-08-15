@@ -1,124 +1,13 @@
-2026-08-13 21:00:12.931 ERROR [GameServer Start][LogService.java:275] - com.game.backpack.log.ItemLog,java.lang.Exception: Тип столбца itemlog20260813 ColumnInfo [name=create_date, type=datetime, size=0, nullable=true, def=null, primary=null] в ColumnInfo [name=create_date, type=datetime, size=19, nullable=true, def=null, primary=id] не совпадает. Автоматическое изменение невозможно.
-java.lang.Exception: Тип столбца itemlog20260813 ColumnInfo [name=create_date, type=datetime, size=0, nullable=true, def=null, primary=null] в ColumnInfo [name=create_date, type=datetime, size=19, nullable=true, def=null, primary=id] не совпадает. Автоматическое изменение невозможно.
-	at game.core.dblog.db.util.TableCompar.compartor(TableCompar.java:199) ~[GameCore.jar:?]
-	at game.core.dblog.LogService.checkTable(LogService.java:255) [GameCore.jar:?]
-	at game.core.dblog.LogService.<init>(LogService.java:122) [GameCore.jar:?]
-	at game.core.dblog.LogService.<init>(LogService.java:47) [GameCore.jar:?]
-	at game.core.dblog.LogService$Singleton.<init>(LogService.java:61) [GameCore.jar:?]
-	at game.core.dblog.LogService$Singleton.<clinit>(LogService.java:56) [GameCore.jar:?]
-	at game.core.dblog.LogService.getInstance(LogService.java:73) [GameCore.jar:?]
-	at com.game.server.GameServer.init(GameServer.java:388) [GameServer.jar:?]
-	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
-	at com.game.server.GameServer.run(GameServer.java:511) [GameServer.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-13 21:00:13.213 ERROR [GameServer Start][LogService.java:275] - com.game.chat.log.ChatLog,java.lang.Exception: Тип столбца chatlog202608 ColumnInfo [name=content, type=blob, size=0, nullable=true, def=null, primary=null] в ColumnInfo [name=content, type=tinyblob, size=255, nullable=true, def=null, primary=id] не совпадает. Автоматическое изменение невозможно.
-java.lang.Exception: Тип столбца chatlog202608 ColumnInfo [name=content, type=blob, size=0, nullable=true, def=null, primary=null] в ColumnInfo [name=content, type=tinyblob, size=255, nullable=true, def=null, primary=id] не совпадает. Автоматическое изменение невозможно.
-	at game.core.dblog.db.util.TableCompar.compartor(TableCompar.java:199) ~[GameCore.jar:?]
-	at game.core.dblog.LogService.checkTable(LogService.java:255) [GameCore.jar:?]
-	at game.core.dblog.LogService.<init>(LogService.java:122) [GameCore.jar:?]
-	at game.core.dblog.LogService.<init>(LogService.java:47) [GameCore.jar:?]
-	at game.core.dblog.LogService$Singleton.<init>(LogService.java:61) [GameCore.jar:?]
-	at game.core.dblog.LogService$Singleton.<clinit>(LogService.java:56) [GameCore.jar:?]
-	at game.core.dblog.LogService.getInstance(LogService.java:73) [GameCore.jar:?]
-	at com.game.server.GameServer.init(GameServer.java:388) [GameServer.jar:?]
-	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
-	at com.game.server.GameServer.run(GameServer.java:511) [GameServer.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-13 21:02:02.086 ERROR [GameServer Start][DBErrorToFile.java:34] - org.apache.ibatis.exceptions.PersistenceException: 
-### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.guildMember' doesn't exist
-### The error may exist in com/game/db/sqlmap/guildMember.xml
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: select * from guildMember
-### Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.guildMember' doesn't exist
-org.apache.ibatis.exceptions.PersistenceException: 
-### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.guildMember' doesn't exist
-### The error may exist in com/game/db/sqlmap/guildMember.xml
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: select * from guildMember
-### Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.guildMember' doesn't exist
-	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:23) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:107) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:98) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:94) ~[mybatis-3.2.5.jar:3.2.5]
-	at com.game.db.dao.GuildMemberDao.selectAll(GuildMemberDao.java:18) [GameServer.jar:?]
-	at com.game.guild.manager.GuildsManager.loadAllGuildData(GuildsManager.java:82) [GameServer.jar:?]
-	at com.game.server.GameServer.init(GameServer.java:443) [GameServer.jar:?]
-	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
-	at com.game.server.GameServer.run(GameServer.java:511) [GameServer.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-Caused by: java.sql.SQLSyntaxErrorException: Table 'tzj_game.guildMember' doesn't exist
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_492]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_492]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_492]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_492]
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:55) ~[mybatis-3.2.5.jar:3.2.5]
-	at com.sun.proxy.$Proxy25.execute(Unknown Source) ~[?:?]
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:56) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:70) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:57) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:259) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:132) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:105) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:81) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:104) ~[mybatis-3.2.5.jar:3.2.5]
-	... 8 more
-2026-08-13 21:02:02.358 ERROR [GameServer Start][DBErrorToFile.java:34] - org.apache.ibatis.exceptions.PersistenceException: 
-### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.activityConfig' doesn't exist
-### The error may exist in com/game/db/sqlmap/activityConfig.xml
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: select * from activityConfig where isDelete = 0;
-### Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.activityConfig' doesn't exist
-org.apache.ibatis.exceptions.PersistenceException: 
-### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.activityConfig' doesn't exist
-### The error may exist in com/game/db/sqlmap/activityConfig.xml
-### The error may involve defaultParameterMap
-### The error occurred while setting parameters
-### SQL: select * from activityConfig where isDelete = 0;
-### Cause: java.sql.SQLSyntaxErrorException: Table 'tzj_game.activityConfig' doesn't exist
-	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:23) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:107) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:98) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:94) ~[mybatis-3.2.5.jar:3.2.5]
-	at com.game.db.dao.ActivityConfigDao.selectAll(ActivityConfigDao.java:21) [GameServer.jar:?]
-	at common.activity.ActivityManageScript.load(ActivityManageScript.java:624) [GameServer.jar:?]
-	at com.game.server.GameServer.init(GameServer.java:477) [GameServer.jar:?]
-	at game.core.net.server.BaseServer.run(BaseServer.java:44) [GameCore.jar:?]
-	at com.game.server.GameServer.run(GameServer.java:511) [GameServer.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-Caused by: java.sql.SQLSyntaxErrorException: Table 'tzj_game.activityConfig' doesn't exist
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371) ~[mysql-connector-java-8.0.27.jar:8.0.27]
-	at sun.reflect.GeneratedMethodAccessor52.invoke(Unknown Source) ~[?:?]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_492]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_492]
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:55) ~[mybatis-3.2.5.jar:3.2.5]
-	at com.sun.proxy.$Proxy25.execute(Unknown Source) ~[?:?]
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:56) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:70) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:57) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:259) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:132) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:105) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:81) ~[mybatis-3.2.5.jar:3.2.5]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:104) ~[mybatis-3.2.5.jar:3.2.5]
-	... 8 more
-2026-08-13 21:02:02.473 ERROR [Thread-4][ErrorLogReport.java:167] - errorType:DBERRORcontext=org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:98),code=200, result = {"ok":true,"msg":"Операция выполнена успешно "}
-2026-08-13 21:02:02.499 ERROR [Thread-4][ErrorLogReport.java:167] - errorType:DBERRORcontext=org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:98),code=200, result = {"ok":true,"msg":"Операция выполнена успешно "}
-2026-08-13 21:02:02.800 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:02.830 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:02.843 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:02.850 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:02.865 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:02.869 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:02.871 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:02.874 ERROR [GameServer Start][MapManagerScript.java:1665] - 找不到NPCID：-1
-2026-08-13 21:02:06.516 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 3246, количество: 0
+2026-08-16 01:08:25.083 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 17, количество: 245
+2026-08-16 01:14:00.472 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 20, количество: 245
+2026-08-16 01:19:21.774 ERROR [recvWorker-24][RetrieveResScript.java:64] - bean.getDailyId()  not find: 0
+2026-08-16 01:20:22.723 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-16 01:22:05.196 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 20, количество: 245
+2026-08-16 01:22:15.239 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-16 01:22:52.072 ERROR [recvWorker-27][RetrieveResScript.java:64] - bean.getDailyId()  not find: 0
+2026-08-16 01:24:43.149 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 17, количество: 245
+2026-08-16 01:28:51.047 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-16 01:29:13.962 ERROR [recvWorker-30][RetrieveResScript.java:64] - bean.getDailyId()  not find: 0
+2026-08-16 01:29:18.639 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-16 01:35:02.034 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-16 01:38:08.450 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 30, количество: 245

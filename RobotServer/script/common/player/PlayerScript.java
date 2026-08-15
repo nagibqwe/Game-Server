@@ -58,7 +58,7 @@ public class PlayerScript implements IPlayerScript {
                 p.setEventType(Config.getEventType());
 //                addPlayer(p.getId(), p);
             }
-            log.info("配置表中的预设机器人创建连接并登陆游戏");
+            log.info("Предустановленные боты из конфигурации создают соединение и входят в игру.");
         }
     }
 
@@ -96,7 +96,7 @@ public class PlayerScript implements IPlayerScript {
     @Override
     public void addPlayer(long roleId, Player p){
         if(Manager.playerManager.getPlayers().containsKey(roleId)){
-            log.error(String.format("添加角色的时候发现了重复的,这个不对!!! 角色roleid:%d userid:%d name:%s 传入id:%d", p.getId(), p.getUserId(), p.getName(), roleId));
+            log.error(String.format("Обнаружен дубликат при добавлении персонажа!!! roleid: %d, userid: %d, name: %s, переданный ID: %d", p.getId(), p.getUserId(), p.getName(), roleId));
         }
         Manager.playerManager.getPlayers().put(roleId, p);
     }
@@ -114,7 +114,7 @@ public class PlayerScript implements IPlayerScript {
 
     @Override
     public String getRobotName(long beginId) {
-        return "机器人"+beginId;
+        return "Бот " + beginId;
     }
 
     @Override
@@ -160,7 +160,7 @@ public class PlayerScript implements IPlayerScript {
         player.setCampNo(messInfo.getCamp());
 //        player.setBirth(messInfo.getBirthGroup());
         player.setName(messInfo.getName());
-        log.info(player.getInfo() + "登录成功!角色当前地图ID：" + player.getMapModelId());
+        log.info(player.getInfo() + " — вход выполнен успешно! Текущий ID карты персонажа: " + player.getMapModelId());
         player.getSession().setAttribute("roleId", player.getId());
         player.setRecvedBaseInfo(true);
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('累计消耗')" />
+    <th:block th:include="include :: header('Накопительное потребление')" />
     <th:block th:include="include :: footer" />
 
     <script>
@@ -25,7 +25,7 @@
             var SelectRewardAddBtn = 'showSelectRewardModel' + count_01;
             count_01 += 1;
             html = '<div name="cfg1" class="input-group saltIp" style="width:100%;padding:0 0 1px 0;">' +
-                '<label class="input-group-addon">消耗目标:</label>' +
+                '<label class="input-group-addon">Целевое потребление:</label>' +
                 '<input type="text" class="form-control" id="i_reach" name="i_reach" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:auto;">' +
                 '<label class="input-group-addon">Фиксированная группа наград:</label>' +
                 '<span class="input-group-btn" >' +
@@ -35,15 +35,15 @@
                 '<div class="hide"><input id="' + fixRewardInput + '" name="i_fixRewardGroup"/></div>' +
                 '</span>' +
                 // '<input type="text" class="form-control" id="i_fixRewardGroup" name="i_fixRewardGroup"  style="max-width:auto;">' +
-                '<label class="input-group-addon">可选奖励组:</label>' +
+                '<label class="input-group-addon">Выборочная группа наград:</label>' +
                 '<span class="input-group-btn" >' +
-                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="可选奖励组" id="' + SelectRewardAddBtn +
+                '<button class="btn btn-info" type="button" data-toggle="tooltip" data-target="#addItemModal" title="Выборочная группа наград" id="' + SelectRewardAddBtn +
                 '"  style="border:5px;width: 35px;height: 34px;" onclick="showAddItemUI(' + SelectRewardInput + ',' + SelectRewardAddBtn + ')">' +
                 '<span class="glyphicon glyphicon-plus"></span></button>' +
                 '<div class="hide"><input id="' + SelectRewardInput + '" name="i_SelectRewardGroup"/></div>' +
                 '</span>' +
                 // '<input type="text" class="form-control" id="i_SelectRewardGroup" name="i_SelectRewardGroup"  style="max-width:auto;">' +
-                '<label class="input-group-addon">可选数量:</label>' +
+                '<label class="input-group-addon">Количество для выбора:</label>' +
                 '<input type="text"  class="form-control" id="i_select" name="i_select" onkeyup="value=value.replace(/\\D/g,\'\')" style="max-width:auto;">' +
                 '<span class="input-group-btn">' +
                 '<button class="btn btn-info" type="button" data-toggle="tooltip" title="Удалить" onclick="delExChangeConfig(this)"><span class="glyphicon glyphicon-minus"></span></button>' +
@@ -52,7 +52,7 @@
             obj.insertAdjacentHTML('beforeBegin', html);
             addHeightSet();
         }
-        //删除配置
+        // Удаление конфигурации
         function delExChangeConfig(obj) {
             $(obj).parent().parent().remove();
         }
@@ -69,12 +69,12 @@
     <div class="row">
         <div class="col-sm-12 search-collapse">
             <div id="header">
-                <h3>累计消耗<span class="glyphicon glyphicon-question-sign" title="活动配置说明"
+                <h3>Накопительное потребление<span class="glyphicon glyphicon-question-sign" title="Описание конфигурации события"
                               data-container="body" data-toggle="popover" data-placement="right"
-                              data-content="消耗货币：目前只支持灵玉<br/>
-                                消耗目标：单位人民币（分）<br/>
-                                固定奖励：填入的奖励一定会全部发放给玩家<br/>
-                                可选奖励：从填入的奖励中选择指定数量的奖励（选择领取的数量在后续填入参数）"></span></h3>
+                              data-content="Расходуемая валюта: в настоящее время поддерживаются только золотые слитки<br/>
+                              Целевое потребление: в центах<br/>
+                              Фиксированная награда: все указанные награды будут выданы игроку<br/>
+                              Выборочная награда: игрок выбирает указанное количество наград из предложенного списка (количество указывается в параметре)"></span></h3>
             </div>
             <form id="activity_form" method="post" class="form-horizontal" action="#">
                 <div th:replace="common/BaseActivity_header.html"></div>
@@ -83,10 +83,10 @@
                     <div id="costGroup" class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>消耗配置</legend>
+                            <legend>Конфигурация затрат</legend>
                             <fieldset>
                                 <div class="input-group">
-                                    <label class="input-group-addon">消耗货币:</label>
+                                    <label class="input-group-addon">Расходуемая валюта:</label>
                                     <div class="col-md-3 col-sm-3 col-xs-3">
                                         <select id="coinType" name="coinType" onchange="" class="form-control">
                                             <option value="1">Золотые слитки</option>
@@ -99,10 +99,10 @@
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <legend>累计消耗配置</legend>
+                            <legend>Конфигурация накопительного потребления</legend>
                             <fieldset>
                                 <div class="input-group" id="saltIpGroup">
-                                    <label class="input-group-addon">配置列表:</label>
+                                    <label class="input-group-addon">Список конфигураций:</label>
                                     <button class="btn btn-info" type="button" data-toggle="tooltip" title="Добавить" id="addSaltIpGrpBtn"
                                             onclick="addSaltIpGrp(this)"><span class="glyphicon glyphicon-plus"></span></button>
                                     <input type="hidden" id="cfgCount1" value="0">

@@ -31,7 +31,7 @@ public class CommunityManager {
         if (is instanceof ICommunityScript) {
             return (ICommunityScript) is;
         } else {
-            log.error("没有实现社区脚本");
+            log.error("Не реализован скрипт сообщества");
             return null;
         }
     }

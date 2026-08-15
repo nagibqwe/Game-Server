@@ -1,50 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('ИзменитьТестовое пополнение через GM')" />
+    <th:block th:include="include :: header('Редактировать тестовое пополнение через GM')" />
 </head>
 <body class="white-bg">
     <div class="wrapper wrapper-content animated fadeInRight ibox-content">
         <form class="form-horizontal m" id="form-recharge-edit" th:object="${recharge}">
             <input name="id" th:field="*{id}" type="hidden">
             <div class="form-group">    
-                <label class="col-sm-3 control-label">ID персонажа：</label>
+                <label class="col-sm-3 control-label">ID персонажа:</label>
                 <div class="col-sm-8">
                     <input name="roleId" th:field="*{roleId}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">充值订单金额(单位分)：</label>
+                <label class="col-sm-3 control-label">Сумма пополнения (в центах):</label>
                 <div class="col-sm-8">
                     <input name="rechargeNumber" th:field="*{rechargeNumber}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">充值累积数量：</label>
+                <label class="col-sm-3 control-label">Накопительная сумма пополнения:</label>
                 <div class="col-sm-8">
                     <input name="rechargeTotalGold" th:field="*{rechargeTotalGold}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">充值VIP经验：</label>
+                <label class="col-sm-3 control-label">VIP-опыт за пополнение:</label>
                 <div class="col-sm-8">
                     <input name="rechargeVipExp" th:field="*{rechargeVipExp}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">充值状态,0为待审核,1为通过,2为失败：</label>
+                <label class="col-sm-3 control-label">Статус пополнения: 0 — ожидает проверки, 1 — проверено, 2 — отклонено:</label>
                 <div class="col-sm-8">
                     <input name="rechargeState" th:field="*{rechargeState}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">Причина операции：</label>
+                <label class="col-sm-3 control-label">Причина операции:</label>
                 <div class="col-sm-8">
                     <input name="reason" th:field="*{reason}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
-                <label class="col-sm-3 control-label">ДействияID сервера：</label>
+                <label class="col-sm-3 control-label">ID сервера операции:</label>
                 <div class="col-sm-8">
                     <input name="toServerId" th:field="*{toServerId}" class="form-control" type="text">
                 </div>

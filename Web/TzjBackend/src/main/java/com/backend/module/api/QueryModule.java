@@ -37,19 +37,19 @@ public class QueryModule {
     @GET
     public Object queryRoleByRoleId(int serverId, String roleId) {
         if (Strings.isBlank(roleId)) {
-            return Toolkit.outResult(false, "query condition is blank");
+            return Toolkit.outResult(false, "Условие запроса пусто");
         }
         roleId = roleId.trim();
         Dblog dblog = QueryUtil.getInstance().getFinalHeFuDB(serverId);
         if (dblog == null) {
-            return Toolkit.outResult(false, "server not found");
+            return Toolkit.outResult(false, "Сервер не найден");
         }
 
         long playerId;
         try {
-            playerId = roleId.matches("[0-9]+") ? Long.parseLong(roleId): Long.parseLong(roleId, 36);
+            playerId = roleId.matches("[0-9]+") ? Long.parseLong(roleId) : Long.parseLong(roleId, 36);
         } catch (Exception e) {
-            return Toolkit.outResult(false, "输入查询参数错误");
+            return Toolkit.outResult(false, "Ошибка в параметрах запроса");
         }
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         String roleSqlStr = "SELECT * FROM $table WHERE roleId = @roleId";
@@ -58,7 +58,7 @@ public class QueryModule {
             roles = queryRoleState(dblog, roleSqlStr, "roleId", playerId);
         } catch (Exception e) {
             e.printStackTrace();
-            return Toolkit.outResult(false, "连接数据库失败");
+            return Toolkit.outResult(false, "Ошибка подключения к базе данных");
         }
         if (roles.isEmpty()) {
             return Toolkit.outResult(false, msg.get("jsp.role.norole"));
@@ -113,5 +113,4 @@ public class QueryModule {
         dsLog.close();
         return sql.getList(RoleState.class);
     }
-
 }

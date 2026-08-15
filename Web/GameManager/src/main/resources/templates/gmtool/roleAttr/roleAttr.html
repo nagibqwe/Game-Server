@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:include="include :: header('修改属性列表')" />
+    <th:block th:include="include :: header('Редактирование атрибутов')" />
     <th:block th:include="include :: footer" />
     <th:block th:include="include :: datetimepicker-css" />
 </head>
@@ -11,14 +11,14 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Изменить характеристики</h5>
+                    <h5>Редактирование атрибутов персонажа</h5>
                 </div>
                 <div class="ibox-content">
                     <form id="setRoleAttrForm" class="form-horizontal m-t" method="post">
 
                         <div class="form-group">
                             <div th:replace="common/select_server_single.html"></div>
-                            <!--此处作为服务器请求分组地址映射设置地方-->
+                            <!-- Здесь настраивается сопоставление адресов групповых запросов к серверу -->
                             <input type="hidden" id="requestUrl" value="gameServer">
                             <input type="hidden" id="ignoreMerge" value="1">
                         </div>
@@ -29,29 +29,29 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label is-required" for="select_attrType">属性类型:</label>
+                            <label class="col-sm-2 control-label is-required" for="select_attrType">Тип атрибута:</label>
                             <div class="col-sm-2">
                                 <select id="select_attrType" name="attrType" class="selectClass">
                                     <option value="0">Уровень</option>
-                                    <option value="1">境界</option>
-                                    <option value="2">重新接取主线任务(用于程序改bug用)</option>
+                                    <option value="1">Уровень совершенствования</option>
+                                    <option value="2">Перезапустить квесты (для отладки)</option>
                                 </select>
                             </div>
                             <div class="col-sm-2" style="margin-left: -74px">
-                                <input class="form-control" id="attrValue" type="text" name="attrValue" placeholder="属性值" required/>
+                                <input class="form-control" id="attrValue" type="text" name="attrValue" placeholder="Значение атрибута" required/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="reason" class="col-sm-2 control-label is-required">Причина:</label>
                             <div class="col-sm-2">
-                                <input id="reason" type="text" name="reason" class="form-control" value="用于游戏测试" required/>
+                                <input id="reason" type="text" name="reason" class="form-control" value="Для тестирования игры" required/>
                             </div>
                         </div>
                         <div class="form-group" style="margin-left: 4px">
                             <label class="col-sm-2 control-label"></label>
                             <button type="button" class="btn btn-primary" onclick="setRoleAttrByRoleId()">
-                                执行操作
+                                Выполнить
                             </button>
                         </div>
 
@@ -81,11 +81,11 @@
                 updateUrl: prefix + "/edit/{id}",
                 removeUrl: prefix + "/remove",
                 exportUrl: prefix + "/export",
-                modalName: "Изменить характеристики",
+                modalName: "Редактирование атрибутов",
                 columns: [
                 {
                     field: 'id',
-                    title: 'Номер'
+                    title: 'ID'
                 },
                 {
                     title: 'Платформа',
@@ -95,7 +95,7 @@
                 },
                 {
                     field: 'serverId',
-                    title: 'ID игрового сервера'
+                    title: 'ID сервера'
                 },
                 {
                     field: 'roleId',
@@ -103,15 +103,15 @@
                 },
                 {
                     field: 'attrType',
-                    title: '属性类型'
+                    title: 'Тип атрибута'
                 },
                 {
                     field: 'attrValue',
-                    title: '属性值'
+                    title: 'Значение атрибута'
                 },
                 {
                     field: 'realValue',
-                    title: '真实属性值'
+                    title: 'Реальное значение'
                 },
                 {
                     field: 'actionTime',
@@ -119,7 +119,7 @@
                 },
                 {
                     field: 'actionUser',
-                    title: 'Имя оператора'
+                    title: 'Оператор'
                 },
                 {
                     title: 'Действия',
@@ -134,11 +134,11 @@
             $.table.init(options);
         });
 
-        //设置角色属性操作
+        // Установка атрибутов персонажа
         function setRoleAttrByRoleId() {
             var select_server = $("#select_server").val();
             if (!$('#setRoleAttrForm').validate().form()) {
-                $.modal.msgError("Ошибка проверки");
+                $.modal.msgError("Ошибка валидации");
                 return;
             }
             $.ajax({
@@ -159,7 +159,7 @@
             });
         }
 
-        //删除操作
+        // Удаление записи
         function delRoleAttr(id) {
             var select_server = $("#select_server").val();
             $.ajax({

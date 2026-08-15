@@ -34,7 +34,7 @@ public class SecondRechargeStatisticModule {
     @Ok("jsp:jsp.statistic.secondRecharge")
     @Filters(@By(type = MenuFilter.class, args = {"USERMENUS", "/noauthority.jsp"}))
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "进入二次付费页面");
+        BackendLogUtil.getInstance().log(request, "Вход на страницу повторного пополнения");
         request.setAttribute("newDate", sdf.format(new Date()));
     }
 
@@ -256,97 +256,97 @@ public class SecondRechargeStatisticModule {
         return secondRechargeMap;
     }
 
-    private String getTimeGapName(int time) {
-        String timeGapName = "";
-        switch (time) {
-            case 0:
-                timeGapName = "间隔0天";
-                break;
-            case 1:
-                timeGapName = "间隔1天";
-                break;
-            case 2:
-                timeGapName = "间隔2天";
-                break;
-            case 3:
-                timeGapName = "间隔3天";
-                break;
-            case 4:
-                timeGapName = "间隔4天";
-                break;
-            case 5:
-                timeGapName = "间隔5天";
-                break;
-            case 6:
-                timeGapName = "间隔6天";
-                break;
-            case 7:
-                timeGapName = "间隔7天";
-                break;
-            case 8:
-                timeGapName = "间隔8~14天";
-                break;
-            case 14:
-                timeGapName = "间隔14~29天";
-                break;
-            case 15:
-                timeGapName = "间隔10分钟";
-                break;
-            case 16:
-                timeGapName = "间隔30分钟";
-                break;
-            case 17:
-                timeGapName = "间隔1小时";
-                break;
-            case 18:
-                timeGapName = "间隔2-3小时";
-                break;
-            case 19:
-                timeGapName = "间隔3小时以上";
-                break;
-            case 30:
-                timeGapName = "间隔30天以上";
-                break;
-        }
-        return timeGapName;
+private String getTimeGapName(int time) {
+    String timeGapName = "";
+    switch (time) {
+        case 0:
+            timeGapName = "Интервал 0 дней";
+            break;
+        case 1:
+            timeGapName = "Интервал 1 день";
+            break;
+        case 2:
+            timeGapName = "Интервал 2 дня";
+            break;
+        case 3:
+            timeGapName = "Интервал 3 дня";
+            break;
+        case 4:
+            timeGapName = "Интервал 4 дня";
+            break;
+        case 5:
+            timeGapName = "Интервал 5 дней";
+            break;
+        case 6:
+            timeGapName = "Интервал 6 дней";
+            break;
+        case 7:
+            timeGapName = "Интервал 7 дней";
+            break;
+        case 8:
+            timeGapName = "Интервал 8~14 дней";
+            break;
+        case 14:
+            timeGapName = "Интервал 14~29 дней";
+            break;
+        case 15:
+            timeGapName = "Интервал 10 минут";
+            break;
+        case 16:
+            timeGapName = "Интервал 30 минут";
+            break;
+        case 17:
+            timeGapName = "Интервал 1 час";
+            break;
+        case 18:
+            timeGapName = "Интервал 2-3 часа";
+            break;
+        case 19:
+            timeGapName = "Интервал более 3 часов";
+            break;
+        case 30:
+            timeGapName = "Интервал более 30 дней";
+            break;
     }
+    return timeGapName;
+}
 
-    private String getProjectName(int project) {
-        String projectName = "";
-        switch (project) {
-            case -1:
-                projectName = "每日礼包";
-                break;
-            case 6:
-                projectName = "6元蓝钻";
-                break;
-            case 30:
-                projectName = "30元蓝钻";
-                break;
-            case 68:
-                projectName = "68元蓝钻";
-                break;
-            case 98:
-                projectName = "98元蓝钻";
-                break;
-            case 128:
-                projectName = "128元蓝钻";
-                break;
-            case 198:
-                projectName = "198元蓝钻";
-                break;
-            case 258:
-                projectName = "258元蓝钻";
-                break;
-            case 328:
-                projectName = "328元蓝钻";
-                break;
-            case 648:
-                projectName = "648元蓝钻";
-                break;
-        }
-        return projectName;
+private String getProjectName(int project) {
+    String projectName = "";
+    switch (project) {
+        case -1:
+            projectName = "Ежедневный набор";
+            break;
+        case 6:
+            projectName = "6 юаней — синие алмазы";
+            break;
+        case 30:
+            projectName = "30 юаней — синие алмазы";
+            break;
+        case 68:
+            projectName = "68 юаней — синие алмазы";
+            break;
+        case 98:
+            projectName = "98 юаней — синие алмазы";
+            break;
+        case 128:
+            projectName = "128 юаней — синие алмазы";
+            break;
+        case 198:
+            projectName = "198 юаней — синие алмазы";
+            break;
+        case 258:
+            projectName = "258 юаней — синие алмазы";
+            break;
+        case 328:
+            projectName = "328 юаней — синие алмазы";
+            break;
+        case 648:
+            projectName = "648 юаней — синие алмазы";
+            break;
     }
+    return projectName;
+}
 
     //获取首充的userId
     private String getFirstRechargeUserSql(String table, String serverId, String channelNames, String endDate, String blackUserStr) {

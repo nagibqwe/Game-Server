@@ -11,7 +11,6 @@ import com.backend.manager.DbLogListManager;
 import com.backend.manager.ServerListManager;
 import com.backend.struct.RoleState;
 import com.backend.utils.*;
-//import com.mysql.jdbc.TimeUtil;
 import org.apache.log4j.Logger;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
@@ -36,7 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * 充值功能
+ * Функционал пополнения
  */
 @IocBean
 @Ok("json")
@@ -75,7 +74,7 @@ public class RechargeModule {
         String roleSqlStr = "SELECT roleId FROM $table WHERE roleId = @roleId";
         Dblog dblog = DbLogListManager.getInstance().getDblog(serverId);
         if (dblog == null) {
-            return Toolkit.outResult(false, "未找到服务器");
+            return Toolkit.outResult(false, "Сервер не найден");
         }
         List<RoleState> roles = queryRoleState(dblog, roleSqlStr, roleId);
         if (roles.isEmpty()) {
@@ -96,7 +95,7 @@ public class RechargeModule {
         recharge.setRechargeState(0);
         recharge.setReason(reason);
         dao.insert(recharge);
-        return Toolkit.outResult(true, "保存成功");
+        return Toolkit.outResult(true, "Сохранено успешно");
     }
 
     @At
@@ -125,7 +124,7 @@ public class RechargeModule {
         } else {
             recharge.setRechargeState(2);
             dao.update(recharge);
-            return Toolkit.outResult(true, "处理完成");
+            return Toolkit.outResult(true, "Обработка завершена");
         }
     }
 
@@ -170,7 +169,7 @@ public class RechargeModule {
         NutMap backMess = GameServerRequestUtil.gmRecharge(server, Long.valueOf(roleId), rechargeGold, rechargeTotalGold, rechargeVipExp);
         if (backMess.getBoolean("ok")) {
             User user = (User) request.getSession().getAttribute("USER");
-            BackendLogUtil.getInstance().log(request, roleId + "充值完成，数量：" + rechargeGold + "，操作者：" + user.getName());
+            BackendLogUtil.getInstance().log(request, roleId + " — пополнение выполнено, сумма: " + rechargeGold + ", оператор: " + user.getName());
         }
         return backMess;
     }
@@ -187,5 +186,4 @@ public class RechargeModule {
         dsLog.close();
         return sql.getList(RoleState.class);
     }
-
 }

@@ -62,7 +62,7 @@ public class BossScript implements IBossScript {
         msg.setBossType(type);
         player.sendMsg(BossMessage.ReqOpenDreamBoss.MsgID.eMsgID_VALUE, msg.build().toByteArray());
 
-        log.info(player.getInfo()+"请求BOSS活动数据，类型="+type);
+        log.info(player.getInfo() + " запрос данных активности BOSS, тип=" + type);
     }
 
     public  void sendReqSuitGemBossPanel(Player player, int type){
@@ -70,7 +70,7 @@ public class BossScript implements IBossScript {
         msg.setType(type);
         player.sendMsg(BossMessage.ReqSuitGemBossPanel.MsgID.eMsgID_VALUE, msg.build().toByteArray());
 
-        log.info(player.getInfo()+"请求精甲和玉 BOSS数据，类型="+type);
+        log.info(player.getInfo() + " запрос данных BOSS «Панцирь и яшма», тип=" + type);
     }
 
 }

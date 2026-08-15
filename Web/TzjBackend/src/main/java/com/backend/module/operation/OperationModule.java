@@ -46,7 +46,7 @@ import java.util.*;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
- * 运营管理
+ * Операционное управление
  */
 @IocBean
 @Ok("json")
@@ -60,9 +60,9 @@ public class OperationModule {
     private static final Logger log = Logger.getLogger(OperationModule.class);
 
     /**
-     * 留存统计天数
+     * Дни удержания
      */
-    private static final int[] durDays = {1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,44,59,119};
+    private static final int[] durDays = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 44, 59, 119};
 
     @Inject
     private Dao dao;
@@ -113,7 +113,7 @@ public class OperationModule {
     }
 
     /**
-     * 激活码生成
+     * Генерация активационных кодов
      */
     @At
     @POST
@@ -140,7 +140,7 @@ public class OperationModule {
             return;
         }
 
-        // 为“0”表示所有渠道
+        // "0" означает все каналы
         String channel = activeCode.getPlateform_name_big();
         String valide_server_id_list = "[]";
         if (serverId != null) {
@@ -160,13 +160,12 @@ public class OperationModule {
             }
             codes = Collections.singletonList(activeCode.getCode());
         } else {
-            //生成激活码
+            // Генерация активационных кодов
             batchId = dao.getMaxId(CodeBatch.class) + 1;
-            // 判断是否已经拥有批号
             if (dao.count(CodeBatch.class, Cnd.where("batchId", "=", batchId)) > 0) {
                 batchId += 1;
             }
-            // 使用set集合去除重复激活码
+            // Использование Set для удаления дубликатов
             Set<String> codeSet = new HashSet<>();
             while (codeSet.size() < codeNum) {
                 codeSet.add(RandomUtil.sg(5).next() + batchId);
@@ -174,16 +173,15 @@ public class OperationModule {
             codes = new ArrayList<>(codeSet);
         }
 
-        //激活码存入各自平台的LS库中
+        // Сохранение кодов в БД LS
         long createTime = System.currentTimeMillis() / 1000;
-        // 分批存入数据库
-        int batchSize = 1000;//每一批上限，因为国内app(rds云数据库)插入有问题，减少成1000
-        String sqlStr = "INSERT INTO activecode (code, activeName, batch, itemList,param,valide_time_begin," +
-                "valide_time_end,plateform_name_big,valide_server_id_list,create_time,deleteTime) " +
-                "VALUES (@code, @activeName, @batch, @itemList,@param,@valide_time_begin,@valide_time_end," +
-                "@plateform_name_big,@valide_server_id_list,@create_time,@deleteTime);";
+        int batchSize = 1000;
+        String sqlStr = "INSERT INTO activecode (code, activeName, batch, itemList, param, valide_time_begin," +
+                "valide_time_end, plateform_name_big, valide_server_id_list, create_time, deleteTime) " +
+                "VALUES (@code, @activeName, @batch, @itemList, @param, @valide_time_begin, @valide_time_end," +
+                "@plateform_name_big, @valide_server_id_list, @create_time, @deleteTime);";
         if (codeNum > batchSize) {
-            int k = 0;// 用于判断插入剩余数据
+            int k = 0;
             Sql sql = Sqls.create(sqlStr);
             for (int i = 0; i < codeNum; i++) {
                 sql.params().set("code", codes.get(i));
@@ -198,18 +196,16 @@ public class OperationModule {
                 sql.params().set("create_time", createTime);
                 sql.params().set("deleteTime", 0);
                 sql.addBatch();
-                // batchSize条插入一次
                 if (i % batchSize == 0) {
                     loginDao.execute(sql);
                     if (sql.getUpdateCount() < 1) {
                         log.error(msg.get("log.dbfail"));
                     }
-                    sql.clearBatch();// 清理已操作批次
+                    sql.clearBatch();
                     k = i;
                 }
             }
             if (k < codeNum - 1) {
-                // 最后插入不足batchSize条的数据
                 loginDao.execute(sql);
                 if (sql.getUpdateCount() < 1) {
                     log.error(msg.get("log.dbfail"));
@@ -236,9 +232,9 @@ public class OperationModule {
                 log.error(msg.get("log.dbfail"));
             }
         }
-        log.error("激活码存入登录服数据库成功，平台标识 :" + activeCode.getPlateform_name_big() + ",批次号:" + batchId + ",数量:" + codeNum);
+        log.error("Коды активации успешно сохранены в БД входа, платформа: " + activeCode.getPlateform_name_big() + ", ID партии: " + batchId + ", количество: " + codeNum);
 
-        // 保存批号记录
+        // Сохранение записи о партии
         if (batchId != 0) {
             User user = (User) request.getSession().getAttribute("USER");
             CodeBatch codeBatch = new CodeBatch();
@@ -249,18 +245,17 @@ public class OperationModule {
             codeBatch.setIsUniversal(param);
             CodeBatch batch = dao.insert(codeBatch);
             if (batch == null) {
-                log.error("批次号为" + batchId + "的激活码信息录入GM后台失败！");
+                log.error("Не удалось записать информацию о кодах активации для партии " + batchId + " в GM-бэкенд!");
             } else {
-                log.info("批次号为" + batchId + "的激活码信息录入GM后台成功！");
+                log.info("Информация о кодах активации для партии " + batchId + " успешно записана в GM-бэкенд!");
             }
-            BackendLogUtil.getInstance().log(request, "生成激活码[平台:" + activeCode.getPlateform_name_big() + "\t批号:" + batchId + "\t数量:" + codeNum + "\t万能码：" + (param == 1) + "]");
+            BackendLogUtil.getInstance().log(request, "Генерация кодов активации [платформа: " + activeCode.getPlateform_name_big() + "\tпартия: " + batchId + "\tколичество: " + codeNum + "\tуниверсальный код: " + (param == 1) + "]");
         }
 
         try (OutputStream out = response.getOutputStream()) {
             response.reset();
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             String excelName = msg.get("jsp.acodesearch.code");
-            // 转码防止乱码
             response.addHeader("Content-Disposition", "attachment;filename=" + new String(excelName.getBytes(UTF_8), "ISO8859-1") + ".xlsx");
             genExcel(codes, batchId, out);
             out.flush();
@@ -272,7 +267,7 @@ public class OperationModule {
     @At
     public Object deleteCode(String code) {
         if (Strings.isBlank(code)) {
-            return Toolkit.outResult(false, "激活码错误");
+            return Toolkit.outResult(false, "Ошибка кода активации");
         }
         String sqlStr = "update activecode set deleteTime=@deleteTime where code=@code and deleteTime = 0";
         Sql sql = Sqls.create(sqlStr);
@@ -281,27 +276,26 @@ public class OperationModule {
         loginDao.execute(sql);
         int count = sql.getUpdateCount();
         if (count < 0) {
-            return Toolkit.outResult(false, "操作失败");
+            return Toolkit.outResult(false, "Ошибка операции");
         }
-        return Toolkit.outResult(true, "操作完成");
+        return Toolkit.outResult(true, "Операция выполнена");
     }
 
     @At
-    public Object queryActiveCodeByBatchId(@Param("page")int page,@Param("rows")int rows,@Param("batchId")String batchId) {
+    public Object queryActiveCodeByBatchId(@Param("page") int page, @Param("rows") int rows, @Param("batchId") String batchId) {
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         int start = 0;
         start = (page - 1) * rows;
         if (!Strings.isNumber(batchId)) {
             return Toolkit.outResult(false, msg.get("log.nobatchinfo"));
         }
-        //根据批号获取平台名
         CodeBatch codeBatch = dao.fetch(CodeBatch.class, Cnd.where("batchId", "=", batchId));
         if (codeBatch == null) {
             return Toolkit.outResult(false, msg.get("log.nobatchinfo"));
         }
 
-        String sqlStr = "select code, activeName, batch, itemList, param, valide_time_begin, valide_time_end, plateform_name_big, plateform_name_small, valide_server_id_list, create_time, get_time, get_player_id, get_account_id, get_plateform_aid, get_plateform_name,get_server_id from $table where batch=@batch limit "+start+","+rows+"";
-        String sqlStr2 = "select code, activeName, batch, itemList, param, valide_time_begin, valide_time_end, plateform_name_big, plateform_name_small, valide_server_id_list, create_time, get_time, get_player_id, get_account_id, get_plateform_aid, get_plateform_name,get_server_id from $table where batch=@batch";
+        String sqlStr = "select code, activeName, batch, itemList, param, valide_time_begin, valide_time_end, plateform_name_big, plateform_name_small, valide_server_id_list, create_time, get_time, get_player_id, get_account_id, get_plateform_aid, get_plateform_name, get_server_id from $table where batch=@batch limit " + start + "," + rows + "";
+        String sqlStr2 = "select code, activeName, batch, itemList, param, valide_time_begin, valide_time_end, plateform_name_big, plateform_name_small, valide_server_id_list, create_time, get_time, get_player_id, get_account_id, get_plateform_aid, get_plateform_name, get_server_id from $table where batch=@batch";
         String table = "activecode";
         Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("batch", batchId);
@@ -312,7 +306,7 @@ public class OperationModule {
         }
         result = getNewList(result, msg);
         List<ActiveCodeByBatchGrid> grids = new ArrayList<>();
-        for (Map<String, String> map:result){
+        for (Map<String, String> map : result) {
             ActiveCodeByBatchGrid grid = new ActiveCodeByBatchGrid();
             grid.setCode(map.get("code"));
             grid.setActiveName(map.get("activeName"));
@@ -333,18 +327,18 @@ public class OperationModule {
             grids.add(grid);
         }
 
-        return Toolkit.outResult(true).setv("total",resultCount.size()).setv("rows",grids);
+        return Toolkit.outResult(true).setv("total", resultCount.size()).setv("rows", grids);
     }
 
     @At
-    public Object queryActiveCodeByCode(@Param("page")int page,@Param("rows")int rows,@Param("code")String code) {
+    public Object queryActiveCodeByCode(@Param("page") int page, @Param("rows") int rows, @Param("code") String code) {
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         int start = 0;
         start = (page - 1) * rows;
         if (Strings.isBlank(code) || code.length() < 6) {
             return Toolkit.outResult(false, msg.get("log.acodeerror"));
         }
-        String sqlStr = "select activeCode,platformName,sid,roleid,userId,itemList,actionId from $table where activeCode=@activeCode limit "+start+","+rows+"";
+        String sqlStr = "select activeCode,platformName,sid,roleid,userId,itemList,actionId from $table where activeCode=@activeCode limit " + start + "," + rows + "";
         String sqlStr2 = "select activeCode,platformName,sid,roleid,userId,itemList,actionId from $table where activeCode=@activeCode";
         String table = "activecodelog";
         Map<String, Object> paramMap = new HashMap<>();
@@ -358,7 +352,7 @@ public class OperationModule {
             return Toolkit.outResult(false, msg.get("log.noacodeinfo"));
         }
         List<ActiveCodeByCodeGrid> grids = new ArrayList<>();
-        for (Map<String,String> map:result){
+        for (Map<String, String> map : result) {
             ActiveCodeByCodeGrid grid = new ActiveCodeByCodeGrid();
             grid.setActiveCode(map.get("activeCode"));
             grid.setPlatformName(map.get("platformName"));
@@ -369,17 +363,17 @@ public class OperationModule {
             grid.setActionId(map.get("actionId"));
             grids.add(grid);
         }
-        return Toolkit.outResult(true).setv("total",resultCount.size()).setv("rows",grids);
+        return Toolkit.outResult(true).setv("total", resultCount.size()).setv("rows", grids);
     }
 
     @At
-    public Object queryActiveCode(@Param("page") int page,@Param("rows") int rows) {
+    public Object queryActiveCode(@Param("page") int page, @Param("rows") int rows) {
         Map<String, String> msg = Mvcs.getMessages(Mvcs.getReq());
         List<Map<String, String>> result = new ArrayList<>();
         int start = 0;
         start = (page - 1) * rows;
         String sql = "select code, activeName, batch, itemList, param, valide_time_begin, valide_time_end, " +
-                "plateform_name_big, plateform_name_small, valide_server_id_list, create_time, deleteTime from $table order by batch asc limit "+start+","+rows+"";
+                "plateform_name_big, plateform_name_small, valide_server_id_list, create_time, deleteTime from $table order by batch asc limit " + start + "," + rows + "";
 
         String sql2 = "select code, activeName, batch, itemList, param, valide_time_begin, valide_time_end, " +
                 "plateform_name_big, plateform_name_small, valide_server_id_list, create_time, deleteTime from $table order by batch asc";
@@ -397,7 +391,7 @@ public class OperationModule {
             e.printStackTrace();
         }
         List<ActiveCodeShowGrid> grids = new ArrayList<>();
-        for (Map<String, String> map:dataList){
+        for (Map<String, String> map : dataList) {
             ActiveCodeShowGrid grid = new ActiveCodeShowGrid();
             grid.setCode(map.get("code"));
             grid.setActiveName(map.get("activeName"));
@@ -409,14 +403,14 @@ public class OperationModule {
             grid.setPlateform_name_big(map.get("plateform_name_big"));
             grid.setValide_server_id_list(map.get("valide_server_id_list"));
             grid.setCreate_time(TimeUtils.format2string(Long.parseLong(map.get("create_time")) * 1000L));
-            if (map.get("deleteTime").equals("0")){
+            if (map.get("deleteTime").equals("0")) {
                 grid.setDeleteTime(String.valueOf(0));
-            }else {
+            } else {
                 grid.setDeleteTime(TimeUtils.format2string(Long.parseLong(map.get("deleteTime")) * 1000L));
             }
             grids.add(grid);
         }
-        return Toolkit.outResult(true).setv("total",dataListCount.size()).setv("rows",grids);
+        return Toolkit.outResult(true).setv("total", dataListCount.size()).setv("rows", grids);
     }
 
     private List<Map<String, String>> getNewList(List<Map<String, String>> list, Map<String, String> msg) {
@@ -432,7 +426,7 @@ public class OperationModule {
                             continue;
                         }
                         Item item0 = ItemManager.getInstance().getItemList().get(Integer.parseInt(item[0]));
-                        itemStr += "[" + item[0] + "]" + (item0 == null ? "[未知]" : item0.getItemName());
+                        itemStr += "[" + item[0] + "]" + (item0 == null ? "[Неизвестно]" : item0.getItemName());
                         if (item.length > 1) {
                             itemStr += "_" + msg.get("log.itemNum") + item[1];
                             itemStr += "_" + msg.get("log.isBind");
@@ -546,7 +540,7 @@ public class OperationModule {
     }
 
     /*
-     * 统计选择时间内创建的角色截止目前为止的等级变化。这里离线挂机后等级会发生变化。
+     * Статистика изменения уровня персонажей, созданных в выбранный период, с учётом офлайн-опыта.
      */
     @At
     public Object level(String channelNames, String serverId, int condition, String level, String startDate, String endDate) throws Exception {
@@ -565,7 +559,7 @@ public class OperationModule {
 
             for (String key : hefuTableMap.keySet()) {
                 List<String> tableList = hefuTableMap.get(key);
-                tableList.retainAll(goalTables);//过滤重复数据表
+                tableList.retainAll(goalTables);
                 for (String s : tableList) {
                     Dblog dblog = DbLogListManager.getInstance().getDblog(key);
                     if (dblog == null) {
@@ -633,8 +627,9 @@ public class OperationModule {
     }
 
     /**
-     * 统计留存  新增玩家是指当前注册时账号，
-     * 付费玩家是指当日的新增玩家中只要之后付过费的玩家都叫当日的付费玩家
+     * Статистика удержания.
+     * Новые игроки — это аккаунты, зарегистрировавшиеся в указанный день.
+     * Платящие игроки — это новые игроки дня, которые совершили хотя бы один платёж в будущем.
      */
     @At
     public Object getDuring(String actionType, String groupName, String channelNames, String[] serverId, String startDate, String endDate, boolean isblack) throws Exception {
@@ -649,11 +644,11 @@ public class OperationModule {
         List<Date> dateList = getDateList(startDate, endDate);
         Calendar calendarStart = Calendar.getInstance();
         Set<String> firstLogUserId;
-        Set<String> serfirstLogUserId; //用于查找登录用户的处理
+        Set<String> serfirstLogUserId;
         Set<String> firstRechargeUserId;
-        Set<String> dayFirstLogUserId = new HashSet<>();;//总的新登录用户
-        List<Map<String, Object>> firstLoginCount;//新注册用户
-        List<Map<String, Object>> laterLoginCount;//后面登陆
+        Set<String> dayFirstLogUserId = new HashSet<>();
+        List<Map<String, Object>> firstLoginCount;
+        List<Map<String, Object>> laterLoginCount;
         List<String> dsStr;
         List<String> loginGoalTables;
         List<String> rechargeGoalTables;
@@ -661,16 +656,16 @@ public class OperationModule {
         Map<String, List<String>> hefuRechargeTableMap;
         List<String> tableList;
         int registerCount;
-        String firstLogUserIdStr; //新用户ID
+        String firstLogUserIdStr;
         List<Map<String, Object>> data;
         Map<String, Object> durMap;
 
-        Set<String> blackFirstLoginData;//首日注册
-        List<Map<String, Object>> blackLaterLoginData;//后面登陆
+        Set<String> blackFirstLoginData;
+        List<Map<String, Object>> blackLaterLoginData;
         Set<String> firstUserIds;
 
-        List<Integer> countDataStatistic;// 用来放留存数
-        List<Float> rateDataStatistic;// 用来存放留存率
+        List<Integer> countDataStatistic;
+        List<Float> rateDataStatistic;
         List<Object> resultList = new ArrayList<>();
         Map<String, Object> resultMap;
         for (Date d : dateList) {
@@ -678,14 +673,14 @@ public class OperationModule {
             calendarStart.setTime(d);
             dsStr = new ArrayList<>();
             dsStr.add(s);
-            durMap = new HashMap<>();// 放入将每天的留存数
-            durMap.put(s, 0);// 第一天的注册
+            durMap = new HashMap<>();
+            durMap.put(s, 0);
             for (int dayNum : durDays) {
                 calendarStart.add(Calendar.DAY_OF_MONTH, dayNum);
                 String ds = sdf.format(calendarStart.getTime());
                 dsStr.add(ds);
                 calendarStart.add(Calendar.DAY_OF_MONTH, -dayNum);
-                durMap.put(ds, 0);//初始化
+                durMap.put(ds, 0);
             }
             int dsLength = dsStr.size();
             registerCount = 0;
@@ -694,14 +689,13 @@ public class OperationModule {
             firstRechargeUserId = new HashSet<>();
             laterLoginCount = new ArrayList<>();
             for (String sid : serverId) {
-                //新注册用户数据
                 int finalServerId = QueryUtil.getInstance().getHeFuId(Integer.parseInt(sid));
                 Dblog rolestatedblog = DbLogListManager.getInstance().getDBServer(groupName, finalServerId);
                 String firstSqlStr = getUserRegisterSql(channelNames, TableName.RoleState, sid, dsStr.get(0), dsStr.get(0));
                 firstLoginCount = QueryUtil.getInstance().query(rolestatedblog, firstSqlStr);
                 for (Map<String, Object> firstMap : firstLoginCount) {
                     String uid = firstMap.get("userId").toString();
-                    if(!dayFirstLogUserId.contains(uid)) {
+                    if (!dayFirstLogUserId.contains(uid)) {
                         firstLogUserId.add(uid);
                         dayFirstLogUserId.add(uid);
                     }
@@ -710,13 +704,12 @@ public class OperationModule {
                 firstLogUserIdStr = serfirstLogUserId.toString();
                 firstLogUserIdStr = firstLogUserIdStr.substring(1, firstLogUserIdStr.length() - 1);
 
-                //充值数据
-//                rechargeGoalTables = QueryUtil.getInstance().getQueryTables(TableName.RechargeSuccess, s + " 00:00:00", dsStr.get(durDays.length) + "23:59:59", 4);
+                // Данные о пополнениях
                 rechargeGoalTables = Arrays.asList(TableName.RechargeSuccess);
-                hefuRechargeTableMap = new HashMap<>(QueryUtil.getInstance().getHefuTable(sid, TableName.RechargeSuccess, sdf.parse(s + " 00:00:00"), sdf.parse(dsStr.get(durDays.length) + " 23:59:59")));
+                hefuRechargeTableMap = new HashMap<>(QueryUtil.getInstance().getHefuTable(sid, TableName.RechargeSuccess, sdf.parse(s + " 00:00:00"), sdf.parse(dsStr.get(dsLength - 1) + " 23:59:59")));
                 for (String key : hefuRechargeTableMap.keySet()) {
                     tableList = hefuRechargeTableMap.get(key);
-                    tableList.retainAll(rechargeGoalTables);//过滤重复数据表
+                    tableList.retainAll(rechargeGoalTables);
                     Dblog dblog = DbLogListManager.getInstance().getDblog(key);
                     if (dblog == null) {
                         continue;
@@ -736,12 +729,12 @@ public class OperationModule {
                     }
                 }
 
-                //登陆数据
-                loginGoalTables = QueryUtil.getInstance().getQueryTables(TableName.RoleLogin, TableType.Month, s + " 00:00:00", dsStr.get(durDays.length) + " 23:59:59");
-                hefuTableMap = new HashMap<>(QueryUtil.getInstance().getHefuTable(sid, TableName.RoleLogin, sdf.parse(s + " 00:00:00"), sdf.parse(dsStr.get(durDays.length) + " 23:59:59")));
+                // Данные о входах
+                loginGoalTables = QueryUtil.getInstance().getQueryTables(TableName.RoleLogin, TableType.Month, s + " 00:00:00", dsStr.get(dsLength - 1) + " 23:59:59");
+                hefuTableMap = new HashMap<>(QueryUtil.getInstance().getHefuTable(sid, TableName.RoleLogin, sdf.parse(s + " 00:00:00"), sdf.parse(dsStr.get(dsLength - 1) + " 23:59:59")));
                 for (String key : hefuTableMap.keySet()) {
                     tableList = hefuTableMap.get(key);
-                    tableList.retainAll(loginGoalTables);//过滤重复数据表
+                    tableList.retainAll(loginGoalTables);
                     Dblog dblog = DbLogListManager.getInstance().getDblog(key);
                     if (dblog == null) {
                         continue;
@@ -757,18 +750,18 @@ public class OperationModule {
                 }
             }
 
-            //排除黑名单
+            // Исключение чёрного списка
             if (isblack) {
-                blackFirstLoginData = new HashSet<>();//首日注册
-                blackLaterLoginData = new ArrayList<>();//后面登陆
+                blackFirstLoginData = new HashSet<>();
+                blackLaterLoginData = new ArrayList<>();
                 List<Object> blackListUsers = BlackListManager.getInstance().getBlackListUsers(groupName);
-                if (actionType.equals("getAllDuringList")) {//所有玩家
+                if (actionType.equals("getAllDuringList")) {
                     for (String userId : firstLogUserId) {
                         if (blackListUsers.contains(userId)) {
                             blackFirstLoginData.add(userId);
                         }
                     }
-                } else if (actionType.equals("getRechargeDuringList")) {//付费玩家
+                } else if (actionType.equals("getRechargeDuringList")) {
                     for (String userId : firstRechargeUserId) {
                         if (blackListUsers.contains(userId)) {
                             blackFirstLoginData.add(userId);
@@ -776,7 +769,7 @@ public class OperationModule {
                     }
                 }
 
-                for (Map<String, Object> laterLoginMap : laterLoginCount) {//后面登陆
+                for (Map<String, Object> laterLoginMap : laterLoginCount) {
                     String userId = laterLoginMap.get("userId").toString();
                     if (blackListUsers.contains(userId)) {
                         blackLaterLoginData.add(laterLoginMap);
@@ -797,7 +790,6 @@ public class OperationModule {
             }
 
             durMap.put(s, registerCount);
-            // 将首次登陆注册的用户数量，进行统计
             for (int i = 1; i < dsStr.size(); i++) {
                 String dss = dsStr.get(i) + " 00:00:00";
                 String dse = dsStr.get(i) + " 23:59:59";
@@ -812,26 +804,22 @@ public class OperationModule {
                         firstUserIds.add(userId);
                     }
                 }
-                // 求交集
                 if (actionType.equals("getAllDuringList")) {
                     firstUserIds.retainAll(firstLogUserId);
                 } else if (actionType.equals("getRechargeDuringList")) {
                     firstUserIds.retainAll(firstRechargeUserId);
                 }
 
-                int laterLogCount = firstUserIds.size() + Integer.parseInt(durMap.get(dsStr.get(i)).toString());// 计算出后面天数用户的留存数
+                int laterLogCount = firstUserIds.size() + Integer.parseInt(durMap.get(dsStr.get(i)).toString());
                 durMap.put(dsStr.get(i), laterLogCount);
             }
 
-            // 计算概率
-            countDataStatistic = new ArrayList<>();// 用来放留存数
-            rateDataStatistic = new ArrayList<>();// 用来存放留存率
+            countDataStatistic = new ArrayList<>();
+            rateDataStatistic = new ArrayList<>();
             resultMap = new HashMap<>();
             for (int i = 1; i < dsStr.size(); i++) {
-                int firstDayAdd = Integer.parseInt(durMap.get(dsStr.get(0))
-                        .toString());
-                int keepCount = Integer.parseInt(durMap.get(dsStr.get(i))
-                        .toString());
+                int firstDayAdd = Integer.parseInt(durMap.get(dsStr.get(0)).toString());
+                int keepCount = Integer.parseInt(durMap.get(dsStr.get(i)).toString());
                 float rate = 0;
                 if (firstDayAdd != 0) {
                     rate = (float) keepCount / firstDayAdd;
@@ -852,14 +840,13 @@ public class OperationModule {
     }
 
 
-    private Set<String> getAllRegisterUserList(List<Date> dateList,String channelNames,String groupName,List<String> serverId){
+    private Set<String> getAllRegisterUserList(List<Date> dateList, String channelNames, String groupName, List<String> serverId) {
         List<String> dsStr;
-        List<Map<String, Object>> firstLoginCount;//新注册用户
-        Set<String> firstLogUserId  = new HashSet<>(); ;
+        List<Map<String, Object>> firstLoginCount;
+        Set<String> firstLogUserId = new HashSet<>();
         for (Date d : dateList) {
             String s = sdf.format(d);
             for (String sid : serverId) {
-                //新注册用户数据
                 int finalServerId = QueryUtil.getInstance().getHeFuId(Integer.parseInt(sid));
                 Dblog rolestatedblog = DbLogListManager.getInstance().getDBServer(groupName, finalServerId);
                 String firstSqlStr = getUserRegisterSql(channelNames, TableName.RoleState, sid, s, s);
@@ -1002,9 +989,9 @@ public class OperationModule {
         nameList.removeAll(roleNameList);
         String resultStr;
         if (nameList.size() > 0) {
-            resultStr = "黑名单中存在角色名找不到账号，以下角色名为：" + nameList;
+            resultStr = "В чёрном списке есть имена персонажей, для которых не найден аккаунт. Имена: " + nameList;
         } else {
-            resultStr = "黑名单导入完成！";
+            resultStr = "Чёрный список импортирован успешно!";
         }
         return resultStr;
     }
@@ -1014,14 +1001,12 @@ public class OperationModule {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet(msg.get("jsp.acodesearch.batch") + "_" + batchId);
         String[] header = {msg.get("jsp.acodesearch.code")};
-        // 创建表头
         XSSFRow row = sheet.createRow(0);
         XSSFCell cell;
         for (int ci = 0; ci < header.length; ci++) {
             cell = row.createCell(ci);
             cell.setCellValue(header[ci]);
         }
-        // 创建数据
         for (int ri = 0; ri < rows.size(); ri++) {
             row = sheet.createRow(ri + 1);
             cell = row.createCell(0);
@@ -1031,7 +1016,7 @@ public class OperationModule {
     }
 
     /**
-     * 计算起始天数的差值
+     * Расчёт разницы в днях между датами
      */
     private int dValue(Date start, Date end) {
         long diff = end.getTime() - start.getTime();
@@ -1082,98 +1067,98 @@ public class OperationModule {
     }
 
     /**
-     * 统计留存  新增玩家是指当前注册时账号，付费玩家是指当日的新增玩家中只要之后付过费的玩家都叫当日的付费玩家
+     * Тестовый метод для демонстрации данных удержания
      */
     @At
     public Object getDuring1(String actionType, String groupName, String channelNames, String[] serverId, String startDate, String endDate, boolean isblack) throws Exception {
         List<Object> resultList = new ArrayList<>();
 
-        HashMap<String,Object> resultMap1 = new HashMap<>();
+        HashMap<String, Object> resultMap1 = new HashMap<>();
         resultMap1.put("date", "2021-02-18");
         resultMap1.put("registerCount", 926);
-        List<Integer> a1 = Arrays.asList(353,220,189,170,125,99,86,74,90,70,46,38,32,28,10);
-        List<Float> a2 = Arrays.asList(38.12f/100,23.76f/100,20.41f/100,18.36f/100,13.5f/100,10.69f/100,9.29f/100,7.99f/100,9.72f/100,7.56f/100,4.97f/100,4.1f/100,3.46f/100,3.02f/100,1.08f/100);
+        List<Integer> a1 = Arrays.asList(353, 220, 189, 170, 125, 99, 86, 74, 90, 70, 46, 38, 32, 28, 10);
+        List<Float> a2 = Arrays.asList(38.12f / 100, 23.76f / 100, 20.41f / 100, 18.36f / 100, 13.5f / 100, 10.69f / 100, 9.29f / 100, 7.99f / 100, 9.72f / 100, 7.56f / 100, 4.97f / 100, 4.1f / 100, 3.46f / 100, 3.02f / 100, 1.08f / 100);
         resultMap1.put("countDataStatistic", a1);
         resultMap1.put("rateDataStatistic", a2);
         resultList.add(resultMap1);
 
-        HashMap<String,Object> resultMap2 = new HashMap<>();
+        HashMap<String, Object> resultMap2 = new HashMap<>();
         resultMap2.put("date", "2021-02-17");
         resultMap2.put("registerCount", 1002);
-        List<Integer> b1 = Arrays.asList(397,272,221,170,159,114,106,106,98,76,67,62,52,46,15);
-        List<Float> b2 = Arrays.asList(39.62f/100,27.15f/100,22.06f/100,16.97f/100,15.87f/100,11.38f/100,10.58f/100,10.58f/100,9.78f/100,7.58f/100,6.69f/100,6.19f/100,5.19f/100,4.59f/100,1.5f/100);
+        List<Integer> b1 = Arrays.asList(397, 272, 221, 170, 159, 114, 106, 106, 98, 76, 67, 62, 52, 46, 15);
+        List<Float> b2 = Arrays.asList(39.62f / 100, 27.15f / 100, 22.06f / 100, 16.97f / 100, 15.87f / 100, 11.38f / 100, 10.58f / 100, 10.58f / 100, 9.78f / 100, 7.58f / 100, 6.69f / 100, 6.19f / 100, 5.19f / 100, 4.59f / 100, 1.5f / 100);
         resultMap2.put("countDataStatistic", b1);
         resultMap2.put("rateDataStatistic", b2);
         resultList.add(resultMap2);
 
-        HashMap<String,Object> resultMap3 = new HashMap<>();
+        HashMap<String, Object> resultMap3 = new HashMap<>();
         resultMap3.put("date", "2021-02-16");
         resultMap3.put("registerCount", 1253);
-        List<Integer> c1 = Arrays.asList(493,319,279,225,173,122,125,110,109,106,91,76,70,70,30);
-        List<Float> c2 = Arrays.asList(39.35f/100,25.46f/100,22.27f/100,17.96f/100,13.81f/100,9.74f/100,9.98f/100,8.78f/100,8.7f/100,8.46f/100,7.26f/100,6.07f/100,5.59f/100,5.59f/100,2.39f/100);
+        List<Integer> c1 = Arrays.asList(493, 319, 279, 225, 173, 122, 125, 110, 109, 106, 91, 76, 70, 70, 30);
+        List<Float> c2 = Arrays.asList(39.35f / 100, 25.46f / 100, 22.27f / 100, 17.96f / 100, 13.81f / 100, 9.74f / 100, 9.98f / 100, 8.78f / 100, 8.7f / 100, 8.46f / 100, 7.26f / 100, 6.07f / 100, 5.59f / 100, 5.59f / 100, 2.39f / 100);
         resultMap3.put("countDataStatistic", c1);
         resultMap3.put("rateDataStatistic", c2);
         resultList.add(resultMap3);
 
-        HashMap<String,Object> resultMap4 = new HashMap<>();
+        HashMap<String, Object> resultMap4 = new HashMap<>();
         resultMap4.put("date", "2021-02-15");
         resultMap4.put("registerCount", 1186);
-        List<Integer> d1 = Arrays.asList(490,304,284,233,194,139,132,134,124,116,101,82,84,80,27);
-        List<Float> d2 = Arrays.asList(41.32f/100,25.63f/100,23.95f/100,19.65f/100,16.36f/100,11.72f/100,11.13f/100,11.3f/100,10.46f/100,9.78f/100,8.52f/100,6.91f/100,7.08f/100,6.75f/100,2.28f/100);
+        List<Integer> d1 = Arrays.asList(490, 304, 284, 233, 194, 139, 132, 134, 124, 116, 101, 82, 84, 80, 27);
+        List<Float> d2 = Arrays.asList(41.32f / 100, 25.63f / 100, 23.95f / 100, 19.65f / 100, 16.36f / 100, 11.72f / 100, 11.13f / 100, 11.3f / 100, 10.46f / 100, 9.78f / 100, 8.52f / 100, 6.91f / 100, 7.08f / 100, 6.75f / 100, 2.28f / 100);
         resultMap4.put("countDataStatistic", d1);
         resultMap4.put("rateDataStatistic", d2);
         resultList.add(resultMap4);
 
-        HashMap<String,Object> resultMap5 = new HashMap<>();
+        HashMap<String, Object> resultMap5 = new HashMap<>();
         resultMap5.put("date", "2021-02-14");
         resultMap5.put("registerCount", 927);
-        List<Integer> e1 = Arrays.asList(380,254,248,183,149,104,107,93,88,72,69,66,38,42,10);
-        List<Float> e2 = Arrays.asList(40.99f/100,27.4f/100,26.75f/100,19.74f/100,16.07f/100,11.22f/100,11.54f/100,10.03f/100,9.49f/100,7.77f/100,7.44f/100,7.12f/100,4.1f/100,4.53f/100,1.08f/100);
+        List<Integer> e1 = Arrays.asList(380, 254, 248, 183, 149, 104, 107, 93, 88, 72, 69, 66, 38, 42, 10);
+        List<Float> e2 = Arrays.asList(40.99f / 100, 27.4f / 100, 26.75f / 100, 19.74f / 100, 16.07f / 100, 11.22f / 100, 11.54f / 100, 10.03f / 100, 9.49f / 100, 7.77f / 100, 7.44f / 100, 7.12f / 100, 4.1f / 100, 4.53f / 100, 1.08f / 100);
         resultMap5.put("countDataStatistic", e1);
         resultMap5.put("rateDataStatistic", e2);
         resultList.add(resultMap5);
 
-        HashMap<String,Object> resultMap6 = new HashMap<>();
+        HashMap<String, Object> resultMap6 = new HashMap<>();
         resultMap6.put("date", "2021-02-13");
         resultMap6.put("registerCount", 753);
-        List<Integer> f1 = Arrays.asList(300,187,161,106,83,68,64,62,55,42,50,40,38,32,15);
-        List<Float> f2 = Arrays.asList(39.84f/100,24.83f/100,21.38f/100,14.08f/100,11.02f/100,9.03f/100,8.5f/100,8.23f/100,7.3f/100,5.58f/100,6.64f/100,5.31f/100,5.05f/100,4.25f/100,1.99f/100);
+        List<Integer> f1 = Arrays.asList(300, 187, 161, 106, 83, 68, 64, 62, 55, 42, 50, 40, 38, 32, 15);
+        List<Float> f2 = Arrays.asList(39.84f / 100, 24.83f / 100, 21.38f / 100, 14.08f / 100, 11.02f / 100, 9.03f / 100, 8.5f / 100, 8.23f / 100, 7.3f / 100, 5.58f / 100, 6.64f / 100, 5.31f / 100, 5.05f / 100, 4.25f / 100, 1.99f / 100);
         resultMap6.put("countDataStatistic", f1);
         resultMap6.put("rateDataStatistic", f2);
         resultList.add(resultMap6);
 
-        HashMap<String,Object> resultMap7 = new HashMap<>();
+        HashMap<String, Object> resultMap7 = new HashMap<>();
         resultMap7.put("date", "2021-02-12");
         resultMap7.put("registerCount", 763);
-        List<Integer> g1 = Arrays.asList(290,196,169,137,120,88,88,75,79,59,52,48,38,32,15);
-        List<Float> g2 = Arrays.asList(38.01f/100,25.69f/100,22.15f/100,17.96f/100,15.73f/100,11.53f/100,11.53f/100,9.83f/100,10.35f/100,7.73f/100,6.82f/100,6.29f/100,4.98f/100,4.19f/100,1.97f/100);
+        List<Integer> g1 = Arrays.asList(290, 196, 169, 137, 120, 88, 88, 75, 79, 59, 52, 48, 38, 32, 15);
+        List<Float> g2 = Arrays.asList(38.01f / 100, 25.69f / 100, 22.15f / 100, 17.96f / 100, 15.73f / 100, 11.53f / 100, 11.53f / 100, 9.83f / 100, 10.35f / 100, 7.73f / 100, 6.82f / 100, 6.29f / 100, 4.98f / 100, 4.19f / 100, 1.97f / 100);
         resultMap7.put("countDataStatistic", g1);
         resultMap7.put("rateDataStatistic", g2);
         resultList.add(resultMap7);
 
-        HashMap<String,Object> resultMap8 = new HashMap<>();
+        HashMap<String, Object> resultMap8 = new HashMap<>();
         resultMap8.put("date", "2021-02-11");
         resultMap8.put("registerCount", 974);
-        List<Integer> h1 = Arrays.asList(378,237,201,172,143,122,96,99,83,76,69,68,52,42,20);
-        List<Float> h2 = Arrays.asList(38.81f/100,24.33f/100,20.64f/100,17.66f/100,14.68f/100,12.53f/100,9.86f/100,10.16f/100,8.52f/100,7.8f/100,7.08f/100,6.98f/100,5.34f/100,4.31f/100,2.05f/100);
+        List<Integer> h1 = Arrays.asList(378, 237, 201, 172, 143, 122, 96, 99, 83, 76, 69, 68, 52, 42, 20);
+        List<Float> h2 = Arrays.asList(38.81f / 100, 24.33f / 100, 20.64f / 100, 17.66f / 100, 14.68f / 100, 12.53f / 100, 9.86f / 100, 10.16f / 100, 8.52f / 100, 7.8f / 100, 7.08f / 100, 6.98f / 100, 5.34f / 100, 4.31f / 100, 2.05f / 100);
         resultMap8.put("countDataStatistic", h1);
         resultMap8.put("rateDataStatistic", h2);
         resultList.add(resultMap8);
 
-        HashMap<String,Object> resultMap9 = new HashMap<>();
+        HashMap<String, Object> resultMap9 = new HashMap<>();
         resultMap9.put("date", "2021-02-10");
         resultMap9.put("registerCount", 1098);
-        List<Integer> i1 = Arrays.asList(457,270,236,191,141,115,112,102,99,74,67,54,40,28,7);
-        List<Float> i2 = Arrays.asList(41.62f/100,24.59f/100,21.49f/100,17.4f/100,12.84f/100,10.47f/100,10.2f/100,9.29f/100,9.02f/100,6.74f/100,6.1f/100,4.92f/100,3.64f/100,2.55f/100,0.64f/100);
+        List<Integer> i1 = Arrays.asList(457, 270, 236, 191, 141, 115, 112, 102, 99, 74, 67, 54, 40, 28, 7);
+        List<Float> i2 = Arrays.asList(41.62f / 100, 24.59f / 100, 21.49f / 100, 17.4f / 100, 12.84f / 100, 10.47f / 100, 10.2f / 100, 9.29f / 100, 9.02f / 100, 6.74f / 100, 6.1f / 100, 4.92f / 100, 3.64f / 100, 2.55f / 100, 0.64f / 100);
         resultMap9.put("countDataStatistic", i1);
         resultMap9.put("rateDataStatistic", i2);
         resultList.add(resultMap9);
 
-        HashMap<String,Object> resultMap10 = new HashMap<>();
+        HashMap<String, Object> resultMap10 = new HashMap<>();
         resultMap10.put("date", "2021-02-09");
         resultMap10.put("registerCount", 1203);
-        List<Integer> j1 = Arrays.asList(513,306,256,217,175,147,137,128,109,108,71,58,62,56,20);
-        List<Float> j2 = Arrays.asList(42.64f/100,25.44f/100,21.28f/100,18.04f/100,14.55f/100,12.22f/100,11.39f/100,10.64f/100,9.06f/100,8.98f/100,5.9f/100,4.82f/100,5.15f/100,4.66f/100,1.66f/100);
+        List<Integer> j1 = Arrays.asList(513, 306, 256, 217, 175, 147, 137, 128, 109, 108, 71, 58, 62, 56, 20);
+        List<Float> j2 = Arrays.asList(42.64f / 100, 25.44f / 100, 21.28f / 100, 18.04f / 100, 14.55f / 100, 12.22f / 100, 11.39f / 100, 10.64f / 100, 9.06f / 100, 8.98f / 100, 5.9f / 100, 4.82f / 100, 5.15f / 100, 4.66f / 100, 1.66f / 100);
         resultMap10.put("countDataStatistic", j1);
         resultMap10.put("rateDataStatistic", j2);
         resultList.add(resultMap10);

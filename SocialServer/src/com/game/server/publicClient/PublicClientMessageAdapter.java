@@ -40,7 +40,7 @@ public class PublicClientMessageAdapter extends SimpleChannelInboundHandler<RMes
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         SocialServer.getInstance().pc.channel = ctx;
-        logger.info("公共服激活连接{}: {} ", ctx.name(), ctx.channel());
+        logger.info("Соединение с публичным сервером {} активировано: {} ", ctx.name(), ctx.channel());
         SocialServer.getInstance().server().register2Public();
     }
 
@@ -59,6 +59,6 @@ public class PublicClientMessageAdapter extends SimpleChannelInboundHandler<RMes
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        logger.info("公共服{}: {} 发生了异常：{}", ctx.name(), ctx.channel(), cause);
+        logger.info("Публичный сервер {}: {} — произошло исключение: {}", ctx.name(), ctx.channel(), cause);
     }
 }

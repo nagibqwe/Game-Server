@@ -31,7 +31,7 @@ public class PlyLveStatisticModule {
     @Ok("jsp:jsp.statistic.playerLeave")
 
     public void index(HttpServletRequest request) {
-        BackendLogUtil.getInstance().log(request, "进入每日登录情况统计界面");
+        BackendLogUtil.getInstance().log(request, "Вход на страницу статистики ежедневных входов игроков");
         request.setAttribute("nowDate", sdf.format(new Date()));
     }
 

@@ -100,7 +100,7 @@ public class RegisterScript implements IRegisterScript {
         msg.setDevice(device);
         msg.setCareer(player.getCareer());
         MessageUtils.sendMsg(player, RegisterMessage.ReqCreateCharacter.MsgID.eMsgID_VALUE, msg.build().toByteArray());
-        log.info(player.getInfo() + " 请求创建角色,职业："+player.getCareer());
+        log.info(player.getInfo() + " запрос на создание персонажа, класс: " + player.getCareer());
     }
 
     /**
@@ -113,7 +113,7 @@ public class RegisterScript implements IRegisterScript {
         RegisterMessage.ReqSelectCharacter.Builder msg = RegisterMessage.ReqSelectCharacter.newBuilder();
         msg.setPlayerId(player.getId());
         MessageUtils.sendMsg(player, RegisterMessage.ReqSelectCharacter.MsgID.eMsgID_VALUE, msg.build().toByteArray());
-        log.info(player.getInfo() + "请求选择角色,ID="+player.getId());
+        log.info(player.getInfo() + " запрос на выбор персонажа, ID=" + player.getId());
     }
 
     @Override
@@ -142,12 +142,12 @@ public class RegisterScript implements IRegisterScript {
             player.sendMsg(RegisterMessage.ReqQuit.MsgID.eMsgID_VALUE, msg.build().toByteArray());
             player.setSession(null);
             if (isFromServer) {
-                log.error(player.getId() + "因网络断开而掉线了！");
+                log.error(player.getId() + " — игрок отключился из-за разрыва сети!");
             } else {
-                log.error(player.getId() + "退出游戏,非服务器导致", new Throwable());
+                log.error(player.getId() + " — выход из игры не по инициативе сервера", new Throwable());
             }
         }
-        String str = String.format("robot debug 被断开连接 ip:%s 角色唯一ID:%d 账号:%d 是否网络断开掉线:%s 角色名:%s", se.getLocalAddress(), player.getId(), player.getUserId(), isFromServer, player.getName());
+        String str = String.format("Отладка робота: соединение разорвано. IP: %s, уникальный ID персонажа: %d, аккаунт: %d, отключение из-за сети: %s, имя персонажа: %s", se.getLocalAddress(), player.getId(), player.getUserId(), isFromServer, player.getName());
         log.error(str);
         System.out.println(str);
         Manager.playerManager.deal().removePlayer(player.getId());

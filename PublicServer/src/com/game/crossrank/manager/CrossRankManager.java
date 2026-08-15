@@ -50,7 +50,7 @@ public class CrossRankManager {
 
     public void stop(){
         deal().updateSql();
-        log.info("public服务器停止了！写入跨服排行数据");
+        log.info("Публичный сервер остановлен. Выполняется запись данных кросс-серверного рейтинга.");
     }
 
     public  void loadCrossRank(){
@@ -87,7 +87,7 @@ public class CrossRankManager {
     }
 
     private void initTimer(){
-        log.info("跨服世界等级 timer 初始化成功");
+        log.info("Инициализация таймера кросс-серверного мирового уровня выполнена успешно.");
         MainServer.getInstance().addTimerEvent(new CrossWorldLvTimer(-1, 60000));
     }
 
