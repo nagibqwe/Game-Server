@@ -1,0 +1,9 @@
+2026-08-19 13:49:39.970 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:145] - Игровой сервер InnerMsgAdapter#0 :[id: 0x1de0eb70, L:/94.250.249.128:9200 - R:/45.79.207.110:58870] — произошло исключение: java.io.IOException: Connection timed out
+2026-08-19 13:49:39.971 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x1de0eb70, L:/94.250.249.128:9200 ! R:/45.79.207.110:58870]
+2026-08-19 13:49:39.971 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - unreg: подключение удалено!
+2026-08-19 13:49:39.972 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:145] - Игровой сервер InnerMsgAdapter#0 :[id: 0xa832cf19, L:/94.250.249.128:9200 - R:/45.79.207.110:58872] — произошло исключение: java.io.IOException: Connection timed out
+2026-08-19 13:49:39.972 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xa832cf19, L:/94.250.249.128:9200 ! R:/45.79.207.110:58872]
+2026-08-19 13:49:39.972 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xa832cf19, L:/94.250.249.128:9200 ! R:/45.79.207.110:58872] — при отправке очереди соединение уже разорвано! 4
+2026-08-19 13:49:39.972 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - unreg: подключение удалено!
+2026-08-19 13:51:05.953 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-19 13:51:05.953 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0

@@ -1,0 +1,37 @@
+2026-08-19 03:11:55.986 ERROR [nioEventLoopGroup-5-5][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-19 03:11:55.987 ERROR [nioEventLoopGroup-5-5][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:11:59.536 ERROR [nioEventLoopGroup-5-6][HttpBackScript.java:109] - unknown getRequestPath: [/]
+2026-08-19 03:11:59.540 ERROR [nioEventLoopGroup-5-6][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:06.564 ERROR [nioEventLoopGroup-5-7][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-19 03:12:06.564 ERROR [nioEventLoopGroup-5-7][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:07.125 ERROR [nioEventLoopGroup-5-8][HttpBackScript.java:109] - unknown getRequestPath: [/]
+2026-08-19 03:12:07.126 ERROR [nioEventLoopGroup-5-8][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:08.271 ERROR [nioEventLoopGroup-5-1][HttpBackScript.java:109] - unknown getRequestPath: [*]
+2026-08-19 03:12:08.271 ERROR [nioEventLoopGroup-5-1][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:08.272 ERROR [nioEventLoopGroup-5-1][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-19 03:12:08.272 ERROR [nioEventLoopGroup-5-1][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:12.017 ERROR [nioEventLoopGroup-5-2][HttpBackScript.java:109] - unknown getRequestPath: [/favicon.ico]
+2026-08-19 03:12:12.017 ERROR [nioEventLoopGroup-5-2][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:15.025 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 21, количество: 7
+2026-08-19 03:12:19.012 ERROR [nioEventLoopGroup-5-3][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-19 03:12:19.013 ERROR [nioEventLoopGroup-5-3][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:20.559 ERROR [nioEventLoopGroup-5-4][HttpBackScript.java:109] - unknown getRequestPath: [/.well-known/security.txt]
+2026-08-19 03:12:20.559 ERROR [nioEventLoopGroup-5-4][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:21.725 ERROR [nioEventLoopGroup-5-5][HttpBackScript.java:109] - unknown getRequestPath: [/favicon.ico]
+2026-08-19 03:12:21.726 ERROR [nioEventLoopGroup-5-5][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:24.385 ERROR [nioEventLoopGroup-5-6][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-19 03:12:24.386 ERROR [nioEventLoopGroup-5-6][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:25.477 ERROR [nioEventLoopGroup-5-7][HttpBackScript.java:109] - unknown getRequestPath: [/l9g015afv0_]
+2026-08-19 03:12:25.477 ERROR [nioEventLoopGroup-5-7][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:12:26.920 ERROR [nioEventLoopGroup-5-8][HttpBackScript.java:109] - unknown getRequestPath: [/favicon.ico]
+2026-08-19 03:12:26.921 ERROR [nioEventLoopGroup-5-8][SendBackFuture.java:23] - back http result success!
+2026-08-19 03:27:29.911 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x40a806ce, L:/94.250.249.128:9200 - R:/52.248.40.17:51884]
+2026-08-19 03:27:29.911 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-19 03:27:29.911 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x40a806ce, L:/94.250.249.128:9200 - R:/52.248.40.17:51884] — порядковый номер подключения: 100
+2026-08-19 03:27:34.918 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0x40a806ce, L:/94.250.249.128:9200 ! R:/52.248.40.17:51884]
+2026-08-19 03:27:34.918 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-19 03:27:34.918 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x40a806ce, L:/94.250.249.128:9200 ! R:/52.248.40.17:51884]
+2026-08-19 03:27:34.919 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:196] - [id: 0x40a806ce, L:/94.250.249.128:9200 ! R:/52.248.40.17:51884] — при отправке очереди соединение уже разорвано! 3
+2026-08-19 03:51:05.981 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-19 03:51:05.981 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-19 03:53:15.087 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 204, количество: 7

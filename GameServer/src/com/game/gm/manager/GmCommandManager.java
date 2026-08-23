@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.game.gm.manager;
 
 import com.game.db.bean.GameMaster;
@@ -14,37 +9,45 @@ import com.game.player.structs.Player;
 import com.game.player.structs.PlayerAttributeType;
 import com.game.script.structs.ScriptEnum;
 import com.game.utils.MessageUtils;
+
 import game.core.dblog.LogService;
 import game.core.net.Config.ServerConfig;
 import game.core.script.IScript;
 import game.message.CrossServerMessage;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 /**
+ * GM Command Manager
+ *
  * @author Administrator
  */
 public class GmCommandManager {
 
-    private static final Logger log = LogManager.getLogger(GmCommandManager.class);
+    private static final Logger log =
+            LogManager.getLogger(GmCommandManager.class);
 
     private final GameMasterDao gmDao;
 
-    private List<String> commands = new ArrayList<>(16);
+    /*
+     * Команды, доступные GM уровня 1.
+     *
+     * GM level 1:
+     * только команды из этого списка.
+     *
+     * GM level 2 и выше:
+     * все GM-команды.
+     */
+    private static final HashMap<String, Integer> commandLevelMap =
+            new HashMap<>();
 
-    private final String commandKey = "commandKey";
-
-    GmCommandManager() {
-        gmDao = new GameMasterDao();
-    }
-
-    private static final HashMap<String, Integer> commandLevelMap = new HashMap<>();
 
     static {
+
         commandLevelMap.put("&jinyan", 1);
         commandLevelMap.put("&kick", 1);
         commandLevelMap.put("&ts", 1);
@@ -69,138 +72,537 @@ public class GmCommandManager {
         commandLevelMap.put("&inspectplayergold", 1);
     }
 
-    //设置玩家GM Level
-    public void setPlayerGmLevel(Player player) {
-        try {
-            GameMaster gm = null;
-            gm = gmDao.selectByUserId(player.getUserId());
-//            if (gm != null) {
-//                player.setGmLevel(gm.getGmLevel());
-//            } else {
-//                player.setGmLevel(0);
-//            }
-        } catch (Exception e) {
-            log.error(e, e);
-        }
+
+    private GmCommandManager() {
+
+        gmDao = new GameMasterDao();
     }
 
-    public IGmScript getGM() {
-        IScript is = Manager.scriptManager.GetScriptClass(ScriptEnum.GmComandBaseScript);
-        if (is instanceof IGmScript) {
-            return (IGmScript) is;
-        }
-        log.error("没有找到GM接口的实例！");
-        return null;
-    }
 
     /**
-     * @Description 游戏内部即客户端发来的GM命令的处理
+     * Проверяет наличие GM-прав у игрока.
      *
-     * @param player
-     * @param command
+     * Старого player.setGmLevel() в текущей версии Player нет,
+     * поэтому выставляем только boolean GM.
      */
-    public void clientGmDeal(Player player, String command) {
-        if (command == null || command.equals("")) {
-            log.error("GM命令是空的！");
+    public void setPlayerGmLevel(Player player) {
+
+        if (player == null) {
             return;
         }
 
-        String[] strCommand = command.toLowerCase().split(" "); //GM命令以空格分隔，全部转为小写字母方便进行switch
+        try {
 
-        //GM状态权限判断
-//	int gmLevel = manager.playerManager.getPlayerGmlevel(player);
-//	if (gmLevel <= 0) {
-//	    if ("&zhimakaimen.".equalsIgnoreCase(strCommand[0])) {
-//		//MessageUtils.notify_player(player, Notify.CHAT_ROLE, AmuletManager.status + ",VERSION=" + WServer.VERSION);
-//	    }
-//	    return;
-//	}
-//	if (gmLevel > 0) {
-//	    player.setGmState(GmState.GM.getValue());
-//	}
-//	if (!commandLevelMap.containsKey(strCommand[0]) && gmLevel == 1) { //如果无此GM命令 或 GM对该指令的权限不够 则返回
-//	    return;
-//	}
-//	LOGGER.info(player.getGmState() + "\t" + player.getUserId() + "\t" + player.getName() + "\t" + "\t" + command);
-        //GM命令执行log记录
-        if (player.getUserId() > 10000000000L) {
+            GameMaster gm =
+                    gmDao.selectByUserId(
+                            player.getUserId()
+                    );
+
+            boolean isGM =
+                    gm != null
+                            && gm.getGmLevel() > 0;
+
+            player.setGM(isGM);
+
+            if (isGM) {
+
+                log.info(
+                        "GM определён: userId="
+                                + player.getUserId()
+                                + ", roleId="
+                                + player.getId()
+                                + ", roleName="
+                                + player.getName()
+                                + ", gmLevel="
+                                + gm.getGmLevel()
+                );
+            }
+
+        } catch (Exception e) {
+
+            player.setGM(false);
+
+            log.error(
+                    "Ошибка определения GM статуса. userId="
+                            + player.getUserId(),
+                    e
+            );
+        }
+    }
+
+
+    /**
+     * Получение GM Script.
+     */
+    public IGmScript getGM() {
+
+        IScript script =
+                Manager.scriptManager.GetScriptClass(
+                        ScriptEnum.GmComandBaseScript
+                );
+
+        if (script instanceof IGmScript) {
+
+            return (IGmScript) script;
+        }
+
+        log.error(
+                "Не найден экземпляр GM Script: "
+                        + ScriptEnum.GmComandBaseScript
+        );
+
+        return null;
+    }
+
+
+    /**
+     * Обработка GM-команд, полученных от клиента.
+     *
+     * @param player  игрок
+     * @param command GM-команда
+     */
+    public void clientGmDeal(
+            Player player,
+            String command
+    ) {
+
+        // =====================================================
+        // 1. Проверка входных данных
+        // =====================================================
+
+        if (player == null) {
+
+            log.error(
+                    "GM команда отклонена: player == null"
+            );
+
+            return;
+        }
+
+
+        if (command == null
+                || command.trim().isEmpty()) {
+
+            log.error(
+                    "GM команда пуста!"
+            );
+
+            return;
+        }
+
+
+        command = command.trim();
+
+
+        /*
+         * Не переводим всю команду в lower case,
+         * чтобы не испортить аргументы команды.
+         *
+         * Например:
+         *
+         * &command PlayerName
+         *
+         * Имя PlayerName должно остаться без изменений.
+         */
+
+        String[] strCommand =
+                command.split("\\s+");
+
+
+        if (strCommand.length == 0) {
+            return;
+        }
+
+
+        String commandName =
+                strCommand[0]
+                        .toLowerCase();
+
+
+        // =====================================================
+        // 2. Проверка GM через БД
+        // =====================================================
+
+        GameMaster gm;
+
+
+        try {
+
+            gm =
+                    gmDao.selectByUserId(
+                            player.getUserId()
+                    );
+
+        } catch (Exception e) {
+
+            /*
+             * Если БД недоступна —
+             * GM команду запрещаем.
+             */
+
+            player.setGM(false);
+
+            log.error(
+                    "Ошибка проверки GM прав. userId="
+                            + player.getUserId(),
+                    e
+            );
+
+            return;
+        }
+
+
+        // =====================================================
+        // 3. Игрок не является GM
+        // =====================================================
+
+        if (gm == null
+                || gm.getGmLevel() <= 0) {
+
+            player.setGM(false);
+
+            log.warn(
+                    "Попытка GM команды без прав."
+                            + " userId="
+                            + player.getUserId()
+                            + ", roleId="
+                            + player.getId()
+                            + ", roleName="
+                            + player.getName()
+                            + ", command="
+                            + command
+            );
+
+            return;
+        }
+
+
+        int gmLevel =
+                gm.getGmLevel();
+
+
+        // Игрок успешно определён как GM
+        player.setGM(true);
+
+
+        // =====================================================
+        // 4. Проверка уровня GM
+        // =====================================================
+
+        /*
+         * GM Level 1:
+         * только команды commandLevelMap.
+         *
+         * GM Level >= 2:
+         * полный доступ.
+         */
+
+        if (gmLevel == 1
+                && !commandLevelMap.containsKey(
+                        commandName
+                )) {
+
+            log.warn(
+                    "Недостаточно GM прав."
+                            + " userId="
+                            + player.getUserId()
+                            + ", roleName="
+                            + player.getName()
+                            + ", gmLevel="
+                            + gmLevel
+                            + ", command="
+                            + command
+            );
+
+            return;
+        }
+
+
+        // =====================================================
+        // 5. Лог разрешённой GM команды
+        // =====================================================
+
+        log.info(
+                "GM COMMAND:"
+                        + " userId="
+                        + player.getUserId()
+                        + ", roleId="
+                        + player.getId()
+                        + ", roleName="
+                        + player.getName()
+                        + ", gmLevel="
+                        + gmLevel
+                        + ", command="
+                        + command
+        );
+
+
+        // =====================================================
+        // 6. Запись GM команды в DB Log
+        // =====================================================
+
+        if (player.getUserId()
+                > 10000000000L) {
+
             try {
-                GmCommandLog gmCommandLog = new GmCommandLog();
-                gmCommandLog.setUserId(player.getUserId());
-                gmCommandLog.setRoleName(player.getName());
-                gmCommandLog.setRoleId(player.getId());
-                gmCommandLog.setSid(ServerConfig.getServerId());
-//            gmCommandLog.setGmLevel(player.getGmLevel());
-                gmCommandLog.setCommand(command);
-                LogService.getInstance().execute(gmCommandLog);
+
+                GmCommandLog gmCommandLog =
+                        new GmCommandLog();
+
+
+                gmCommandLog.setUserId(
+                        player.getUserId()
+                );
+
+
+                gmCommandLog.setRoleName(
+                        player.getName()
+                );
+
+
+                gmCommandLog.setRoleId(
+                        player.getId()
+                );
+
+
+                gmCommandLog.setSid(
+                        ServerConfig.getServerId()
+                );
+
+
+                /*
+                 * В старом коде было:
+                 *
+                 * gmCommandLog.setGmLevel(player.getGmLevel());
+                 *
+                 * Но Player.getGmLevel() больше отсутствует.
+                 *
+                 * Поэтому пока GM level в DB-log
+                 * специально не записываем.
+                 */
+
+
+                gmCommandLog.setCommand(
+                        command
+                );
+
+
+                LogService.getInstance()
+                        .execute(
+                                gmCommandLog
+                        );
+
             } catch (Exception e) {
-                log.error(e, e);
+
+                log.error(
+                        "Ошибка записи GM команды в лог",
+                        e
+                );
             }
         }
 
-        switch (strCommand[0]) {   //JDK1.7 switch case 语句开始支持String类型
-            case "&reloaddata": //刷表命令
-                break;
-            case "&maxcondition":
-                // TODO: 2019/5/14  serverParam修改屏蔽换一种方式存储
 
-//                if (commands.isEmpty()) {
-//                    String commandString = ServerParamUtil.getServerParamMap().get(commandKey);
-//                    if (commandString != null) {
-//                        String[] temp = commandString.split(Symbol.FENHAO);
-//                        for (String s : temp) {
-//                            commands.add(s);
-//                        }
-//                    }
-//                }
-//                for (String tempCommand : commands) {
-//                    Manager.gmCommandManager.getGM().RunGmCmd(player, tempCommand);
-//                }
-//                break;
+        // =====================================================
+        // 7. Локальные специальные команды
+        // =====================================================
+
+        switch (commandName) {
+
+
+            // ---------------------------------------------
+            // Перезагрузка таблиц
+            // ---------------------------------------------
+
+            case "&reloaddata":
+
+                /*
+                 * Старая реализация отсутствует.
+                 * Не передаём дальше.
+                 */
+
+                break;
+
+
+            // ---------------------------------------------
+            // Старый maxcondition
+            // ---------------------------------------------
+
+            case "&maxcondition":
+
+                /*
+                 * Старый код был отключён.
+                 *
+                 * ВАЖНО:
+                 * здесь обязательно break.
+                 */
+
+                break;
+
+
+            // ---------------------------------------------
+            // Сброс автобоя
+            // ---------------------------------------------
+
             case "&clearhook":
-                player.getHookInfo().setOnHook(false);
-                player.getHookInfo().setHookTime(0);
-                player.getHookInfo().getItemExpAddRateTime().clear();
-                Manager.playerAttAttributeManager.deal().calcAttribute(player, PlayerAttributeType.MEDICINESATTRIBUTE);
-                Manager.playerHookManager.deal().onReqHookSetInfoHandler(player);
+
+                player.getHookInfo()
+                        .setOnHook(false);
+
+
+                player.getHookInfo()
+                        .setHookTime(0);
+
+
+                player.getHookInfo()
+                        .getItemExpAddRateTime()
+                        .clear();
+
+
+                Manager.playerAttAttributeManager
+                        .deal()
+                        .calcAttribute(
+                                player,
+                                PlayerAttributeType.MEDICINESATTRIBUTE
+                        );
+
+
+                Manager.playerHookManager
+                        .deal()
+                        .onReqHookSetInfoHandler(
+                                player
+                        );
+
+
+                /*
+                 * В старом коде break отсутствовал,
+                 * поэтому &clearhook дополнительно
+                 * попадал в RunGmCmd().
+                 *
+                 * Исправлено.
+                 */
+
+                break;
+
+
+            // ---------------------------------------------
+            // Все остальные GM команды
+            // ---------------------------------------------
+
             default:
-                //调用GM脚本
-//                HashMap<String, Object> args = new HashMap<>();
-//                args.put("player", player);
-//                args.put("command", command);
-//                ScriptManager.getInstance().call(ScriptEnum.GmComandScript, args);
-                Manager.gmCommandManager.getGM().RunGmCmd(player, command);
+
+                IGmScript gmScript =
+                        getGM();
+
+
+                if (gmScript == null) {
+
+                    log.error(
+                            "GM Script не загружен."
+                                    + " Команда не выполнена: "
+                                    + command
+                    );
+
+                    return;
+                }
+
+
+                try {
+
+                    gmScript.RunGmCmd(
+                            player,
+                            command
+                    );
+
+                } catch (Exception e) {
+
+                    log.error(
+                            "Ошибка выполнения GM команды:"
+                                    + " userId="
+                                    + player.getUserId()
+                                    + ", command="
+                                    + command,
+                            e
+                    );
+                }
+
                 break;
         }
-
     }
 
-    //用枚举来实现单例
+
+    // =========================================================
+    // Singleton
+    // =========================================================
+
     private enum Singleton {
 
         INSTANCE;
-        GmCommandManager manager;
+
+        private final GmCommandManager manager;
+
 
         Singleton() {
-            this.manager = new GmCommandManager();
+
+            this.manager =
+                    new GmCommandManager();
         }
 
+
         GmCommandManager getProcessor() {
+
             return manager;
         }
     }
 
-    //获取PetManager的实例对象
+
     public static GmCommandManager getInstance() {
-        return Singleton.INSTANCE.getProcessor();
+
+        return Singleton.INSTANCE
+                .getProcessor();
     }
 
-    public void sendGMToPublic(long roleId, String str) {
-        CrossServerMessage.G2PGMCMD.Builder scriptMsg = CrossServerMessage.G2PGMCMD.newBuilder();
-        scriptMsg.setRoleId(roleId);
-        scriptMsg.setCmd(str);
-        MessageUtils.send_to_public(CrossServerMessage.G2PGMCMD.MsgID.eMsgID_VALUE, scriptMsg.build().toByteArray());
-        //TODO 公共服命令同步一份到社交服务器
-        MessageUtils.send_to_social(CrossServerMessage.G2PGMCMD.MsgID.eMsgID_VALUE, scriptMsg.build().toByteArray());
+
+    // =========================================================
+    // Передача GM команды на Public / Social
+    // =========================================================
+
+    public void sendGMToPublic(
+            long roleId,
+            String str
+    ) {
+
+        CrossServerMessage.G2PGMCMD.Builder scriptMsg =
+                CrossServerMessage.G2PGMCMD
+                        .newBuilder();
+
+
+        scriptMsg.setRoleId(
+                roleId
+        );
+
+
+        scriptMsg.setCmd(
+                str
+        );
+
+
+        MessageUtils.send_to_public(
+                CrossServerMessage.G2PGMCMD
+                        .MsgID
+                        .eMsgID_VALUE,
+                scriptMsg.build()
+                        .toByteArray()
+        );
+
+
+        // Отправка команды также на SocialServer
+
+        MessageUtils.send_to_social(
+                CrossServerMessage.G2PGMCMD
+                        .MsgID
+                        .eMsgID_VALUE,
+                scriptMsg.build()
+                        .toByteArray()
+        );
     }
 }

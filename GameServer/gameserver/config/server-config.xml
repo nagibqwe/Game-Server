@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Тип сервера (serverType): 0 — тестовый, 1 — боевой/игровой, 4 — кросс-серверный -->
+<!-- serverType - тип сервера: 0 - тестовый, 1 - игровой, 4 - межсерверный -->
 <server>
     <db-game
             url="jdbc:mysql://127.0.0.1:3306/tzj_game?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;nullCatalogMeansCurrent=true"
@@ -26,7 +26,7 @@
     
     <version version="1.0.0.0"/>
 
-    <!--是否审核服-->
+    <!-- Флаг сервера проверки -->
     <isShenHe isShenHe="0"/>
 
     <public publicIp="94.250.249.128" publicPort="9200"/>
@@ -34,44 +34,44 @@
     <serverInfo serverName="gameserver" port="9101" serverId="1001" platfrom="cn" lsId="1"/><!--TET-->
 
     <language language="cn"/>
-	
-	<!-- 服务器下单地址 -->
+    
+    <!-- Адрес для заказов сервера -->
     <serverOrderUrl serverOrderUrl="http://tzj-xpt.iwgame.cc/pay/gid.do"/>
-	
-    <!--充值发货回调地址IP-->
+    
+    <!-- Адрес обратного вызова для доставки оплаты -->
     <rechargeNotifyUrl rechargeNotifyUrl="http://94.250.249.128:8989/"/>
 
-    <!--充值端口-->
+    <!-- Порт для оплаты -->
     <recharge rechargePort="8190"/>
 
-    <!--后台监听端口-->
+    <!-- Порт для фонового прослушивания -->
     <backgrand port="8191"/>
 
-    <!--BI syslog config:openNet开启日志标签，0关闭所有日志/1仅开启文本日志/2仅开启网络日志(废弃)/3开启所有日志(废弃)-->
+    <!-- Конфигурация BI syslog: openNet - включение логов, 0 - все выкл / 1 - только текстовые / 2 - только сетевые (устарело) / 3 - все (устарело) -->
     <biSysLog biBakDir="/data/game/bi" openNet="1" sysLogHost="localhost" sysLogPort="6789" sysLogProtocol="TCP"/>
 
-    <!--bi4399Sql 1开启4399的数据日志，0关闭-->
+    <!-- bi4399Sql 1 - включить логи данных для 4399, 0 - выкл -->
     <bi4399SysLog bi4399Dir="/data/game/4399" bi4399OpenNet="0" bi4399Host="localhost" bi4399Port="1516"
                   bi4399Protocol="UDP"
                   bi4399Sql="1"/>
 
-	<!--qq大厅配置 openLog：1开启，0关闭-->
+    <!-- Конфигурация QQ холла: openLog - 1 включить, 0 выключить -->
     <qq appKey="sD8S4PVdopYXzdcI" appId="1112139976" GameID="11553" appName="QQ" openLog="0"
         uicFilterUrl="https://openapi.minigame.qq.com/v3/user/uic_filter"
         logUrl="https://tglog.datamore.qq.com/testdev/report/"/>
 
-    <!--登录检测时间 分钟单位-->
+    <!-- Время проверки входа в минутах -->
     <checkLoginTime checkLoginTime="30"/>
 
-    <!--充值检测时间 分钟单位-->
+    <!-- Время проверки оплаты в минутах -->
     <checkRechargeTime checkRechargeTime="30"/>
 
-    <!--根据当前游戏人数 设置游戏协议接收发送长度等级以及线程分配数量 -->
+    <!-- Уровни загруженности сервера для настройки приёма/передачи протоколов и распределения потоков -->
     <peopleLevels peopleLevels = "5" />
-	
-	<!--是否支持返利，0不支持，1要支持，根据运营要求来填写-->
+    
+    <!-- Поддержка возврата бонусов: 0 - нет, 1 - да, настраивается согласно требованиям оператора -->
     <isrebate isrebate = "0" />
 
-    <!--本服游戏服IP，不配置就程序自动获取 -->
+    <!-- IP игрового сервера, если не указан - определяется автоматически -->
     <gameServerIp gameServerIp="94.250.249.128"/>
 </server>

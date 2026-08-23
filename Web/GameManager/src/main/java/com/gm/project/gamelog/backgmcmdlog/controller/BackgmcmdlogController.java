@@ -27,7 +27,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 后台指令日志Controller
+ * Контроллер логов команд бэкенда
  * 
  * @author gm
  * @date 2021-09-10
@@ -48,7 +48,7 @@ public class BackgmcmdlogController extends BaseController
         return prefix + "/backgmcmdlog";
     }
     /**
-     * 查询后台指令日志列表
+     * Получение списка логов команд бэкенда
      */
     @RequiresPermissions("gamelog:backgmcmdlog:list")
     @PostMapping("/list")
@@ -67,10 +67,10 @@ public class BackgmcmdlogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出后台指令日志列表
+     * Экспорт списка логов команд бэкенда
      */
     @RequiresPermissions("gamelog:backgmcmdlog:export")
-    @Log(title = "后台指令日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Логи команд бэкенда", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Backgmcmdlog backgmcmdlog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -79,6 +79,6 @@ public class BackgmcmdlogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Backgmcmdlog> list = backgmcmdlogService.selectBackgmcmdlogList(backgmcmdlog,param);
         ExcelUtil<Backgmcmdlog> util = new ExcelUtil<Backgmcmdlog>(Backgmcmdlog.class);
-        return util.exportExcel(list, "后台指令日志数据");
+        return util.exportExcel(list, "Данные логов команд бэкенда");
     }
 }

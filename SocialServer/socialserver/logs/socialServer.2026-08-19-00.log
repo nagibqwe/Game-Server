@@ -1,0 +1,15 @@
+2026-08-19 00:38:44.925 INFO [nioEventLoopGroup-3-1][ServerMessageAdapter.java:72] - 游戏服断开连接ServerMessageAdapter#0: [id: 0x5a057b0f, L:/94.250.249.128:9520 ! R:/94.250.249.128:53002] 连接的序号是：1
+2026-08-19 00:38:44.925 INFO [游戏服消息发送队列][ServerMessageAdapter.java:118] - [id: 0x5a057b0f, L:/94.250.249.128:9520 ! R:/94.250.249.128:53002]发送队列时， 连接已经断开了！4
+2026-08-19 00:38:44.925 INFO [nioEventLoopGroup-3-1][ServerMessageAdapter.java:80] - 游戏服退出注册ServerMessageAdapter#0: [id: 0x5a057b0f, L:/94.250.249.128:9520 ! R:/94.250.249.128:53002] 连接的序号是：1
+2026-08-19 00:42:51.239 ERROR [Main-Timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：15数量：1
+2026-08-19 00:46:10.135 INFO [nioEventLoopGroup-3-2][ServerMessageAdapter.java:63] - 游戏服首次来注册ServerMessageAdapter#0: [id: 0x68fe3a4a, L:/94.250.249.128:9520 - R:/94.250.249.128:38590] 连接的序号是：null
+2026-08-19 00:46:10.136 INFO [nioEventLoopGroup-3-2][ServerMessageAdapter.java:56] - 游戏服激活连接ServerMessageAdapter#0: [id: 0x68fe3a4a, L:/94.250.249.128:9520 - R:/94.250.249.128:38590] 连接的序号是：2
+2026-08-19 00:46:10.166 INFO [mainThread][ServerScript.java:163] - 游戏服注册成功 server=serverId: 1001
+serverIP: "94.250.249.128"
+serverPort: 9101
+serverType: 1
+platformMark: "cn"
+version: "20170615"
+serverOpentime: "2023-05-12 00:00:00"
+serverWorldlv: 79
+

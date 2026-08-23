@@ -1,0 +1,3 @@
+2026-08-19 03:09:43.020 INFO [nioEventLoopGroup-9-1][:] - recv recharge data: {}
+2026-08-19 03:09:43.026 INFO [nioEventLoopGroup-9-1][:] - parse recharge: Recharge{order_no='null', role_id=0, goods_id=0, goods_type='null', goods_ext='null', total_fee=0, item_id=0, game_money=0, ext_param='null', sign_type='null', sign='null', goods_code='null', goods_name='null', money_type='null', notify_time='null', notify_id='null', trade_no='null', trade_status='0', totalRecharge='0', totalVipPower='0'}
+2026-08-19 03:09:43.027 ERROR [nioEventLoopGroup-9-1][:] - 解析数据失败：{} catch:java.lang.NullPointerException

@@ -1,5 +1,5 @@
-2026-08-16 01:04:49.912 ERROR [nioEventLoopGroup-3-1][:] - =====in exceptionCaught, session id = [id: 0x29331024, L:/94.250.249.128:9101 - R:/85.217.149.55:57810], exceptionCaughtio.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 16777216: 1195725860 - discarded
-io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 16777216: 1195725860 - discarded
+2026-08-21 16:33:46.356 ERROR [nioEventLoopGroup-3-1][:] - =====in exceptionCaught, session id = [id: 0x2e97dc5b, L:/94.250.249.128:9101 - R:/94.26.68.195:40509], exceptionCaughtio.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 16777216: 50331671 - discarded
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 16777216: 50331671 - discarded
 	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:498) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
 	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:476) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
 	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:403) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
@@ -15,6 +15,24 @@ io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 1677
 	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-all-4.1.11.Final.jar:4.1.11.Final]
 	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:926) [netty-all-4.1.11.Final.jar:4.1.11.Final]
 	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:134) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 16:33:53.348 ERROR [nioEventLoopGroup-3-1][:] - =====in exceptionCaught, session id = [id: 0x2e97dc5b, L:/94.250.249.128:9101 - R:/94.26.68.195:40509], exceptionCaughtjava.io.IOException: Connection reset by peer
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[?:1.8.0_492]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[?:1.8.0_492]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[?:1.8.0_492]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[?:1.8.0_492]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[?:1.8.0_492]
+	at io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes(PooledUnsafeDirectByteBuf.java:288) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1100) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:372) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:123) [netty-all-4.1.11.Final.jar:4.1.11.Final]
 	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
 	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
 	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]

@@ -1,0 +1,345 @@
+2026-08-20 00:00:01.185 ERROR [main_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 66, количество: 17
+2026-08-20 00:00:01.317 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 80, количество: 245
+2026-08-20 00:00:01.827 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 245
+2026-08-20 00:00:01.831 ERROR [mainThread][ServerThread.java:87] - mainThread-->ServerHeartTimer run:488
+2026-08-20 00:00:01.965 ERROR [pool-3-thread-2][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:01.965 ERROR [pool-3-thread-2][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:01.968 ERROR [pool-3-thread-2][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','91','101')
+2026-08-20 00:00:02.020 ERROR [pool-3-thread-2][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.020 ERROR [pool-3-thread-2][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.021 ERROR [pool-3-thread-2][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','89576','105')
+2026-08-20 00:00:02.143 ERROR [pool-3-thread-2][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.143 ERROR [pool-3-thread-2][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.161 ERROR [pool-3-thread-2][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','4090','117')
+2026-08-20 00:00:02.174 ERROR [pool-3-thread-10][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.175 ERROR [pool-3-thread-10][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.176 ERROR [pool-3-thread-10][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','375060','102')
+2026-08-20 00:00:02.172 ERROR [pool-3-thread-3][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.176 ERROR [pool-3-thread-3][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.177 ERROR [pool-3-thread-3][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','162826','106')
+2026-08-20 00:00:02.221 ERROR [pool-3-thread-4][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.222 ERROR [pool-3-thread-4][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.250 ERROR [pool-3-thread-1][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.253 ERROR [pool-3-thread-4][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','16816','103')
+2026-08-20 00:00:02.253 ERROR [pool-3-thread-1][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.258 ERROR [pool-3-thread-1][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','1','123')
+2026-08-20 00:00:02.275 ERROR [pool-3-thread-9][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.287 ERROR [pool-3-thread-5][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.287 ERROR [pool-3-thread-5][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.276 ERROR [pool-3-thread-9][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.299 ERROR [pool-3-thread-9][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','2492','124')
+2026-08-20 00:00:02.293 ERROR [pool-3-thread-5][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','502','125')
+2026-08-20 00:00:02.304 ERROR [pool-3-thread-6][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-20 00:00:02.305 ERROR [pool-3-thread-6][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-20 00:00:02.306 ERROR [pool-3-thread-6][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-20','281873304391993039','解半云','1','1787173201','PC','6','116')
+2026-08-20 00:00:02.612 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 24, количество: 245
+2026-08-20 00:00:02.849 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 57, количество: 245
+2026-08-20 00:00:05.156 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 42, количество: 245
+2026-08-20 00:00:06.761 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 78, количество: 245
+2026-08-20 00:00:06.975 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 27, количество: 245
+2026-08-20 00:00:21.678 ERROR [bi_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 16, количество: 2
+2026-08-20 00:02:29.042 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-20 00:05:02.790 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 34, количество: 245
+2026-08-20 00:06:48.866 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-20 00:07:07.187 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 30, количество: 245
+2026-08-20 00:09:07.058 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-20 00:09:07.167 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 17, количество: 245
+2026-08-20 00:10:12.674 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-20 00:10:19.809 ERROR [recvWorker-27][RetrieveResScript.java:64] - bean.getDailyId()  not find: 0
+2026-08-20 00:10:20.165 ERROR [PeakManager][JJCManagerScript.java:343] - 玩家：281873304391993039 已经领取过竞技场首次排名奖励：0
+2026-08-20 00:14:06.674 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 22, количество: 245
+2026-08-20 00:16:23.064 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-20 00:19:05.032 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 245
+2026-08-20 00:24:10.944 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 27, количество: 245
+2026-08-20 00:25:05.125 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 39, количество: 245
+2026-08-20 00:25:43.242 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-20 00:28:04.763 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-20 00:30:02.833 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-20 00:32:22.868 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 245
+2026-08-20 00:35:02.027 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-20 00:39:03.076 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-20 00:39:39.740 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 43.294502了！{271.3,191.95}
+2026-08-20 00:39:39.740 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479进入地图失败 tranportId:9 error=-4
+2026-08-20 00:39:39.802 ERROR [city_7][MapDealScript.java:117] - 玩家移动误差=44.186485clientPos{271.68753,190.9977} player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479
+2026-08-20 00:39:39.900 ERROR [city_7][MapDealScript.java:117] - 玩家移动误差=44.928062clientPos{271.59482,189.70636} player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479
+2026-08-20 00:40:32.893 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 39.964966了！{247.22,215.35}
+2026-08-20 00:40:32.893 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:375060 n: 解半云 p:{276.37,188.01} mMId: 102599 i: 1 e: 79690479进入地图失败 tranportId:10 error=-4
+2026-08-20 00:40:36.685 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 43.294502了！{271.3,191.95}
+2026-08-20 00:40:36.685 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479进入地图失败 tranportId:9 error=-4
+2026-08-20 00:40:36.685 ERROR [city_7][MapDealScript.java:117] - 玩家移动误差=43.620323clientPos{271.08347,191.14801} player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479
+2026-08-20 00:40:36.779 ERROR [city_7][MapDealScript.java:117] - 玩家移动误差=42.816887clientPos{270.29626,191.45168} player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479
+2026-08-20 00:44:34.408 ERROR [city_7][MapDealScript.java:117] - 玩家移动误差=5.637678clientPos{223.38303,243.71959} player: 281873304391993039 f:375060 n: 解半云 p:{229.02069,243.70728} mMId: 102599 i: 1 e: 79690479
+2026-08-20 00:46:05.263 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-20 00:47:05.025 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 63
+2026-08-20 00:49:06.950 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 25, количество: 245
+2026-08-20 00:49:15.314 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-20 00:49:20.881 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-20 00:49:31.949 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 39.964966了！{247.22,215.35}
+2026-08-20 00:49:31.949 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:375060 n: 解半云 p:{276.37,188.01} mMId: 102599 i: 1 e: 79690479进入地图失败 tranportId:10 error=-4
+2026-08-20 00:49:36.112 ERROR [city_7][TransportScript.java:76] - 解半云(281873304391993039) 传递的时候，距离过大 = 43.294502了！{271.3,191.95}
+2026-08-20 00:49:36.112 ERROR [city_7][TransportScript.java:192] -  player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479进入地图失败 tranportId:9 error=-4
+2026-08-20 00:49:36.113 ERROR [city_7][MapDealScript.java:117] - 玩家移动误差=44.379505clientPos{272.23822,191.39} player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479
+2026-08-20 00:49:36.175 ERROR [city_7][MapDealScript.java:117] - 玩家移动误差=44.27598clientPos{271.63077,190.78256} player: 281873304391993039 f:375060 n: 解半云 p:{237.043,218.424} mMId: 102599 i: 1 e: 79690479
+2026-08-20 00:50:17.577 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 63
+2026-08-20 00:50:31.353 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-20 00:54:38.410 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条

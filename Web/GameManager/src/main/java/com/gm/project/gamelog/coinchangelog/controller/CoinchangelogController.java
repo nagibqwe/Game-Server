@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 货币变化日志Controller
+ * Контроллер логов изменения валюты
  * 
  * @author gm
  * @date 2021-11-08
@@ -45,7 +45,7 @@ public class CoinchangelogController extends BaseController
         return prefix + "/coinchangelog";
     }
     /**
-     * 查询货币变化日志列表
+     * Получение списка логов изменения валюты
      */
     @RequiresPermissions("gamelog:coinchangelog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class CoinchangelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出货币变化日志列表
+     * Экспорт списка логов изменения валюты
      */
     @RequiresPermissions("gamelog:coinchangelog:export")
-    @Log(title = "货币变化日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Логи изменения валюты", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Coinchangelog coinchangelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class CoinchangelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Coinchangelog> list = coinchangelogService.selectCoinchangelogList(coinchangelog,param);
         ExcelUtil<Coinchangelog> util = new ExcelUtil<Coinchangelog>(Coinchangelog.class);
-        return util.exportExcel(list, "Журнал изменения валютыДанные");
+        return util.exportExcel(list, "Данные логов изменения валюты");
     }
 }

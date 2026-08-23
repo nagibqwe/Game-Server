@@ -1,0 +1,77 @@
+2026-08-16 22:09:40.119 ERROR [Thread-12][CouplefightScript.java:2169] - 仙侣对决异常 type:5 rid:281873304391993039 params:[]
+java.lang.NullPointerException: null
+	at common.couplefight.CouplefightScript.sendPromotionInfo(CouplefightScript.java:2193) ~[PublicServer.jar:?]
+	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2131) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
+	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
+	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-16 22:09:40.119 ERROR [Thread-9][CouplefightScript.java:2169] - 仙侣对决异常 type:1 rid:281873304391993039 params:[]
+java.lang.NullPointerException: null
+	at common.couplefight.CouplefightScript.sendTrialsInfo(CouplefightScript.java:2736) ~[PublicServer.jar:?]
+	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2119) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
+	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
+	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-16 22:13:56.381 ERROR [Thread-10][CouplefightScript.java:2169] - 仙侣对决异常 type:1 rid:281873304391993039 params:[]
+java.lang.NullPointerException: null
+	at common.couplefight.CouplefightScript.sendTrialsInfo(CouplefightScript.java:2736) ~[PublicServer.jar:?]
+	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2119) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
+	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
+	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-16 22:13:56.381 ERROR [Thread-11][CouplefightScript.java:2169] - 仙侣对决异常 type:5 rid:281873304391993039 params:[]
+java.lang.NullPointerException: null
+	at common.couplefight.CouplefightScript.sendPromotionInfo(CouplefightScript.java:2193) ~[PublicServer.jar:?]
+	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2131) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
+	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
+	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-16 22:32:53.403 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-16 22:32:53.403 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-16 22:34:25.925 ERROR [Thread-9][CouplefightScript.java:2169] - 仙侣对决异常 type:1 rid:281873304391993039 params:[]
+java.lang.NullPointerException: null
+	at common.couplefight.CouplefightScript.sendTrialsInfo(CouplefightScript.java:2736) ~[PublicServer.jar:?]
+	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2119) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
+	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
+	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-16 22:34:25.925 ERROR [Thread-7][CouplefightScript.java:2169] - 仙侣对决异常 type:5 rid:281873304391993039 params:[]
+java.lang.NullPointerException: null
+	at common.couplefight.CouplefightScript.sendPromotionInfo(CouplefightScript.java:2193) ~[PublicServer.jar:?]
+	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2131) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
+	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
+	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
+	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
+	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-16 22:44:51.041 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xd8cb7b41, L:/94.250.249.128:9200 - R:/147.185.132.118:52721]
+2026-08-16 22:44:51.042 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-16 22:44:51.043 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xd8cb7b41, L:/94.250.249.128:9200 - R:/147.185.132.118:52721] — порядковый номер подключения: 195
+2026-08-16 22:45:22.417 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:145] - Игровой сервер InnerMsgAdapter#0 :[id: 0xd8cb7b41, L:/94.250.249.128:9200 - R:/147.185.132.118:52721] — произошло исключение: java.io.IOException: Connection reset by peer
+2026-08-16 22:45:22.423 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xd8cb7b41, L:/94.250.249.128:9200 ! R:/147.185.132.118:52721] — при отправке очереди соединение уже разорвано! 4
+2026-08-16 22:45:22.423 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xd8cb7b41, L:/94.250.249.128:9200 ! R:/147.185.132.118:52721] — при отправке очереди соединение уже разорвано! 4
+2026-08-16 22:45:22.427 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xd8cb7b41, L:/94.250.249.128:9200 ! R:/147.185.132.118:52721]
+2026-08-16 22:45:22.427 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - unreg: подключение удалено!
+2026-08-16 22:45:27.107 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 9

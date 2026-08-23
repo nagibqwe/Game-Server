@@ -49,9 +49,9 @@ public class RoleQuitGame implements IScript, IQuitGame {
     }
 
     @Override
-    public void QuitGame(ChannelHandlerContext context, int reason, boolean isQuit,boolean isSendMsg) {
+    public void QuitGame(ChannelHandlerContext context, int reason, boolean isQuit, boolean isSendMsg) {
 
-        if(isSendMsg) {
+        if (isSendMsg) {
             sendQuitGameInfo(context, reason);
         }
 
@@ -60,13 +60,13 @@ public class RoleQuitGame implements IScript, IQuitGame {
             Manager.registerManager.deal().tickSession(context);
             return;
         }
-        logger.warn(" 开始退出游戏 player={} sessionId:{} reason={} ", player, context.channel(), reason);
+        logger.warn(" Начало выхода из игры player={} sessionId:{} reason={} ", player, context.channel(), reason);
         Manager.registerManager.deal().tickSession(context);
         if (isQuit) {
-            logger.warn("玩家主动退出游戏！player={}", player);
+            logger.warn("Игрок主動 выходит из игры！player={}", player);
             MapObject map = Manager.mapManager.getMap(player.gainMapId());
             if (map != null && map.getType() == MapDefine.COPY_MAP) {
-                Manager.copyMapManager.outZone(player);//退出副本
+                Manager.copyMapManager.outZone(player);//Выход из подземелья
             }
             if (player.playerCrossData.isToFightServer()) {
                 ReqCopyMapOut.Builder msg = ReqCopyMapOut.newBuilder();
@@ -74,7 +74,7 @@ public class RoleQuitGame implements IScript, IQuitGame {
             }
         }
         try {
-            //玩家下线BI
+            //BI при выходе игрока
             boolean canRes = Manager.retrieveResManager.getScript().canRetrieveRes(player);
             Manager.biManager.getScript().biLogout(player, reason, canRes ? 1 : 0);
             Manager.biManager.getScript().biRole_info(player);
@@ -85,11 +85,11 @@ public class RoleQuitGame implements IScript, IQuitGame {
             QuitGame(player);
 
         } catch (Exception e) {
-            logger.error("sessionId:" + context.channel() + "出现异常了退出了游戏。退出原因:" + reason, e);
+            logger.error("sessionId:" + context.channel() + " ошибка при выходе из игры. Причина: " + reason, e);
         }
     }
 
-    //发送退出游戏到客户端
+    //Отправка сообщения о выходе клиенту
     void sendQuitGameInfo(ChannelHandlerContext context, int reason) {
         try {
             RegisterMessage.ResQuit.Builder msg = RegisterMessage.ResQuit.newBuilder();
@@ -102,21 +102,21 @@ public class RoleQuitGame implements IScript, IQuitGame {
     }
 
     void QuitGame(Player player) {
-        //如果账号已经退出了， 则去掉此逻辑
+        //Если аккаунт уже вышел, пропускаем эту логику
         if (EntityState.ExitGame.compare(player.getState())) {
             return;
         }
-        player.dealOffLine();//先设置退出标记
-        //如果是战斗服， 则返回， 不处理退出信息
+        player.dealOffLine();//Сначала устанавливаем флаг выхода
+        //Если это боевой сервер, выходим, не обрабатываем выход
         if (GameServer.getInstance().IsFightServer()) {
-            logger.error("玩家离线的时候在战斗服---" + player.getId());
+            logger.error("Игрок отключился на боевом сервере---" + player.getId());
             return;
         }
 
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
 
         player.addState(EntityState.ExitGame);
-        //下线清理战斗状态
+        //Очистка боевого состояния при выходе
         player.setFightState(0);
         player.getFightEnums().clear();
         player.clearHatred();
@@ -126,20 +126,20 @@ public class RoleQuitGame implements IScript, IQuitGame {
 
         BehaviorManager.CancelAllBehavior(player);
 
-        //计算buff
+        //Обработка баффов
         Manager.buffManager.deal().offline(player);
-        //队伍下线处理
+        //Обработка выхода из команды
         Manager.teamManager.playerOffLine(player);
-        //宠物
+        //Питомец
         Manager.petManager.offLine(player);
-        //退出公会处理
+        //Выход из гильдии
         Manager.guildsManager.playerOffLine(player);
-        //离线挂机处理
+        //Офлайн-автоматизация
         Manager.playerHookManager.deal().enterOfflineHook(player);
         Manager.worldHelpManager.playerOffline(player);
         Manager.retrieveResManager.getScript().switchDay(player);
 
-        //同乘时下线处理
+        //Обработка при выходе из совместной поездки
         if (player.getHorse().isRideOther() || Manager.horseManager.getMultiPlayerHashMap().containsKey(player.getId())) {
             Manager.horseManager.deal().onReqChangeRideState(player, 0);
         }
@@ -147,14 +147,14 @@ public class RoleQuitGame implements IScript, IQuitGame {
         Manager.leaderPreachManager.getScript().offline(player);
         Manager.registerManager.deal().writeRoleLoginLog(player);
         Manager.saveThreadManager.getSavePlayerThread().addRole(Manager.playerManager.manager().makeRoleBeanByPlayer(player));
-        //保存物品数据到表中
+        //Сохранение данных предметов
         RoleUpdateLogService.getInstance().updateRoleItemData(player.getId());
-        //保存玩家的最新数据到rolestate
+        //Сохранение актуальных данных в rolestate
         RoleUpdateLogService.getInstance().updateRoleDate(player.getId());
 
-        //从地图退出
+        //Выход с карты
         Manager.mapManager.manager().onQuitMap(map, player, true);
-        //同步消息到世界服
+        //Синхронизация с мировым сервером
         PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(player.getId());
         if (pwi != null) {
             pwi.setLastOffTime((int) (TimeUtils.Time() / 1000));
@@ -163,36 +163,36 @@ public class RoleQuitGame implements IScript, IQuitGame {
         Manager.playerManager.manager().changeLoginFight(player.getId(), player.getFightPoint());
 
         if (player.playerCrossData.isToFightServer()) {
-            //向战斗服发送玩家离线
+            //Отправка уведомления об отключении на боевой сервер
             G2FSynPlayerOut.Builder msg = G2FSynPlayerOut.newBuilder();
             msg.setRoleId(player.getId());
             MessageUtils.send_to_public(G2FSynPlayerOut.MsgID.eMsgID_VALUE, msg.build().toByteArray());
             MessageUtils.send_to_fight(player, G2FSynPlayerOut.MsgID.eMsgID_VALUE, msg.build().toByteArray());
-            //退出匹配
+            //Выход из матчмейкинга
             Manager.copyMapManager.manager().onReqCancelMatch(player);
             player.playerCrossData.isReqFight = false;
-            logger.error("通知已经跨服中已经离线！");
+            logger.error("Уведомление об отключении на кросс-сервере отправлено!");
         }
-        //退出巅峰竞技匹配
+        //Выход из матчмейкинга пиковой арены
         Manager.peakManager.addCommand(new PeakCancelMatchEvent(player));
 
-        //退出玩家，则删除语音房间的数据
+        //Выход из голосовой комнаты
         Manager.chatManager.deal().playerLogout(player);
 
         Manager.cooldownManager.cleanAllCooldown(player);
         Manager.cooldownManager.cleanAllCooldown(Manager.petManager.getBattlePet(player));
 
-        //玩家退出仙女护送
+        //Выход из сопровождения бессмертных
         Manager.couplefightManager.getCoupleEscort().onLeaveGame(player);
-        //同步社交服务器
+        //Синхронизация с социальным сервером
         PlayerWorldInfo playerWorldInfo = Manager.playerManager.getPlayerWorldInfo(player.getId());
         PlayerMessage.G2SSynPlayerSocialInfo.Builder mPlayer = PlayerMessage.G2SSynPlayerSocialInfo.newBuilder();
         mPlayer.setGlobalPlayerWorldInfo(playerWorldInfo.toGlobalPlayerWorldInfo());
         mPlayer.setType(1);
         MessageUtils.send_to_social(PlayerMessage.G2SSynPlayerSocialInfo.MsgID.eMsgID_VALUE, mPlayer.build().toByteArray());
-        //仙侣对决
+        //Дуэль бессмертных
         Manager.couplefightManager.getScript().playerOffline(player);
-        logger.info("退出游戏完成 player:" + player);
+        logger.info("Выход из игры завершён player:" + player);
     }
 
 }

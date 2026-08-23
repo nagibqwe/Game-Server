@@ -1,0 +1,9 @@
+2026-08-18 15:00:07.639 ERROR [nioEventLoopGroup-5-1][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-18 15:00:07.651 ERROR [nioEventLoopGroup-5-1][SendBackFuture.java:23] - back http result success!
+2026-08-18 15:00:13.333 ERROR [nioEventLoopGroup-5-2][HttpBackScript.java:109] - unknown getRequestPath: [/]
+2026-08-18 15:00:13.334 ERROR [nioEventLoopGroup-5-2][SendBackFuture.java:23] - back http result success!
+2026-08-18 15:03:23.348 ERROR [nioEventLoopGroup-5-3][HttpBackScript.java:109] - unknown getRequestPath: [/favicon.ico]
+2026-08-18 15:03:23.362 ERROR [nioEventLoopGroup-5-3][SendBackFuture.java:23] - back http result success!
+2026-08-18 15:51:05.987 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-18 15:51:05.987 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-18 15:55:55.592 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 8

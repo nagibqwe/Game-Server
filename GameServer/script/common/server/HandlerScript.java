@@ -53,13 +53,13 @@ public class HandlerScript implements IScript, IhandlerScript {
         return null;
     }
 
-    //检查是否是需要发送战斗服的协议ID过滤
+    //Проверка необходимости отправки на боевой сервер по ID протокола
     @Override
     public boolean CheckFightServerId(int msgId) {
         if (msgId == RegisterMessage.ReqLoadFinish.MsgID.eMsgID_VALUE) {
             return true;
         }
-        //跨服时调用副本主动退出命令
+        //При выходе из подземелья на кросс-сервере
         if (msgId == CopyMapMessage.ReqCopyMapOut.MsgID.eMsgID_VALUE) {
             return true;
         }
@@ -85,7 +85,7 @@ public class HandlerScript implements IScript, IhandlerScript {
         switch (functionID) {
             case MessageEnum.MSG_FIGHT:
             case MessageEnum.MSG_MAP:
-                //复活消息本服处理
+                //Сообщение о воскрешении обрабатывается на локальном сервере
                 if (msgId == MapMessage.ReqRelive.MsgID.eMsgID_VALUE) {
                     return false;
                 }
@@ -99,7 +99,7 @@ public class HandlerScript implements IScript, IhandlerScript {
     }
 
     /**
-     * 战斗服发送给玩家的协议过滤
+     * Фильтр протоколов, отправляемых с боевого сервера игроку
      *
      * @param msgId
      * @return
@@ -111,7 +111,7 @@ public class HandlerScript implements IScript, IhandlerScript {
     }
 
     /**
-     * 消息派发
+     * Диспетчеризация сообщений
      *
      * @param mess
      */
@@ -126,15 +126,15 @@ public class HandlerScript implements IScript, IhandlerScript {
             int sourceId = MessageNumber.getSource(msgid);
 
             if (sourceId != MsgSourceEnum.ClientToGameServerr) {
-                log.error("收到了不是gameServer应该处理 消息ID是：" + msgid);
+                log.error("Получено сообщение, которое не должен обрабатывать GameServer, ID: " + msgid);
                 return;
             }
-            //检查过渡服务器消息
+            //Проверка переходных сообщений
             boolean isbl = false;
             try {
                 isbl = CheckFilterMsgId(msgid, mess);
             } catch (Exception e) {
-                log.error("过滤消息ID时，出错了", e);
+                log.error("Ошибка фильтрации ID сообщения", e);
             }
             if (isbl) {
                 return;
@@ -142,29 +142,29 @@ public class HandlerScript implements IScript, IhandlerScript {
 
             ChannelHandlerContext iosession = mess.getContext();
             if (iosession == null) {
-                log.info("连接已经空了！");
+                log.info("Соединение уже закрыто!");
                 return;
             }
 
             if (iosession.isRemoved()) {
-                log.info("连接已经正在被移除！");
+                log.info("Соединение уже удаляется!");
                 return;
             }
 
             Player player = iosession.channel().attr(SessionAttribute.PLAYER).get();
             if (player != null) {
                 if ( Utils.isMessagePrint() && Utils.findOne(IgnorePrintIDS, id -> id == msgid) == null) {
-                    log.warn("玩家[{}]消息【ID={} name={}】 message={}", player.getName(), msgid, mess.getData().getClass().getSimpleName(), mess.getData());
+                    log.warn("Игрок[{}] сообщение [ID={} name={}] message={}", player.getName(), msgid, mess.getData().getClass().getSimpleName(), mess.getData());
                 }
                 mess.setExecutor(player);
 
-                //如果玩家已经去了战斗服，那将玩家的所有协议都转发到战斗服去！
+                //Если игрок уже на боевом сервере, все протоколы перенаправляются туда
                 if ( player.playerCrossData.isToFightServer() && player.playerCrossData.toFightSid > 0) {
                     isbl = false;
                     try {
                         isbl = CheckFightServerId(msgid);
                     } catch (Exception e) {
-                        log.error("跨服过滤消息ID时，出错了", e);
+                        log.error("Ошибка фильтрации ID сообщения для кросс-сервера", e);
                     }
                     if (isbl) {
                         ConnectFightManager.GetInstance().send_to_fight(player.playerCrossData.toFightSid, player.getId(), mess);
@@ -172,7 +172,7 @@ public class HandlerScript implements IScript, IhandlerScript {
                     }
                 }
             }
-            //进入跨服统一线程处理
+            //Переход на кросс-сервер обрабатывается в отдельном потоке
             if (CrossFightMessage.G2FEnterCloneMap.MsgID.eMsgID_VALUE == msgid){
                 GameServer.getInstance().getAssistThread().addCommand(mess);
                 return;
@@ -184,7 +184,7 @@ public class HandlerScript implements IScript, IhandlerScript {
                     GameServer.getInstance().getMainThread().addCommand(mess);
                     break;
                 case MessageEnum.MSG_REGISTER: {
-                    //只针对登陆消息进行异步处理(有一个向http请求的操作),其他消息直接执行
+                    //Только сообщение входа обрабатывается асинхронно (с запросом HTTP), остальные выполняются сразу
                     if(mess.getId() == RegisterMessage.ReqLoginGame.MsgID.eMsgID_VALUE){
                         RegisterProcessor.getInstance().addCommand(mess);
                     }
@@ -196,43 +196,31 @@ public class HandlerScript implements IScript, IhandlerScript {
                 case MessageEnum.MSG_GUILD:
                     GuildProcessor.getInstance().addCommand(mess);
                     break;
-                case MessageEnum.MSG_FRIEND://好友
-                case MessageEnum.MSG_RANKLIST://排行榜
+                case MessageEnum.MSG_FRIEND://Друзья
+                case MessageEnum.MSG_RANKLIST://Рейтинг
                     FriendAndRankListProcessor.getInstance().addCommand(mess);
                     break;
-                case MessageEnum.MSG_Peak: //巅峰竞技场
-                case MessageEnum.MSG_JJC:  //竞技场
+                case MessageEnum.MSG_Peak: //Пиковая арена
+                case MessageEnum.MSG_JJC:  //Арена
                     Manager.peakManager.addCommand(mess);
                     break;
-                case MessageEnum.MSG_Activity: //运营活动
+                case MessageEnum.MSG_Activity: //Игровые события
                     Manager.activityManager.addCommand(mess);
                     break;
-//                case MessageEnum.MSG_Task:
-//                    Manager.taskManager.addCommand(mess);
-//                    break;
                 case MessageEnum.MSG_LOGIN: {
-                    log.error("收到了登录验证的数据， 消息ID是：" + msgid);
+                    log.error("Получены данные входа, ID сообщения: " + msgid);
                 }
                 break;
                 default: {
                     int state = LogicProcess(msgid, mess);
                     if (state > 0) {
-                        //LOGGER.error("不支持的命令类型！command class: " + handler.getClass().getName() + " msgid :" + msgid + " state =" + state);
-                        //丢到主线程去处理看看
+                        //Попытка обработки в главном потоке
                         if (state == 2) {
                             GameServer.getInstance().getMainThread().addCommand(mess);
                         } else {
-                            //LOGGER.error("不支持的命令类型！command class: " + handler.getClass().getName() + " msgid :" + msgid + " 转交脚本去处理看看" + iosession.channel());
-
-//                            //将无效连接踢掉，因断线重连引起客户端没有关闭反复再发消息
                             try {
                                 OnOtherDealMsg(msgid, mess, iosession);
-//                                manager.playerManager.sendQuitGameInfo(iosession, PlayerManager.QuitGame_GM);
-//                                manager.registerManager.removeSession(iosession);
-//                                iosession.channel().close();//断开网连接
-//                                iosession.channel().unsafe().closeForcibly();
-
-                                //接收到大于 20条无效消息，断开客户端
+                                //Отключение клиента при получении более 20 недействительных сообщений
                                 if (iosession.channel().attr(SessionAttribute.INVALIDMSGCOUNT).get() > 20){
                                     Manager.registerManager.deal().tickSession(iosession);
                                 }
@@ -251,11 +239,10 @@ public class HandlerScript implements IScript, IhandlerScript {
     }
 
     int LogicProcess(int msgId, RMessage mess) {
-        //查询玩家在那张地图上
+        //Поиск карты игрока
         ChannelHandlerContext iosession = mess.getContext();
         if (iosession != null) {
             Player player = iosession.channel().attr(SessionAttribute.PLAYER).get();
-            //Player player = PlayerManager.getInstance().getOnLinePlayer(roleId);
             if (player == null) {
                 if (iosession.channel().attr(SessionAttribute.INVALIDMSGCOUNT).get() == null) {
                     iosession.channel().attr(SessionAttribute.INVALIDMSGCOUNT).set(1);
@@ -263,28 +250,28 @@ public class HandlerScript implements IScript, IhandlerScript {
                     int count =  iosession.channel().attr(SessionAttribute.INVALIDMSGCOUNT).get();
                     iosession.channel().attr(SessionAttribute.INVALIDMSGCOUNT).set(count + 1);
                 }
-                log.error("人不在，msgId =" + msgId + " ch=" + iosession.channel());
+                log.error("Игрок отсутствует, msgId =" + msgId + " ch=" + iosession.channel());
                 return 1;
             }
             iosession.channel().attr(SessionAttribute.INVALIDMSGCOUNT).set(0);
-            //获取玩家所在线程
+            //Получение потока игрока
             long mapId = player.gainMapId();
             MapServer map = GameServer.getInstance().getMServer(mapId);
             if (map == null) {
-                log.error("消息ID:" + msgId + " , player =" + player + " 已经找不到可执行的线程了，地图：" + mapId + " line :" + player.gainLine() + " m:" + player.gainMapId());
+                log.error("ID сообщения:" + msgId + " , player =" + player + " поток не найден, карта: " + mapId + " линия: " + player.gainLine() + " m:" + player.gainMapId());
                 return 2;
             }
 
             map.addCommand(mess);
             return 0;
         } else {
-            log.error("未知来源的：" + msgId);
+            log.error("Неизвестный источник: " + msgId);
         }
         return 3;
     }
 
     /**
-     * 检查客户端传递给服务器的消息， 如果有问题，走新的流程处理
+     * Проверка сообщений от клиента к серверу
      *
      * @param msgId
      * @param mess
@@ -295,8 +282,6 @@ public class HandlerScript implements IScript, IhandlerScript {
         try {
             if (msgId == ReqHeart.MsgID.eMsgID_VALUE) {
                 ChannelHandlerContext context = mess.getContext();
-//                long roleId = context.channel().attr(SessionAttribute.ROLE_ID).get();
-//                loger.error("roleId=" + roleId + " get=" + msgId);
             }
         } catch (Exception e) {
             log.error(e, e);
@@ -304,15 +289,11 @@ public class HandlerScript implements IScript, IhandlerScript {
         return false;
     }
 
-    //因玩家没有注册， 消息抛弃不处理
+    //Сообщения от незарегистрированных игроков отбрасываются
     @Override
     public boolean OnOtherDealMsg(int msgId, RMessage mess, ChannelHandlerContext session) {
         try {
-//            int msgId = (int) arg.get(0);
-//            Handler handle = (Handler) arg.get(1);
-//            ChannelHandlerContext session = (ChannelHandlerContext) arg.get(2);
-
-            log.info(session.channel() + " 收到会话非注册后的消息id:" + msgId + " , 处理的协议名是:" + mess.getClass().getSimpleName() + ", 消息抛弃");
+            log.info(session.channel() + " Получено неавторизованное сообщение id:" + msgId + ", протокол: " + mess.getClass().getSimpleName() + ", сообщение отброшено");
 
         } catch (Exception e) {
             log.error(e, e);
@@ -321,10 +302,10 @@ public class HandlerScript implements IScript, IhandlerScript {
     }
 
     /**
-     * 过渡网络协议
+     * Фильтр сетевых протоколов
      *
      * @param mess
-     * @return 返回值将确定是否会往下走流程
+     * @return
      */
     @Override
     public boolean Filte_Handler(RMessage mess) {

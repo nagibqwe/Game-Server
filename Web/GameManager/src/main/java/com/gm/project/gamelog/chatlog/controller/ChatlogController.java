@@ -33,7 +33,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 聊天日志Controller
+ * Контроллер логов чата
  * 
  * @author gm
  * @date 2021-06-08
@@ -54,7 +54,7 @@ public class ChatlogController extends BaseController
         return prefix + "/chatlog";
     }
     /**
-     * 查询聊天日志列表
+     * Получение списка логов чата
      */
     @RequiresPermissions("gamelog:chatlog:list")
     @PostMapping("/list")
@@ -79,7 +79,7 @@ public class ChatlogController extends BaseController
         return prefix + "/chatlog_monitor";
     }
     /**
-     * 查询聊天日志列表
+     * Получение списка имён таблиц логов чата
      */
     @PostMapping("/tableNameList")
     @ResponseBody
@@ -110,7 +110,7 @@ public class ChatlogController extends BaseController
     }
 
     /**
-     * 查询聊天日志列表
+     * Мониторинг логов чата
      */
     @PostMapping("/chatlog_monitor")
     @ResponseBody
@@ -144,10 +144,10 @@ public class ChatlogController extends BaseController
         return tableDataInfo;
     }
     /**
-     * 导出聊天日志列表
+     * Экспорт списка логов чата
      */
     @RequiresPermissions("gamelog:chatlog:export")
-    @Log(title = "聊天日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Логи чата", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Chatlog chatlog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -155,11 +155,11 @@ public class ChatlogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Chatlog> list = chatlogService.selectChatlogList(chatlog,param);
         ExcelUtil<Chatlog> util = new ExcelUtil<Chatlog>(Chatlog.class);
-        return util.exportExcel(list, "聊天日志数据");
+        return util.exportExcel(list, "Данные логов чата");
     }
 
     /**
-     * 禁言
+     * Запрет чата
      * @return
      */
     @GetMapping("/chatLogBanChat")
@@ -168,7 +168,7 @@ public class ChatlogController extends BaseController
     }
 
     /**
-     * 封号
+     * Блокировка аккаунта
      * @return
      */
     @GetMapping("/chatLogBanAccount")

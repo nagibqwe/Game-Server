@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <th:block th:include="include :: header('后台指令日志列表')" />
+    <th:block th:include="include :: header('Список логов команд бэкенда')" />
     <th:block th:include="include :: footer" />
 </head>
 <body class="gray-bg">
@@ -40,7 +40,7 @@
             var options = {
                 url: prefix + "/list",
                 exportUrl: prefix + "/export",
-                modalName: "后台指令日志",
+                modalName: "Логи команд бэкенда",
                 pagination: false,
                 firstLoad:false,
                 height:$(document).height() - 160,
@@ -57,15 +57,15 @@
                 },
                 {
                     field: 'backUser',
-                    title: 'backUser'
+                    title: 'Пользователь бэкенда'
                 },
                 {
                     field: 'cmd',
-                    title: 'cmd'
+                    title: 'Команда'
                 },
                 {
                     field: 'result',
-                    title: 'result'
+                    title: 'Результат'
                 },
                 ]
             };

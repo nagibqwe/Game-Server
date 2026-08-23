@@ -43,12 +43,12 @@ public class CommandScript implements ICommandScript {
         if (cmd == null) return;
 
         if (cmd.getCommanderId() == player.getId()) {
-            logger.info(player.getInfo() + "是指挥官，无法操作");
+            logger.info(player.getInfo() + " является командиром, невозможно присоединиться");
             return;
         }
 
         if (cmd.getRoleList().contains(player.getId())) {
-            logger.info(player.getInfo() + "已经在指挥队列中");
+            logger.info(player.getInfo() + " уже в командной очереди");
             return;
         }
 
@@ -65,12 +65,12 @@ public class CommandScript implements ICommandScript {
         if (cmd == null) return;
 
         if (cmd.getCommanderId() == player.getId()) {
-            logger.info(player.getInfo() + "是指挥官，无法操作");
+            logger.info(player.getInfo() + " является командиром, невозможно выйти");
             return;
         }
 
         if (!cmd.getRoleList().contains(player.getId())) {
-            logger.info(player.getInfo() + "已经不在指挥队列中");
+            logger.info(player.getInfo() + " уже не в командной очереди");
             return;
         }
 
@@ -79,7 +79,7 @@ public class CommandScript implements ICommandScript {
 
         Manager.universeManager.deal().updateCmdBuff(player, cmd);
 
-        //客户端自己处理取消跟随状态
+        //Клиент сам обрабатывает отмену следования
         sendCommandInfo(player, cmd.getCommanderId(), 0, 0);
 
         noticeTeam(Manager.mapManager.getMap(player.getCurGps().getMapId()), cmd, player.playerCrossData.platSid, true, player.getId());
@@ -91,7 +91,7 @@ public class CommandScript implements ICommandScript {
         if (cmd == null) return;
 
         if (cmd.getCommanderId() != player.getId()) {
-            logger.info(player.getInfo() + "不是指挥官");
+            logger.info(player.getInfo() + " не является командиром");
             return;
         }
 
@@ -106,7 +106,7 @@ public class CommandScript implements ICommandScript {
         if (cmd == null) return;
 
         if (cmd.getCommanderId() <= 0) {
-            logger.info("指挥者不存在");
+            logger.info("Командир не найден");
             return;
         }
 
@@ -121,7 +121,7 @@ public class CommandScript implements ICommandScript {
                     }
                 }
             }
-        } else {//没有目标则取指挥者坐标
+        } else {//Если цели нет, берём координаты командира
             Player target = mapObject.getPlayer(cmd.getCommanderId());
             if (target != null) {
                 sendResTargetPos(player, target.getCurGps().getPos());
@@ -155,23 +155,23 @@ public class CommandScript implements ICommandScript {
         long mapId = player.getCurGps().getMapId();
         MapObject mapObject = Manager.mapManager.getMap(mapId);
         if (mapObject == null) {
-            logger.info("地图不存在");
+            logger.info("Карта не существует");
             return null;
         }
         if (mapObject.getMapModelId() != 71001) {
-            logger.info("地图错误");
+            logger.info("Неверная карта");
             return null;
         }
 
         ConcurrentHashMap<String, CommandData> commandDataMap = Manager.commandManager.getCommandDataMap().get(mapId);
         if (commandDataMap == null) {
-            logger.info("当前地图没有指挥者信息");
+            logger.info("На текущей карте нет информации о командире");
             return null;
         }
 
         CommandData cmd = commandDataMap.get(player.playerCrossData.platSid);
         if (cmd == null) {
-            logger.info(player.playerCrossData.platSid + "阵营没有指挥队列");
+            logger.info(player.playerCrossData.platSid + " Нет командной очереди для этой фракции");
             return null;
         }
         return cmd;
@@ -182,20 +182,19 @@ public class CommandScript implements ICommandScript {
             return;
         }
         CommandMessage.ResCommandInfo.Builder msg = buildCommandInfo(map, cmd);
-        //发送队伍成员
+        //Отправка членам команды
         for (Player p : map.getPlayers().values()) {
             if (!p.playerCrossData.platSid.equals(platSid)) {
                 continue;
             }
 
-            //排除通知ID
+            //Исключаем указанный ID
             if (p.getId() == exId) {
                 continue;
             }
 
-            //发送指挥官
+            //Отправка командиру
             if (synCMD && p.getId() == cmd.getCommanderId()) {
-//                logger.info("****************发送指挥消息,roleId:" + p.getId() + ",commanderId=" + cmd.getCommanderId() + ",targetId=" + cmd.getTargetId() + ",num=" + (cmd.getRoleList().size() + 1));
                 MessageUtils.send_to_player(p, CommandMessage.ResCommandInfo.MsgID.eMsgID_VALUE, msg.build().toByteArray());
                 continue;
             }
@@ -204,7 +203,6 @@ public class CommandScript implements ICommandScript {
                 continue;
             }
 
-//            logger.info("****************发送指挥消息,roleId:" + p.getId() + ",commanderId=" + cmd.getCommanderId() + ",targetId=" + cmd.getTargetId() + ",num=" + (cmd.getRoleList().size() + 1));
             MessageUtils.send_to_player(p, CommandMessage.ResCommandInfo.MsgID.eMsgID_VALUE, msg.build().toByteArray());
         }
     }
@@ -233,13 +231,13 @@ public class CommandScript implements ICommandScript {
         }
 
         CommandMessage.ResCommandInfo.Builder msg = buildCommandInfo(map, cmd);
-        //发送队伍成员
+        //Отправка членам команды
         for (Player p : map.getPlayers().values()) {
             if (!p.playerCrossData.platSid.equals(platSid)) {
                 continue;
             }
 
-            //排除通知ID
+            //Исключаем указанный ID
             if (p.getId() == exId) {
                 continue;
             }
@@ -248,9 +246,8 @@ public class CommandScript implements ICommandScript {
                 sendCommandBulletScreen(p, context.toString(), true);
             }
 
-            //发送指挥官
+            //Отправка командиру
             if (synCMD && p.getId() == cmd.getCommanderId()) {
-//                logger.info("****************发送指挥消息,roleId:" + p.getId() + ",commanderId=" + cmd.getCommanderId() + ",targetId=" + cmd.getTargetId() + ",num=" + (cmd.getRoleList().size() + 1));
                 MessageUtils.send_to_player(p, CommandMessage.ResCommandInfo.MsgID.eMsgID_VALUE, msg.build().toByteArray());
                 continue;
             }
@@ -259,7 +256,6 @@ public class CommandScript implements ICommandScript {
                 continue;
             }
 
-//            logger.info("****************发送指挥消息,roleId:" + p.getId() + ",commanderId=" + cmd.getCommanderId() + ",targetId=" + cmd.getTargetId() + ",num=" + (cmd.getRoleList().size() + 1));
             MessageUtils.send_to_player(p, CommandMessage.ResCommandInfo.MsgID.eMsgID_VALUE, msg.build().toByteArray());
         }
     }
@@ -277,16 +273,12 @@ public class CommandScript implements ICommandScript {
             cmdBuilder.setRoleCareer(player.getCareer());
             cmdBuilder.setFightPower(player.getFightPoint());
             cmdBuilder.setGuildName(player.getGuildName());
-//            cmdBuilder.setHeadId(0);
-//            cmdBuilder.setHeadFrameId(0);
             cmdBuilder.setHead(MapUtils.getHead(player));
             CommonMessage.FacadeAttribute.Builder fa = MapUtils.getFacade(player);
             cmdBuilder.setFacade(fa);
         } else {
             cmdBuilder.setRoleName("");
             cmdBuilder.setRoleCareer(0);
-//            cmdBuilder.setHeadId(0);
-//            cmdBuilder.setHeadFrameId(0);
             cmdBuilder.setHead(MapUtils.getDefaultHead());
             cmdBuilder.setFightPower(0);
             cmdBuilder.setGuildName("");
@@ -309,7 +301,6 @@ public class CommandScript implements ICommandScript {
         CommandMessage.CommandInfo.Builder cmdBuilder = getCMDBuilder(player, commanderId, targetId, num);
 
         msg.setInfo(cmdBuilder);
-//        log.info("==============================发送指挥消息,roleId:"+player.getId()+",commanderId="+commanderId+",targetId="+targetId+",num="+num);
         MessageUtils.send_to_player(player, CommandMessage.ResCommandInfo.MsgID.eMsgID_VALUE, msg.build().toByteArray());
     }
 
@@ -322,9 +313,6 @@ public class CommandScript implements ICommandScript {
         cmdBuilder.setRoleCareer(player.getCareer());
         cmdBuilder.setFightPower(player.getFightPoint());
         cmdBuilder.setGuildName(player.getGuildName());
-//        cmdBuilder.setHeadId(0);
-//        cmdBuilder.setHeadFrameId(0);
-
 
         cmdBuilder.setHead(MapUtils.getHead(player));
         CommonMessage.FacadeAttribute.Builder fa = MapUtils.getFacade(player);
@@ -336,7 +324,6 @@ public class CommandScript implements ICommandScript {
         CommandMessage.ResTargetPos.Builder msg = CommandMessage.ResTargetPos.newBuilder();
         msg.setX(pos.getX());
         msg.setY(pos.getY());
-//        logger.info("==================发送目标位置信息：" + pos);
         MessageUtils.send_to_player(player, CommandMessage.ResTargetPos.MsgID.eMsgID_VALUE, msg.build().toByteArray());
     }
 

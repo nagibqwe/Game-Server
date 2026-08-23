@@ -112,7 +112,7 @@ public class GmCommandScript implements IScript, IGmScript {
 
     private static final Logger log = LogManager.getLogger(GmCommandScript.class);
 
-    //使用gm命令tt的时间，如果连续输入时间间隔低于5秒，则激活宠物和骑兵
+    //использованияgmкомандаttвремя，если интервал между последовательными вводами меньше5секунд，то активируются питомец и кавалерия
     private static long useGMttTime = 0;
 
     private boolean isTaskInit = false;
@@ -130,11 +130,11 @@ public class GmCommandScript implements IScript, IGmScript {
 
     @Override
     public boolean RunGmCmd(Player player, String str) {
-        log.info("GM命令脚本被调用:" + str);
+        log.info("GMВызван скрипт GM-команд:" + str);
         try {
             String[] command = str.split(" ");
-            if (player != null) { //游戏内部GM命令
-                log.info("roleId:" + player.getId() + " name:" + player.getName() + " 游戏内部GM命令" + str);
+            if (player != null) { //внутриигроваяGMкоманда
+                log.info("roleId:" + player.getId() + " name:" + player.getName() + " внутриигроваяGMкоманда" + str);
                 boolean isSuccess = true;
                 switch (command[0].toLowerCase()) {
                     case "&redpacket":
@@ -232,7 +232,7 @@ public class GmCommandScript implements IScript, IGmScript {
                         break;
                     case "&dailybegin":
                         dailyBegin(command);
-                        //通知跨服
+                        //уведомить кросс-сервер
                         G2FGMdeal.Builder toCrossBeginMsg = G2FGMdeal.newBuilder();
                         toCrossBeginMsg.setCmd(command[0].toLowerCase());
                         toCrossBeginMsg.setPara(str);
@@ -240,12 +240,12 @@ public class GmCommandScript implements IScript, IGmScript {
                         if (player.playerCrossData.isToFightServer()) {
                             ConnectFightManager.GetInstance().send_to_fight(player.playerCrossData.toFightSid, -1, G2FGMdeal.MsgID.eMsgID_VALUE, toCrossBeginMsg.build().toByteArray());
                         }
-                        //通知公共服
+                        //уведомить публичный сервер
                         Manager.gmCommandManager.sendGMToPublic(player.getId(), str);
                         break;
                     case "&dailyend":
                         dailyEnd(command);
-                        //通知跨服
+                        //уведомить кросс-сервер
                         G2FGMdeal.Builder toCrossEndMsg = G2FGMdeal.newBuilder();
                         toCrossEndMsg.setCmd(command[0].toLowerCase());
                         toCrossEndMsg.setPara(str);
@@ -253,23 +253,23 @@ public class GmCommandScript implements IScript, IGmScript {
                         if (player.playerCrossData.isToFightServer()) {
                             ConnectFightManager.GetInstance().send_to_fight(player.playerCrossData.toFightSid, -1, G2FGMdeal.MsgID.eMsgID_VALUE, toCrossEndMsg.build().toByteArray());
                         }
-                        //通知公共服
+                        //уведомить публичный сервер
                         Manager.gmCommandManager.sendGMToPublic(player.getId(), str);
                         break;
                     case "&changejobother": {
                         int career = Integer.parseInt(command[1]);
                         Manager.playerManager.manager().onChangeCareer(player, career);
-                        MessageUtils.notify_player(player, Notify.CHAT, "改变职业的GM接收成功!");
+                        MessageUtils.notify_player(player, Notify.CHAT, "смены профессии GMуспешно принята!");
                     }
                     break;
                     case "&setworldlevel": {
-                        // TODO: 2019/5/14  serverParam修改屏蔽换一种方式存储
+                        // TODO: 2019/5/14  serverParamизменение serverParam отключено, использовать другой способ хранения
                         int level = Integer.parseInt(command[1]);
                         ServerParamUtil.worldLv = level;
                         ServerParamUtil.saveWorldLv();
                         Manager.playerHookManager.deal().worldLvChange();
 
-                        //服务器世界等级变化，通知公共服，公共服服务器分组用 世界等级 定义档次
+                        //изменение мирового уровня сервера，уведомить публичный сервер，группировка серверов на публичном сервере использует мировой уровень для определения категории
                         CrossServerMessage.G2PServerWorldLvChange.Builder msg
                                 = CrossServerMessage.G2PServerWorldLvChange.newBuilder();
                         msg.setPlat(ServerConfig.getServerPlatform());
@@ -277,15 +277,15 @@ public class GmCommandScript implements IScript, IGmScript {
                         msg.setServerWorldLv(level);
                         MessageUtils.send_to_public(CrossServerMessage.
                                 G2PServerWorldLvChange.MsgID.eMsgID_VALUE, msg.build().toByteArray());
-                        MessageUtils.notify_player(player, Notify.CHAT, "设置世界等级" + level + "成功!");
+                        MessageUtils.notify_player(player, Notify.CHAT, "Установить мировой уровень " + level + " успешно!");
                     }
                     break;
                     case "&getworldlevel": {
-                        MessageUtils.notify_player(player, Notify.CHAT, "世界等级:" + GlobalType.getWorldLevel());
+                        MessageUtils.notify_player(player, Notify.CHAT, "мировой уровень:" + GlobalType.getWorldLevel());
                     }
                     break;
                     case "&crossfud": {
-                        //通知公共服
+                        //уведомить публичный сервер
                         Manager.gmCommandManager.sendGMToPublic(player.getId(), str);
                     }
                     break;
@@ -298,21 +298,21 @@ public class GmCommandScript implements IScript, IGmScript {
                             return false;
                         }
                         int modelId = Integer.parseInt(command[1]);
-                        //获得要移动物品
+                        //получить предмет, который нужно переместить
                         Cfg_Item_Bean model = CfgManager.getCfg_Item_Container().getValueByKey(modelId);
                         if (model == null) {
                             return false;
                         }
-                        //是否达到使用物品数量上限
+                        //достигнут ли лимит использования предмета
                         int canuse = model.getDaily_max_use();
                         if (canuse > 0) {
                             log.error(JsonUtils.toJSONString(player.getCounts()));
                             long alreadynum = Manager.countManager.getCount(player, BaseCountType.ITEM_USE, modelId);
-                            MessageUtils.notify_player(player, Notify.CHAT, "当前物品：" + modelId + "的使用次数：" + canuse + " , 已经使用了" + alreadynum + "次;");
-                            log.error("当前物品：" + modelId + "的使用次数：" + canuse + " , 已经使用了" + alreadynum + "次;");
+                            MessageUtils.notify_player(player, Notify.CHAT, "Текущий предмет：" + modelId + "число использований：" + canuse + " , уже использовано " + alreadynum + " раз;");
+                            log.error("Текущий предмет：" + modelId + "число использований：" + canuse + " , уже использовано " + alreadynum + " раз;");
                         } else {
-                            MessageUtils.notify_player(player, Notify.CHAT, "当前物品：" + modelId + "的使用次数：" + canuse);
-                            log.error("当前物品：" + modelId + "的使用次数：" + canuse);
+                            MessageUtils.notify_player(player, Notify.CHAT, "Текущий предмет：" + modelId + "число использований：" + canuse);
+                            log.error("Текущий предмет：" + modelId + "число использований：" + canuse);
                         }
                     }
                     break;
@@ -324,13 +324,13 @@ public class GmCommandScript implements IScript, IGmScript {
                             long playerId = Long.parseLong(command[1]);
                             Player on = Manager.playerManager.getPlayerOnline(playerId);
                             if (on != null) {
-                                MessageUtils.notify_player(player, Notify.CHAT, command[1] + " 玩家 在线！目标位置 地图：" + (on.gainMapModelId()) + "线：" + on.gainLine() + " 坐标：" + on.gainCurPos().toString());
+                                MessageUtils.notify_player(player, Notify.CHAT, command[1] + " игрок онлайн！целевая позиция карта：" + (on.gainMapModelId()) + "линия：" + on.gainLine() + " координаты：" + on.gainCurPos().toString());
                             } else {
                                 on = Manager.playerManager.getPlayerCache(playerId);
                                 if (on != null) {
-                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " 玩家 不在线！玩家刚下线不久， 目标位置 地图：" + (on.gainMapModelId()) + "线：" + on.gainLine() + " 坐标：" + on.gainCurPos().toString());
+                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " игрок не в сети！игрок недавно вышел из сети， целевая позиция карта：" + (on.gainMapModelId()) + "линия：" + on.gainLine() + " координаты：" + on.gainCurPos().toString());
                                 } else {
-                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " 玩家 不在线！");
+                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " игрок не в сети！");
                                 }
                             }
                         } catch (Exception e) {
@@ -348,14 +348,14 @@ public class GmCommandScript implements IScript, IGmScript {
 
                             if (on.getName().equalsIgnoreCase(command[1])) {
                                 if (on.getIsOnline() > 0) {
-                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " 玩家 在线！目标位置 地图：" + (on.gainMapModelId()) + "线：" + on.gainLine() + " 坐标：" + on.gainCurPos().toString());
+                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " игрок онлайн！целевая позиция карта：" + (on.gainMapModelId()) + "линия：" + on.gainLine() + " координаты：" + on.gainCurPos().toString());
                                 } else {
-                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " 玩家 不在线！玩家刚下线不久， 目标位置 地图：" + (on.gainMapModelId()) + "线：" + on.gainLine() + " 坐标：" + on.gainCurPos().toString());
+                                    MessageUtils.notify_player(player, Notify.CHAT, command[1] + " игрок не в сети！игрок недавно вышел из сети， целевая позиция карта：" + (on.gainMapModelId()) + "линия：" + on.gainLine() + " координаты：" + on.gainCurPos().toString());
                                 }
                                 return false;
                             }
                         }
-                        MessageUtils.notify_player(player, Notify.CHAT, command[1] + " 玩家 不在线！");
+                        MessageUtils.notify_player(player, Notify.CHAT, command[1] + " игрок не в сети！");
                     }
                     break;
                     case "&additem":
@@ -458,11 +458,11 @@ public class GmCommandScript implements IScript, IGmScript {
                         Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_WORLD, 0, sb.toString(), 0);
                         for (PlayerAttributeType attributeType : PlayerAttributeType.values()) {
                             BaseIntAttribute at = Manager.playerAttAttributeManager.deal().getAttribute(player, attributeType);
-                            log.info("主属性 id={} type={} att={}", player.getId(), attributeType, at);
+                            log.info("Основной атрибут id={} type={} att={}", player.getId(), attributeType, at);
                         }
                         BaseLongAttribute attribute = new BaseLongAttribute(AttributeType.ATTR_MAX);
                         Manager.playerAttAttributeManager.deal().sumAttribute(player, attribute);
-                        log.info("总属性 id={} All={}", player.getId(), attribute);
+                        log.info("Суммарные атрибуты id={} All={}", player.getId(), attribute);
                     }
                     break;
                     case "&removebuff":
@@ -548,8 +548,8 @@ public class GmCommandScript implements IScript, IGmScript {
                         int rands = MapUtils.getRoundPlayer(curmap, player.gainCurPos()).size();
 
                         int lines = Manager.mapManager.getWorldMaps().get(curmap.getMapModelId()).size();
-                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "当前地图人数：" + curmap.getPlayers().size() + " 当前line:" + player.gainLine() + ";周围玩家数：" + rands + ";线路总数：" + lines
-                                + " ;当前怪物总数量：" + curmap.getMonsters().size());
+                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Игроков на текущей карте：" + curmap.getPlayers().size() + " текущийline:" + player.gainLine() + ";игроков вокруг：" + rands + ";всего линий：" + lines
+                                + " ;общее число монстров на текущей карте：" + curmap.getMonsters().size());
                         break;
                     case "&maplines":
                         maplines(player, command);
@@ -578,7 +578,7 @@ public class GmCommandScript implements IScript, IGmScript {
                             TimeUtils.setTime(TimeUtils.Time() + 24 * 3600 * 1000);
                         }
                         break;
-                    case "&getcity": //占领城市
+                    case "&getcity": //захватить город
                         getcity(player, Integer.parseInt(command[1]));
                         break;
                     case "&skiptime":
@@ -599,15 +599,15 @@ public class GmCommandScript implements IScript, IGmScript {
                             cmdstr = "&settime " + cmdstr;
                             sendTpWorldScript(player, cmdstr);
                         }
-                        MessageUtils.notify_player(player, Notify.CHAT, "服务器当前时间：" + TimeUtils.format2string(TimeUtils.Time()));
+                        MessageUtils.notify_player(player, Notify.CHAT, "Текущее время сервера：" + TimeUtils.format2string(TimeUtils.Time()));
                         break;
-                    case "&entercross"://进入跨服
+                    case "&entercross"://войти на кросс-сервер
                         entercross(player, command);
                         break;
-                    case "&findaround": //去周围最近的玩家附近
+                    case "&findaround": //переместиться к ближайшему игроку
                         findaround(player, command);
                         break;
-                    case "&reloadmap":  //重新加载配置地图配置
+                    case "&reloadmap":  //перезагрузить конфигурацию карты
                         if (command.length == 2) {
                             int mapID = Integer.parseInt(command[1]);
                             Manager.mapCfgManager.reloadMap(mapID);
@@ -655,7 +655,7 @@ public class GmCommandScript implements IScript, IGmScript {
                     case "&addhorselayer":
                         int addLayer = Integer.parseInt(command[1]);
                         if (addLayer <= 0) {
-                            log.error("addLayer数据错误！");
+                            log.error("addLayerошибка данных！");
                             break;
                         }
                         addHorseLayer(player, addLayer);
@@ -663,7 +663,7 @@ public class GmCommandScript implements IScript, IGmScript {
                     case "&sethorsestar":
                         int illusionLevel = Integer.parseInt(command[1]);
                         if (illusionLevel <= 0) {
-                            log.error("illusionLevel数据错误！");
+                            log.error("illusionLevelошибка данных！");
                             break;
                         }
                         setHorseStarLv(player, illusionLevel);
@@ -680,11 +680,11 @@ public class GmCommandScript implements IScript, IGmScript {
                     case "&me":
                         sendMeInfo(player);
                         break;
-                    case "&sendmail": //&sendmail mailTitle mailContent mailAttach (ex: sendMail 打怪奖励 哈哈，恭喜怪被主儿打死，不过主儿可真狠呐。 1020,10,1;5001,5,1;50001,1,1)
+                    case "&sendmail": //&sendmail mailTitle mailContent mailAttach (ex: sendMail Награда за убийство монстра Ха-ха，поздравляем, монстр убит хозяином，однако хозяин действительно беспощаден。 1020,10,1;5001,5,1;50001,1,1)
                         sendMailToPlayer(player, command);
                         break;
 
-                    case "&mail": //&sendmail mailTitle mailContent mailAttach (ex: sendMail 打怪奖励 哈哈，恭喜怪被主儿打死，不过主儿可真狠呐。 1020,10,1;5001,5,1;50001,1,1)
+                    case "&mail": //&sendmail mailTitle mailContent mailAttach (ex: sendMail Награда за убийство монстра Ха-ха，поздравляем, монстр убит хозяином，однако хозяин действительно беспощаден。 1020,10,1;5001,5,1;50001,1,1)
                         sendMailToPlayer1(player, command);
                         break;
                     case "&settime":
@@ -714,7 +714,7 @@ public class GmCommandScript implements IScript, IGmScript {
                     case "&gettime": {
                         //int num = TimeUtils.getOpenAreaDay();
                         int num = TimeUtils.getOpenServerDay();
-                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "当前开服天数：" + num + "天,开服时间" + ServerConfig.getServerOpenTime() + ",当前系统时间:" + TimeUtils.NowToString() + ",当前系统毫秒数:" + TimeUtils.Time());
+                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Текущее число дней с открытия сервера：" + num + " дней,время открытия сервера" + ServerConfig.getServerOpenTime() + ",текущее системное время:" + TimeUtils.NowToString() + ",текущее системное время в миллисекундах:" + TimeUtils.Time());
                     }
                     break;
                     case "&sethp":
@@ -725,34 +725,34 @@ public class GmCommandScript implements IScript, IGmScript {
                         break;
                     case "&flushshengmi":
                         break;
-                    //清理副本的进入次数
+                    //очистить количество входов в подземелье
                     case "&clearclonetime": {
                         if (!ServerConfig.isTestServer()) {
                             return false;
                         }
                         List<Integer> overscript = new ArrayList<>();
-                        //扫荡记录
+                        //запись быстрого прохождения
                         Manager.countManager.setVariant(player, VariantType.Copymap_Challenge_RaidLevel, 0);
-                        MessageUtils.notify_player(player, Notify.CHAT, "清除副本的标志个数：" + overscript.size() + "！");
+                        MessageUtils.notify_player(player, Notify.CHAT, "Количество очищенных флагов подземелья：" + overscript.size() + "！");
                     }
                     break;
                     case "&clearshengmi":
                         break;
                     case "&num":
-                        String s1 = "在线人数:" + Manager.playerManager.getOnLinePlayerNum()
-                                + " 缓存人数：" + Manager.playerManager.getPlayersCache().size();
+                        String s1 = "Игроков онлайн:" + Manager.playerManager.getOnLinePlayerNum()
+                                + " Игроков в кэше：" + Manager.playerManager.getPlayersCache().size();
                         MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, s1);
                         System.out.println(s1);
                         break;
                     case "&time":
                         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(TimeUtils.Time()));
-//                        Manager.chatManager.deal().sendSystemStrToPlayer(player, "当前服务器时间：" + date);
-                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "当前服务器时间：" + date);
+//                        Manager.chatManager.deal().sendSystemStrToPlayer(player, "Текущее время сервера：" + date);
+                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "Текущее время сервера：" + date);
                         break;
-                    case "&opstime"://查看开服时间
-                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "当前开启服务器时间：" + ServerConfig.getServerOpenTime());
+                    case "&opstime"://просмотреть время открытия сервера
+                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "Текущее время открытия сервера：" + ServerConfig.getServerOpenTime());
                         break;
-                    case "&setopstime"://设置开服时间
+                    case "&setopstime"://установить время открытия сервера
                     {
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         try {
@@ -771,10 +771,10 @@ public class GmCommandScript implements IScript, IGmScript {
 
                         } catch (Exception e) {
                             log.error(e.getMessage());
-                            MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "时间格式有问题，正确如:2017-05-25_11:00:00");
+                            MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "Неверный формат времени，правильный пример:2017-05-25_11:00:00");
                         }
 
-                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "当前开启服务器时间：" + ServerConfig.getServerOpenTime());
+                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "Текущее время открытия сервера：" + ServerConfig.getServerOpenTime());
                         Manager.functionTaskManager.getScript().init();
                         Manager.functionTaskManager.getScript().online(player);
                     }
@@ -789,9 +789,9 @@ public class GmCommandScript implements IScript, IGmScript {
                             ServerParamUtil.saveServerOpenTime();
                         } catch (Exception e) {
                             log.error(e.getMessage());
-                            MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "时间格式有问题，正确如:2017-05-25_11:00:00");
+                            MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "Неверный формат времени，правильный пример:2017-05-25_11:00:00");
                         }
-                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "当前开启服务器时间：" + ServerConfig.getServerOpenTime());
+                        MessageUtils.notify_player(player, Notify.CHAT, MessageString.WANGNENGTISHI, "Текущее время открытия сервера：" + ServerConfig.getServerOpenTime());
                     }
                     break;
                     case "&queryrecharge":
@@ -821,7 +821,7 @@ public class GmCommandScript implements IScript, IGmScript {
                         bi(player, command);
                         break;
                     case "&rr":
-                        // 资源找回
+                        // восстановление ресурсов
                         rr(player, command);
                         break;
                     case "&testfirstkill":
@@ -878,30 +878,30 @@ public class GmCommandScript implements IScript, IGmScript {
                         break;
                     case "&setchanneclinfo": {
                         GlobalType.isOutMoreRead = true;
-                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "开启连接详细输出成功！", 0);
+                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "Подробный вывод соединений успешно включён!！", 0);
                     }
                     break;
                     case "&closechannelinfo": {
                         GlobalType.isOutMoreRead = false;
-                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "关闭输出连接详细成功！", 0);
+                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "Подробный вывод соединений успешно отключён!！", 0);
                     }
                     break;
                     case "&opennetstream":
                         GlobalType.isOutNetStreamInfo = true;
-                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "开启连接流量统计成功！", 0);
+                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "Статистика сетевого трафика успешно включена!！", 0);
                         break;
                     case "&closenetstream":
                         GlobalType.isOutNetStreamInfo = false;
-                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "关闭输出流量统计成功！", 0);
+                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "Статистика сетевого трафика успешно отключена!！", 0);
                         break;
                     case "&setout": {
                         GlobalType.isOutNetMess = true;
-                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "开启输出网络信息成功！", 0);
+                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "Вывод сетевой информации успешно включён!！", 0);
                     }
                     break;
                     case "&closeout": {
                         GlobalType.isOutNetMess = false;
-                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "关闭输出网络信息成功！", 0);
+                        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + "Вывод сетевой информации успешно отключён!！", 0);
                     }
                     break;
                     case "&addqinmi": {
@@ -925,16 +925,16 @@ public class GmCommandScript implements IScript, IGmScript {
                         int id = Integer.parseInt(command[1]);
                         Cfg_Shop_Maket_Bean csb = CfgManager.getCfg_Shop_Maket_Container().getValueByKey(id);
                         if (csb == null) {
-                            MessageUtils.notify_player(player, Notify.CHAT, "没有此商品");
+                            MessageUtils.notify_player(player, Notify.CHAT, "Такого товара нет");
                         } else {
                             String itemName = Manager.backpackManager.manager().getName(csb.getItemID());
                             String coinName = Manager.backpackManager.manager().getName(csb.getCurrencyID());
-                            log.error("商城id=" + id + "卖的是" + itemName + "(" + csb.getItemID() + ")" + coinName + "(" + csb.getCurrencyID() + ")" + csb.getPrice() + "个");
-                            MessageUtils.notify_player(player, Notify.CHAT, "商城id=" + id + "卖的是" + itemName + "(" + csb.getItemID() + ")" + coinName + "(" + csb.getCurrencyID() + ")" + csb.getPrice() + "个");
+                            log.error("Магазинid=" + id + " продаёт " + itemName + "(" + csb.getItemID() + ")" + coinName + "(" + csb.getCurrencyID() + ")" + csb.getPrice() + " шт.");
+                            MessageUtils.notify_player(player, Notify.CHAT, "Магазинid=" + id + " продаёт " + itemName + "(" + csb.getItemID() + ")" + coinName + "(" + csb.getCurrencyID() + ")" + csb.getPrice() + " шт.");
                         }
                     }
                     break;
-                    //测试同步当前请求的玩家数据
+                    //тест синхронизации данных игрока текущего запроса
                     case "&testfight": {
                         CrossFightMessage.roleAtt.Builder ratt = CrossFightMessage.roleAtt.newBuilder();
                         ratt.setRoleId(player.getId());
@@ -952,9 +952,9 @@ public class GmCommandScript implements IScript, IGmScript {
                             player.playerCrossData.toZoneModelId = 0;
                             player.playerCrossData.isReqFight = false;
                             player.playerCrossData.crossState = CrossState.PCS_LOCAL;
-                            //切换地图
-                            MessageUtils.notify_player(player, Notify.SHOWBOX, "跨服战服务器断开，请重新进行活动！");
-                            //切换回原来的地图
+                            //сменить карту
+                            MessageUtils.notify_player(player, Notify.SHOWBOX, "Сервер кросс-серверной битвы отключён，пожалуйста, войдите в активность заново！");
+                            //вернуться на исходную карту
                             Manager.copyMapManager.outZone(player);
                         }
                         break;
@@ -982,7 +982,7 @@ public class GmCommandScript implements IScript, IGmScript {
                     case "&getpublictime": {
                         Manager.gmCommandManager.sendGMToPublic(player.getId(), str);
                         int num = TimeUtils.getOpenAreaDay();
-                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "当前开服天数：" + num + "天,开服时间" + ServerConfig.getServerOpenTime() + ",当前系统时间:" + TimeUtils.NowToString() + ",当前系统毫秒数:" + TimeUtils.Time());
+                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Текущее число дней с открытия сервера：" + num + " дней,время открытия сервера" + ServerConfig.getServerOpenTime() + ",текущее системное время:" + TimeUtils.NowToString() + ",текущее системное время в миллисекундах:" + TimeUtils.Time());
                         G2FGMdeal.Builder mm = G2FGMdeal.newBuilder();
                         mm.setCmd("&getfighttime");
                         mm.setPara(str);
@@ -1005,7 +1005,7 @@ public class GmCommandScript implements IScript, IGmScript {
                         if (player.playerCrossData.isToFightServer()) {
                             ConnectFightManager.GetInstance().send_to_fight(player.playerCrossData.toFightSid, -1, G2FGMdeal.MsgID.eMsgID_VALUE, mm.build().toByteArray());
                         } else {
-                            MessageUtils.notify_player(player, Notify.CHAT, "当前不在跨服！");
+                            MessageUtils.notify_player(player, Notify.CHAT, "Сейчас не на кросс-сервере！");
                         }
                     }
                     break;
@@ -1026,27 +1026,27 @@ public class GmCommandScript implements IScript, IGmScript {
                         isSuccess = addAppointEquip(player, command);
                         break;
                     case "&clearmybag": {
-                        //清理我的背包
+                        //очистить мой рюкзак
                         isSuccess = clearmybag(player);
                     }
                     break;
                     case "&clearmystore": {
-                        //清理我的仓库
+                        //очистить моё хранилище
                         isSuccess = clearmystore(player);
                     }
                     break;
                     case "&cleanbag":
-                        //玩家Id
+                        //игрокId
                         long roleId = Long.parseLong(command[1]);
                         if (Manager.playerManager.isOnline(roleId)) {
                             Player player1 = Manager.playerManager.getPlayerCache(roleId);
                             boolean isS = cleanBag(player1.getBackpackItems());
                             if (isS) {
-                                log.error("清理数据成功  roleId：" + roleId);
+                                log.error("Очистка данных успешна  roleId：" + roleId);
                                 isSuccess = true;
                             } else {
                                 isSuccess = false;
-                                log.error("清理数据失败  roleId：" + roleId);
+                                log.error("Очистка данных не удалась  roleId：" + roleId);
                             }
                         }
                         break;
@@ -1060,7 +1060,7 @@ public class GmCommandScript implements IScript, IGmScript {
                         isSuccess = true;
                     }
                     break;
-                    //给机器人用 一键增加 所有身上的物品
+                    //для робота добавить одним нажатием все предметы на персонаже
                     case "&onekeyatt":
                         oneKeyAddPlayerAtt(player);
                         break;
@@ -1077,11 +1077,11 @@ public class GmCommandScript implements IScript, IGmScript {
                             data.setDieNum(0);
                             ServerParamUtil.saveWorldBoss();
                         } else {
-                            log.error("GM命令输入的怪找不到，bossId=" + bossId);
+                            log.error("GMмонстр, указанный в GM-команде, не найден，bossId=" + bossId);
                         }
                         break;
 
-                    case "&upmorale": //"&upmorale num" 金币鼓舞多少次
+                    case "&upmorale": //"&upmorale num" сколько раз выполнить усиление за золото
                         int upNum = Integer.parseInt(command[1]);
                         for (int i = 0; i < upNum; ++i) {
                             Manager.copyMapManager.logic().onReqUpMorale(player, 0);
@@ -1091,7 +1091,7 @@ public class GmCommandScript implements IScript, IGmScript {
 //                        long playerId = Long.parseLong(command[1]);
 //                        Player on = manager.playerManager.getOnLinePlayer(playerId);
 //                        if (player == null) {
-//                            log.error("开始清除玩家的技能书 玩家不在线：");
+//                            log.error("Начинается очистка книг навыков игрока игрок не в сети：");
 //                            isSuccess = false;
 //                            break;
 //                        }
@@ -1166,7 +1166,7 @@ public class GmCommandScript implements IScript, IGmScript {
                         playerList.put(689713816061020578L, skillList8);
 
                         if (!playerList.containsKey(player.getId())) {
-                            log.error("开始清除玩家的技能书:没有改玩家的清理数据");
+                            log.error("Начинается очистка книг навыков игрока:нет данных очистки для этого игрока");
                             return false;
                         }
 
@@ -1174,7 +1174,7 @@ public class GmCommandScript implements IScript, IGmScript {
 
 //                int minId = 10001;
 //                int maxId = 10105;
-                        //获取玩家背包
+                        //получить рюкзак игрока
                         Iterator<Entry<Integer, Item>> it = player.getBackpackItems().entrySet().iterator();
                         while (it.hasNext()) {
                             Entry<Integer, Item> entry = it.next();
@@ -1188,16 +1188,16 @@ public class GmCommandScript implements IScript, IGmScript {
 //                                while (its1.hasNext()) {
 //                                    int sid = its1.next();
 //                                    if (skillLists.contains(sid)) {
-//                                        log.error("开始清除玩家的技能书 清理背包装备上技能：" + sid);
+//                                        log.error("Начинается очистка книг навыков игрока удалить навык с экипировки в рюкзаке：" + sid);
 //                                        its1.remove();
 //                                    }
 //                                }
                             } else if (skillLists.contains(item.getItemModelId())) {
-                                log.error("开始清除玩家的技能书 清理背包技能书：" + item.getItemModelId() + " 数量：" + item.realNum());
+                                log.error("Начинается очистка книг навыков игрока удалить книгу навыка из рюкзака：" + item.getItemModelId() + " количество：" + item.realNum());
                                 it.remove();
                             }
                         }
-                        //获取玩家仓库
+                        //получить хранилище игрока
                         Iterator<Entry<Integer, Item>> it1 = player.getStoreItems().entrySet().iterator();
                         while (it1.hasNext()) {
                             Entry<Integer, Item> entry = it1.next();
@@ -1211,12 +1211,12 @@ public class GmCommandScript implements IScript, IGmScript {
 //                                while (its2.hasNext()) {
 //                                    int sid = its2.next();
 //                                    if (skillLists.contains(sid)) {
-//                                        log.error("开始清除玩家的技能书 清理背包装备上技能：" + sid);
+//                                        log.error("Начинается очистка книг навыков игрока удалить навык с экипировки в рюкзаке：" + sid);
 //                                        its2.remove();
 //                                    }
 //                                }
                             } else if (skillLists.contains(item.getItemModelId())) {
-                                log.error("开始清除玩家的技能书 清理背包技能书：" + item.getItemModelId() + " 数量：" + item.realNum());
+                                log.error("Начинается очистка книг навыков игрока удалить книгу навыка из рюкзака：" + item.getItemModelId() + " количество：" + item.realNum());
                                 it1.remove();
                             }
                         }
@@ -1235,9 +1235,9 @@ public class GmCommandScript implements IScript, IGmScript {
                         break;
                     case "&fudi":
                         if (ServerParamCommon.isFuDiForeverTitle())
-                            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "福地排行已经结束");
+                            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Рейтинг благословенной земли уже завершён");
                         else
-                            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "福地排行没有结束");
+                            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Рейтинг благословенной земли ещё не завершён");
                         break;
                     case "&fudipower":
                         isSuccess = fudipower(player, command);
@@ -1246,7 +1246,7 @@ public class GmCommandScript implements IScript, IGmScript {
                         isSuccess = setStateVip(player, command);
                         break;
                     case "&getstatevip":
-                        MessageUtils.notify_player(player, Notify.CHAT, "境界:" + player.getStateVip().getLv());
+                        MessageUtils.notify_player(player, Notify.CHAT, "Ступень:" + player.getStateVip().getLv());
                         break;
                     case "&activeflysword":
                         Manager.huaxinFlySwordManager.deal().onReqUseHuxin(player, Integer.parseInt(command[1]), 1, false);
@@ -1271,11 +1271,11 @@ public class GmCommandScript implements IScript, IGmScript {
                         for (Map.Entry<PlayerAttributeType, BaseIntAttribute> entry : player.PlayerCalculators().entrySet()) {
                             int rate = entry.getValue().getAdditionValue(AttributeType.ATTR_MonserExp);
                             if (entry.getValue().getAdditionValue(AttributeType.ATTR_MonserExp) != 0) {
-                                log.info(String.format("系统：%s 加成：%s", entry.getKey(), rate));
+                                log.info(String.format("Система：%s бонус：%s", entry.getKey(), rate));
                             }
                         }
                         float expRate = player.expRateNotHaveAtt();
-                        String tips = String.format("buff: %s, 其他：%s", expRate * 100, (player.gainExpRate() - expRate) * 100);
+                        String tips = String.format("buff: %s, прочее：%s", expRate * 100, (player.gainExpRate() - expRate) * 100);
                         log.info(tips);
                         MessageUtils.notify_player(player, Notify.CHAT, tips);
                         isSuccess = true;
@@ -1324,10 +1324,10 @@ public class GmCommandScript implements IScript, IGmScript {
                     case "&moveto":
                         moveTo(player, command);
                         break;
-                    case "&active"://设置活跃值
+                    case "&active"://установить значение активности
                         if (command.length < 2) {
-                            MessageUtils.notify_player(player, Notify.NORMAL, "当前活跃获取:" + Manager.countManager.getVariant(player, VariantType.DailyActivePoint));
-                            MessageUtils.notify_player(player, Notify.NORMAL, "当前活跃消耗:" + Manager.countManager.getVariant(player, VariantType.DailyActivePointCost));
+                            MessageUtils.notify_player(player, Notify.NORMAL, "Текущая полученная активность:" + Manager.countManager.getVariant(player, VariantType.DailyActivePoint));
+                            MessageUtils.notify_player(player, Notify.NORMAL, "Текущий расход активности:" + Manager.countManager.getVariant(player, VariantType.DailyActivePointCost));
                             break;
                         }
                         int type = Integer.parseInt(command[1]);
@@ -1403,11 +1403,11 @@ public class GmCommandScript implements IScript, IGmScript {
                         Manager.scriptManager.GetScriptClass(ScriptEnum.GuildBatleMapScript).call("gmTranCamp", mapObject);
                         break;
                     case "&gmnotify":
-                        MessageUtils.notify_player(player, Notify.FIXED, " 圣哥菊花百日残， 口爆三千仍留返，劝君别走回头路，弃娼从良重头来");
+                        MessageUtils.notify_player(player, Notify.FIXED, " У брата Шэна задница болит уже сто дней， три тысячи раз кончил в рот, а он всё возвращается，советую тебе не возвращаться на старый путь，брось разврат и начни честную жизнь заново");
                         break;
                     case "&setanger":
                         Manager.countManager.setCount(player, BaseCountType.UniverseAnger, DailyActiveDefine.ACTIVITY_CROSS_UNIVERSEWAR.getValue(), Count.RefreshType.CountType_Forever, Integer.parseInt(command[1]));
-                        MessageUtils.notify_player(player, Notify.ERROR, "怒气设置成功:" + (int) Manager.countManager.getCount(player, BaseCountType.UniverseAnger, DailyActiveDefine.ACTIVITY_CROSS_UNIVERSEWAR.getValue()));
+                        MessageUtils.notify_player(player, Notify.ERROR, "Злость успешно установлена:" + (int) Manager.countManager.getCount(player, BaseCountType.UniverseAnger, DailyActiveDefine.ACTIVITY_CROSS_UNIVERSEWAR.getValue()));
                         break;
                     case "&activefashion":
                         Manager.newFashionManager.deal().gmSetFashionID(player, Integer.parseInt(command[1]));
@@ -1417,7 +1417,7 @@ public class GmCommandScript implements IScript, IGmScript {
                         break;
                     case "&func":
                         ReadArray<Integer> param = new ReadIntegerArray(command[1], "_");
-                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "FunctionVariable:" + param.get(0) + "的进度为:" + Manager.controlManager.deal().getFuncProgress(player, param) + ",检查结果为:" + Manager.controlManager.deal().checkFuncProgress(player, param));
+                        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "FunctionVariable:" + param.get(0) + " прогресс: :" + Manager.controlManager.deal().getFuncProgress(player, param) + ",результат проверки::" + Manager.controlManager.deal().checkFuncProgress(player, param));
                         break;
                     case "&clearholy":
                         Manager.holyEquipManager.deal().gmclearHolyEuiqp(player);
@@ -1449,21 +1449,21 @@ public class GmCommandScript implements IScript, IGmScript {
                         soulPetEquip(player, Integer.parseInt(command[1]), Integer.parseInt(command[2]), Integer.parseInt(command[3]));
                         break;
                     case "&getxs":
-                        MessageUtils.notify_player(player, Notify.CHAT, "当前洗髓阶段:" + player.getXsGrade() + "  当前洗髓等级:" + player.getXsLevel());
+                        MessageUtils.notify_player(player, Notify.CHAT, "Текущий этап очищения:" + player.getXsGrade() + "  текущий уровень очищения:" + player.getXsLevel());
                         break;
                     case "&horseequip":
                         horseequip(player, command[1], command);
                         break;
                     case "&addkaoshangling":
                         Manager.countManager.addCount(player, BaseCountType.KaoShangLingScore_Horse_Total, DailyActiveDefine.CrossHosreBoss.getValue(), Count.RefreshType.CountType_Forever, Integer.parseInt(command[1]));
-                        MessageUtils.notify_player(player, Notify.ERROR, "犒赏令-荒古令设置成功:" + (int) Manager.countManager.getCount(player, BaseCountType.KaoShangLingScore_Horse_Total, DailyActiveDefine.CrossHosreBoss.getValue()));
+                        MessageUtils.notify_player(player, Notify.ERROR, "Орден награды-древний жетон успешно установлен:" + (int) Manager.countManager.getCount(player, BaseCountType.KaoShangLingScore_Horse_Total, DailyActiveDefine.CrossHosreBoss.getValue()));
                     default:
-                        // huhu 走个反射看看有没有对应的方法
+                        // huhu проверить через reflection, есть ли соответствующий метод
                         if (tryReflect(str, player)) {
                             return true;
                         }
                         isSuccess = false;
-                        log.error("未知的gm命令 command:" + command[0]);
+                        log.error("Неизвестная gmкоманда command:" + command[0]);
                         break;
                 }
                 if (player != null) {
@@ -1473,8 +1473,8 @@ public class GmCommandScript implements IScript, IGmScript {
                         Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str + " game gm failed", 0);
                     }
                 }
-            } else { //后台GM命令
-                log.info("后台GM命令");
+            } else { //серверная консольGMкоманда
+                log.info("серверная консольGMкоманда");
             }
 
         } catch (Exception e) {
@@ -1498,7 +1498,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 混沌虚空->须弥宝库
+     * Хаотическая пустота->Сокровищница Сюйми
      *
      * @param player
      * @param type
@@ -1523,7 +1523,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 无忧宝库
+     * Безмятежная сокровищница
      *
      * @param player
      * @param type
@@ -1545,7 +1545,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 仙侣对决
+     * Поединок бессмертной пары
      *
      * @param player
      * @param type
@@ -1631,7 +1631,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 清除玩家装备的八卦
+     * очистить багуа на экипировке игрока
      *
      * @param player
      */
@@ -1645,10 +1645,10 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 魔魂相关
+     * связано с демонической душой
      *
-     * @param player  玩家
-     * @param command 命令
+     * @param player  игрок
+     * @param command команда
      */
     private void devilSeries(Player player, String type, String[] command) {
         if ("wear".equals(type)) {
@@ -1749,7 +1749,7 @@ public class GmCommandScript implements IScript, IGmScript {
         String op = command[1];
 
         switch (op) {
-            case "put"://上架
+            case "put"://выставить на продажу
                 int itemId = size > 2 ? Integer.parseInt(command[2]) : 0;
                 int num = size > 3 ? Integer.parseInt(command[3]) : 0;
                 int type = size > 4 ? Integer.parseInt(command[4]) : 0;
@@ -1760,10 +1760,10 @@ public class GmCommandScript implements IScript, IGmScript {
                     Item item = optional.get();
                     Manager.auctionManager.manager().auctionPut(player, item.getId(), num, type, password, price);
                 } else {
-                    log.info("gm 上架失败物品不存在");
+                    log.info("gm не удалось выставить: предмет не существует");
                 }
                 break;
-            case "pur"://一口价
+            case "pur"://мгновенная покупка
                 long auctionId = size > 2 ? Long.parseLong(command[2]) : 0;
                 password = size > 3 ? command[3] : null;
                 Manager.auctionManager.auctionPur(player, auctionId, password);
@@ -1826,7 +1826,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 测试主线任务使用，不局限与任何任务相关的限制
+     * используется для тестирования основной сюжетной задачи，не ограничивается какими-либо ограничениями, связанными с заданиями
      *
      * @param player
      * @param command
@@ -1847,7 +1847,7 @@ public class GmCommandScript implements IScript, IGmScript {
     private boolean sendFeedBack(String[] command) {
         long playerId = Long.parseLong(command[1]);
         if (!Manager.playerManager.getAllPlayerWorldInfo().containsKey(playerId)) {
-            log.error("不存在玩家");
+            log.error("Игрок не существует");
             return false;
         }
         FeedBackInfo info = new FeedBackInfo();
@@ -1855,7 +1855,7 @@ public class GmCommandScript implements IScript, IGmScript {
         info.setType(Integer.parseInt(command[2]));
         info.setTime((int) (TimeUtils.Time() / 1000));
         Manager.settingManager.deal().sendGMFeedback(playerId, info);
-        log.error("feedback命令使用成功");
+        log.error("feedbackкоманда выполнена успешно");
         return true;
     }
 
@@ -1909,7 +1909,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 活动开启
+     * начало активности
      */
     private void dailyBegin(String[] command) {
         if (command.length < 2) {
@@ -1918,7 +1918,7 @@ public class GmCommandScript implements IScript, IGmScript {
         int dailyId = Integer.parseInt(command[1]);
         Cfg_Daily_Bean bean = CfgManager.getCfg_Daily_Container().getValueByKey(dailyId);
         if (bean == null) {
-            log.error("&dailybegin运行失败，无法找到对应id的daily_bean!!");
+            log.error("&dailybeginвыполнение не удалось，не удалось найти соответствующий id daily_bean!!");
             return;
         }
         try {
@@ -1930,7 +1930,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 活动结束
+     * окончание активности
      */
     private void dailyEnd(String[] command) {
         if (command.length < 2) {
@@ -1939,7 +1939,7 @@ public class GmCommandScript implements IScript, IGmScript {
         int dailyId = Integer.parseInt(command[1]);
         Cfg_Daily_Bean bean = CfgManager.getCfg_Daily_Container().getValueByKey(dailyId);
         if (bean == null) {
-            log.error("&dailyend运行失败，无法找到对应id的daily_bean!!");
+            log.error("&dailyendвыполнение не удалось，не удалось найти соответствующий id daily_bean!!");
             return;
         }
         try {
@@ -1974,10 +1974,10 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 节日活动相关操作
+     * операции, связанные с праздничными активностями
      *
-     * @param player  玩家
-     * @param command 命令
+     * @param player  игрок
+     * @param command команда
      */
     private void holidayAction(Player player, String[] command) {
         if (!ServerConfig.isTestServer()) {
@@ -1987,10 +1987,10 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 分享功能相关操作
+     * операции, связанные с функцией публикации
      *
-     * @param player  玩家
-     * @param command 命令
+     * @param player  игрок
+     * @param command команда
      */
     private void shareAction(Player player, String[] command) {
         if (!ServerConfig.isTestServer()) {
@@ -2000,7 +2000,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 反射看看有没有对应的方法 command(String[] ,Player)
+     * через reflection проверить наличие соответствующего метода command(String[] ,Player)
      *
      * @param str
      * @param player
@@ -2050,7 +2050,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     public String getMapQueueSizeInfo() {
-        StringBuilder b = new StringBuilder("地图信息:\n");
+        StringBuilder b = new StringBuilder("Информация о карте:\n");
         b.append("cityServerGroup:\n");
         getMapQueueSizeInfo(GameServer.getInstance().getWorldMapServerGroup().getMapServers(), b);
         b.append("zoneServerGroup:\n");
@@ -2081,7 +2081,7 @@ public class GmCommandScript implements IScript, IGmScript {
         return builder.toString();
     }
 
-    //清理背包数据
+    //очистка данных рюкзака
     private boolean cleanBag(ConcurrentHashMap<Integer, Item> container) {
         List<java.util.Map.Entry<Integer, Item>> list = new ArrayList<>();
         list.addAll(container.entrySet());
@@ -2122,22 +2122,22 @@ public class GmCommandScript implements IScript, IGmScript {
             key = 99;
             player.setMoonCardDays(0);
 //            Manager.vipManager.deal(ScriptEnum.RechargeCheckVipLevelScript).checkCardBuff(player, key);
-            MessageUtils.notify_player(player, Notify.CHAT, "清空月卡天数到:" + player.MoonCardDays());
+            MessageUtils.notify_player(player, Notify.CHAT, "Дни месячной карты сброшены до::" + player.MoonCardDays());
 //            manager.welfareManager.deal().sendActiveCard(player, 1);
         } else if (cardType == 2) {
             key = 999;
             player.setLifeCard(false);
 //            Manager.vipManager.deal(ScriptEnum.RechargeCheckVipLevelScript).checkCardBuff(player, key);
-            MessageUtils.notify_player(player, Notify.CHAT, "取消终身特权卡:" + player.isLifeCard());
+            MessageUtils.notify_player(player, Notify.CHAT, "Пожизненная привилегированная карта отменена::" + player.isLifeCard());
 //            manager.welfareManager.deal().sendActiveCard(player, 2);
         }
     }
 
-    //重新加载 所有数据配置
+    //перезагрузить все конфигурации данных
     private void reLoadGameData() {
-        log.error("GM 重新加载所有 游戏数据配置");
+        log.error("GM перезагрузить все  конфигурации игровых данных");
         Manager.bossManager.manager().reloadSpecialMonsterConfig();
-        //任务缓存重新来
+        //заново загрузить кэш заданий
         Manager.taskManager.deal().loadAllCanReceiveTask();
 
         if (GameServer.getInstance().IsFightServer()) {
@@ -2149,11 +2149,11 @@ public class GmCommandScript implements IScript, IGmScript {
         } catch (IOException ex) {
             log.error(ex, ex);
         }
-        log.error("GM 重新加载所有 游戏数据配置 over");
+        log.error("GM перезагрузить все  конфигурации игровых данных over");
     }
 
     /**
-     * 配置表重新加载
+     * перезагрузка таблицы конфигурации
      *
      * @param command
      */
@@ -2163,7 +2163,7 @@ public class GmCommandScript implements IScript, IGmScript {
                 return false;
             }
             String configName = command[1];
-            log.info("GM 重新加载游戏数据配置:" + configName);
+            log.info("GM Перезагрузка конфигурации игровых данных::" + configName);
             String reloadName = getJavaClassReloadName(configName);
             boolean isSuccess = ScriptConfigManager.GetInstance().reloadConfigScript(reloadName);
             if (isSuccess) {
@@ -2197,25 +2197,25 @@ public class GmCommandScript implements IScript, IGmScript {
         return "config.Cfg_" + replace + "_Load";
     }
 
-    //刷新地图BUFF
+    //обновить картуBUFF
     private void addgroundbuff(Player player, String[] command) {
         int monsterId = Integer.parseInt(command[1]);
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
         if (null == map) {
-            log.error("GM 创建怪物失败，没有找到地图");
+            log.error("GM Не удалось создать монстра，карта не найдена");
             return;
         }
 //        Manager.mapManager.createGroundBuff(map, player.gainCurPos(), monsterId, 1, 0);
     }
 
-    //GM刷新怪物
+    //GMсоздать/обновить монстра
     private void addMonster(Player player, String[] command) {
         int monsterId = Integer.parseInt(command[1]);
         int num = command.length >= 3 ? Integer.parseInt(command[2]) : 1;
         num = num > 10 ? 10 : num;
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
         if (null == map) {
-            log.error("GM 创建怪物失败，没有找到地图");
+            log.error("GM Не удалось создать монстра，карта не найдена");
             return;
         }
         for (int i = 0; i < num; i++) {
@@ -2245,7 +2245,7 @@ public class GmCommandScript implements IScript, IGmScript {
         StringBuilder sb = new StringBuilder();
         int dropID = Integer.parseInt(command[1]);
         int num = Math.min(Integer.parseInt(command[2]), 1000000);
-        sb.append("dropID:").append(dropID).append(" num:").append(num).append(" 掉落结果 -> ");
+        sb.append("dropID:").append(dropID).append(" num:").append(num).append(" результат выпадения -> ");
         HashMap<String, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < num; i++) {
             List<List<Integer>> tmp = Manager.dropManager.deal().getItemDrops(player, dropID);
@@ -2265,7 +2265,7 @@ public class GmCommandScript implements IScript, IGmScript {
         }
 
         if (map.size() == 0) {
-            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "drop命令测试失败，没有掉落");
+            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "dropтест команды завершился неудачей，нет выпадения");
             return;
         }
 
@@ -2273,12 +2273,12 @@ public class GmCommandScript implements IScript, IGmScript {
         for (List<Integer> list : dropList) {
             Cfg_Item_Bean model = CfgManager.getCfg_Item_Container().getValueByKey(list.get(0));
             if (model == null)
-                sb.append("[错误道具：").append(list.get(0));
+                sb.append("[Ошибочный предмет：").append(list.get(0));
             else
                 sb.append("[ID:").append(list.get(0))
-                        .append(" 道具名:").append(model.getName())
-                        .append(" 数量:").append(list.get(1))
-                        .append(" 绑定：").append(list.get(2));
+                        .append(" название предмета:").append(model.getName())
+                        .append(" количество:").append(list.get(1))
+                        .append(" привязка：").append(list.get(2));
 
             sb.append("] - ");
         }
@@ -2297,16 +2297,16 @@ public class GmCommandScript implements IScript, IGmScript {
         }
     }
 
-    //GM命令添加道具
+    //GMGM-команда добавления предмета
     private void addItem(Player player, String[] command) throws ParseException {
 //        if (!ServerConfig.isTestServer()) {
 //            return;
 //        }
-        //&additem 道具Id 数量 强化等级 是否绑定(1绑) 升星等级;
+        //&additem предметId количество уровень усиления привязан ли(1привязан) уровень повышения звёзд;
         int itemId = Integer.parseInt(command[1]);
         Cfg_Item_Bean model = CfgManager.getCfg_Item_Container().getValueByKey(itemId);
         if (model == null) {
-            log.error("gm获取 物品不存在 modelId:" + itemId);
+            log.error("gmполучить предмет не существует modelId:" + itemId);
             return;
         }
         long num = command.length >= 3 ? Long.parseLong(command[2]) : model.getMax();
@@ -2332,7 +2332,7 @@ public class GmCommandScript implements IScript, IGmScript {
         int itemBagId = Integer.parseInt(command[1]);
         Cfg_GMitem_Bean cfg_GMitem_Bean = CfgManager.getCfg_GMitem_Container().getValueByKey(itemBagId);
         if (cfg_GMitem_Bean == null) {
-            log.error("gm获取 物品集合 不存在 itemBagId:" + itemBagId);
+            log.error("gmполучить набор предметов не существует itemBagId:" + itemBagId);
             return;
         }
         Manager.backpackManager.manager().openBagCellSuccess(player, Global.Born_Bag_Num.get(1), (byte) 1, 0, 0);
@@ -2342,7 +2342,7 @@ public class GmCommandScript implements IScript, IGmScript {
                 ReadIntegerArray readArray = (ReadIntegerArray) items.get(i);
                 Cfg_Item_Bean model = CfgManager.getCfg_Item_Container().getValueByKey(readArray.get(0));
                 if (model == null) {
-                    log.error("gm获取 物品不存在 modelId:" + readArray.get(0));
+                    log.error("gmполучить предмет не существует modelId:" + readArray.get(0));
                     return;
                 }
                 long num = 0;
@@ -2584,7 +2584,7 @@ public class GmCommandScript implements IScript, IGmScript {
         for (int i = 0; i < a.length; i++) {
             Cfg_Item_Bean model = CfgManager.getCfg_Item_Container().getValueByKey(a[i]);
             if (model == null) {
-                log.error("gm获取 物品不存在 modelId:" + a[i]);
+                log.error("gmполучить предмет не существует modelId:" + a[i]);
                 return;
             }
             long num = model.getMax();
@@ -2696,7 +2696,7 @@ public class GmCommandScript implements IScript, IGmScript {
         for (int i = 0; i < eqs.length; i++) {
             Cfg_Item_Bean model = CfgManager.getCfg_Item_Container().getValueByKey(eqs[i]);
             if (model == null) {
-                log.error("gm获取 物品不存在 modelId:" + eqs[i]);
+                log.error("gmполучить предмет не существует modelId:" + eqs[i]);
                 return;
             }
             long num = model.getMax();
@@ -2711,7 +2711,7 @@ public class GmCommandScript implements IScript, IGmScript {
         }
     }
 
-    //GM命令设置等级
+    //GMGM-команда установки уровня
     private void setLevel(Player player, String[] command) {
         int oldLevel = player.getLevel();
         long oldExp = Manager.currencyManager.manager().getCurrencyNum(player, ItemCoinType.EXP);
@@ -2725,14 +2725,14 @@ public class GmCommandScript implements IScript, IGmScript {
         Manager.playerAttAttributeManager.deal().calcAttribute(player, PlayerAttributeType.BASE);
     }
 
-    //GM命令增加经验
+    //GMGM-команда добавления опыта
     private void addExp(Player player, String[] command) {
         long num = Long.parseLong(command[1]);
         Manager.currencyManager.manager().addEXP(player, num, ItemChangeReason.GM, IDConfigUtil.getLogId());
     }
 
     /**
-     * 设置角色属性
+     * установить атрибут персонажа
      *
      * @param player
      * @param command
@@ -2746,7 +2746,7 @@ public class GmCommandScript implements IScript, IGmScript {
         type = type < 0 || type > AttributeType.ATTR_MAX ? 0 : type;
         num = num < 0 ? 0 : num;
         if (num > 10000000) {
-            //超过1千万不设置，数据过大，会导致战力溢出
+            //больше 110 миллионов — не устанавливать，данные слишком велики，это приведёт к переполнению боевой силы
             return;
         }
         player.getAttribute().setAttribute(type, num);
@@ -2777,7 +2777,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 永久增加角色属性
+     * навсегда увеличить атрибут персонажа
      *
      * @param player
      * @param command
@@ -2809,13 +2809,13 @@ public class GmCommandScript implements IScript, IGmScript {
             do {
                 main_taskBean = CfgManager.getCfg_Task_Container().getValueByKey(initTaskId);
                 if (main_taskBean == null) {
-                    log.error("主线任务为空 task={}", initTaskId);
+                    log.error("основное задание пусто task={}", initTaskId);
                     return -2;
                 }
                 mainTaskIds.add(initTaskId);
                 initTaskId = main_taskBean.getPost_task_id();
                 if (mainTaskIds.contains(initTaskId)) {
-                    log.error("主线任务" + main_taskBean.getTask_id() + " 的下一条重复！" + initTaskId);
+                    log.error("основное задание" + main_taskBean.getTask_id() + " следующее задание повторяется！" + initTaskId);
                     log.error(mainTaskIds);
                     return -1;
                 }
@@ -2835,59 +2835,59 @@ public class GmCommandScript implements IScript, IGmScript {
         if (result < 0) {
             return false;
         }
-        //0.1只能往后面走
+        //0.1можно двигаться только вперёд
         Cfg_Task_Bean q_mainBean = CfgManager.getCfg_Task_Container().getValueByKey(modelId);
         if (q_mainBean == null) {
-            MessageUtils.notify_player(player, Notify.ERROR, "此任务ID在系统配置中找不到！任务id = " + modelId);
+            MessageUtils.notify_player(player, Notify.ERROR, "Это заданиеIDне найдено в системной конфигурации！заданиеid = " + modelId);
             return false;
         }
-        //已经做了
+        //уже выполнено
         if (player.getOverMainTaskIDs().contains(modelId)) {
-            log.error(TaskHelp.getPlayerInfo(player) + "在使用Gm newTotask时，此任务已经完成:" + modelId);
+            log.error(TaskHelp.getPlayerInfo(player) + "при использовании Gm newTotask ，это задание уже завершено:" + modelId);
             return false;
         }
 
-        //当前任务为空，主动接取下一个任务
+        //текущее задание отсутствует，автоматически принять следующее задание
         if (player.getCurMainTasks().isEmpty()) {
             int size = player.getOverMainTaskIDs().size();
             if (size <= 0) {
-                log.error(TaskHelp.getPlayerInfo(player) + "在使用gm newtotask 时没有任务，且已经完成主线任务列表也为空！");
+                log.error(TaskHelp.getPlayerInfo(player) + "при использовании gm newtotask  нет задания，и список уже завершённых основных заданий также пуст！");
                 return false;
             }
             int finalTaskId = player.getOverMainTaskIDs().get(player.getOverMainTaskIDs().size() - 1);
             Cfg_Task_Bean finalMainTaskBean = CfgManager.getCfg_Task_Container().getValueByKey(finalTaskId);
             if (finalMainTaskBean == null) {
-                log.error("newtotask 时 主线任务配置不存在！" + finalTaskId);
+                log.error("newtotask   конфигурация основного задания не существует！" + finalTaskId);
                 return false;
             }
             int nextTaskId = finalMainTaskBean.getPost_task_id();
             if (nextTaskId == 0 || nextTaskId == -1) {
-                log.error(TaskHelp.getPlayerInfo(player) + "在使用 gm newtotask 时，目前没有任务，以不该有任务，请先做特殊操作，比如选阵营！");
+                log.error(TaskHelp.getPlayerInfo(player) + "при использовании  gm newtotask  ，сейчас задания нет，и задания быть не должно，сначала выполните специальное действие，например, выберите лагерь！");
                 return false;
             }
             Manager.taskManager.deal().acceptTask(player, Task.MAIN_TASK, nextTaskId, 0, false);
         }
         if (player.getCurMainTasks().isEmpty()) {
-            log.error("接取任务失败！");
+            log.error("Не удалось принять задание！");
             return false;
         }
         if (player.getCurMainTasks().get(0).getModelId() == modelId) {
-            log.error("当前任务就是目标任务");
+            log.error("Текущее задание уже является целевым");
             return false;
         }
         Cfg_Task_Bean q_task_mainBean = null;
         int nexttaskId;
         do {
             if (player.getCurMainTasks() == null || player.getCurMainTasks().isEmpty()) {
-                log.error("使用GM完成主线任务时提交失败，");
+                log.error("использованияGMНе удалось отправить завершение основного задания，");
                 return false;
             }
             MainTask task = player.getCurMainTasks().get(0);
             if (!task.finishTask(player, true)) {
-                log.error("使用GM完成主线任务时提交失败，");
+                log.error("использованияGMНе удалось отправить завершение основного задания，");
                 return false;
             }
-//            log.info("完成任务 task={}", task.getModelId());
+//            log.info("Завершено задание task={}", task.getModelId());
             q_task_mainBean = CfgManager.getCfg_Task_Container().getValueByKey(task.getModelId());
             nexttaskId = q_mainBean.getPost_task_id();
             if (nexttaskId <= 0) {
@@ -2899,30 +2899,30 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
 
-    //改变坐骑阶数
+    //изменить ступень ездового животного
     private void addHorseLayer(Player player, int addLayer) {
         /**
-         * TODO:后续修改这个函数的逻辑
+         * TODO:в дальнейшем изменить логику этой функции
          * */
 //        Horse horse = player.getHorse();
 //        int curLayer = horse.getHorseSteps();
 //
 //        if (curLayer == 0) {
-//            log.error("玩家" + player.getName() + "当前尚无坐骑！");
+//            log.error("игрок" + player.getName() + "сейчас ещё нет ездового животного！");
 //            return;
 //        }
 //
 //        int afterLayer = curLayer + addLayer;
 //        if (afterLayer > Manager.horseManager.deal().getHorseHighestLayer() || afterLayer < 0) {
-//            log.error("增加坐骑阶数数据错误！");
+//            log.error("ошибка данных при повышении ступени ездового животного！");
 //            return;
 //        }
 //
-//        //保证addLayer>1时跨阶增加时每阶可激活的技能都能被激活
+//        //гарантировать, что при addLayer>1 повышении сразу на несколько ступеней навыки каждой ступени будут активированы
 //        for (int i = curLayer; i < afterLayer; i++) {
 //            horse.getHorseStronger().setHorseLayer(i + 1);
 //            horse.setCurLayer(i + 1);
-////            horse.addSkillActivated(); //若存在新的坐骑技能激活，则激活对应的坐骑技能
+////            horse.addSkillActivated(); //если есть новый навык ездового животного для активации，активировать соответствующий навык ездового животного
 //        }
 ////        horse.getHorseStronger().setCurBless(0);
 ////        horse.getHorseStronger().setCurUpTimes(0);
@@ -2930,20 +2930,20 @@ public class GmCommandScript implements IScript, IGmScript {
 //        horse.setRideState(HorseRideStateEnum.Ride);
 //
 //        Manager.horseManager.deal().sendHorseInfo(player);
-//        Manager.playerAttAttributeManager.deal().calPlayerAttributs(player, PlayerAttributeType.HORSE); //重新计算坐骑加成属性
-//        Manager.achievementManager.achievementCheck(player, FunctionVariable.HorseLv, horse.getHorseStronger().getHorseLayer()); //成就检查
+//        Manager.playerAttAttributeManager.deal().calPlayerAttributs(player, PlayerAttributeType.HORSE); //пересчитать бонусные атрибуты ездового животного
+//        Manager.achievementManager.achievementCheck(player, FunctionVariable.HorseLv, horse.getHorseStronger().getHorseLayer()); //проверка достижений
 ////        manager.taskManager.action(player, Task.ACTION_TYPE_FUNCTION, BranchType.HORSEUPLEVEL.getValue(), horse.getHorseStronger().getHorseLayer());
 //        Manager.playerManager.savePlayer(player, SavePlayerLevel.RightNow);
     }
 
-    //设置坐骑幻化等级
+    //установить уровень преобразования ездового животного
     private void setHorseStarLv(Player player, int starLv) {
         /**
-         * TODO:后续修改这个函数的逻辑
+         * TODO:в дальнейшем изменить логику этой функции
          * */
 //        Horse horse = player.getHorse();
 //        if (horse.getHorseStronger().getHorseLayer() == 0) {
-//            log.error("玩家" + player.getName() + "当前尚无坐骑！");
+//            log.error("игрок" + player.getName() + "сейчас ещё нет ездового животного！");
 //            return;
 //        }
 //
@@ -2955,21 +2955,21 @@ public class GmCommandScript implements IScript, IGmScript {
 //
 //        horse.getHorseStronger().setHorseStar(afterLevel);
 //        Manager.horseManager.deal().sendHorseInfo(player);
-//        Manager.playerAttAttributeManager.deal().calPlayerAttributs(player, PlayerAttributeType.HORSE); //重新计算坐骑加成属性
-//        Manager.achievementManager.achievementCheck(player, FunctionVariable.MountStar, horse.getHorseStronger().getHorseStar()); //成就检查
+//        Manager.playerAttAttributeManager.deal().calPlayerAttributs(player, PlayerAttributeType.HORSE); //пересчитать бонусные атрибуты ездового животного
+//        Manager.achievementManager.achievementCheck(player, FunctionVariable.MountStar, horse.getHorseStronger().getHorseStar()); //проверка достижений
 //        Manager.playerManager.savePlayer(player, SavePlayerLevel.RightNow);
     }
 
 
     /**
-     * 模拟进入副本
+     * имитация входа в подземелье
      *
      * @param player
      * @param command
      */
     private void enterCopyMap(Player player, String[] command) {
         if (command.length < 2) {
-            log.error("传入的参数个数不对！");
+            log.error("Неверное количество переданных параметров！");
             return;
         }
         int modelId = Integer.parseInt(command[1]);
@@ -3009,22 +3009,22 @@ public class GmCommandScript implements IScript, IGmScript {
             if (!isCanAdd) {
                 return;
             }
-            //重新计算属性
+            //пересчитать атрибуты
             Manager.playerAttAttributeManager.deal().calcAttribute(player, PlayerAttributeType.BASE);
 
-            //将血量置为满
+            //установить здоровье на максимум
             player.setCurHp(player.getAttribute().MaxHP());
             player.onHpChange(null);
             return;
 
         }
-        //再把等级降为原来的等级
+        //затем вернуть уровень к исходному
         player.getCurrencys().set(ItemCoinType.EXP, 0);
         player.getUsedActiveCodeList().add("GMTT");
 
         Manager.backpackManager.manager().openBagCellSuccess(player, Global.Born_Bag_Num.get(1), (byte) 1, 0, actionId);
 
-        //强化装备到3星
+        //усилить экипировку до 3 звёзд
         Iterator<Item> iter = player.getBackpackItems().values().iterator();
         while (iter.hasNext()) {
             Item item = iter.next();
@@ -3041,9 +3041,9 @@ public class GmCommandScript implements IScript, IGmScript {
             }
         }
         /**
-         * 装备系统重构——在EquipPart中增加私有变量Equip，表示此部位穿的装备，为空表示没穿
+         * рефакторинг системы экипировки——в EquipPart добавить приватную переменную Equip，обозначающую экипировку, надетую в этом слоте，null означает, что ничего не надето
          * huangzhaomin 2019/04/30
-         * 原始代码：
+         * исходный код：
          * for (Equip equip : player.getEquips()) {
          *             if (equip != null) {
          * */
@@ -3060,15 +3060,15 @@ public class GmCommandScript implements IScript, IGmScript {
 //            MessageUtils.send_to_player(player, EquipMessage.ResEquipUpStarSuccess.MsgID.eMsgID_VALUE, msg.build().toByteArray());
         }
 
-        //重新计算属性
+        //пересчитать атрибуты
         Manager.playerAttAttributeManager.deal().calcAttribute(player, PlayerAttributeType.EQUIP);
 
-        //将血量置为满
+        //установить здоровье на максимум
         player.setCurHp(player.getAttribute().MaxHP());
         player.onHpChange(null);
     }
 
-    //GM添加buff
+    //GMдобавитьbuff
     private void addBuff(Player player, String[] command) {
         int buffId = 0;
         Fighter tar = player;
@@ -3088,7 +3088,7 @@ public class GmCommandScript implements IScript, IGmScript {
                 }
             }
         }
-        log.info("GM 添加buff" + buffId);
+        log.info("GM добавитьbuff" + buffId);
         Manager.buffManager.deal().onAddBuff(player, tar, buffId);
     }
 
@@ -3096,7 +3096,7 @@ public class GmCommandScript implements IScript, IGmScript {
         Manager.guildsManager.manager().reqEnterGuildBase(player);
     }
 
-    //GM进入世界地图
+    //GMвойти на мировую карту
     private void enterMap(Player player, String[] command) {
         int mapModelId = Integer.parseInt(command[1]);
         Position target = null;
@@ -3106,7 +3106,7 @@ public class GmCommandScript implements IScript, IGmScript {
             target = new Position(x, y);
         }
 
-        log.info(player.nameIdString() + ",GM 进入地图：" + mapModelId, target);
+        log.info(player.nameIdString() + ",GM войти на карту：" + mapModelId, target);
         Cfg_Mapsetting_Bean mapCfg = CfgManager.getCfg_Mapsetting_Container().getValueByKey(mapModelId);
         if (null == mapCfg) {
             return;
@@ -3119,7 +3119,7 @@ public class GmCommandScript implements IScript, IGmScript {
         Manager.mapManager.changeMap(player, mapModelId, target, -1, false);
     }
 
-    //GM进入线
+    //GMперейти на линию
     private void enterLine(Player player, String[] command) {
         int line = Integer.parseInt(command[1]);
         player.setGM(true);
@@ -3130,29 +3130,29 @@ public class GmCommandScript implements IScript, IGmScript {
         if (map.getLineId() == line) {
             return;
         }
-        log.info("GM 进入地图 line：" + line + "modelId:" + player.getModelId());
+        log.info("GM войти на карту line：" + line + "modelId:" + player.getModelId());
         Manager.mapManager.changeMap(player, player.getModelId(), line, map.getBrithPos(), -1);
     }
 
     private void showshop(Player player, String[] command) {
         ShopBean shop = Manager.shopManager.getShopBean(Integer.parseInt(command[1]));
         if (shop == null)
-            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "没有找到该商品");
+            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Товар не найден");
         else
             MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, shop.toString());
     }
 
-    //下发主角的当前血量、等级（总等级、几转几）、坐标（x，y，地图id）、经验
+    //отправить текущее здоровье главного персонажа、уровень（общий уровень、ступень перерождения）、координаты（x，y，картаid）、опыт
     private void sendMeInfo(Player player) {
-        String str = "curHP:" + player.getCurHp() + "；" + "地图id：" + player.gainMapModelId() + " PosX:"
+        String str = "curHP:" + player.getCurHp() + "；" + "картаid：" + player.gainMapModelId() + " PosX:"
                 + player.gainX() + " PosY:" + player.gainY() + ";EXP" + Manager.currencyManager.manager().getCurrencyNum(player, ItemCoinType.EXP);
         Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str, 0);
     }
 
-    //Gm指令发送邮件给玩家( sendmail mailTitle mailContent mailAttach (ex: sendMail 打怪奖励 哈哈，恭喜怪被主儿打死，不过主儿可真狠呐。 1020,10,1;5001,5,1;50001,1,1) )
+    //GmGM-команда отправки письма игроку( sendmail mailTitle mailContent mailAttach (ex: sendMail Награда за убийство монстра Ха-ха，поздравляем, монстр убит хозяином，однако хозяин действительно беспощаден。 1020,10,1;5001,5,1;50001,1,1) )
     private void sendMailToPlayer(Player player, String[] command) {
-        if (command.length < 3 || command.length > 4) { //邮件标题和内容必须有，附件可无可有。标题和内容内部不可以有空格，
-            log.error("发送邮件命令错误！");
+        if (command.length < 3 || command.length > 4) { //заголовок и содержимое письма обязательны，вложение необязательно。в заголовке и содержимом не должно быть пробелов，
+            log.error("Ошибка команды отправки письма！");
             return;
         }
         String mailTitle = command[1];
@@ -3162,7 +3162,7 @@ public class GmCommandScript implements IScript, IGmScript {
             String strAttach = command[3];
             itemList = Item.createItems(strAttach, Symbol.FENHAO, Symbol.DOUHAO);
         }
-        Manager.mailManager.sendMailTo(player.getId(), 1, "Gm命令发送", mailTitle, mailContent, itemList, 0, ItemChangeReason.GM, 0);
+        Manager.mailManager.sendMailTo(player.getId(), 1, "Gmотправлено GM-командой", mailTitle, mailContent, itemList, 0, ItemChangeReason.GM, 0);
     }
 
     private void sendMailToPlayer1(Player player, String[] command) {
@@ -3182,11 +3182,11 @@ public class GmCommandScript implements IScript, IGmScript {
 
             itemList = Item.createItems(Utils.toReadIntegerArrayEsByList(list));
         }
-        Manager.mailManager.sendMailTo(player.getId(), 1, "Gm命令发送", mailTitle, mailContent, itemList, 0, ItemChangeReason.GM, 0);
+        Manager.mailManager.sendMailTo(player.getId(), 1, "Gmотправлено GM-командой", mailTitle, mailContent, itemList, 0, ItemChangeReason.GM, 0);
     }
 
 
-    //设置pk值
+    //установить pkзначение
     private void setPkValue(Player player, String[] command) {
         int value = Integer.parseInt(command[1]);
         if (value >= 0) {
@@ -3197,17 +3197,17 @@ public class GmCommandScript implements IScript, IGmScript {
         }
     }
 
-    //获取当前位置
+    //получить текущую позицию
     private void getPosInfo(Player player, String[] command) {
         if (player.isTestPos()) {
             player.setTestPos(false);
         } else {
             player.setTestPos(true);
         }
-        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, "坐标：" + player.gainCurPos().toString(), 0);
+        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, "координаты：" + player.gainCurPos().toString(), 0);
     }
 
-    //设置服务器时间
+    //установить время сервера
     private boolean setTime(String[] command) throws ParseException, Exception {
         long setTime = TimeUtils.Time();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
@@ -3219,7 +3219,7 @@ public class GmCommandScript implements IScript, IGmScript {
         return true;
     }
 
-    //移除buff
+    //удалитьbuff
     private void removeBuff(Player player, String[] command) {
         int buffID = Integer.parseInt(command[1]);
         Manager.buffManager.deal().onRemoveBuff(player, buffID);
@@ -3229,7 +3229,7 @@ public class GmCommandScript implements IScript, IGmScript {
 
     }
 
-    //杀死周围非本阵营的怪物
+    //убить окружающих монстров не из своего лагеря
     private void killRound(Player player, String[] command) {
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
         List<Fighter> members = null;
@@ -3297,7 +3297,7 @@ public class GmCommandScript implements IScript, IGmScript {
         if (thisplayer == null) {
             return;
         }
-        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, thisplayer.getName() + "的仇恨列表大小：" + thisplayer.getHatreds().size(), 0);
+        Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, thisplayer.getName() + " размер списка агрессии:：" + thisplayer.getHatreds().size(), 0);
     }
 
     private void addGuildExp(Player player, String[] command) {
@@ -3333,30 +3333,30 @@ public class GmCommandScript implements IScript, IGmScript {
         }
         MapObject map = Manager.mapManager.getMap(thisplayer.gainMapId());
         boolean isBlock = Utils.isCanMove(map, thisplayer.gainCurPos());
-        String sessionState = "为空";
-        String str = "玩家:" + thisplayer.getName() + "；curHP:" + thisplayer.getCurHp() + "；" + "地图id："
+        String sessionState = "пусто";
+        String str = "игрок:" + thisplayer.getName() + "；curHP:" + thisplayer.getCurHp() + "；" + "картаid："
                 + thisplayer.gainMapModelId() + " line:" + thisplayer.gainLine() + " PosX:" + thisplayer.gainX() + " PosY:" + thisplayer.gainY() + ";EXP" + Manager.currencyManager.manager().getCurrencyNum(thisplayer, ItemCoinType.EXP)
-                + "；是否可以移动：" + isBlock + " sessionState:" + sessionState + " session:" + thisplayer.getIosession();
+                + "；можно ли перемещаться：" + isBlock + " sessionState:" + sessionState + " session:" + thisplayer.getIosession();
         Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, str, 0);
     }
 
-    //添加采集物
+    //добавить объект сбора
     private void cell(Player player, String[] command) {
         int cellId = Integer.parseInt(command[1]);
         Item item = Manager.backpackManager.manager().getItemByCellId(player, cellId);
         if (item == null) {
-            Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, "物品未找到 cellId:" + cellId, 0);
+            Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, "Предмет не найден cellId:" + cellId, 0);
             return;
         }
         Manager.chatManager.deal().sendChatMessage(player, null, ChatChannel.CHATCHANNEL_SYSTEM, 0, item.toString(), 0);
     }
 
-    //添加采集物
+    //добавить объект сбора
     private void addGather(Player player, String[] command) {
         int gatherID = Integer.parseInt(command[1]);
         Cfg_Gather_Bean gatherCfg = CfgManager.getCfg_Gather_Container().getValueByKey(gatherID);
         if (null == gatherCfg) {
-            log.error("初始化采集物" + gatherID + "失败， 没有这个配置");
+            log.error("Инициализация объекта сбора" + gatherID + "не удалась， такой конфигурации нет");
             return;
         }
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
@@ -3364,18 +3364,18 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 查询充值记录
+     * проверить запись пополнения
      */
     private void queryrecharge(Player player, String[] command) {
         String orderId = command[1];
         if (Manager.rechargeManager.getRechargeMap().containsKey(orderId)) {
-            MessageUtils.notify_player(player, Notify.CHAT, orderId + "已经存在充值表了！");
+            MessageUtils.notify_player(player, Notify.CHAT, orderId + "уже существует в таблице пополнений!！");
         } else {
-            MessageUtils.notify_player(player, Notify.CHAT, orderId + "不存在充值表了！");
+            MessageUtils.notify_player(player, Notify.CHAT, orderId + "не существует в таблице пополнений!！");
         }
     }
 
-    //充值
+    //пополнение
     private void recharge(Player player, String[] command) {
         if (!ServerConfig.isTestServer()) {
             return;
@@ -3412,7 +3412,7 @@ public class GmCommandScript implements IScript, IGmScript {
         int id = Integer.parseInt(command[1]);
         RechargeItemInfo cfg = Manager.rechargeManager.getRechargeItemInfoMap().get(id);
         if (cfg == null) {
-            log.error("RechargeItemInfo  不存在  {} ", id);
+            log.error("RechargeItemInfo  не существует  {} ", id);
             return;
         }
 
@@ -3462,12 +3462,12 @@ public class GmCommandScript implements IScript, IGmScript {
         int type = Integer.parseInt(command[2]);
         long num = Long.parseLong(command[3]);
         if (cmd.equals("last")) {
-            // 设置昨天数据
+            // установить данные за вчера
             RetrieveResData data = player.getLastRRD();
             data.setTime(TimeUtils.Time() - GlobalType.MILLIS_PER_DAY);
             data.getMap().put(type, num);
         } else if (cmd.equals("now")) {
-            // 设置今天数据
+            // установить данные за сегодня
             RetrieveResData data = player.getCurRRD();
             data.getMap().put(type, num);
         }
@@ -3501,7 +3501,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 商业化综合
+     * комплекс коммерциализации
      *
      * @param player
      * @param command
@@ -3519,27 +3519,27 @@ public class GmCommandScript implements IScript, IGmScript {
                 }
                 break;
             case "dci":
-                // 跳至下一天签到
+                // перейти к отметке следующего дня
                 DayCheckIn checkIn = player.getDayCheckIn();
                 checkIn.setFirstTime(checkIn.getFirstTime() - GlobalType.MILLIS_PER_DAY);
                 MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "success");
                 break;
             case "fc":
-                // 查询首充续充数据
+                // проверить данные первой/повторной покупки
                 MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, JsonUtils.toJSONString(player.getFcCharge()));
                 break;
             case "fc_first":
-                // 首充跳到下一档
+                // первая покупка — перейти к следующему этапу
                 player.getFcCharge().getFirst().setStartTime(TimeUtils.Time() - GlobalType.MILLIS_PER_DAY);
                 Manager.commercializeManager.playerOnline(player);
                 break;
             case "fc_next":
-                // 续充跳到下一档
+                // повторная покупка — перейти к следующему этапу
                 player.getFcCharge().getNext().setStartTime(TimeUtils.Time() - GlobalType.MILLIS_PER_DAY);
                 Manager.commercializeManager.playerOnline(player);
                 break;
             case "dr_next":
-                // 切换至下一天
+                // переключиться на следующий день
                 activity = Manager.commercializeManager.getPlayerDailyAccRecharge(player.getId());
                 activity.setLastResetTime(TimeUtils.Time() - GlobalType.MILLIS_PER_DAY);
                 for (DailyRechargeStage stage : activity.getStageList()) {
@@ -3550,22 +3550,22 @@ public class GmCommandScript implements IScript, IGmScript {
                     script.onReqCommercialize(player);
                 break;
             case "dr":
-                // 查询每日累充数据
+                // проверить данные ежедневного накопительного пополнения
                 activity = Manager.commercializeManager.getPlayerDailyAccRecharge(player.getId());
                 if (activity == null)
-                    MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "该玩家还没有每日累充数据！");
+                    MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "У этого игрока ещё нет данных ежедневного накопительного пополнения!！");
                 else
                     MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, JsonUtils.toJSONString(activity));
                 break;
             case "dr_reward":
-                // 每日累充领奖
+                // получить награду ежедневного накопительного пополнения
                 if (command.length >= 3) {
                     int awardId = Integer.parseInt(command[2]);
                     Manager.commercializeManager.dailyRecharge().onReqDailyAccRechargeAward(player, awardId);
                 }
                 break;
             case "dr_ver":
-                // 查询每日累充版本号
+                // проверить версию ежедневного накопительного пополнения
                 int day = TimeUtils.getOpenServerDay();
                 Cfg_Recharge_daily_total_Bean cfg = null;
                 for (Cfg_Recharge_daily_total_Bean bean : Cfg_Recharge_daily_total_Container.GetInstance().getValuees()) {
@@ -3579,10 +3579,10 @@ public class GmCommandScript implements IScript, IGmScript {
                     MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL,
                             JsonUtils.toJSONString("s:" + cfg.getStartTime() + " e:" + cfg.getEndTime()));
                 else
-                    MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, JsonUtils.toJSONString("没有找到有效数据"));
+                    MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, JsonUtils.toJSONString("Действующие данные не найдены"));
                 break;
             case "dr_reset":
-                // 从配置表中刷一份活动数据
+                // загрузить копию данных активности из таблицы конфигурации
                 activity = Manager.commercializeManager.getPlayerDailyAccRecharge(player.getId());
                 Manager.commercializeManager.dailyRecharge().saveDailyAccRecharge(activity);
                 business(player, new String[]{"business", "dr_ver"});
@@ -3593,7 +3593,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 动态调整代码，执行任何命令
+     * динамически корректировать код，выполнять любую команду
      *
      * @param player
      * @param command
@@ -3607,21 +3607,21 @@ public class GmCommandScript implements IScript, IGmScript {
         MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "success");
     }
 
-    //地图信息
+    //Информация о карте
     private void maplines(Player player, String[] command) {
-        String args = "当前地图线路列表：\n";
+        String args = "Список линий текущей карты：\n";
         int body = 0;
         for (MapObject map : Manager.mapManager.getWorldMaps().get(player.gainMapModelId())) {
-            String cell = map.getLineId() + " 线　" + map.getPlayers().size() + " 人 \n";
+            String cell = map.getLineId() + " линия　" + map.getPlayers().size() + "  чел. \n";
             args += cell;
             body += map.getPlayers().size();
 
         }
-        args += "总线路数：" + Manager.mapManager.getWorldMaps().get(player.gainMapModelId()).size() + " 总人数：" + body;
+        args += "Всего линий：" + Manager.mapManager.getWorldMaps().get(player.gainMapModelId()).size() + " всего игроков：" + body;
         MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, args);
     }
 
-    //给玩家增加亲密度
+    //добавить игроку близость
     private void addIntimacy(Player player, int add) {
         long playerId = player.getId();
         PlayerRelation playerRelation = Manager.friendManager.getPlayerRelation(playerId);
@@ -3688,7 +3688,7 @@ public class GmCommandScript implements IScript, IGmScript {
 //        if (union == null) {
 //            return;
 //        }
-//        //负数清空所有占领的城市
+//        //отрицательное значение очищает все захваченные города
 //        if (cityId <= 0) {
 //            List<City> citys = Manager.cityManager.getOwnCity(player);
 //            for (City c : citys) {
@@ -3734,11 +3734,11 @@ public class GmCommandScript implements IScript, IGmScript {
 
     }
 
-    //获取周围的Fighter
+    //получить окружающих Fighter
     public List<Fighter> getRandomFighter(Fighter attacker, MapObject map) {
 
         List<Fighter> fighters = new ArrayList<>();
-        //战斗人员集合
+        //набор участников боя
         if (null == map) {
             return fighters;
         }
@@ -3775,13 +3775,13 @@ public class GmCommandScript implements IScript, IGmScript {
         int titleId = Integer.parseInt(command[1]);
         Cfg_Title_Bean bean = CfgManager.getCfg_Title_Container().getValueByKey(titleId);
         if (bean == null) {
-            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "没有找到该称号:" + titleId);
+            MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Этот титул не найден:" + titleId);
             return;
         }
 
         Manager.titleManager.deal().useTitleItem(player, titleId, 1, ItemChangeReason.GMGet);
         Manager.titleManager.deal().onReqWearTitle(player, titleId);
-        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "添加称号成功:" + titleId);
+        MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, "Титул успешно добавлен:" + titleId);
     }
 
     private void querytitle(Player player, String[] command) {
@@ -3804,13 +3804,13 @@ public class GmCommandScript implements IScript, IGmScript {
         MessageUtils.notify_player(player, Notify.CHAT_SYS_BULL, command[1] + " : " + v);
     }
 
-    //称号进度
+    //прогресс титула
     private void titleprocess(Player player, String[] command) {
 //        int process = Integer.parseInt(command[1]);
 //        Manager.titleManager.addActiveTitleProcessValue(player, FunctionVariable.ConsumeBindDiamonds, process);
     }
 
-    //攻击周围
+    //атаковать окружающих
     private void attackRound(Player player, String[] command) {
         int hp = Integer.parseInt(command[1]);
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
@@ -3842,27 +3842,27 @@ public class GmCommandScript implements IScript, IGmScript {
 
     @Override
     public void OnPublicGMBack(ChannelHandlerContext context, P2GGMCMDResult mess) {
-        log.error("public 的GM 命令执行返回！");
+        log.error("public  GM возврат результата выполнения GM-команды！");
         long roleId = mess.getRoleId();
         if (roleId < 1) {
-            log.error(" GM 命令执行返回结果为：" + mess.getMessStr());
+            log.error(" GM Результат выполнения GM-команды:：" + mess.getMessStr());
             return;
         }
         if (mess.getState() == 3) {
-            log.error(" GM 命令执行返回结果为：" + mess.getMessStr());
+            log.error(" GM Результат выполнения GM-команды:：" + mess.getMessStr());
             return;
         }
 
         Player player = Manager.playerManager.getPlayerOnline(roleId);
         if (player == null) {
-            log.error(" GM 命令执行返回结果为：" + mess.getMessStr());
+            log.error(" GM Результат выполнения GM-команды:：" + mess.getMessStr());
             return;
         }
 
         MessageUtils.notify_player(player, Notify.CHAT, mess.getMessStr());
     }
 
-    //进入跨服
+    //войти на кросс-сервер
     private void entercross(Player player, String[] command) {
         int cloneId = Integer.parseInt(command[1]);
 //        ReqCreateFight.Builder messInfo = ReqCreateFight.newBuilder();
@@ -3871,7 +3871,7 @@ public class GmCommandScript implements IScript, IGmScript {
 //        manager.crossServerManager.crossFightdeal().OnReqCreateFight(null, player, messInfo.build());
     }
 
-    //传送到最近的玩家
+    //телепортироваться к ближайшему игроку
     private void findaround(Player player, String[] command) {
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
         Player mdp = null;
@@ -3902,7 +3902,7 @@ public class GmCommandScript implements IScript, IGmScript {
         }
         boolean block = Utils.isCanMove(map, mdp.gainCurPos());
         if (!block) {
-            log.error("moveTo 阻挡点：" + mdp.gainCurPos());
+            log.error("moveTo непроходимая точка：" + mdp.gainCurPos());
             return;
         }
 
@@ -3911,7 +3911,7 @@ public class GmCommandScript implements IScript, IGmScript {
     }
 
     /**
-     * 游戏服发给战斗服的时间修改
+     * изменение времени, отправляемое игровым сервером на боевой сервер
      *
      * @param context
      */
@@ -3931,20 +3931,20 @@ public class GmCommandScript implements IScript, IGmScript {
                 break;
             case "&getfsidtime":
             case "&getfighttime": {
-                mess += "当前战斗服的系统时间:" + TimeUtils.NowToString() + ",当前系统毫秒数:" + TimeUtils.Time();
+                mess += "Текущее системное время боевого сервера:" + TimeUtils.NowToString() + ",текущее системное время в миллисекундах:" + TimeUtils.Time();
             }
             break;
             case "&setfsidtime":
             case "&setfighttime": {
                 try {
                     if (setTime(param)) {
-                        mess += "当前战斗服的系统时间:" + TimeUtils.NowToString();
+                        mess += "Текущее системное время боевого сервера:" + TimeUtils.NowToString();
                     } else {
-                        mess += "当前战斗服的系统时间:" + TimeUtils.NowToString() + "， 战斗服时间设置失败！";
+                        mess += "Текущее системное время боевого сервера:" + TimeUtils.NowToString() + "， не удалось установить время боевого сервера！";
                     }
                 } catch (Exception e) {
-                    log.error("设置战斗服时间出错了！");
-                    mess += "当前战斗服的系统时间:" + TimeUtils.NowToString() + "，设置战斗服时间异常";
+                    log.error("Ошибка установки времени боевого сервера!！");
+                    mess += "Текущее системное время боевого сервера:" + TimeUtils.NowToString() + "，исключение при установке времени боевого сервера";
                 }
             }
             break;
@@ -3953,14 +3953,14 @@ public class GmCommandScript implements IScript, IGmScript {
                     int scriptId = Integer.parseInt(param[1]);
                     boolean is = Manager.scriptManager.reload(scriptId);
                     if (is) {
-                        mess += "脚本加载成功！";
+                        mess += "Скрипт загружен успешно!！";
                         YedMgr.getInstance().cleanFuncsIndex++;
                     } else {
-                        mess += "脚本加载失败！";
+                        mess += "Не удалось загрузить скрипт!！";
                     }
                 } catch (Exception e) {
                     log.error(e, e);
-                    mess += "加载脚本出现的异常了！";
+                    mess += "При загрузке скрипта возникло исключение!！";
                 }
             }
             break;
@@ -3997,15 +3997,15 @@ public class GmCommandScript implements IScript, IGmScript {
 
 
     /**
-     * 激活宠物
+     * активировать питомца
      *
      * @param player
      * @param petId
      */
     public void getPet(Player player, int petId) {
-        //系统开放
+        //открытие системы
         player.setLevel(800);
-        //激活宠物
+        //активировать питомца
         Manager.petManager.deal().petAction(player, 1, petId, true);
         Manager.petManager.deal().petAction(player, 3, petId, true);
     }
@@ -4025,7 +4025,7 @@ public class GmCommandScript implements IScript, IGmScript {
     private void getMapLines(Player player, String[] command) {
         int mapModelId = Integer.parseInt(command[1]);
         StringBuilder builder = new StringBuilder();
-        builder.append("线路:");
+        builder.append("Линии:");
         for (MapObject mapObject : Manager.mapManager.getWorldMaps().get(mapModelId)) {
             builder.append("_" + mapObject.getLineId());
         }
@@ -4054,7 +4054,7 @@ public class GmCommandScript implements IScript, IGmScript {
         int targetId = Integer.parseInt(command[command.length == 2 ? 1 : 2]);
         boolean result = newToTask(player, targetId);
         if (player.getCurMainTasks().size() < 1) {
-            log.error(player.nameIdString() + "， 没有后续任务 了！");
+            log.error(player.nameIdString() + "， нет последующих заданий ！");
             return;
         }
         MainTask mainTask = player.getCurMainTasks().get(0);
@@ -4063,13 +4063,13 @@ public class GmCommandScript implements IScript, IGmScript {
         }
     }
 
-    //一键增加玩家身上属性，如：宠物，物品多个，邮件，符文，称号，勋章
+    //одним нажатием увеличить атрибуты персонажа，например：питомец，несколько предметов，почта，руны，титулы，медали
     private void oneKeyAddPlayerAtt(Player p) {
-        //激活所有宠物
+        //активировать всех питомцев
         for (Cfg_Pet_Bean b : CfgManager.getCfg_Pet_Container().getValuees()) {
             Manager.petManager.deal().petAction(p, 1, b.getId(), true);
         }
-        //添加所有物品,使背包占满
+        //добавить все предметы,заполнить рюкзак
         for (Cfg_Equip_Bean e : CfgManager.getCfg_Equip_Container().getValuees()) {
             Item item = Item.createItem(e.getId(), 1, true);
             if (Manager.backpackManager.manager().onHasAddSpace(p, item)) {
@@ -4082,9 +4082,9 @@ public class GmCommandScript implements IScript, IGmScript {
                 }
             }
         }
-        //发送多个邮件
+        //отправить несколько писем
         for (int i = 0; i < 50; i++) {
-            Manager.mailManager.sendMailTo(p.getId(), 1, "系统", "机器人测试邮件", "系统测试机器人邮件", null, 0, ItemChangeReason.GM, 0);
+            Manager.mailManager.sendMailTo(p.getId(), 1, "Система", "Тестовое письмо робота", "Системное тестовое письмо робота", null, 0, ItemChangeReason.GM, 0);
         }
     }
 
@@ -4107,7 +4107,7 @@ public class GmCommandScript implements IScript, IGmScript {
         return true;
     }
 
-    //移动
+    //перемещение
     private void moveTo(Player player, String[] command) {
         if (command.length >= 4) {
             int mapID = Integer.parseInt(command[1]);
@@ -4119,7 +4119,7 @@ public class GmCommandScript implements IScript, IGmScript {
         float x = Float.parseFloat(command[1]);
         float y = Float.parseFloat(command[2]);
         Position pos = new Position(x, y);
-        log.info(player.getName() + "GM 移动{" + x + "," + y + "}");
+        log.info(player.getName() + "GM перемещение{" + x + "," + y + "}");
         player.changeCurPos(pos, true);
         MapMessage.ResJumpBlock.Builder msg = MapMessage.ResJumpBlock.newBuilder();
         msg.setId(player.getId());
@@ -4135,7 +4135,7 @@ public class GmCommandScript implements IScript, IGmScript {
         }
         boolean block = Utils.isCanMove(map, pos);
         if (!block) {
-            log.error("moveTo 阻挡点：" + pos);
+            log.error("moveTo непроходимая точка：" + pos);
             return;
         }
         if (player.gainMapModelId() == mapID) {
@@ -4251,9 +4251,9 @@ public class GmCommandScript implements IScript, IGmScript {
     private void intenPetEquip(Player player, int assid, int partId, int intenLv) {
         log.info(assid + "_" + partId + "_" + intenLv);
         player.getActivePet().getAssistants().get(assid).getParts().get(partId).setStrengthLv(intenLv);
-        //玩家属性变更
+        //изменение атрибутов игрока
         Manager.playerAttAttributeManager.deal().calcAttribute(player, PlayerAttributeType.PET);
-        //返回结果
+        //вернуть результат
         PetMessage.ResPetEquipStrength.Builder pb = PetMessage.ResPetEquipStrength.newBuilder();
         pb.setAssistantId(assid);
         pb.setCellId(partId);
@@ -4264,9 +4264,9 @@ public class GmCommandScript implements IScript, IGmScript {
     private void soulPetEquip(Player player, int assid, int partId, int soulLv) {
         log.info(assid + "_" + partId + "_" + soulLv);
         player.getActivePet().getAssistants().get(assid).getParts().get(partId).setSoulLv(soulLv);
-        //玩家属性变更
+        //изменение атрибутов игрока
         Manager.playerAttAttributeManager.deal().calcAttribute(player, PlayerAttributeType.PET);
-        //返回结果
+        //вернуть результат
         PetMessage.ResPetEquipSoul.Builder pb = PetMessage.ResPetEquipSoul.newBuilder();
         pb.setAssistantId(assid);
         pb.setCellId(partId);

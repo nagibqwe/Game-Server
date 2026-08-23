@@ -66,15 +66,15 @@ public class ServerScript implements IScript, IServerScript {
                     return ServerStr.getServerLang().get(skey);
                 }
             }
-            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " tableName _id" + tableName.toLowerCase() + "”+" + id + " 找不到", "语言包中没有配置“" + tableName.toLowerCase() + "”+" + id + " 的语言包ID值！");
-            return tableName + "(" + id + ")未知";
+            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " tableName _id" + tableName.toLowerCase() + "”+" + id + " не найдено", "В языковом пакете отсутствует ID для “" + tableName.toLowerCase() + "”+" + id + "!");
+            return tableName + "(" + id + ") неизвестно";
         } catch (Exception e) {
-            return "未知" + tableName + ":" + id;
+            return "Неизвестно " + tableName + ":" + id;
         }
     }
 
     /**
-     * 服务器字符串语言包
+     * Строки языкового пакета сервера
      *
      * @param tableName
      * @param id
@@ -92,16 +92,16 @@ public class ServerScript implements IScript, IServerScript {
                     return "2&_" + ServerStr.getServerLang().get(skey);
                 }
             }
-            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " tableName _id" + tableName.toLowerCase() + "”+" + id + " 找不到", "语言包中没有配置“" + tableName.toLowerCase() + "”+" + id + " 的语言包ID值！");
-            return "2&_" + tableName + "(" + id + ")未知";
+            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " tableName _id" + tableName.toLowerCase() + "”+" + id + " не найдено", "В языковом пакете отсутствует ID для “" + tableName.toLowerCase() + "”+" + id + "!");
+            return "2&_" + tableName + "(" + id + ") неизвестно";
         } catch (Exception e) {
-            return "未知" + tableName + ":" + id;
+            return "Неизвестно " + tableName + ":" + id;
         }
 
     }
 
     /**
-     * 服务器神兵名称获取
+     * Получение названия божественного оружия
      *
      * @param career
      * @param dragoonId
@@ -114,15 +114,15 @@ public class ServerScript implements IScript, IServerScript {
             if (ServerStr.getDragoon().containsKey(key)) {
                 return ServerStr.getDragoon().get(key);
             }
-            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " career_dragoonId：" + career + "_" + dragoonId + " 找不到", "请检查语言包！");
+            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " career_dragoonId：" + career + "_" + dragoonId + " не найдено", "Проверьте языковой пакет!");
             return key;
         } catch (Exception e) {
-            return "未知" + career + ":" + dragoonId;
+            return "Неизвестно " + career + ":" + dragoonId;
         }
     }
 
     /**
-     * 多语言获取语言
+     * Получение текста на нужном языке
      *
      * @param tableName
      * @param id
@@ -138,7 +138,7 @@ public class ServerScript implements IScript, IServerScript {
 
             ConcurrentHashMap<String, String> languagePack = ServerStr.getLanguageMap().get(languageType);
             if (languagePack == null) {
-                GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("找不到语言包", "找不到语言包，languageType=" + languageType);
+                GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("Языковой пакет не найден", "Языковой пакет не найден, languageType=" + languageType);
                 return null;
             }
             if (ServerStr.getLanguageNo().containsKey(key)) {
@@ -146,10 +146,10 @@ public class ServerScript implements IScript, IServerScript {
                 String skey = "str" + no;
                 return languagePack.get(skey);
             }
-            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr tableName_id 找不到", "语言包中没有配置“" + tableName.toLowerCase() + "”+" + id + " 的语言包ID值！");
+            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr tableName_id не найдено", "В языковом пакете отсутствует ID для “" + tableName.toLowerCase() + "”+" + id + "!");
             return null;
         } catch (Exception e) {
-            log.error("getLanguage异常：" + e);
+            log.error("Ошибка getLanguage：" + e);
             return null;
         }
     }
@@ -165,21 +165,21 @@ public class ServerScript implements IScript, IServerScript {
                     return ServerStr.getServerLang().get(skey);
                 }
             }
-            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " tableName _id" + tableName.toLowerCase() + "”+" + id + " 找不到", "语言包中没有配置“" + tableName.toLowerCase() + "”+" + id + " 的语言包ID值！");
-            return "" + tableName + "(" + id + ")未知";
+            GameServer.getInstance().getErrorLogThread().pushErrorExcptionLog("ServerStr" + " tableName _id" + tableName.toLowerCase() + "”+" + id + " не найдено", "В языковом пакете отсутствует ID для “" + tableName.toLowerCase() + "”+" + id + "!");
+            return "" + tableName + "(" + id + ") неизвестно";
         } catch (Exception e) {
-            return "未知" + tableName + ":" + id;
+            return "Неизвестно " + tableName + ":" + id;
         }
     }
 
-    //连接公共服务器成功了！的通知函数
+    //Уведомление об успешном подключении к публичному серверу
     @Override
     public void OnP2GResRegister(ChannelHandlerContext context, serverMessage.P2GResRegister messInfo) {
 
-        log.info("游戏服务器" + GameServer.getInstance().getServerName() + "注册到" + messInfo.getPublicName() + "返回成功！");
+        log.info("Игровой сервер " + GameServer.getInstance().getServerName() + " зарегистрирован на " + messInfo.getPublicName() + " успешно!");
 
-        log.info("公共服的连接地址：" + context.channel() + "内容:" + messInfo.getPublicName() + "(" + messInfo.getPublicId() + ")");
-        //战斗服请求跨魂兽森林的数据值
+        log.info("Адрес публичного сервера: " + context.channel() + " содержимое: " + messInfo.getPublicName() + "(" + messInfo.getPublicId() + ")");
+        //Запрос данных о боссах Леса Душ для боевого сервера
         if (GameServer.getInstance().IsFightServer()) {
             SoulAnimalForestMessage.F2PReqSoulAnimalForestBossInfo.Builder mess = SoulAnimalForestMessage.F2PReqSoulAnimalForestBossInfo.newBuilder();
             MessageUtils.send_to_public(SoulAnimalForestMessage.F2PReqSoulAnimalForestBossInfo.MsgID.eMsgID_VALUE, mess.build().toByteArray());
@@ -191,7 +191,7 @@ public class ServerScript implements IScript, IServerScript {
     }
 
     /**
-     * 注册战斗服的返回
+     * Ответ регистрации боевого сервера
      *
      * @param context
      * @param mess
@@ -199,29 +199,29 @@ public class ServerScript implements IScript, IServerScript {
     @Override
     public void OnF2GResRegister(ChannelHandlerContext context, F2GResRegister mess) {
         ConnectFightManager.GetInstance().Register(mess.getFsId(), context);
-        log.info("收到战斗服“" + mess.getFsName() + "(" + mess.getFsId() + ")”的注册返回!");
+        log.info("Получен ответ регистрации от боевого сервера “" + mess.getFsName() + "(" + mess.getFsId() + ")”!");
         ConnectFightServer cfs = ConnectFightManager.GetInstance().getConList().get(mess.getFsId());
         if (cfs == null) {
-            log.error("战斗服的原始类不存在了， 请查看情况!");
+            log.error("Класс боевого сервера не существует, проверьте ситуацию!");
             return;
         }
         cfs.setFid(mess.getFsId());
         cfs.setLastheartTime(System.currentTimeMillis());
-        int id = context.channel().attr(SessionAttribute.CONNECT_SERVER_ID).get();//, id);
-        String ip = context.channel().attr(SessionAttribute.CONNECT_SERVER_IP).get();//, ip);
-        int sport = context.channel().attr(SessionAttribute.CONNECT_SERVER_PORT).get();//, port);
-        log.info(" id = " + id + " ip= " + ip + " port=" + sport + " 的战斗服务器连接成功了！");
+        int id = context.channel().attr(SessionAttribute.CONNECT_SERVER_ID).get();
+        String ip = context.channel().attr(SessionAttribute.CONNECT_SERVER_IP).get();
+        int sport = context.channel().attr(SessionAttribute.CONNECT_SERVER_PORT).get();
+        log.info("Боевой сервер id = " + id + " ip= " + ip + " port=" + sport + " подключён успешно!");
     }
 
     /**
-     * 战斗服注册的请求
+     * Запрос регистрации боевого сервера
      *
      * @param context
      * @param mess
      */
     @Override
     public void OnG2FReqRegister(ChannelHandlerContext context, G2FReqRegister mess) {
-        log.error("收到游戏服“" + mess + "的连接开始了!");
+        log.error("Получено соединение от игрового сервера “" + mess + "!");
         FightClient fc = new FightClient();
         gameServerInfo sInfo = mess.getSinfo();
         fc.setIp(sInfo.getServerIP());
@@ -242,7 +242,7 @@ public class ServerScript implements IScript, IServerScript {
     }
 
     /**
-     * 获得最新的战斗服列表
+     * Получение списка боевых серверов
      *
      * @param context
      * @param messInfo
@@ -254,15 +254,15 @@ public class ServerScript implements IScript, IServerScript {
         if (SocialServerClient.getInstance().channel == null && social != null) {
 
             if (social.getServerId() > 0) {
-                //更新ip端口
+                //Обновление IP и порта
                 SocialServerClient.getInstance().setServerIP(social.getServerIP()).setPort(social.getServerPort());
             }
 
-            //启动社交服务器连接
+            //Запуск соединения с социальным сервером
             if (social.getServerId() > 0 && !SocialServerClient.getInstance().init) {
                 SocialServerClient.getInstance().init(social.getServerIP(), social.getServerPort());
-                new Thread(SocialServerClient.getInstance(), "社区服务器连接").start();
-                log.info("公共服 同步 社区服务器={}", messInfo);
+                new Thread(SocialServerClient.getInstance(), "Соединение с социальным сервером").start();
+                log.info("Публичный сервер синхронизирует социальный сервер={}", messInfo);
             }
         }
 
@@ -279,32 +279,32 @@ public class ServerScript implements IScript, IServerScript {
             if (cfs != null) {
                 cfs.getMapIds().clear();
                 cfs.getMapIds().addAll(sinfo.getMapIdsList());
-                ConnectFightManager.GetInstance().RegisterMapids(fid, sinfo.getMapIdsList());//注册地图
+                ConnectFightManager.GetInstance().RegisterMapids(fid, sinfo.getMapIdsList());//Регистрация карт
                 if (cfs.isTrue(ip, port)) {
                     continue;
                 }
-                //设置新的
+                //Обновление IP и порта
                 ConnectFightManager.GetInstance().getConList().get(fid).setIPPort(ip, port);
 
                 if (!cfs.isIsConnect() && !cfs.isConnectBool()) {
-                    new Thread(cfs).start();//启动连接
+                    new Thread(cfs).start();//Запуск соединения
                 }
                 continue;
             }
-            log.info("公共服告诉了我新的战斗服ID=" + fid + " , ip=" + ip + ", port=" + port);
+            log.info("Публичный сервер сообщил о новом боевом сервере ID=" + fid + " , ip=" + ip + ", port=" + port);
             cfs = new ConnectFightServer(fid, ip, port);
             cfs.getMapIds().addAll(sinfo.getMapIdsList());
             ConnectFightManager.GetInstance().getConList().put(fid, cfs);
             ConnectFightManager.GetInstance().RegisterMapids(fid, sinfo.getMapIdsList());
-            cfs.setLastheartTime(System.currentTimeMillis() + 30 * 1000);//加上30秒的心跳， 免得重复去关闭
-            new Thread(cfs).start();//启动连接
+            cfs.setLastheartTime(System.currentTimeMillis() + 30 * 1000);//Добавляем 30 секунд к сердцебиению, чтобы избежать повторного закрытия
+            new Thread(cfs).start();//Запуск соединения
         }
 
-        log.info("公共服同步了" + messInfo.getInfoListCount() + "个战斗服到游戏服");
+        log.info("Публичный сервер синхронизировал " + messInfo.getInfoListCount() + " боевых серверов с игровым сервером");
     }
 
     /**
-     * 当前与战斗服的连接断开了
+     * Соединение с боевым сервером разорвано
      *
      * @param session
      * @param serverId
@@ -317,21 +317,21 @@ public class ServerScript implements IScript, IServerScript {
             if (player.playerCrossData.toFightSid != fitghSid) {
                 continue;
             }
-            player.playerCrossData.setToFightServer(false);//清除跨服标识
+            player.playerCrossData.setToFightServer(false);//Сброс флага кросс-сервера
             player.playerCrossData.toFightSid = 0;
             player.playerCrossData.toZoneModelId = 0;
             player.playerCrossData.toFightId = 0;
             player.playerCrossData.isReqFight = false;
             player.playerCrossData.crossState = CrossState.PCS_LOCAL;
 
-            //如果玩家在线
+            //Если игрок онлайн
             if (player.getIsOnline() != 0) {
-                //切换地图
+                //Смена карты
                 MessageUtils.notify_player(player, Notify.SHOWBOX, MessageString.FightServerBreak);
-                //切换回原来的地图
+                //Возврат на исходную карту
                 Manager.copyMapManager.outZone(player);
             } else {
-                //还原地图
+                //Восстановление карты
                 player.changeMapId(player.getOld().getMapId());
                 player.changeMapModelId(player.getOld().getModelId());
                 player.changeLine(player.getOld().getLine());
@@ -341,7 +341,7 @@ public class ServerScript implements IScript, IServerScript {
     }
 
     /**
-     * 获取服务器信息
+     * Получение информации о сервере
      *
      * @return
      */
@@ -359,7 +359,7 @@ public class ServerScript implements IScript, IServerScript {
     }
 
     /**
-     * 注册到社交服务器
+     * Регистрация на социальном сервере
      *
      * @param context
      */
@@ -379,7 +379,7 @@ public class ServerScript implements IScript, IServerScript {
     }
 
 
-    //"cn","en","kor"(韩国),"tg"(泰国),"tw"(台湾繁体),"yn"(越南)
+    //"cn","en","kor"(Корея),"th"(Таиланд),"tw"(Тайвань),"yn"(Вьетнам)
     @Override
     public String getItemString(int modelId, String lang, String defineValue) {
         if (ServerStr.getLanguageMap().containsKey(modelId)) {
@@ -394,7 +394,7 @@ public class ServerScript implements IScript, IServerScript {
 
     @Override
     public void loadMutilLang() {
-        //"cn","en","kor"(韩国),"th"(泰国),"tw"(台湾繁体),"yn"(越南)
+        //"cn","en","kor"(Корея),"th"(Таиланд),"tw"(Тайвань),"yn"(Вьетнам)
         ServerStr.getLanguageMap().clear();
         HashMap<String, String> langMark = new HashMap<>();
         langMark.put("cn", "cn");
@@ -411,7 +411,6 @@ public class ServerScript implements IScript, IServerScript {
             Properties prop = new Properties();
             String proPath = SystemUtils.USER_DIR + File.separator + "config" + File.separator + "lang" + File.separator + "ItemString_" + lang + ".properties";
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(proPath), "utf-8"));
-//        InputStream in = new BufferedInputStream(new FileInputStream());
             prop.load(br);
             Set keyValue = prop.keySet();
             for (Iterator it = keyValue.iterator(); it.hasNext(); ) {
@@ -428,29 +427,27 @@ public class ServerScript implements IScript, IServerScript {
                         ServerStr.getLanguageMap().put(itemId, langMap);
                     }
                     langMap.put(lang, Property);
-//                serverString.put(key.toLowerCase(), Property);
                 } catch (NumberFormatException e) {
-                    log.error("加载语言包ID为" + lang + "失败出错的语言=" + key, e);
+                    log.error("Ошибка загрузки языкового пакета для " + lang + ", ключ=" + key, e);
                 }
             }
-            log.error("共加载了" + lang + "语言包条数为：" + prop.size());
+            log.error("Загружено " + prop.size() + " записей языкового пакета для " + lang);
         } catch (Exception e) {
-            log.error("加载语言包ID为" + lang + "失败出错了", e);
+            log.error("Ошибка загрузки языкового пакета для " + lang, e);
         }
     }
 
     @Override
     public void loadServerIdList() {
-//        GlobalType.HEART_WEB
         try {
             StringBuilder result = new StringBuilder();
-            log.info("当前获取服务器列表HTTP为：" + GlobalType.HEART_WEB + String.format(GlobalType.HEART_PARA, "serverIdList", ServerConfig.getServerId(), 1, "serverIdList"));
+            log.info("Текущий HTTP для получения списка серверов: " + GlobalType.HEART_WEB + String.format(GlobalType.HEART_PARA, "serverIdList", ServerConfig.getServerId(), 1, "serverIdList"));
             int code = HttpUtils.sendPost(GlobalType.HEART_WEB, String.format(GlobalType.HEART_PARA, "serverIdList", ServerConfig.getServerId(), 1, "serverIdList"), result);
             if (code == 200) {
                 List<Integer> serverids = ServerConfig.getServerIdList();
                 Map map = JsonUtils.parseObject(result.toString(), Map.class);
                 String ids = (String) map.get("msg");
-                log.info("获取服务器id列表成功：" + ids);
+                log.info("Получение списка ID серверов успешно: " + ids);
                 String[] idArr = ids.split(",");
                 for (String idStr : idArr) {
                     int id = Integer.parseInt(idStr);
@@ -459,10 +456,10 @@ public class ServerScript implements IScript, IServerScript {
                     }
                 }
             } else {
-                log.error("获取服务器id列表失败，code:" + code);
+                log.error("Ошибка получения списка ID серверов, код: " + code);
             }
         } catch (Exception e) {
-            log.error("获取服务器id列表错误", e);
+            log.error("Ошибка получения списка ID серверов", e);
         }
     }
 }

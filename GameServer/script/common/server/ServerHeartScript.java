@@ -18,14 +18,14 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 /**
- * 此脚本只处理系统事件， 请不要使用来处理地图里面的清除逻辑操作
+ * Этот скрипт обрабатывает только системные события, не используйте его для логики очистки на картах
  *
  * @author admin
  */
 public class ServerHeartScript implements IScript, IAction {
 
-    final int ZeroClock = 0;    //0点刷新
-    final int FiveClock = 5;    //5点刷新
+    final int ZeroClock = 0;    //Обновление в 00:00
+    final int FiveClock = 5;    //Обновление в 05:00
 
     protected Logger log = LogManager.getLogger(ServerHeartScript.class);
 
@@ -42,141 +42,135 @@ public class ServerHeartScript implements IScript, IAction {
     @Override
     public void action() {
 
-        //TODO 世界等级处理
-       //try {
-       //    computeNewWorldLevel();
-       //} catch (Exception e) {
-       //    log.error(e, e);
-       //}
-
         long curTime = TimeUtils.Time();
         int curHour = TimeUtils.getDayOfHour(curTime);
         int curMin = TimeUtils.getDayOfMin(curTime);
 
-        //TODO  0点时清理错误日志
+        //Очистка логов ошибок в 00:00
         if (curHour == 0) {
             int curDay = TimeUtils.getCurDay(0);
             ErrorLogThread.clearErrorLog(curDay);
             Manager.bossManager.calcBossRebornBaseTime();
         }
 
-        // 如果是跨服战服务器
+        //Если это боевой кросс-сервер
         if (GameServer.getInstance().IsFightServer()) {
             return;
         }
 
         /*===========================================
          *
-         * 如果不是跨服才后执行下面的逻辑， 请大家一定要注意
+         * Логика ниже выполняется только на обычных серверах
          *
          ===========================================*/
 
-        //0点刷新
+        //Обновление в 00:00
         if (Manager.countManager.getServerVariant(VariantType.ZeroClock) == 0) {
             Manager.countManager.setServerVariant(VariantType.ZeroClock, 1);
-            log.info("服务器整点0刷新 day={}", TimeUtils.format2string(curTime));
+            log.info("Сервер обновлён в 00:00 day={}", TimeUtils.format2string(curTime));
             zeroClockDeal();
 
-            //强制改为0点刷新
+            //Принудительное обновление в 05:00
             fiveClockDeal();
         }
-        //5点刷新
+        //Обновление в 05:00
         if (Manager.countManager.getServerVariant(VariantType.FiveClock) == 0) {
             Manager.countManager.setServerVariant(VariantType.FiveClock, 1);
-            log.info("服务器整点5刷新 day={}", TimeUtils.format2string(curTime));
+            log.info("Сервер обновлён в 05:00 day={}", TimeUtils.format2string(curTime));
 
         }
 
-        //每隔一小时
+        //Каждый час
         if (curMin % 60 == 0) {
             Manager.activityManager.deal().everyHourDeal();
         }
 
-        //TODO  玩家数据保存
+        //Сохранение данных игроков
         Manager.playerManager.manager().TickSavePlayer();
-        //TODO 是否有新的活动开始
+        //Проверка начала новых событий
         Manager.activityManager.deal().checkAllActivity();
-        //TODO  检查世界boss出生
+        //Проверка появления мировых боссов
         Manager.bossManager.calcBossBirth();
-        //TODO  循环公告的tick
+        //Циклические объявления
         Manager.loopNotifyManager.loopNotifyTick();
-        //TODO 传道
+        //Передача учения
         Manager.leaderPreachManager.getScript().action();
-        //TODO 天禁令
+        //Небесный запрет
         Manager.fallingSkyManager.deal().tick();
-        //TODO v4 助力
+        //Помощь v4
         Manager.v4HelpManager.deal().tick();
     }
 
-    //TODO 5点刷新
+    //Обновление в 05:00
     public void fiveClockDeal() {
         for (Player player : Manager.playerManager.getPlayersCache().values()) {
             if (player.isOnline()) {
-                //Manager.retrieveResManager.getScript().switchDay(player);
-                //TODO 五点处理运营活动玩家数据
+                //Обработка данных игрока для событий в 05:00
                 Manager.activityManager.deal().fiveClockPlayerDeal(player);
             }
 
         }
-        //TODO 5点处理运营活动数据
+        //Обработка данных событий в 05:00
         Manager.activityManager.deal().fiveClockDeal();
     }
 
-    //TODO 零点刷新
+    //Обновление в 00:00
     private void zeroClockDeal() {
-        //功能任务刷新
+        //Обновление функциональных заданий
         Manager.functionTaskManager.getScript().init();
 
         for (Map.Entry<Long, Player> entry : Manager.playerManager.getPlayersCache().entrySet()) {
             Player player = entry.getValue();
             if (player.isOnline()) {
                 Manager.playerManager.manager().zeroClockPlayerDeal(player);
-                //TODO 零点处理运营活动玩家数据
+                //Обработка данных игрока для событий в 00:00
                 Manager.activityManager.deal().zeroClockPlayerDeal(player);
-                //TODO 第二天设置登陆记录状态
+                //Установка статуса входа на следующий день
                 Manager.countManager.setBooleanCountValue(player, BooleanDay.DailyLogin, true);
 
-                //TODO 天禁令每日任务刷新
+                //Обновление ежедневных заданий Небесного запрета
                 Manager.fallingSkyManager.deal().onDailyRefreshTask(player);
 
-                //零点清除好友每天变量
+                //Очистка ежедневных переменных друзей в 00:00
                 Manager.friendManager.deal().zeroClockDeal(player);
 
-                //资源找回零点刷新
+                //Обновление системы возврата ресурсов
                 Manager.retrieveResManager.getScript().switchDay(player);
 
-                //刷新功能任务
+                //Обновление функциональных заданий
                 Manager.functionTaskManager.getScript().online(player);
 
-                //找回未领取的特权卡
+                //Проверка неполученных привилегий
                 Manager.welfareManager.playerOnline(player);
 
-                //开服活动
+                //События открытия сервера
                 Manager.openServerAcManager.deal().zeroClockDeal(player);
             }
         }
-        //TODO 本服巅峰竞技场
+        //Пиковая арена
         Manager.peakManager.addCommand(new PeakZeroTickEvent());
-        //TODO 福地boss
+        //Боссы Фуди
         Manager.guildActivityManager.deal().checkFudiBossRedPoint();
-        //TODO 福地论剑活动开启邮件
+        //Отправка писем о событии "Фуди"
         Manager.guildActivityManager.guildLastBattle().notifyMail();
-        //TODO 清理邮件的
+        //Очистка просроченных писем
         Manager.mailManager.clearOverTimeMail();
 
-        //TODO 0点处理运营活动数据
+        //Обработка данных событий в 00:00
         Manager.activityManager.deal().zeroClockDeal();
-        //TODO 完美情缘活动
+        //Событие "Идеальная судьба"
         Manager.marriageManager.activity().tick();
 
         Manager.rankListManager.addCommand(new ZeroClearRankHandler());
-        //每天物品产销数
+        //Ежедневные данные о производстве и продаже предметов
         Manager.logManager.crossDay();
-        //仙侣对决
+        //Дуэль бессмертных
         Manager.couplefightManager.getScript().tick();
-        //零点刷新
+        //Обновление в 00:00
         Manager.v4HelpManager.deal().zeroClockDeal();
     }
+
+}
 
  //TODO
   //  private void computeNewWorldLevel() {

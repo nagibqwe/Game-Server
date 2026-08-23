@@ -27,17 +27,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by CXL on 2020/8/31.
- * 连续充值 300015
+ * Непрерывное пополнение 300015
  */
 public class ContinuousRechargeActivityScript implements IActivityScript {
 
 
     public static final String ContinuousRechargeStr = "continuousRecharge";
     public static final String CurRechargeDay = "curRechargeDay";
-    public static final String IsGetReward = "isGetReward";//是否领奖
-    public static final String IsGetTotalReward = "IsGetTotalReward";//累计奖励
-    public static final String RechargeNum = "rechargeNum"; //充值数量
-    public static final String RechargeKey = "rechargeKey"; //充值目标Key
+    public static final String IsGetReward = "isGetReward";//Флаг получения награды
+    public static final String IsGetTotalReward = "IsGetTotalReward";//Накопительная награда
+    public static final String RechargeNum = "rechargeNum"; //Сумма пополнения
+    public static final String RechargeKey = "rechargeKey"; //Ключ цели пополнения
     public static final Logger LOGGER = LogManager.getLogger(ContinuousRechargeActivityScript.class);
 
     @Override
@@ -89,7 +89,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
         int overDay = TimeUtils.getCurDayByTime(actCfg.getEndTime());
 
         if (curDay < startDay || curDay > overDay) {
-            LOGGER.error("活动时间已结束" + actType);
+            LOGGER.error("Время активности истекло" + actType);
             return;
         }
         ConcurrentHashMap<String, Object> roleActDataMap = Manager.activityManager.deal().getRoleActivityData(player.getId(), actType);
@@ -104,7 +104,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
 
         HashMap<Integer, ContinuousRechargeTarget> targetDataMap = dailyRechargeData.getTargetDataMap().get(rechargeKey);
         if (targetDataMap == null){
-            LOGGER.error("rechargeKey in not find {}", rechargeKey);
+            LOGGER.error("rechargeKey не найден {}", rechargeKey);
             return;
         }
         int curRechargeDay =  (int)curRechargeDayMap.get(rechargeKey + "");
@@ -118,26 +118,24 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
         if (getReward.contains("GetNormalReward")) {
             int isGetReward  = (int)isGetRewardMap.get(rechargeKey+"");
             if (isGetReward > 0) {
-                LOGGER.info("已领取奖励 " + curRechargeDay);
+                LOGGER.info("Награда уже получена " + curRechargeDay);
                 return;
             }
             sendReward(player,targetData.getRewardDatas(),true, actCfg);
             isGetRewardMap.put(rechargeKey+"", 1);
-//            Manager.biManager.getScript().biActivity(player, ItemChangeReason.ContinuousRechargeGet,actCfg.getType(), actCfg.getId());
             Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.ContinuouRecharge, ItemChangeReason.ContinuousRechargeGet);
         } else if (getReward.contains("GetTotalReward")) {
            int isGetTotalReward =  (int)isGetTotalRewardMap.get(rechargeKey+"");
             if (isGetTotalReward > 0) {
-                LOGGER.info("累计奖励已经领取 ");
+                LOGGER.info("Накопительная награда уже получена ");
                 return;
             }
             sendReward(player,targetData.getTotalRewardDatas(),true, actCfg);
             isGetTotalRewardMap.put(rechargeKey+"",1);
-//            Manager.biManager.getScript().biActivity(player, ItemChangeReason.ContinuousRechargeGet, actCfg.getType(), actCfg.getId());
             Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.ContinuouRecharge, ItemChangeReason.ContinuousRechargeGet);
         }
         Manager.activityManager.deal().onReqActivity(player, actType);
-        //保存角色活动数据
+        //Сохранение данных активности игрока
         Manager.activityManager.deal().saveRoleActData(player.getId(), Manager.activityManager.getRoleActDatas().get(player.getId()));
 
     }
@@ -209,7 +207,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
         int overDay = TimeUtils.getCurDayByTime(actCfg.getEndTime());
 
         if (curDay < startDay || curDay > overDay) {
-            LOGGER.error("活动时间已结束" + actType);
+            LOGGER.error("Время активности истекло" + actType);
             return;
         }
         ConcurrentHashMap<String, Object> roleActDataMap = Manager.activityManager.deal().getRoleActivityData(player.getId(), actType);
@@ -218,7 +216,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
         roleActDataMap.put(RechargeNum, oldRechargeNum + rechargeNum);
 
         Manager.activityManager.deal().onReqActivity(player, actType);
-        //保存角色活动数据
+        //Сохранение данных активности игрока
         Manager.activityManager.deal().saveRoleActData(player.getId(), Manager.activityManager.getRoleActDatas().get(player.getId()));
 
     }
@@ -256,7 +254,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
         int curDay = TimeUtils.getCurDayByTime(TimeUtils.Time());
         int overDay = TimeUtils.getCurDayByTime(actCfg.getEndTime());
         if (curDay > overDay + 1) {
-            LOGGER.error("活动时间已结束" + actType);
+            LOGGER.error("Время активности истекло" + actType);
             return;
         }
 
@@ -268,7 +266,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
             }
             Player player = Manager.playerManager.getPlayer(entry.getKey());
             if (player == null) {
-                LOGGER.error("player  == null" + entry.getKey());
+                LOGGER.error("player == null" + entry.getKey());
                 continue;
             }
             HashMap<String,Object> getRewardMap = (HashMap<String,Object>) roleActDataMap.getOrDefault(IsGetReward, new HashMap<String,Object>());
@@ -292,7 +290,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
 
                 HashMap<Integer, ContinuousRechargeTarget> targetDataMap =  dailyRechargeData.getTargetDataMap().get(rechargeKey);
                 if (!targetDataMap.containsKey(curRechargeDay)) {
-                    LOGGER.error("连续充值 没有配置 该天的 数据 {}" , curRechargeDay);
+                    LOGGER.error("Непрерывное пополнение: нет данных на день {}" , curRechargeDay);
                     continue;
                 }
                 ContinuousRechargeTarget targetData = targetDataMap.get(curRechargeDay);
@@ -300,7 +298,6 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
                     if (rechargeNum >= rechargeKey) {
                         sendReward(player,targetData.getRewardDatas(),false,actCfg);
                         curRechargeDayMap.put(rechargeKey + "" ,curRechargeDay+1);
-//                        Manager.biManager.getScript().biActivity(player, ItemChangeReason.ContinuousRechargeGet, actCfg.getType(), actCfg.getId());
                         Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.ContinuouRecharge, ItemChangeReason.ContinuousRechargeGet);
                     }
                 }else {
@@ -309,7 +306,6 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
                 if (isGetTotalReward <= 0) {
                     if (rechargeNum >= rechargeKey) {
                         sendReward(player,targetData.getTotalRewardDatas(),false,actCfg);
-//                        Manager.biManager.getScript().biActivity(player, ItemChangeReason.ContinuousRechargeGet, actCfg.getType(), actCfg.getId());
                         Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.ContinuouRecharge, ItemChangeReason.ContinuousRechargeGet);
                     }
                 }
@@ -320,7 +316,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
             if (player.isOnline()) {
                 Manager.activityManager.deal().onReqActivity(player, actType);
             }
-            //保存角色活动数据
+            //Сохранение данных активности игрока
             Manager.activityManager.deal().saveRoleActData(player.getId(), Manager.activityManager.getRoleActDatas().get(player.getId()));
         }
     }
@@ -333,7 +329,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
             }
             itemList.addAll(Item.createItems(rewardData.getI(), rewardData.getN(), rewardData.getB() == 1));
         }
-        //活动模块原因码 动态计算 55 原因码模块
+        //Код причины для модуля активности рассчитывается динамически: 55 * 100000 + ID активности
         int itemChangeReason = 55 * 100000 + actCfg.getId();
         if (isBagPack){
             if (!Manager.backpackManager.manager().addItems(player, itemList, itemChangeReason, IDConfigUtil.getLogId())) {
@@ -358,7 +354,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
     }
 
     /**
-     * 活动掉落
+     * Выпадение с босса
      *
      * @param player
      * @param bossId
@@ -370,7 +366,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
     }
 
     /**
-     * 活动掉落
+     * Выпадение из сундука
      *
      * @param player
      * @param boxId
@@ -382,7 +378,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
     }
 
     /**
-     * 副本掉落
+     * Выпадение в подземелье
      *
      * @param player
      * @param cloneId
@@ -406,7 +402,7 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
 
         private String client;
 
-        //key 充值金额
+        //key сумма пополнения
         private HashMap<Integer,  HashMap<Integer, ContinuousRechargeTarget>> targetDataMap = new HashMap<>();
 
         public String getClient() {
@@ -428,11 +424,11 @@ public class ContinuousRechargeActivityScript implements IActivityScript {
 
     static class ContinuousRechargeTarget{
 
-        private int day;//当前活动天
+        private int day;//Текущий день активности
 
-        private List<RewardData> rewardDatas = new ArrayList<>();//固定奖励
+        private List<RewardData> rewardDatas = new ArrayList<>();//Фиксированная награда
 
-        private List<RewardData> totalRewardDatas = new ArrayList<>();//累计奖励
+        private List<RewardData> totalRewardDatas = new ArrayList<>();//Накопительная награда
 
         public int getDay() {
             return day;

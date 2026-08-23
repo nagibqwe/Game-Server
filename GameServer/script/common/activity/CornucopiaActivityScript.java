@@ -36,61 +36,61 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 聚宝盆 300026
+ * Рог изобилия 300026
  */
 public class CornucopiaActivityScript implements IActivityScript, IActivityLucky {
 
     final transient Logger logger = LogManager.getLogger(CornucopiaActivityScript.class);
     private static final String configData = "configData";
-    final transient String totalCount = "totalCount";            //累计抽奖次数
-    final transient String lowestDrawCount = "lowestDrawCount";  //抽奖保底次数
-    final transient String lowestDrawMap = "lowestDrawMap";      //抽奖保底状态map
-    final transient String lowestGoldCount = "lowestGoldCount";  //元宝池保底抽奖次数
-    final transient String totalGold = "totalGold";              //元宝池累计元宝数量
-    final transient String roleDailyGoldCount = "roleDailyGoldCount";//每日角色中元宝大奖次数
-    final transient String dailyAddGold = "dailyAddGold";        //每日系统增加的元宝数
-    final transient String accReward = "accReward";              //累计次数奖励
-    final transient String activeReward = "activeReward";        //每日活跃奖励
-    final transient String playerHistory = "playerHistory";      //个人抽奖记录
-    final transient String serverHistory = "serverHistory";      //全服抽奖记录
-    final transient String goldHistory = "goldHistory";          //全服元宝池抽奖记录
-    final transient int playerHistoryLen = 10;                   //个人抽奖记录长度
-    final transient int serverHistoryLen = 10;                   //服务器抽奖记录长度
-    final transient int goldHistoryLen = 10;                     //元宝池抽奖记录长度
+    final transient String totalCount = "totalCount";            //Общее количество розыгрышей
+    final transient String lowestDrawCount = "lowestDrawCount";  //Количество розыгрышей до гаранта
+    final transient String lowestDrawMap = "lowestDrawMap";      //Карта статуса гаранта
+    final transient String lowestGoldCount = "lowestGoldCount";  //Количество розыгрышей до гаранта в пуле юаней
+    final transient String totalGold = "totalGold";              //Накопленное количество юаней в пуле
+    final transient String roleDailyGoldCount = "roleDailyGoldCount";//Количество выигрышей крупного приза юанями у игрока за день
+    final transient String dailyAddGold = "dailyAddGold";        //Количество юаней, добавленных системой за день
+    final transient String accReward = "accReward";              //Награда за накопленное количество
+    final transient String activeReward = "activeReward";        //Награда за ежедневную активность
+    final transient String playerHistory = "playerHistory";      //История розыгрышей игрока
+    final transient String serverHistory = "serverHistory";      //История розыгрышей всех игроков на сервере
+    final transient String goldHistory = "goldHistory";          //История розыгрышей из пула юаней
+    final transient int playerHistoryLen = 10;                   //Длина истории игрока
+    final transient int serverHistoryLen = 10;                   //Длина истории сервера
+    final transient int goldHistoryLen = 10;                     //Длина истории пула юаней
 
     @Override
     public void onReqActivityDeal(Player player, String dataStr, ActivityConfig actCfg) {
         CornucopiaActivity cornucopiaActivity = (CornucopiaActivity) actCfg.getCustomCfgMap().get(configData);
         if (cornucopiaActivity == null) {
-            logger.error("聚宝盆活动自定义配置参数不存在");
+            logger.error("Конфигурация для активности Рог изобилия отсутствует");
             return;
         }
-        //重要的参数在这里验证一下，不然要gg
+        //Важные параметры проверяем здесь
         if (cornucopiaActivity.getOneCostGold() < 1 || cornucopiaActivity.getOneCostItem() < 1) {
-            logger.error("聚宝盆活动中配置的消耗为0");
+            logger.error("В конфигурации Рога изобилия стоимость消耗 установлена в 0");
             return;
         }
         HashMap<String, Integer> msg = JsonUtils.parseObject(dataStr, new TypeReference<HashMap<String, Integer>>() {});
-        int operate = msg.get("operate"); //1=抽奖2=领取累计奖励3=领取活跃值奖励
-        if (operate == 1) {//抽奖
+        int operate = msg.get("operate"); //1=розыгрыш 2=получение награды за накопление 3=получение награды за активность
+        if (operate == 1) {//Розыгрыш
             Integer once = msg.get("once");
             if (once == null) {
-                logger.error("聚宝盆活动请求抽奖参数为空");
+                logger.error("Параметр розыгрыша в Роге изобилия пуст");
                 return;
             }
 
             dealDraw(player, once == 1, cornucopiaActivity, actCfg);
-        } else if (operate == 2) {//领取累计奖励
+        } else if (operate == 2) {//Получение награды за накопление
             Integer count = msg.get("count");
             if (count == null) {
-                logger.error("聚宝盆活动请求领取累计奖励参数为空");
+                logger.error("Параметр получения награды за накопление в Роге изобилия пуст");
                 return;
             }
             dealCountReward(player, count, cornucopiaActivity, actCfg);
-        } else if (operate == 3) {//领取每日活跃奖励
+        } else if (operate == 3) {//Получение ежедневной награды за активность
             Integer count = msg.get("count");
             if (count == null) {
-                logger.error("聚宝盆活动请求领取每日活跃奖励参数为空");
+                logger.error("Параметр получения награды за активность в Роге изобилия пуст");
                 return;
             }
             dealActiveReward(player, count, cornucopiaActivity, actCfg);
@@ -98,63 +98,62 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 抽奖一次或十次
+     * Розыгрыш один раз или десять раз
      */
     private void dealDraw(Player player, boolean once, CornucopiaActivity cornucopiaActivity, ActivityConfig actCfg) {
         int useItemTimes = 0, useGoldTimes = 0;
         int drawCount = once ? 1 : 10;
         int costItemId = cornucopiaActivity.getItemId();
-        int costItemCount = 1; //单次道具固定扣除数量为1
+        int costItemCount = 1; //Количество предметов за один розыгрыш всегда 1
         int costGoldCount = cornucopiaActivity.getOneCostGold();
         if(once){
-            //优先使用道具
+            //Сначала пытаемся использовать предметы
             if (!Manager.backpackManager.manager().onRemoveItem(player, costItemId, costItemCount, ItemChangeReason.CornucopiaCost, IDConfigUtil.getLogId())) {
-                //道具没扣成功，就是没有道具，则扣元宝
+                //Если предметы не списались, значит их нет, списываем юани
                 if (!Manager.currencyManager.manager().onDecItemCoin(player, costGoldCount, ItemChangeReason.CornucopiaCost, IDConfigUtil.getLogId(), ItemCoinType.GemCoin)) {
-                    //元宝不够
-//                    logger.error("聚宝盆活动抽奖扣除的元宝不足");
+                    //Юаней недостаточно
                     MessageUtils.notify_player(player, Notify.ERROR, MessageString.CurrencyNotEnough, Manager.backpackManager.manager().getName(ItemCoinType.GemCoin));
                     return;
                 } else {
-                    //元宝扣成功了
+                    //Юани списались успешно
                     useGoldTimes = 1;
                 }
             } else {
-                //道具使用成功了
+                //Предметы использованы успешно
                 useItemTimes = 1;
             }
-        }else{//十连抽
-            //当前有多少个道具
+        }else{//Десять раз подряд
+            //Сколько предметов есть
             int itemNum = Manager.backpackManager.manager().getItemNum(player, costItemId);
-            if (itemNum < costItemCount) {//抽一次的道具都不够
-                //扣十连抽的元宝
+            if (itemNum < costItemCount) {//Даже одного предмета нет
+                //Списываем юани за 10 раз
                 if (!Manager.currencyManager.manager().onDecItemCoin(player, costGoldCount * 10, ItemChangeReason.CornucopiaCost, IDConfigUtil.getLogId(), ItemCoinType.GemCoin)) {
                     MessageUtils.notify_player(player, Notify.ERROR, MessageString.CurrencyNotEnough, Manager.backpackManager.manager().getName(ItemCoinType.GemCoin));
                     return;
                 }
                 useGoldTimes = 10;
-            } else if (itemNum < costItemCount * 10) {//道具数量小于十连抽需要的，要看金元宝够不够差价
-                //元宝不够
+            } else if (itemNum < costItemCount * 10) {//Предметов меньше 10, проверяем хватает ли юаней на разницу
+                //Юаней недостаточно
                 if (Manager.currencyManager.manager().getCurrencyIntNum(player, ItemCoinType.GemCoin) < (10 - itemNum) * costGoldCount) {
                     MessageUtils.notify_player(player, Notify.ERROR, MessageString.CurrencyNotEnough, Manager.backpackManager.manager().getName(ItemCoinType.GemCoin));
                     return;
-                }else {//元宝够,则同时扣元宝和所有道具
-                    //为了保险，这里再判定一次
+                }else {//Юаней достаточно, списываем и юани и все предметы
+                    //Для безопасности проверяем ещё раз
                     if (!Manager.backpackManager.manager().onRemoveItem(player, costItemId, itemNum, ItemChangeReason.CornucopiaCost, IDConfigUtil.getLogId())) {
-                        logger.error("1不应该走到这里" + player.getId());
+                        logger.error("1 Не должно было случиться" + player.getId());
                         return;
                     }
                     if (!Manager.currencyManager.manager().onDecItemCoin(player, (10 - itemNum) * costGoldCount, ItemChangeReason.CornucopiaCost, IDConfigUtil.getLogId(), ItemCoinType.GemCoin)) {
-                        logger.error("2不应该走到这里" + player.getId());
+                        logger.error("2 Не должно было случиться" + player.getId());
                         return;
                     }
                     useItemTimes = itemNum;
                     useGoldTimes = 10 - itemNum;
                 }
-            } else {//道具大于等于10个，直接扣10个
-                //为了保险，这里再判定一次
+            } else {//Предметов >= 10, списываем 10
+                //Для безопасности проверяем ещё раз
                 if (!Manager.backpackManager.manager().onRemoveItem(player, costItemId, costItemCount*10, ItemChangeReason.CornucopiaCost, IDConfigUtil.getLogId())) {
-                    logger.error("3不应该走到这里" + player.getId());
+                    logger.error("3 Не должно было случиться" + player.getId());
                     return;
                 }
                 useItemTimes = 10;
@@ -170,7 +169,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         ConcurrentHashMap<String, Object> actDataMap = Manager.activityManager.deal().getActivityData(actCfg.getType());
         Integer totalPoolGold = (Integer)actDataMap.getOrDefault(totalGold, cornucopiaActivity.getGoldInitCount());
 
-        //抽奖记录表，用于返给前端
+        //Таблицы записей для отправки клиенту
         List<String> playerHistorys;
         List<String> serverHistorys;
         List<String> goldHistorys;
@@ -193,13 +192,13 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
             actDataMap.put(goldHistory,goldHistorys);
         }
 
-        //保底序号MAP<保底序号, 状态>
+        //Карта гаранта <номер гаранта, статус>
         LinkedHashMap<String, Integer> lowestMap;
         if(roleActDataMap.get(lowestDrawMap) != null){
             lowestMap = (LinkedHashMap<String, Integer>) roleActDataMap.get(lowestDrawMap);
         }else{
             lowestMap = new LinkedHashMap<>();
-            //初始化保底序号MAP
+            //Инициализация карты гаранта
             for (int i = 0; i < cornucopiaActivity.getLowestData().size(); i++) {
                 lowestMap.put(String.valueOf(i), 0);
             }
@@ -209,27 +208,27 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         HashMap<Integer, LowestData> lowestDatas = cornucopiaActivity.getLowestData();
         HashMap<Integer, LevelWeight> levelWeightMap = cornucopiaActivity.getLevelWeightMap();
         int maxLowestCount = calcLowestMax(lowestDatas);
-        //抽奖奖励
+        //Награда за розыгрыш
         List<RewardData> lastList = new ArrayList<>();
-        //元宝池奖励
+        //Награда из пула юаней
         List<Integer> goldList = new ArrayList<>();
         int bigCount = 0;
 
-        //优先级规则：保底>幸运值>抽奖限制系数
-        //开始抽奖
+        //Приоритет: гарант > удача > лимиты на розыгрыш
+        //Начинаем розыгрыш
         for (int times = 0; times < drawCount; times++) {
             boolean useGold = false;
             if(useItemTimes-(times+1)<=0){
                 useGold = true;
             }
-            //0=初始状态 1=保底 2=幸运值
+            //0=начальное состояние 1=гарант 2=удача
             int tag = 0;
             int lv = -1;
 
             totalDrawCount+=1;
             lowestCount += 1;
 
-            //先检查是否满足保底
+            //Сначала проверяем гарант
             List<RewardData> drawReward = null;
             LowestData lowestData = getCurLowestData(lowestCount, lowestDatas);
             if(lowestData != null){
@@ -237,11 +236,11 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
                 if(lowestRewards!=null){
                     tag = 1;
                     drawReward = lowestRewards;
-                    //设置当前保底档位状态为已抽取
+                    //Устанавливаем статус текущего гаранта как использованный
                     lowestMap.put(String.valueOf(lowestData.getIndex()), 1);
-                    //检查是否所有保底档位都抽取完
+                    //Проверяем, все ли гаранты использованы
                     if(lowestCount >= maxLowestCount && checkAllLowest(lowestMap)){
-                        lowestCount = 0;//重置当前循环的保底抽奖次数
+                        lowestCount = 0;//Сбрасываем счётчик гаранта
                         clearLowestMap(cornucopiaActivity.getLowestData(), lowestMap);
                     }
                 }
@@ -249,39 +248,39 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
 
             boolean isTriggerLucky = false;
             if(tag==0){
-                //增加幸运值
+                //Увеличиваем удачу
                 incrLucky(player, cornucopiaActivity);
                 isTriggerLucky = isTriggerLucky(player, cornucopiaActivity);
-                if(isTriggerLucky){//幸运值达到直接获得大奖
+                if(isTriggerLucky){//Удача достигла порога
                     tag=2;
                     lv=0;
-                }else{//如果没有触发幸运值，则进行普通抽奖
+                }else{//Обычный розыгрыш
 
-                    //检查随机各等级资格,获得排除的奖品等级
+                    //Проверяем исключённые уровни
                     List<Integer> exLv = getExList(cornucopiaActivity, totalDrawCount);
-                    //先随机出奖品等级
+                    //Сначала определяем уровень награды
                     lv = getRandomLevelByWeight(levelWeightMap, useGold, exLv);
                 }
             };
 
-            //在对应的奖池中抽奖
+            //Выбираем из соответствующего пула
             if(drawReward == null){
                 drawReward = getRandomRewardByWeight(cornucopiaActivity.getRewardPoolMap().get(lv), useGold);
             }
 
             RewardData rewardData = getRewardByCareer(player.getCareer(), drawReward);
 
-            //由幸运值触发则清理幸运值
+            //Если сработала удача, используем награду за удачу
             RewardData lucky = Utils.findOne(cornucopiaActivity.getLuckyAwardList(), i -> i.getC() == 9 || i.getC() == player.getCareer());
             RewardData lastReward = isTriggerLucky ? lucky : rewardData;
 
-            //进最近一次抽奖记录表，用于返给前端
+            //Для истории
             lastList.add(lastReward);
 
             List<Item> items = Item.createItems(lastReward.getI(), lastReward.getN(), lastReward.getB() == 1);
             cleanLucky(player, cornucopiaActivity, items);
 
-            //添加抽奖历史记录
+            //Добавляем историю
             if(playerHistorys.size()>playerHistoryLen){
                 playerHistorys.remove(0);
             }
@@ -292,13 +291,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
             }
             serverHistorys.add(new StringBuilder(player.getName()).append("_").append(String.valueOf(lastReward.getI())).append("_").append(String.valueOf(lastReward.getN())).toString());
 
-            //测试日志
-//            if (ServerConfig.isTestServer()) {
-//                long variant = Manager.countManager.getVariant(player, VariantType.ACTIVITY_LUCKY_VALUE);
-//                Manager.chatManager.sendSystemStrToPlayer(player, "当前幸运值=" + variant);
-//            }
-
-            if (lv == 0){//大奖发通知
+            if (lv == 0){//Уведомление о крупном выигрыше
                 Cfg_Item_Bean itemBean = CfgManager.getCfg_Item_Container().getValueByKey(lastReward.getI());
                 String itemName = ServerStr.getChatTableName(itemBean.getName());
                 int itemNum = lastReward.getN();
@@ -311,10 +304,9 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
                         itemNum);
             }
 
-            //TODO 元宝池抽奖
-            //保底次数增加
+            //Пул юаней
             int curGoldCount = goldCount+1;
-            //消耗的元宝加入元宝池
+            //Потраченные юани добавляем в пул
             if(totalPoolGold+costGoldCount>cornucopiaActivity.getGoldMaxCount()){
                 totalPoolGold = cornucopiaActivity.getGoldMaxCount();
             }else{
@@ -323,60 +315,58 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
 
             int min = cornucopiaActivity.getGoldBigMin();
             int max = cornucopiaActivity.getGoldBigMax();
-            //达到每日最大中奖次数
+            //Если достигнут дневной лимит
             if(dailyGoldCount>=cornucopiaActivity.getGoldDailyCount()){
                 if(curGoldCount<=max){
                     goldCount+=1;
                 }
-//                logger.info("达到每日最大中奖次数，count："+dailyGoldCount);
                 continue;
             }
 
-            //检查是否有资格触发大奖
+            //Проверяем право на крупный выигрыш
             if(curGoldCount<=cornucopiaActivity.getLimitGold()){
-                //不会抽到大奖直接跳到下一抽
                 goldCount+=1;
                 continue;
             }
 
-            //开始概率抽奖
+            //Вероятность
             int goldPro = useGold?cornucopiaActivity.getGoldPro():cornucopiaActivity.getGoldItemPro();
             boolean bigBomb = false;
 
-            if(min<=curGoldCount&&curGoldCount<=max){//次数到达保底范围
+            if(min<=curGoldCount&&curGoldCount<=max){//Достигнут гарант
                 if(RandomUtils.defaultIsGenerate(getGoldLowestPro(min,max,curGoldCount))){
                     bigBomb = true;
-                }else if(curGoldCount == max){//到达保底最大值
+                }else if(curGoldCount == max){//Достигнут максимум гаранта
                     bigBomb = true;
                 }
-            }else{//普通抽奖
+            }else{//Обычный розыгрыш
                 bigBomb = RandomUtils.defaultIsGenerate(goldPro);
             }
 
             if(bigBomb){
                 int bigGold = (int)(totalPoolGold*((float)cornucopiaActivity.goldPoolPer/10000.0f));
-                //奖励如果大于单次可抽出的上限，则只发送上限数量的元宝
+                //Если награда больше максимальной за один раз, выдаём максимум
                 if(bigGold>cornucopiaActivity.getGoldOneMaxCount()){
                     bigGold = cornucopiaActivity.getGoldOneMaxCount();
                 }
                 totalPoolGold=totalPoolGold-bigGold;
                 bigCount += 1;
                 dailyGoldCount += 1;
-                //抽奖记录
+                //Запись в историю
                 if(goldHistorys.size()>goldHistoryLen){
                     goldHistorys.remove(0);
                 }
                 goldHistorys.add(new StringBuilder(new StringBuilder(player.getName()).append("_").append(String.valueOf(bigGold))).toString());
                 goldList.add(bigGold);
-                goldCount = 0;//保底次数清空
+                goldCount = 0;//Сброс гаранта
             }else{
                 goldCount += 1;
             }
         }
 
-        //奖励直接发背包
+        //Отправка наград в рюкзак
         List<Item> items = Item.createItems(player.getCareer(), lastList);
-        //抽奖赠送奖励
+        //Бонус за розыгрыш
         int giftNum = cornucopiaActivity.getGiftData().getN()*useGoldTimes;
         if(giftNum>0){
             Item giftItem = Item.createItem(cornucopiaActivity.getGiftData().getI(), giftNum, cornucopiaActivity.getGiftData().getB() == 1);
@@ -388,7 +378,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
                     MessageString.System, MessageString.NoBagCell, items, ItemChangeReason.CornucopiaGet);
         }
 
-        //元宝池奖励
+        //Награда из пула юаней
         int addGoldReward=0;
         for (int gold:goldList) {
             addGoldReward+=gold;
@@ -401,7 +391,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
             }
         }
 
-        //存储数据
+        //Сохранение данных
         roleActDataMap.put(totalCount, totalDrawCount);
         roleActDataMap.put(lowestDrawCount, lowestCount);
         roleActDataMap.put(lowestDrawMap, lowestMap);
@@ -416,22 +406,21 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         Manager.activityManager.deal().saveActData(actCfg.getType(), actDataMap);
 
         HashMap<String, Object> result = new HashMap<>();
-        result.put("operate", 1);//0上线 1抽奖 2领取次数奖励
+        result.put("operate", 1);//0 вход 1 розыгрыш 2 получение награды за накопление
         result.put("drawCount", totalDrawCount);
         result.put("drawLowestMap", lowestMap);
-        result.put("drawLowestCount", lowestCount);//当前保底抽奖次数
+        result.put("drawLowestCount", lowestCount);//Текущий счётчик гаранта
         result.put("gold", totalPoolGold);
         result.put("reward", lastList);
         result.put("goldReward", goldList);
-        result.put("selfHistory", playerHistorys.subList(playerHistorys.size()-drawCount, playerHistorys.size()));//只发增量
-        result.put("serverHistory", serverHistorys.subList(serverHistorys.size()-drawCount, serverHistorys.size()));//只发增量
-        result.put("goldHistory", goldHistorys.subList(goldHistorys.size()-bigCount, goldHistorys.size()));//只发增量
+        result.put("selfHistory", playerHistorys.subList(playerHistorys.size()-drawCount, playerHistorys.size()));//Только новые
+        result.put("serverHistory", serverHistorys.subList(serverHistorys.size()-drawCount, serverHistorys.size()));//Только новые
+        result.put("goldHistory", goldHistorys.subList(goldHistorys.size()-bigCount, goldHistorys.size()));//Только новые
         result.put("countReward", new TreeMap<Integer, Integer>());
 
         ActivityMessage.ResActivityDeal.Builder pb = ActivityMessage.ResActivityDeal.newBuilder();
         pb.setData(JsonUtils.toJSONString(result));
         pb.setType(actCfg.getType());
-//        logger.info("=========抽奖信息:"+pb.build().toString());
         MessageUtils.send_to_player(player, ActivityMessage.ResActivityDeal.MsgID.eMsgID_VALUE, pb.build().toByteArray());
     }
 
@@ -446,7 +435,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
 
     private void clearLowestMap(HashMap<Integer, LowestData> lowestData, LinkedHashMap<String, Integer> lowestMap) {
         lowestMap.clear();
-        //初始化保底序号MAP
+        //Инициализация карты гаранта
         for (int i = 0; i < lowestData.size(); i++) {
             lowestMap.put(String.valueOf(i), 0);
         }
@@ -462,8 +451,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 100%/（最大-最小）*(当前次n-最小)【最小正整数，小于0即等于0】=保底触发概率。
-     * 当前次应该是包底开始次数，而不是总抽奖次数
+     * 100%/(макс-мин)*(текущий n-мин) [мин >=0] = вероятность гаранта.
      * @param min
      * @param max
      * @param goldCount
@@ -485,7 +473,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
 
     private List<Integer> getExList(CornucopiaActivity cornucopiaActivity, int totalCount) {
         List<Integer> exList = new ArrayList<>();
-        for (int i = 0; i <= 2; i++) {//三等奖（最低奖不可能排除，不考虑）
+        for (int i = 0; i <= 2; i++) {//Третий приз (самый низкий) не исключается
             if(i==0&&totalCount<=cornucopiaActivity.getLimitLv()){
                 exList.add(0);
             }else if(i==1&&totalCount<=cornucopiaActivity.getLimitLv1()){
@@ -512,7 +500,6 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         }
 
         if (weightSum <= 0) {
-//            log.info("Error: weightSum=" + weightSum.toString());
             return result;
         }
         Integer n = new Random().nextInt(weightSum); // n in [0, weightSum)
@@ -529,7 +516,6 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
             }
             if (m <= n && n < m + weight) {
                 result = data.getKey();
-//                logger.info("This Random reward is " + data);
                 break;
             }
             m += weight;
@@ -549,7 +535,6 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         }
 
         if (weightSum <= 0) {
-//            log.info("Error: weightSum=" + weightSum.toString());
             return null;
         }
         Integer n = new Random().nextInt(weightSum); // n in [0, weightSum)
@@ -563,7 +548,6 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
             }
             if (m <= n && n < m + weight) {
                 result = data.getRewardData();
-//                logger.info("This Random reward is " + data);
                 break;
             }
             m += weight;
@@ -573,7 +557,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
 
     private List<RewardData> getLowestReward(Integer count, LowestData lowestData, LinkedHashMap<String, Integer> lowestMap) {
         int state = lowestMap.get(String.valueOf(lowestData.getIndex()));
-        if(state != 0){//已经领过当前档位的保底奖励
+        if(state != 0){//Уже получена награда этого уровня
             return null;
         }
         LowestPro lowestPro = getLowestPro(count, lowestData.getProList());
@@ -610,31 +594,12 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         return null;
     }
 
-//    private int getLowestLevel(Integer count, HashMap<Integer, Integer> lowestData) {
-//        int result = -1;
-//        for (Map.Entry<Integer, Integer> entry:lowestData.entrySet()) {
-//            int type = entry.getKey();
-//            if(type == 3){//排除最低奖励
-//                continue;
-//            }
-//            int lowestCount = entry.getValue();
-//            if(lowestCount<=0){
-//                continue;
-//            }
-//            if (count/lowestCount>1?count%lowestCount==0:count==lowestCount) {
-//                result = type;
-//                break;
-//            }
-//        }
-//        return result;
-//    }
-
     /**
-     * 领取累积次数奖励
+     * Получение награды за накопленное количество
      */
     private void dealCountReward(Player player, int count, CornucopiaActivity cornucopiaActivity, ActivityConfig actCfg) {
         if (cornucopiaActivity.getAccRewardMap().get(count)==null) {
-            logger.error("领取累积次数奖励时档次不合法" + count);
+            logger.error("Некорректный уровень для награды за накопление" + count);
             return;
         }
         ConcurrentHashMap<String, Object> roleActDataMap = Manager.activityManager.deal().getRoleActivityData(player.getId(), actCfg.getType());
@@ -645,20 +610,20 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
 
         LinkedHashMap<String, Integer> countRewardMap = getCountRewardMap(cornucopiaActivity, roleActDataMap);
         int state = countRewardMap.get(String.valueOf(count));
-        if(state == 1){//已经领了
-            logger.error("领取累积次数奖励失败,奖励已经领取。 count="+count);
+        if(state == 1){//Уже получено
+            logger.error("Ошибка получения награды за накопление, уже получено. count="+count);
             MessageUtils.notify_player(player, Notify.ERROR, MessageString.TOUZI_GETFAIL);
             return;
         }
 
-        //检查领奖次数是否够了
+        //Проверяем достаточно ли розыгрышей
         if(totalDrawCount<count){
-            logger.error("领取累积次数奖励失败,抽奖次数不足。 count="+count);
+            logger.error("Ошибка получения награды за накопление, недостаточно розыгрышей. count="+count);
             MessageUtils.notify_player(player, Notify.ERROR, MessageString.TOUZI_GETFAIL);
             return;
         }
 
-        //发奖
+        //Выдаём награду
         List<RewardData> reward = cornucopiaActivity.getAccRewardMap().get(count);
         List<Item> items = Item.createItems(player.getCareer(), reward);
         if (!Manager.backpackManager.manager().addItems(player, items, ItemChangeReason.CornucopiaCountGet, IDConfigUtil.getLogId())) {
@@ -666,15 +631,14 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
                     MessageString.System, MessageString.NoBagCell, items, ItemChangeReason.CornucopiaCountGet);
         }
 
-        //设置奖励领取状态
+        //Устанавливаем статус получения
         countRewardMap.put(String.valueOf(count), 1);
         roleActDataMap.put(accReward, countRewardMap);
 
         Manager.activityManager.deal().saveRoleActData(player.getId(), Manager.activityManager.getRoleActDatas().get(player.getId()));
-//        Manager.activityManager.deal().saveActData(actCfg.getType(), actDataMap);
-        //返给前端
+        //Отправка клиенту
         HashMap<String, Object> result = new HashMap<>();
-        result.put("operate", 2);//0上线 1抽奖 2领取次数奖励
+        result.put("operate", 2);//0 вход 1 розыгрыш 2 награда за накопление
         result.put("drawCount", totalDrawCount);
         result.put("gold", totalPoolGold);
         result.put("reward", new ArrayList<>());
@@ -705,11 +669,11 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 领取活跃值奖励
+     * Получение награды за активность
      */
     private void dealActiveReward(Player player, int count, CornucopiaActivity cornucopiaActivity, ActivityConfig actCfg) {
         if (cornucopiaActivity.getFreeGiftMap().get(count)==null) {
-            logger.error("领取每日活跃奖励时档次不合法" + count);
+            logger.error("Некорректный уровень для награды за активность" + count);
             return;
         }
         ConcurrentHashMap<String, Object> roleActDataMap = Manager.activityManager.deal().getRoleActivityData(player.getId(), actCfg.getType());
@@ -720,20 +684,20 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
 
         LinkedHashMap<String, Integer> activeRewardMap = getActiveRewardMap(cornucopiaActivity, roleActDataMap);
         int state = activeRewardMap.get(String.valueOf(count));
-        if(state == 1){//已经领了
-            logger.error("领取每日活跃奖励失败,奖励已经领取。 count="+count);
+        if(state == 1){//Уже получено
+            logger.error("Ошибка получения награды за активность, уже получено. count="+count);
             MessageUtils.notify_player(player, Notify.ERROR, MessageString.TOUZI_GETFAIL);
             return;
         }
 
-        //检查领奖的活跃值是否够了
+        //Проверяем достаточно ли активности
         if(player.getDailyActiveData().getActiveNum()<count){
-            logger.error("领取每日活跃奖励失败,活跃值不足。 count="+count+",curCount="+player.getDailyActiveData().getActiveNum());
+            logger.error("Ошибка получения награды за активность, недостаточно очков активности. count="+count+",curCount="+player.getDailyActiveData().getActiveNum());
             MessageUtils.notify_player(player, Notify.ERROR, MessageString.TOUZI_GETFAIL);
             return;
         }
 
-        //发奖
+        //Выдаём награду
         List<RewardData> reward = cornucopiaActivity.getFreeGiftMap().get(count);
         List<Item> items = Item.createItems(player.getCareer(), reward);
         if (!Manager.backpackManager.manager().addItems(player, items, ItemChangeReason.CornucopiaActiveGet, IDConfigUtil.getLogId())) {
@@ -741,15 +705,14 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
                     MessageString.System, MessageString.NoBagCell, items, ItemChangeReason.CornucopiaActiveGet);
         }
 
-        //设置奖励领取状态
+        //Устанавливаем статус получения
         activeRewardMap.put(String.valueOf(count), 1);
         roleActDataMap.put(activeReward, activeRewardMap);
 
         Manager.activityManager.deal().saveRoleActData(player.getId(), Manager.activityManager.getRoleActDatas().get(player.getId()));
-//        Manager.activityManager.deal().saveActData(actCfg.getType(), actDataMap);
-        //返给前端
+        //Отправка клиенту
         HashMap<String, Object> result = new HashMap<>();
-        result.put("operate", 3);//0上线 1抽奖 2领取累计次数奖励 3领取活跃奖励
+        result.put("operate", 3);//0 вход 1 розыгрыш 2 награда за накопление 3 награда за активность
         result.put("drawCount", totalDrawCount);
         result.put("gold", totalPoolGold);
         result.put("reward", new ArrayList<>());
@@ -797,19 +760,18 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     public String getActivityDataStr(ActivityConfig actCfg, long roleId) {
         CornucopiaActivity cornucopiaActivity = (CornucopiaActivity) actCfg.getCustomCfgMap().get(configData);
         if (cornucopiaActivity == null) {
-            logger.error("许愿池活动活动自定义配置参数不存在");
+            logger.error("Конфигурация для активности Рог изобилия отсутствует");
             return null;
         }
 
         ConcurrentHashMap<String, Object> roleActDataMap = Manager.activityManager.deal().getRoleActivityData(roleId, actCfg.getType());
         Integer totalDrawCount = (Integer) roleActDataMap.getOrDefault(totalCount, 0);
-//        Integer goldCount= (Integer) roleActDataMap.getOrDefault(lowestGoldCount, 0);
         Integer lowestCount = (Integer) roleActDataMap.getOrDefault(lowestDrawCount, 0);
 
         ConcurrentHashMap<String, Object> actDataMap = Manager.activityManager.deal().getActivityData(actCfg.getType());
         Integer totalPoolGold = (Integer)actDataMap.getOrDefault(totalGold, cornucopiaActivity.getGoldInitCount());
 
-        //抽奖记录表，用于返给前端
+        //История для клиента
         List<String> playerHistorys;
         List<String> serverHistorys;
         List<String> goldHistorys;
@@ -832,13 +794,12 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
             actDataMap.put(goldHistory,goldHistorys);
         }
 
-        //保底序号MAP<保底序号, 状态>
+        //Карта гаранта
         LinkedHashMap<String, Integer> lowestMap;
         if(roleActDataMap.get(lowestDrawMap) != null){
             lowestMap = (LinkedHashMap<String, Integer>) roleActDataMap.get(lowestDrawMap);
         }else{
             lowestMap = new LinkedHashMap<>();
-            //初始化保底序号MAP
             for (int i = 0; i < cornucopiaActivity.getLowestData().size(); i++) {
                 lowestMap.put(String.valueOf(i), 0);
             }
@@ -849,10 +810,10 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         LinkedHashMap<String, Integer> activeRewardMap = getActiveRewardMap(cornucopiaActivity, roleActDataMap);
 
         HashMap<String, Object> result = new HashMap<>();
-        result.put("operate", 0);//0上线 1抽奖 2领取次数奖励
+        result.put("operate", 0);//0 вход 1 розыгрыш 2 награда за накопление
         result.put("drawCount", totalDrawCount);
         result.put("drawLowestMap", lowestMap);
-        result.put("drawLowestCount", lowestCount);//当前保底抽奖次数
+        result.put("drawLowestCount", lowestCount);//Текущий счётчик гаранта
         result.put("gold", totalPoolGold);
         result.put("reward", new ArrayList<>());
         result.put("goldReward", new ArrayList<>());
@@ -898,7 +859,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     public void zeroClockDeal(ActivityConfig actCfg) {
         ConcurrentHashMap<String, Object> actDataMap = Manager.activityManager.deal().getActivityData(actCfg.getType());
         if(actDataMap!=null){
-            //零点清空每日系统增加上限
+            //Очистка дневного лимита системы
             actDataMap.put(dailyAddGold, 0);
             Manager.activityManager.deal().saveActData(actCfg.getType(), actDataMap);
         }
@@ -913,7 +874,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     @Override
     public void everyHourDeal(ActivityConfig actCfg) {
         int curHour = TimeUtils.getDayOfHour(TimeUtils.Time());
-        if(1<curHour&&curHour<12){//检查时间 每天12点开始~1点结束
+        if(1<curHour&&curHour<12){//С 12 до 1 ночи
             return;
         }
 
@@ -923,11 +884,9 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         Integer dailySysAddGold = (Integer)actDataMap.getOrDefault(dailyAddGold, 0);
 
         if(totalPoolGold>=cornucopiaActivity.getSysAddBaseValue()){
-            //大于基准值
             return;
         }
         if(dailySysAddGold>=cornucopiaActivity.getSysAddLimit()){
-            //大于上限
             return;
         }
 
@@ -1003,7 +962,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 增加幸运值
+     * Увеличение удачи
      *
      * @param player
      * @param lucky
@@ -1015,7 +974,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 是否触发幸运值
+     * Проверка срабатывания удачи
      *
      * @param player
      * @param lucky
@@ -1028,7 +987,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 清空幸运值
+     * Очистка удачи
      *
      * @param player
      * @param lucky
@@ -1043,10 +1002,10 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         }
     }
 
-    //奖品等级权重
+    //Вес уровня награды
     static class LevelWeight {
-        private int itemWeight;  //道具抽奖权重
-        private int goldWeight;  //元宝抽奖权重
+        private int itemWeight;  //Вес для розыгрыша предметами
+        private int goldWeight;  //Вес для розыгрыша юанями
 
         public int getItemWeight() {
             return itemWeight;
@@ -1065,7 +1024,7 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         }
     }
 
-    //保底分段概率
+    //Вероятность гаранта по сегментам
     static class LowestPro {
         private int min;
         private int max;
@@ -1096,13 +1055,13 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         }
     }
 
-    //保底信息
+    //Данные гаранта
     static class LowestData {
-        private int index;//保底序号
-        private int min;  //最小保底次数
-        private int max;  //最大保底次数
-        private List<LowestPro> proList;//保底分段概率
-        private List<RewardData> rewardData;//保底奖励
+        private int index;//Номер гаранта
+        private int min;  //Минимальное количество розыгрышей
+        private int max;  //Максимальное количество розыгрышей
+        private List<LowestPro> proList;//Вероятность по сегментам
+        private List<RewardData> rewardData;//Награда гаранта
 
         public int getIndex() {
             return index;
@@ -1145,10 +1104,10 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         }
     }
 
-    //奖池信息
+    //Данные пула наград
     static class RewardPoolData {
-        private int itemWeight;  //道具抽奖权重
-        private int goldWeight; //元宝抽奖权重
+        private int itemWeight;  //Вес для предметов
+        private int goldWeight; //Вес для юаней
         private List<RewardData> rewardData;
 
         public int getItemWeight() {
@@ -1176,49 +1135,47 @@ public class CornucopiaActivityScript implements IActivityScript, IActivityLucky
         }
     }
 
-    //聚宝盆活动数据
+    //Данные активности Рог изобилия
     static class CornucopiaActivity extends ActivityLucky {
-        private String client;  //前端数据
-        //奖池抽奖
-        private int limitLv;//抽n次大奖之后才可能中大奖
-        private int limitLv1;//抽n次一等奖之后才可能中大奖
-        private int limitLv2;//抽n次二等奖之后才可能中大奖
-        private int limitLv3;//抽n次三等奖之后才可能中大奖
+        private String client;  //Данные для клиента
+        //Настройки розыгрыша
+        private int limitLv;//После n розыгрышей возможен крупный выигрыш
+        private int limitLv1;//После n розыгрышей возможен выигрыш первого уровня
+        private int limitLv2;//После n розыгрышей возможен выигрыш второго уровня
+        private int limitLv3;//После n розыгрышей возможен выигрыш третьего уровня
 
-        private int itemId;     //道具ID
-        private int oneCostItem;//一次消耗道具
-        private int tenCostItem;//十连抽消耗道具
-        private int oneCostGold;//一次消耗元宝
-        private int tenCostGold;//十连抽消耗元宝
-        private RewardData giftData;//每抽赠送道具
+        private int itemId;     //ID предмета
+        private int oneCostItem;//Стоимость в предметах за 1 раз
+        private int tenCostItem;//Стоимость в предметах за 10 раз
+        private int oneCostGold;//Стоимость в юанях за 1 раз
+        private int tenCostGold;//Стоимость в юанях за 10 раз
+        private RewardData giftData;//Бонус за каждый розыгрыш
 
-        //元宝奖池
-        private int goldItemPro;    //元宝池道具抽奖触发概率
-        private int goldPro;        //元宝池元宝抽奖触发概率
-        private int goldInitCount;  //元宝奖池初始数量
-        private int goldMaxCount;   //元宝奖池最大上限
-        private int goldOneMaxCount;//元宝奖池单次最大可获得数量
-        private int goldPoolPer;    //中奖比例，以此比例X奖池当前总值奖励给玩家
-        private int goldDailyCount; //元宝池角色每日可中奖次数
-        private int goldBigMin;     //元宝保底中奖最小次数
-        private int goldBigMax;     //元宝保底中奖最大次数
-        private int limitGold;      //抽n次元宝池才可能中大奖
+        //Пул юаней
+        private int goldItemPro;    //Вероятность выигрыша юанями при розыгрыше предметами
+        private int goldPro;        //Вероятность выигрыша юанями при розыгрыше юанями
+        private int goldInitCount;  //Начальное количество в пуле
+        private int goldMaxCount;   //Максимальное количество в пуле
+        private int goldOneMaxCount;//Максимальный выигрыш за один раз
+        private int goldPoolPer;    //Процент от пула при выигрыше
+        private int goldDailyCount; //Дневной лимит выигрышей юанями на игрока
+        private int goldBigMin;     //Минимальное количество для гаранта юаней
+        private int goldBigMax;     //Максимальное количество для гаранта юаней
+        private int limitGold;      //После n розыгрышей возможен крупный выигрыш юанями
 
-        private int sysAddBaseValue;//系统投注基准，小于此值，系统开始投入
-        private int sysAddCount;    //系统单次投入数量
-        private int sysAddLimit;    //系统每日投入上限
+        private int sysAddBaseValue;//Базовое значение для добавления системой
+        private int sysAddCount;    //Количество добавления системой за раз
+        private int sysAddLimit;    //Дневной лимит добавления системой
 
-        //奖品等级权重 <奖品等级, 奖品等级权重>
+        //Вес уровней наград <уровень, вес>
         private HashMap<Integer, LevelWeight> levelWeightMap;
-        //奖池信息 <奖品等级, 奖励信息>
+        //Информация о пулах <уровень, список наград>
         private HashMap<Integer, List<RewardPoolData>> rewardPoolMap;
-        //保底奖励 <序号，保底信息>
+        //Гарант <номер, данные>
         private HashMap<Integer, LowestData> lowestData;
-//        //保底奖励  Map<保底次数，奖品等级>   达到保底次数之后随机从的对应的奖品等级的池子中取一个奖品
-//        private HashMap<Integer, Integer> lowestData;
-        //累计领奖 <累计领奖次数,累计奖励>
+        //Награда за накопление <количество, награда>
         private HashMap<Integer, List<RewardData>> accRewardMap;
-        //活跃值奖励领取 <每日达到的活跃值,活跃奖励>
+        //Награда за активность <очки активности, награда>
         private HashMap<Integer, List<RewardData>> freeGiftMap;
 
         public String getClient() {

@@ -1,0 +1,461 @@
+2026-08-21 00:00:00.075 INFO [RankThread][UniverseRankScript.java:402] - 检查天墟战场名人堂排名
+2026-08-21 00:00:00.075 INFO [mainThread][DailyActiveScript.java:386] - 日常活动id=107【本服领地】关闭阶段
+2026-08-21 00:00:01.376 INFO [mainThread][ServerHeartScript.java:77] - 服务器整点0刷新 day=2026-08-21 00:00:01
+2026-08-21 00:00:01.404 INFO [PeakManager][PeakPkScript.java:897] - 【巅峰竞技场】 场次奖励结算。。。Time=2026-08-21 00:00:01
+2026-08-21 00:00:01.545 INFO [pool-5-thread-1][LogDataManagerScript.java:94] - update ItemCountLog count:0
+2026-08-21 00:00:01.546 INFO [RankThread][RankListScript.java:663] - 凌晨0点开始清理被挤出排行榜外的玩家
+2026-08-21 00:00:01.546 INFO [RankThread][RankListScript.java:684] - 清理排行榜完毕！
+2026-08-21 00:00:01.546 INFO [RankThread][RankListScript.java:688] - 凌晨0点开始记录排行榜日志
+2026-08-21 00:00:01.550 INFO [RankThread][RankListScript.java:717] - 排行榜记录完毕！
+2026-08-21 00:00:01.594 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 245
+2026-08-21 00:00:01.741 ERROR [pool-3-thread-3][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:01.741 ERROR [pool-3-thread-3][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:01.742 ERROR [pool-3-thread-3][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','502','125')
+2026-08-21 00:00:01.782 ERROR [pool-3-thread-8][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:01.783 ERROR [pool-3-thread-8][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:01.783 ERROR [pool-3-thread-8][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','16816','103')
+2026-08-21 00:00:01.943 ERROR [pool-3-thread-7][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:01.944 ERROR [pool-3-thread-7][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.103 ERROR [pool-3-thread-7][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','2492','124')
+2026-08-21 00:00:02.295 ERROR [pool-3-thread-6][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:02.325 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-21 00:00:02.374 ERROR [pool-3-thread-6][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.374 ERROR [pool-3-thread-6][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','4090','117')
+2026-08-21 00:00:02.395 ERROR [pool-3-thread-10][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:02.395 ERROR [pool-3-thread-10][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.400 ERROR [pool-3-thread-10][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','162826','106')
+2026-08-21 00:00:02.410 ERROR [pool-3-thread-1][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:02.416 ERROR [pool-3-thread-1][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.471 ERROR [pool-3-thread-9][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:02.471 ERROR [pool-3-thread-9][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.481 ERROR [pool-3-thread-5][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:02.481 ERROR [pool-3-thread-5][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.483 ERROR [pool-3-thread-1][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','91','101')
+2026-08-21 00:00:02.488 ERROR [pool-3-thread-5][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','1','123')
+2026-08-21 00:00:02.497 ERROR [pool-3-thread-9][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','375060','102')
+2026-08-21 00:00:02.525 ERROR [pool-3-thread-4][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:02.525 ERROR [pool-3-thread-4][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.526 ERROR [pool-3-thread-4][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','89576','105')
+2026-08-21 00:00:02.535 ERROR [pool-3-thread-2][DBLogTask.java:58] - CREATE TABLE IF NOT EXISTS `RankListLog202608` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`roleId`	bigint,
+`time`	bigint,
+`rankData`	varchar(300),
+`rankKind`	int,
+`platformName`	varchar(128),
+`roleName`	varchar(100),
+`rank`	int,
+`date`	varchar(200),
+PRIMARY KEY (`id`),
+KEY `index_1` (time),
+KEY `index_2` (roleId)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 
+2026-08-21 00:00:02.535 ERROR [pool-3-thread-2][DBLogTask.java:59] - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdateInternal(StatementImpl.java:1340) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeLargeUpdate(StatementImpl.java:2089) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.mysql.cj.jdbc.StatementImpl.executeUpdate(StatementImpl.java:1251) ~[mysql-connector-java-8.0.27.jar:8.0.27]
+	at com.alibaba.druid.pool.DruidPooledStatement.executeUpdate(DruidPooledStatement.java:169) ~[druid-1.0.15.jar:1.0.15]
+	at game.core.dblog.task.DBLogTask.run(DBLogTask.java:48) [GameCore.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_492]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_492]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_492]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-21 00:00:02.536 ERROR [pool-3-thread-2][RankListLog.java:99] - insert into `RankListLog202608` (date,roleId,roleName,rank,time,platformName,rankData,rankKind)values('2026-08-21','281873304391993039','解半云','1','1787259601','PC','6','116')
+2026-08-21 00:00:02.629 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 70
+2026-08-21 00:00:02.731 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-21 00:00:03.004 ERROR [bi_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 2
+2026-08-21 00:00:03.382 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 29, количество: 245
+2026-08-21 00:00:04.515 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 70
+2026-08-21 00:00:04.608 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 99, количество: 245
+2026-08-21 00:00:04.676 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 37, количество: 245
+2026-08-21 00:00:04.853 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 55, количество: 245
+2026-08-21 00:00:04.969 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 70
+2026-08-21 00:00:05.025 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 24, количество: 245
+2026-08-21 00:00:06.833 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 70
+2026-08-21 00:00:10.123 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30006
+2026-08-21 00:00:40.126 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30004
+2026-08-21 00:01:10.098 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29972
+2026-08-21 00:01:40.089 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29991
+2026-08-21 00:02:10.045 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29956
+2026-08-21 00:02:40.102 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30057
+2026-08-21 00:03:10.094 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29992
+2026-08-21 00:03:40.109 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30014
+2026-08-21 00:04:10.055 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29947
+2026-08-21 00:04:40.108 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30053
+2026-08-21 00:05:10.065 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29955
+2026-08-21 00:05:40.036 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29973
+2026-08-21 00:06:10.096 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30060
+2026-08-21 00:06:40.093 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29996
+2026-08-21 00:07:10.053 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29960
+2026-08-21 00:07:40.046 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29994
+2026-08-21 00:08:08.988 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-21 00:08:10.107 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30061
+2026-08-21 00:08:40.057 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29950
+2026-08-21 00:09:10.125 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30067
+2026-08-21 00:09:40.073 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29949
+2026-08-21 00:09:53.005 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-21 00:10:02.665 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 70
+2026-08-21 00:10:10.090 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30017
+2026-08-21 00:10:40.057 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29966
+2026-08-21 00:11:10.103 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30046
+2026-08-21 00:11:34.891 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-21 00:11:40.052 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29950
+2026-08-21 00:12:10.110 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30058
+2026-08-21 00:12:14.593 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 26, количество: 245
+2026-08-21 00:12:40.060 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29950
+2026-08-21 00:13:10.035 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29974
+2026-08-21 00:13:40.079 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30044
+2026-08-21 00:14:06.624 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 33, количество: 245
+2026-08-21 00:14:08.932 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-21 00:14:10.074 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29996
+2026-08-21 00:14:40.128 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30053
+2026-08-21 00:15:03.066 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-21 00:15:08.810 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 21, количество: 245
+2026-08-21 00:15:10.037 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29910
+2026-08-21 00:15:40.110 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30073
+2026-08-21 00:16:10.076 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29966
+2026-08-21 00:16:40.118 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30041
+2026-08-21 00:17:10.082 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29965
+2026-08-21 00:17:40.041 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29959
+2026-08-21 00:18:10.100 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30059
+2026-08-21 00:18:40.046 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29946
+2026-08-21 00:19:10.102 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30054
+2026-08-21 00:19:40.054 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29954
+2026-08-21 00:19:58.813 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 78, количество: 245
+2026-08-21 00:20:10.123 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30069
+2026-08-21 00:20:40.083 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29960
+2026-08-21 00:21:10.038 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29955
+2026-08-21 00:21:40.089 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30051
+2026-08-21 00:22:10.038 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29949
+2026-08-21 00:22:40.037 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29999
+2026-08-21 00:23:10.089 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30052
+2026-08-21 00:23:40.044 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29955
+2026-08-21 00:24:10.096 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30052
+2026-08-21 00:24:22.299 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-21 00:24:40.052 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29955
+2026-08-21 00:25:10.119 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30066
+2026-08-21 00:25:40.078 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29961
+2026-08-21 00:26:10.045 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29967
+2026-08-21 00:26:40.112 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30067
+2026-08-21 00:27:10.069 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29957
+2026-08-21 00:27:40.119 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30050
+2026-08-21 00:28:10.100 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29981
+2026-08-21 00:28:40.048 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29947
+2026-08-21 00:28:46.194 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 16, количество: 245
+2026-08-21 00:29:10.115 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30068
+2026-08-21 00:29:40.074 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29959
+2026-08-21 00:30:10.119 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30044
+2026-08-21 00:30:40.081 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29963
+2026-08-21 00:31:10.042 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29961
+2026-08-21 00:31:40.129 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30087
+2026-08-21 00:32:05.049 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 26, количество: 70
+2026-08-21 00:32:10.080 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29951
+2026-08-21 00:32:40.118 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30038
+2026-08-21 00:32:50.632 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 70
+2026-08-21 00:33:10.036 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29917
+2026-08-21 00:33:40.077 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30042
+2026-08-21 00:34:10.040 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29962
+2026-08-21 00:34:40.090 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30050
+2026-08-21 00:35:10.059 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29970
+2026-08-21 00:35:40.094 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-21 00:36:10.038 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29944
+2026-08-21 00:36:40.103 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30063
+2026-08-21 00:37:10.071 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29970
+2026-08-21 00:37:40.036 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29965
+2026-08-21 00:38:10.097 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30060
+2026-08-21 00:38:40.056 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29959
+2026-08-21 00:39:10.124 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30068
+2026-08-21 00:39:40.083 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29960
+2026-08-21 00:40:02.043 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-21 00:40:10.053 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29969
+2026-08-21 00:40:40.101 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30048
+2026-08-21 00:41:10.067 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29967
+2026-08-21 00:41:40.112 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30045
+2026-08-21 00:41:59.072 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 94, количество: 245
+2026-08-21 00:42:10.103 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29991
+2026-08-21 00:42:12.981 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 32, количество: 245
+2026-08-21 00:42:13.073 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-21 00:42:40.088 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29985
+2026-08-21 00:43:10.053 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29964
+2026-08-21 00:43:11.065 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 245
+2026-08-21 00:43:40.042 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29990
+2026-08-21 00:44:09.677 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-21 00:44:10.102 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30059
+2026-08-21 00:44:40.056 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29954
+2026-08-21 00:45:10.123 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30068
+2026-08-21 00:45:40.062 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29939
+2026-08-21 00:46:10.055 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29992
+2026-08-21 00:46:40.119 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30064
+2026-08-21 00:47:10.114 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29996
+2026-08-21 00:47:40.065 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29951
+2026-08-21 00:48:10.110 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30044
+2026-08-21 00:48:40.053 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29944
+2026-08-21 00:49:10.118 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30065
+2026-08-21 00:49:38.228 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 20, количество: 245
+2026-08-21 00:49:40.048 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29930
+2026-08-21 00:50:10.097 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30049
+2026-08-21 00:50:40.056 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29959
+2026-08-21 00:51:10.046 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29990
+2026-08-21 00:51:40.084 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30038
+2026-08-21 00:52:10.039 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29955
+2026-08-21 00:52:11.010 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 245
+2026-08-21 00:52:40.098 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30059
+2026-08-21 00:53:02.736 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-21 00:53:03.074 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 45, количество: 245
+2026-08-21 00:53:10.064 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29966
+2026-08-21 00:53:40.118 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30054
+2026-08-21 00:54:10.047 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29929
+2026-08-21 00:54:11.059 ERROR [main_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 17
+2026-08-21 00:54:40.087 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30040
+2026-08-21 00:55:10.039 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29951
+2026-08-21 00:55:40.075 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-08-21 00:55:51.339 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 181, количество: 70
+2026-08-21 00:56:10.080 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30005
+2026-08-21 00:56:40.043 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29963
+2026-08-21 00:57:01.818 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-21 00:57:10.111 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30067
+2026-08-21 00:57:17.086 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 36, количество: 245
+2026-08-21 00:57:40.060 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29950
+2026-08-21 00:57:41.019 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 16, количество: 245
+2026-08-21 00:58:10.107 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30047
+2026-08-21 00:58:40.061 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29953
+2026-08-21 00:59:10.108 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30048
+2026-08-21 00:59:40.056 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29947

@@ -50,6 +50,7 @@
         <mapper resource="com/game/db/sqlmap/PeakPk.xml"/>
         <mapper resource="com/game/db/sqlmap/ShopBeanMapper.xml"/>
         <mapper resource="com/game/db/sqlmap/ChumBeanMapper.xml"/>
+		<mapper resource="com/game/db/sqlmap/GameMaster.xml"/>
     </mappers>
 
 </configuration> 

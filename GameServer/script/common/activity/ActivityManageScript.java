@@ -36,7 +36,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 运营活动管理脚本类(活动具体数据由运营在GM后台配置)
+ * Класс управления игровыми событиями (данные событий настраиваются в GM панели)
  */
 public class ActivityManageScript implements IActivityManageScript {
 
@@ -56,7 +56,7 @@ public class ActivityManageScript implements IActivityManageScript {
     public void onReqActivityDeal(Player player, int actType, String dataStr) {
         IActivityScript as = getScript(actType);
         if (as == null) {
-            log.error("script is null. scriptId：" + ScriptEnum.getActivityScriptId(actType / 1000));
+            log.error("Скрипт не найден. scriptId：" + ScriptEnum.getActivityScriptId(actType / 1000));
             return;
         }
         if (!checkOpen(player, actType)) {
@@ -65,13 +65,13 @@ public class ActivityManageScript implements IActivityManageScript {
 
         ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(actType);
         if (actCfg == null) {
-            log.error("ActivityConfig is null. type：" + actType);
+            log.error("ActivityConfig не найден. type：" + actType);
             return;
         }
         try{
             as.onReqActivityDeal(player, dataStr, actCfg);
         }catch (Exception e){
-            log.error(e+",Ошибка при выполнении операции с активностью",e);
+            log.error(e+", Ошибка выполнения действия события",e);
         }
     }
 
@@ -105,7 +105,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -116,9 +116,7 @@ public class ActivityManageScript implements IActivityManageScript {
         for (ActivityConfig actCfg : Manager.activityManager.getActCfgMap().values()) {
             ActivityMessage.Activity.Builder actMess = getActivityBuilder(player.getId(), actCfg);
             msg.addActList(actMess);
-//            log.info("=========actId:"+actCfg.getId()+",actType:"+actCfg.getType());
         }
-//        log.info("活动数量:"+msg.getActListCount()+",活动信息:"+msg.build().toString());
         MessageUtils.send_to_player(player, ActivityMessage.ResActivityList.MsgID.eMsgID_VALUE, msg.build().toByteArray());
     }
 
@@ -181,7 +179,7 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 检测活动是否开启
+     * Проверка активности события
      * @param player
      * @param type
      * @return
@@ -218,7 +216,7 @@ public class ActivityManageScript implements IActivityManageScript {
         resultMap.put("endTime", eTime);
         resultMap.put("isDelete", actCfg.getIsDelete());
 
-        //客户端需要的自定义配置数据
+        //Пользовательские данные для клиента
         PlayerWorldInfo player = Manager.playerManager.getPlayerWorldInfo(roleId);
         String custom = "client";
         if (actCfg.getCustomCfgMap().containsKey(custom)) {
@@ -237,14 +235,14 @@ public class ActivityManageScript implements IActivityManageScript {
         }
         ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(actType);
         if (actCfg == null) {
-            log.error("ActivityConfig is null, type=" + actType);
+            log.error("ActivityConfig не найден, type=" + actType);
             return null;
         }
         String dataStr = "";
         try{
             dataStr = as.getActivityDataStr(actCfg, roleId);
         }catch (Exception e){
-            log.error("获取运营活动数据时报错，actId="+actCfg.getId(),e);
+            log.error("Ошибка получения данных события, actId="+actCfg.getId(),e);
         }
 
         return dataStr;
@@ -263,8 +261,8 @@ public class ActivityManageScript implements IActivityManageScript {
             Manager.countManager.setCount(ActivityManager.getInstance(), BaseCountType.Activity, actBean.getId(), Count.RefreshType.CountType_Day, 0);
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(actBean.getType());
-            if (actCfg != null) {//已经注册了,更新活动配置
-                //已经有加载的同类型活动，排除活动时间不匹配的
+            if (actCfg != null) {//Уже зарегистрировано, обновление конфигурации
+                //Уже есть активность того же типа, исключаем несовпадающие по времени
                 if (!isActiviting(actBean, TimeUtils.Time())) {
                     actBean.setState((byte) 0);
                     addPreMap(actBean);
@@ -279,52 +277,52 @@ public class ActivityManageScript implements IActivityManageScript {
                 ConcurrentHashMap<String, Object> oldCustomMap = actCfg.getCustomCfgMap();
 
                 actCfg.setCustomCfgMap(new ConcurrentHashMap<String, Object>());
-                //检查解析自定义配置字段是否正确
+                //Проверка парсинга пользовательских настроек
                 if (!(as.parseCustomConfig(actCfg, actBean.getCustom()))) {
-                    log.error("自定义运营活动数据解析错误，actId=" + actCfg.getId());
+                    log.error("Ошибка парсинга пользовательских данных события, actId=" + actCfg.getId());
                     actCfg.setCustomCfgMap(oldCustomMap);
                     return false;
                 }
 
-                //结束之前的活动处理
+                //Завершение предыдущей активности
                 as.activityEndDeal(actCfg);
 
-                //删除之前的活动(修改标记)
+                //Удаление предыдущей активности
                 Manager.activityManager.deal().delActConfig(actCfg.getId());
 
-                //清理之前的活动数据
+                //Очистка данных предыдущей активности
                 cleanActData(actCfg.getType());
 
-                //更新活动基础信息
+                //Обновление базовой информации
                 actCfg.beanToActivityBaseConfig(actBean);
                 actCfg.setIsDelete((byte) 0);
 
-                //活动配置变更后活动处理
+                //Обработка после изменения конфигурации
                 sendActivityOpen(actCfg);
                 return true;
             }
 
-            //检查活动是否可以加入进行的活动
+            //Проверка возможности добавления активности
             if (!isActiviting(actBean, TimeUtils.Time())) {
                 actBean.setState((byte) 0);
                 addPreMap(actBean);
                 return true;
             }
 
-            //注册新活动
+            //Регистрация новой активности
             actCfg = new ActivityConfig();
-            //注册自定义活动信息
+            //Регистрация пользовательских данных
             IActivityScript as = getScript(actBean.getType());
             if (as == null) {
                 return false;
             }
 
-            //设置活动基础信息
+            //Установка базовой информации
             actCfg.beanToActivityBaseConfig(actBean);
 
-            //解析自定义配置字段
+            //Парсинг пользовательских настроек
             if (!as.parseCustomConfig(actCfg, actBean.getCustom())) {
-                log.error("自定义运营活动数据解析错误");
+                log.error("Ошибка парсинга пользовательских данных события");
                 return false;
             }
 
@@ -354,16 +352,16 @@ public class ActivityManageScript implements IActivityManageScript {
             }
 
             long nowTime = TimeUtils.Time();
-            //活动已过期，删除活动
+            //Активность истекла, удаление
             if (nowTime >= actBean.getEndTime()) {
                 delActConfig(actBean.getId());
                 return false;
             }
 
-            if (actBean.getState() == 0) {//预发布
+            if (actBean.getState() == 0) {//Предварительная публикация
                 addPreMap(actBean);
-            } else if (actBean.getState() == 1) {//进行活动
-                //如果已经加载了同类型活动则排除不在活动时间内的。
+            } else if (actBean.getState() == 1) {//Активная
+                //Если уже загружена активность того же типа, исключаем неактивные по времени
                 if (Manager.activityManager.getActCfgMap().containsKey(actType)) {
                     if (!isActiviting(actBean, nowTime)) {
                         addPreMap(actBean);
@@ -378,15 +376,15 @@ public class ActivityManageScript implements IActivityManageScript {
                     return false;
                 }
 
-                //注册新活动
+                //Регистрация новой активности
                 ActivityConfig actCfg = new ActivityConfig();
 
-                //设置活动基础信息
+                //Установка базовой информации
                 actCfg.beanToActivityBaseConfig(actBean);
 
-                //检查解析自定义配置字段是否正确
+                //Проверка парсинга пользовательских настроек
                 if (!(as.parseCustomConfig(actCfg, actBean.getCustom()))) {
-                    log.error("自定义运营活动数据解析错误，actId=" + actCfg.getId());
+                    log.error("Ошибка парсинга пользовательских данных события, actId=" + actCfg.getId());
                     return false;
                 }
 
@@ -400,7 +398,7 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     private boolean isActiviting(ActivityConfigBean actBean, long nowTime) {
-        //增加新服活动条件 开服7天内只有新服活动才会生效
+        //Условие для новых серверов: в течение 7 дней только активности для новых серверов
         if(TimeUtils.getOpenServerDay() <= 7){
             if(actBean.getIsOpenServer() != 1){
                 return false;
@@ -446,7 +444,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
     @Override
     /**
-     * 通过活动逻辑类型ID,获取关联的活动配置信息列表
+     * Получение списка конфигураций активности по логическому ID типа
      * @param actLogicID
      * @return
      */
@@ -525,36 +523,36 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 检查活动开启和活动关闭
+     * Проверка открытия и закрытия активностей
      */
     @Override
     public void checkAllActivity() {
         long now = TimeUtils.Time();
-        //检查关闭
+        //Проверка закрытия
         Iterator<Entry<Integer, ActivityConfig>> iterator1 = Manager.activityManager.getActCfgMap().entrySet().iterator();
         while (iterator1.hasNext()) {
             Entry<Integer, ActivityConfig> entry = iterator1.next();
             int actType = entry.getKey();
             ActivityConfig actCfg = entry.getValue();
-            //活动已过期，移除掉
+            //Активность истекла, удаление
             if (actCfg.getEndTime() < now) {
                 IActivityScript as = getScript(actType);
                 if (as == null) {
-                    log.error("活动脚本错误：actType=" + actType);
+                    log.error("Ошибка скрипта активности: actType=" + actType);
                     continue;
                 }
 
                 try {
-                    //结束活动处理
+                    //Завершение активности
                     as.activityEndDeal(actCfg);
                 }catch (Exception e){
-                    log.error(e+",结束活动处理时出错,actId="+actCfg.getId(), e);
+                    log.error(e+", Ошибка завершения активности, actId="+actCfg.getId(), e);
                 }
-                //清理活动配置
+                //Очистка конфигурации
                 iterator1.remove();
                 Manager.activityManager.deal().delActConfig(actCfg.getId());
 
-                //清理活动相关数据
+                //Очистка данных активности
                 cleanActData(actType);
                 continue;
             }
@@ -564,29 +562,29 @@ public class ActivityManageScript implements IActivityManageScript {
         }
 
 
-        //TODO 检查预备活动是否有满足开启条件的
+        //Проверка предварительных активностей на готовность к открытию
         Iterator<Entry<Integer, Map<Integer, ActivityConfigBean>>> its = Manager.activityManager.getPreCfgMap().entrySet().iterator();
         while (its.hasNext()) {
             Entry<Integer, Map<Integer, ActivityConfigBean>> entry = its.next();
             int actType = entry.getKey();
 
             if (Manager.activityManager.getActCfgMap().containsKey(actType)) {
-                //已经有进行中的该类型活动
+                //Уже есть активная активность этого типа
                 continue;
             }
 
-            //预备列表中，同类型活动可能会有多种
+            //В предварительном списке может быть несколько активностей одного типа
             Iterator<Entry<Integer, ActivityConfigBean>> preIt = entry.getValue().entrySet().iterator();
             while (preIt.hasNext()) {
                 Entry<Integer, ActivityConfigBean> pre = preIt.next();
                 ActivityConfigBean actBean = pre.getValue();
-                //增加新服活动条件 开服7天内只有新服活动才会生效
+                //Условие для новых серверов: в течение 7 дней только активности для новых серверов
                 if(TimeUtils.getOpenServerDay() <= 7){
                     if(actBean.getIsOpenServer() != 1){
                         continue;
                     }
                 }
-                //活动满足开放
+                //Активность готова к открытию
                 if (actBean.getBeginTime() < now && now < actBean.getEndTime()) {
                     IActivityScript as = getScript(actType);
                     if (as == null) {
@@ -594,18 +592,18 @@ public class ActivityManageScript implements IActivityManageScript {
                     }
                     ActivityConfig actCfg = new ActivityConfig();
                     actCfg.beanToActivityBaseConfig(actBean);
-                    //解析自定义配置字段
+                    //Парсинг пользовательских настроек
                     try{
                         if (!as.parseCustomConfig(actCfg, actBean.getCustom())) {
-                            log.error("自定义运营活动数据解析错误");
+                            log.error("Ошибка парсинга пользовательских данных активности");
                             continue;
                         }
                     }catch (Exception e){
-                        log.error(e+",检查活动开启时出错, actId="+actCfg.getId(), e);
+                        log.error(e+", Ошибка проверки открытия активности, actId="+actCfg.getId(), e);
                         continue;
                     }
                     Manager.activityManager.getActCfgMap().put(actType, actCfg);
-                    //开放活动成功则预备活动缓存列表中移除
+                    //Удаление из предварительного списка после успешного открытия
                     preIt.remove();
 
                     sendActivityOpen(actCfg);
@@ -630,7 +628,7 @@ public class ActivityManageScript implements IActivityManageScript {
             loadActConfig(bean);
         }
 
-        //加载活动数据
+        //Загрузка данных активностей
         Manager.activityManager.getActDatas().clear();
         List<ActivityDataBean> dataList = Manager.activityManager.getDataDao().selectAll();
         if (dataList == null) {
@@ -642,7 +640,7 @@ public class ActivityManageScript implements IActivityManageScript {
             }));
         }
 
-        //加载玩家活动数据
+        //Загрузка данных активностей игроков
         Manager.activityManager.getRoleActDatas().clear();
         List<RoleActivityDataBean> roleDataList = Manager.activityManager.getRoleDataDao().selectAll();
         if (roleDataList == null) {
@@ -655,7 +653,7 @@ public class ActivityManageScript implements IActivityManageScript {
                     }));
         }
 
-        log.info("共加载了" + configList.size() + "条活动配置数据");
+        log.info("Загружено " + configList.size() + " конфигураций активностей");
     }
 
     @Override
@@ -670,9 +668,9 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 活动零点处理
+     * Обработка полуночи для игрока
      *
-     * @param player 玩家
+     * @param player
      */
     @Override
     public void zeroClockPlayerDeal(Player player) {
@@ -688,7 +686,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -710,7 +708,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -728,7 +726,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -750,7 +748,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -772,7 +770,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -793,11 +791,11 @@ public class ActivityManageScript implements IActivityManageScript {
 
         as.activityEndDeal(Manager.activityManager.getActCfgMap().get(actType));
 
-        //清理活动配置
+        //Очистка конфигурации
         Manager.activityManager.getActCfgMap().remove(actType);
         Manager.activityManager.deal().delActConfig(actType);
 
-        //清理活动相关数据
+        //Очистка данных активности
         cleanActData(actType);
     }
 
@@ -816,13 +814,13 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     private void cleanActData(int actType) {
-        //清理活动数据
+        //Очистка данных активности
         if (Manager.activityManager.getActDatas().containsKey(actType)) {
             Manager.activityManager.getActDatas().remove(actType);
             Manager.activityManager.deal().delActData(actType);
         }
 
-        //清理玩家活动数据
+        //Очистка данных игроков
         for (Entry<Long, ConcurrentHashMap<Integer, ConcurrentHashMap<String, Object>>> entry : Manager.activityManager.getRoleActDatas().entrySet()) {
             long roleId = entry.getKey();
             if (entry.getValue().containsKey(actType)) {
@@ -846,7 +844,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -871,7 +869,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -894,7 +892,7 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 获取活动掉落
+     * Обработка дропа с босса
      *
      * @param player
      * @return
@@ -913,7 +911,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -934,7 +932,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -947,7 +945,7 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 副本活动掉落
+     * Дроп в подземелье
      *
      * @param player
      * @param cloneId
@@ -967,7 +965,7 @@ public class ActivityManageScript implements IActivityManageScript {
 
             ActivityConfig actCfg = Manager.activityManager.getActCfgMap().get(type);
             if (actCfg == null) {
-                log.error("ActivityConfig is null. type：" + type);
+                log.error("ActivityConfig не найден. type：" + type);
                 continue;
             }
 
@@ -979,7 +977,7 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 检查登录
+     * Проверка входа
      */
     private boolean checkLogin(Player player, String[] ss) {
         try {
@@ -995,7 +993,7 @@ public class ActivityManageScript implements IActivityManageScript {
             }
         } catch (Exception e) {
             log.error(e, e);
-            log.error("ss参数内容如下:");
+            log.error("Параметры ss:");
             for (String s : ss) {
                 log.error("s=" + s);
             }
@@ -1035,7 +1033,7 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 检查活动是否是最早的活动，只选择最早的活动
+     * Проверка самой ранней активности
      */
     private ActivityConfig checkActivity(Map<Long, ActivityConfig> activityMap) {
         long now = TimeUtils.Time();
@@ -1043,13 +1041,12 @@ public class ActivityManageScript implements IActivityManageScript {
         ActivityConfigBean bean;
         long minStartTime = 9999999999999L;
         long minEndTime = 0L;
-        //活动检查
+        //Проверка активности
         Iterator<Entry<Long, ActivityConfig>> iterator1 = activityMap.entrySet().iterator();
         while (iterator1.hasNext()) {
             Entry<Long, ActivityConfig> entry = iterator1.next();
             if (entry.getValue().getEndTime() < (now - 5 * 1000)) {
-                //检查活动是否已经结束，云购活动未开启幸运大奖的需要开启幸运大奖
-                //活动已过期，移除掉
+                //Активность истекла, удаление
                 bean = new ActivityConfigBean();
                 bean.setWhere(entry.getKey());
                 Manager.saveThreadManager.getOtherServerSave().deal(bean, DbSqlName.ACTIVITYDATA_DELETE, SaveServer.DELETE);
@@ -1071,52 +1068,48 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 后台设置活动
+     * Установка активности из панели управления
      *
-     * @param actBean    后台活动信息
-     * @param b2wSession 会话
+     * @param actBean    данные активности
+     * @param b2wSession сессия
      */
     public void w2gSyncActivity(ActivityConfigBean actBean, Channel b2wSession) {
         boolean result = w2gSyncActivity(actBean);
         Map<String, Object> map = new HashMap<>(16);
         map.put("ok", result);
-        map.put("msg", result ? "发布成功！" : "发布失败！");
+        map.put("msg", result ? "Публикация успешна!" : "Ошибка публикации!");
 
-//		BackGrandServer.Send(b2wSession, JSON.toJSONString(map, true));
         BackGrandServer.Send(b2wSession, JsonUtils.toJSONString(map));
     }
 
     /**
-     * 后台设置活动
+     * Установка активности из панели управления
      *
-     * @param actBean 后台活动信息
+     * @param actBean данные активности
      */
     @Override
     public boolean w2gSyncActivity(ActivityConfigBean actBean) {
-        log.error("收到后台发布活动 activityId:" + actBean.getId() + ",活动类型：" + actBean.getType() + ",活动名称：" + actBean.getName());
+        log.error("Получена публикация активности activityId:" + actBean.getId() + ", тип:" + actBean.getType() + ", название:" + actBean.getName());
         actBean.setWhere(actBean.getId());
-        //注册活动数据
+        //Регистрация активности
         boolean isSuccess = false;
-        if (actBean.getState() == 1) {//覆盖掉正在进行的活动
+        if (actBean.getState() == 1) {//Перезапись активной активности
             isSuccess = Manager.activityManager.deal().registerActivityBean(actBean);
         } else {
             addPreMap(actBean);
             isSuccess = true;
         }
-        if (isSuccess) {
-//            Manager.saveThreadManager.getOtherServerSave().deal(actBean, DbSqlName.ACTIVITYDATA_DELETE, SaveServer.DELETE);
-        }
         return isSuccess;
     }
 
     /**
-     * 后台批量发布活动
+     * Массовая публикация активностей
      *
-     * @param activityBeans 活动信息列表
+     * @param activityBeans список активностей
      */
     @Override
     public List<Integer> w2gBatchSyncActivity(List<ActivityConfigBean> activityBeans) {
-        log.error("收到后台批量发布活动");
+        log.error("Получена массовая публикация активностей");
         List<Integer> faultList = new ArrayList<>();
         for (ActivityConfigBean actConfigBean : activityBeans) {
             actConfigBean.setWhere(actConfigBean.getId());
@@ -1128,14 +1121,7 @@ public class ActivityManageScript implements IActivityManageScript {
                 isSuccess = true;
             }
 
-//            if(actConfigBean.getState()==1){
-//                log.info("===========ActivityConfigBean:"+actConfigBean);
-//            }
-
-            if (isSuccess) {
-//                Manager.saveThreadManager.getOtherServerSave().deal(actConfigBean, DbSqlName.ACTIVITYDATA_DELETE, SaveServer.DELETE);
-
-            } else {
+            if (!isSuccess) {
                 faultList.add(actConfigBean.getId());
             }
         }
@@ -1143,58 +1129,55 @@ public class ActivityManageScript implements IActivityManageScript {
     }
 
     /**
-     * 后台批量发布活动
+     * Массовая публикация активностей
      *
-     * @param activityConfigBeans 活动信息列表
-     * @param session             会话
+     * @param activityConfigBeans список активностей
+     * @param session             сессия
      */
     public void w2gBatchSyncActivity(List<ActivityConfigBean> activityConfigBeans, Channel session) {
         List<Integer> faultList = w2gBatchSyncActivity(activityConfigBeans);
         Map<String, Object> map = new HashMap<>(16);
         if (faultList.isEmpty()) {
             map.put("ok", true);
-            map.put("msg", "批量发布成功！");
+            map.put("msg", "Массовая публикация успешна!");
         } else {
             map.put("ok", false);
             map.put("data", faultList);
         }
-//		BackGrandServer.Send(session, JSON.toJSONString(map, true));
         BackGrandServer.Send(session, JsonUtils.toJSONString(map));
     }
 
     /**
-     * 后台删除设置活动
+     * Удаление активности из панели управления
      *
-     * @param b2wSession 会话
+     * @param b2wSession сессия
      */
     @Override
     public void w2gSyncDeleteActivity(int actType, Channel b2wSession) {
-        log.error("世界服来的删除活动 activityId:" + actType);
-        //Channel b2wSession = BackGrandServer.getBackSession().get(sessionId); //就没有做加入缓存操作，用sessionId取不到
+        log.error("Запрос на удаление активности actType:" + actType);
         Map<String, Object> map = new HashMap<>(16);
         map.put("ok", true);
-        map.put("msg", actType + "活动删除成功！");
+        map.put("msg", "Активность " + actType + " удалена успешно!");
         Manager.activityManager.getActCfgMap().remove(actType);
-//		BackGrandServer.Send(b2wSession, JSON.toJSONString(map, true));
         BackGrandServer.Send(b2wSession, JsonUtils.toJSONString(map));
     }
 
     /**
-     * 后台删除设置活动
+     * Удаление активности
      */
     public void w2gSyncDeleteActivity(int actType) {
-        log.error("世界服来的删除活动 actType:" + actType);
+        log.error("Удаление активности actType:" + actType);
         Manager.activityManager.getActCfgMap().remove(actType);
     }
 
     public void batchDelActivity(int actType) {
-        log.error("批量删除活动 actType:" + actType);
+        log.error("Массовое удаление активности actType:" + actType);
 
         IActivityScript as = getScript(actType);
         if (as == null) {
             return;
         }
-        //活动已经删除
+        //Активность уже удалена
         if (!Manager.activityManager.getActCfgMap().containsKey(actType)) {
             return;
         }

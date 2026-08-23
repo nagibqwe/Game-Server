@@ -1,0 +1,30 @@
+2026-08-17 21:49:43.788 INFO [Thread-1][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/SocialServer/socialserver/SocialServer.jar:/home/Game-Server/SocialServer/socialserver/bin/:/home/Game-Server/SocialServer/socialserver/lib/slf4j-log4j12-1.7.6.jar:/home/Game-Server/SocialServer/socialserver/lib/disruptor-3.3.6.jar:/home/Game-Server/SocialServer/socialserver/lib/jackson-annotations-2.11.1.jar:/home/Game-Server/SocialServer/socialserver/lib/slf4j-api-1.7.6.jar:/home/Game-Server/SocialServer/socialserver/lib/netty-all-4.1.11.Final-sources.jar:/home/Game-Server/SocialServer/socialserver/lib/jackson-databind-2.11.1.jar:/home/Game-Server/SocialServer/socialserver/lib/log4j-api-2.17.0.jar:/home/Game-Server/SocialServer/socialserver/lib/GameCore.jar:/home/Game-Server/SocialServer/socialserver/lib/log4j-core-2.17.0.jar:/home/Game-Server/SocialServer/socialserver/lib/mybatis-3.2.5.jar:/home/Game-Server/SocialServer/socialserver/lib/httpcore-nio-4.4.5.jar:/home/Game-Server/SocialServer/socialserver/lib/netty-all-4.1.11.Final.jar:/home/Game-Server/SocialServer/socialserver/lib/httpasyncclient-4.1.2.jar:/home/Game-Server/SocialServer/socialserver/lib/httpclient-4.5.8.jar:/home/Game-Server/SocialServer/socialserver/lib/PushJavaSDK.jar:/home/Game-Server/SocialServer/socialserver/lib/httpcore-4.4.4.jar:/home/Game-Server/SocialServer/socialserver/lib/commons-lang-2.5.jar:/home/Game-Server/SocialServer/socialserver/lib/Message.jar:/home/Game-Server/SocialServer/socialserver/lib/GameCfg.jar:/home/Game-Server/SocialServer/socialserver/lib/druid-1.0.15.jar:/home/Game-Server/SocialServer/socialserver/lib/mysql-connector-java-8.0.27.jar:/home/Game-Server/SocialServer/socialserver/lib/jackson-core-2.11.1.jar:/home/Game-Server/SocialServer/socialserver/lib/log4j-1.2.17.jar:/home/Game-Server/SocialServer/socialserver/lib/commons-codec-1.9.jar:/home/Game-Server/SocialServer/socialserver/lib/protobuf-java-2.5.0.jar:/home/Game-Server/SocialServer/socialserver/lib/commons-logging-1.0.4.jar:bin]
+2026-08-17 21:49:43.812 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：2 脚本名：common.back.BackGrandScript
+2026-08-17 21:49:43.813 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：4 脚本名：common.back.GmScript
+2026-08-17 21:49:43.813 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：8 脚本名：common.community.CommunityScript
+2026-08-17 21:49:43.815 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：5 脚本名：common.friend.FriendScript
+2026-08-17 21:49:43.817 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：7 脚本名：common.home.HomeScript
+2026-08-17 21:49:43.818 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：9 脚本名：common.mail.MailScript
+2026-08-17 21:49:43.819 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：6 脚本名：common.player.GlobalPlayerScript
+2026-08-17 21:49:43.820 INFO [Thread-1][ScriptAbstractManager.java:400] - 脚本id：1 脚本名：common.server.ServerScript
+2026-08-17 21:49:54.772 WARN [Thread-1][GlobalPlayerScript.java:96] - 加载玩家 len=1
+2026-08-17 21:49:54.774 INFO [Thread-1][HomeScript.java:252] - 家装大赛排序
+2026-08-17 21:49:54.774 INFO [Thread-1][HomeScript.java:81] - 初始化家装大赛数据完成len=0！！！！！！！！！
+2026-08-17 21:49:57.150 INFO [Thread-1][SocialServer.java:156] - 服务器初始化完成 mess=34
+2026-08-17 21:49:57.305 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - 社交服务器监听9520成功！
+2026-08-17 21:49:57.310 INFO [nioEventLoopGroup-5-1][BackendServer.java:76] - 后台监听服务监听9521成功！
+2026-08-17 21:50:07.427 INFO [nioEventLoopGroup-4-3][PublicClientMessageAdapter.java:43] - 公共服激活连接PublicClientMessageAdapter#0: [id: 0x2730adf2, L:/94.250.249.128:47618 - R:/94.250.249.128:9200] 
+2026-08-17 21:50:07.952 INFO [Thread-6][P2SRegisterCallbackHandler.java:38] - 公共服注册回调 server=publicId: 2000
+publicName: "publicserver"
+
+2026-08-17 21:52:50.332 INFO [nioEventLoopGroup-3-1][ServerMessageAdapter.java:63] - 游戏服首次来注册ServerMessageAdapter#0: [id: 0x5a057b0f, L:/94.250.249.128:9520 - R:/94.250.249.128:53002] 连接的序号是：null
+2026-08-17 21:52:50.332 INFO [nioEventLoopGroup-3-1][ServerMessageAdapter.java:56] - 游戏服激活连接ServerMessageAdapter#0: [id: 0x5a057b0f, L:/94.250.249.128:9520 - R:/94.250.249.128:53002] 连接的序号是：1
+2026-08-17 21:52:50.368 INFO [mainThread][ServerScript.java:163] - 游戏服注册成功 server=serverId: 1001
+serverIP: "94.250.249.128"
+serverPort: 9101
+serverType: 1
+platformMark: "cn"
+version: "20170615"
+serverOpentime: "2023-05-12 00:00:00"
+serverWorldlv: 79
+

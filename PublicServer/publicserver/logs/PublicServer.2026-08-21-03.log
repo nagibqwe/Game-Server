@@ -1,0 +1,24 @@
+2026-08-21 03:13:11.283 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xf35db1bb, L:/94.250.249.128:9200 - R:/135.237.126.217:58710]
+2026-08-21 03:13:11.284 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-21 03:13:11.284 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xf35db1bb, L:/94.250.249.128:9200 - R:/135.237.126.217:58710] — порядковый номер подключения: 272
+2026-08-21 03:13:21.157 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0xf35db1bb, L:/94.250.249.128:9200 ! R:/135.237.126.217:58710]
+2026-08-21 03:13:21.157 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-21 03:13:21.157 INFO [nioEventLoopGroup-3-8][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xf35db1bb, L:/94.250.249.128:9200 ! R:/135.237.126.217:58710]
+2026-08-21 03:31:41.796 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xbe370f43, L:/94.250.249.128:9200 - R:/20.163.14.130:43088]
+2026-08-21 03:31:41.796 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-21 03:31:41.796 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xbe370f43, L:/94.250.249.128:9200 - R:/20.163.14.130:43088] — порядковый номер подключения: 273
+2026-08-21 03:31:51.624 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0xbe370f43, L:/94.250.249.128:9200 ! R:/20.163.14.130:43088]
+2026-08-21 03:31:51.624 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xbe370f43, L:/94.250.249.128:9200 ! R:/20.163.14.130:43088] — при отправке очереди соединение уже разорвано! 4
+2026-08-21 03:31:51.624 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-21 03:31:51.624 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xbe370f43, L:/94.250.249.128:9200 ! R:/20.163.14.130:43088]
+2026-08-21 03:32:38.494 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xb6096634, L:/94.250.249.128:9200 - R:/20.64.105.77:41716]
+2026-08-21 03:32:38.494 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-21 03:32:38.494 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xb6096634, L:/94.250.249.128:9200 - R:/20.64.105.77:41716] — порядковый номер подключения: 274
+2026-08-21 03:32:43.567 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xb6096634, L:/94.250.249.128:9200 ! R:/20.64.105.77:41716] — при отправке очереди соединение уже разорвано! 4
+2026-08-21 03:32:43.567 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0xb6096634, L:/94.250.249.128:9200 ! R:/20.64.105.77:41716]
+2026-08-21 03:32:43.567 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-21 03:32:43.567 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xb6096634, L:/94.250.249.128:9200 ! R:/20.64.105.77:41716]
+2026-08-21 03:50:32.735 ERROR [nioEventLoopGroup-5-1][HttpBackScript.java:109] - unknown getRequestPath: [/]
+2026-08-21 03:50:32.737 ERROR [nioEventLoopGroup-5-1][SendBackFuture.java:23] - back http result success!
+2026-08-21 03:51:05.992 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-21 03:51:05.993 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0

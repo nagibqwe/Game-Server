@@ -17,12 +17,23 @@ import org.apache.ibatis.session.SqlSession;
 public class GameMasterDao {
 
     public GameMaster selectByUserId(long userId) {
-        GameMaster gm = new GameMaster();
-        try (SqlSession session = DBFactory.GAME_DB.getSessionFactory().openSession()) {
-            gm = (GameMaster) session.selectOne("GameMaster.selectByUserId", userId);
-        } catch (Exception e) {
-            DBErrorToFile.error(e);
-        }
-        return gm;
+
+    try (
+        SqlSession session =
+            DBFactory.GAME_DB
+                .getSessionFactory()
+                .openSession()
+    ) {
+
+        return session.selectOne(
+            "GameMaster.selectByUserId",
+            userId
+        );
+
+    } catch (Exception e) {
+
+        DBErrorToFile.error(e);
+        return null;
     }
+}
 }

@@ -1,0 +1,283 @@
+2026-08-19 21:00:00.040 INFO [mainThread][DailyActiveScript.java:386] - 日常活动id=102【天芒鬼城】关闭阶段
+2026-08-19 21:00:00.041 INFO [RankThread][UniverseRankScript.java:402] - 检查天墟战场名人堂排名
+2026-08-19 21:00:00.042 INFO [mainThread][DailyActiveScript.java:296] - 日常活动id=106【八极阵图】开始阶段
+2026-08-19 21:00:02.877 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 16, количество: 245
+2026-08-19 21:00:10.030 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29989
+2026-08-19 21:00:40.111 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30081
+2026-08-19 21:00:56.648 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-19 21:01:10.097 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29985
+2026-08-19 21:01:29.593 INFO [nioEventLoopGroup-3-1][ClientMsgAdapter.java:64] - [id: 0xf858db61, L:/94.250.249.128:9101 - R:/104.145.210.100:50668], id=24首次来连接
+2026-08-19 21:01:29.632 INFO [RegisterProcessor][RegisterScript.java:480] - 角色开始登录 userId: 844541782760554497
+accessToken: "nagibqwe"
+machineCode: "{8289ca00-3531-47f1-b445-73e88d92cad8}"
+platformName: "PC"
+sign: "71bf8feaad4aac9f3651039b934bb8ce"
+time: 1787162488271
+serverId: 1001
+funcelUUid: "test_nil"
+os: "editor"
+roleId: 281873304391993039
+isWhite: false
+isCertify: false
+extension {
+  key: "fgi"
+  value: "1101"
+}
+
+2026-08-19 21:01:29.720 INFO [RegisterProcessor][RegisterScript.java:591] - 登录验证成功 userId:844541782760554497 sessionId:[id: 0xf858db61, L:/94.250.249.128:9101 - R:/104.145.210.100:50668]
+2026-08-19 21:01:32.811 INFO [recvWorker-2][RegisterScript.java:824] - 选择角色进入游戏 roleId:281873304391993039
+2026-08-19 21:01:33.226 INFO [recvWorker-2][RegisterScript.java:850] - 选择角色成功 roleId:281873304391993039 context=[id: 0xf858db61, L:/94.250.249.128:9101 - R:/104.145.210.100:50668]
+2026-08-19 21:01:33.226 INFO [recvWorker-2][RegisterScript.java:940] - 注册连接 user=UserInfo{userId=844541782760554497, age=18, roleCount=1} session=[id: 0xf858db61, L:/94.250.249.128:9101 - R:/104.145.210.100:50668]
+2026-08-19 21:01:33.233 ERROR [recvWorker-2][LuckyDrawWeekScript.java:567] - 当前奖池数据为空,需要重新初始化配置!
+2026-08-19 21:01:33.245 INFO [recvWorker-2][RegisterScript.java:965] - 注册连接 player= player: 281873304391993039 f:375060 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 10187619 session=[id: 0xf858db61, L:/94.250.249.128:9101 - R:/104.145.210.100:50668] sessionCount=1 
+2026-08-19 21:01:33.245 INFO [recvWorker-2][RegisterScript.java:976] - 玩家【解半云(281873304391993039)】 选择角色进入游戏！
+2026-08-19 21:01:33.260 INFO [recvWorker-2][LoadScript.java:55] - 进入地图流程开始 player= player: 281873304391993039 f:375060 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 10187619
+2026-08-19 21:01:33.262 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:375060 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 10187619 mapId=0 modelId=102599 line=0 pos={278.76416,194.53139} type=-1 login=true
+2026-08-19 21:01:33.263 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:375060 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 10187619;toMapModelid:102599;mapid:281873570389360710;line:1;pos:{278.76416,194.53139}
+2026-08-19 21:01:33.613 INFO [city_7][BiScript.java:95] - bi数据:BI{app_id=0', platform=4', channel_id='', source_id='', zone_id='1', server_id=1001', device_id='', account_id='test_nil', role_id=281873304391993039', role_name='解半云', role_level=91', role_vip_level=12', role_combat='375060', app_version='1.8.111.0', merchant='', net_type='WIFI', lastModifyTime=1787162493612', os='', os_version='', screen='1118*539', serverName='Local Ubuntu GameServer', cpplatformId=0', cpgameId=0', cpdid='', cpdevice_name='Unknown (JGINYUE)', cpUserId='', cpUserName='', cpGameName='', cpPlatFormGameName='', user_ip='104.145.210.100', game_version='1.0.0.0'}
+2026-08-19 21:01:40.042 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29946
+2026-08-19 21:01:40.830 ERROR [PeakManager][JJCManagerScript.java:343] - 玩家：281873304391993039 已经领取过竞技场首次排名奖励：0
+2026-08-19 21:01:40.932 INFO [recvWorker-3][QuestionnaireScript.java:75] - 玩家领取数据：0
+2026-08-19 21:01:41.355 ERROR [recvWorker-3][RetrieveResScript.java:64] - bean.getDailyId()  not find: 0
+2026-08-19 21:01:41.574 INFO [recvWorker-3][TaskManagerScript.java:652] - (角色名:解半云 ID:281873304391993039)登录时发送任务信息主线任务(990651)支线任务(65314101)支线任务(53000003)支线任务(53000012)支线任务(65380026)转职Count：1
+2026-08-19 21:01:41.604 INFO [recvWorker-3][CurrencyManagerScript.java:353] - (角色名:解半云 ID:281873304391993039)的[2&_VIP经验]不能再增加了！当前数量:100212642,增加数量:0
+2026-08-19 21:01:41.679 INFO [recvWorker-3][SoulArmorScript.java:676] - 发送魂甲信息 player= player: 281873304391993039 f:91151 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 10187619 
+2026-08-19 21:01:41.858 INFO [recvWorker-3][DevilSeriesAttributeScript.java:52] - 玩家：281873304391993039 计算魔魂属性
+2026-08-19 21:01:41.972 INFO [recvWorker-3][FunctionTaskScript.java:117] - functionTaskOnline,player:解半云
+2026-08-19 21:01:42.011 INFO [recvWorker-3][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873570389360710 old pos={205.78839,190.46062}
+2026-08-19 21:01:42.076 INFO [recvWorker-3][LoadScript.java:217] -  player: 281873304391993039 f:375060 n: 解半云 p:{278.76416,194.53139} mMId: 102599 i: 1 e: 10187619登录完成！mapId=281873570389360710
+2026-08-19 21:01:42.372 INFO [city_7][CurrencyManagerScript.java:353] - (角色名:解半云 ID:281873304391993039)的[2&_VIP经验]不能再增加了！当前数量:100212642,增加数量:0
+2026-08-19 21:01:58.418 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:8
+2026-08-19 21:02:10.060 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30018
+2026-08-19 21:02:18.328 INFO [pool-5-thread-1][LogDataManagerScript.java:142] - update ItemCountLog count:1
+2026-08-19 21:02:40.059 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29999
+2026-08-19 21:02:41.549 ERROR [city_7][ServerThread.java:87] - city_7-->MapSavePlayerTimer run:213
+2026-08-19 21:02:42.579 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-19 21:03:10.037 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29978
+2026-08-19 21:03:40.120 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30083
+2026-08-19 21:04:08.913 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 22, количество: 245
+2026-08-19 21:04:10.070 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29950
+2026-08-19 21:04:40.041 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29970
+2026-08-19 21:05:10.095 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30055
+2026-08-19 21:05:17.158 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-19 21:05:40.124 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30029
+2026-08-19 21:05:59.018 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 245
+2026-08-19 21:06:10.105 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29981
+2026-08-19 21:06:40.046 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29941
+2026-08-19 21:06:59.032 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 245
+2026-08-19 21:07:10.133 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30087
+2026-08-19 21:07:14.866 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-19 21:07:28.643 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-19 21:07:31.009 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 33, количество: 245
+2026-08-19 21:07:31.187 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-19 21:07:35.816 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-19 21:07:40.079 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29945
+2026-08-19 21:08:10.084 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30006
+2026-08-19 21:08:40.091 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30006
+2026-08-19 21:09:01.061 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 40, количество: 245
+2026-08-19 21:09:03.056 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 17, количество: 245
+2026-08-19 21:09:10.088 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29998
+2026-08-19 21:09:40.079 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29991
+2026-08-19 21:10:10.121 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30042
+2026-08-19 21:10:40.064 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29942
+2026-08-19 21:11:10.073 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30009
+2026-08-19 21:11:40.043 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29971
+2026-08-19 21:11:52.929 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-19 21:12:10.096 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30053
+2026-08-19 21:12:40.123 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30027
+2026-08-19 21:13:10.095 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29972
+2026-08-19 21:13:10.722 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-19 21:13:40.091 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29996
+2026-08-19 21:13:40.680 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-19 21:14:10.105 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30014
+2026-08-19 21:14:24.810 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 245
+2026-08-19 21:14:40.121 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30016
+2026-08-19 21:15:10.056 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29935
+2026-08-19 21:15:16.791 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 245
+2026-08-19 21:15:40.085 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-19 21:16:10.037 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29953
+2026-08-19 21:16:40.042 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30005
+2026-08-19 21:17:10.043 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30001
+2026-08-19 21:17:40.107 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30063
+2026-08-19 21:18:10.075 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29969
+2026-08-19 21:18:40.048 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29973
+2026-08-19 21:19:10.095 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30047
+2026-08-19 21:19:40.071 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29975
+2026-08-19 21:20:02.262 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-19 21:20:02.363 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-19 21:20:10.082 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30012
+2026-08-19 21:20:20.949 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-19 21:20:28.834 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 63
+2026-08-19 21:20:40.087 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30005
+2026-08-19 21:21:10.091 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30004
+2026-08-19 21:21:40.066 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29975
+2026-08-19 21:22:10.070 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30004
+2026-08-19 21:22:40.039 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29969
+2026-08-19 21:23:10.069 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-08-19 21:23:40.060 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29990
+2026-08-19 21:23:42.880 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 245
+2026-08-19 21:24:10.036 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29977
+2026-08-19 21:24:22.679 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 30, количество: 245
+2026-08-19 21:24:40.103 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30066
+2026-08-19 21:25:00.099 INFO [mainThread][DailyActiveScript.java:101] - 日常活动id=114【古魔封印】准备阶段：stage=-1
+2026-08-19 21:25:10.057 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29955
+2026-08-19 21:25:40.087 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30030
+2026-08-19 21:26:08.871 ERROR [copyMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 14, количество: 63
+2026-08-19 21:26:10.104 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30017
+2026-08-19 21:26:40.068 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29964
+2026-08-19 21:27:10.047 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29979
+2026-08-19 21:27:40.088 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30041
+2026-08-19 21:28:10.066 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29977
+2026-08-19 21:28:40.069 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30003
+2026-08-19 21:29:10.046 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29978
+2026-08-19 21:29:40.042 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29995
+2026-08-19 21:30:00.012 INFO [mainThread][DailyActiveScript.java:386] - 日常活动id=106【八极阵图】关闭阶段
+2026-08-19 21:30:00.012 INFO [mainThread][DailyActiveScript.java:296] - 日常活动id=114【古魔封印】开始阶段
+2026-08-19 21:30:00.921 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 13, количество: 245
+2026-08-19 21:30:01.637 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-19 21:30:10.080 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-08-19 21:30:40.077 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29999
+2026-08-19 21:31:10.048 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29971
+2026-08-19 21:31:40.044 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29996
+2026-08-19 21:32:10.089 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30045
+2026-08-19 21:32:40.086 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29997
+2026-08-19 21:33:10.037 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29951
+2026-08-19 21:33:40.115 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30077
+2026-08-19 21:34:10.109 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29994
+2026-08-19 21:34:40.093 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29985
+2026-08-19 21:35:10.085 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29992
+2026-08-19 21:35:40.109 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30024
+2026-08-19 21:36:08.766 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-19 21:36:10.087 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29978
+2026-08-19 21:36:40.102 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30015
+2026-08-19 21:37:10.054 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29952
+2026-08-19 21:37:40.075 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30021
+2026-08-19 21:37:40.919 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 16, количество: 245
+2026-08-19 21:38:10.072 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29997
+2026-08-19 21:38:40.070 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29998
+2026-08-19 21:39:10.053 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29983
+2026-08-19 21:39:40.092 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30039
+2026-08-19 21:40:10.129 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30037
+2026-08-19 21:40:40.058 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29929
+2026-08-19 21:41:10.033 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29975
+2026-08-19 21:41:40.069 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-08-19 21:41:49.442 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 17, количество: 245
+2026-08-19 21:42:05.144 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 19, количество: 245
+2026-08-19 21:42:10.068 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29998
+2026-08-19 21:42:27.229 INFO [nioEventLoopGroup-3-1][ClientMsgAdapter.java:109] - [id: 0xf858db61, L:/94.250.249.128:9101 ! R:/104.145.210.100:50668] 已经注册了 ClientMsgAdapter玩家:解半云(281873304391993039)
+2026-08-19 21:42:27.230 WARN [nioEventLoopGroup-3-1][RoleQuitGame.java:63] -  开始退出游戏 player= player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619 sessionId:[id: 0xf858db61, L:/94.250.249.128:9101 ! R:/104.145.210.100:50668] reason=7 
+2026-08-19 21:42:27.230 WARN [nioEventLoopGroup-3-1][RegisterScript.java:894] - 移除连接 user=UserInfo{userId=844541782760554497, age=18, roleCount=1} session=[id: 0xf858db61, L:/94.250.249.128:9101 ! R:/104.145.210.100:50668]
+2026-08-19 21:42:27.231 WARN [nioEventLoopGroup-3-1][RegisterScript.java:904] - 移除连接 role=RoleInfo{roleId=281873304391993039, csId=1001, level=91} session=[id: 0xf858db61, L:/94.250.249.128:9101 ! R:/104.145.210.100:50668]
+2026-08-19 21:42:27.231 WARN [nioEventLoopGroup-3-1][RegisterScript.java:914] - 移除连接 role=281873304391993039 session=[id: 0xf858db61, L:/94.250.249.128:9101 ! R:/104.145.210.100:50668]
+2026-08-19 21:42:27.231 WARN [nioEventLoopGroup-3-1][SessionUtils.java:22] - remote ip:/104.145.210.100:50668 isActive:false reason:tickSession 关闭连接退出游戏！
+2026-08-19 21:42:27.313 INFO [nioEventLoopGroup-3-1][MapManagerScript.java:883] - 玩家(281873304391993039)退出地图(modelId_102599 line_1 地图总人数：0
+2026-08-19 21:42:27.377 INFO [nioEventLoopGroup-3-1][RoleQuitGame.java:195] - 退出游戏完成 player: player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619
+2026-08-19 21:42:27.378 INFO [nioEventLoopGroup-3-1][ClientMsgAdapter.java:122] - [id: 0xf858db61, L:/94.250.249.128:9101 ! R:/104.145.210.100:50668],id=24 连接的已经移除了！
+2026-08-19 21:42:27.378 INFO [nioEventLoopGroup-3-1][MyOutClientHandler.java:37] - [id: 0xf858db61, L:/94.250.249.128:9101 ! R:/104.145.210.100:50668] 连接还没有注册成功玩家信息！MyOutClientHandler
+2026-08-19 21:42:27.778 ERROR [1][EnterGameFinish.java:171] - 保存数据线程1 : 执行更新1条
+2026-08-19 21:42:40.056 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29989
+2026-08-19 21:43:10.078 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30022
+2026-08-19 21:43:28.758 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 18, количество: 245
+2026-08-19 21:43:40.121 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30043
+2026-08-19 21:44:10.120 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29998
+2026-08-19 21:44:40.127 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30008
+2026-08-19 21:44:47.203 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-19 21:45:00.004 INFO [mainThread][DailyActiveScript.java:386] - 日常活动id=114【古魔封印】关闭阶段
+2026-08-19 21:45:06.915 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-19 21:45:10.100 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29973
+2026-08-19 21:45:40.104 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30004
+2026-08-19 21:46:10.120 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30016
+2026-08-19 21:46:12.346 ERROR [main_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 17
+2026-08-19 21:46:40.046 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29926
+2026-08-19 21:47:10.094 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30048
+2026-08-19 21:47:40.103 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30008
+2026-08-19 21:47:58.117 INFO [nioEventLoopGroup-3-2][ClientMsgAdapter.java:64] - [id: 0x22653a08, L:/94.250.249.128:9101 - R:/104.145.210.100:49356], id=25首次来连接
+2026-08-19 21:47:58.122 INFO [RegisterProcessor][RegisterScript.java:480] - 角色开始登录 userId: 844541782760554497
+accessToken: "nagibqwe"
+machineCode: "{8289ca00-3531-47f1-b445-73e88d92cad8}"
+platformName: "PC"
+sign: "ad52441dd9c53d039c0188c03c520e3e"
+time: 1787165272625
+serverId: 1001
+funcelUUid: "test_nil"
+os: "editor"
+roleId: 281873304391993039
+isWhite: false
+isCertify: false
+extension {
+  key: "fgi"
+  value: "1101"
+}
+
+2026-08-19 21:47:58.124 INFO [RegisterProcessor][RegisterScript.java:591] - 登录验证成功 userId:844541782760554497 sessionId:[id: 0x22653a08, L:/94.250.249.128:9101 - R:/104.145.210.100:49356]
+2026-08-19 21:48:00.402 INFO [recvWorker-5][RegisterScript.java:824] - 选择角色进入游戏 roleId:281873304391993039
+2026-08-19 21:48:00.402 INFO [recvWorker-5][RegisterScript.java:850] - 选择角色成功 roleId:281873304391993039 context=[id: 0x22653a08, L:/94.250.249.128:9101 - R:/104.145.210.100:49356]
+2026-08-19 21:48:00.402 INFO [recvWorker-5][RegisterScript.java:940] - 注册连接 user=UserInfo{userId=844541782760554497, age=18, roleCount=1} session=[id: 0x22653a08, L:/94.250.249.128:9101 - R:/104.145.210.100:49356]
+2026-08-19 21:48:00.403 INFO [recvWorker-5][RegisterScript.java:965] - 注册连接 player= player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619 session=[id: 0x22653a08, L:/94.250.249.128:9101 - R:/104.145.210.100:49356] sessionCount=1 
+2026-08-19 21:48:00.403 INFO [recvWorker-5][RegisterScript.java:976] - 玩家【解半云(281873304391993039)】 选择角色进入游戏！
+2026-08-19 21:48:00.403 INFO [recvWorker-5][LoadScript.java:55] - 进入地图流程开始 player= player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619
+2026-08-19 21:48:00.404 INFO [mapThread][MapManagerScript.java:1361] - 角色开始切换地图player= player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619 mapId=0 modelId=102599 line=0 pos={278.15573,194.61374} type=-1 login=true
+2026-08-19 21:48:00.404 INFO [mapThread][MapManagerScript.java:1459] - 角色等待客户端切换地图player: player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619;toMapModelid:102599;mapid:281873570389360710;line:1;pos:{278.15573,194.61374}
+2026-08-19 21:48:00.947 INFO [city_7][BiScript.java:95] - bi数据:BI{app_id=0', platform=4', channel_id='', source_id='', zone_id='1', server_id=1001', device_id='', account_id='test_nil', role_id=281873304391993039', role_name='解半云', role_level=91', role_vip_level=12', role_combat='375060', app_version='1.8.111.0', merchant='', net_type='WIFI', lastModifyTime=1787165280947', os='', os_version='', screen='1118*539', serverName='Local Ubuntu GameServer', cpplatformId=0', cpgameId=0', cpdid='', cpdevice_name='Unknown (JGINYUE)', cpUserId='', cpUserName='', cpGameName='', cpPlatFormGameName='', user_ip='104.145.210.100', game_version='1.0.0.0'}
+2026-08-19 21:48:05.271 INFO [recvWorker-6][QuestionnaireScript.java:75] - 玩家领取数据：0
+2026-08-19 21:48:05.285 ERROR [recvWorker-6][RetrieveResScript.java:64] - bean.getDailyId()  not find: 0
+2026-08-19 21:48:05.288 INFO [recvWorker-6][TaskManagerScript.java:652] - (角色名:解半云 ID:281873304391993039)登录时发送任务信息主线任务(990651)支线任务(65314101)支线任务(53000003)支线任务(53000012)支线任务(65380026)转职Count：1
+2026-08-19 21:48:05.296 INFO [recvWorker-6][SoulArmorScript.java:676] - 发送魂甲信息 player= player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619 
+2026-08-19 21:48:05.306 INFO [recvWorker-6][DevilSeriesAttributeScript.java:52] - 玩家：281873304391993039 计算魔魂属性
+2026-08-19 21:48:05.366 INFO [recvWorker-6][FunctionTaskScript.java:117] - functionTaskOnline,player:解半云
+2026-08-19 21:48:05.368 INFO [recvWorker-6][MapManagerScript.java:190] - 解半云(281873304391993039)正常进入地图：102599 , mapId281873570389360710 old pos={205.78839,190.46062}
+2026-08-19 21:48:05.372 INFO [recvWorker-6][LoadScript.java:217] -  player: 281873304391993039 f:375060 n: 解半云 p:{278.15573,194.61374} mMId: 102599 i: 1 e: 10187619登录完成！mapId=281873570389360710
+2026-08-19 21:48:05.644 ERROR [PeakManager][JJCManagerScript.java:343] - 玩家：281873304391993039 已经领取过竞技场首次排名奖励：0
+2026-08-19 21:48:10.074 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29972
+2026-08-19 21:48:20.809 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 23, количество: 245
+2026-08-19 21:48:40.115 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30041
+2026-08-19 21:48:55.679 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-19 21:49:10.042 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29926
+2026-08-19 21:49:13.080 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 245
+2026-08-19 21:49:40.073 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30032
+2026-08-19 21:49:56.875 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 27, количество: 245
+2026-08-19 21:50:10.121 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30048
+2026-08-19 21:50:15.811 ERROR [nioEventLoopGroup-7-2][BackGrandServer.java:121] - 连接出现异常了，sessionId:23 session[id: 0x8c89c469, L:/94.250.249.128:8191 - R:/50.116.26.161:57435]
+java.io.IOException: Connection timed out
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method) ~[?:1.8.0_492]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39) ~[?:1.8.0_492]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[?:1.8.0_492]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[?:1.8.0_492]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379) ~[?:1.8.0_492]
+	at io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes(PooledUnsafeDirectByteBuf.java:288) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1100) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:372) ~[netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:123) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:644) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:579) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:496) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:458) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138) [netty-all-4.1.11.Final.jar:4.1.11.Final]
+	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
+2026-08-19 21:50:40.102 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29980
+2026-08-19 21:51:10.087 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29986
+2026-08-19 21:51:40.088 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30001
+2026-08-19 21:52:10.125 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30036
+2026-08-19 21:52:40.039 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29915
+2026-08-19 21:53:10.044 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30005
+2026-08-19 21:53:40.048 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30004
+2026-08-19 21:53:51.167 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 11, количество: 245
+2026-08-19 21:54:10.040 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29992
+2026-08-19 21:54:40.122 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30081
+2026-08-19 21:54:54.982 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-19 21:55:10.068 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29947
+2026-08-19 21:55:40.120 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30052
+2026-08-19 21:55:43.351 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 28, количество: 245
+2026-08-19 21:56:10.053 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29933
+2026-08-19 21:56:40.057 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30003
+2026-08-19 21:56:55.036 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 26, количество: 245
+2026-08-19 21:57:10.084 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30028
+2026-08-19 21:57:40.036 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29952
+2026-08-19 21:57:42.927 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 15, количество: 245
+2026-08-19 21:58:10.072 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30035
+2026-08-19 21:58:11.043 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 22, количество: 245
+2026-08-19 21:58:11.117 ERROR [worldMap_timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 245
+2026-08-19 21:58:40.087 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30015
+2026-08-19 21:59:10.095 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=30009
+2026-08-19 21:59:40.088 INFO [nioEventLoopGroup-4-1][CrossServerScript.java:848] - 公共心跳原因码返回是:0, 用时=29993

@@ -1,82 +1,167 @@
-2026-08-16 01:03:27.644 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x376ff8a5, L:/94.250.249.128:9200 - R:/20.169.49.231:59296]
-2026-08-16 01:03:27.644 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
-2026-08-16 01:03:27.644 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x376ff8a5, L:/94.250.249.128:9200 - R:/20.169.49.231:59296] — порядковый номер подключения: 114
-2026-08-16 01:03:32.646 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0x376ff8a5, L:/94.250.249.128:9200 ! R:/20.169.49.231:59296]
-2026-08-16 01:03:32.646 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x376ff8a5, L:/94.250.249.128:9200 ! R:/20.169.49.231:59296] — при отправке очереди соединение уже разорвано! 4
-2026-08-16 01:03:32.646 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
-2026-08-16 01:03:32.646 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x376ff8a5, L:/94.250.249.128:9200 ! R:/20.169.49.231:59296]
-2026-08-16 01:03:42.510 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x699cfb7a, L:/94.250.249.128:9200 - R:/85.217.149.24:42436]
-2026-08-16 01:03:42.510 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
-2026-08-16 01:03:42.510 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x699cfb7a, L:/94.250.249.128:9200 - R:/85.217.149.24:42436] — порядковый номер подключения: 115
-2026-08-16 01:04:12.376 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0x699cfb7a, L:/94.250.249.128:9200 ! R:/85.217.149.24:42436]
-2026-08-16 01:04:12.376 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x699cfb7a, L:/94.250.249.128:9200 ! R:/85.217.149.24:42436] — при отправке очереди соединение уже разорвано! 4
-2026-08-16 01:04:12.376 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
-2026-08-16 01:04:12.376 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x699cfb7a, L:/94.250.249.128:9200 ! R:/85.217.149.24:42436]
-2026-08-16 01:19:21.820 ERROR [Thread-13][CouplefightScript.java:2169] - 仙侣对决异常 type:1 rid:281873304391993039 params:[]
-java.lang.NullPointerException: null
-	at common.couplefight.CouplefightScript.sendTrialsInfo(CouplefightScript.java:2736) ~[PublicServer.jar:?]
-	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2119) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
-	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
-	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-16 01:19:21.820 ERROR [Thread-12][CouplefightScript.java:2169] - 仙侣对决异常 type:5 rid:281873304391993039 params:[]
-java.lang.NullPointerException: null
-	at common.couplefight.CouplefightScript.sendPromotionInfo(CouplefightScript.java:2193) ~[PublicServer.jar:?]
-	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2131) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
-	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
-	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-16 01:22:52.091 ERROR [Thread-8][CouplefightScript.java:2169] - 仙侣对决异常 type:1 rid:281873304391993039 params:[]
-java.lang.NullPointerException: null
-	at common.couplefight.CouplefightScript.sendTrialsInfo(CouplefightScript.java:2736) ~[PublicServer.jar:?]
-	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2119) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
-	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
-	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-16 01:22:52.092 ERROR [Thread-7][CouplefightScript.java:2169] - 仙侣对决异常 type:5 rid:281873304391993039 params:[]
-java.lang.NullPointerException: null
-	at common.couplefight.CouplefightScript.sendPromotionInfo(CouplefightScript.java:2193) ~[PublicServer.jar:?]
-	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2131) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
-	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
-	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-16 01:29:13.979 ERROR [Thread-11][CouplefightScript.java:2169] - 仙侣对决异常 type:1 rid:281873304391993039 params:[]
-java.lang.NullPointerException: null
-	at common.couplefight.CouplefightScript.sendTrialsInfo(CouplefightScript.java:2736) ~[PublicServer.jar:?]
-	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2119) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
-	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
-	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-16 01:29:13.980 ERROR [Thread-10][CouplefightScript.java:2169] - 仙侣对决异常 type:5 rid:281873304391993039 params:[]
-java.lang.NullPointerException: null
-	at common.couplefight.CouplefightScript.sendPromotionInfo(CouplefightScript.java:2193) ~[PublicServer.jar:?]
-	at common.couplefight.CouplefightScript.reqInfo(CouplefightScript.java:2131) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:32) [PublicServer.jar:?]
-	at com.game.couplefight.handler.G2PReqCouplefightInfoHandler.action(G2PReqCouplefightInfoHandler.java:20) [PublicServer.jar:?]
-	at game.core.message.RMessage.action(RMessage.java:127) [GameCore.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:41) [PublicServer.jar:?]
-	at com.game.server.filter.RMessageWorkHandler.onEvent(RMessageWorkHandler.java:21) [PublicServer.jar:?]
-	at com.lmax.disruptor.WorkProcessor.run(WorkProcessor.java:143) [disruptor-3.3.6.jar:?]
-	at java.lang.Thread.run(Thread.java:750) [?:1.8.0_492]
-2026-08-16 01:32:53.390 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
-2026-08-16 01:32:53.390 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-23 21:50:28.382 INFO [Thread-1][ScriptAbstractManager.java:420] - Build scriptLoader classpath: [/home/Game-Server/PublicServer/publicserver/PublicServer.jar:/home/Game-Server/PublicServer/publicserver/bin/:/home/Game-Server/PublicServer/publicserver/lib/slf4j-log4j12-1.7.6.jar:/home/Game-Server/PublicServer/publicserver/lib/disruptor-3.3.6.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-annotations-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/slf4j-api-1.7.6.jar:/home/Game-Server/PublicServer/publicserver/lib/netty-all-4.1.11.Final-sources.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-databind-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-api-2.17.0.jar:/home/Game-Server/PublicServer/publicserver/lib/GameCore.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-core-2.17.0.jar:/home/Game-Server/PublicServer/publicserver/lib/mybatis-3.2.5.jar:/home/Game-Server/PublicServer/publicserver/lib/httpcore-nio-4.4.5.jar:/home/Game-Server/PublicServer/publicserver/lib/netty-all-4.1.11.Final.jar:/home/Game-Server/PublicServer/publicserver/lib/httpasyncclient-4.1.2.jar:/home/Game-Server/PublicServer/publicserver/lib/httpclient-4.5.8.jar:/home/Game-Server/PublicServer/publicserver/lib/PushJavaSDK.jar:/home/Game-Server/PublicServer/publicserver/lib/httpcore-4.4.4.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-lang-2.5.jar:/home/Game-Server/PublicServer/publicserver/lib/GameCfg.jar:/home/Game-Server/PublicServer/publicserver/lib/druid-1.0.15.jar:/home/Game-Server/PublicServer/publicserver/lib/mysql-connector-java-8.0.27.jar:/home/Game-Server/PublicServer/publicserver/lib/jackson-core-2.11.1.jar:/home/Game-Server/PublicServer/publicserver/lib/log4j-1.2.17.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-codec-1.9.jar:/home/Game-Server/PublicServer/publicserver/lib/protobuf-java-2.5.0.jar:/home/Game-Server/PublicServer/publicserver/lib/commons-logging-1.0.4.jar:bin]
+2026-08-23 21:50:28.438 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 114, имя: common.activity.ActivityRankScript
+2026-08-23 21:50:28.439 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 124, имя: common.bravepeak.BravePeakManagerScript
+2026-08-23 21:50:28.445 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 130, имя: common.couplefight.CouplefightScript
+2026-08-23 21:50:28.446 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 129, имя: common.crosshorseboss.CrossHorseBossScript
+2026-08-23 21:50:28.447 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 128, имя: common.crossrank.CrossRankScript
+2026-08-23 21:50:28.448 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 118, имя: common.dailyactive.DailyActiveScript
+2026-08-23 21:50:28.450 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 122, имя: common.eightdiagrams.EightDiagramsScript
+2026-08-23 21:50:28.460 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 105, имя: common.fightroom.FightManagerScript
+2026-08-23 21:50:28.462 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 123, имя: common.fud.AlienScript
+2026-08-23 21:50:28.467 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 111, имя: common.fud.DevilFudScript
+2026-08-23 21:50:28.483 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 112, имя: common.fud.FudScript
+2026-08-23 21:50:28.485 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 102, имя: common.gameserver.GSManagerScript
+2026-08-23 21:50:28.490 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 121, имя: common.goddevilwar.GodDevilWarScript
+2026-08-23 21:50:28.504 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 103, имя: common.http.HttpBackScript
+2026-08-23 21:50:28.505 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 120, имя: common.ninedaysfocused.NineDaysFocusedScript
+2026-08-23 21:50:28.515 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 113, имя: common.peak.PeakScript
+2026-08-23 21:50:28.516 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 126, имя: common.questionnaire.QuestionaireScript
+2026-08-23 21:50:28.517 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 50, имя: common.server.ErrorLogReport
+2026-08-23 21:50:28.518 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 108, имя: common.server.GMScript
+2026-08-23 21:50:28.519 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 101, имя: common.server.ServerStart
+2026-08-23 21:50:28.520 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 117, имя: common.servermatch.ServerMatchManagerScript
+2026-08-23 21:50:28.522 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 115, имя: common.soulanimalforest.SoulAnimalForestManagerScript
+2026-08-23 21:50:28.524 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 127, имя: common.universewar.UniverseWarScript
+2026-08-23 21:50:28.526 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 125, имя: common.worldBonfire.WorldBonfireScript
+2026-08-23 21:50:28.528 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 119, имя: common.worldanswer.WorldAnswerScript
+2026-08-23 21:50:28.530 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 110, имя: common.zone.ZoneDealHandlerScript
+2026-08-23 21:50:28.533 INFO [Thread-1][ScriptAbstractManager.java:400] - Скрипт ID: 106, имя: common.zone.ZoneManagerScript
+2026-08-23 21:50:28.549 INFO [Thread-1][LogService.java:87] - Инициализация сервиса базы данных логов
+2026-08-23 21:50:28.582 INFO [Thread-1][LogService.java:120] - Запуск пула соединений с базой данных логов завершён: jdbc:mysql://127.0.0.1:3306/tzj_public_log?autoReconnect=true&useUnicode=true&characterEncoding=utf8&nullCatalogMeansCurrent=true
+2026-08-23 21:50:30.106 INFO [Thread-1][LogService.java:173] - Проверка таблицы: fightroomcreatelog202608
+2026-08-23 21:50:30.144 INFO [Thread-1][LogService.java:272] - Проверка таблицы fightroomcreatelog202608 завершена
+2026-08-23 21:50:30.145 INFO [Thread-1][LogService.java:173] - Проверка таблицы: questionnairelog2026
+2026-08-23 21:50:30.187 INFO [Thread-1][LogService.java:272] - Проверка таблицы questionnairelog2026 завершена
+2026-08-23 21:50:30.188 INFO [Thread-1][LogService.java:125] - Запуск пула потоков для логов завершён
+2026-08-23 21:50:30.188 INFO [Thread-1][LogService.java:129] - Инициализация сервиса базы данных логов завершена
+2026-08-23 21:50:30.198 INFO [Thread-1][QuestionnaireManager.java:87] - 开始时间：1590958800000
+2026-08-23 21:50:30.199 INFO [Thread-1][QuestionnaireManager.java:88] - 结束时间：1593550799000
+2026-08-23 21:50:32.359 INFO [Thread-1][ServerParamUtil.java:217] - Параметры сервера успешно загружены!
+2026-08-23 21:50:32.360 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-24 00:00:00 — расчётное время: 2026-08-24 00:00:00
+2026-08-23 21:50:32.362 INFO [Thread-1][ServerMatchManager.java:178] - Начальное время: 2026-08-24 00:00:00 — расчётное время: 2026-08-24 00:00:00
+2026-08-23 21:50:32.370 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 8 groupID-- 30001  serverId1001-- openDay-- 1200  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-23 21:50:32.371 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 1 groupID-- 2  serverId1001-- openDay-- 1200  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-23 21:50:32.371 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 2 groupID-- 10001  serverId1001-- openDay-- 1200  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-23 21:50:32.372 INFO [Thread-1][ServerMatchManagerScript.java:251] - markServer bigGroupId-- 1  state-- 4 groupID-- 20001  serverId1001-- openDay-- 1200  firstConnect-- 1782934435779 newinfo-- {1=2, 2=10001, 4=20001, 8=30001} 
+2026-08-23 21:50:32.390 INFO [Thread-1][CrossRankManager.java:90] - 跨服世界等级 timer 初始化成功
+2026-08-23 21:50:32.418 INFO [Thread-1][FudScript.java:606] - 加载福地分组数据 len=0
+2026-08-23 21:50:32.435 INFO [Thread-1][FudScript.java:614] - 加载福地玩家数据 len=0
+2026-08-23 21:50:32.889 INFO [Thread-1][PeakScript.java:690] - 加载巅峰竞技场数据 len=0 rank=0
+2026-08-23 21:50:32.949 INFO [Thread-1][MainServer.java:237] - Public сервер успешно запущен!
+2026-08-23 21:50:33.125 INFO [Public service][PeakScript.java:746] - 【巅峰竞技场】 场次奖励结算。。。Time=2026-08-23 21:50:33
+2026-08-23 21:50:33.445 INFO [nioEventLoopGroup-2-1][SocketServer.java:61] - publicserver успешно запущен на порту 9200!
+2026-08-23 21:50:33.447 INFO [nioEventLoopGroup-4-1][SocketServer.java:61] - HTTP порт  успешно запущен на порту 9201!
+2026-08-23 21:50:40.622 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xdb3f4fad, L:/94.250.249.128:9200 - R:/94.250.249.128:60448]
+2026-08-23 21:50:40.632 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-23 21:50:40.640 INFO [nioEventLoopGroup-3-1][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xdb3f4fad, L:/94.250.249.128:9200 - R:/94.250.249.128:60448] — порядковый номер подключения: 1
+2026-08-23 21:50:40.886 ERROR [Thread-6][GameServerManager.java:213] - Нет активных подключений к боевым серверам =========================
+2026-08-23 21:50:40.887 INFO [Thread-6][GSManagerScript.java:509] - 注册 社交服务器 server=com.game.gameserver.structs.ServerInfo@7113a6a9｝
+2026-08-23 21:51:00.061 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=2【掌门传道】开始阶段
+2026-08-23 21:51:00.062 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=14【神兽首领】开始阶段
+2026-08-23 21:51:00.063 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=113【诸界远征】开始阶段
+2026-08-23 21:51:00.065 INFO [Public service][FudScript.java:985] - 跨服福地活动开启
+2026-08-23 21:51:00.066 INFO [Public service][FudScript.java:777] - 跨服福地分配福地 !!!!Day=2026-08-23 21:51:00
+2026-08-23 21:51:00.093 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=30001, stage=8, openDay=1200, worldLevel=79, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=801, state=2, camp=1}
+2026-08-23 21:51:00.094 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=20001, stage=4, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=401, state=2, camp=1}
+2026-08-23 21:51:00.096 INFO [Public service][FudScript.java:939] - 分配出生福地 group=FudGroup{groupId=10001, stage=2, openDay=0, worldLevel=0, servers=[1001]} camp=FudCamp{camp=1, serverList=[1001]} city=FudCity{cityId=201, state=2, camp=1}
+2026-08-23 21:51:00.098 INFO [Public service][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=30001, stage=8, openDay=1200, worldLevel=79, servers=[1001]}
+2026-08-23 21:51:00.100 INFO [Public service][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=20001, stage=4, openDay=0, worldLevel=0, servers=[1001]}
+2026-08-23 21:51:00.100 INFO [Public service][FudScript.java:817] - 分配组成功 group=FudGroup{groupId=10001, stage=2, openDay=0, worldLevel=0, servers=[1001]}
+2026-08-23 21:51:00.101 INFO [Public service][DailyActiveScript.java:217] - 日常活动id=115【仙侣对决】开始阶段
+2026-08-23 21:51:00.101 INFO [Public service][CouplefightScript.java:1368] - 开始仙侣对决
+2026-08-23 21:51:00.101 INFO [Public service][QuestionaireScript.java:59] - 有奖问答结束
+2026-08-23 21:51:00.148 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-11-1
+2026-08-23 21:51:00.154 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-23 21:51:00.154 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-23 21:51:00.246 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-11-1
+2026-08-23 21:51:00.346 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-11-1
+2026-08-23 21:51:00.449 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-11-1
+2026-08-23 21:51:00.549 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-11-1
+2026-08-23 21:51:00.649 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新0-11-1
+2026-08-23 21:51:00.681 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-23 21:51:00.681 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-23 21:51:00.749 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:00.849 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:00.959 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.062 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.165 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.259 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.359 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.398 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-23 21:51:01.398 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-23 21:51:01.460 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.558 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.659 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.761 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.859 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:01.960 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.064 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.162 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.201 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-23 21:51:02.201 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-23 21:51:02.261 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.361 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.461 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.563 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.650 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-23 21:51:02.650 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-23 21:51:02.662 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.763 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.863 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:02.964 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:03.064 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:03.165 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:03.270 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:03.277 INFO [pool-4-thread-1][CouplefightScript.java:1098] - 仙侣对决 开启报名
+2026-08-23 21:51:03.277 INFO [pool-4-thread-1][CouplefightScript.java:399] - 仙侣对决 清除所有数据
+2026-08-23 21:51:03.365 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:03.465 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新1-11-2
+2026-08-23 21:51:03.853 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.853 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.853 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.854 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.855 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.856 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.856 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:03.856 INFO [pool-4-thread-1][CouplefightScript.java:997] - 仙侣对决 预选赛准备
+2026-08-23 21:51:04.266 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新2-11-3
+2026-08-23 21:51:04.266 INFO [pool-4-thread-1][CouplefightScript.java:989] - 仙侣对决 预选赛开始
+2026-08-23 21:51:05.267 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新3-11-4
+2026-08-23 21:51:05.267 INFO [pool-4-thread-1][CouplefightScript.java:904] - 仙侣对决 预选赛结束
+2026-08-23 21:51:05.267 INFO [pool-4-thread-1][CouplefightScript.java:934] - 仙侣对决 小组赛准备
+2026-08-23 21:51:05.267 INFO [pool-4-thread-1][CouplefightScript.java:982] - 仙侣对决 小组赛准备完毕
+2026-08-23 21:51:06.271 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新4-11-5
+2026-08-23 21:51:06.272 INFO [pool-4-thread-1][CouplefightScript.java:630] - 仙侣对决 小组赛战斗开始
+2026-08-23 21:51:07.281 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新5-11-6
+2026-08-23 21:51:07.282 INFO [pool-4-thread-1][CouplefightScript.java:500] - 仙侣对决 冠军赛准备
+2026-08-23 21:51:08.314 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新6-11-7
+2026-08-23 21:51:08.315 INFO [pool-4-thread-1][CouplefightScript.java:476] - 仙侣对决 地榜赛准备
+2026-08-23 21:51:09.226 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新7-11-8
+2026-08-23 21:51:09.227 INFO [pool-4-thread-1][CouplefightScript.java:433] - 仙侣对决 地榜赛开始
+2026-08-23 21:51:10.228 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新8-11-9
+2026-08-23 21:51:10.230 INFO [pool-4-thread-1][CouplefightScript.java:488] - 仙侣对决 天榜赛准备
+2026-08-23 21:51:11.255 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新9-11-10
+2026-08-23 21:51:11.255 INFO [pool-4-thread-1][CouplefightScript.java:441] - 仙侣对决 天榜赛开始
+2026-08-23 21:51:12.260 INFO [CouplefightManager][CouplefightScript.java:315] - 仙侣对决状态刷新10-11-11
+2026-08-23 21:51:12.260 INFO [pool-4-thread-1][CouplefightScript.java:409] - 仙侣对决结束 等待关闭
+2026-08-23 21:51:32.443 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级

@@ -67,43 +67,43 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 登录处理接口
+ * Интерфейс обработки входа
  *
  * @author admin
  */
 public class RegisterScript implements IScript, IRegisterScript {
 
     private static final Logger log = LogManager.getLogger("com.game.Register.manager.RegisterManager");
-    //角色创建失败原因
-    private final int createRole_SUCCESS = 0;//创建角色成功！
-    private final int createRoleFailed_MaxNum = 1;//角色数已达到最大了
-    private final int createRoleFailed_errorlength = 2;//名字太长
-    private final int createRoleFailed_forbidden = 3;//名字还有非法字符
-    private final int createRoleFailed_duplicationname = 4;//重名
-    private final int createRoleFailed_errorparm = 5;//错误参数
-    private final int createRoleFailed_Shielding_symbol = 6;//屏蔽标点符号
-    private final int createRoleFailed_ServerMaxNum = 7;//注册人数已达上限
+    //Причины неудачного создания персонажа
+    private final int createRole_SUCCESS = 0;//Создание персонажа успешно!
+    private final int createRoleFailed_MaxNum = 1;//Достигнут максимум персонажей
+    private final int createRoleFailed_errorlength = 2;//Слишком длинное имя
+    private final int createRoleFailed_forbidden = 3;//Имя содержит недопустимые символы
+    private final int createRoleFailed_duplicationname = 4;//Имя уже существует
+    private final int createRoleFailed_errorparm = 5;//Ошибка параметров
+    private final int createRoleFailed_Shielding_symbol = 6;//Запрещённые знаки препинания
+    private final int createRoleFailed_ServerMaxNum = 7;//Достигнут лимит регистраций на сервере
 
-    private final int DeleteLevel = 110;//直接删除，不能恢复的角色转职阶位
-    private final int DeleteTime = 48 * 60 * 60;//超过48小时直接删除，不能恢复的角色
-    private final int MaxRoleNum = 4;//一个账号下最大角色数
+    private final int DeleteLevel = 110;//Уровень, после которого персонаж удаляется без возможности восстановления
+    private final int DeleteTime = 48 * 60 * 60;//Персонажи удаляются через 48 часов без возможности восстановления
+    private final int MaxRoleNum = 4;//Максимальное количество персонажей на аккаунт
 
-    //sign错误
+    //Ошибка подписи
     private final int loginfailed_signerror = -1;
 
-    //超时
+    //Тайм-аут
     private final int loginfailed_timeout = -2;
 
-    //重复登录
+    //Повторный вход
     private final int loginfailed_userIdReplay = -3;
 
-    //区号不在本服
+    //Сервер не существует
     private final int loginfailed_ServerNotExist = -4;
 
-    //人数已经达到上限了
+    //Достигнут лимит игроков
     private final int loginfailed_RoleNumMax = -5;
 
-    //开服时间未到
+    //Время открытия сервера ещё не наступило
     private final int loginfailed_OpenServerTime = -6;
 
     @Override
@@ -121,30 +121,30 @@ public class RegisterScript implements IScript, IRegisterScript {
 
         if (ServerParamUtil.registerNumLimit != 0 && Manager.playerManager.getAllPlayerWorldInfo().size() >= ServerParamUtil.registerNumLimit) {
             sendCreatetRoleMessage(context, createRoleFailed_ServerMaxNum);
-            GameServer.getInstance().setErrorLog("register role has reached limit", "注册角色数已达上限：" + ServerParamUtil.registerNumLimit);
+            GameServer.getInstance().setErrorLog("register role has reached limit", "Достигнут лимит регистрации персонажей: " + ServerParamUtil.registerNumLimit);
             return;
         }
 
         if (context.channel().attr(SessionAttribute.USER_STATE).get() == null) {
             String str = String.format(" %s", context);
-            log.error("创建角色失败 context无角色信息 Nowcontext is");
+            log.error("Ошибка создания персонажа: нет информации о персонаже в контексте Nowcontext is");
             SessionUtils.closeSession(context, str);
             return;
         }
         int userState = context.channel().attr(SessionAttribute.USER_STATE).get();
         if (userState < UserState.LOGININGSUCCESS.getValue()) {
-            String str = String.format("创建角色失败,没有登录成功的账号不能选择角色 Nowcontext is %s", context);
+            String str = String.format("Ошибка создания персонажа: нельзя выбрать персонажа без успешного входа. Nowcontext is %s", context);
             log.error(str);
             SessionUtils.closeSession(context, str);
             return;
         }
         context.channel().attr(SessionAttribute.USER_STATE).set(UserState.CREATEROLE.getValue());
-        int serverId = context.channel().attr(SessionAttribute.SERVER_ID).get();// context.getAttribute(SessionAttribute.SERVER_ID.getValue());
+        int serverId = context.channel().attr(SessionAttribute.SERVER_ID).get();
 
         int languageType = context.channel().attr(SessionAttribute.LANGUAGE_TYPE).get();
         int sex = GlobalType.getSexByCareer(career);
 
-        //检查参数
+        //Проверка параметров
         if (!isCanCreateRole(context, name, career, sex, serverId)) {
             return;
         }
@@ -161,7 +161,7 @@ public class RegisterScript implements IScript, IRegisterScript {
 
     }
 
-    //发送创建角色失败消息
+    //Отправка сообщения о неудаче создания персонажа
     private void sendCreatetRoleMessage(ChannelHandlerContext context, int reason) {
         RegisterMessage.ResCreateRoleFailed.Builder b = RegisterMessage.ResCreateRoleFailed.newBuilder();
         b.setReason(reason);
@@ -169,14 +169,14 @@ public class RegisterScript implements IScript, IRegisterScript {
         context.writeAndFlush(new SMessage(RegisterMessage.ResCreateRoleFailed.MsgID.eMsgID_VALUE, b.build().toByteArray()));
     }
 
-    //成功创建角色
+    //Успешное создание персонажа
     private boolean createRoleSuccess(BIMessage.Device device, UserInfo userInfo, String platformName, int serverId, String ip, byte sex, byte carrer, String realName, int languageType, ChannelHandlerContext context, String funcelUUid, String code, String puserId, String os) {
         Player player = createPlayer(userInfo.getUserId(), platformName, serverId, ip, sex, carrer, realName, languageType, funcelUUid);
-        Manager.registerManager.addRoleName(player.getId(), realName); //创建就加入新角色名，移到这里就add，下面makeRoleBean需要player.getName()
+        Manager.registerManager.addRoleName(player.getId(), realName);
         roleBean role = Manager.playerManager.manager().makeRoleBeanByPlayer(player);
-        role.setRolename(realName); //前面addName了这里可以不要这句
-        if (Manager.registerManager.getDao().insert(role) < 1) {//插入数据失败了， 玩家不应该上线了
-            Manager.registerManager.DelRoleName(player.getId());// hasUsedNameMap.remove(player.getId()); //insert失败则缓存中也移除
+        role.setRolename(realName);
+        if (Manager.registerManager.getDao().insert(role) < 1) {
+            Manager.registerManager.DelRoleName(player.getId());
             return false;
         }
         Position position = new Position(Global.NewPlayerFirstCoordinate.get(0), Global.NewPlayerFirstCoordinate.get(1));
@@ -186,7 +186,7 @@ public class RegisterScript implements IScript, IRegisterScript {
         player.setPlatUserId(puserId);
         player.changeMapModelId(Global.NewPlayerFirstMap);
         player.changeCurPos(position);
-        //设置显示服务器ID编号
+        //Установка отображаемого ID сервера
         player.setShowSid(ServerConfig.getShowServerId());
         Manager.playerManager.cachePlayer(player);
 
@@ -198,12 +198,12 @@ public class RegisterScript implements IScript, IRegisterScript {
         context.channel().attr(SessionAttribute.PLAYER).set(player);
         context.channel().attr(SessionAttribute.ROLE_ID).set(player.getId());
         context.channel().attr(SessionAttribute.USER_STATE).set(UserState.ENTERGAMEING.getValue());
-        log.info("创建角色成功 userId:" + userInfo.getUserId() + " roleId:" + player.getId() + " name:" + realName);
+        log.info("Создание персонажа успешно userId:" + userInfo.getUserId() + " roleId:" + player.getId() + " name:" + realName);
 
         Manager.registerManager.deal().registerSession(context);
-        //加log
+        //Запись лога
         writeCreateRoleLog(role, ip, player,device);
-        //玩家创建成功BI
+        //BI при создании персонажа
         Manager.biManager.getScript().biCreate(player, device, player.getCareer(), player.getSex(), ip);
         Manager.biManager.getScript().biRole_info(player);
         Manager.biManager.get4399Script().chatInfoTo4399(player, ChatManager.ROLE_NAME, "", realName, new ArrayList<>());
@@ -211,7 +211,7 @@ public class RegisterScript implements IScript, IRegisterScript {
 
         enterGame(player, false);
 
-        //todo 修改登录日志 记录创建角色选择服务器Id
+        //Запись данных входа
         Manager.playerManager.manager().insertLoginData(player.getId(), player.getUserId(), player.getCreateServerId(), player.getName(), player.getLevel(), player.getCareer(), 0);
 
         if (Manager.controlManager.deal().isOpenFunction(player, FunctionStart.Certification)) {
@@ -222,7 +222,7 @@ public class RegisterScript implements IScript, IRegisterScript {
         return true;
     }
 
-    //创建角色
+    //Создание персонажа
     private Player createPlayer(long userId, String platformName, int serverId, String ip, byte sex, byte career, String realName, int languageType, String funcelUUid) {
         long roleId = IDConfigUtil.getId();
         Player player = new Player();
@@ -243,10 +243,10 @@ public class RegisterScript implements IScript, IRegisterScript {
         player.setBagCellsNum(Global.Born_Bag_Num.get(0));
         player.setStoreCellsNum(Global.StoreCreateNum);
 
-        //初始化玩家装备部位
+        //Инициализация частей экипировки
         Manager.equipManager.initAllEquipParts(player);
 
-        //这个放到最后
+        //Инициализация атрибутов
         Manager.playerAttAttributeManager.deal().initPlayerAttribute(player, true);
 
         player.setCurHp(player.getAttribute().MaxHP());
@@ -274,15 +274,15 @@ public class RegisterScript implements IScript, IRegisterScript {
         }
     }
 
-    //判断是否能够创建角色
+    //Проверка возможности создания персонажа
     private boolean isCanCreateRole(ChannelHandlerContext context, String name, int career, int sex, int serverId) {
-        //检查参数
+        //Проверка параметров
         if (name == null || StringUtils.isBlank(name) || (sex != PlayerDefine.SEX_MAN && sex != PlayerDefine.SEX_WOMAN)
                 || context.channel().attr(SessionAttribute.USER_STATE).get() == null
                 || context.channel().attr(SessionAttribute.PLATFORMNAME).get() == null || context.channel().attr(SessionAttribute.SERVER_ID).get() == null
                 || context.channel().attr(SessionAttribute.IP).get() == null || context.channel().attr(SessionAttribute.USER_INFO).get() == null) {
             sendCreatetRoleMessage(context, createRoleFailed_errorparm);
-            log.error("创建角色错误，参数错误 name:" + name + " career:" + career + " sex:" + sex + ";Nowcontext is " + context.channel());
+            log.error("Ошибка создания персонажа: неверные параметры name:" + name + " career:" + career + " sex:" + sex + ";Nowcontext is " + context.channel());
             return false;
         }
         UserInfo userInfo = context.channel().attr(SessionAttribute.USER_INFO).get();
@@ -291,7 +291,7 @@ public class RegisterScript implements IScript, IRegisterScript {
         for (UserRoleInfo info : userInfo.getRoles().values()) {
             PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(info.getRoleId());
             if (pwi == null) {
-                log.error("没有找到简要信息， 是否有错误发生！");
+                log.error("Не найдена краткая информация, возможно ошибка!");
                 Player player = Manager.playerManager.getPlayerCache(info.getRoleId());
                 if (player == null) {
                     continue;
@@ -315,41 +315,41 @@ public class RegisterScript implements IScript, IRegisterScript {
             }
             num++;
         }
-        //检查已创建角色个数
+        //Проверка количества созданных персонажей
         if (num >= MaxRoleNum) {
             sendCreatetRoleMessage(context, createRoleFailed_MaxNum);
             return false;
         }
-        //检查名字长度(字符长度)
+        //Проверка длины имени
         int namelength = length(name);
         if (namelength < Global.PlayerNameLimit.get(1) || namelength > Global.PlayerNameLimit.get(0)) {
             sendCreatetRoleMessage(context, createRoleFailed_errorlength);
-            log.error("创建角色错误，角色名长度不对 createRoleInfo:" + name + "namelength: " + namelength + "_Nowcontext is " + context.channel());
+            log.error("Ошибка создания персонажа: неверная длина имени createRoleInfo:" + name + "namelength: " + namelength + "_Nowcontext is " + context.channel());
             return false;
         }
-        //屏蔽标点符号检查
+        //Проверка запрещённых знаков препинания
         if (Utils.isContainsShielding_symbol(name)) {
             sendCreatetRoleMessage(context, createRoleFailed_Shielding_symbol);
-            log.error("创建角色错误，角色名包含屏蔽标点符号 createRoleInfo:" + name + ";Nowcontext is " + context.channel());
+            log.error("Ошибка создания персонажа: имя содержит запрещённые знаки препинания createRoleInfo:" + name + ";Nowcontext is " + context.channel());
             return false;
         }
-        //屏蔽字检查
+        //Проверка запрещённых слов
         if (Utils.isForbiddenStr(name)) {
             sendCreatetRoleMessage(context, createRoleFailed_forbidden);
-            log.error("创建角色错误，角色名包含屏蔽字 createRoleInfo:" + name + ";Nowcontext is " + context.channel());
+            log.error("Ошибка создания персонажа: имя содержит запрещённые слова createRoleInfo:" + name + ";Nowcontext is " + context.channel());
             return false;
         }
 
         if (name.contains("?")) {
             sendCreatetRoleMessage(context, createRoleFailed_forbidden);
-            log.error("创建角色错误，角色名包含屏蔽字 createRoleInfo:" + name + ";Nowcontext is " + context.channel());
+            log.error("Ошибка создания персонажа: имя содержит запрещённые символы createRoleInfo:" + name + ";Nowcontext is " + context.channel());
             return false;
         }
 
-        //重名检查
+        //Проверка уникальности имени
         if (Manager.registerManager.isUsedName(name)) {
             sendCreatetRoleMessage(context, createRoleFailed_duplicationname);
-            log.error("创建角色错误，角色名重复 createRoleInfo:" + name + ";Nowcontext is " + context.channel());
+            log.error("Ошибка создания персонажа: имя уже существует createRoleInfo:" + name + ";Nowcontext is " + context.channel());
             return false;
         }
 
@@ -357,7 +357,7 @@ public class RegisterScript implements IScript, IRegisterScript {
     }
 
     /**
-     * 得到一个字符串的长度,一个汉字或日韩文长度为2,英文字符长度为1
+     * Получение длины строки: китайский или японский/корейский = 2, латиница = 1
      */
     private int length(String s) {
         String newString;
@@ -375,23 +375,23 @@ public class RegisterScript implements IScript, IRegisterScript {
         try {
             long deleteId = messInfo.getRoleId();
             if (context.channel().attr(SessionAttribute.USER_STATE).get() == null) {
-                String str = String.format("删除角色失败 context无角色信息 roleId:%d ;Nowcontext is %s", deleteId, context.channel());
+                String str = String.format("Ошибка удаления персонажа: нет информации о персонаже в контексте roleId:%d ;Nowcontext is %s", deleteId, context.channel());
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
             int userState = context.channel().attr(SessionAttribute.USER_STATE).get();
             if (userState < UserState.LOGININGSUCCESS.getValue()) {
-                String str = String.format("删除角色失败,没有登录成功的账号不能删除 roelId:" + deleteId + ";Nowcontext is " + context.channel());
+                String str = String.format("Ошибка удаления персонажа: нельзя удалять без успешного входа roelId:" + deleteId + ";Nowcontext is " + context.channel());
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
 
-            //检查该账号下是否有这个角色
+            //Проверка, есть ли персонаж на этом аккаунте
             UserInfo userInfo = context.channel().attr(SessionAttribute.USER_INFO).get();
             if (userInfo == null) {
-                log.error("角色选择错误 roleId:" + deleteId + ";Nowcontext is " + context.channel());
+                log.error("Ошибка выбора персонажа roleId:" + deleteId + ";Nowcontext is " + context.channel());
                 return;
             }
 
@@ -404,12 +404,11 @@ public class RegisterScript implements IScript, IRegisterScript {
                         return;
                     }
 
-                    //会长不能移除
+                    //Лидер гильдии не может быть удалён
                     if (player.isHaveGuild()) {
                         Guild guild = Manager.guildsManager.getGuildById(player.getGuildId());
                         GuildMember guildMember = guild.getMembers().get(player.getId());
                         if (guildMember.getPosition() == GuildSysConfig.TYPE_MASTER || Manager.guildsManager.manager().isProxyChairMan(guildMember, guild)) {
-//                            MessageUtils.notify_player(player, Notify.ERROR, MessageString.Delete_role_prompt);
                             isSuccess = 1;
                             break;
                         } else {
@@ -473,23 +472,23 @@ public class RegisterScript implements IScript, IRegisterScript {
 
             if (Manager.playerManager.getOnLinePlayerNum() > 1500) {
                 sendLoginFailedMsg(context, loginfailed_RoleNumMax);
-                GameServer.getInstance().setErrorLog("content len max than 1500", "客户端连接已经超过1500了， 需要玩家等待！");
+                GameServer.getInstance().setErrorLog("content len max than 1500", "Превышен лимит подключений (1500), игрокам необходимо подождать!");
                 return;
             }
 
-            log.info("角色开始登录 " + messInfo);
+            log.info("Начало входа персонажа " + messInfo);
             if (context.channel().attr(SessionAttribute.USER_STATE).get() != null) {
-                log.error("重复登录消息 Session is :" + context.channel());
+                log.error("Повторное сообщение входа Session is :" + context.channel());
                 sendLoginFailedMsg(context, loginfailed_userIdReplay);
                 return;
             }
 
-            //设置登录状态
+            //Установка статуса входа
             context.channel().attr(SessionAttribute.USER_STATE).set(UserState.LOGINING.getValue());
             InetSocketAddress remoteAddress = (InetSocketAddress) context.channel().remoteAddress();
             if (remoteAddress == null) {
                 sendLoginFailedMsg(context, loginfailed_userIdReplay);
-                String str = String.format("getIP error. Session is :%s ;messInfo is %s", context.channel(), messInfo);
+                String str = String.format("Ошибка получения IP. Session is :%s ;messInfo is %s", context.channel(), messInfo);
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
@@ -498,42 +497,42 @@ public class RegisterScript implements IScript, IRegisterScript {
             String ip = remoteAddress.getAddress().getHostAddress();
             if (ip == null) {
                 sendLoginFailedMsg(context, loginfailed_userIdReplay);
-                String str = String.format("getIP error. Session is :%s ;messInfo is %s", context.channel(), messInfo);
+                String str = String.format("Ошибка получения IP. Session is :%s ;messInfo is %s", context.channel(), messInfo);
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
 
-            //判断客户端上传的服务器id是否是正确的id
+            //Проверка ID сервера от клиента
             if (!ServerConfig.isRightServerId(messInfo.getServerId())) {
                 sendLoginFailedMsg(context, loginfailed_ServerNotExist);
-                String str = String.format("serverId error. Session is :%s ;messInfo is %s", context.channel(), messInfo);
+                String str = String.format("Ошибка serverId. Session is :%s ;messInfo is %s", context.channel(), messInfo);
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
 
-            //判断开服时间是否正常,白名单可以进入
+            //Проверка времени открытия сервера, белый список может входить
             if (TimeUtils.getOpenServerTime() > TimeUtils.Time() && !messInfo.getIsWhite()) {
                 sendLoginFailedMsg(context, loginfailed_OpenServerTime);
-                String str = String.format("openserver time error:%s. Session is :%s ;messInfo is %s", ServerConfig.getServerOpenTime(), context.channel(), messInfo);
+                String str = String.format("Ошибка времени открытия сервера:%s. Session is :%s ;messInfo is %s", ServerConfig.getServerOpenTime(), context.channel(), messInfo);
                 log.error(str);
                 return;
             }
 
-            //设置账号状态为登录中
+            //Установка статуса аккаунта в "вход"
             long userId = messInfo.getUserId();
 
-            //判断sign是否正确
+            //Проверка подписи
             if (!LoginVerifySignCal.calSign(userId, messInfo.getAccessToken(), messInfo.getMachineCode(), messInfo.getTime(), messInfo.getPlatformName())
                     .equals(messInfo.getSign())) {
                 sendLoginFailedMsg(context, loginfailed_signerror);
-                String str = String.format("sign error. Session is :%s ;messInfo is %s", context.channel(), messInfo);
+                String str = String.format("Ошибка подписи. Session is :%s ;messInfo is %s", context.channel(), messInfo);
                 SessionUtils.closeSession(context, str);
                 return;
             }
 
-            //从sdk获取用户的年龄
+            //Получение возраста пользователя из SDK
             int userAge = -1;
 
             if (!ServerConfig.isTestServer() || !isPCLogin(messInfo.getPlatformName())) {
@@ -542,7 +541,7 @@ public class RegisterScript implements IScript, IRegisterScript {
                     userAge = loginRet[1];
                     if (loginRet[0] != 1) {
                         sendLoginFailedMsg(context, (loginRet[0]));
-                        String str = String.format("token check error. Session is :%s ;messInfo is %s", context.channel(), messInfo);
+                        String str = String.format("Ошибка проверки токена. Session is :%s ;messInfo is %s", context.channel(), messInfo);
                         SessionUtils.closeSession(context, str);
                         return;
                     }
@@ -565,17 +564,17 @@ public class RegisterScript implements IScript, IRegisterScript {
             context.channel().attr(SessionAttribute.CLIENTOS).set(messInfo.getOs());
             context.channel().attr(SessionAttribute.MACHINECODE).set(messInfo.getMachineCode());
             context.channel().attr(SessionAttribute.PLATUSERID).set(messInfo.getPlatUserName());
-            context.channel().attr(SessionAttribute.LANGUAGE_TYPE).set(messInfo.getLanguageType());
+            context.channel().attr(SESSION_ATTRIBUTE_LANGUAGE_TYPE).set(messInfo.getLanguageType());
             context.channel().attr(SessionAttribute.IP).set(ip);
 
-            //是否包含了
+            //Проверка повторного входа
             String keyId = userId + "_" + messInfo.getServerId();
             ChannelHandlerContext oldS = Manager.registerManager.getUserEnterRoleID().get(keyId);
             if (oldS != null) {
-                log.error("账号重复登录  userId={} oldSession={} newSession={}", userInfo, oldS.channel(), context.channel());
+                log.error("Повторный вход userId={} oldSession={} newSession={}", userInfo, oldS.channel(), context.channel());
                 replaceLogin(oldS,true);
             }
-            //判断同一个区的是否有重复登录的
+            //Проверка повторного входа на том же сервере
             for (UserRoleInfo roleInfo : userInfo.getRoles().values()) {
                 if (roleInfo.getCsId() != messInfo.getServerId()) {
                     continue;
@@ -583,12 +582,12 @@ public class RegisterScript implements IScript, IRegisterScript {
                 ChannelHandlerContext oldSession = Manager.registerManager.getSessionByRoleId(roleInfo.getRoleId());
                 if (oldSession != null) {
                     replaceLogin(oldSession,true);
-                    log.error("账号重复登录，已选择角色进入游戏 userId：" + userInfo.getUserId() + " 角色id：" + roleInfo.getRoleId() + "oldSession is :" + oldSession + ";Nowcontext is " + context);
+                    log.error("Повторный вход, уже выбран персонаж userId：" + userInfo.getUserId() + " roleId：" + roleInfo.getRoleId() + "oldSession is :" + oldSession + ";Nowcontext is " + context);
                 }
             }
-            //同时只有一个连接
+            //Одновременно только одно соединение
             context.channel().attr(SessionAttribute.USER_STATE).set(UserState.LOGININGSUCCESS.getValue());
-            log.info("登录验证成功 userId:" + messInfo.getUserId() + " sessionId:" + context.channel());
+            log.info("Вход успешен userId:" + messInfo.getUserId() + " sessionId:" + context.channel());
             sendLoginSuccessMsg(context, userInfo, messInfo.getServerId(), messInfo.getPlatformName(), messInfo.getRoleId(), true);
         } catch (Exception e) {
             log.error(e, e);
@@ -597,7 +596,7 @@ public class RegisterScript implements IScript, IRegisterScript {
         }
     }
 
-    //重复登录处理
+    //Обработка повторного входа
     @Override
     public void replaceLogin(ChannelHandlerContext oldS,boolean isSendMsg) {
 
@@ -608,7 +607,7 @@ public class RegisterScript implements IScript, IRegisterScript {
         Manager.playerManager.iQuitGame().QuitGame(oldS, QuitGameDefine.RepeatLogin, false,isSendMsg);
     }
 
-    //发送登录失败消息
+    //Отправка сообщения о неудаче входа
     private void sendLoginFailedMsg(ChannelHandlerContext session, int reason) {
         RegisterMessage.ResLoginGameFailed.Builder b = RegisterMessage.ResLoginGameFailed.newBuilder();
         b.setCurrentTime((int) (TimeUtils.Time() / 1000));
@@ -618,12 +617,12 @@ public class RegisterScript implements IScript, IRegisterScript {
         cf.awaitUninterruptibly(2, TimeUnit.SECONDS);
     }
 
-    //发送登录成功消息
+    //Отправка сообщения об успешном входе
     public void sendLoginSuccessMsg(ChannelHandlerContext session, UserInfo userInfo, int loginServerId, String platformName, long roleId, boolean addRoleList) {
         if (userInfo == null) {
             return;
         }
-        //角色列表下要发送vip等级
+        //Отправка уровня VIP в списке персонажей
         Manager.goldManager.initGold(roleId, loginServerId, platformName);
         RegisterMessage.ResLoginGameSuccess.Builder b = RegisterMessage.ResLoginGameSuccess.newBuilder();
         if (addRoleList) {
@@ -631,13 +630,13 @@ public class RegisterScript implements IScript, IRegisterScript {
             for (UserRoleInfo info : userInfo.getRoles().values()) {
                 PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(info.getRoleId());
                 if (pwi == null) {
-                    log.error("没有找到简要信息， 是否有错误发生！");
+                    log.error("Не найдена краткая информация, возможно ошибка!");
                     Player player = Manager.playerManager.getPlayer(info.getRoleId());
                     if (player == null) {
-                        log.error(info.getRoleId() + "角色不存在！");
+                        log.error(info.getRoleId() + " персонаж не существует!");
                         continue;
                     } else {
-                        log.error(player.nameIdString() + "进入重构！");
+                        log.error(player.nameIdString() + " перестроение!");
                         if (player.getGold() == null) {
                             Manager.goldManager.playerOnLine(player);
                         }
@@ -697,22 +696,22 @@ public class RegisterScript implements IScript, IRegisterScript {
         try {
             long regainId = messInfo.getRoleId();
             if (context.channel().attr(SessionAttribute.USER_STATE).get() == null) {
-                String str = String.format("恢复角色失败 context无角色信息 roleId:%d ;Nowcontext is %s", regainId, context);
+                String str = String.format("Ошибка восстановления персонажа: нет информации о персонаже в контексте roleId:%d ;Nowcontext is %s", regainId, context);
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
             int userState = context.channel().attr(SessionAttribute.USER_STATE).get();
             if (userState < UserState.LOGININGSUCCESS.getValue()) {
-                String str = String.format("恢复角色失败,没有登录成功的账号不能删除 roleId:%d ;Nowcontext is %s", regainId, context);
+                String str = String.format("Ошибка восстановления персонажа: нельзя восстанавливать без успешного входа roleId:%d ;Nowcontext is %s", regainId, context);
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
-            //检查该账号下是否有这个角色
+            //Проверка, есть ли персонаж на этом аккаунте
             UserInfo userInfo = context.channel().attr(SessionAttribute.USER_INFO).get();
             if (userInfo == null) {
-                log.error("角色选择错误 roleId:" + regainId + ";Nowcontext is " + context);
+                log.error("Ошибка выбора персонажа roleId:" + regainId + ";Nowcontext is " + context);
                 return;
             }
             int now = (int) (TimeUtils.Time() / 1000);
@@ -723,13 +722,13 @@ public class RegisterScript implements IScript, IRegisterScript {
                 }
                 PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(roleInfo.getRoleId());
                 if (pwi == null) {
-                    log.error("没有找到简要信息， 是否有错误发生！");
+                    log.error("Не найдена краткая информация, возможно ошибка!");
                     Player player = Manager.playerManager.getPlayer(roleInfo.getRoleId());
                     if (player == null) {
-                        log.error(roleInfo.getRoleId() + "角色不存在！");
+                        log.error(roleInfo.getRoleId() + " персонаж не существует!");
                         continue;
                     } else {
-                        log.error(player.nameIdString() + "进入重构！");
+                        log.error(player.nameIdString() + " перестроение!");
                         if (player.getGold() == null) {
                             Manager.goldManager.playerOnLine(player);
                         }
@@ -767,18 +766,18 @@ public class RegisterScript implements IScript, IRegisterScript {
         }
     }
 
-    //type0表示删除角色，1表示恢复角色
+    //type 0 - удаление персонажа, 1 - восстановление
     private void writeDoRoleLog(UserRoleInfo roleInfo, long userId, int type) {
         try {
             PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(roleInfo.getRoleId());
             if (pwi == null) {
-                log.error("没有找到简要信息， 是否有错误发生！");
+                log.error("Не найдена краткая информация, возможно ошибка!");
                 Player player = Manager.playerManager.getPlayer(roleInfo.getRoleId());
                 if (player == null) {
-                    log.error(roleInfo.getRoleId() + "角色不存在！");
+                    log.error(roleInfo.getRoleId() + " персонаж не существует!");
                     return;
                 } else {
-                    log.error(player.nameIdString() + "进入重构！");
+                    log.error(player.nameIdString() + " перестроение!");
                     if (player.getGold() == null) {
                         Manager.goldManager.playerOnLine(player);
                     }
@@ -808,46 +807,46 @@ public class RegisterScript implements IScript, IRegisterScript {
     public void OnReqSelectCharacter(ChannelHandlerContext context, long roleId, boolean isReconnect) {
         try {
             if (context.channel().attr(SessionAttribute.USER_STATE).get() == null) {
-                String str = String.format("选择角色失败 context无角色信息 roleId:%d ;Nowcontext is %s", roleId, context);
+                String str = String.format("Ошибка выбора персонажа: нет информации о персонаже в контексте roleId:%d ;Nowcontext is %s", roleId, context);
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
             int userState = context.channel().attr(SessionAttribute.USER_STATE).get();
             if (userState < UserState.LOGININGSUCCESS.getValue()) {
-                String str = String.format("选择角色失败 没有登录成功的账号不能删除 roleId:%d ;Nowcontext is %s", roleId, context);
+                String str = String.format("Ошибка выбора персонажа: нельзя выбирать без успешного входа roleId:%d ;Nowcontext is %s", roleId, context);
                 log.error(str);
                 SessionUtils.closeSession(context, str);
                 return;
             }
             context.channel().attr(SessionAttribute.USER_STATE).set(UserState.SELECTING.getValue());
-            log.info("选择角色进入游戏 roleId:" + roleId);
-            //检查该账号下是否有这个角色
+            log.info("Выбор персонажа для входа roleId:" + roleId);
+            //Проверка, есть ли персонаж на этом аккаунте
             UserInfo userInfo = context.channel().attr(SessionAttribute.USER_INFO).get();
             if (userInfo == null) {
-                log.error("角色选择错误 roleId:" + roleId + ";Nowcontext is " + context);
+                log.error("Ошибка выбора персонажа roleId:" + roleId + ";Nowcontext is " + context);
                 return;
             }
             UserRoleInfo uRole = userInfo.getRoles().get(roleId);
             if (uRole == null || uRole.getDeleteTime() != 0) {
-                log.error("玩家所选择的角色不存在 roleId:" + roleId);
+                log.error("Выбранный персонаж не существует roleId:" + roleId);
                 return;
             }
 
             Player player = Manager.playerManager.getPlayer(roleId);
             if (player == null) {
-                log.error("玩家 roleId:" + roleId + "查找不到数据了");
+                log.error("Данные персонажа roleId:" + roleId + " не найдены");
                 return;
             }
-            //注册账号
+            //Регистрация аккаунта
             if (TimeUtils.Time() / 1000L < player.getForbid()) {
-                //角色封停中
+                //Персонаж заблокирован
                 sendResSelectCharacterFailed(context, player.getForbid());
                 Manager.playerManager.manager().removePlayer(player);
-                log.info("选择角色封停中 roleId:" + roleId + " context=" + context);
+                log.info("Выбранный персонаж заблокирован roleId:" + roleId + " context=" + context);
                 return;
             }
-            log.info("选择角色成功 roleId:" + roleId + " context=" + context.channel());
+            log.info("Выбор персонажа успешен roleId:" + roleId + " context=" + context.channel());
 
             context.channel().attr(SessionAttribute.PLAYER).set(player);
             context.channel().attr(SessionAttribute.ROLE_ID).set(player.getId());
@@ -873,11 +872,11 @@ public class RegisterScript implements IScript, IRegisterScript {
         ChannelFuture cf = old.writeAndFlush(new SMessage(RegisterMessage.ResSubstitute.MsgID.eMsgID_VALUE, message.build().toByteArray()));
         cf.awaitUninterruptibly(30, TimeUnit.SECONDS);
 
-        log.error("账号重复登录, 发送顶号消息 roleId={} IP={}", roleId, ip);
+        log.error("Повторный вход, отправлено сообщение о замене сессии roleId={} IP={}", roleId, ip);
     }
 
     /**
-     * 踢出连接
+     * Завершение сессии
      *
      * @param session
      */
@@ -891,7 +890,7 @@ public class RegisterScript implements IScript, IRegisterScript {
             int serverId = session.channel().attr(SessionAttribute.SERVER_ID).get();
             String keyId = user.getUserId() + "_" + serverId;
             Manager.registerManager.getUserEnterRoleID().remove(keyId);
-            log.warn("移除连接 user={} session={}", user, session.channel());
+            log.warn("Удаление соединения user={} session={}", user, session.channel());
         }
         if (session.channel().hasAttr(SessionAttribute.USER_INFO) && session.channel().hasAttr(SessionAttribute.ROLE_ID)) {
             UserInfo user = session.channel().attr(SessionAttribute.USER_INFO).get();
@@ -901,7 +900,7 @@ public class RegisterScript implements IScript, IRegisterScript {
                 role.setOnLine(false);
             }
             Manager.registerManager.getRole_sessions().remove(roleId);
-            log.warn("移除连接 role={} session={}", role, session.channel());
+            log.warn("Удаление соединения role={} session={}", role, session.channel());
         }
         if (session.channel().hasAttr(SessionAttribute.ROLE_ID)) {
             long roleId = session.channel().attr(SessionAttribute.ROLE_ID).get();
@@ -911,14 +910,14 @@ public class RegisterScript implements IScript, IRegisterScript {
 
             session.channel().attr(SessionAttribute.PLAYER).set(null);
             Manager.registerManager.getRole_sessions().remove(roleId);
-            log.warn("移除连接 role={} session={}", roleId, session.channel());
+            log.warn("Удаление соединения role={} session={}", roleId, session.channel());
         }
-        SessionUtils.closeSession(session, "tickSession 关闭连接退出游戏！");
+        SessionUtils.closeSession(session, "tickSession закрытие соединения и выход из игры!");
 
     }
 
     /**
-     * 注册连接
+     * Регистрация соединения
      *
      * @param session
      */
@@ -933,11 +932,11 @@ public class RegisterScript implements IScript, IRegisterScript {
             String keyId = user.getUserId() + "_" + serverId;
             ChannelHandlerContext oldS = Manager.registerManager.getUserEnterRoleID().get(keyId);
             if (oldS != null && !oldS.equals(session)) {
-                log.error("账号重复登录  userId={} oldSession={} newSession={}", user, oldS.channel(), session.channel());
+                log.error("Повторный вход userId={} oldSession={} newSession={}", user, oldS.channel(), session.channel());
                 replaceLogin(oldS,true);
             }
             Manager.registerManager.getUserEnterRoleID().put(keyId, session);
-            log.info("注册连接 user={} session={}", user, session.channel());
+            log.info("Регистрация соединения user={} session={}", user, session.channel());
         }
         if (session.channel().hasAttr(SessionAttribute.USER_INFO) && session.channel().hasAttr(SessionAttribute.ROLE_ID)) {
             UserInfo user = session.channel().attr(SessionAttribute.USER_INFO).get();
@@ -962,29 +961,29 @@ public class RegisterScript implements IScript, IRegisterScript {
 
             Manager.registerManager.addLanguageType(player.getId(), languageType);
             Manager.registerManager.getRole_sessions().put(roleId, session);
-            log.info("注册连接 player={} session={} sessionCount={} ", player, session.channel(), Manager.registerManager.getRole_sessions().size());
+            log.info("Регистрация соединения player={} session={} sessionCount={} ", player, session.channel(), Manager.registerManager.getRole_sessions().size());
         }
     }
 
     /**
-     * 选择角色进入游戏时 ， 此函数逻辑一定要简单，速度要快， 不能处理太多的其它信息
+     * Вход в игру после выбора персонажа, логика должна быть простой и быстрой
      *
-     * @param player      玩家
-     * @param isReConnect 是否是断线重连
+     * @param player      персонаж
+     * @param isReConnect переподключение
      */
     private void enterGame(Player player, boolean isReConnect) {
-        log.info("玩家【" + player.getName() + "(" + player.getId() + ")】" + " 选择角色进入游戏！");
+        log.info("Игрок【" + player.getName() + "(" + player.getId() + ")】" + " выбирает персонажа для входа в игру!");
         player.resetState();
         player.addState(EntityState.LoginGame);
-        //角色进入游戏时的账号信息
+        //Информация об аккаунте при входе
         saveRoleLogin(player);
 
         Manager.rechargeManager.discountScript().online(player);
 
-        //写log
+        //Запись лога входа
         writeRoleLoginLog(player);
 
-        //调用进入游戏脚本
+        //Вызов скрипта входа
         if (isReConnect) {
             Manager.playerManager.loadScript().reconnect(player);
             boolean canRetrieveRes = Manager.retrieveResManager.getScript().canRetrieveRes(player);
@@ -1029,7 +1028,7 @@ public class RegisterScript implements IScript, IRegisterScript {
         }
     }
 
-    //角色登陆的时候记录单纯的账号及设备信息
+    //Сохранение информации об аккаунте и устройстве при входе
     void saveRoleLogin(Player player) {
         RoleLoginInfoBean bean = makeRoleLoginInfoBean(player);
         Manager.saveThreadManager.getOtherServerSave().deal(bean, DbSqlName.ROLELOGININFO_INSERT, SaveServer.MERGE);
@@ -1061,7 +1060,7 @@ public class RegisterScript implements IScript, IRegisterScript {
         return platformName.equals("PC");
     }
 
-    //后面可能修改为多线程处理
+    //Может быть изменено на многопоточную обработку позже
     private int[] loginTokenCheck(RegisterMessage.ReqLoginGame messInfo) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("user_id=").append(messInfo.getFuncelUUid()).append("&");
@@ -1108,15 +1107,14 @@ public class RegisterScript implements IScript, IRegisterScript {
                 if (inner.containsKey("age")) {
                     age = (int) inner.get("age");
                 } else {
-                    log.error("没有在返回的数据中找到age的节点.tokenCheck ret:" + result);
+                    log.error("В возвращённых данных нет узла age. tokenCheck ret:" + result);
                     age = 18;
                 }
-                //log.error("登陆用户的年龄:"+age);
             }*/
             return new int[]{state, age};
         } catch (Exception e) {
             log.error("tokenCheck ret:" + result);
-            log.error(messInfo + "token check exception:" + e);
+            log.error(messInfo + "Ошибка проверки токена:" + e);
             return new int[]{loginfailed_timeout, -1};
         }
     }
@@ -1124,7 +1122,7 @@ public class RegisterScript implements IScript, IRegisterScript {
     @Override
     public void loadForbidAndWhite() {
         long start = TimeUtils.Time();
-        log.info("开始加载封号和白名单列表");
+        log.info("Начало загрузки списков блокировок и белого списка");
         ForbidDao dao = new ForbidDao();
         List<ForbidBean> list = dao.selectAll();
         for (ForbidBean bean : list) {
@@ -1133,12 +1131,12 @@ public class RegisterScript implements IScript, IRegisterScript {
         WhiteDao whitedao = new WhiteDao();
         Manager.registerManager.getWhites().addAll(whitedao.selectAll());
         long end = TimeUtils.Time();
-        log.info("加载名字列表结束用时" + (end - start));
+        log.info("Загрузка списка имён завершена, время: " + (end - start));
     }
 
 
     /**
-     * 开服登录异常检测
+     * Проверка ошибок входа после открытия сервера
      */
     @Override
     public void loginCheckException() {
@@ -1147,7 +1145,7 @@ public class RegisterScript implements IScript, IRegisterScript {
              long loginCheckTime =  ServerConfig.getCheckLoginTime() * 60 * 1000;
              if (curTime >=  TimeUtils.getOpenServerTime() + loginCheckTime ){
                  if (Manager.playerManager.getPlayersCache().size() <=0){
-                     //此处报警
+                     //Срабатывание тревоги
                      log.error(BeanUtil.customThrowException("LoginCheckException"));
                  }
                  ServerParamUtil.saveLoginCheck();

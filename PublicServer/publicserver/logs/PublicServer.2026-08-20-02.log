@@ -1,0 +1,32 @@
+2026-08-20 02:00:00.032 INFO [Public service][DailyActiveScript.java:263] - 日常活动id=113【诸界远征】关闭阶段
+2026-08-20 02:00:00.033 INFO [Public service][FudScript.java:1011] - 跨服福地活动关闭
+2026-08-20 02:00:44.885 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x4804f454, L:/94.250.249.128:9200 - R:/205.210.31.210:49895]
+2026-08-20 02:00:44.885 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-20 02:00:44.885 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x4804f454, L:/94.250.249.128:9200 - R:/205.210.31.210:49895] — порядковый номер подключения: 202
+2026-08-20 02:01:15.289 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:145] - Игровой сервер InnerMsgAdapter#0 :[id: 0x4804f454, L:/94.250.249.128:9200 - R:/205.210.31.210:49895] — произошло исключение: java.io.IOException: Connection reset by peer
+2026-08-20 02:01:15.290 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x4804f454, L:/94.250.249.128:9200 ! R:/205.210.31.210:49895]
+2026-08-20 02:01:15.290 INFO [nioEventLoopGroup-3-2][InnerMsgAdapter.java:155] - unreg: подключение удалено!
+2026-08-20 02:42:22.892 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0xcf220e31, L:/94.250.249.128:9200 - R:/45.91.64.6:60010]
+2026-08-20 02:42:22.892 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-20 02:42:22.893 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0xcf220e31, L:/94.250.249.128:9200 - R:/45.91.64.6:60010] — порядковый номер подключения: 203
+2026-08-20 02:42:54.884 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:145] - Игровой сервер InnerMsgAdapter#0 :[id: 0xcf220e31, L:/94.250.249.128:9200 - R:/45.91.64.6:60010] — произошло исключение: java.io.IOException: Connection reset by peer
+2026-08-20 02:42:54.887 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xcf220e31, L:/94.250.249.128:9200 ! R:/45.91.64.6:60010] — при отправке очереди соединение уже разорвано! 4
+2026-08-20 02:42:54.888 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xcf220e31, L:/94.250.249.128:9200 ! R:/45.91.64.6:60010] — при отправке очереди соединение уже разорвано! 4
+2026-08-20 02:42:54.889 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xcf220e31, L:/94.250.249.128:9200 ! R:/45.91.64.6:60010]
+2026-08-20 02:42:54.889 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xcf220e31, L:/94.250.249.128:9200 ! R:/45.91.64.6:60010] — при отправке очереди соединение уже разорвано! 4
+2026-08-20 02:42:54.889 INFO [nioEventLoopGroup-3-3][InnerMsgAdapter.java:155] - unreg: подключение удалено!
+2026-08-20 02:44:16.204 ERROR [nioEventLoopGroup-5-2][HttpBackScript.java:109] - unknown getRequestPath: [/bad-request]
+2026-08-20 02:44:16.205 ERROR [nioEventLoopGroup-5-2][SendBackFuture.java:23] - back http result success!
+2026-08-20 02:44:33.478 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x3e14c994, L:/94.250.249.128:9200 - R:/45.91.64.6:60010]
+2026-08-20 02:44:33.478 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-20 02:44:33.478 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x3e14c994, L:/94.250.249.128:9200 - R:/45.91.64.6:60010] — порядковый номер подключения: 204
+2026-08-20 02:45:05.614 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:145] - Игровой сервер InnerMsgAdapter#0 :[id: 0x3e14c994, L:/94.250.249.128:9200 - R:/45.91.64.6:60010] — произошло исключение: java.io.IOException: Connection reset by peer
+2026-08-20 02:45:05.614 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x3e14c994, L:/94.250.249.128:9200 ! R:/45.91.64.6:60010]
+2026-08-20 02:45:05.614 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x3e14c994, L:/94.250.249.128:9200 ! R:/45.91.64.6:60010] — при отправке очереди соединение уже разорвано! 4
+2026-08-20 02:45:05.614 INFO [nioEventLoopGroup-3-4][InnerMsgAdapter.java:155] - unreg: подключение удалено!
+2026-08-20 02:48:05.609 ERROR [nioEventLoopGroup-5-3][HttpBackScript.java:109] - unknown getRequestPath: [/]
+2026-08-20 02:48:05.610 ERROR [nioEventLoopGroup-5-3][SendBackFuture.java:23] - back http result success!
+2026-08-20 02:49:27.505 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 16, количество: 7
+2026-08-20 02:51:06.007 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-20 02:51:06.007 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0
+2026-08-20 02:57:03.134 ERROR [public-Timer-Timer][TimerThread.java:78] - Затраченное время на таймерные события: 12, количество: 7

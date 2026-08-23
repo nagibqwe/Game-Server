@@ -56,7 +56,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * 运营活动Controller
+ * Контроллер игровых событий (операционных активностей)
  * 
  * @author gm
  * @date 2021-09-07
@@ -88,7 +88,7 @@ public class ActivityController extends BaseController
     private static final Logger log = LoggerFactory.getLogger(ActivityController.class);
 
     /**
-     * 运营活动页面统一跳转逻辑
+     * Универсальный переход на страницу игровых событий
      * @param type
      * @param mmap
      * @return
@@ -99,74 +99,74 @@ public class ActivityController extends BaseController
     {
         mmap.put("type",type);
         switch (type) {
-            case 0: //活动总览
+            case 0: //Обзор событий
                 return prefix + "/ActivityList";
-            case ActivityType.GetActive: //活跃领取
+            case ActivityType.GetActive: //Получение активности
                 return prefix + "/GetActive";
-            case ActivityType.DailyRecharge: //累计每日充值
+            case ActivityType.DailyRecharge: //Ежедневный пополнение
                 return prefix + "/DailyRecharge";
-            case ActivityType.LimitTimeLogin: //限时登陆奖励
+            case ActivityType.LimitTimeLogin: //Лимитированная награда за вход
                 return prefix + "/LimitTimeLogin";
-            case ActivityType.LimitGiftBag: //限够礼包
+            case ActivityType.LimitGiftBag: //Лимитированный набор
                 return prefix + "/LimitGiftBag";
-            case ActivityType.LimitedTotalRecharge: //限时累充
+            case ActivityType.LimitedTotalRecharge: //Лимитированное общее пополнение
                 return prefix + "/LimitedTotalRecharge";
-            case ActivityType.LimitedTotalConsume: //限时累计消耗
+            case ActivityType.LimitedTotalConsume: //Лимитированное общее потребление
                 return prefix + "/LimitedTotalConsume";
-            case ActivityType.GroupBuy://团购
+            case ActivityType.GroupBuy://Совместная покупка
                 return prefix + "/GroupBuy";
-            case ActivityType.LuckyCat://招财猫
+            case ActivityType.LuckyCat://Кот удачи
                 return prefix + "/LuckyCat";
-            case ActivityType.CollectGoodsExChange://集物兑换
+            case ActivityType.CollectGoodsExChange://Обмен предметов
                 return prefix + "/CollectGoodsExChange";
-            case ActivityType.DrawReward://天帝宝库
+            case ActivityType.DrawReward://Сокровищница
                 return prefix + "/DrawReward";
-            case ActivityType.HolidayBoss://首领狂欢
+            case ActivityType.HolidayBoss://Боссы праздника
                 return prefix + "/HolidayBoss";
-            case ActivityType.HolidayTask://庆典任务
+            case ActivityType.HolidayTask://Задания праздника
                 return prefix + "/HolidayTask";
-            case ActivityType.HolidayWords://节日集字
+            case ActivityType.HolidayWords://Сбор слов праздника
                 return prefix + "/HolidayWords";
-            case ActivityType.FestivalPreference://节日特惠
+            case ActivityType.FestivalPreference://Праздничные предложения
                 return prefix + "/FestivalPreference";
-            case ActivityType.ContinuousRecharge://连续累充
+            case ActivityType.ContinuousRecharge://Непрерывное пополнение
                 return prefix + "/ContinuousRecharge";
-            case ActivityType.LimitShopActivty://限时商城
+            case ActivityType.LimitShopActivty://Лимитированный магазин
                 return prefix + "/LimitShopActivity";
-            case ActivityType.HolidayDailyGift://节日礼包（金元宝购买）
+            case ActivityType.HolidayDailyGift://Праздничный подарок (покупка за золотые юани)
                 return prefix + "/HolidayDailyGift";
-            case ActivityType.HolidayScoreRank://积分排名
+            case ActivityType.HolidayScoreRank://Рейтинг по очкам
                 return prefix + "/HolidayScoreRank";
-            case ActivityType.FestivalWish://节日许愿
+            case ActivityType.FestivalWish://Праздничное желание
                 return prefix + "/FestivalWish";
-            case ActivityType.FBShare://FB分享(元旦)
+            case ActivityType.FBShare://Публикация в FB (Новый год)
                 return prefix + "/FBShare";
-            case ActivityType.ContinuousRecharge2://连续累充2(购买礼包)
+            case ActivityType.ContinuousRecharge2://Непрерывное пополнение 2 (покупка набора)
                 return prefix + "/ContinuousRecharge2";
-            case ActivityType.XinNianZhuFu://节日祝福(新春祝福)
+            case ActivityType.XinNianZhuFu://Праздничное благословение (Новогоднее)
                 return prefix + "/FestivalSign";
-            case ActivityType.ZhiTouzi://掷骰子
+            case ActivityType.ZhiTouzi://Бросок кубика
                 return prefix + "/JumpGrid";
-            case ActivityType.AppearanceShow://外观展示
+            case ActivityType.AppearanceShow://Показ внешности
                 return prefix + "/AppearanceShow";
-            case ActivityType.LoginShow://登录展示
+            case ActivityType.LoginShow://Показ входа
                 return prefix + "/LoginShow";
-            case ActivityType.Cornucopia://聚宝盆
+            case ActivityType.Cornucopia://Рог изобилия
                 return prefix + "/Cornucopia";
-            case ActivityType.LuckyEgg://幸运砸蛋
+            case ActivityType.LuckyEgg://Счастливое яйцо
                 return prefix + "/LuckyEgg";
-            case ActivityType.LuckyGem://幸运宝玉
+            case ActivityType.LuckyGem://Счастливый самоцвет
                 return prefix + "/LuckyGem";
-            case ActivityType.FangZeTreasureHunt://方泽探宝
+            case ActivityType.FangZeTreasureHunt://Охота за сокровищами Фанцзэ
                 return prefix + "/FangZeTreasureHunt";
-            case ActivityType.xianJingTreasureHunt://仙境探宝
+            case ActivityType.xianJingTreasureHunt://Охота за сокровищами в Стране Бессмертных
                 return prefix + "/xianJingTreasureHunt";
         }
         return "";
     }
 
     /**
-     * 根据searchType区分是活动总览还是单类型活动查询
+     * Разделение по searchType: общий обзор или запрос по типу
      * @param request
      * @param searchType
      * @param type
@@ -212,21 +212,21 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 导出运营活动列表
+     * Экспорт списка игровых событий
      */
     @RequiresPermissions("gmtool:activity:export")
-    @Log(title = "运营活动", businessType = BusinessType.EXPORT)
+    @Log(title = "Игровые события", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Activity activity)
     {
         List<Activity> list = activityService.selectActivityList(activity);
         ExcelUtil<Activity> util = new ExcelUtil<Activity>(Activity.class);
-        return util.exportExcel(list, "Игровые событияДанные");
+        return util.exportExcel(list, "Данные игровых событий");
     }
 
     /**
-     * 新增运营活动
+     * Добавление игрового события
      */
     @GetMapping("/add")
     public String add()
@@ -235,10 +235,10 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 新增保存运营活动
+     * Сохранение нового игрового события
      */
     @RequiresPermissions("gmtool:activity:add")
-    @Log(title = "运营活动", businessType = BusinessType.INSERT)
+    @Log(title = "Игровые события", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(Activity activity)
@@ -247,7 +247,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 修改运营活动
+     * Редактирование игрового события
      */
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, ModelMap mmap)
@@ -258,10 +258,10 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 修改保存运营活动
+     * Сохранение изменений игрового события
      */
     @RequiresPermissions("gmtool:activity:edit")
-    @Log(title = "运营活动", businessType = BusinessType.UPDATE)
+    @Log(title = "Игровые события", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(Activity activity)
@@ -270,10 +270,10 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 删除运营活动
+     * Удаление игрового события
      */
     @RequiresPermissions("gmtool:activity:remove")
-    @Log(title = "运营活动", businessType = BusinessType.DELETE)
+    @Log(title = "Игровые события", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -282,7 +282,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 获取运营活动的节日类型数据
+     * Получение типов праздников для игровых событий
      * @return
      */
     @PostMapping( "/getActivityFestivalType")
@@ -299,7 +299,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 获取运营活动模板列表
+     * Получение списка шаблонов игровых событий
      * @param type
      * @return
      */
@@ -313,7 +313,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 获取活动模板数据
+     * Получение данных шаблона
      * @param id
      * @return
      */
@@ -322,13 +322,13 @@ public class ActivityController extends BaseController
     public Object getTemplate(int id) {
         ActivityTemplate template = activityTemplateService.selectActivityTemplateById(id);
         if (template == null) {
-            return AjaxResult.info("模板数据获取失败！").put("ok",false);
+            return AjaxResult.info("Ошибка получения данных шаблона!").put("ok",false);
         }
         return AjaxResult.info("",template).put("ok",true);
     }
 
     /**
-     * 删除活动模板
+     * Удаление шаблона
      * @param id
      * @return
      */
@@ -336,12 +336,12 @@ public class ActivityController extends BaseController
     @ResponseBody
     public Object deleteTemplate(int id) {
         activityTemplateService.deleteActivityTemplateById(id);
-        GMLogUtil.log("删除活动模板id:" + id);
+        GMLogUtil.log("Удаление шаблона события id:" + id);
         return AjaxResult.info("").put("ok",true);
     }
 
     /**
-     * 根据模板名和活动类型进行检测(同一活动类型只能有唯一的模板名)
+     * Проверка уникальности имени шаблона для типа события
      * @param activity
      * @param request
      * @return
@@ -361,7 +361,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 添加活动模板
+     * Добавление шаблона
      * @param activity
      * @param request
      * @return
@@ -380,7 +380,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 根据模板名进行更新
+     * Обновление шаблона по имени
      * @param activity
      * @param request
      * @return
@@ -396,13 +396,13 @@ public class ActivityController extends BaseController
         if (result < 1){
             return AjaxResult.info("").put("ok",false);
         }
-        GMLogUtil.log("更新活动模板id:" + activity.getId());
+        GMLogUtil.log("Обновление шаблона события id:" + activity.getId());
         return AjaxResult.info("").put("ok",true);
     }
 
 
     /**
-     * 提交活动操作
+     * Добавление события
      * @param activity
      * @param request
      * @return
@@ -416,12 +416,12 @@ public class ActivityController extends BaseController
             if (activity.getId() > 0){
                 Activity activityOld = activityService.selectActivityById(activity.getId());
                 if (!activityOld.getToSidList().equals("") && !activityOld.getOkSidList().equals("")){
-                    activity.setState(4);//发布之后有修改的提交操作
+                    activity.setState(4);//Изменение после публикации
                 }
             }
             flag = ActivityManager.getInstance().addActivity(activity, paramMap);
-            GMLogUtil.log("添加活动,活动ID:" + activity.getId() +
-                    ",活动名字:" + activity.getName());
+            GMLogUtil.log("Добавление события, ID:" + activity.getId() +
+                    ", название:" + activity.getName());
         } catch (Exception e) {
             log.error(e.getMessage());
             return AjaxResult.info(e.getMessage()).put("ok",false);
@@ -430,7 +430,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 导入运营活动数据
+     * Импорт данных игровых событий из Excel
      * @param activityFile
      * @param request
      * @return
@@ -439,19 +439,19 @@ public class ActivityController extends BaseController
     @ResponseBody
     public Object importActivityData(MultipartFile activityFile, HttpServletRequest request){
         if (activityFile == null){
-            return AjaxResult.info("file is null!").put("ok",false);
+            return AjaxResult.info("Файл отсутствует!").put("ok",false);
         }
         String fileName = activityFile.getOriginalFilename();
         if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".xls")){
-            return AjaxResult.info("file type error!").put("ok",false);
+            return AjaxResult.info("Неверный тип файла!").put("ok",false);
         }
         List<Activity> activities = new ArrayList<>();
-        int[] activityDataPos = new int[20];//活动名称~数据(数组长度个数)
+        int[] activityDataPos = new int[20];//Позиции полей
         try {
             Workbook wb;
 
             InputStream in = activityFile.getInputStream();
-            //根据文件后缀（xls/xlsx）进行判断
+            //Определение по расширению
             if ( fileName.endsWith(".xlsx")){
                 wb = new XSSFWorkbook(in);
             }else if (fileName.endsWith(".xls")) {
@@ -556,15 +556,15 @@ public class ActivityController extends BaseController
                     activityService.insertActivity(activity);
                     result.add(activity);
                 }
-                StringBuilder promptInfo = new StringBuilder("导入运营活动数据: \n");
+                StringBuilder promptInfo = new StringBuilder("Импорт данных событий: \n");
                 for (Activity activity:activities){
-                    promptInfo.append("  活动名：").append(activity.getName())
-                            .append("，活动类型：").append(JsonUtils.toJSONString(activity.getType())).append("\n");
+                    promptInfo.append("   Название: ").append(activity.getName())
+                            .append(", Тип: ").append(JsonUtils.toJSONString(activity.getType())).append("\n");
                 }
                 GMLogUtil.log(String.valueOf(promptInfo));
-                return AjaxResult.info("import activity file, saved" + result.size() + " record!").put("ok",true);
+                return AjaxResult.info("Импорт выполнен, сохранено " + result.size() + " записей!").put("ok",true);
             }
-            return AjaxResult.info("import activity file failed!").put("ok",false);
+            return AjaxResult.info("Ошибка импорта!").put("ok",false);
         } catch (IOException e) {
             e.printStackTrace();
             return AjaxResult.info(e.getMessage()).put("ok",false);
@@ -572,7 +572,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 根据ID查询活动
+     * Получение события по ID
      * @param id
      * @return
      */
@@ -584,7 +584,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 导出运营活动数据(单行)
+     * Экспорт данных события (одна строка)
      * @param actId
      * @param response
      */
@@ -594,39 +594,38 @@ public class ActivityController extends BaseController
         Activity activity = activityService.selectActivityById(actId);
         List<Map<String, String>> listMap = new ArrayList<>();
         Map<String,String> map = new LinkedHashMap<>();
-        map.put("活动名称",activity.getName());
-        map.put("活动备注",activity.getDescription());
-        map.put("活动类型",String.valueOf(activity.getType()));
-        map.put("节日类型",String.valueOf(activity.getSubType()));
-        map.put("最小等级",String.valueOf(activity.getMinLv()));
-        map.put("最大等级",String.valueOf(activity.getMaxLv()));
-        map.put("活动标签",String.valueOf(activity.getTag()));
-        map.put("标签排序",String.valueOf(activity.getSort()));
-        map.put("时间类型",String.valueOf(activity.getTimeType()));
-        map.put("开服天数",String.valueOf(activity.getOpenServerOffsetBegin()));
-        map.put("持续天数",String.valueOf(activity.getOpenServerOffset()));
-        map.put("开始时间",activity.getBeginTime());
-        map.put("结束时间",activity.getEndTime());
-        map.put("记录开始天数",String.valueOf(activity.getOpenServerRecordOffsetBegin()));
-        map.put("记录持续天数",String.valueOf(activity.getOpenServerRecordOffset()));
-        map.put("记录开始时间",activity.getStartRecordTime());
-        map.put("记录结束时间",activity.getEndRecordTime());
-        map.put("开服自动发布",String.valueOf(activity.getAutoSend()));
-        map.put("是否是新服活动",String.valueOf(activity.getIsOpenServer()));
-        map.put("数据",activity.getCustom());
-//        map.put("活动状态", String.valueOf(activity.getState()));
-//        map.put("发布列表", activity.getPlatform());
-//        map.put("成功列表", activity.getOkSidList());
+        map.put("Название",activity.getName());
+        map.put("Описание",activity.getDescription());
+        map.put("Тип",String.valueOf(activity.getType()));
+        map.put("Тип праздника",String.valueOf(activity.getSubType()));
+        map.put("Мин. уровень",String.valueOf(activity.getMinLv()));
+        map.put("Макс. уровень",String.valueOf(activity.getMaxLv()));
+        map.put("Тег",String.valueOf(activity.getTag()));
+        map.put("Сортировка",String.valueOf(activity.getSort()));
+        map.put("Тип времени",String.valueOf(activity.getTimeType()));
+        map.put("Дней с открытия",String.valueOf(activity.getOpenServerOffsetBegin()));
+        map.put("Дней длительности",String.valueOf(activity.getOpenServerOffset()));
+        map.put("Время начала",activity.getBeginTime());
+        map.put("Время окончания",activity.getEndTime());
+        map.put("Дней записи с",String.valueOf(activity.getOpenServerRecordOffsetBegin()));
+        map.put("Дней записи длит.",String.valueOf(activity.getOpenServerRecordOffset()));
+        map.put("Время записи с",activity.getStartRecordTime());
+        map.put("Время записи по",activity.getEndRecordTime());
+        map.put("Авто-публикация",String.valueOf(activity.getAutoSend()));
+        map.put("Новый сервер",String.valueOf(activity.getIsOpenServer()));
+        map.put("Данные",activity.getCustom());
+//        map.put("Состояние", String.valueOf(activity.getState()));
+//        map.put("Список публикации", activity.getPlatform());
+//        map.put("Успешные серверы", activity.getOkSidList());
         listMap.add(map);
         List<String> list1 = Arrays.asList("name","description","type","subType","minLv","maxLv","tag","sort","timeType","openServerOffsetBegin","openServerOffset","beginTime","endTime","openServerRecordOffsetBegin","openServerRecordOffset","startRecordTime","endRecordTime","autoSend","isOpenServer","custom");
         try (OutputStream out = response.getOutputStream()) {
             response.reset();
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            String excelName = "活动数据";
+            String excelName = "Данные события";
             response.addHeader("Content-Disposition", "attachment;filename="
                     + new String(excelName.getBytes(StandardCharsets.UTF_8), "ISO8859-1")
                     + ".xlsx");
-            // 转码防止乱码
             genExcel(listMap,list1,activity,out);
             out.flush();
         } catch (Exception e) {
@@ -637,24 +636,24 @@ public class ActivityController extends BaseController
     public void genExcel(List<Map<String, String>> dataList,List<String> list1, Activity activity, OutputStream out) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet();
-        workbook.setSheetName(0, "活动数据");
+        workbook.setSheetName(0, "Данные события");
 
         int ri = 0, ci = 0;
-        XSSFRow row = sheet.createRow(ri++);//第一行英文表头
+        XSSFRow row = sheet.createRow(ri++);//Первая строка - заголовки на английском
         XSSFCell cell;
         for (String field : list1) {
             cell = row.createCell(ci);
             cell.setCellValue(field);
-            ci++;//增加列
+            ci++;
         }
-        row = sheet.createRow(ri++);//第二行中文表头
-        ci=0;//从第一列开始
+        row = sheet.createRow(ri++);//Вторая строка - заголовки на русском
+        ci=0;
         for (Map.Entry<String, String> entry : dataList.get(0).entrySet()) {
             cell = row.createCell(ci);
             cell.setCellValue(entry.getKey());
             ci++;
         }
-        //数据
+        //Данные
         for (Map<String, String> dataMap : dataList){
             row = sheet.createRow(ri++);
             ci = 0;
@@ -667,7 +666,7 @@ public class ActivityController extends BaseController
     }
 
     /**
-     * 批量发布运营活动
+     * Массовая публикация игровых событий
      * @param request
      * @param actIds
      * @param platform
@@ -687,24 +686,23 @@ public class ActivityController extends BaseController
         Map<Integer, List<Integer>> serverFailedList = new HashMap<>();
         Map<Integer, List<Integer>> activityFailList = new HashMap<>();
 
-        //取得活动数据
+        //Получение данных событий
         List<Activity> actList = new ArrayList<>();
         Set<Integer> typeSet = new HashSet<>();
         for (Integer actId : actIdSet) {
             Activity activity = activityService.selectActivityById(actId);
             if (activity == null) {
-                log.error("发布活动时未找到活动数据,id：" + actId);
+                log.error("Событие не найдено при публикации, id：" + actId);
                 continue;
             }
-            //同类型活动无法进行覆盖操作
+            //События одного типа нельзя перезаписывать массово
             if(cover == 1){
                 int type = activity.getType()*1000+activity.getSubType();
                 if(typeSet.contains(type)){
-                    return AjaxResult.info("同类型活动无法进行批量的覆盖操作，相同类型："+type+",活动类型："+activity.getType()+",节日类型："+activity.getSubType()).put("ok",false);
+                    return AjaxResult.info("События одного типа нельзя перезаписывать массово, тип: "+type+", activityType: "+activity.getType()+", festivalType: "+activity.getSubType()).put("ok",false);
                 }
                 typeSet.add(type);
 
-                //设置活动类型是否覆盖
                 if(activity.getCover()!=cover){
                     activity.setCover(cover);
                 }
@@ -713,14 +711,14 @@ public class ActivityController extends BaseController
             actList.add(activity);
         }
 
-        //发布到对应的服务器
+        //Публикация на серверы
         for (Integer serverId : serverIdSet) {
             TServer server = new TServer();
             server.setGroupName(platform);
             server.setServerId(serverId);
             List<TServer> servers = tServerService.selectTServerList(server);
             if (servers.size() < 1) {
-                log.error("发布活动时服务器获取失败！platform=" + platform + ", sid=" + serverId);
+                log.error("Сервер не найден при публикации! platform=" + platform + ", sid=" + serverId);
                 serverFailedList.put(serverId, actIdList);
                 continue;
             }
@@ -740,13 +738,13 @@ public class ActivityController extends BaseController
                     }
                     activityFailList.get(n).add(serverId);
                 }
-                log.error(serverId + "服,活动[" + failIds + "]发布失败！,失败的活动：" + JsonUtils.toJSONString(failIds));
+                log.error(serverId + " сервер, публикация [" + failIds + "] не удалась!");
             } else {
                 serverSuccessList.put(serverId, actIdList);
             }
         }
 
-        //更新活动发布列表，状态，记录日志
+        //Обновление данных публикации, статуса, запись лога
         for (Activity activity : actList) {
             HashSet<Integer> toSidList = new HashSet<>();
             HashSet<Integer> okSidList = new HashSet<>();
@@ -771,39 +769,39 @@ public class ActivityController extends BaseController
                 activity.setState(operationType);
             }
 
-            GMLogUtil.log("发布活动，活动编号：" + activity.getId() +
-                    "，活动名字：" + activity.getName() + ",发布全部列表:" + JsonUtils.toJSONString(toSidList) +
-                    "失败列表：" + JsonUtils.toJSONString(activityFailList.get(activity.getId())) +
-                    "成功列表：" + JsonUtils.toJSONString(okSidList));
+            GMLogUtil.log("Публикация события, ID: " + activity.getId() +
+                    ", название: " + activity.getName() + ", список публикации:" + JsonUtils.toJSONString(toSidList) +
+                    ", неудачно:" + JsonUtils.toJSONString(activityFailList.get(activity.getId())) +
+                    ", успешно:" + JsonUtils.toJSONString(okSidList));
             activityService.updateActivity(activity);
         }
 
-        //返回发布结果信息
-        StringBuilder promptInfo = new StringBuilder("返回结果: \n");
+        //Формирование результата
+        StringBuilder promptInfo = new StringBuilder("Результат: \n");
         if (serverFailedList.size() > 0) {
-            promptInfo.append("失败列表:\n");
-            promptInfo.append("失败个数：").append(serverFailedList.size())
-                    .append("，失败区服：").append(JsonUtils.toJSONString(serverFailedList.keySet())).append("\n");
+            promptInfo.append("Неудачные серверы:\n");
+            promptInfo.append("Количество: ").append(serverFailedList.size())
+                    .append(", серверы: ").append(JsonUtils.toJSONString(serverFailedList.keySet())).append("\n");
             for (Integer serverId : serverFailedList.keySet()) {
-                promptInfo.append("失败区服：").append(serverId)
-                        .append("，未成功发布活动：").append(JsonUtils.toJSONString(serverFailedList.get(serverId))).append("\n");
+                promptInfo.append("Сервер: ").append(serverId)
+                        .append(", неопубликованные события: ").append(JsonUtils.toJSONString(serverFailedList.get(serverId))).append("\n");
             }
         }
         if (serverSuccessList.size() > 0) {
-            promptInfo.append("成功列表:\n");
-            promptInfo.append("是否覆盖: ").append(cover==1?"是\n":"否\n");
-            promptInfo.append("成功个数：").append(serverSuccessList.size())
-                    .append("，成功区服：").append(JsonUtils.toJSONString(serverSuccessList.keySet())).append("\n");
+            promptInfo.append("Успешные серверы:\n");
+            promptInfo.append("Перезапись: ").append(cover==1?"Да\n":"Нет\n");
+            promptInfo.append("Количество: ").append(serverSuccessList.size())
+                    .append(", серверы: ").append(JsonUtils.toJSONString(serverSuccessList.keySet())).append("\n");
             for (Integer serverId : serverSuccessList.keySet()) {
-                promptInfo.append("成功区服：").append(serverId)
-                        .append("，成功发布活动：").append(JsonUtils.toJSONString(serverSuccessList.get(serverId))).append("\n");
+                promptInfo.append("Сервер: ").append(serverId)
+                        .append(", опубликованные события: ").append(JsonUtils.toJSONString(serverSuccessList.get(serverId))).append("\n");
             }
         }
         return AjaxResult.info(promptInfo.toString()).put("ok",true);
     }
 
     /**
-     * 批量删除运营活动
+     * Массовое удаление игровых событий
      * @param request
      * @param actIds
      * @return
@@ -821,142 +819,4 @@ public class ActivityController extends BaseController
         Map<Integer, List<Integer>> serverFailedList = new HashMap<>();
         Map<Integer, List<Integer>> activityFailList = new HashMap<>();
 
-        //统计游戏服活动发布情况
-        for (Integer actId : actIdSet) {
-            Activity activity = activityService.selectActivityById(actId);
-            if (activity == null) {
-                continue;
-            }
-            actList.add(activity);
-            if (!StringUtils.isBlank(activity.getOkSidList())) {
-                List<Integer> okList = JsonUtils.parseArray(activity.getOkSidList(), Integer.class);
-                for (Integer sid : okList) {
-                    if (!serverActIds.containsKey(sid)) {
-                        serverActIds.put(sid, new ArrayList<>());
-                        serverActTypes.put(sid, new ArrayList<>());
-                    }
-                    serverActIds.get(sid).add(activity.getId());
-                    serverActTypes.get(sid).add(activity.getType()*1000+activity.getSubType());
-                }
-            }
-        }
-
-        //发送指令到游戏服删除活动
-        for (Integer serverId : serverActIds.keySet()) {
-            TServer server = tServerService.selectTServerByServerId(serverId);
-            if (server == null) {
-                log.error("删除活动时服务器获取失败！sid=" + serverId);
-                serverFailedList.put(serverId, serverActIds.get(serverId));
-                continue;
-            }
-            HashMap resultMap = GameServerRequestUtil.gmBatchDeleteActMess(server, serverActIds.get(serverId), serverActTypes.get(serverId));
-            if (!Boolean.valueOf(resultMap.get("ok").toString())) {
-                List<Integer> failIds;
-                if (resultMap.containsKey("data")) {
-                    failIds = JsonUtils.parseArray(resultMap.get("data").toString(), Integer.class);
-                } else {
-                    failIds = new ArrayList<>(serverActIds.get(serverId));
-                }
-                serverFailedList.put(serverId, failIds);
-                for (Integer n : failIds) {
-                    if (!activityFailList.containsKey(n)) {
-                        activityFailList.put(n, new ArrayList<>());
-                    }
-                    activityFailList.get(n).add(serverId);
-                }
-                log.error(serverId + "服,活动[" + failIds + "]删除失败！,失败的活动：" + JsonUtils.toJSONString(failIds));
-            } else {
-                serverSuccessList.put(serverId, serverActIds.get(serverId));
-            }
-        }
-
-        //更新本地活动数据，记录日志
-        List<Integer> successActList = new ArrayList<>();
-        for (Activity activity : actList) {
-            if (!activityFailList.containsKey(activity.getId())) {
-                activity.setIsDeleted(1);
-                activity.setCover(0);
-                successActList.add(activity.getId());
-
-            }
-            GMLogUtil.log("删除活动，活动编号：" + activity.getId() +
-                    "，活动名字：" + activity.getName() + " 失败列表：" + JsonUtils.toJSONString(activityFailList.get(activity.getId())));
-            activityService.updateActivity(activity);
-        }
-
-        //返回删除活动结果信息
-        StringBuilder promptInfo = new StringBuilder("结果: \n");
-        promptInfo.append("成功删除活动：").append(JsonUtils.toJSONString(successActList));
-        if (activityFailList.size() > 0) {
-            promptInfo.append("失败列表:\n");
-            promptInfo.append("失败个数：").append(activityFailList.size()).append("\n");
-            for (Integer serverId : serverFailedList.keySet()) {
-                promptInfo.append("失败区服：").append(serverId)
-                        .append("，未删除活动：").append(JsonUtils.toJSONString(serverFailedList.get(serverId))).append("\n");
-            }
-        }
-        if (serverSuccessList.size() > 0) {
-            promptInfo.append("成功列表:\n");
-            promptInfo.append("成功个数：").append(serverSuccessList.size())
-                    .append("，对应区服：").append(JsonUtils.toJSONString(serverSuccessList.keySet())).append("\n");
-        }
-        GMLogUtil.log(promptInfo.toString());
-        return AjaxResult.info(promptInfo.toString()).put("ok",true);
-    }
-
-    /**
-     * 获取活动boss类型
-     * @return
-     */
-    @PostMapping( "/getActivityBossType")
-    @ResponseBody
-    public Object getActivityBossType() {
-        List<ActivityBossType> list = activityBossTypeService.selectActivityBossTypeList(new ActivityBossType());
-        return AjaxResult.info("",list).put("ok",true);
-    }
-
-    /**
-     * 发布开服活动到对应游戏服
-     * @return
-     */
-    @PostMapping( "/sendOpenServerActivity")
-    @ResponseBody
-    public Object sendOpenServerActivity(int serverId) throws ParseException {
-        TServer server = tServerService.selectTServerByServerId(serverId);
-        if(server == null){
-            log.error("发送开服活动时，服务器未找到，serverId="+serverId);
-            return AjaxResult.info("发送开服活动时，服务器未找到，serverId="+serverId).put("ok",false);
-        }
-
-        Activity act = new Activity();
-        act.setAutoSend(1);
-        act.setIsDeleted(0);
-        List<Activity> activities = activityService.selectActivityList(act);
-        if(activities.isEmpty()){
-            log.error("发送开服活动时，没有找到开服活动");
-            return AjaxResult.info("发送开服活动时，没有找到开服活动").put("ok", false);
-        }
-
-        Iterator<Activity> iterator = activities.iterator();
-        while(iterator.hasNext()){
-            Activity activity = iterator.next();
-            if(activity.getTimeType() == 0&& TimeUtils.Time()>TimeUtils.getDateByString2(activity.getEndTime()).getTime()) {
-                iterator.remove();
-            }
-        }
-
-        try {
-            HashMap resultMap = GameServerRequestUtil.gmBatchSendActMess(server, activities);
-            if (!Boolean.valueOf(resultMap.get("ok").toString())) {
-                log.error(serverId + "服,发布开服活动失败！操作结果：" + resultMap.get("data").toString());
-            } else {
-                return AjaxResult.info(serverId + "服,发布开服活动成功！").put("ok", true);
-            }
-        }catch (Exception e){
-            log.error(serverId + "服,发布活动失败！error："+e.getMessage());
-            return AjaxResult.info(serverId + "服,发布活动失败！error："+e.getMessage());
-        }
-        return AjaxResult.info(serverId + "服,发布开服活动失败！").put("ok", false);
-    }
-}
-
+        //Статистика публи

@@ -42,15 +42,15 @@ import java.util.*;
 import static com.game.chat.Manager.ChatManager.*;
 
 /**
- * 聊天脚本
+ * Скрипт чата
  */
 public class ChatScript implements IChatScript {
 
     final Logger log = LogManager.getLogger("ChatManager");
 
-    final int LeaveMsg_Count = 20;//留言条数
-    final int MultiMediaTime = 20 * 60;//多媒体数据存在时间,20分钟
-    final int WorldMsgCacheNum = 10;//世界频道消息缓存数量
+    final int LeaveMsg_Count = 20;//Количество оставленных сообщений
+    final int MultiMediaTime = 20 * 60;//Время хранения мультимедиа данных, 20 минут
+    final int WorldMsgCacheNum = 10;//Количество кэшированных сообщений в мировом чате
 
     @Override
     public int getId() {
@@ -110,17 +110,17 @@ public class ChatScript implements IChatScript {
                 return;
             }
         }
-        //GM判断
+        //Проверка GM
         if ((player.isGM() || ServerConfig.isTestServer()) && (messInfo.getCondition().substring(0, 1).contains("&"))) {
             Manager.gmCommandManager.clientGmDeal(player, messInfo.getCondition());
             return;
         }
         if (messInfo.getChattype() == CHATTYPE_WORD && messInfo.getCondition().length() > CHATWORD_MAX) {
-            log.error("发送的文字内容太长 sendPlayerId:" + player.getId());
+            log.error("Текст слишком длинный sendPlayerId:" + player.getId());
             return;
         }
         if (messInfo.getChattype() == CHATTYPE_VOICE && messInfo.getCondition().length() > CHATVOICE_MAX) {
-            log.error("发送的语音内容太长 sendPlayerId:" + player.getId());
+            log.error("Голосовое сообщение слишком длинное sendPlayerId:" + player.getId());
             return;
         }
         ChatChannel channel = ChatChannel.find(messInfo.getChatchannel());
@@ -128,9 +128,8 @@ public class ChatScript implements IChatScript {
         String fixContent = "";
         int forbidType = 0;
         ForbidChatBean bean = Manager.chatManager.getForbids().get(player.getUserId());
-        //禁言判断
+        //Проверка на запрет чата
         if (bean != null && inForbidTime(bean)) {
-//            MessageUtils.notify_player(player, Notify.NORMAL, MessageString.BAN_WORD_TITLE);
             if (bean.getForbidType() == ForbidChatType.Studio) {
                 forbidType = ForbidChatType.Studio;
             } else if (bean.getForbidType() == ForbidChatType.Replace_All) {
@@ -143,7 +142,7 @@ public class ChatScript implements IChatScript {
                 MessageUtils.notify_player(player, Notify.ERROR, MessageString.BAN_WORD_TITLE);
                 return;
             } else if (bean.getForbidType() == ForbidChatType.Invisible) {
-                //发送给自己
+                //Отправка только себе
                 PlayerWorldInfo target = Manager.playerManager.getPlayerWorldInfo(player.getId());
                 if (ChatChannel.CHATCHANNEL_ROLE.equals(channel)) {
                     target = Manager.playerManager.getPlayerWorldInfo(messInfo.getRecRoleId());
@@ -152,13 +151,13 @@ public class ChatScript implements IChatScript {
                 return;
             } else if (bean.getForbidType() == ForbidChatType.Quarantine) {
                 if (!(ChatChannel.CHATCHANNEL_ROLE.equals(channel) || ChatChannel.CHATCHANNEL_TEAM.equals(channel))) {
-                    //无法在该频道发言
+                    //Невозможно говорить в этом канале
                     MessageUtils.notify_player(player, Notify.ERROR, MessageString.BAN_WORD_TITLE);
                     return;
                 }
             }
         }
-        //判断聊天冷却时间
+        //Проверка времени ожидания чата
         long cdTime = Manager.cooldownManager.getCooldownTime(player, CooldownTypes.Chat_CD, channel.getChannel());
         if (cdTime > 0) {
             MessageUtils.notify_player(player, Notify.ERROR, MessageString.ChatColding, (cdTime + 999) / 1000);
@@ -167,13 +166,13 @@ public class ChatScript implements IChatScript {
         int add = channel.equals(ChatChannel.CHATCHANNEL_WORLD) ? Global.World_Chat_Interval : Global.Private_Chat_Interval;
         Manager.cooldownManager.addCooldown(player, CooldownTypes.Chat_CD, channel.getChannel(), add);
 
-        //是否能发送
+        //Проверка возможности отправки
         boolean canSend = canSendChatMsg(player, channel, messInfo);
         if (!canSend) {
             return;
         }
 
-        //BI用字段
+        //Поля для BI
         long recAccountId = 0l;
         long recRoleId = 0L;
         String recRoleName = "";
@@ -213,7 +212,7 @@ public class ChatScript implements IChatScript {
             msg.getInfoBuilder().setCondition("" + key + "|" + messInfo.getVoiceLen());
         }
 
-        //跨服聊天
+        //Кросс-серверный чат
         if (ChatChannel.CHATCHANNEL_CROSS.equals(channel)) {
             if (!Manager.controlManager.deal().isOpenFunction(player, FunctionStart.CrossChat)) {
                 return;
@@ -228,12 +227,12 @@ public class ChatScript implements IChatScript {
         Manager.biManager.getScript().biChat(player, msg.getInfoBuilder().getChatchannel(), 2, msg.getInfoBuilder().getCondition(), recAccountId, recRoleId, recRoleName, recRoleIP, recRoleDevId);
         Manager.biManager.get4399Script().chatBiTo4399(player, msg.getInfoBuilder().getChatchannel(), msg.getInfoBuilder().getCondition(), messInfo.getChattype() == CHATTYPE_VOICE ? 0 : 1,
                 getChatTarget(player, channel, messInfo));
-        //LOGGER
+        //Запись лога
         writeLog(player, messInfo);
     }
 
     /**
-     * BI获取聊天对象
+     * Получение цели чата для BI
      */
     private long getChatTarget(Player player, ChatChannel channel, ChatReqCS messInfo) {
         long target = 0L;
@@ -247,7 +246,7 @@ public class ChatScript implements IChatScript {
         return target;
     }
 
-    //检查是否能发送对应频道的消息
+    //Проверка возможности отправки в канал
     private boolean canSendChatMsg(Player player, ChatChannel channel, ChatReqCS messInfo) {
         boolean canSend = false;
         switch (channel) {
@@ -270,13 +269,13 @@ public class ChatScript implements IChatScript {
                 canSend = true;
                 break;
             default:
-                log.error("错误的聊天消息类型 :" + messInfo.getChatchannel());
+                log.error("Неверный тип сообщения чата:" + messInfo.getChatchannel());
                 break;
         }
         return canSend;
     }
 
-    //世界
+    //Мир
     private boolean getChatMsgToWorldBuilder(Player player) {
         int level = Global.ChatWorldLevel.get(0);
         int vipLevel = Global.ChatWorldLevel.get(1);
@@ -287,18 +286,18 @@ public class ChatScript implements IChatScript {
         return true;
     }
 
-    //公会
+    //Гильдия
     private boolean getChatMsgToGuildBuilder(Player player) {
         Guild guild = Manager.guildsManager.GetGuildByPlayer(player);
         if (guild == null) {
-            log.error("没有公会 不能发送公会聊天信息 sendPlayerId:" + player.getId());
+            log.error("Нет гильдии, нельзя отправлять сообщение в гильдию sendPlayerId:" + player.getId());
             MessageUtils.notify_player(player, Notify.ERROR, MessageString.CHATERROR_NoGuild);
             return false;
         }
         return true;
     }
 
-    //当前地图聊天
+    //Чат текущей карты
     private boolean getChatMsgToCurMapBuilder(Player player, ChatReqCS messInfo) {
         int level = Global.ChatWorldLevel.get(0);
         int vipLevel = Global.ChatWorldLevel.get(1);
@@ -309,10 +308,10 @@ public class ChatScript implements IChatScript {
         return true;
     }
 
-    //私聊
+    //Личный чат
     private boolean getChatMsgToPlayerBuilder(Player player, ChatReqCS messInfo) {
         if (messInfo.getRecRoleId() == 0) {
-            log.error("发送私聊消息时 传入接受者id为0 sendPlayerId:" + player.getId());
+            log.error("Отправка личного сообщения с получателем 0 sendPlayerId:" + player.getId());
             return false;
         }
 
@@ -333,7 +332,7 @@ public class ChatScript implements IChatScript {
         return true;
     }
 
-    //组队
+    //Команда
     private boolean getChatMsgToTeamBuilder(Player player) {
         if (player.getTeamId() == 0) {
             MessageUtils.notify_player(player, Notify.ERROR, MessageString.CHATERROR_NOTEAM);
@@ -351,14 +350,14 @@ public class ChatScript implements IChatScript {
         return true;
     }
 
-    //添加
+    //Добавление мультимедиа
     private void addMultiMedia(long key, String str, int len) {
         MultiMedia media = new MultiMedia();
         media.setCondition(str);
         media.setPlayTime(len);
         media.setTime((int) (TimeUtils.Time() / 1000));
         Manager.chatManager.getMultiMediaList().put(key, media);
-        log.error(key + " = 收到语音的数据长度：" + str.getBytes().length + ", len=" + str.length() + " ,play len =" + len);
+        log.error(key + " = получена длина голосовых данных:" + str.getBytes().length + ", len=" + str.length() + " ,play len =" + len);
     }
 
     public void sendToChat(Player player, long recRoleId, ChatChannel channel, ChatResSC.Builder msg, int forbidType, String fixContent) {
@@ -435,7 +434,7 @@ public class ChatScript implements IChatScript {
                 leaveMsg(recRoleId, LeaveMsg.makeLeaveMsg(player, 0, content, recRoleId, ChatChannel.CHATCHANNEL_ROLE));
                 leaveMsg(player.getId(), LeaveMsg.makeLeaveMsg(player, 0, content, recRoleId, ChatChannel.CHATCHANNEL_ROLE));
 
-                //聊天增加亲密度
+                //Увеличение близости за чат
                 long chatCount = Manager.countManager.getVariant(player, VariantType.ChAT_WITH_FRIEND_ADD_INTIMACY);
                 if (chatCount < Global.DailyLoveTimes) {
                     boolean isAdd = Manager.friendManager.deal().addIntimacy(player, recRoleId, Global.PrivatelyChatLove);
@@ -481,15 +480,13 @@ public class ChatScript implements IChatScript {
             }
             break;
             default: {
-                log.error("错误的聊天消息类型 :" + channel);
-//                List<Player> plist = new ArrayList<>(Manager.playerManager.getOnLines());
-//                sendMsg(player, msg, plist, forbidType, fixContent);
+                log.error("Неверный тип сообщения чата:" + channel);
             }
             break;
         }
     }
 
-    //留言信息处理
+    //Обработка кэша сообщений
     public void saveWorldMsgCache(ChatChannel channel, LeaveMsg msg, long guildId) {
         List<LeaveMsg> leaveMsgs;
         if (ChatChannel.CHATCHANNEL_GUILD.equals(channel)) {
@@ -540,8 +537,8 @@ public class ChatScript implements IChatScript {
     }
 
     private boolean isForbidden(Player sendPlayer, Player toPlayer, int forbidType) {
-        if (forbidType == ForbidChatType.Studio) {//发送人被禁
-            //只发给自己和被标记用户
+        if (forbidType == ForbidChatType.Studio) {//Отправитель заблокирован
+            //Отправляем только себе и помеченным пользователям
             if (sendPlayer.getId() == toPlayer.getId()) {
                 return false;
             } else {
@@ -550,12 +547,12 @@ public class ChatScript implements IChatScript {
                 }
             }
         }
-        //检查接收人
+        //Проверка получателя
         ForbidChatBean bean = Manager.chatManager.getForbids().get(toPlayer.getUserId());
         if (bean == null) {
             return false;
         }
-        if (bean.getForbidType() == ForbidChatType.Studio) {//工作室禁言用户无法接受正常用户信息
+        if (bean.getForbidType() == ForbidChatType.Studio) {//Заблокированные студии не могут получать сообщения от обычных пользователей
             if (inForbidTime(bean)) {
                 return true;
             }
@@ -565,8 +562,8 @@ public class ChatScript implements IChatScript {
     }
 
     private boolean isWorldForbidden(Player sendPlayer, Player toPlayer, int forbidType) {
-        if (forbidType == ForbidChatType.Studio) {//发送人被禁
-            //只发给自己和被标记用户
+        if (forbidType == ForbidChatType.Studio) {//Отправитель заблокирован
+            //Отправляем только себе и помеченным пользователям
             if (sendPlayer.getId() != toPlayer.getId()) {
                 if (!inChatBlackList(toPlayer.getUserId())) {
                     return true;
@@ -585,7 +582,7 @@ public class ChatScript implements IChatScript {
         if (rpwi == null) {
             return false;
         }
-        if (forbidType == ForbidChatType.Studio) {//只能发给自己和被标记用户
+        if (forbidType == ForbidChatType.Studio) {//Отправляем только себе и помеченным пользователям
             if (pwi.getRoleid() == rpwi.getRoleid()) {
                 return false;
             }
@@ -598,12 +595,12 @@ public class ChatScript implements IChatScript {
             return false;
         }
 
-        //检查接收人
+        //Проверка получателя
         ForbidChatBean bean = Manager.chatManager.getForbids().get(rpwi.getUserId());
         if (bean == null) {
             return false;
         }
-        if (bean.getForbidType() == ForbidChatType.Studio && inForbidTime(bean)) {//工作室禁言用户无法接受正常用户信息
+        if (bean.getForbidType() == ForbidChatType.Studio && inForbidTime(bean)) {//Заблокированные студии не могут получать сообщения от обычных пользователей
             return true;
         }
 
@@ -630,7 +627,7 @@ public class ChatScript implements IChatScript {
                             }
 
                             if ((bean.getForbidType() == ForbidChatType.Replace_All || bean.getForbidType() == ForbidChatType.Replace_Word) && inForbidTime(bean)) {
-                                if (!isBlack) {//正常用户发送替换内容
+                                if (!isBlack) {//Обычный пользователь получает заменённый контент
                                     String tmp = s.getCondition();
                                     s.setCondition(replaceContent(tmp, bean.getForbidType() == ForbidChatType.Replace_All ? 1 : 0));
                                     msg.addMsgList(s.toBuildInfo());
@@ -673,7 +670,7 @@ public class ChatScript implements IChatScript {
                         }
 
                         if ((bean.getForbidType() == ForbidChatType.Replace_All || bean.getForbidType() == ForbidChatType.Replace_Word) && inForbidTime(bean)) {
-                            if (!isBlack) {//正常用户发送替换内容
+                            if (!isBlack) {//Обычный пользователь получает заменённый контент
                                 String tmp = s.getCondition();
                                 s.setCondition(replaceContent(tmp, bean.getForbidType() == ForbidChatType.Replace_All ? 1 : 0));
                                 builder.addMsgList(s.toBuildInfo());
@@ -690,7 +687,7 @@ public class ChatScript implements IChatScript {
     }
 
     /**
-     * 通知
+     * Уведомление
      *
      * @param messInfo
      */
@@ -803,8 +800,8 @@ public class ChatScript implements IChatScript {
     @Override
     public void playerLogout(Player player) {
         long typeId = player.getTeamId();
-        outChatRoom(typeId, player.getId());//退出组队房间
-        outChatRoom(player.getGuildId(), player.getId());//退出帮会房间
+        outChatRoom(typeId, player.getId());//Выход из комнаты команды
+        outChatRoom(player.getGuildId(), player.getId());//Выход из комнаты гильдии
     }
 
     private boolean outChatRoom(long typeId, long roleId) {
@@ -819,10 +816,10 @@ public class ChatScript implements IChatScript {
             if (Manager.chatManager.getMediaChatList().containsKey(typeId)) {
                 mcd = Manager.chatManager.getMediaChatList().get(typeId);
                 mcd.getRoleIds().remove(roleId);
-                log.error("语音房间" + mcd.getRoomId() + "的玩家ID：" + roleId + "退出房间！");
+                log.error("Игрок " + roleId + " вышел из голосовой комнаты " + mcd.getRoomId());
                 if (mcd.getRoleIds().size() < 1) {
                     Manager.chatManager.getMediaChatList().remove(typeId);
-                    log.error("语音房间" + mcd.getRoomId() + "的玩家少而解散");
+                    log.error("Голосовая комната " + mcd.getRoomId() + " распущена");
                 }
             }
         }
@@ -840,7 +837,7 @@ public class ChatScript implements IChatScript {
 
     @Override
     public void onP2GResChatMess(CrossServerMessage.P2GResChatMess mess) {
-        //保存跨服聊天消息
+        //Сохранение кросс-серверных сообщений
         try {
             ChatResSC chatResSC = ChatResSC.parseFrom(mess.getChatData());
 
@@ -865,7 +862,7 @@ public class ChatScript implements IChatScript {
     }
 
     /**
-     * 留言信息处理
+     * Обработка оставленных сообщений
      *
      * @param recvPlayerId
      * @param msg
@@ -897,7 +894,7 @@ public class ChatScript implements IChatScript {
     }
 
     /**
-     * 检测多媒体
+     * Проверка мультимедиа
      */
     @Override
     public void tickMultiMedia() {
@@ -912,7 +909,7 @@ public class ChatScript implements IChatScript {
     }
 
     /**
-     * 发送消息到系统频道
+     * Отправка сообщения в системный канал
      * @param player
      * @param target
      * @param channel
@@ -931,7 +928,7 @@ public class ChatScript implements IChatScript {
     }
 
     /**
-     * 发送屏蔽字
+     * Отправка запрещённых слов
      *
      * @param player
      */
@@ -946,7 +943,7 @@ public class ChatScript implements IChatScript {
     }
 
     /**
-     * 组装聊天消息
+     * Сборка сообщения чата
      *
      * @param sender
      * @param recv

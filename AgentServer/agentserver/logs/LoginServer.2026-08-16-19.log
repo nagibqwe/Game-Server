@@ -1,0 +1,30 @@
+2026-08-16 19:24:38.040 ERROR [nioEventLoopGroup-3-3][ClientHandlerAdapter.java:68] - /172.236.228.229:39384 Удалённое соединение закрыто ClientHandlerAdapter!
+2026-08-16 19:25:07.863 INFO [nioEventLoopGroup-3-3][ClientHandlerAdapter.java:58] - /172.236.228.229:39384 Соединение закрыто!
+2026-08-16 19:25:07.987 ERROR [nioEventLoopGroup-3-4][ClientHandlerAdapter.java:68] - /172.236.228.229:3416 Удалённое соединение закрыто ClientHandlerAdapter!
+2026-08-16 19:25:37.815 INFO [nioEventLoopGroup-3-4][ClientHandlerAdapter.java:58] - /172.236.228.229:3416 Соединение закрыто!
+2026-08-16 19:26:55.244 ERROR [nioEventLoopGroup-5-4][HttpChannelImpl.java:109] - unknow getRequestPath: [/]
+2026-08-16 19:26:55.253 INFO [nioEventLoopGroup-5-4][HttpChannelImpl.java:130] - back http result success!
+2026-08-16 19:27:00.616 ERROR [nioEventLoopGroup-5-5][HttpChannelImpl.java:109] - unknow getRequestPath: [/bad-request]
+2026-08-16 19:27:00.617 INFO [nioEventLoopGroup-5-5][HttpChannelImpl.java:130] - back http result success!
+2026-08-16 19:37:39.674 ERROR [nioEventLoopGroup-5-6][HttpChannelImpl.java:109] - unknow getRequestPath: [/bad-request]
+2026-08-16 19:37:39.675 INFO [nioEventLoopGroup-5-6][HttpChannelImpl.java:130] - back http result success!
+2026-08-16 19:50:12.254 INFO [Thread-15][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 19:50:12.254 INFO [Thread-15][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 19:50:12.254 INFO [Thread-15][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 19:50:12.334 INFO [Thread-15][LoginUrl.java:219] - Начинается проверка скрипта для аккаунта FunCell: nagibqwe. userId не найден в кеше, выполняется чтение из базы данных...
+2026-08-16 19:50:12.614 INFO [Thread-15][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 19:50:12.614 ERROR [Thread-15][LoginUrl.java:259] - Время проверки входа превышено. Аккаунт: nagibqwe, время проверки: 360
+2026-08-16 19:50:12.614 ERROR [Thread-15][ReqLoginHandler.java:31] - ReqLoginHandler deal long time:360
+2026-08-16 19:50:13.785 INFO [nioEventLoopGroup-3-5][ClientHandlerAdapter.java:58] - /164.138.251.76:41454 Соединение закрыто!
+2026-08-16 19:54:49.715 INFO [Thread-17][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 19:54:49.715 INFO [Thread-17][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 19:54:49.715 INFO [Thread-17][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 19:54:49.765 INFO [Thread-17][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 19:54:50.928 INFO [nioEventLoopGroup-3-6][ClientHandlerAdapter.java:58] - /164.138.251.76:54450 Соединение закрыто!
+2026-08-16 19:55:37.147 INFO [nioEventLoopGroup-5-7][HttpChannelImpl.java:130] - back http result success!
+2026-08-16 19:57:28.960 INFO [Thread-16][LoginVerify.java:47] - Аккаунт канала: nagibqwe Канал: PC Начинается проверка...
+2026-08-16 19:57:28.960 INFO [Thread-16][LoginUrl.java:189] - ID устройства стороннего канала: 
+2026-08-16 19:57:28.960 INFO [Thread-16][IPFinderScript.java:101] - 164.138.251.76::4::164138251076
+2026-08-16 19:57:28.974 INFO [Thread-16][LoginUrl.java:248] - Аккаунт FunCell: nagibqwe, userId: 844541782760554497 — вход выполнен успешно
+2026-08-16 19:57:30.159 INFO [nioEventLoopGroup-3-7][ClientHandlerAdapter.java:58] - /164.138.251.76:58660 Соединение закрыто!
+2026-08-16 19:57:46.363 INFO [nioEventLoopGroup-5-8][HttpChannelImpl.java:130] - back http result success!

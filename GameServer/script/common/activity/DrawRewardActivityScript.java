@@ -38,32 +38,32 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Desc TODO 天帝宝库 300005
+ * @Desc Сокровищница 300005
  * @Date 2020/9/9 11:54
  * @Auth ZUncle
  */
 public class DrawRewardActivityScript implements IActivityScript, IActivityLucky {
 
     final transient Logger logger = LogManager.getLogger(DrawRewardActivityScript.class);
-    final transient String S_Prc = "S_Prc";                      //服务器奖励进度
-    final transient String P_Big = "P_Big";                      //玩家轮次奖励进度
-    final transient String P_Prc = "P_Prc";                      //玩家奖励进度
-    final transient String P_Lowest = "P_Lowest";                //玩家保底奖励进度
-    final transient String S_Lowest_Max = "S_Lowest_Max";        //保底奖励最大进度
-    final transient String P_Lowest_State = "P_Lowest_State";    //玩家保底奖励状态
-    final transient String P_Prc_Rewarded = "P_Prc_Rewarded";    //玩家进度奖励领取状态
-    final transient String S_Prc_Rewarded = "S_Prc_Rewarded";    //服务器进度奖励领取状态
-    final transient String Open_Cells = "Open_Cells";            //翻牌状态
+    final transient String S_Prc = "S_Prc";                      //Прогресс наград сервера
+    final transient String P_Big = "P_Big";                      //Прогресс наград игрока по раундам
+    final transient String P_Prc = "P_Prc";                      //Прогресс наград игрока
+    final transient String P_Lowest = "P_Lowest";                //Прогресс гаранта игрока
+    final transient String S_Lowest_Max = "S_Lowest_Max";        //Максимальный прогресс гаранта
+    final transient String P_Lowest_State = "P_Lowest_State";    //Состояние гаранта игрока
+    final transient String P_Prc_Rewarded = "P_Prc_Rewarded";    //Статус получения наград за прогресс игрока
+    final transient String S_Prc_Rewarded = "S_Prc_Rewarded";    //Статус получения наград за прогресс сервера
+    final transient String Open_Cells = "Open_Cells";            //Состояние открытых карт
     final transient String Client = "client";
     final transient String ActivityData = "ActivityData";
     final transient String History = "History";
-    final transient String RoundDrawCount = "RoundDrawCount";    //本轮次抽奖次数
-    final transient int HistoryLen = 10;                         //抽奖记录
-    final transient int ServerHistoryLen = 20;                   //抽奖记录
+    final transient String RoundDrawCount = "RoundDrawCount";    //Количество розыгрышей в текущем раунде
+    final transient int HistoryLen = 10;                         //История розыгрышей
+    final transient int ServerHistoryLen = 20;                   //История розыгрышей сервера
 
     /**
-     * 增加幸运值
-     * 九 零一 起玩 www.9 0175.com
+     * Увеличение удачи
+     *
      * @param player
      * @param lucky
      */
@@ -74,7 +74,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 是否触发幸运值
+     * Проверка срабатывания удачи
      *
      * @param player
      * @param lucky
@@ -96,7 +96,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 保底奖励抽奖
+     * Розыгрыш по гаранту
      *
      * @param activityData
      * @param serverActivityData
@@ -127,7 +127,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         }
 
         LowestPro small = Utils.findOne(lowest.getProList(), o -> curLowest >= o.getMin() && curLowest <= o.getMax());
-        //分段概率触发
+        //Срабатывание по сегментной вероятности
         if (curLowest == lowest.getMax() || ( small != null && RandomUtils.defaultIsGenerate(small.getPro()))){
             triggerState.add(lowest.getIndex());
             activityData.put(P_Lowest_State, triggerState);
@@ -137,7 +137,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 清空幸运值
+     * Очистка удачи
      *
      * @param player
      * @param lucky
@@ -154,15 +154,15 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
 
     //////////////////////////////////
     static class DrawRewardActivity extends ActivityLucky {
-        List<DrawItem> draws;       //奖池列表
-        List<RoundDrawItem> rounds; //轮次奖品
-        List<PrcDrawItem> prcs;     //进度奖励
-        private HashMap<Integer, LowestData> lowestData;  //保底奖励 <序号，保底信息>
-        int costItem;               //抽奖道具
-        int gold;                   //或抽奖元宝
-        RewardData goldGift;        //元宝抽奖赠送道具
-        int bigLimit;               //大奖第几次抽奖之后开放
-        String client;              //前端数据
+        List<DrawItem> draws;       //Список наград
+        List<RoundDrawItem> rounds; //Награды по раундам
+        List<PrcDrawItem> prcs;     //Награды за прогресс
+        private HashMap<Integer, LowestData> lowestData;  //Гарант <номер, данные>
+        int costItem;               //Предмет для розыгрыша
+        int gold;                   //Или юани для розыгрыша
+        RewardData goldGift;        //Бонус за розыгрыш юанями
+        int bigLimit;               //После скольких розыгрышей открывается крупный приз
+        String client;              //Данные для клиента
         //region
 
         public int getBigLimit() {
@@ -240,7 +240,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         //endregion
     }
 
-    //保底分段概率
+    //Вероятность гаранта по сегментам
     static class LowestPro {
         private int min;
         private int max;
@@ -275,14 +275,14 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
 
 
     /**
-     * 奖品
+     * Награда
      */
     static class DrawItem {
-        int id;     //抽奖ID
-        int rate;   //权重
-        int big;    //是否大奖
-        List<RewardData> item; //奖品
-        //region 方法
+        int id;     //ID розыгрыша
+        int rate;   //Вес
+        int big;    //Крупный ли приз
+        List<RewardData> item; //Награда
+        //region
 
         public int getId() {
             return id;
@@ -320,11 +320,11 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 轮次奖品
+     * Награда за раунд
      */
     static class RoundDrawItem {
-        int round;              //轮次
-        List<RewardData> item;  //奖品
+        int round;              //Номер раунда
+        List<RewardData> item;  //Награда
         //region
 
         public int getRound() {
@@ -347,12 +347,12 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 进度奖品
+     * Награда за прогресс
      */
     static class PrcDrawItem {
-        int p_reach;       //个人进度需求
-        int s_reach;     //全服进度需求
-        List<RewardData> item; //奖品
+        int p_reach;       //Требование для личного прогресса
+        int s_reach;     //Требование для прогресса сервера
+        List<RewardData> item; //Награда
         //region
 
 
@@ -384,7 +384,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 抽奖记录
+     * История розыгрыша
      */
     static class DrawHistory {
         String name;
@@ -418,13 +418,13 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         //endregion
     }
 
-    //保底信息
+    //Данные гаранта
     static class LowestData {
-        private int index;//保底序号
-        private int min;  //最小保底次数
-        private int max;  //最大保底次数
-        private List<LowestPro> proList;    //保底分段概率
-        private List<RewardData> rewardData;//保底奖励
+        private int index;//Номер гаранта
+        private int min;  //Минимальное количество розыгрышей
+        private int max;  //Максимальное количество розыгрышей
+        private List<LowestPro> proList;    //Вероятность по сегментам
+        private List<RewardData> rewardData;//Награда гаранта
 
         //region
         public int getIndex() {
@@ -471,7 +471,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
 
 
     /**
-     * 请求操作运营活动
+     * Обработка запроса к активности
      *
      * @param player
      * @param dataStr
@@ -482,7 +482,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         HashMap<String, Integer> msg = JsonUtils.parseObject(dataStr, new TypeReference<HashMap<String, Integer>>() {
         });
 
-        int operate = msg.get("operate"); //1=翻牌2=领取轮次进度奖励 3=领取全服进度奖励
+        int operate = msg.get("operate"); //1=открыть карту 2=получить награду за раунд 3=получить награду за прогресс сервера
         int index = msg.get("index");
         if (operate == 1) {
             openCard(player, index, actCfg);
@@ -495,7 +495,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         Manager.activityManager.deal().saveRoleActData(player.getId(), Manager.activityManager.getRoleActDatas().get(player.getId()));
     }
 
-    //TODO 翻卡牌
+    //Открытие карты
     void openCard(Player player, int index, ActivityConfig actCfg) {
 
         ConcurrentHashMap<String, Object> serverActivityData = Manager.activityManager.deal().getActivityData(actCfg.getType());
@@ -514,23 +514,23 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         boolean useGold = false;
         long logId = IDConfigUtil.getLogId();
         if (!Manager.backpackManager.manager().onRemoveItem(player, draw.getCostItem(), 1, ItemChangeReason.DailyDrawOpenCardDec, logId)) {
-            //TODO 道具不足用元宝
+            //Если предметов нет, используем юани
             if (!Manager.currencyManager.manager().decGold(player, draw.getGold(), ItemChangeReason.DailyDrawOpenCardDec, logId)) {
                 return;
             }
             useGold = true;
         }
-        //TODO 本轮次抽奖次数
+        //Количество розыгрышей в текущем раунде
         int drawCount = (int) activityData.getOrDefault(RoundDrawCount, 0) + 1;
 
-        //TODO 触发保底奖励
+        //Проверка гаранта
         LowestData triggerLowestLucky = isTriggerLowestLucky(activityData, serverActivityData, draw);
 
-        //TODO 增加幸运值
+        //Увеличение удачи
         incrLucky(player, draw);
         boolean triggerLucky = triggerLowestLucky == null && isTriggerLucky(player, draw);
 
-        //TODO 获取未翻牌奖励
+        //Получение неоткрытых наград
         List<DrawItem> store = Utils.find(draw.getDraws(), o -> {
             for (String str : openCells.values()) {
                 DrawItem di = JsonUtils.parseObject(str, new TypeReference<DrawItem>() {
@@ -539,7 +539,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
                     return false;
                 }
             }
-            //幸运值触发只要大奖
+            //При удаче выпадает только крупный приз
             if (triggerLucky || triggerLowestLucky != null) {
                 return o.getBig() == 1;
             }
@@ -550,24 +550,24 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
             return true;
         });
 
-        //TODO 翻出奖励
+        //Выбор награды
         DrawItem random = random(store);
-        //重置为幸运值奖励
+        //Замена на награду удачи
         if (triggerLucky) {
-            int id = random.getId();      //抽奖ID
-            int rate = random.getRate();  //权重
-            int big = random.getBig();    //是否大奖
+            int id = random.getId();      //ID розыгрыша
+            int rate = random.getRate();  //Вес
+            int big = random.getBig();    //Крупный ли приз
             random = new DrawItem();
             random.setId(id);
             random.setRate(rate);
             random.setBig(big);
             random.setItem(draw.getLuckyAwardList());
         }
-        //重置为保底奖励
+        //Замена на награду гаранта
         if (triggerLowestLucky != null) {
-            int id = random.getId();      //抽奖ID
-            int rate = random.getRate();  //权重
-            int big = random.getBig();    //是否大奖
+            int id = random.getId();      //ID розыгрыша
+            int rate = random.getRate();  //Вес
+            int big = random.getBig();    //Крупный ли приз
             random = new DrawItem();
             random.setId(id);
             random.setRate(rate);
@@ -586,7 +586,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
             Manager.mailManager.sendMailToPlayer(player.getId(), MessageString.System, MessageString.System,
                     MessageString.System, MessageString.NoBagCell, items, ItemChangeReason.DailyDrawOpenCardGet);
         }
-        //TODO 元宝抽奖发送额外奖励
+        //Бонус за розыгрыш юанями
         if (useGold) {
             List<Item> giftItems = Item.createItems(draw.getGoldGift().getI(), draw.getGoldGift().getN(), draw.getGoldGift().getB() == 1);
             if (!Manager.backpackManager.manager().addItems(player, giftItems, ItemChangeReason.DailyDrawOpenCardGet, logId)) {
@@ -594,12 +594,12 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
                         MessageString.System, MessageString.NoBagCell, giftItems, ItemChangeReason.DailyDrawOpenCardGet);
             }
         }
-        //TODO 添加次数
+        //Увеличение счётчика
         activityData.put(RoundDrawCount, drawCount);
-        //TODO 添加抽奖进度
+        //Увеличение личного прогресса
         int prc = (int) activityData.getOrDefault(P_Prc, 0);
         activityData.put(P_Prc, prc + 1);
-        //TODO 添加服务器进度
+        //Увеличение прогресса сервера
         prc = (int) serverActivityData.getOrDefault(S_Prc, 0);
         serverActivityData.put(S_Prc, prc + RandomUtils.random(1, 3));
 
@@ -607,7 +607,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
             cleanLucky(player, draw, items);
         }
 
-        //TODO 抽中大奖，刷新奖池
+        //Выпадение крупного приза, обновление пула
         int big = (int) activityData.getOrDefault(P_Big, 0);
         if (random.getBig() == 1) {
             openCells.clear();
@@ -621,7 +621,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
                 lowestMap.put(ii, lowestRecord.contains(ii) ? 1 : 0);
             }
 
-            //TODO 抽中大奖
+            //Уведомление о крупном призе
             HashMap<String, Object> data = new HashMap<>();
             data.put("id", random.getId());
             data.put("rate", random.getRate());
@@ -629,13 +629,13 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
             data.put("item", show);
             HashMap<String, Object> message = new HashMap<>();
             message.put("drawLowestMap", lowestMap);
-            message.put("drawLowestCount", activityData.getOrDefault(P_Lowest, 0));   //当前保底时的抽奖次数
+            message.put("drawLowestCount", activityData.getOrDefault(P_Lowest, 0));   //Текущий счётчик гаранта
             message.put("draw", data);
 
             Manager.activityManager.deal().sendActivityDealMessage(player, actCfg.getType(), JsonUtils.toJSONString(message));
 
         }
-        //TODO 记录
+        //Запись истории
         DrawHistory history = new DrawHistory();
         history.setTime(TimeUtils.Time());
         history.setItem(show);
@@ -656,8 +656,6 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         serverActivityData.put(History, histories);
         Manager.activityManager.deal().saveActData(actCfg.getType(), serverActivityData);
 
-//        logger.info("<天帝宝库> 抽奖index={} player={}", index, player);
-//        Manager.biManager.getScript().biActivity(player, ItemChangeReason.DailyDrawOpenCard, actCfg.getType(), actCfg.getId());
         if (random.getBig() == 1) {
             Cfg_Item_Bean itemBean = CfgManager.getCfg_Item_Container().getValueByKey(show.getI());
             String itemName = ServerStr.getChatTableName(itemBean.getName());
@@ -671,14 +669,9 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
                     itemNum);
         }
         Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.DailyDraw, ItemChangeReason.DailyDrawOpenCard, big, 0);
-        //测试日志
-//        if (ServerConfig.isTestServer()) {
-//            long variant = Manager.countManager.getVariant(player, VariantType.ACTIVITY_LUCKY_VALUE);
-//            Manager.chatManager.sendSystemStrToPlayer(player, "当前幸运值=" + variant);
-//        }
     }
 
-    //TODO 获取轮次进度奖励
+    //Получение награды за раунд
     void openSelfPrc(Player player, Integer index, ActivityConfig actCfg) {
         ConcurrentHashMap<String, Object> activityData = Manager.activityManager.deal().getRoleActivityData(player.getId(), actCfg.getType());
         int prc = (int) activityData.getOrDefault(P_Big, 0);
@@ -696,7 +689,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         }
         rewarded.add(index);
         activityData.put(P_Prc_Rewarded, rewarded);
-        //TODO 开始发奖励
+        //Выдача награды
 
         List<Item> items = Item.createItems(player.getCareer(), roundDrawItem.getItem());
 
@@ -704,7 +697,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
             Manager.mailManager.sendMailToPlayer(player.getId(), MessageString.System, MessageString.System,
                     MessageString.System, MessageString.NoBagCell, items, ItemChangeReason.DailyDrawRollGet);
         }
-        logger.info("<天帝宝库>领取个人进度奖励 prc={} player={}", index, player);
+        logger.info("<Сокровищница> получение награды за прогресс prc={} игрок={}", index, player);
 
         Cfg_Item_Bean itemBean = CfgManager.getCfg_Item_Container().getValueByKey(items.get(0).getItemModelId());
         String itemName = ServerStr.getChatTableName(itemBean.getName());
@@ -716,11 +709,10 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
                 actCfg.getName(),
                 itemName,
                 itemNum);
-//        Manager.biManager.getScript().biActivity(player, ItemChangeReason.DailyDrawRollGet, actCfg.getType(), actCfg.getId());
         Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.DailyDraw, ItemChangeReason.DailyDrawRollGet, index, 0);
     }
 
-    //TODO 获取全服进度奖励
+    //Получение награды за прогресс сервера
     void openServerPrc(Player player, Integer index, ActivityConfig actCfg) {
 
         ConcurrentHashMap<String, Object> serverActivityData = Manager.activityManager.deal().getActivityData(actCfg.getType());
@@ -743,14 +735,14 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         }
         rewarded.add(index);
         activityData.put(S_Prc_Rewarded, rewarded);
-        //TODO 开始发奖励
+        //Выдача награды
         List<Item> items = Item.createItems(player.getCareer(), prcDrawItem.getItem());
 
         if (!Manager.backpackManager.manager().addItems(player, items, ItemChangeReason.DailyDrawPrcGet, IDConfigUtil.getLogId())) {
             Manager.mailManager.sendMailToPlayer(player.getId(), MessageString.System, MessageString.System,
                     MessageString.System, MessageString.NoBagCell, items, ItemChangeReason.DailyDrawPrcGet);
         }
-        logger.info("<天帝宝库>领取全服进度奖励 prc={} player={}", index, player);
+        logger.info("<Сокровищница> получение награды за прогресс сервера prc={} игрок={}", index, player);
 
         Cfg_Item_Bean itemBean = CfgManager.getCfg_Item_Container().getValueByKey(items.get(0).getItemModelId());
         String itemName = ServerStr.getChatTableName(itemBean.getName());
@@ -762,13 +754,12 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
                 actCfg.getName(),
                 itemName,
                 itemNum);
-//        Manager.biManager.getScript().biActivity(player, ItemChangeReason.DailyDrawPrcGet, actCfg.getType(), actCfg.getId());
         int big = (int) activityData.getOrDefault(P_Big, 0);
         Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.DailyDraw, ItemChangeReason.DailyDrawPrcGet, big);
     }
 
     /**
-     * 解析活动自己的自定义配置
+     * Парсинг пользовательских настроек
      *
      * @param actCfg
      * @param customStr
@@ -779,7 +770,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         DrawRewardActivity draw = JsonUtils.parseObject(customStr, DrawRewardActivity.class);
         actCfg.getCustomCfgMap().put(ActivityData, draw);
 
-        //根据职业解析配置表
+        //Парсинг по профессиям
         for (ReadArray<Integer> job : Global.JobSex.getValuees()) {
             int career = job.get(0);
             DrawRewardActivity draw0 = JsonUtils.parseObject(customStr, DrawRewardActivity.class);
@@ -821,7 +812,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 活动配置更新处理
+     * Обновление конфигурации активности
      *
      * @param actCfg
      * @param customStr
@@ -832,7 +823,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 生成活动数据字符串
+     * Получение строки данных активности
      *
      * @param roleId
      */
@@ -876,22 +867,22 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
         }
 
         HashMap<String, Object> message = new HashMap<>();
-        message.put("server_prc", server_prc);  //服务器进度
-        message.put("player_prc", player_prc);  //个人进度
-        message.put("player_big", player_big);  //个人轮次
+        message.put("server_prc", server_prc);  //Прогресс сервера
+        message.put("player_prc", player_prc);  //Личный прогресс
+        message.put("player_big", player_big);  //Раунд игрока
         message.put("drawLowestMap", lowestMap);
-        message.put("drawLowestCount", lowestCount);//当前保底时的抽奖次数
-        message.put("r_prc_rewarded", r_prc_rewarded);  //已领轮次进度奖励
-        message.put("s_prc_rewarded", s_prc_rewarded);  //已领全服进度奖励
-        message.put("open_cells", oc);                  //已经翻牌
-        message.put("history", history);                //个人抽奖记录
-        message.put("sHistory", sHistory);              //世界抽奖记录
+        message.put("drawLowestCount", lowestCount);//Текущий счётчик гаранта
+        message.put("r_prc_rewarded", r_prc_rewarded);  //Полученные награды за раунды
+        message.put("s_prc_rewarded", s_prc_rewarded);  //Полученные награды за прогресс сервера
+        message.put("open_cells", oc);                  //Открытые карты
+        message.put("history", history);                //Личная история
+        message.put("sHistory", sHistory);              //История сервера
 
         return JsonUtils.toJSONString(message);
     }
 
     /**
-     * 充值后的处理
+     * Обработка пополнения
      *
      * @param player
      * @param rechargeNum
@@ -902,7 +893,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 玩家上线处理
+     * Обработка входа игрока
      *
      * @param player
      */
@@ -912,7 +903,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 0点处理某个玩家活动数据
+     * Полуночная обработка данных игрока
      *
      * @param player
      */
@@ -927,7 +918,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 0点处理运营活动数据
+     * Полуночная обработка активности
      */
     @Override
     public void zeroClockDeal(ActivityConfig actCfg) {
@@ -941,17 +932,17 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
 
         ConcurrentHashMap<String, Object> serverActivityData = Manager.activityManager.deal().getActivityData(actCfg.getType());
         PrcDrawItem max = Collections.max(draw.getPrcs(), Comparator.comparingInt(PrcDrawItem::getS_reach));
-        //TODO 全服进度会系统自然增长，增长值=奖励最高要求进度/活动天数（向上取整）
+        //Прогресс сервера растёт автоматически: рост = максимальное требование / количество дней активности (с округлением вверх)
         Double day = (actCfg.getEndTime() - actCfg.getBeginTime()) / (24 * 3600 * 1000d);
         Double addPrc = Math.ceil(max.getS_reach() / day);
 
-        //TODO 添加服务器进度
+        //Увеличение прогресса сервера
         int prc = (int) serverActivityData.getOrDefault(S_Prc, 0);
         serverActivityData.put(S_Prc, prc + addPrc.intValue());
 
         Manager.activityManager.deal().saveActData(actCfg.getType(), serverActivityData);
 
-        logger.info("<天帝宝库>系统新增抽奖进度 prc={}", addPrc);
+        logger.info("<Сокровищница> системное добавление прогресса prc={}", addPrc);
     }
 
     @Override
@@ -965,7 +956,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 活动掉落
+     * Выпадение с босса
      *
      * @param player
      * @param bossId
@@ -977,7 +968,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 活动掉落
+     * Выпадение из сундука
      *
      * @param player
      * @param boxId
@@ -989,7 +980,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 副本掉落
+     * Выпадение в подземелье
      *
      * @param player
      * @param cloneId
@@ -1001,7 +992,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 活动结束处理
+     * Завершение активности
      */
     @Override
     public void activityEndDeal(ActivityConfig actCfg) {
@@ -1009,7 +1000,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 活动消耗
+     * Обработка расхода
      *
      * @param player
      * @param coinType
@@ -1041,7 +1032,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 获取scriptId
+     * Получение ID скрипта
      *
      * @return
      */
@@ -1051,9 +1042,9 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 调用脚本
+     * Вызов скрипта
      *
-     * @param args 参数
+     * @param args
      * @return
      */
     @Override
@@ -1062,7 +1053,7 @@ public class DrawRewardActivityScript implements IActivityScript, IActivityLucky
     }
 
     /**
-     * 随机权重
+     * Случайный выбор по весу
      *
      * @param params
      * @return

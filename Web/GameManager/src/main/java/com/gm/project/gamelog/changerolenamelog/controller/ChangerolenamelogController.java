@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 改名日志Controller
+ * Контроллер логов смены имени
  * 
  * @author gm
  * @date 2021-09-09
@@ -46,7 +46,7 @@ public class ChangerolenamelogController extends BaseController
         return prefix + "/changerolenamelog";
     }
     /**
-     * 查询改名日志列表
+     * Получение списка логов смены имени
      */
     @RequiresPermissions("gamelog:changerolenamelog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class ChangerolenamelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出改名日志列表
+     * Экспорт списка логов смены имени
      */
     @RequiresPermissions("gamelog:changerolenamelog:export")
-    @Log(title = "改名日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Логи смены имени", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Changerolenamelog changerolenamelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class ChangerolenamelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Changerolenamelog> list = changerolenamelogService.selectChangerolenamelogList(changerolenamelog,param);
         ExcelUtil<Changerolenamelog> util = new ExcelUtil<Changerolenamelog>(Changerolenamelog.class);
-        return util.exportExcel(list, "改名日志数据");
+        return util.exportExcel(list, "Данные логов смены имени");
     }
 }

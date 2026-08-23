@@ -52,27 +52,27 @@ public class LoadScript implements IScript, ILoadScript {
     @Override
     public void EnterGameMap(Player player) {
         try {
-            logger.info("进入地图流程开始 player={}", player);
+            logger.info("Начало процесса входа на карту player={}", player);
             if ((Manager.countManager.getVariant(player, VariantType.Today_First_Login_Level) < 1)) {
                 Manager.countManager.addVariant(player, VariantType.Today_First_Login_Level, player.getLevel());
             }
 
-            //如果还有跨服标志，检测能否进入跨服
+            //Если есть флаг кросс-сервера, проверяем возможность входа
             if (player.playerCrossData.toFightId > 0 && player.playerCrossData.toZoneModelId != 0) {
                 player.playerCrossData.setToFightServer(false);
                 player.playerCrossData.isReqFight = false;
                 player.playerCrossData.crossState = CrossState.PCS_LOCAL;
-                logger.info("玩家地图信息初始化完毕" + player + ", 并进入跨服");
+                logger.info("Инициализация карты игрока завершена" + player + ", вход на кросс-сервер");
                 checkCrossInfo(player);
                 return;
             } else if (player.playerCrossData.toFightId != 0) {
                 player.playerCrossData.toFightId = 0;
                 player.playerCrossData.setToFightServer(false);
                 player.playerCrossData.isReqFight = false;
-                logger.info("把玩家还原到本服" + player + ", 并进入跨服   " + player.playerCrossData.toFightId);
+                logger.info("Возврат игрока на локальный сервер" + player + ", вход на кросс-сервер " + player.playerCrossData.toFightId);
 
             }
-            //在没有把玩家拉到战斗服的情况下修正进入标志
+            //Корректировка флага входа, если игрок не был перемещён на боевой сервер
             if (player.playerCrossData.isReqFight) {
                 long now = TimeUtils.Time();
                 if (now - player.playerCrossData.reqFightTime > 150000) {
@@ -85,14 +85,13 @@ public class LoadScript implements IScript, ILoadScript {
             }
             int mapId = player.gainMapModelId();
 
-            //如果玩家唉在跨服休息室地图，服务器重启了
+            //Если игрок в комнате ожидания кросс-сервера после перезапуска сервера
             if (mapId == 500) {
                 MapObject unknowMap = Manager.mapManager.getMap(player.gainMapId());
-                logger.info("玩家地图信息初始化完毕, 再跨服休息室" + player);
-                //把玩家从所的跨服战斗服进行踢出
+                logger.info("Инициализация карты игрока завершена, в комнате ожидания кросс-сервера" + player);
+                //Выгоняем игрока с боевого сервера
                 if (unknowMap != null)
                     Manager.mapManager.manager().onQuitMap(unknowMap, player, false);
-                //Manager.playerManager.managerExt().onCrossPlayerOut(player);
                 Manager.mapManager.changeMap(player, Manager.playerManager.getBornMapID(), null, -1, true);
                 return;
             }
@@ -108,7 +107,7 @@ public class LoadScript implements IScript, ILoadScript {
     }
 
 
-    //检测跨服战场结束否
+    //Проверка завершения кросс-серверного боя
     public void checkCrossInfo(Player player) {
         G2PCheckCrossInfo.Builder msg = G2PCheckCrossInfo.newBuilder();
         msg.setRoleId(player.getId());
@@ -117,7 +116,7 @@ public class LoadScript implements IScript, ILoadScript {
     }
 
     /**
-     * 处理客户端的主界面引导ID
+     * Обработка ID гида главного интерфейса от клиента
      *
      * @param player
      * @param lastId
@@ -128,7 +127,7 @@ public class LoadScript implements IScript, ILoadScript {
             return;
         }
         if (lastId < 1) {
-            logger.error(" 更新主界面引导ID时出错了！");
+            logger.error("Ошибка обновления ID гида главного интерфейса!");
             return;
         }
 
@@ -141,7 +140,7 @@ public class LoadScript implements IScript, ILoadScript {
         if (player != null) {
             sendMainGuide(player);
         } else {
-            logger.error("OnReqMainUIGuideID 调用错误，传送了错误的参数！");
+            logger.error("OnReqMainUIGuideID: передан неверный параметр!");
         }
     }
 
@@ -151,21 +150,21 @@ public class LoadScript implements IScript, ILoadScript {
         MessageUtils.send_to_player(player, PlayerMessage.ResMainUIGuideID.MsgID.eMsgID_VALUE, msg.build().toByteArray());
     }
 
-    //客户端加载完成
+    //Загрузка клиентом завершена
     @Override
     public void OnReqLoadFinish(Player player) {
-        //进入地图
+        //Вход на карту
         MapObject map = Manager.mapManager.getMap(player.gainMapId());
         if (EntityState.ChangeMap.compare(player.getState())) {
             Manager.mapManager.manager().onEnterMap(player, map, player.gainCurPos());
             player.removeSate(EntityState.ChangeMap);
             return;
         }
-        //重连的情况下是支持重新加载的
+        //При переподключении поддерживается перезагрузка
         if (EntityState.ReConnect.compare(player.getState())) {
-            //最后进入地图
+            //Вход на карту
             if (player.playerCrossData.toFightId > 0) {
-                //发送进入地图到跨服
+                //Отправка входа на кросс-сервер
                 G2FOnEnterMapAgain.Builder entercross = G2FOnEnterMapAgain.newBuilder();
                 entercross.setRoleId(player.getId());
                 ConnectFightManager.GetInstance().send_to_fight(player.playerCrossData.toFightSid, player.getId(), G2FOnEnterMapAgain.MsgID.eMsgID_VALUE, entercross.build().toByteArray());
@@ -173,48 +172,48 @@ public class LoadScript implements IScript, ILoadScript {
                 player.playerCrossData.isReqFight = false;
                 return;
             }
-            //修改位置， 使用在线标志更新
+            //Обновление позиции с использованием флага онлайн
             PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(player.getId());
             if (pwi != null) {
-                pwi.setLastOffTime(0);//玩家在线哦
+                pwi.setLastOffTime(0);//Игрок онлайн
             } else {
-                log.error(player + "登录时没能生成离线数据", new NullPointerException());
+                log.error(player + " не удалось сгенерировать данные офлайн при входе", new NullPointerException());
             }
-            log.error(player.nameIdString() + " 玩家回复了重连接成功了！");
+            log.error(player.nameIdString() + " Переподключение успешно!");
             Manager.mapManager.manager().onEnterMap(player, map, player.gainCurPos());
             player.removeSate(EntityState.ReConnect);
             return;
         }
 
-        //登录加载完成
+        //Загрузка при входе завершена
         if (EntityState.LoginGame.compare(player.getState())) {
 
-            //修改位置， 使用在线标志更新
+            //Обновление позиции с использованием флага онлайн
             PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(player.getId());
             if (pwi != null) {
-                pwi.setLastOffTime(0);//玩家在线哦
+                pwi.setLastOffTime(0);//Игрок онлайн
             }
             Manager.countManager.setBooleanCountValue(player, BooleanDay.DailyLogin, true);
-            //数据检查设置
+            //Проверка и настройка данных
             checkPlayerData(player);
-            //同步玩家所有数据
+            //Синхронизация всех данных игрока
             Manager.playerManager.manager().OnSendPlayerAllInfo(player, false);
-            //最后进入地图
+            //Вход на карту
             if (player.playerCrossData.toFightId > 0) {
-                //发送进入地图到跨服
+                //Отправка входа на кросс-сервер
                 G2FOnEnterMapAgain.Builder entercross = G2FOnEnterMapAgain.newBuilder();
                 entercross.setRoleId(player.getId());
                 ConnectFightManager.GetInstance().send_to_fight(player.playerCrossData.toFightSid, player.getId(), G2FOnEnterMapAgain.MsgID.eMsgID_VALUE, entercross.build().toByteArray());
                 player.playerCrossData.setToFightServer(true);
                 player.playerCrossData.isReqFight = false;
             } else {
-                //清理路径
+                //Очистка пути
                 player.clearRoads();
                 Manager.mapManager.manager().onEnterMap(player, map, player.gainCurPos());
             }
 
             player.removeSate(EntityState.LoginGame);
-            logger.info(player + "登录完成！mapId=" + player.gainMapId());
+            logger.info(player + " Вход завершён! mapId=" + player.gainMapId());
             try {
                 Manager.redPacketManager.getScript().playerLogin(player);
             } catch (Exception ex) {
@@ -222,7 +221,7 @@ public class LoadScript implements IScript, ILoadScript {
             }
         }
 
-        //如果不是战斗服则不管， 如果是战斗服， 检查玩家是否有分配地图， 如果没有， 则另处理
+        //Если не боевой сервер, пропускаем
         if (!GameServer.getInstance().IsFightServer()) {
             return;
         }
@@ -247,13 +246,13 @@ public class LoadScript implements IScript, ILoadScript {
     }
 
     /**
-     * 检查数据 并重新设置
+     * Проверка и настройка данных
      * @param player
      */
     private void checkPlayerData(Player player) {
-        //装备部位检查
+        //Проверка частей экипировки
         List<EquipPart> parts = player.getEquipParts();
-        //增加部位装备
+        //Добавление недостающих частей
         if(parts.size() < EquipDefine.EquipPart_Num){
             for(int i= parts.size();i<EquipDefine.EquipPart_Num;i++){
                 EquipPart part = new EquipPart();
@@ -264,15 +263,14 @@ public class LoadScript implements IScript, ILoadScript {
             }
         }
 
-        //初始化宝石孔位
+        //Инициализация слотов самоцветов
         Manager.gemManager.deal().initGemInfo(player);
     }
 
-    //断线重连
+    //Переподключение после обрыва
     @Override
     public void reconnect(Player player) {
         player.resetState();
-//		Manager.mapManager.allocateMap(player);
 
         Manager.countManager.setBooleanCountValue(player, BooleanDay.DailyLogin, true);
         Manager.playerManager.manager().OnSendPlayerAllInfo(player, true);
@@ -296,7 +294,7 @@ public class LoadScript implements IScript, ILoadScript {
 
         PlayerWorldInfo pwi = Manager.playerManager.getPlayerWorldInfo(player.getId());
         if (pwi != null) {
-            pwi.setLastOffTime(0);//玩家在线哦
+            pwi.setLastOffTime(0);//Игрок онлайн
         }
     }
 }

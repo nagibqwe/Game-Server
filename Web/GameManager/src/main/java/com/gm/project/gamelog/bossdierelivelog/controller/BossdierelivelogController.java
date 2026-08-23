@@ -25,7 +25,7 @@ import com.gm.framework.web.page.TableDataInfo;
 
 
 /**
- * 首领死亡复活日志Controller
+ * Контроллер логов смерти и возрождения боссов
  * 
  * @author gm
  * @date 2021-09-10
@@ -46,7 +46,7 @@ public class BossdierelivelogController extends BaseController
         return prefix + "/bossdierelivelog";
     }
     /**
-     * 查询首领死亡复活日志列表
+     * Получение списка логов смерти и возрождения боссов
      */
     @RequiresPermissions("gamelog:bossdierelivelog:list")
     @PostMapping("/list")
@@ -65,10 +65,10 @@ public class BossdierelivelogController extends BaseController
         return getDataTable(list);
     }
     /**
-     * 导出首领死亡复活日志列表
+     * Экспорт списка логов смерти и возрождения боссов
      */
     @RequiresPermissions("gamelog:bossdierelivelog:export")
-    @Log(title = "首领死亡复活日志", businessType = BusinessType.EXPORT)
+    @Log(title = "Логи смерти и возрождения боссов", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(Bossdierelivelog bossdierelivelog,String startDate,String endDate,Integer serverId,Integer pageSize)
@@ -76,6 +76,6 @@ public class BossdierelivelogController extends BaseController
         Map<String,Object> param = GameLogUtil.getParamMap(startDate,endDate,serverId,pageSize);
         List<Bossdierelivelog> list = bossdierelivelogService.selectBossdierelivelogList(bossdierelivelog,param);
         ExcelUtil<Bossdierelivelog> util = new ExcelUtil<Bossdierelivelog>(Bossdierelivelog.class);
-        return util.exportExcel(list, "首领死亡复活日志数据");
+        return util.exportExcel(list, "Данные логов смерти и возрождения боссов");
     }
 }

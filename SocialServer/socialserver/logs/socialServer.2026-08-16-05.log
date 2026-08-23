@@ -1,0 +1,10 @@
+2026-08-16 05:18:31.271 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:63] - 游戏服首次来注册ServerMessageAdapter#0: [id: 0x30ff4f7b, L:/94.250.249.128:9520 - R:/85.217.149.36:51576] 连接的序号是：null
+2026-08-16 05:18:31.271 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:56] - 游戏服激活连接ServerMessageAdapter#0: [id: 0x30ff4f7b, L:/94.250.249.128:9520 - R:/85.217.149.36:51576] 连接的序号是：12
+2026-08-16 05:19:01.140 INFO [游戏服消息发送队列][ServerMessageAdapter.java:118] - [id: 0x30ff4f7b, L:/94.250.249.128:9520 ! R:/85.217.149.36:51576]发送队列时， 连接已经断开了！4
+2026-08-16 05:19:01.140 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:72] - 游戏服断开连接ServerMessageAdapter#0: [id: 0x30ff4f7b, L:/94.250.249.128:9520 ! R:/85.217.149.36:51576] 连接的序号是：12
+2026-08-16 05:19:01.141 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:80] - 游戏服退出注册ServerMessageAdapter#0: [id: 0x30ff4f7b, L:/94.250.249.128:9520 ! R:/85.217.149.36:51576] 连接的序号是：12
+2026-08-16 05:33:56.285 INFO [nioEventLoopGroup-3-5][ServerMessageAdapter.java:63] - 游戏服首次来注册ServerMessageAdapter#0: [id: 0x05768d46, L:/94.250.249.128:9520 - R:/85.217.149.61:34070] 连接的序号是：null
+2026-08-16 05:33:56.285 INFO [nioEventLoopGroup-3-5][ServerMessageAdapter.java:56] - 游戏服激活连接ServerMessageAdapter#0: [id: 0x05768d46, L:/94.250.249.128:9520 - R:/85.217.149.61:34070] 连接的序号是：13
+2026-08-16 05:34:26.156 INFO [游戏服消息发送队列][ServerMessageAdapter.java:118] - [id: 0x05768d46, L:/94.250.249.128:9520 ! R:/85.217.149.61:34070]发送队列时， 连接已经断开了！4
+2026-08-16 05:34:26.156 INFO [nioEventLoopGroup-3-5][ServerMessageAdapter.java:72] - 游戏服断开连接ServerMessageAdapter#0: [id: 0x05768d46, L:/94.250.249.128:9520 ! R:/85.217.149.61:34070] 连接的序号是：13
+2026-08-16 05:34:26.156 INFO [nioEventLoopGroup-3-5][ServerMessageAdapter.java:80] - 游戏服退出注册ServerMessageAdapter#0: [id: 0x05768d46, L:/94.250.249.128:9520 ! R:/85.217.149.61:34070] 连接的序号是：13

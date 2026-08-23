@@ -1,0 +1,17 @@
+2026-08-17 05:31:29.088 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x7bc67bfb, L:/94.250.249.128:9200 - R:/69.12.71.34:32796]
+2026-08-17 05:31:29.088 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-17 05:31:29.088 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x7bc67bfb, L:/94.250.249.128:9200 - R:/69.12.71.34:32796] — порядковый номер подключения: 245
+2026-08-17 05:31:33.918 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x7bc67bfb, L:/94.250.249.128:9200 ! R:/69.12.71.34:32796] — при отправке очереди соединение уже разорвано! 4
+2026-08-17 05:31:33.918 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0x7bc67bfb, L:/94.250.249.128:9200 ! R:/69.12.71.34:32796]
+2026-08-17 05:31:33.918 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x7bc67bfb, L:/94.250.249.128:9200 ! R:/69.12.71.34:32796] — при отправке очереди соединение уже разорвано! 4
+2026-08-17 05:31:33.918 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-17 05:31:33.918 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x7bc67bfb, L:/94.250.249.128:9200 ! R:/69.12.71.34:32796]
+2026-08-17 05:31:34.138 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:105] - Игровой сервер впервые регистрируется: InnerMsgAdapter#0 :[id: 0x002ffff1, L:/94.250.249.128:9200 - R:/69.12.71.34:32800]
+2026-08-17 05:31:34.138 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - Первичная регистрация подключения выполнена успешно!
+2026-08-17 05:31:34.138 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:93] - Игровой сервер начал подключение: InnerMsgAdapter#0 :[id: 0x002ffff1, L:/94.250.249.128:9200 - R:/69.12.71.34:32800] — порядковый номер подключения: 246
+2026-08-17 05:31:38.944 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0x002ffff1, L:/94.250.249.128:9200 ! R:/69.12.71.34:32800] — при отправке очереди соединение уже разорвано! 4
+2026-08-17 05:31:38.944 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:118] - Игровой сервер отключился: InnerMsgAdapter#0 :[id: 0x002ffff1, L:/94.250.249.128:9200 ! R:/69.12.71.34:32800]
+2026-08-17 05:31:38.944 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:155] - channelInactive: подключение удалено!
+2026-08-17 05:31:38.944 INFO [nioEventLoopGroup-3-6][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0x002ffff1, L:/94.250.249.128:9200 ! R:/69.12.71.34:32800]
+2026-08-17 05:32:53.452 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-17 05:32:53.452 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0

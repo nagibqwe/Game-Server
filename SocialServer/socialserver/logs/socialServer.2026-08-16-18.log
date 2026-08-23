@@ -1,0 +1,7 @@
+2026-08-16 18:04:09.046 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:63] - 游戏服首次来注册ServerMessageAdapter#0: [id: 0x5584bbb9, L:/94.250.249.128:9520 - R:/162.216.149.233:58014] 连接的序号是：null
+2026-08-16 18:04:09.047 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:56] - 游戏服激活连接ServerMessageAdapter#0: [id: 0x5584bbb9, L:/94.250.249.128:9520 - R:/162.216.149.233:58014] 连接的序号是：20
+2026-08-16 18:04:18.923 INFO [游戏服消息发送队列][ServerMessageAdapter.java:118] - [id: 0x5584bbb9, L:/94.250.249.128:9520 ! R:/162.216.149.233:58014]发送队列时， 连接已经断开了！4
+2026-08-16 18:04:18.923 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:72] - 游戏服断开连接ServerMessageAdapter#0: [id: 0x5584bbb9, L:/94.250.249.128:9520 ! R:/162.216.149.233:58014] 连接的序号是：20
+2026-08-16 18:04:18.923 INFO [nioEventLoopGroup-3-4][ServerMessageAdapter.java:80] - 游戏服退出注册ServerMessageAdapter#0: [id: 0x5584bbb9, L:/94.250.249.128:9520 ! R:/162.216.149.233:58014] 连接的序号是：20
+2026-08-16 18:04:18.926 INFO [游戏服消息发送队列][ServerMessageAdapter.java:118] - [id: 0x5584bbb9, L:/94.250.249.128:9520 ! R:/162.216.149.233:58014]发送队列时， 连接已经断开了！4
+2026-08-16 18:53:35.012 ERROR [Main-Timer-Timer][TimerThread.java:78] - TIMER事件的时间花费：14数量：1

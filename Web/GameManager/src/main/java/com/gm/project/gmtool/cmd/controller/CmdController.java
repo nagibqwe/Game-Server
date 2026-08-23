@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * gm命令热更新Controller
+ * Контроллер горячего обновления GM команд
  */
 @Controller
 @RequestMapping("/gmtool/gmcmd")
@@ -45,7 +45,7 @@ public class CmdController extends BaseController {
     private GameManagerConfig gameManagerConfig;
 
     /**
-     * 发送游戏服命令
+     * Отправка команды на игровой сервер
      * @param request
      * @param serverIdStr
      * @param action
@@ -56,10 +56,10 @@ public class CmdController extends BaseController {
     @ResponseBody
     public AjaxResult sendCommand(HttpServletRequest request, String serverIdStr, String action, String params) {
         if (StringUtils.isEmpty(action)) {
-            return AjaxResult.error("命令为空！");
+            return AjaxResult.error("Команда пуста!");
         }
         if (null == serverIdStr || "".equals(serverIdStr)) {
-            return AjaxResult.error("没有选择服务器Id");
+            return AjaxResult.error("Не выбран ID сервера");
         }
 
         int isOk = 1;
@@ -79,9 +79,9 @@ public class CmdController extends BaseController {
                 isOk = 0;
             }
 
-            String result = "执行GM命令,区服:" + ser.getServerName() + "(" + ser.getServerId() + ")"
-                    + "命令：" + action + ", 参数:" + params
-                    + "结果：" + map.toString() + "\n" ;
+            String result = "Выполнение GM команды, сервер:" + ser.getServerName() + "(" + ser.getServerId() + ")"
+                    + "Команда: " + action + ", Параметры: " + params
+                    + "Результат: " + map.toString() + "\n" ;
             sb.append(result);
 
             writeCmdLog(ser, 0, action, params, isOk, result);
@@ -93,7 +93,7 @@ public class CmdController extends BaseController {
     }
 
     /**
-     * 发送公共服命令
+     * Отправка команды на публичный сервер
      * @param request
      * @param serverIdStr
      * @param action
@@ -104,10 +104,10 @@ public class CmdController extends BaseController {
     @ResponseBody
     public AjaxResult sendPSCommand(HttpServletRequest request, String serverIdStr, String action, String params) {
         if (StringUtils.isEmpty(action)) {
-            return AjaxResult.error("命令错误！");
+            return AjaxResult.error("Ошибка команды!");
         }
         if (null == serverIdStr || "".equals(serverIdStr)) {
-            return AjaxResult.error("没有选择服务器Id");
+            return AjaxResult.error("Не выбран ID сервера");
         }
         HashMap<String,String> paramMap = new HashMap<>();
         if(!"".equals(params)){
@@ -137,11 +137,11 @@ public class CmdController extends BaseController {
             }
 
             url = "http://" + ser.getServerIP() + ":" + ser.getServerPort() + "/" + action;
-            log.info("发送公共服命令: URL = {}, param = {}",url, JSON.toJSONString(paramMap));
+            log.info("Отправка команды на публичный сервер: URL = {}, param = {}",url, JSON.toJSONString(paramMap));
             String re = HttpConnectionUtils.get(url, null, paramMap);
             if (StringUtils.isBlank(re)) {
                 isOk = 0;
-                result.append("请求异常!");
+                result.append("Ошибка запроса!");
             }else {
                 result.append(re);
             }
@@ -155,7 +155,7 @@ public class CmdController extends BaseController {
     }
 
     /**
-     * 查询服务器开服时间
+     * Запрос времени открытия сервера
      * @param serverId
      * @return
      */
@@ -170,7 +170,7 @@ public class CmdController extends BaseController {
     }
 
     /**
-     * 查询服务器注册限制人数/设置注册限制人数
+     * Запрос лимита регистрации / Установка лимита регистрации
      * @param serverId
      * @return
      */
@@ -188,7 +188,7 @@ public class CmdController extends BaseController {
     }
 
     /**
-     * 设置服务器开服时间
+     * Установка времени открытия сервера
      * @param serverId
      * @param time
      * @return
@@ -203,7 +203,7 @@ public class CmdController extends BaseController {
         return GameServerRequestUtil.gmSetOpsTime(server, time);
     }
     /**
-     *写入cmdlog日志
+     * Запись лога команд
      */
     private void writeCmdLog(TServer server, int type, String action, String param, int isOk, String result) {
         CmdLog cmdLog = new CmdLog();

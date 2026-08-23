@@ -1,0 +1,9 @@
+2026-08-21 02:00:00.049 INFO [Public service][DailyActiveScript.java:263] - 日常活动id=113【诸界远征】关闭阶段
+2026-08-21 02:00:00.050 INFO [Public service][FudScript.java:1011] - 跨服福地活动关闭
+2026-08-21 02:28:44.462 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:145] - Игровой сервер InnerMsgAdapter#0 :[id: 0xc9a499e0, L:/94.250.249.128:9200 - R:/213.209.159.15:63802] — произошло исключение: java.io.IOException: Connection reset by peer
+2026-08-21 02:28:44.463 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xc9a499e0, L:/94.250.249.128:9200 ! R:/213.209.159.15:63802] — при отправке очереди соединение уже разорвано! 4
+2026-08-21 02:28:44.463 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:132] - Игровой сервер вышел из регистрации: InnerMsgAdapter#0 :[id: 0xc9a499e0, L:/94.250.249.128:9200 ! R:/213.209.159.15:63802]
+2026-08-21 02:28:44.463 INFO [Отправка очереди сообщений][InnerMsgAdapter.java:190] - [id: 0xc9a499e0, L:/94.250.249.128:9200 ! R:/213.209.159.15:63802] — при отправке очереди соединение уже разорвано! 4
+2026-08-21 02:28:44.463 INFO [nioEventLoopGroup-3-5][InnerMsgAdapter.java:155] - unreg: подключение удалено!
+2026-08-21 02:51:05.965 INFO [Public service][CrossRankScript.java:261] - 开始计算跨服世界等级
+2026-08-21 02:51:05.965 ERROR [Public service][CrossRankScript.java:240] - allCrosRankMap  size  == 0

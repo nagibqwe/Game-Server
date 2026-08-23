@@ -25,13 +25,13 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 集物兑换 300008
+ * Обмен предметов 300008
  * Created by cxl on 2020/9/9.
  */
 public class CollectGoodsExchangeActivityScript implements IActivityScript {
     private static final String CollectGoodsDataStr = "collectGoodsData";
-    private static final String ExChangeList = "exChangeList";//已经兑换的数据发给客户端的
-    private static final String ExChange ="exChange"; //兑换
+    private static final String ExChangeList = "exChangeList";//Данные об уже совершённых обменах для клиента
+    private static final String ExChange ="exChange"; //Обмен
     public static final Logger LOGGER = LogManager.getLogger(CollectGoodsExchangeActivityScript.class);
 
     @Override
@@ -77,13 +77,13 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
         int overDay  =  TimeUtils.getCurDayByTime(actCfg.getEndTime());
 
         if (curDay < startDay || curDay > overDay){
-            LOGGER.error("活动时间已结束"  + actType);
+            LOGGER.error("Время активности истекло"  + actType);
             return;
         }
         int exChangeID = (int)dailyMap.get(ExChange);
         int exNum = (int)dailyMap.get("num");
         if (exNum < 1 ){
-            LOGGER.error("兑换数量为 0");
+            LOGGER.error("Количество обмена равно 0");
             return;
         }
         ConcurrentHashMap<String, Object> roleActDataMap = Manager.activityManager.deal().getRoleActivityData(player.getId(), actType);
@@ -97,13 +97,13 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
 
         int alreadExChangeNum = exChangeList.get(exChangeID);
         if( dailyMap.get(ExChange) == null){
-            LOGGER.error("兑换数据为空");
+            LOGGER.error("Данные обмена пусты");
             return;
         }
         CollectGoodsData collectGoodsData = (CollectGoodsData)actCfg.getCustomCfgMap().get(CollectGoodsDataStr);
 
         if (!collectGoodsData.getExChangeDataMap().containsKey(exChangeID)){
-            LOGGER.error("没有该类型的兑换 道具"  + exChangeID);
+            LOGGER.error("Нет такого типа обмена"  + exChangeID);
             return;
         }
         int exChangeM  = collectGoodsData.exChangeMaterialsId;
@@ -111,11 +111,11 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
         int exChangeN  = exChangeData.exChangePrice * exNum;
         int maExChangeN = exChangeData.getExChangeTimes();
         if (maExChangeN != 0 && (alreadExChangeNum +  exNum) > maExChangeN){
-            LOGGER.error("兑换次数已满"  + alreadExChangeNum);
+            LOGGER.error("Лимит обмена исчерпан"  + alreadExChangeNum);
             return;
         }
         if (!Manager.backpackManager.manager().onRemoveItem(player,exChangeM, exChangeN, ItemChangeReason.CollectGoodsExchangeDel, IDConfigUtil.getLogId())){
-            LOGGER.error("材料不足"  + exChangeM);
+            LOGGER.error("Недостаточно материалов"  + exChangeM);
             return;
         }
         RewardData rewardData = exChangeData.getRewardData();
@@ -127,12 +127,11 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
                     MessageString.System, MessageString.NoBagCell, itemList, ItemChangeReason.CollectGoodsExchangeGet, actionId);
         }
 
-//        Manager.biManager.getScript().biActivity(player, ItemChangeReason.CollectGoodsExchangeGet, actCfg.getType(), actCfg.getId());
         Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.CollectGoodsExchange, ItemChangeReason.CollectGoodsExchangeGet, exChangeID);
         exChangeList.put(exChangeID,alreadExChangeNum + exNum);
 
         Manager.activityManager.deal().onReqActivity(player,actType);
-        //保存角色活动数据
+        //Сохранение данных активности игрока
         Manager.activityManager.deal().saveRoleActData(player.getId(), Manager.activityManager.getRoleActDatas().get(player.getId()));
 
 
@@ -199,7 +198,7 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
     }
 
     /**
-     * 活动掉落
+     * Выпадение с босса
      *
      * @param player
      * @param bossId
@@ -211,7 +210,7 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
     }
 
     /**
-     * 活动掉落
+     * Выпадение из сундука
      *
      * @param player
      * @param boxId
@@ -223,7 +222,7 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
     }
 
     /**
-     * 副本掉落
+     * Выпадение в подземелье
      *
      * @param player
      * @param cloneId
@@ -252,14 +251,14 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
         for (long roleid : roleIds){
            Player player =   Manager.playerManager.getPlayer(roleid);
            if (player == null){
-               LOGGER.error("玩家对象不存在 ");
+               LOGGER.error("Игрок не найден ");
                continue;
            }
            int hasNum =    Manager.backpackManager.manager().getItemNum(player,exChangeMaterialsId);
            if (hasNum>0){
                long action = IDConfigUtil.getLogId();
                if ( !Manager.backpackManager.manager().onRemoveItem(player,exChangeMaterialsId,hasNum,ItemChangeReason.CollectGoodsExchangeDel,action)){
-                   LOGGER.error("扣除材料失败 " + returnCoinType);
+                   LOGGER.error("Ошибка списания материалов " + returnCoinType);
                    continue;
                }
                int returnAll = returnNum  * hasNum;
@@ -268,7 +267,6 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
                Manager.mailManager.sendMailToPlayer(player.getId(), MessageString.System, MessageString.System,
                        MessageString.Collect_Goods_Reward_Mail_Title, MessageString.Collect_Goods_Reward_Mail, itemList, ItemChangeReason.CollectGoodsExchangeGet, action);
 
-//               Manager.biManager.getScript().biActivity(player, ItemChangeReason.CollectGoodsExchangeGet,  actCfg.getType(), actCfg.getId());
                Manager.biManager.getScript().biActivity(player, BIActiityTypeEnum.CollectGoodsExchange, ItemChangeReason.CollectGoodsExchangeGet, returnCoinType);
            }
         }
@@ -282,13 +280,13 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
 
         private String client ;
 
-        private int exChangeMaterialsId;//兑换所需要的材料
+        private int exChangeMaterialsId;//Материалы для обмена
 
-        private int returnMoneyCoinType;//退还的货币类型
+        private int returnMoneyCoinType;//Тип возвращаемой валюты
 
-        private int returnMoneyCoinNum;//单个材料退还的货币数量
+        private int returnMoneyCoinNum;//Количество возвращаемой валюты за 1 материал
 
-        //KEY 商品ID
+        //KEY ID товара
         private HashMap<Integer,ExChangeData> exChangeDataMap = new HashMap<>();
 
         public String getClient() {
@@ -332,9 +330,9 @@ public class CollectGoodsExchangeActivityScript implements IActivityScript {
         }
     }
     static class ExChangeData{
-        private int exChangeTimes;//兑换次数 0 代表无限次
+        private int exChangeTimes;//Лимит обмена, 0 - безлимитно
 
-        private int exChangePrice;//兑换价格
+        private int exChangePrice;//Цена обмена
 
         private RewardData rewardData;
 
